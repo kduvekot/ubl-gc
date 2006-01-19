@@ -19291,6 +19291,149 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>1.0</SimpleValue>
          </Value>
       </Row>
+      <Row><!--399-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Common</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>TradingTerms</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Trading Terms. Details</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Trading Terms</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>ABIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>Information about the terms and conditions of a trade agreement</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.0</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--400-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Common</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>Information</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Trading Terms. Information. Text</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Trading Terms</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Information</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Information</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Text</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Text. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..n</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>The terms and conditions in text</SimpleValue>
+         </Value>
+         <Value ColumnRef="Examples">
+            <SimpleValue>"Unless credit terms have been expressly agreed by Dell, payment for the products or services shall be made in full before physical delivery of products or services. Customer shall pay for all shipping and handling charges."</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.0</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--401-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Common</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>Reference</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Trading Terms. Reference. Text</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Trading Terms</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Reference</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Reference</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Text</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Text. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>A reference to the terms</SimpleValue>
+         </Value>
+         <Value ColumnRef="Examples">
+            <SimpleValue>http://www1.ap.dell.com/content/topics/topic.aspx/ap/policy/en/au/sales_terms_au?c=au&amp;l=en&amp;s=gen</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.0</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--402-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Common</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>ApplicableAddress</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Trading Terms. Applicable_ Address</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Trading Terms</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermQualifier">
+            <SimpleValue>Applicable</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Address</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Address</SimpleValue>
+         </Value>
+         <Value ColumnRef="AssociatedObjectClass">
+            <SimpleValue>Address</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>ASBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>An association to Address</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.0</SimpleValue>
+         </Value>
+      </Row>
       <Row><!--2-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Procurement</SimpleValue>
