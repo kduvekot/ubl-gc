@@ -72020,7 +72020,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>ABIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The Waybill is issued by the party, who acts as an agent for the carrier or other agents, to the party who gives instructions for the transportation services (shipper, consignor, etc.) stating the details of the transportation, charges and terms and conditions under which the transportation service is provided. The party issuing this document may not provide the physical transportation service. It corresponds to the information on the Forwarding Instruction. It is used for all modes of transport.
+            <SimpleValue>The Waybill is issued by the party, who acts as an agent for the carrier or other agents, to the party who gives instructions for the transportation services (shipper, consignor, etc.) stating the details of the transportation, charges and terms and conditions under which the transportation service is provided. The party issuing this document could be a party other than that providing the physical transportation. It corresponds to the information on the Forwarding Instruction. It is used for all modes of transport.
 It can serve as a contractual document between the parties for the transportation service. The document made out by the carrier or on behalf of the carrier evidencing the contract for the transport of cargo. </SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
@@ -72035,10 +72035,151 @@ It can serve as a contractual document between the parties for the transportatio
             <SimpleValue>Waybill</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
+            <SimpleValue>UBLVersionID</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Waybill. UBL Version Identifier. Identifier</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Waybill</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPossessiveNoun">
+            <SimpleValue>UBL Version</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Identifier</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>UBL Version Identifier</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Identifier</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Identifier. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>The version of the UBL schema being used.</SimpleValue>
+         </Value>
+         <Value ColumnRef="Examples">
+            <SimpleValue>2.0.5</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.0</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Transportation</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--4-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Waybill</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>SubsetID</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Waybill. Subset Identifier. Identifier</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Waybill</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPossessiveNoun">
+            <SimpleValue>Subset</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Identifier</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Identifier</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Identifier</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Identifier. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>The identifier for a user defined subset of UBL.</SimpleValue>
+         </Value>
+         <Value ColumnRef="Examples">
+            <SimpleValue>NES</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.0</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Transportation</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--5-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Waybill</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>ProfileID</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Waybill. Profile Identifier. Identifier</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Waybill</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPossessiveNoun">
+            <SimpleValue>Profile</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Identifier</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Identifier</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Identifier</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Identifier. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>The identifier for a user defined profile of the subset of UBL being used. </SimpleValue>
+         </Value>
+         <Value ColumnRef="Examples">
+            <SimpleValue>BasicProcurementProcess</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.0</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Transportation</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--6-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Waybill</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
             <SimpleValue>ID</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Waybill. Identifier. Identifier</SimpleValue>
+            <SimpleValue>Waybill. Identifier</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Waybill</SimpleValue>
@@ -72077,7 +72218,7 @@ It can serve as a contractual document between the parties for the transportatio
             <SimpleValue>Transportation</SimpleValue>
          </Value>
       </Row>
-      <Row><!--4-->
+      <Row><!--7-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Waybill</SimpleValue>
          </Value>
@@ -72124,27 +72265,24 @@ It can serve as a contractual document between the parties for the transportatio
             <SimpleValue>Transportation</SimpleValue>
          </Value>
       </Row>
-      <Row><!--5-->
+      <Row><!--8-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Waybill</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
-            <SimpleValue>GUID</SimpleValue>
+            <SimpleValue>UUID</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Waybill. Globally Unique Identifier. Identifier</SimpleValue>
+            <SimpleValue>Waybill. UUID. Identifier</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Waybill</SimpleValue>
          </Value>
-         <Value ColumnRef="PropertyTermPossessiveNoun">
-            <SimpleValue>Globally Unique</SimpleValue>
-         </Value>
          <Value ColumnRef="PropertyTermPrimaryNoun">
-            <SimpleValue>Identifier</SimpleValue>
+            <SimpleValue>UUID</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTerm">
-            <SimpleValue>Globally Unique Identifier</SimpleValue>
+            <SimpleValue>UUID</SimpleValue>
          </Value>
          <Value ColumnRef="RepresentationTerm">
             <SimpleValue>Identifier</SimpleValue>
@@ -72159,7 +72297,7 @@ It can serve as a contractual document between the parties for the transportatio
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>Globally Unique Identifier of one instance of a Waybill.</SimpleValue>
+            <SimpleValue>Universally Unique Identifier of one instance of a Waybill.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
@@ -72168,7 +72306,7 @@ It can serve as a contractual document between the parties for the transportatio
             <SimpleValue>Transportation</SimpleValue>
          </Value>
       </Row>
-      <Row><!--6-->
+      <Row><!--9-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Waybill</SimpleValue>
          </Value>
@@ -72215,7 +72353,7 @@ It can serve as a contractual document between the parties for the transportatio
             <SimpleValue>Transportation</SimpleValue>
          </Value>
       </Row>
-      <Row><!--7-->
+      <Row><!--10-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Waybill</SimpleValue>
          </Value>
@@ -72262,7 +72400,7 @@ It can serve as a contractual document between the parties for the transportatio
             <SimpleValue>Transportation</SimpleValue>
          </Value>
       </Row>
-      <Row><!--8-->
+      <Row><!--11-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Waybill</SimpleValue>
          </Value>
@@ -72270,7 +72408,7 @@ It can serve as a contractual document between the parties for the transportatio
             <SimpleValue>Name</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Waybill. Name. Name</SimpleValue>
+            <SimpleValue>Waybill. Name</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Waybill</SimpleValue>
@@ -72306,7 +72444,7 @@ It can serve as a contractual document between the parties for the transportatio
             <SimpleValue>Transportation</SimpleValue>
          </Value>
       </Row>
-      <Row><!--9-->
+      <Row><!--12-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Waybill</SimpleValue>
          </Value>
@@ -72347,7 +72485,7 @@ It can serve as a contractual document between the parties for the transportatio
             <SimpleValue>Transportation</SimpleValue>
          </Value>
       </Row>
-      <Row><!--10-->
+      <Row><!--13-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Waybill</SimpleValue>
          </Value>
@@ -72388,7 +72526,7 @@ It can serve as a contractual document between the parties for the transportatio
             <SimpleValue>Transportation</SimpleValue>
          </Value>
       </Row>
-      <Row><!--11-->
+      <Row><!--14-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Waybill</SimpleValue>
          </Value>
@@ -72435,7 +72573,7 @@ It can serve as a contractual document between the parties for the transportatio
             <SimpleValue>Transportation</SimpleValue>
          </Value>
       </Row>
-      <Row><!--12-->
+      <Row><!--15-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Waybill</SimpleValue>
          </Value>
@@ -72443,19 +72581,19 @@ It can serve as a contractual document between the parties for the transportatio
             <SimpleValue>AdValoremIndicator</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Waybill. Ad Valorem. Indicator</SimpleValue>
+            <SimpleValue>Waybill. Ad Valorem_ Indicator. Indicator</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Waybill</SimpleValue>
          </Value>
-         <Value ColumnRef="PropertyTermPossessiveNoun">
+         <Value ColumnRef="PropertyTermQualifier">
             <SimpleValue>Ad Valorem</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTermPrimaryNoun">
             <SimpleValue>Indicator</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTerm">
-            <SimpleValue>Ad Valorem Indicator</SimpleValue>
+            <SimpleValue>Indicator</SimpleValue>
          </Value>
          <Value ColumnRef="RepresentationTerm">
             <SimpleValue>Indicator</SimpleValue>
@@ -72479,7 +72617,7 @@ It can serve as a contractual document between the parties for the transportatio
             <SimpleValue>Transportation</SimpleValue>
          </Value>
       </Row>
-      <Row><!--13-->
+      <Row><!--16-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Waybill</SimpleValue>
          </Value>
@@ -72487,22 +72625,19 @@ It can serve as a contractual document between the parties for the transportatio
             <SimpleValue>DeclaredCarriageValueAmount</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Waybill. Declared_ Carriage Value. Amount</SimpleValue>
+            <SimpleValue>Waybill. Declared Carriage_ Value. Amount</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Waybill</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTermQualifier">
-            <SimpleValue>Declared</SimpleValue>
-         </Value>
-         <Value ColumnRef="PropertyTermPossessiveNoun">
-            <SimpleValue>Carriage</SimpleValue>
+            <SimpleValue>Declared Carriage</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTermPrimaryNoun">
             <SimpleValue>Value</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTerm">
-            <SimpleValue>Carriage Value</SimpleValue>
+            <SimpleValue>Value</SimpleValue>
          </Value>
          <Value ColumnRef="RepresentationTerm">
             <SimpleValue>Amount</SimpleValue>
@@ -72529,7 +72664,7 @@ It can serve as a contractual document between the parties for the transportatio
             <SimpleValue>Transportation</SimpleValue>
          </Value>
       </Row>
-      <Row><!--14-->
+      <Row><!--17-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Waybill</SimpleValue>
          </Value>
@@ -72576,7 +72711,7 @@ It can serve as a contractual document between the parties for the transportatio
             <SimpleValue>Transportation</SimpleValue>
          </Value>
       </Row>
-      <Row><!--15-->
+      <Row><!--18-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Waybill</SimpleValue>
          </Value>
@@ -72623,7 +72758,7 @@ It can serve as a contractual document between the parties for the transportatio
             <SimpleValue>Transportation</SimpleValue>
          </Value>
       </Row>
-      <Row><!--16-->
+      <Row><!--19-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Waybill</SimpleValue>
          </Value>
@@ -72670,7 +72805,7 @@ It can serve as a contractual document between the parties for the transportatio
             <SimpleValue>Transportation</SimpleValue>
          </Value>
       </Row>
-      <Row><!--17-->
+      <Row><!--20-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Waybill</SimpleValue>
          </Value>
@@ -72717,7 +72852,7 @@ It can serve as a contractual document between the parties for the transportatio
             <SimpleValue>Transportation</SimpleValue>
          </Value>
       </Row>
-      <Row><!--18-->
+      <Row><!--21-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Waybill</SimpleValue>
          </Value>
@@ -72755,7 +72890,7 @@ It can serve as a contractual document between the parties for the transportatio
             <SimpleValue>Transportation</SimpleValue>
          </Value>
       </Row>
-      <Row><!--19-->
+      <Row><!--22-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Waybill</SimpleValue>
          </Value>
@@ -72793,7 +72928,7 @@ It can serve as a contractual document between the parties for the transportatio
             <SimpleValue>Transportation</SimpleValue>
          </Value>
       </Row>
-      <Row><!--20-->
+      <Row><!--23-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Waybill</SimpleValue>
          </Value>
@@ -72831,7 +72966,7 @@ It can serve as a contractual document between the parties for the transportatio
             <SimpleValue>Transportation</SimpleValue>
          </Value>
       </Row>
-      <Row><!--21-->
+      <Row><!--24-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Waybill</SimpleValue>
          </Value>
@@ -72869,7 +73004,7 @@ It can serve as a contractual document between the parties for the transportatio
             <SimpleValue>Transportation</SimpleValue>
          </Value>
       </Row>
-      <Row><!--22-->
+      <Row><!--25-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Waybill</SimpleValue>
          </Value>
