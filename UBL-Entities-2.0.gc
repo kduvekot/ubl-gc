@@ -65254,10 +65254,151 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Remittance Advice</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
+            <SimpleValue>UBLVersionID</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Remittance Advice. UBL Version Identifier. Identifier</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Remittance Advice</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPossessiveNoun">
+            <SimpleValue>UBL Version</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Identifier</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>UBL Version Identifier</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Identifier</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Identifier. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>The version of the UBL schema being used.</SimpleValue>
+         </Value>
+         <Value ColumnRef="Examples">
+            <SimpleValue>2.0.5</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.0</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Procurement</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--4-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Remittance Advice</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>SubsetID</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Remittance Advice. Subset Identifier. Identifier</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Remittance Advice</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPossessiveNoun">
+            <SimpleValue>Subset</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Identifier</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Identifier</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Identifier</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Identifier. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>The identifier for a user defined subset of UBL.</SimpleValue>
+         </Value>
+         <Value ColumnRef="Examples">
+            <SimpleValue>NES</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.0</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Procurement</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--5-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Remittance Advice</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>ProfileID</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Remittance Advice. Profile Identifier. Identifier</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Remittance Advice</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPossessiveNoun">
+            <SimpleValue>Profile</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Identifier</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Identifier</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Identifier</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Identifier. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>The identifier for a user defined profile of the subset of UBL being used. </SimpleValue>
+         </Value>
+         <Value ColumnRef="Examples">
+            <SimpleValue>BasicProcurementProcess</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.0</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Procurement</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--6-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Remittance Advice</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
             <SimpleValue>ID</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Remittance Advice. Identifier. Identifier</SimpleValue>
+            <SimpleValue>Remittance Advice. Identifier</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Remittance Advice</SimpleValue>
@@ -65289,11 +65430,8 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
          </Value>
-         <Value ColumnRef="SmallBusinessSubsetRemittanceAdvice">
-            <SimpleValue>Y</SimpleValue>
-         </Value>
       </Row>
-      <Row><!--4-->
+      <Row><!--7-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Remittance Advice</SimpleValue>
          </Value>
@@ -65301,19 +65439,19 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>CopyIndicator</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Remittance Advice. Copy Indicator. Indicator</SimpleValue>
+            <SimpleValue>Remittance Advice. Copy_ Indicator. Indicator</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Remittance Advice</SimpleValue>
          </Value>
-         <Value ColumnRef="PropertyTermPossessiveNoun">
+         <Value ColumnRef="PropertyTermQualifier">
             <SimpleValue>Copy</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTermPrimaryNoun">
             <SimpleValue>Indicator</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTerm">
-            <SimpleValue>Copy Indicator</SimpleValue>
+            <SimpleValue>Indicator</SimpleValue>
          </Value>
          <Value ColumnRef="RepresentationTerm">
             <SimpleValue>Indicator</SimpleValue>
@@ -65322,7 +65460,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Indicator. Type</SimpleValue>
          </Value>
          <Value ColumnRef="Cardinality">
-            <SimpleValue>1</SimpleValue>
+            <SimpleValue>0..1</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentType">
             <SimpleValue>BBIE</SimpleValue>
@@ -65336,31 +65474,25 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
          </Value>
-         <Value ColumnRef="SmallBusinessSubsetRemittanceAdvice">
-            <SimpleValue>Y</SimpleValue>
-         </Value>
       </Row>
-      <Row><!--5-->
+      <Row><!--8-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Remittance Advice</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
-            <SimpleValue>GUID</SimpleValue>
+            <SimpleValue>UUID</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Remittance Advice. Globally Unique Identifier. Identifier</SimpleValue>
+            <SimpleValue>Remittance Advice. UUID. Identifier</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Remittance Advice</SimpleValue>
          </Value>
-         <Value ColumnRef="PropertyTermPossessiveNoun">
-            <SimpleValue>Globally Unique</SimpleValue>
-         </Value>
          <Value ColumnRef="PropertyTermPrimaryNoun">
-            <SimpleValue>Identifier</SimpleValue>
+            <SimpleValue>UUID</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTerm">
-            <SimpleValue>Globally Unique Identifier</SimpleValue>
+            <SimpleValue>UUID</SimpleValue>
          </Value>
          <Value ColumnRef="RepresentationTerm">
             <SimpleValue>Identifier</SimpleValue>
@@ -65375,7 +65507,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>A computer-generated globally unique identifier (GUID) for the Remittance Advice instance</SimpleValue>
+            <SimpleValue>A computer-generated universally unique identifier (UUID) for the Remittance Advice instance</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
@@ -65383,11 +65515,8 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
          </Value>
-         <Value ColumnRef="SmallBusinessSubsetRemittanceAdvice">
-            <SimpleValue>Y</SimpleValue>
-         </Value>
       </Row>
-      <Row><!--6-->
+      <Row><!--9-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Remittance Advice</SimpleValue>
          </Value>
@@ -65431,7 +65560,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Procurement</SimpleValue>
          </Value>
       </Row>
-      <Row><!--7-->
+      <Row><!--10-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Remittance Advice</SimpleValue>
          </Value>
@@ -65475,7 +65604,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Procurement</SimpleValue>
          </Value>
       </Row>
-      <Row><!--8-->
+      <Row><!--11-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Remittance Advice</SimpleValue>
          </Value>
@@ -65501,7 +65630,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Text. Type</SimpleValue>
          </Value>
          <Value ColumnRef="Cardinality">
-            <SimpleValue>0..1</SimpleValue>
+            <SimpleValue>0..n</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentType">
             <SimpleValue>BBIE</SimpleValue>
@@ -65516,7 +65645,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Procurement</SimpleValue>
          </Value>
       </Row>
-      <Row><!--9-->
+      <Row><!--12-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Remittance Advice</SimpleValue>
          </Value>
@@ -65524,7 +65653,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>DocumentCurrencyCode</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Remittance Advice. Document_ Currency. Code</SimpleValue>
+            <SimpleValue>Remittance Advice. Document_ Currency Code. Code</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Remittance Advice</SimpleValue>
@@ -65532,20 +65661,26 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="PropertyTermQualifier">
             <SimpleValue>Document</SimpleValue>
          </Value>
-         <Value ColumnRef="PropertyTermPrimaryNoun">
+         <Value ColumnRef="PropertyTermPossessiveNoun">
             <SimpleValue>Currency</SimpleValue>
          </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Code</SimpleValue>
+         </Value>
          <Value ColumnRef="PropertyTerm">
-            <SimpleValue>Currency</SimpleValue>
+            <SimpleValue>Currency Code</SimpleValue>
          </Value>
          <Value ColumnRef="RepresentationTerm">
             <SimpleValue>Code</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataTypeQualifier">
+            <SimpleValue>Currency</SimpleValue>
          </Value>
          <Value ColumnRef="DataType">
             <SimpleValue>Currency_ Code. Type</SimpleValue>
          </Value>
          <Value ColumnRef="Cardinality">
-            <SimpleValue>1</SimpleValue>
+            <SimpleValue>0..1</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentType">
             <SimpleValue>BBIE</SimpleValue>
@@ -65559,11 +65694,8 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
          </Value>
-         <Value ColumnRef="DataTypeQualifier">
-            <SimpleValue>Currency</SimpleValue>
-         </Value>
       </Row>
-      <Row><!--10-->
+      <Row><!--13-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Remittance Advice</SimpleValue>
          </Value>
@@ -65610,7 +65742,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Procurement</SimpleValue>
          </Value>
       </Row>
-      <Row><!--11-->
+      <Row><!--14-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Remittance Advice</SimpleValue>
          </Value>
@@ -65657,7 +65789,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Procurement</SimpleValue>
          </Value>
       </Row>
-      <Row><!--12-->
+      <Row><!--15-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Remittance Advice</SimpleValue>
          </Value>
@@ -65704,7 +65836,186 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Procurement</SimpleValue>
          </Value>
       </Row>
-      <Row><!--13-->
+      <Row><!--16-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Remittance Advice</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>PaymentOrderReference</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Remittance Advice. Payment Order Reference. Text</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Remittance Advice</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPossessiveNoun">
+            <SimpleValue>Payment Order</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Reference</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Payment Order Reference</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Text</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Text. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>A supplementary reference for the Order.</SimpleValue>
+         </Value>
+         <Value ColumnRef="Examples">
+            <SimpleValue>CRI in a purchasing card transaction</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.0</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Procurement</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--17-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Remittance Advice</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>PayerReference</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Remittance Advice. Payer_ Reference. Text</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Remittance Advice</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermQualifier">
+            <SimpleValue>Payer</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Reference</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Reference</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Text</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Text. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>A supplementary reference for the Payee.</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.0</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Procurement</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--18-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Remittance Advice</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>InvoicingPartyReference</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Remittance Advice. Invoicing Party_ Reference. Text</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Remittance Advice</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermQualifier">
+            <SimpleValue>Invoicing Party</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Reference</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Reference</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Text</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Text. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>A supplementary reference for the InvoicingParty.</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.0</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Procurement</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--19-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Remittance Advice</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>LineCountNumeric</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Remittance Advice. Line Count. Numeric</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Remittance Advice</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPossessiveNoun">
+            <SimpleValue>Line</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Count</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Line Count</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Numeric</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Numeric. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>The number of lines in the document</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.0</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Procurement</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--20-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Remittance Advice</SimpleValue>
          </Value>
@@ -65745,27 +66056,27 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Procurement</SimpleValue>
          </Value>
       </Row>
-      <Row><!--14-->
+      <Row><!--21-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Remittance Advice</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
-            <SimpleValue>AccountingDocumentReference</SimpleValue>
+            <SimpleValue>BillingReference</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Remittance Advice. Accounting Document Reference</SimpleValue>
+            <SimpleValue>Remittance Advice. Billing Reference</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Remittance Advice</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTerm">
-            <SimpleValue>Accounting Document Reference</SimpleValue>
+            <SimpleValue>Billing Reference</SimpleValue>
          </Value>
          <Value ColumnRef="RepresentationTerm">
-            <SimpleValue>Accounting Document Reference</SimpleValue>
+            <SimpleValue>Billing Reference</SimpleValue>
          </Value>
          <Value ColumnRef="AssociatedObjectClass">
-            <SimpleValue>Accounting Document Reference</SimpleValue>
+            <SimpleValue>Billing Reference</SimpleValue>
          </Value>
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..1</SimpleValue>
@@ -65774,7 +66085,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>ASBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>An association to other accounting documents.</SimpleValue>
+            <SimpleValue>An association to other billing documents.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
@@ -65783,7 +66094,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Procurement</SimpleValue>
          </Value>
       </Row>
-      <Row><!--15-->
+      <Row><!--22-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Remittance Advice</SimpleValue>
          </Value>
@@ -65824,7 +66135,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Procurement</SimpleValue>
          </Value>
       </Row>
-      <Row><!--16-->
+      <Row><!--23-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Remittance Advice</SimpleValue>
          </Value>
@@ -65847,7 +66158,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Signature</SimpleValue>
          </Value>
          <Value ColumnRef="Cardinality">
-            <SimpleValue>0..1</SimpleValue>
+            <SimpleValue>0..n</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentType">
             <SimpleValue>ASBIE</SimpleValue>
@@ -65862,21 +66173,21 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Procurement</SimpleValue>
          </Value>
       </Row>
-      <Row><!--17-->
+      <Row><!--24-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Remittance Advice</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
-            <SimpleValue>DebtorCustomerParty</SimpleValue>
+            <SimpleValue>AccountingCustomerParty</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Remittance Advice. Debtor_ Customer Party</SimpleValue>
+            <SimpleValue>Remittance Advice. Accounting_ Customer Party</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Remittance Advice</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTermQualifier">
-            <SimpleValue>Debtor</SimpleValue>
+            <SimpleValue>Accounting</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTerm">
             <SimpleValue>Customer Party</SimpleValue>
@@ -65894,7 +66205,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>ASBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>An association to the Debtor</SimpleValue>
+            <SimpleValue>An association to the Accounting Customer Party</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
@@ -65902,25 +66213,22 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
          </Value>
-         <Value ColumnRef="SmallBusinessSubsetRemittanceAdvice">
-            <SimpleValue>Y</SimpleValue>
-         </Value>
       </Row>
-      <Row><!--18-->
+      <Row><!--25-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Remittance Advice</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
-            <SimpleValue>CreditorSupplierParty</SimpleValue>
+            <SimpleValue>AccountingSupplierParty</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Remittance Advice. Creditor_ Seller Party</SimpleValue>
+            <SimpleValue>Remittance Advice. Accounting_ Supplier Party</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Remittance Advice</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTermQualifier">
-            <SimpleValue>Creditor</SimpleValue>
+            <SimpleValue>Accounting</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTerm">
             <SimpleValue>Supplier Party</SimpleValue>
@@ -65938,7 +66246,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>ASBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>An association to the Creditor</SimpleValue>
+            <SimpleValue>An association to the Accounting Supplier Party</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
@@ -65946,11 +66254,8 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
          </Value>
-         <Value ColumnRef="SmallBusinessSubsetRemittanceAdvice">
-            <SimpleValue>Y</SimpleValue>
-         </Value>
       </Row>
-      <Row><!--19-->
+      <Row><!--26-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Remittance Advice</SimpleValue>
          </Value>
@@ -65991,7 +66296,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Procurement</SimpleValue>
          </Value>
       </Row>
-      <Row><!--20-->
+      <Row><!--27-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Remittance Advice</SimpleValue>
          </Value>
@@ -66029,7 +66334,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Procurement</SimpleValue>
          </Value>
       </Row>
-      <Row><!--21-->
+      <Row><!--28-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Remittance Advice</SimpleValue>
          </Value>
@@ -66067,7 +66372,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Procurement</SimpleValue>
          </Value>
       </Row>
-      <Row><!--22-->
+      <Row><!--29-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Remittance Advice</SimpleValue>
          </Value>
