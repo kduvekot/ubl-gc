@@ -37851,9 +37851,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--248-->
+      <Row><!--802-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>Procurement</SimpleValue>
+            <SimpleValue>Common</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
             <SimpleValue>RemittanceAdviceLine</SimpleValue>
@@ -37877,15 +37877,15 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Procurement</SimpleValue>
          </Value>
       </Row>
-      <Row><!--249-->
+      <Row><!--803-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>Procurement</SimpleValue>
+            <SimpleValue>Common</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
             <SimpleValue>ID</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Remittance Advice Line. Identifier. Identifier</SimpleValue>
+            <SimpleValue>Remittance Advice Line. Identifier</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Remittance Advice Line</SimpleValue>
@@ -37918,9 +37918,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Procurement</SimpleValue>
          </Value>
       </Row>
-      <Row><!--250-->
+      <Row><!--804-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>Procurement</SimpleValue>
+            <SimpleValue>Common</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
             <SimpleValue>Note</SimpleValue>
@@ -37959,27 +37959,24 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Procurement</SimpleValue>
          </Value>
       </Row>
-      <Row><!--251-->
+      <Row><!--805-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>Procurement</SimpleValue>
+            <SimpleValue>Common</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
-            <SimpleValue>GUID</SimpleValue>
+            <SimpleValue>UUID</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Remittance Advice Line. Globally Unique Identifier. Identifier</SimpleValue>
+            <SimpleValue>Remittance Advice Line. UUID. Identifier</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Remittance Advice Line</SimpleValue>
          </Value>
-         <Value ColumnRef="PropertyTermPossessiveNoun">
-            <SimpleValue>Globally Unique</SimpleValue>
-         </Value>
          <Value ColumnRef="PropertyTermPrimaryNoun">
-            <SimpleValue>Identifier</SimpleValue>
+            <SimpleValue>UUID</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTerm">
-            <SimpleValue>Globally Unique Identifier</SimpleValue>
+            <SimpleValue>UUID</SimpleValue>
          </Value>
          <Value ColumnRef="RepresentationTerm">
             <SimpleValue>Identifier</SimpleValue>
@@ -37994,7 +37991,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>A computer-generated globally unique identifier (GUID) for the Remittance Advice Line instance</SimpleValue>
+            <SimpleValue>A computer-generated universally unique identifier (UUID) for the Remittance Advice Line instance</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
@@ -38002,10 +37999,13 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
          </Value>
+         <Value ColumnRef="ChangefromPreviousVersion">
+            <SimpleValue>Changed from GUID to UUID</SimpleValue>
+         </Value>
       </Row>
-      <Row><!--252-->
+      <Row><!--806-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>Procurement</SimpleValue>
+            <SimpleValue>Common</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
             <SimpleValue>DebitLineAmount</SimpleValue>
@@ -38050,9 +38050,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Procurement</SimpleValue>
          </Value>
       </Row>
-      <Row><!--253-->
+      <Row><!--807-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>Procurement</SimpleValue>
+            <SimpleValue>Common</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
             <SimpleValue>CreditLineAmount</SimpleValue>
@@ -38097,9 +38097,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Procurement</SimpleValue>
          </Value>
       </Row>
-      <Row><!--254-->
+      <Row><!--808-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>Procurement</SimpleValue>
+            <SimpleValue>Common</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
             <SimpleValue>BalanceAmount</SimpleValue>
@@ -38141,21 +38141,21 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Procurement</SimpleValue>
          </Value>
       </Row>
-      <Row><!--255-->
+      <Row><!--809-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>Procurement</SimpleValue>
+            <SimpleValue>Common</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
-            <SimpleValue>CreditorSupplierParty</SimpleValue>
+            <SimpleValue>AccountingSupplierParty</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Remittance Advice Line. Creditor_ Party</SimpleValue>
+            <SimpleValue>Remittance Advice Line. Accounting_ Supplier Party</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Remittance Advice Line</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTermQualifier">
-            <SimpleValue>Creditor</SimpleValue>
+            <SimpleValue>Accounting</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTerm">
             <SimpleValue>Supplier Party</SimpleValue>
@@ -38173,7 +38173,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>ASBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>An association to the Creditor</SimpleValue>
+            <SimpleValue>An association to the Supplier Accounting Party</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
@@ -38182,30 +38182,30 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Procurement</SimpleValue>
          </Value>
       </Row>
-      <Row><!--256-->
+      <Row><!--810-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>Procurement</SimpleValue>
+            <SimpleValue>Common</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
-            <SimpleValue>DebtorSupplierParty</SimpleValue>
+            <SimpleValue>AccountingCustomerParty</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Remittance Advice Line. Debtor_ Party</SimpleValue>
+            <SimpleValue>Remittance Advice Line. Accounting_ Customer Party</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Remittance Advice Line</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTermQualifier">
-            <SimpleValue>Debtor</SimpleValue>
+            <SimpleValue>Accounting</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTerm">
-            <SimpleValue>Supplier Party</SimpleValue>
+            <SimpleValue>Customer Party</SimpleValue>
          </Value>
          <Value ColumnRef="RepresentationTerm">
-            <SimpleValue>Supplier Party</SimpleValue>
+            <SimpleValue>Customer Party</SimpleValue>
          </Value>
          <Value ColumnRef="AssociatedObjectClass">
-            <SimpleValue>Supplier Party</SimpleValue>
+            <SimpleValue>Customer Party</SimpleValue>
          </Value>
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..1</SimpleValue>
@@ -38214,7 +38214,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>ASBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>An association to the Debtor</SimpleValue>
+            <SimpleValue>An association to the Customer Accounting Party</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
@@ -38223,9 +38223,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Procurement</SimpleValue>
          </Value>
       </Row>
-      <Row><!--257-->
+      <Row><!--811-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>Procurement</SimpleValue>
+            <SimpleValue>Common</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
             <SimpleValue>BuyerCustomerParty</SimpleValue>
@@ -38264,15 +38264,15 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Procurement</SimpleValue>
          </Value>
       </Row>
-      <Row><!--258-->
+      <Row><!--812-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>Procurement</SimpleValue>
+            <SimpleValue>Common</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
             <SimpleValue>SellerSupplierParty</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Remittance Advice Line. Seller_ Provider Party</SimpleValue>
+            <SimpleValue>Remittance Advice Line. Seller_ Supplier Party</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Remittance Advice Line</SimpleValue>
@@ -38305,9 +38305,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Procurement</SimpleValue>
          </Value>
       </Row>
-      <Row><!--259-->
+      <Row><!--813-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>Procurement</SimpleValue>
+            <SimpleValue>Common</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
             <SimpleValue>OriginatorCustomerParty</SimpleValue>
@@ -38346,9 +38346,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Procurement</SimpleValue>
          </Value>
       </Row>
-      <Row><!--260-->
+      <Row><!--814-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>Procurement</SimpleValue>
+            <SimpleValue>Common</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
             <SimpleValue>PayeeParty</SimpleValue>
@@ -38387,9 +38387,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Procurement</SimpleValue>
          </Value>
       </Row>
-      <Row><!--261-->
+      <Row><!--815-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>Procurement</SimpleValue>
+            <SimpleValue>Common</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
             <SimpleValue>InvoicePeriod</SimpleValue>
@@ -38428,27 +38428,27 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Procurement</SimpleValue>
          </Value>
       </Row>
-      <Row><!--262-->
+      <Row><!--816-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>Procurement</SimpleValue>
+            <SimpleValue>Common</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
-            <SimpleValue>AccountingDocumentReference</SimpleValue>
+            <SimpleValue>BillingReference</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Remittance Advice Line. Accounting Document Reference</SimpleValue>
+            <SimpleValue>Remittance Advice Line. Billing Reference</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Remittance Advice Line</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTerm">
-            <SimpleValue>Accounting Document Reference</SimpleValue>
+            <SimpleValue>Billing Reference</SimpleValue>
          </Value>
          <Value ColumnRef="RepresentationTerm">
-            <SimpleValue>Accounting Document Reference</SimpleValue>
+            <SimpleValue>Billing Reference</SimpleValue>
          </Value>
          <Value ColumnRef="AssociatedObjectClass">
-            <SimpleValue>Accounting Document Reference</SimpleValue>
+            <SimpleValue>Billing Reference</SimpleValue>
          </Value>
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..n</SimpleValue>
@@ -38466,9 +38466,47 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Procurement</SimpleValue>
          </Value>
       </Row>
-      <Row><!--263-->
+      <Row><!--817-->
          <Value ColumnRef="ModelName">
+            <SimpleValue>Common</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>DocumentReference</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Remittance Advice Line. Document Reference</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Remittance Advice Line</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Document Reference</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Document Reference</SimpleValue>
+         </Value>
+         <Value ColumnRef="AssociatedObjectClass">
+            <SimpleValue>Document Reference</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..n</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>ASBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>An association to Document Reference</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>1.0</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--818-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Common</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
             <SimpleValue>ExchangeRate</SimpleValue>
