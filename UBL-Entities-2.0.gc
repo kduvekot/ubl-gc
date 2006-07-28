@@ -4573,10 +4573,142 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>Catalogue Item Specification Up</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
+            <SimpleValue>UBLVersionID</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Catalogue Item Specification Update. UBL Version Identifier. Identifier</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Catalogue Item Specification Update</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPossessiveNoun">
+            <SimpleValue>UBL Version</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Identifier</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>UBL Version Identifier</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Identifier</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Identifier. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>The version of the UBL schema being used.</SimpleValue>
+         </Value>
+         <Value ColumnRef="Examples">
+            <SimpleValue>2.0.5</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.0</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--4-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Catalogue Item Specification Up</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>SubsetID</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Catalogue Item Specification Update. Subset Identifier. Identifier</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Catalogue Item Specification Update</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPossessiveNoun">
+            <SimpleValue>Subset</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Identifier</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Identifier</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Identifier</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Identifier. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>The identifier for a user defined subset of UBL.</SimpleValue>
+         </Value>
+         <Value ColumnRef="Examples">
+            <SimpleValue>NES</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.0</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--5-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Catalogue Item Specification Up</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>ProfileID</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Catalogue Item Specification Update. Profile Identifier. Identifier</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Catalogue Item Specification Update</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPossessiveNoun">
+            <SimpleValue>Profile</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Identifier</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Identifier</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Identifier</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Identifier. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>The identifier for a user defined profile of the subset of UBL being used. </SimpleValue>
+         </Value>
+         <Value ColumnRef="Examples">
+            <SimpleValue>BasicProcurementProcess</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.0</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--6-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Catalogue Item Specification Up</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
             <SimpleValue>ID</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Catalogue Item Specification Update. Identifier. Identifier</SimpleValue>
+            <SimpleValue>Catalogue Item Specification Update. Identifier</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Catalogue Item Specification Update</SimpleValue>
@@ -4609,27 +4741,24 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>Procurement</SimpleValue>
          </Value>
       </Row>
-      <Row><!--4-->
+      <Row><!--7-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Catalogue Item Specification Up</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
-            <SimpleValue>GUID</SimpleValue>
+            <SimpleValue>UUID</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Catalogue Item Specification Update. Globally Unique Identifier. Identifier</SimpleValue>
+            <SimpleValue>Catalogue Item Specification Update. UUID. Identifier</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Catalogue Item Specification Update</SimpleValue>
          </Value>
-         <Value ColumnRef="PropertyTermPossessiveNoun">
-            <SimpleValue>Globally Unique</SimpleValue>
-         </Value>
          <Value ColumnRef="PropertyTermPrimaryNoun">
-            <SimpleValue>Identifier</SimpleValue>
+            <SimpleValue>UUID</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTerm">
-            <SimpleValue>Globally Unique Identifier</SimpleValue>
+            <SimpleValue>UUID</SimpleValue>
          </Value>
          <Value ColumnRef="RepresentationTerm">
             <SimpleValue>Identifier</SimpleValue>
@@ -4644,7 +4773,7 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>A computer-generated globally unique identifier (GUID) for the Catalogue Revision instance</SimpleValue>
+            <SimpleValue>A computer-generated universally unique identifier (UUID) for the Catalogue Revision instance</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
@@ -4653,7 +4782,7 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>Procurement</SimpleValue>
          </Value>
       </Row>
-      <Row><!--5-->
+      <Row><!--8-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Catalogue Item Specification Up</SimpleValue>
          </Value>
@@ -4661,7 +4790,7 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>Name</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Catalogue Item Specification Update. Name. Name</SimpleValue>
+            <SimpleValue>Catalogue Item Specification Update. Name</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Catalogue Item Specification Update</SimpleValue>
@@ -4697,7 +4826,7 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>Procurement</SimpleValue>
          </Value>
       </Row>
-      <Row><!--6-->
+      <Row><!--9-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Catalogue Item Specification Up</SimpleValue>
          </Value>
@@ -4741,7 +4870,7 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>Procurement</SimpleValue>
          </Value>
       </Row>
-      <Row><!--7-->
+      <Row><!--10-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Catalogue Item Specification Up</SimpleValue>
          </Value>
@@ -4785,15 +4914,15 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>Procurement</SimpleValue>
          </Value>
       </Row>
-      <Row><!--8-->
+      <Row><!--11-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Catalogue Item Specification Up</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
-            <SimpleValue>RevisionDateTime</SimpleValue>
+            <SimpleValue>RevisionDate</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Catalogue Item Specification Update. Revision Date Time. Date Time</SimpleValue>
+            <SimpleValue>Catalogue Item Specification Update. Revision Date. Date</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Catalogue Item Specification Update</SimpleValue>
@@ -4802,16 +4931,16 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>Revision</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTermPrimaryNoun">
-            <SimpleValue>Date Time</SimpleValue>
+            <SimpleValue>Date</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTerm">
-            <SimpleValue>Revision Date Time</SimpleValue>
+            <SimpleValue>Revision Date</SimpleValue>
          </Value>
          <Value ColumnRef="RepresentationTerm">
-            <SimpleValue>Date Time</SimpleValue>
+            <SimpleValue>Date</SimpleValue>
          </Value>
          <Value ColumnRef="DataType">
-            <SimpleValue>Date Time. Type</SimpleValue>
+            <SimpleValue>Date. Type</SimpleValue>
          </Value>
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..1</SimpleValue>
@@ -4820,7 +4949,7 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The date or date/time assigned by the Seller at which the Catalogue was revised</SimpleValue>
+            <SimpleValue>The date assigned by the Seller at which the Catalogue was revised</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
@@ -4829,7 +4958,51 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>Procurement</SimpleValue>
          </Value>
       </Row>
-      <Row><!--9-->
+      <Row><!--12-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Catalogue Item Specification Up</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>RevisionTime</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Catalogue Item Specification Update. Revision Time. Time</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Catalogue Item Specification Update</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPossessiveNoun">
+            <SimpleValue>Revision</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Time</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Revision Time</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Time</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Time. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>The time assigned by the Seller at which the Catalogue was revised</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.0</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Procurement</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--13-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Catalogue Item Specification Up</SimpleValue>
          </Value>
@@ -4870,7 +5043,7 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>Procurement</SimpleValue>
          </Value>
       </Row>
-      <Row><!--10-->
+      <Row><!--14-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Catalogue Item Specification Up</SimpleValue>
          </Value>
@@ -4914,7 +5087,7 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>Procurement</SimpleValue>
          </Value>
       </Row>
-      <Row><!--11-->
+      <Row><!--15-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Catalogue Item Specification Up</SimpleValue>
          </Value>
@@ -4958,7 +5131,51 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>Procurement</SimpleValue>
          </Value>
       </Row>
-      <Row><!--12-->
+      <Row><!--16-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Catalogue Item Specification Up</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>LineCountNumeric</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Catalogue Item Specification Update. Line Count. Numeric</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Catalogue Item Specification Update</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPossessiveNoun">
+            <SimpleValue>Line</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Count</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Line Count</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Numeric</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Numeric. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>The number of lines in the document</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.0</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Procurement</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--17-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Catalogue Item Specification Up</SimpleValue>
          </Value>
@@ -4999,7 +5216,7 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>Procurement</SimpleValue>
          </Value>
       </Row>
-      <Row><!--13-->
+      <Row><!--18-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Catalogue Item Specification Up</SimpleValue>
          </Value>
@@ -5025,7 +5242,7 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>Catalogue Reference</SimpleValue>
          </Value>
          <Value ColumnRef="Cardinality">
-            <SimpleValue>0..n</SimpleValue>
+            <SimpleValue>1</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentType">
             <SimpleValue>ASBIE</SimpleValue>
@@ -5040,7 +5257,7 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>Procurement</SimpleValue>
          </Value>
       </Row>
-      <Row><!--14-->
+      <Row><!--19-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Catalogue Item Specification Up</SimpleValue>
          </Value>
@@ -5081,7 +5298,7 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>Procurement</SimpleValue>
          </Value>
       </Row>
-      <Row><!--15-->
+      <Row><!--20-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Catalogue Item Specification Up</SimpleValue>
          </Value>
@@ -5119,7 +5336,89 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>Procurement</SimpleValue>
          </Value>
       </Row>
-      <Row><!--16-->
+      <Row><!--21-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Catalogue Item Specification Up</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>ProviderParty</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Catalogue Item Specification Update. Provider_ Party</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Catalogue Item Specification Update</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermQualifier">
+            <SimpleValue>Provider</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Party</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Party</SimpleValue>
+         </Value>
+         <Value ColumnRef="AssociatedObjectClass">
+            <SimpleValue>Party</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>ASBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>An association to the Catalogue Provider Party</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.0</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Procurement</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--22-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Catalogue Item Specification Up</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>ReceiverParty</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Catalogue Item Specification Update. Receiver_ Party</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Catalogue Item Specification Update</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermQualifier">
+            <SimpleValue>Receiver</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Party</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Party</SimpleValue>
+         </Value>
+         <Value ColumnRef="AssociatedObjectClass">
+            <SimpleValue>Party</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>ASBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>An association to the Catalogue Receiver Party</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.0</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Procurement</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--23-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Catalogue Item Specification Up</SimpleValue>
          </Value>
@@ -5145,13 +5444,13 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>Supplier Party</SimpleValue>
          </Value>
          <Value ColumnRef="Cardinality">
-            <SimpleValue>1</SimpleValue>
+            <SimpleValue>0..1</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentType">
             <SimpleValue>ASBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>An association to the Seller</SimpleValue>
+            <SimpleValue>The Seller Party responsible for the contract to which the Catalogue relates.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
@@ -5160,39 +5459,39 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>Procurement</SimpleValue>
          </Value>
       </Row>
-      <Row><!--17-->
+      <Row><!--24-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Catalogue Item Specification Up</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
-            <SimpleValue>CatalogueManagingParty</SimpleValue>
+            <SimpleValue>ContractorCustomerParty</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Catalogue Item Specification Update. Catalogue Managing_ Party</SimpleValue>
+            <SimpleValue>Catalogue Item Specification Update. Contractor_ Customer Party</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Catalogue Item Specification Update</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTermQualifier">
-            <SimpleValue>Catalogue Managing</SimpleValue>
+            <SimpleValue>Contractor</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTerm">
-            <SimpleValue>Party</SimpleValue>
+            <SimpleValue>Customer Party</SimpleValue>
          </Value>
          <Value ColumnRef="RepresentationTerm">
-            <SimpleValue>Party</SimpleValue>
+            <SimpleValue>Customer Party</SimpleValue>
          </Value>
          <Value ColumnRef="AssociatedObjectClass">
-            <SimpleValue>Party</SimpleValue>
+            <SimpleValue>Customer Party</SimpleValue>
          </Value>
          <Value ColumnRef="Cardinality">
-            <SimpleValue>1</SimpleValue>
+            <SimpleValue>0..1</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentType">
             <SimpleValue>ASBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>An association to the Catalogue Managing Party</SimpleValue>
+            <SimpleValue>The Customer Party responsible for the contract to which the Catalogue relates.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
@@ -5201,7 +5500,7 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>Procurement</SimpleValue>
          </Value>
       </Row>
-      <Row><!--18-->
+      <Row><!--25-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Catalogue Item Specification Up</SimpleValue>
          </Value>
@@ -5239,27 +5538,68 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>Procurement</SimpleValue>
          </Value>
       </Row>
-      <Row><!--19-->
+      <Row><!--26-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Catalogue Item Specification Up</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
-            <SimpleValue>CatalogueLine</SimpleValue>
+            <SimpleValue>DefaultLanguage</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Catalogue Item Specification Update. Catalogue Line</SimpleValue>
+            <SimpleValue>Catalogue Item Specification Update. Default Language</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Catalogue Item Specification Update</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermQualifier">
+            <SimpleValue>Default</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Language</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Language</SimpleValue>
+         </Value>
+         <Value ColumnRef="AssociatedObjectClass">
+            <SimpleValue>Language</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>ASBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>The default language for the item specifications.</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.0</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Procurement</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--27-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Catalogue Item Specification Up</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>CatalogueItemSpecificationUpdateLine</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Catalogue Item Specification Update. Catalogue Item Specification Update Line</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Catalogue Item Specification Update</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTerm">
-            <SimpleValue>Catalogue Line</SimpleValue>
+            <SimpleValue>Catalogue Item Specification Update Line</SimpleValue>
          </Value>
          <Value ColumnRef="RepresentationTerm">
-            <SimpleValue>Catalogue Line</SimpleValue>
+            <SimpleValue>Catalogue Item Specification Update Line</SimpleValue>
          </Value>
          <Value ColumnRef="AssociatedObjectClass">
-            <SimpleValue>Catalogue Line</SimpleValue>
+            <SimpleValue>Catalogue Item Specification Update Line</SimpleValue>
          </Value>
          <Value ColumnRef="Cardinality">
             <SimpleValue>1..n</SimpleValue>
@@ -5268,7 +5608,7 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>ASBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>An association to one or more Catalogue Lines</SimpleValue>
+            <SimpleValue>An association to one or more Catalogue Item Specification Update Lines</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
