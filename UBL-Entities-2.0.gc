@@ -36405,9 +36405,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Procurement</SimpleValue>
          </Value>
       </Row>
-      <Row><!--223-->
+      <Row><!--754-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>Procurement</SimpleValue>
+            <SimpleValue>Common</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
             <SimpleValue>QuotationLine</SimpleValue>
@@ -36431,15 +36431,15 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Procurement</SimpleValue>
          </Value>
       </Row>
-      <Row><!--224-->
+      <Row><!--755-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>Procurement</SimpleValue>
+            <SimpleValue>Common</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
             <SimpleValue>ID</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Quotation Line Item. Identifier. Identifier</SimpleValue>
+            <SimpleValue>Quotation Line. Identifier</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Quotation Line</SimpleValue>
@@ -36472,9 +36472,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Procurement</SimpleValue>
          </Value>
       </Row>
-      <Row><!--225-->
+      <Row><!--756-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>Procurement</SimpleValue>
+            <SimpleValue>Common</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
             <SimpleValue>Note</SimpleValue>
@@ -36513,9 +36513,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Procurement</SimpleValue>
          </Value>
       </Row>
-      <Row><!--226-->
+      <Row><!--757-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>Procurement</SimpleValue>
+            <SimpleValue>Common</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
             <SimpleValue>Quantity</SimpleValue>
@@ -36554,9 +36554,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Procurement</SimpleValue>
          </Value>
       </Row>
-      <Row><!--227-->
+      <Row><!--758-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>Procurement</SimpleValue>
+            <SimpleValue>Common</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
             <SimpleValue>LineExtensionAmount</SimpleValue>
@@ -36598,9 +36598,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Procurement</SimpleValue>
          </Value>
       </Row>
-      <Row><!--228-->
+      <Row><!--759-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>Procurement</SimpleValue>
+            <SimpleValue>Common</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
             <SimpleValue>TotalTaxAmount</SimpleValue>
@@ -36645,9 +36645,47 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Procurement</SimpleValue>
          </Value>
       </Row>
-      <Row><!--229-->
+      <Row><!--760-->
          <Value ColumnRef="ModelName">
+            <SimpleValue>Common</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>DocumentReference</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Quotation Line. Document Reference</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Quotation Line</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Document Reference</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Document Reference</SimpleValue>
+         </Value>
+         <Value ColumnRef="AssociatedObjectClass">
+            <SimpleValue>Document Reference</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..n</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>ASBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>An association to Document Reference</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--761-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Common</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
             <SimpleValue>LineItem</SimpleValue>
@@ -36683,24 +36721,21 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Procurement</SimpleValue>
          </Value>
       </Row>
-      <Row><!--230-->
+      <Row><!--762-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>Procurement</SimpleValue>
+            <SimpleValue>Common</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
             <SimpleValue>SellerProposedSubstituteLineItem</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Quotation Line. Seller Proposed_ Substitute Line Item</SimpleValue>
+            <SimpleValue>Quotation Line. Seller Proposed Substitute_ Line Item</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Quotation Line</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTermQualifier">
-            <SimpleValue>Seller Proposed</SimpleValue>
-         </Value>
-         <Value ColumnRef="PropertyTermPossessiveNoun">
-            <SimpleValue>Substitute</SimpleValue>
+            <SimpleValue>Seller Proposed Substitute</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTerm">
             <SimpleValue>Line Item</SimpleValue>
