@@ -19159,7 +19159,7 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--118-->
+      <Row><!--291-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Common</SimpleValue>
          </Value>
@@ -19182,7 +19182,7 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>1.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--119-->
+      <Row><!--292-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Common</SimpleValue>
          </Value>
@@ -19223,57 +19223,7 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>1.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--120-->
-         <Value ColumnRef="ModelName">
-            <SimpleValue>Common</SimpleValue>
-         </Value>
-         <Value ColumnRef="UBLName">
-            <SimpleValue>RelevantLocationConditions</SimpleValue>
-         </Value>
-         <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Delivery Terms. Relevant_ Location Conditions. Text</SimpleValue>
-         </Value>
-         <Value ColumnRef="ObjectClass">
-            <SimpleValue>Delivery Terms</SimpleValue>
-         </Value>
-         <Value ColumnRef="PropertyTermQualifier">
-            <SimpleValue>Relevant</SimpleValue>
-         </Value>
-         <Value ColumnRef="PropertyTermPossessiveNoun">
-            <SimpleValue>Location</SimpleValue>
-         </Value>
-         <Value ColumnRef="PropertyTermPrimaryNoun">
-            <SimpleValue>Conditions</SimpleValue>
-         </Value>
-         <Value ColumnRef="PropertyTerm">
-            <SimpleValue>Location Conditions</SimpleValue>
-         </Value>
-         <Value ColumnRef="RepresentationTerm">
-            <SimpleValue>Text</SimpleValue>
-         </Value>
-         <Value ColumnRef="DataType">
-            <SimpleValue>Text. Type</SimpleValue>
-         </Value>
-         <Value ColumnRef="Cardinality">
-            <SimpleValue>0..1</SimpleValue>
-         </Value>
-         <Value ColumnRef="ComponentType">
-            <SimpleValue>BBIE</SimpleValue>
-         </Value>
-         <Value ColumnRef="Definition">
-            <SimpleValue>Information about the delivery location relevant to the Delivery Terms</SimpleValue>
-         </Value>
-         <Value ColumnRef="Examples">
-            <SimpleValue>"Warehouse accepts 24 x 7</SimpleValue>
-         </Value>
-         <Value ColumnRef="CurrentVersion">
-            <SimpleValue>2.0</SimpleValue>
-         </Value>
-         <Value ColumnRef="ChangefromPreviousVersion">
-            <SimpleValue>added property terms</SimpleValue>
-         </Value>
-      </Row>
-      <Row><!--121-->
+      <Row><!--293-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Common</SimpleValue>
          </Value>
@@ -19314,7 +19264,7 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>1.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--122-->
+      <Row><!--294-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Common</SimpleValue>
          </Value>
@@ -19322,19 +19272,19 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>LossRiskResponsibilityCode</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Delivery Terms. Loss Risk Responsibility. Code</SimpleValue>
+            <SimpleValue>Delivery Terms. Loss Risk Responsibility Code. Code</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Delivery Terms</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTermPossessiveNoun">
-            <SimpleValue>Loss Risk</SimpleValue>
+            <SimpleValue>Loss Risk Responsibility</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTermPrimaryNoun">
-            <SimpleValue>Responsibility</SimpleValue>
+            <SimpleValue>Code</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTerm">
-            <SimpleValue>Loss Risk Responsibility</SimpleValue>
+            <SimpleValue>Loss Risk Responsibility Code</SimpleValue>
          </Value>
          <Value ColumnRef="RepresentationTerm">
             <SimpleValue>Code</SimpleValue>
@@ -19355,7 +19305,7 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>1.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--123-->
+      <Row><!--295-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Common</SimpleValue>
          </Value>
@@ -19396,7 +19346,45 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>1.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--124-->
+      <Row><!--296-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Common</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>DeliveryLocation</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Delivery Terms. Delivery_ Location</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Delivery Terms</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermQualifier">
+            <SimpleValue>Delivery</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Location</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Location</SimpleValue>
+         </Value>
+         <Value ColumnRef="AssociatedObjectClass">
+            <SimpleValue>Location</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>ASBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>An association to Location eg. a port.</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.0</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--297-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Common</SimpleValue>
          </Value>
