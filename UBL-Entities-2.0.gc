@@ -21972,7 +21972,7 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>Transportation</SimpleValue>
          </Value>
       </Row>
-      <Row><!--161-->
+      <Row><!--364-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Common</SimpleValue>
          </Value>
@@ -21995,7 +21995,7 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>1.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--162-->
+      <Row><!--365-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Common</SimpleValue>
          </Value>
@@ -22003,7 +22003,7 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>SourceCurrencyCode</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Exchange Rate. Source_ Currency. Code</SimpleValue>
+            <SimpleValue>Exchange Rate. Source_ Currency Code. Code</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Exchange Rate</SimpleValue>
@@ -22011,14 +22011,20 @@ A Bill of Lading can serve as a contractual document between the parties for the
          <Value ColumnRef="PropertyTermQualifier">
             <SimpleValue>Source</SimpleValue>
          </Value>
-         <Value ColumnRef="PropertyTermPrimaryNoun">
+         <Value ColumnRef="PropertyTermPossessiveNoun">
             <SimpleValue>Currency</SimpleValue>
          </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Code</SimpleValue>
+         </Value>
          <Value ColumnRef="PropertyTerm">
-            <SimpleValue>Currency</SimpleValue>
+            <SimpleValue>Currency Code</SimpleValue>
          </Value>
          <Value ColumnRef="RepresentationTerm">
             <SimpleValue>Code</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataTypeQualifier">
+            <SimpleValue>Currency</SimpleValue>
          </Value>
          <Value ColumnRef="DataType">
             <SimpleValue>Currency_ Code. Type</SimpleValue>
@@ -22035,11 +22041,8 @@ A Bill of Lading can serve as a contractual document between the parties for the
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>1.0</SimpleValue>
          </Value>
-         <Value ColumnRef="DataTypeQualifier">
-            <SimpleValue>Currency</SimpleValue>
-         </Value>
       </Row>
-      <Row><!--163-->
+      <Row><!--366-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Common</SimpleValue>
          </Value>
@@ -22083,7 +22086,7 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>1.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--164-->
+      <Row><!--367-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Common</SimpleValue>
          </Value>
@@ -22091,7 +22094,7 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>TargetCurrencyCode</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Exchange Rate. Target_ Currency. Code</SimpleValue>
+            <SimpleValue>Exchange Rate. Target_ Currency Code. Code</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Exchange Rate</SimpleValue>
@@ -22099,14 +22102,20 @@ A Bill of Lading can serve as a contractual document between the parties for the
          <Value ColumnRef="PropertyTermQualifier">
             <SimpleValue>Target</SimpleValue>
          </Value>
-         <Value ColumnRef="PropertyTermPrimaryNoun">
+         <Value ColumnRef="PropertyTermPossessiveNoun">
             <SimpleValue>Currency</SimpleValue>
          </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Code</SimpleValue>
+         </Value>
          <Value ColumnRef="PropertyTerm">
-            <SimpleValue>Currency</SimpleValue>
+            <SimpleValue>Currency Code</SimpleValue>
          </Value>
          <Value ColumnRef="RepresentationTerm">
             <SimpleValue>Code</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataTypeQualifier">
+            <SimpleValue>Currency</SimpleValue>
          </Value>
          <Value ColumnRef="DataType">
             <SimpleValue>Currency_ Code. Type</SimpleValue>
@@ -22123,11 +22132,8 @@ A Bill of Lading can serve as a contractual document between the parties for the
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>1.0</SimpleValue>
          </Value>
-         <Value ColumnRef="DataTypeQualifier">
-            <SimpleValue>Currency</SimpleValue>
-         </Value>
       </Row>
-      <Row><!--165-->
+      <Row><!--368-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Common</SimpleValue>
          </Value>
@@ -22171,7 +22177,7 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>1.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--166-->
+      <Row><!--369-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Common</SimpleValue>
          </Value>
@@ -22212,7 +22218,7 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>1.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--167-->
+      <Row><!--370-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Common</SimpleValue>
          </Value>
@@ -22253,7 +22259,7 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>1.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--168-->
+      <Row><!--371-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Common</SimpleValue>
          </Value>
@@ -22276,10 +22282,10 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>Code</SimpleValue>
          </Value>
          <Value ColumnRef="DataTypeQualifier">
-            <SimpleValue></SimpleValue>
+            <SimpleValue>Operator</SimpleValue>
          </Value>
          <Value ColumnRef="DataType">
-            <SimpleValue>Code. Type</SimpleValue>
+            <SimpleValue>Operator_ Code. Type</SimpleValue>
          </Value>
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..1</SimpleValue>
@@ -22294,7 +22300,7 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>1.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--169-->
+      <Row><!--372-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Common</SimpleValue>
          </Value>
@@ -22332,7 +22338,7 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>1.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--170-->
+      <Row><!--373-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Common</SimpleValue>
          </Value>
