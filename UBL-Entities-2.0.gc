@@ -43234,7 +43234,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>1.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--372-->
+      <Row><!--944-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Common</SimpleValue>
          </Value>
@@ -43260,7 +43260,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Y</SimpleValue>
          </Value>
       </Row>
-      <Row><!--373-->
+      <Row><!--945-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Common</SimpleValue>
          </Value>
@@ -43268,7 +43268,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>ID</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Tax Scheme. Identifier. Identifier</SimpleValue>
+            <SimpleValue>Tax Scheme. Identifier</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Tax Scheme</SimpleValue>
@@ -43303,17 +43303,8 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="ChangefromPreviousVersion">
             <SimpleValue>Y</SimpleValue>
          </Value>
-         <Value ColumnRef="SmallBusinessSubsetQuotation">
-            <SimpleValue>Y</SimpleValue>
-         </Value>
-         <Value ColumnRef="SmallBusinessSubsetRemittanceAdvice">
-            <SimpleValue>Y</SimpleValue>
-         </Value>
-         <Value ColumnRef="SmallBusinessSubsetSelfBilledCreditNote">
-            <SimpleValue>Y</SimpleValue>
-         </Value>
       </Row>
-      <Row><!--374-->
+      <Row><!--946-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Common</SimpleValue>
          </Value>
@@ -43321,7 +43312,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Name</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Tax Scheme. Name. Name</SimpleValue>
+            <SimpleValue>Tax Scheme. Name</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Tax Scheme</SimpleValue>
@@ -43356,17 +43347,8 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="ChangefromPreviousVersion">
             <SimpleValue>Y</SimpleValue>
          </Value>
-         <Value ColumnRef="SmallBusinessSubsetQuotation">
-            <SimpleValue>Y</SimpleValue>
-         </Value>
-         <Value ColumnRef="SmallBusinessSubsetRemittanceAdvice">
-            <SimpleValue>Y</SimpleValue>
-         </Value>
-         <Value ColumnRef="SmallBusinessSubsetSelfBilledCreditNote">
-            <SimpleValue>Y</SimpleValue>
-         </Value>
       </Row>
-      <Row><!--375-->
+      <Row><!--947-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Common</SimpleValue>
          </Value>
@@ -43374,19 +43356,19 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>TaxTypeCode</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Tax Scheme. Tax Type. Code</SimpleValue>
+            <SimpleValue>Tax Scheme. Tax Type Code. Code</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Tax Scheme</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTermPossessiveNoun">
-            <SimpleValue>Tax</SimpleValue>
+            <SimpleValue>Tax Type</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTermPrimaryNoun">
-            <SimpleValue>Type</SimpleValue>
+            <SimpleValue>Code</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTerm">
-            <SimpleValue>Tax Type</SimpleValue>
+            <SimpleValue>Tax Type Code</SimpleValue>
          </Value>
          <Value ColumnRef="RepresentationTerm">
             <SimpleValue>Code</SimpleValue>
@@ -43412,17 +43394,8 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="ChangefromPreviousVersion">
             <SimpleValue>Y</SimpleValue>
          </Value>
-         <Value ColumnRef="SmallBusinessSubsetQuotation">
-            <SimpleValue>Y</SimpleValue>
-         </Value>
-         <Value ColumnRef="SmallBusinessSubsetRemittanceAdvice">
-            <SimpleValue>Y</SimpleValue>
-         </Value>
-         <Value ColumnRef="SmallBusinessSubsetSelfBilledCreditNote">
-            <SimpleValue>Y</SimpleValue>
-         </Value>
       </Row>
-      <Row><!--376-->
+      <Row><!--948-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Common</SimpleValue>
          </Value>
@@ -43430,19 +43403,25 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>CurrencyCode</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Tax Scheme. Currency. Code</SimpleValue>
+            <SimpleValue>Tax Scheme. Currency Code. Code</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Tax Scheme</SimpleValue>
          </Value>
-         <Value ColumnRef="PropertyTermPrimaryNoun">
+         <Value ColumnRef="PropertyTermPossessiveNoun">
             <SimpleValue>Currency</SimpleValue>
          </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Code</SimpleValue>
+         </Value>
          <Value ColumnRef="PropertyTerm">
-            <SimpleValue>Currency</SimpleValue>
+            <SimpleValue>Currency Code</SimpleValue>
          </Value>
          <Value ColumnRef="RepresentationTerm">
             <SimpleValue>Code</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataTypeQualifier">
+            <SimpleValue>Currency</SimpleValue>
          </Value>
          <Value ColumnRef="DataType">
             <SimpleValue>Currency_ Code. Type</SimpleValue>
@@ -43459,11 +43438,8 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>1.0</SimpleValue>
          </Value>
-         <Value ColumnRef="DataTypeQualifier">
-            <SimpleValue>Currency</SimpleValue>
-         </Value>
       </Row>
-      <Row><!--377-->
+      <Row><!--949-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Common</SimpleValue>
          </Value>
@@ -43471,7 +43447,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>JurisdictionRegionAddress</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Tax Scheme. Jurisdiction_ Address</SimpleValue>
+            <SimpleValue>Tax Scheme. Jurisdiction Region_ Address</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Tax Scheme</SimpleValue>
