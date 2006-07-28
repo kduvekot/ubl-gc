@@ -17073,7 +17073,7 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--100-->
+      <Row><!--238-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Common</SimpleValue>
          </Value>
@@ -17096,7 +17096,7 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--101-->
+      <Row><!--239-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Common</SimpleValue>
          </Value>
@@ -17104,22 +17104,28 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>IdentificationCode</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Country. Identification. Code</SimpleValue>
+            <SimpleValue>Country. Identification Code. Code</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Country</SimpleValue>
          </Value>
-         <Value ColumnRef="PropertyTermPrimaryNoun">
+         <Value ColumnRef="PropertyTermPossessiveNoun">
             <SimpleValue>Identification</SimpleValue>
          </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Code</SimpleValue>
+         </Value>
          <Value ColumnRef="PropertyTerm">
-            <SimpleValue>Identification</SimpleValue>
+            <SimpleValue>Identification Code</SimpleValue>
          </Value>
          <Value ColumnRef="RepresentationTerm">
             <SimpleValue>Code</SimpleValue>
          </Value>
+         <Value ColumnRef="DataTypeQualifier">
+            <SimpleValue>Country Identification</SimpleValue>
+         </Value>
          <Value ColumnRef="DataType">
-            <SimpleValue>Code. Type</SimpleValue>
+            <SimpleValue>Country Identification_ Code. Type</SimpleValue>
          </Value>
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..1</SimpleValue>
@@ -17136,20 +17142,8 @@ A Bill of Lading can serve as a contractual document between the parties for the
          <Value ColumnRef="AnalystNotes">
             <SimpleValue>Changed from Country Code – schema no longer to be imported</SimpleValue>
          </Value>
-         <Value ColumnRef="SmallBusinessSubsetQuotation">
-            <SimpleValue>Y</SimpleValue>
-         </Value>
-         <Value ColumnRef="SmallBusinessSubsetRemittanceAdvice">
-            <SimpleValue>Y</SimpleValue>
-         </Value>
-         <Value ColumnRef="SmallBusinessSubsetSelfBilledCreditNote">
-            <SimpleValue>Y</SimpleValue>
-         </Value>
-         <Value ColumnRef="SmallBusinessSubsetStatement">
-            <SimpleValue>Y</SimpleValue>
-         </Value>
       </Row>
-      <Row><!--102-->
+      <Row><!--240-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Common</SimpleValue>
          </Value>
