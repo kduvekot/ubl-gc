@@ -31780,9 +31780,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Procurement</SimpleValue>
          </Value>
       </Row>
-      <Row><!--175-->
+      <Row><!--623-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>Procurement</SimpleValue>
+            <SimpleValue>Common</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
             <SimpleValue>OrderLineReference</SimpleValue>
@@ -31806,9 +31806,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Procurement</SimpleValue>
          </Value>
       </Row>
-      <Row><!--176-->
+      <Row><!--624-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>Procurement</SimpleValue>
+            <SimpleValue>Common</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
             <SimpleValue>LineID</SimpleValue>
@@ -31850,9 +31850,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Procurement</SimpleValue>
          </Value>
       </Row>
-      <Row><!--177-->
+      <Row><!--625-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>Procurement</SimpleValue>
+            <SimpleValue>Common</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
             <SimpleValue>SalesOrderLineID</SimpleValue>
@@ -31897,27 +31897,24 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Procurement</SimpleValue>
          </Value>
       </Row>
-      <Row><!--178-->
+      <Row><!--626-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>Procurement</SimpleValue>
+            <SimpleValue>Common</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
-            <SimpleValue>GUID</SimpleValue>
+            <SimpleValue>UUID</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Order Line Reference. Globally Unique Identifier. Identifier</SimpleValue>
+            <SimpleValue>Order Line Reference. UUID. Identifier</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Order Line Reference</SimpleValue>
          </Value>
-         <Value ColumnRef="PropertyTermPossessiveNoun">
-            <SimpleValue>Globally Unique</SimpleValue>
-         </Value>
          <Value ColumnRef="PropertyTermPrimaryNoun">
-            <SimpleValue>Identifier</SimpleValue>
+            <SimpleValue>UUID</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTerm">
-            <SimpleValue>Globally Unique Identifier</SimpleValue>
+            <SimpleValue>UUID</SimpleValue>
          </Value>
          <Value ColumnRef="RepresentationTerm">
             <SimpleValue>Identifier</SimpleValue>
@@ -31932,21 +31929,21 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>A computer-generated globally unique identifier (GUID) for the referenced Order Line instance</SimpleValue>
+            <SimpleValue>A computer-generated universally unique identifier (UUID) for the referenced Order Line instance</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
-            <SimpleValue>1.0</SimpleValue>
+            <SimpleValue>2.0</SimpleValue>
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
          </Value>
-         <Value ColumnRef="SmallBusinessSubsetQuotation">
-            <SimpleValue>Y</SimpleValue>
+         <Value ColumnRef="ChangefromPreviousVersion">
+            <SimpleValue>Changed from GUID to UUID</SimpleValue>
          </Value>
       </Row>
-      <Row><!--179-->
+      <Row><!--627-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>Procurement</SimpleValue>
+            <SimpleValue>Common</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
             <SimpleValue>LineStatusCode</SimpleValue>
@@ -31970,10 +31967,10 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Code</SimpleValue>
          </Value>
          <Value ColumnRef="DataTypeQualifier">
-            <SimpleValue></SimpleValue>
+            <SimpleValue>Line Status</SimpleValue>
          </Value>
          <Value ColumnRef="DataType">
-            <SimpleValue>Code. Type</SimpleValue>
+            <SimpleValue>Line Status_ Code. Type</SimpleValue>
          </Value>
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..1</SimpleValue>
@@ -31991,9 +31988,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Procurement</SimpleValue>
          </Value>
       </Row>
-      <Row><!--180-->
+      <Row><!--628-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>Procurement</SimpleValue>
+            <SimpleValue>Common</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
             <SimpleValue>OrderReference</SimpleValue>
