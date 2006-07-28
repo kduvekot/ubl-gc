@@ -50343,6 +50343,147 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Despatch Advice</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
+            <SimpleValue>UBLVersionID</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Despatch Advice. UBL Version Identifier. Identifier</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Despatch Advice</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPossessiveNoun">
+            <SimpleValue>UBL Version</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Identifier</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>UBL Version Identifier</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Identifier</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Identifier. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>The version of the UBL schema being used.</SimpleValue>
+         </Value>
+         <Value ColumnRef="Examples">
+            <SimpleValue>2.0.5</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.0</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Procurement</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--4-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Despatch Advice</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>SubsetID</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Despatch Advice. Subset Identifier. Identifier</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Despatch Advice</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPossessiveNoun">
+            <SimpleValue>Subset</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Identifier</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Identifier</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Identifier</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Identifier. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>The identifier for a user defined subset of UBL.</SimpleValue>
+         </Value>
+         <Value ColumnRef="Examples">
+            <SimpleValue>NES</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.0</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Procurement</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--5-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Despatch Advice</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>ProfileID</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Despatch Advice. Profile Identifier. Identifier</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Despatch Advice</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPossessiveNoun">
+            <SimpleValue>Profile</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Identifier</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Identifier</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Identifier</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Identifier. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>The identifier for a user defined profile of the subset of UBL being used. </SimpleValue>
+         </Value>
+         <Value ColumnRef="Examples">
+            <SimpleValue>BasicProcurementProcess</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.0</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Procurement</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--6-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Despatch Advice</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
             <SimpleValue>ID</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
@@ -50382,7 +50523,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Modified definition text</SimpleValue>
          </Value>
       </Row>
-      <Row><!--4-->
+      <Row><!--7-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Despatch Advice</SimpleValue>
          </Value>
@@ -50390,19 +50531,19 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>CopyIndicator</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Despatch Advice. Copy Indicator. Indicator</SimpleValue>
+            <SimpleValue>Despatch Advice. Copy_ Indicator. Indicator</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Despatch Advice</SimpleValue>
          </Value>
-         <Value ColumnRef="PropertyTermPossessiveNoun">
+         <Value ColumnRef="PropertyTermQualifier">
             <SimpleValue>Copy</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTermPrimaryNoun">
             <SimpleValue>Indicator</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTerm">
-            <SimpleValue>Copy Indicator</SimpleValue>
+            <SimpleValue>Indicator</SimpleValue>
          </Value>
          <Value ColumnRef="RepresentationTerm">
             <SimpleValue>Indicator</SimpleValue>
@@ -50411,7 +50552,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Indicator. Type</SimpleValue>
          </Value>
          <Value ColumnRef="Cardinality">
-            <SimpleValue>1</SimpleValue>
+            <SimpleValue>0..1</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentType">
             <SimpleValue>BBIE</SimpleValue>
@@ -50429,27 +50570,24 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Changed Property Terms</SimpleValue>
          </Value>
       </Row>
-      <Row><!--5-->
+      <Row><!--8-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Despatch Advice</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
-            <SimpleValue>GUID</SimpleValue>
+            <SimpleValue>UUID</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Despatch Advice. Globally Unique Identifier. Identifier</SimpleValue>
+            <SimpleValue>Despatch Advice. UUID. Identifier</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Despatch Advice</SimpleValue>
          </Value>
-         <Value ColumnRef="PropertyTermPossessiveNoun">
-            <SimpleValue>Globally Unique</SimpleValue>
-         </Value>
          <Value ColumnRef="PropertyTermPrimaryNoun">
-            <SimpleValue>Identifier</SimpleValue>
+            <SimpleValue>UUID</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTerm">
-            <SimpleValue>Globally Unique Identifier</SimpleValue>
+            <SimpleValue>UUID</SimpleValue>
          </Value>
          <Value ColumnRef="RepresentationTerm">
             <SimpleValue>Identifier</SimpleValue>
@@ -50464,7 +50602,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>A computer-generated globally unique identifier (GUID) for the Despatch Advice instance</SimpleValue>
+            <SimpleValue>A computer-generated universally unique identifier (UUID) for the Despatch Advice instance</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
@@ -50476,7 +50614,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Changed Property Terms</SimpleValue>
          </Value>
       </Row>
-      <Row><!--6-->
+      <Row><!--9-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Despatch Advice</SimpleValue>
          </Value>
@@ -50523,7 +50661,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Split Date Time into Date and Time</SimpleValue>
          </Value>
       </Row>
-      <Row><!--7-->
+      <Row><!--10-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Despatch Advice</SimpleValue>
          </Value>
@@ -50570,7 +50708,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Split Date Time into Date and Time</SimpleValue>
          </Value>
       </Row>
-      <Row><!--8-->
+      <Row><!--11-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Despatch Advice</SimpleValue>
          </Value>
@@ -50578,7 +50716,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>DocumentStatusCode</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Despatch Advice. Document Status. Code</SimpleValue>
+            <SimpleValue>Despatch Advice. Document Status Code. Code</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Despatch Advice</SimpleValue>
@@ -50617,7 +50755,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Modified definition text</SimpleValue>
          </Value>
       </Row>
-      <Row><!--9-->
+      <Row><!--12-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Despatch Advice</SimpleValue>
          </Value>
@@ -50625,19 +50763,19 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>DespatchAdviceTypeCode</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Despatch Advice. Despatch Advice Type. Code</SimpleValue>
+            <SimpleValue>Despatch Advice. Despatch Advice Type Code. Code</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Despatch Advice</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTermPossessiveNoun">
-            <SimpleValue>Despatch Advice </SimpleValue>
+            <SimpleValue>Despatch Advice Type</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTermPrimaryNoun">
-            <SimpleValue>Type</SimpleValue>
+            <SimpleValue>Code</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTerm">
-            <SimpleValue>Despatch Advice Type</SimpleValue>
+            <SimpleValue>Despatch Advice Type Code</SimpleValue>
          </Value>
          <Value ColumnRef="RepresentationTerm">
             <SimpleValue>Code</SimpleValue>
@@ -50664,7 +50802,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Modified definition text</SimpleValue>
          </Value>
       </Row>
-      <Row><!--10-->
+      <Row><!--13-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Despatch Advice</SimpleValue>
          </Value>
@@ -50690,7 +50828,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Text. Type</SimpleValue>
          </Value>
          <Value ColumnRef="Cardinality">
-            <SimpleValue>0..1</SimpleValue>
+            <SimpleValue>0..n</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentType">
             <SimpleValue>BBIE</SimpleValue>
@@ -50708,7 +50846,54 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Modified definition text</SimpleValue>
          </Value>
       </Row>
-      <Row><!--11-->
+      <Row><!--14-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Despatch Advice</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>LineCountNumeric</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Despatch Advice. Line Count. Numeric</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Despatch Advice</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPossessiveNoun">
+            <SimpleValue>Line</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Count</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Line Count</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Numeric</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Numeric. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>The number of lines in the document</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.0</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangefromPreviousVersion">
+            <SimpleValue>Modified definition text</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--15-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Despatch Advice</SimpleValue>
          </Value>
@@ -50749,7 +50934,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Modified definition text</SimpleValue>
          </Value>
       </Row>
-      <Row><!--12-->
+      <Row><!--16-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Despatch Advice</SimpleValue>
          </Value>
@@ -50793,7 +50978,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Modified definition text</SimpleValue>
          </Value>
       </Row>
-      <Row><!--13-->
+      <Row><!--17-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Despatch Advice</SimpleValue>
          </Value>
@@ -50834,7 +51019,95 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Modified definition text</SimpleValue>
          </Value>
       </Row>
-      <Row><!--14-->
+      <Row><!--18-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Despatch Advice</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>DespatchSupplierParty</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Despatch Advice. Despatch_ Supplier Party</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Despatch Advice</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermQualifier">
+            <SimpleValue>Despatch</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Supplier Party</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Supplier Party</SimpleValue>
+         </Value>
+         <Value ColumnRef="AssociatedObjectClass">
+            <SimpleValue>Supplier Party</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>ASBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>An association to the Despatch Party</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.0</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangefromPreviousVersion">
+            <SimpleValue>Changed cardinality</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--19-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Despatch Advice</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>DeliveryCustomerParty</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Despatch Advice. Delivery_ Customer Party</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Despatch Advice</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermQualifier">
+            <SimpleValue>Delivery</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Customer Party</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Customer Party</SimpleValue>
+         </Value>
+         <Value ColumnRef="AssociatedObjectClass">
+            <SimpleValue>Customer Party</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>ASBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>An association to the Delivery Party</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.0</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangefromPreviousVersion">
+            <SimpleValue>Changed cardinality</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--20-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Despatch Advice</SimpleValue>
          </Value>
@@ -50878,7 +51151,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Changed cardinality</SimpleValue>
          </Value>
       </Row>
-      <Row><!--15-->
+      <Row><!--21-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Despatch Advice</SimpleValue>
          </Value>
@@ -50922,7 +51195,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Changed cardinality</SimpleValue>
          </Value>
       </Row>
-      <Row><!--16-->
+      <Row><!--22-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Despatch Advice</SimpleValue>
          </Value>
@@ -50966,7 +51239,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Modified definition text</SimpleValue>
          </Value>
       </Row>
-      <Row><!--17-->
+      <Row><!--23-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Despatch Advice</SimpleValue>
          </Value>
@@ -51007,7 +51280,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>removed qualifier</SimpleValue>
          </Value>
       </Row>
-      <Row><!--18-->
+      <Row><!--24-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Despatch Advice</SimpleValue>
          </Value>
