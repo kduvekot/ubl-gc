@@ -8598,18 +8598,6 @@ A Bill of Lading can serve as a contractual document between the parties for the
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
          </Value>
-         <Value ColumnRef="SmallBusinessSubsetQuotation">
-            <SimpleValue>Y</SimpleValue>
-         </Value>
-         <Value ColumnRef="SmallBusinessSubsetRemittanceAdvice">
-            <SimpleValue>Y</SimpleValue>
-         </Value>
-         <Value ColumnRef="SmallBusinessSubsetSelfBilledCreditNote">
-            <SimpleValue>Y</SimpleValue>
-         </Value>
-         <Value ColumnRef="SmallBusinessSubsetStatement">
-            <SimpleValue>Y</SimpleValue>
-         </Value>
       </Row>
       <Row><!--3-->
          <Value ColumnRef="ModelName">
@@ -8619,7 +8607,7 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>ID</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Address. Identifier. Identifier</SimpleValue>
+            <SimpleValue>Address. Identifier</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Address</SimpleValue>
@@ -8653,6 +8641,82 @@ A Bill of Lading can serve as a contractual document between the parties for the
          </Value>
       </Row>
       <Row><!--4-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Common</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>TypeCode</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Address. Type. Code</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Address</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Code</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Code. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>A code specifying the type of this address such as business address or home address.</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.0</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--5-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Common</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>FormatCode</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Address. Format. Code</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Address</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Format</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Format</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Code</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Code. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>A code specifying the format of this address.</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.0</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--6-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Common</SimpleValue>
          </Value>
@@ -8696,7 +8760,7 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>1.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--5-->
+      <Row><!--7-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Common</SimpleValue>
          </Value>
@@ -8740,7 +8804,7 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>1.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--6-->
+      <Row><!--8-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Common</SimpleValue>
          </Value>
@@ -8784,7 +8848,7 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>1.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--7-->
+      <Row><!--9-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Common</SimpleValue>
          </Value>
@@ -8830,20 +8894,8 @@ A Bill of Lading can serve as a contractual document between the parties for the
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>1.0</SimpleValue>
          </Value>
-         <Value ColumnRef="SmallBusinessSubsetQuotation">
-            <SimpleValue>Y</SimpleValue>
-         </Value>
-         <Value ColumnRef="SmallBusinessSubsetRemittanceAdvice">
-            <SimpleValue>Y</SimpleValue>
-         </Value>
-         <Value ColumnRef="SmallBusinessSubsetSelfBilledCreditNote">
-            <SimpleValue>Y</SimpleValue>
-         </Value>
-         <Value ColumnRef="SmallBusinessSubsetStatement">
-            <SimpleValue>Y</SimpleValue>
-         </Value>
       </Row>
-      <Row><!--8-->
+      <Row><!--10-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Common</SimpleValue>
          </Value>
@@ -8893,7 +8945,51 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>1.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--9-->
+      <Row><!--11-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Common</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>BlockName</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Address. Block Name. Name</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Address</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPossessiveNoun">
+            <SimpleValue>Block</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Name</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Block Name</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Name</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Name. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>The block name, expressed as text, for an area surrounded by streets and usually containing several buildings for this address.</SimpleValue>
+         </Value>
+         <Value ColumnRef="Examples">
+            <SimpleValue>Seabird</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.0</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--12-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Common</SimpleValue>
          </Value>
@@ -8939,20 +9035,8 @@ A Bill of Lading can serve as a contractual document between the parties for the
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>1.0</SimpleValue>
          </Value>
-         <Value ColumnRef="SmallBusinessSubsetQuotation">
-            <SimpleValue>Y</SimpleValue>
-         </Value>
-         <Value ColumnRef="SmallBusinessSubsetRemittanceAdvice">
-            <SimpleValue>Y</SimpleValue>
-         </Value>
-         <Value ColumnRef="SmallBusinessSubsetSelfBilledCreditNote">
-            <SimpleValue>Y</SimpleValue>
-         </Value>
-         <Value ColumnRef="SmallBusinessSubsetStatement">
-            <SimpleValue>Y</SimpleValue>
-         </Value>
       </Row>
-      <Row><!--10-->
+      <Row><!--13-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Common</SimpleValue>
          </Value>
@@ -8998,20 +9082,8 @@ A Bill of Lading can serve as a contractual document between the parties for the
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>1.0</SimpleValue>
          </Value>
-         <Value ColumnRef="SmallBusinessSubsetQuotation">
-            <SimpleValue>Y</SimpleValue>
-         </Value>
-         <Value ColumnRef="SmallBusinessSubsetRemittanceAdvice">
-            <SimpleValue>Y</SimpleValue>
-         </Value>
-         <Value ColumnRef="SmallBusinessSubsetSelfBilledCreditNote">
-            <SimpleValue>Y</SimpleValue>
-         </Value>
-         <Value ColumnRef="SmallBusinessSubsetStatement">
-            <SimpleValue>Y</SimpleValue>
-         </Value>
       </Row>
-      <Row><!--11-->
+      <Row><!--14-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Common</SimpleValue>
          </Value>
@@ -9019,19 +9091,19 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>InhouseMail</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Address. Inhouse Mail. Text</SimpleValue>
+            <SimpleValue>Address. Inhouse_ Mail. Text</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Address</SimpleValue>
          </Value>
-         <Value ColumnRef="PropertyTermPossessiveNoun">
+         <Value ColumnRef="PropertyTermQualifier">
             <SimpleValue>Inhouse</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTermPrimaryNoun">
             <SimpleValue>Mail</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTerm">
-            <SimpleValue>Inhouse Mail</SimpleValue>
+            <SimpleValue>Mail</SimpleValue>
          </Value>
          <Value ColumnRef="RepresentationTerm">
             <SimpleValue>Text</SimpleValue>
@@ -9055,7 +9127,7 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>1.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--12-->
+      <Row><!--15-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Common</SimpleValue>
          </Value>
@@ -9099,7 +9171,165 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>1.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--13-->
+      <Row><!--16-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Common</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>MarkAttention</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Address. Mark Attention. Text</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Address</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Mark Attention</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Mark Attention</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Text</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Text. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>The name, expressed as text, of a person or department in the organization to whom incoming mail is marked with words such as 'for the attention of' or 'FAO' or 'ATTN' for this address.</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.0</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--17-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Common</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>MarkCare</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Address. Mark Care. Text</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Address</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Mark Care</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Mark Care</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Text</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Text. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>The name, expressed as text, of a person or organization at this address to whom incoming mail is marked with words such as 'care of' or 'C/O'.</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.0</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--18-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Common</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>PlotIdentification</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Address. Plot Identification. Text</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Address</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPossessiveNoun">
+            <SimpleValue>Plot</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Identification</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Plot Identification</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Text</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Text. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>The textual expression of the unique identifier for the piece of land on which this address is located such as a plot number.</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>1.0</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--19-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Common</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>CitySubdivisionName</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Address. City Subdivision Name. Name</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Address</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPossessiveNoun">
+            <SimpleValue>City Subdivision</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Name</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>City Subdivision Name</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Name</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Name. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>A name, expressed as text, of a sub-division of a city for this address, for example a district or borough.</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.0</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--20-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Common</SimpleValue>
          </Value>
@@ -9145,20 +9375,8 @@ A Bill of Lading can serve as a contractual document between the parties for the
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>1.0</SimpleValue>
          </Value>
-         <Value ColumnRef="SmallBusinessSubsetQuotation">
-            <SimpleValue>Y</SimpleValue>
-         </Value>
-         <Value ColumnRef="SmallBusinessSubsetRemittanceAdvice">
-            <SimpleValue>Y</SimpleValue>
-         </Value>
-         <Value ColumnRef="SmallBusinessSubsetSelfBilledCreditNote">
-            <SimpleValue>Y</SimpleValue>
-         </Value>
-         <Value ColumnRef="SmallBusinessSubsetStatement">
-            <SimpleValue>Y</SimpleValue>
-         </Value>
       </Row>
-      <Row><!--14-->
+      <Row><!--21-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Common</SimpleValue>
          </Value>
@@ -9166,19 +9384,19 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>PostalZone</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Address. Postal Zone. Text</SimpleValue>
+            <SimpleValue>Address. Postal_ Zone. Text</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Address</SimpleValue>
          </Value>
-         <Value ColumnRef="PropertyTermPossessiveNoun">
+         <Value ColumnRef="PropertyTermQualifier">
             <SimpleValue>Postal</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTermPrimaryNoun">
             <SimpleValue>Zone</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTerm">
-            <SimpleValue>Postal Zone</SimpleValue>
+            <SimpleValue>Zone</SimpleValue>
          </Value>
          <Value ColumnRef="RepresentationTerm">
             <SimpleValue>Text</SimpleValue>
@@ -9204,20 +9422,8 @@ A Bill of Lading can serve as a contractual document between the parties for the
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>1.0</SimpleValue>
          </Value>
-         <Value ColumnRef="SmallBusinessSubsetQuotation">
-            <SimpleValue>Y</SimpleValue>
-         </Value>
-         <Value ColumnRef="SmallBusinessSubsetRemittanceAdvice">
-            <SimpleValue>Y</SimpleValue>
-         </Value>
-         <Value ColumnRef="SmallBusinessSubsetSelfBilledCreditNote">
-            <SimpleValue>Y</SimpleValue>
-         </Value>
-         <Value ColumnRef="SmallBusinessSubsetStatement">
-            <SimpleValue>Y</SimpleValue>
-         </Value>
       </Row>
-      <Row><!--15-->
+      <Row><!--22-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Common</SimpleValue>
          </Value>
@@ -9263,20 +9469,8 @@ A Bill of Lading can serve as a contractual document between the parties for the
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>1.0</SimpleValue>
          </Value>
-         <Value ColumnRef="SmallBusinessSubsetQuotation">
-            <SimpleValue>Y</SimpleValue>
-         </Value>
-         <Value ColumnRef="SmallBusinessSubsetRemittanceAdvice">
-            <SimpleValue>Y</SimpleValue>
-         </Value>
-         <Value ColumnRef="SmallBusinessSubsetSelfBilledCreditNote">
-            <SimpleValue>Y</SimpleValue>
-         </Value>
-         <Value ColumnRef="SmallBusinessSubsetStatement">
-            <SimpleValue>Y</SimpleValue>
-         </Value>
       </Row>
-      <Row><!--16-->
+      <Row><!--23-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Common</SimpleValue>
          </Value>
@@ -9323,7 +9517,7 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>changed property terms</SimpleValue>
          </Value>
       </Row>
-      <Row><!--17-->
+      <Row><!--24-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Common</SimpleValue>
          </Value>
@@ -9367,7 +9561,7 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>1.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--18-->
+      <Row><!--25-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Common</SimpleValue>
          </Value>
@@ -9411,7 +9605,7 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>1.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--19-->
+      <Row><!--26-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Common</SimpleValue>
          </Value>
@@ -9455,7 +9649,7 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>1.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--20-->
+      <Row><!--27-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Common</SimpleValue>
          </Value>
@@ -9492,20 +9686,8 @@ A Bill of Lading can serve as a contractual document between the parties for the
          <Value ColumnRef="ChangefromPreviousVersion">
             <SimpleValue>extended cardinality</SimpleValue>
          </Value>
-         <Value ColumnRef="SmallBusinessSubsetQuotation">
-            <SimpleValue>Y</SimpleValue>
-         </Value>
-         <Value ColumnRef="SmallBusinessSubsetRemittanceAdvice">
-            <SimpleValue>Y</SimpleValue>
-         </Value>
-         <Value ColumnRef="SmallBusinessSubsetSelfBilledCreditNote">
-            <SimpleValue>Y</SimpleValue>
-         </Value>
-         <Value ColumnRef="SmallBusinessSubsetStatement">
-            <SimpleValue>Y</SimpleValue>
-         </Value>
       </Row>
-      <Row><!--21-->
+      <Row><!--28-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Common</SimpleValue>
          </Value>
@@ -9539,20 +9721,8 @@ A Bill of Lading can serve as a contractual document between the parties for the
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>1.0</SimpleValue>
          </Value>
-         <Value ColumnRef="SmallBusinessSubsetQuotation">
-            <SimpleValue>Y</SimpleValue>
-         </Value>
-         <Value ColumnRef="SmallBusinessSubsetRemittanceAdvice">
-            <SimpleValue>Y</SimpleValue>
-         </Value>
-         <Value ColumnRef="SmallBusinessSubsetSelfBilledCreditNote">
-            <SimpleValue>Y</SimpleValue>
-         </Value>
-         <Value ColumnRef="SmallBusinessSubsetStatement">
-            <SimpleValue>Y</SimpleValue>
-         </Value>
       </Row>
-      <Row><!--22-->
+      <Row><!--29-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Common</SimpleValue>
          </Value>
