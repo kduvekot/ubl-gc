@@ -839,7 +839,7 @@
       </Row>
       <Row><!--2-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>Application Response</SimpleValue>
+            <SimpleValue>Attached Document</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
             <SimpleValue>AttachedDocument</SimpleValue>
@@ -854,24 +854,165 @@
             <SimpleValue>ABIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>a document to indicate the application’s response to a transaction.</SimpleValue>
+            <SimpleValue>A ’wrapper’ UBL document that can contain anything. This allows a referenced document to be included in the package of documents being exchanged.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
-            <SimpleValue></SimpleValue>
+            <SimpleValue>Procurement</SimpleValue>
          </Value>
       </Row>
       <Row><!--3-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>Application Response</SimpleValue>
+            <SimpleValue>Attached Document</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>UBLVersionID</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Attached Document. UBL Version Identifier. Identifier</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Attached Document</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPossessiveNoun">
+            <SimpleValue>UBL Version</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Identifier</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>UBL Version Identifier</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Identifier</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Identifier. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>The version of the UBL schema being used.</SimpleValue>
+         </Value>
+         <Value ColumnRef="Examples">
+            <SimpleValue>2.0.5</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.0</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Procurement</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--4-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Attached Document</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>SubsetID</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Attached Document. Subset Identifier. Identifier</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Attached Document</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPossessiveNoun">
+            <SimpleValue>Subset</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Identifier</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Identifier</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Identifier</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Identifier. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>The identifier for a user defined subset of UBL.</SimpleValue>
+         </Value>
+         <Value ColumnRef="Examples">
+            <SimpleValue>NES</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.0</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Procurement</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--5-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Attached Document</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>ProfileID</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Attached Document. Profile Identifier. Identifier</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Attached Document</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPossessiveNoun">
+            <SimpleValue>Profile</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Identifier</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Identifier</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Identifier</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Identifier. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>The identifier for a user defined profile of the subset of UBL being used. </SimpleValue>
+         </Value>
+         <Value ColumnRef="Examples">
+            <SimpleValue>BasicProcurementProcess</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.0</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Procurement</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--6-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Attached Document</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
             <SimpleValue>ID</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Attached Document. Identifier. Identifier</SimpleValue>
+            <SimpleValue>Attached Document. Identifier</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Attached Document</SimpleValue>
@@ -900,28 +1041,28 @@
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
          </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Procurement</SimpleValue>
+         </Value>
       </Row>
-      <Row><!--4-->
+      <Row><!--7-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>Application Response</SimpleValue>
+            <SimpleValue>Attached Document</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
-            <SimpleValue>GUID</SimpleValue>
+            <SimpleValue>UUID</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Attached Document. Globally Unique Identifier. Identifier</SimpleValue>
+            <SimpleValue>Attached Document. UUID. Identifier</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Attached Document</SimpleValue>
          </Value>
-         <Value ColumnRef="PropertyTermPossessiveNoun">
-            <SimpleValue>Globally Unique</SimpleValue>
-         </Value>
          <Value ColumnRef="PropertyTermPrimaryNoun">
-            <SimpleValue>Identifier</SimpleValue>
+            <SimpleValue>UUID</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTerm">
-            <SimpleValue>Globally Unique Identifier</SimpleValue>
+            <SimpleValue>UUID</SimpleValue>
          </Value>
          <Value ColumnRef="RepresentationTerm">
             <SimpleValue>Identifier</SimpleValue>
@@ -936,15 +1077,18 @@
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>A computer-generated universally unique identifier (GUID) for the document instance.</SimpleValue>
+            <SimpleValue>A computer-generated universally unique identifier (UUID) for the document instance.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
          </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Procurement</SimpleValue>
+         </Value>
       </Row>
-      <Row><!--5-->
+      <Row><!--8-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>Application Response</SimpleValue>
+            <SimpleValue>Attached Document</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
             <SimpleValue>IssueDate</SimpleValue>
@@ -980,15 +1124,15 @@
             <SimpleValue>a date denoting when the Attached Document was issued.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
-            <SimpleValue>1.0</SimpleValue>
+            <SimpleValue>2.0</SimpleValue>
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
          </Value>
       </Row>
-      <Row><!--6-->
+      <Row><!--9-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>Application Response</SimpleValue>
+            <SimpleValue>Attached Document</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
             <SimpleValue>IssueTime</SimpleValue>
@@ -1024,15 +1168,15 @@
             <SimpleValue>a time denoting when the Attached Document was issued.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
-            <SimpleValue>1.0</SimpleValue>
+            <SimpleValue>2.0</SimpleValue>
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
          </Value>
       </Row>
-      <Row><!--7-->
+      <Row><!--10-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>Application Response</SimpleValue>
+            <SimpleValue>Attached Document</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
             <SimpleValue>Note</SimpleValue>
@@ -1068,30 +1212,30 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
-            <SimpleValue></SimpleValue>
+            <SimpleValue>Procurement</SimpleValue>
          </Value>
       </Row>
-      <Row><!--8-->
+      <Row><!--11-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>Application Response</SimpleValue>
+            <SimpleValue>Attached Document</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
-            <SimpleValue>DocumentQualifierCode</SimpleValue>
+            <SimpleValue>DocumentTypeCode</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Attached Document. Document Type. Code</SimpleValue>
+            <SimpleValue>Attached Document. Document Type Code. Code</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Attached Document</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTermPossessiveNoun">
-            <SimpleValue>Document Qualifier</SimpleValue>
+            <SimpleValue>Document Type</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTermPrimaryNoun">
             <SimpleValue>Code</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTerm">
-            <SimpleValue>Document Qualifier Code</SimpleValue>
+            <SimpleValue>Document Type Code</SimpleValue>
          </Value>
          <Value ColumnRef="RepresentationTerm">
             <SimpleValue>Code</SimpleValue>
@@ -1111,28 +1255,28 @@
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
          </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Procurement</SimpleValue>
+         </Value>
       </Row>
-      <Row><!--9-->
+      <Row><!--12-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>Application Response</SimpleValue>
+            <SimpleValue>Attached Document</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
-            <SimpleValue>DocumentQualifier</SimpleValue>
+            <SimpleValue>DocumentType</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Attached Document. Qualifier. Text</SimpleValue>
+            <SimpleValue>Attached Document. Document Type. Text</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Attached Document</SimpleValue>
          </Value>
-         <Value ColumnRef="PropertyTermPossessiveNoun">
-            <SimpleValue>Document</SimpleValue>
-         </Value>
          <Value ColumnRef="PropertyTermPrimaryNoun">
-            <SimpleValue>Qualifier</SimpleValue>
+            <SimpleValue>Document Type</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTerm">
-            <SimpleValue>Document Qualifier</SimpleValue>
+            <SimpleValue>Document Type</SimpleValue>
          </Value>
          <Value ColumnRef="RepresentationTerm">
             <SimpleValue>Text</SimpleValue>
@@ -1155,16 +1299,19 @@
          <Value ColumnRef="AnalystNotes">
             <SimpleValue>to support additional Attached Documents that may not be known in advance</SimpleValue>
          </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Procurement</SimpleValue>
+         </Value>
       </Row>
-      <Row><!--10-->
+      <Row><!--13-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>Application Response</SimpleValue>
+            <SimpleValue>Attached Document</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
             <SimpleValue>ParentDocumentID</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Attached Document. Parent_ Document. Identifier</SimpleValue>
+            <SimpleValue>Attached Document. Parent_ Document Identifier. Identifier</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Attached Document</SimpleValue>
@@ -1199,16 +1346,19 @@
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
          </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Procurement</SimpleValue>
+         </Value>
       </Row>
-      <Row><!--11-->
+      <Row><!--14-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>Application Response</SimpleValue>
+            <SimpleValue>Attached Document</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
-            <SimpleValue>ParentDocumentQualifierCode</SimpleValue>
+            <SimpleValue>ParentDocumentTypeCode</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Attached Document. Parent_ Document Qualifier. Code</SimpleValue>
+            <SimpleValue>Attached Document. Parent_ Document Type Code. Code</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Attached Document</SimpleValue>
@@ -1217,13 +1367,13 @@
             <SimpleValue>Parent</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTermPossessiveNoun">
-            <SimpleValue>Document Qualifier</SimpleValue>
+            <SimpleValue>Document Type</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTermPrimaryNoun">
             <SimpleValue>Code</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTerm">
-            <SimpleValue>Document Qualifier Code</SimpleValue>
+            <SimpleValue>Document Type Code</SimpleValue>
          </Value>
          <Value ColumnRef="RepresentationTerm">
             <SimpleValue>Code</SimpleValue>
@@ -1243,10 +1393,13 @@
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
          </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Procurement</SimpleValue>
+         </Value>
       </Row>
-      <Row><!--12-->
+      <Row><!--15-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>Application Response</SimpleValue>
+            <SimpleValue>Attached Document</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
             <SimpleValue>Signature</SimpleValue>
@@ -1276,15 +1429,15 @@
             <SimpleValue>associates the Attached Document with zero or more signatures.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
-            <SimpleValue>1.0</SimpleValue>
+            <SimpleValue>'2.0</SimpleValue>
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
          </Value>
       </Row>
-      <Row><!--13-->
+      <Row><!--16-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>Application Response</SimpleValue>
+            <SimpleValue>Attached Document</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
             <SimpleValue>SenderParty</SimpleValue>
@@ -1323,9 +1476,9 @@
             <SimpleValue>Procurement</SimpleValue>
          </Value>
       </Row>
-      <Row><!--14-->
+      <Row><!--17-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>Application Response</SimpleValue>
+            <SimpleValue>Attached Document</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
             <SimpleValue>ReceiverParty</SimpleValue>
@@ -1364,9 +1517,9 @@
             <SimpleValue>Procurement</SimpleValue>
          </Value>
       </Row>
-      <Row><!--15-->
+      <Row><!--18-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>Application Response</SimpleValue>
+            <SimpleValue>Attached Document</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
             <SimpleValue>Attachment</SimpleValue>
@@ -1399,7 +1552,7 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
-            <SimpleValue></SimpleValue>
+            <SimpleValue>Procurement</SimpleValue>
          </Value>
       </Row>
       <Row><!--2-->
