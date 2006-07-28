@@ -14526,6 +14526,158 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
+      <Row><!--178-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Common</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>Communication</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Communication. Details</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Communication</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>ABIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>Information about a means of communication</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>1.0</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--179-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Common</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>ChannelCode</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Communication. Channel Code. Code</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Communication</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPossessiveNoun">
+            <SimpleValue>Channel</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Code</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Channel Code</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Code</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataTypeQualifier">
+            <SimpleValue>Channel</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Channel_ Code. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>The method of communication expressed as a code</SimpleValue>
+         </Value>
+         <Value ColumnRef="Examples">
+            <SimpleValue>Phone Fax Email</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>1.0</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--180-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Common</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>Channel</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Communication. Channel. Text</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Communication</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Channel</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Channel</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Text</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Text. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>The method of communication expressed as text</SimpleValue>
+         </Value>
+         <Value ColumnRef="Examples">
+            <SimpleValue>Skype</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>1.0</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--181-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Common</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>Value</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Communication. Value. Text</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Communication</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Value</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Value</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Text</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Text. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>The communication value such as phone number or email address</SimpleValue>
+         </Value>
+         <Value ColumnRef="Examples">
+            <SimpleValue>"+44 1 2345 6789" "president@whitehouse.com"</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>1.0</SimpleValue>
+         </Value>
+      </Row>
       <Row><!--77-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Common</SimpleValue>
@@ -15097,114 +15249,6 @@ A Bill of Lading can serve as a contractual document between the parties for the
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
-         </Value>
-      </Row>
-      <Row><!--92-->
-         <Value ColumnRef="ModelName">
-            <SimpleValue>Common</SimpleValue>
-         </Value>
-         <Value ColumnRef="UBLName">
-            <SimpleValue>Communication</SimpleValue>
-         </Value>
-         <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Communication. Details</SimpleValue>
-         </Value>
-         <Value ColumnRef="ObjectClass">
-            <SimpleValue>Communication</SimpleValue>
-         </Value>
-         <Value ColumnRef="ComponentType">
-            <SimpleValue>ABIE</SimpleValue>
-         </Value>
-         <Value ColumnRef="Definition">
-            <SimpleValue>Information about a means of communication</SimpleValue>
-         </Value>
-         <Value ColumnRef="CurrentVersion">
-            <SimpleValue>1.0</SimpleValue>
-         </Value>
-      </Row>
-      <Row><!--93-->
-         <Value ColumnRef="ModelName">
-            <SimpleValue>Common</SimpleValue>
-         </Value>
-         <Value ColumnRef="UBLName">
-            <SimpleValue>ChannelCode</SimpleValue>
-         </Value>
-         <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Communication. Channel. Code</SimpleValue>
-         </Value>
-         <Value ColumnRef="ObjectClass">
-            <SimpleValue>Communication</SimpleValue>
-         </Value>
-         <Value ColumnRef="PropertyTermPrimaryNoun">
-            <SimpleValue>Channel</SimpleValue>
-         </Value>
-         <Value ColumnRef="PropertyTerm">
-            <SimpleValue>Channel</SimpleValue>
-         </Value>
-         <Value ColumnRef="RepresentationTerm">
-            <SimpleValue>Code</SimpleValue>
-         </Value>
-         <Value ColumnRef="DataType">
-            <SimpleValue>Channel_ Code. Type</SimpleValue>
-         </Value>
-         <Value ColumnRef="Cardinality">
-            <SimpleValue>1</SimpleValue>
-         </Value>
-         <Value ColumnRef="ComponentType">
-            <SimpleValue>BBIE</SimpleValue>
-         </Value>
-         <Value ColumnRef="Definition">
-            <SimpleValue>The method of communication expressed as a code</SimpleValue>
-         </Value>
-         <Value ColumnRef="Examples">
-            <SimpleValue>Phone Fax Email</SimpleValue>
-         </Value>
-         <Value ColumnRef="CurrentVersion">
-            <SimpleValue>1.0</SimpleValue>
-         </Value>
-         <Value ColumnRef="DataTypeQualifier">
-            <SimpleValue>Channel</SimpleValue>
-         </Value>
-      </Row>
-      <Row><!--94-->
-         <Value ColumnRef="ModelName">
-            <SimpleValue>Common</SimpleValue>
-         </Value>
-         <Value ColumnRef="UBLName">
-            <SimpleValue>Value</SimpleValue>
-         </Value>
-         <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Communication. Value. Text</SimpleValue>
-         </Value>
-         <Value ColumnRef="ObjectClass">
-            <SimpleValue>Communication</SimpleValue>
-         </Value>
-         <Value ColumnRef="PropertyTermPrimaryNoun">
-            <SimpleValue>Value</SimpleValue>
-         </Value>
-         <Value ColumnRef="PropertyTerm">
-            <SimpleValue>Value</SimpleValue>
-         </Value>
-         <Value ColumnRef="RepresentationTerm">
-            <SimpleValue>Text</SimpleValue>
-         </Value>
-         <Value ColumnRef="DataType">
-            <SimpleValue>Text. Type</SimpleValue>
-         </Value>
-         <Value ColumnRef="Cardinality">
-            <SimpleValue>0..1</SimpleValue>
-         </Value>
-         <Value ColumnRef="ComponentType">
-            <SimpleValue>BBIE</SimpleValue>
-         </Value>
-         <Value ColumnRef="Definition">
-            <SimpleValue>The communication value such as phone number or email address</SimpleValue>
-         </Value>
-         <Value ColumnRef="Examples">
-            <SimpleValue>"+44 1 2345 6789" "president@whitehouse.com"</SimpleValue>
-         </Value>
-         <Value ColumnRef="CurrentVersion">
-            <SimpleValue>1.0</SimpleValue>
          </Value>
       </Row>
       <Row><!--95-->
