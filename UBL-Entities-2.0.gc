@@ -40599,9 +40599,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Transportation</SimpleValue>
          </Value>
       </Row>
-      <Row><!--150-->
+      <Row><!--868-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>Transportation</SimpleValue>
+            <SimpleValue>Common</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
             <SimpleValue>ShipmentStage</SimpleValue>
@@ -40625,15 +40625,15 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Transportation</SimpleValue>
          </Value>
       </Row>
-      <Row><!--151-->
+      <Row><!--869-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>Transportation</SimpleValue>
+            <SimpleValue>Common</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
             <SimpleValue>ID</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Shipment Stage. Identifier. Identifier</SimpleValue>
+            <SimpleValue>Shipment Stage. Identifier</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Shipment Stage</SimpleValue>
@@ -40669,33 +40669,36 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Transportation</SimpleValue>
          </Value>
       </Row>
-      <Row><!--152-->
+      <Row><!--870-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>Transportation</SimpleValue>
+            <SimpleValue>Common</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
             <SimpleValue>TransportModeCode</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Shipment Stage. Transport Mode. Code</SimpleValue>
+            <SimpleValue>Shipment Stage. Transport Mode Code. Code</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Shipment Stage</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTermPossessiveNoun">
-            <SimpleValue>Transport</SimpleValue>
+            <SimpleValue>Transport Mode</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTermPrimaryNoun">
-            <SimpleValue>Mode</SimpleValue>
+            <SimpleValue>Code</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTerm">
-            <SimpleValue>Transport Mode</SimpleValue>
+            <SimpleValue>Transport Mode Code</SimpleValue>
          </Value>
          <Value ColumnRef="RepresentationTerm">
             <SimpleValue>Code</SimpleValue>
          </Value>
+         <Value ColumnRef="DataTypeQualifier">
+            <SimpleValue>Transport Mode</SimpleValue>
+         </Value>
          <Value ColumnRef="DataType">
-            <SimpleValue>Code. Type</SimpleValue>
+            <SimpleValue>Transport Mode_ Code. Type</SimpleValue>
          </Value>
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..1</SimpleValue>
@@ -40713,27 +40716,27 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Transportation</SimpleValue>
          </Value>
       </Row>
-      <Row><!--153-->
+      <Row><!--871-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>Transportation</SimpleValue>
+            <SimpleValue>Common</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
             <SimpleValue>TransportMeansTypeCode</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Shipment Stage. Transport Means Type. Code</SimpleValue>
+            <SimpleValue>Shipment Stage. Transport Means Type Code. Code</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Shipment Stage</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTermPossessiveNoun">
-            <SimpleValue>Transport Means</SimpleValue>
+            <SimpleValue>Transport Means Type</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTermPrimaryNoun">
-            <SimpleValue>Type</SimpleValue>
+            <SimpleValue>Code</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTerm">
-            <SimpleValue>Transport Means Type</SimpleValue>
+            <SimpleValue>Transport Means Type Code</SimpleValue>
          </Value>
          <Value ColumnRef="RepresentationTerm">
             <SimpleValue>Code</SimpleValue>
@@ -40757,15 +40760,15 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Transportation</SimpleValue>
          </Value>
       </Row>
-      <Row><!--154-->
+      <Row><!--872-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>Transportation</SimpleValue>
+            <SimpleValue>Common</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
             <SimpleValue>TransitDirectionCode</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Shipment Stage. Transit Direction. Code</SimpleValue>
+            <SimpleValue>Shipment Stage. Transit Direction Code. Code</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Shipment Stage</SimpleValue>
@@ -40801,27 +40804,27 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Transportation</SimpleValue>
          </Value>
       </Row>
-      <Row><!--155-->
+      <Row><!--873-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>Transportation</SimpleValue>
+            <SimpleValue>Common</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
             <SimpleValue>PreCarriageIndicator</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Shipment Stage. Pre Carriage Indicator. Indicator</SimpleValue>
+            <SimpleValue>Shipment Stage. Pre Carriage_ Indicator. Indicator</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Shipment Stage</SimpleValue>
          </Value>
-         <Value ColumnRef="PropertyTermPossessiveNoun">
+         <Value ColumnRef="PropertyTermQualifier">
             <SimpleValue>Pre Carriage</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTermPrimaryNoun">
             <SimpleValue>Indicator</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTerm">
-            <SimpleValue>Pre Carriage Indicator</SimpleValue>
+            <SimpleValue>Indicator</SimpleValue>
          </Value>
          <Value ColumnRef="RepresentationTerm">
             <SimpleValue>Indicator</SimpleValue>
@@ -40848,27 +40851,27 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Transportation</SimpleValue>
          </Value>
       </Row>
-      <Row><!--156-->
+      <Row><!--874-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>Transportation</SimpleValue>
+            <SimpleValue>Common</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
             <SimpleValue>OnCarriageIndicator</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Shipment Stage. On Carriage Indicator. Indicator</SimpleValue>
+            <SimpleValue>Shipment Stage. On Carriage_ Indicator. Indicator</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Shipment Stage</SimpleValue>
          </Value>
-         <Value ColumnRef="PropertyTermPossessiveNoun">
+         <Value ColumnRef="PropertyTermQualifier">
             <SimpleValue>On Carriage</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTermPrimaryNoun">
             <SimpleValue>Indicator</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTerm">
-            <SimpleValue>On Carriage Indicator</SimpleValue>
+            <SimpleValue>Indicator</SimpleValue>
          </Value>
          <Value ColumnRef="RepresentationTerm">
             <SimpleValue>Indicator</SimpleValue>
@@ -40895,9 +40898,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Transportation</SimpleValue>
          </Value>
       </Row>
-      <Row><!--157-->
+      <Row><!--875-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>Transportation</SimpleValue>
+            <SimpleValue>Common</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
             <SimpleValue>TransitPeriod</SimpleValue>
@@ -40936,9 +40939,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Transportation</SimpleValue>
          </Value>
       </Row>
-      <Row><!--158-->
+      <Row><!--876-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>Transportation</SimpleValue>
+            <SimpleValue>Common</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
             <SimpleValue>CarrierParty</SimpleValue>
@@ -40977,9 +40980,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Transportation</SimpleValue>
          </Value>
       </Row>
-      <Row><!--159-->
+      <Row><!--877-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>Transportation</SimpleValue>
+            <SimpleValue>Common</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
             <SimpleValue>TransportMeans</SimpleValue>
@@ -41015,30 +41018,30 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Transportation</SimpleValue>
          </Value>
       </Row>
-      <Row><!--160-->
+      <Row><!--878-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>Transportation</SimpleValue>
+            <SimpleValue>Common</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
-            <SimpleValue>LoadingPort</SimpleValue>
+            <SimpleValue>LoadingPortLocation</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Shipment Stage. Loading_ Port</SimpleValue>
+            <SimpleValue>Shipment Stage. Loading Port_ Location</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Shipment Stage</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTermQualifier">
-            <SimpleValue>Loading</SimpleValue>
+            <SimpleValue>Loading Port</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTerm">
-            <SimpleValue>Port</SimpleValue>
+            <SimpleValue>Location</SimpleValue>
          </Value>
          <Value ColumnRef="RepresentationTerm">
-            <SimpleValue>Port</SimpleValue>
+            <SimpleValue>Location</SimpleValue>
          </Value>
          <Value ColumnRef="AssociatedObjectClass">
-            <SimpleValue>Port</SimpleValue>
+            <SimpleValue>Location</SimpleValue>
          </Value>
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..1</SimpleValue>
@@ -41047,7 +41050,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>ASBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>An association to the port of loading</SimpleValue>
+            <SimpleValue>An association to the port location of loading</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
@@ -41056,30 +41059,30 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Transportation</SimpleValue>
          </Value>
       </Row>
-      <Row><!--161-->
+      <Row><!--879-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>Transportation</SimpleValue>
+            <SimpleValue>Common</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
-            <SimpleValue>UnloadingPort</SimpleValue>
+            <SimpleValue>UnloadingPortLocation</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Shipment Stage. Unloading_ Port</SimpleValue>
+            <SimpleValue>Shipment Stage. Unloading Port_ Location</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Shipment Stage</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTermQualifier">
-            <SimpleValue>Unloading</SimpleValue>
+            <SimpleValue>Unloading Port</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTerm">
-            <SimpleValue>Port</SimpleValue>
+            <SimpleValue>Location</SimpleValue>
          </Value>
          <Value ColumnRef="RepresentationTerm">
-            <SimpleValue>Port</SimpleValue>
+            <SimpleValue>Location</SimpleValue>
          </Value>
          <Value ColumnRef="AssociatedObjectClass">
-            <SimpleValue>Port</SimpleValue>
+            <SimpleValue>Location</SimpleValue>
          </Value>
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..1</SimpleValue>
@@ -41088,7 +41091,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>ASBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>An association to the port of unloading</SimpleValue>
+            <SimpleValue>An association to the port location of unloading</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
@@ -41097,30 +41100,30 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Transportation</SimpleValue>
          </Value>
       </Row>
-      <Row><!--162-->
+      <Row><!--880-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>Transportation</SimpleValue>
+            <SimpleValue>Common</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
-            <SimpleValue>TransshipPort</SimpleValue>
+            <SimpleValue>TransshipPortLocation</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Shipment Stage. Transship_ Port</SimpleValue>
+            <SimpleValue>Shipment Stage. Transship Port_ Location</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Shipment Stage</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTermQualifier">
-            <SimpleValue>Transship</SimpleValue>
+            <SimpleValue>Transship Port</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTerm">
-            <SimpleValue>Port</SimpleValue>
+            <SimpleValue>Location</SimpleValue>
          </Value>
          <Value ColumnRef="RepresentationTerm">
-            <SimpleValue>Port</SimpleValue>
+            <SimpleValue>Location</SimpleValue>
          </Value>
          <Value ColumnRef="AssociatedObjectClass">
-            <SimpleValue>Port</SimpleValue>
+            <SimpleValue>Location</SimpleValue>
          </Value>
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..1</SimpleValue>
@@ -41129,7 +41132,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>ASBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>An association to the port of transshipment</SimpleValue>
+            <SimpleValue>An association to the port loaction of transshipment</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
