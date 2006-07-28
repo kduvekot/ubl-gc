@@ -32503,7 +32503,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Procurement</SimpleValue>
          </Value>
       </Row>
-      <Row><!--281-->
+      <Row><!--641-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Common</SimpleValue>
          </Value>
@@ -32526,7 +32526,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--282-->
+      <Row><!--642-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Common</SimpleValue>
          </Value>
@@ -32564,7 +32564,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>1.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--283-->
+      <Row><!--643-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Common</SimpleValue>
          </Value>
@@ -32602,7 +32602,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>1.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--284-->
+      <Row><!--644-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Common</SimpleValue>
          </Value>
@@ -32610,19 +32610,19 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>ReturnableMaterialIndicator</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Package. Returnable Material Indicator. Indicator</SimpleValue>
+            <SimpleValue>Package. Returnable Material_ Indicator. Indicator</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Package</SimpleValue>
          </Value>
-         <Value ColumnRef="PropertyTermPossessiveNoun">
+         <Value ColumnRef="PropertyTermQualifier">
             <SimpleValue>Returnable Material</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTermPrimaryNoun">
             <SimpleValue>Indicator</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTerm">
-            <SimpleValue>Returnable Material Indicator</SimpleValue>
+            <SimpleValue>Indicator</SimpleValue>
          </Value>
          <Value ColumnRef="RepresentationTerm">
             <SimpleValue>Indicator</SimpleValue>
@@ -32643,7 +32643,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>1.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--285-->
+      <Row><!--645-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Common</SimpleValue>
          </Value>
@@ -32651,19 +32651,19 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>PackageLevelCode</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Package. Package Level. Code</SimpleValue>
+            <SimpleValue>Package. Package Level Code. Code</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Package</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTermPossessiveNoun">
-            <SimpleValue>Package</SimpleValue>
+            <SimpleValue>Package Level</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTermPrimaryNoun">
-            <SimpleValue>Level</SimpleValue>
+            <SimpleValue>Code</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTerm">
-            <SimpleValue>Package Level</SimpleValue>
+            <SimpleValue>Package Level Code</SimpleValue>
          </Value>
          <Value ColumnRef="RepresentationTerm">
             <SimpleValue>Code</SimpleValue>
@@ -32687,7 +32687,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--286-->
+      <Row><!--646-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Common</SimpleValue>
          </Value>
@@ -32695,25 +32695,28 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>PackagingTypeCode</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Package. Packaging Type. Code</SimpleValue>
+            <SimpleValue>Package. Packaging Type Code. Code</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Package</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTermPossessiveNoun">
-            <SimpleValue>Packaging</SimpleValue>
+            <SimpleValue>Packaging Type</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTermPrimaryNoun">
-            <SimpleValue>Type</SimpleValue>
+            <SimpleValue>Code</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTerm">
-            <SimpleValue>Packaging Type</SimpleValue>
+            <SimpleValue>Packaging Type Code</SimpleValue>
          </Value>
          <Value ColumnRef="RepresentationTerm">
             <SimpleValue>Code</SimpleValue>
          </Value>
+         <Value ColumnRef="DataTypeQualifier">
+            <SimpleValue>Packaging Type</SimpleValue>
+         </Value>
          <Value ColumnRef="DataType">
-            <SimpleValue>Code. Type</SimpleValue>
+            <SimpleValue>Packaging Type_ Code. Type</SimpleValue>
          </Value>
          <Value ColumnRef="AlternativeBusinessTerms">
             <SimpleValue>Package classification code</SimpleValue>
@@ -32734,7 +32737,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--287-->
+      <Row><!--647-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Common</SimpleValue>
          </Value>
@@ -32778,7 +32781,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--288-->
+      <Row><!--648-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Common</SimpleValue>
          </Value>
@@ -32804,7 +32807,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Package</SimpleValue>
          </Value>
          <Value ColumnRef="Cardinality">
-            <SimpleValue>0..1</SimpleValue>
+            <SimpleValue>0..n</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentType">
             <SimpleValue>ASBIE</SimpleValue>
@@ -32816,7 +32819,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>1.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--289-->
+      <Row><!--649-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Common</SimpleValue>
          </Value>
@@ -32851,7 +32854,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--290-->
+      <Row><!--650-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Common</SimpleValue>
          </Value>
@@ -32889,7 +32892,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--291-->
+      <Row><!--651-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Common</SimpleValue>
          </Value>
