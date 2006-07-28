@@ -23034,9 +23034,9 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>Procurement</SimpleValue>
          </Value>
       </Row>
-      <Row><!--64-->
+      <Row><!--391-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>Transportation</SimpleValue>
+            <SimpleValue>Common</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
             <SimpleValue>GoodsItem</SimpleValue>
@@ -23060,15 +23060,15 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>Transportation</SimpleValue>
          </Value>
       </Row>
-      <Row><!--65-->
+      <Row><!--392-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>Transportation</SimpleValue>
+            <SimpleValue>Common</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
             <SimpleValue>ID</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Goods Item. Identifier. Identifier</SimpleValue>
+            <SimpleValue>Goods Item. Identifier</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Goods Item</SimpleValue>
@@ -23091,6 +23091,9 @@ A Bill of Lading can serve as a contractual document between the parties for the
          <Value ColumnRef="ComponentType">
             <SimpleValue>BBIE</SimpleValue>
          </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>An identifier for the goods item</SimpleValue>
+         </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
          </Value>
@@ -23098,9 +23101,9 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>Transportation</SimpleValue>
          </Value>
       </Row>
-      <Row><!--66-->
+      <Row><!--393-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>Transportation</SimpleValue>
+            <SimpleValue>Common</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
             <SimpleValue>SequenceNumberID</SimpleValue>
@@ -23148,9 +23151,9 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>Transportation</SimpleValue>
          </Value>
       </Row>
-      <Row><!--67-->
+      <Row><!--394-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>Transportation</SimpleValue>
+            <SimpleValue>Common</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
             <SimpleValue>Description</SimpleValue>
@@ -23195,27 +23198,27 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>Transportation</SimpleValue>
          </Value>
       </Row>
-      <Row><!--68-->
+      <Row><!--395-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>Transportation</SimpleValue>
+            <SimpleValue>Common</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
             <SimpleValue>HazardousRiskIndicator</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Goods Item. Hazardous Risk Indicator. Indicator</SimpleValue>
+            <SimpleValue>Goods Item. Hazardous Risk_ Indicator. Indicator</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Goods Item</SimpleValue>
          </Value>
-         <Value ColumnRef="PropertyTermPossessiveNoun">
+         <Value ColumnRef="PropertyTermQualifier">
             <SimpleValue>Hazardous Risk</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTermPrimaryNoun">
             <SimpleValue>Indicator</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTerm">
-            <SimpleValue>Hazardous Risk Indicator</SimpleValue>
+            <SimpleValue>Indicator</SimpleValue>
          </Value>
          <Value ColumnRef="RepresentationTerm">
             <SimpleValue>Indicator</SimpleValue>
@@ -23224,7 +23227,7 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>Indicator. Type</SimpleValue>
          </Value>
          <Value ColumnRef="Cardinality">
-            <SimpleValue>1</SimpleValue>
+            <SimpleValue>0..1</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentType">
             <SimpleValue>BBIE</SimpleValue>
@@ -23242,30 +23245,27 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>Transportation</SimpleValue>
          </Value>
       </Row>
-      <Row><!--69-->
+      <Row><!--396-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>Transportation</SimpleValue>
+            <SimpleValue>Common</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
             <SimpleValue>DeclaredCustomsValueAmount</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Goods Item. Declared_ Customs Value. Amount</SimpleValue>
+            <SimpleValue>Goods Item. Declared Customs_ Value. Amount</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Goods Item</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTermQualifier">
-            <SimpleValue>Declared</SimpleValue>
-         </Value>
-         <Value ColumnRef="PropertyTermPossessiveNoun">
-            <SimpleValue>Customs</SimpleValue>
+            <SimpleValue>Declared Customs</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTermPrimaryNoun">
             <SimpleValue>Value</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTerm">
-            <SimpleValue>Customs Value</SimpleValue>
+            <SimpleValue>Value</SimpleValue>
          </Value>
          <Value ColumnRef="RepresentationTerm">
             <SimpleValue>Amount</SimpleValue>
@@ -23295,30 +23295,27 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>Transportation</SimpleValue>
          </Value>
       </Row>
-      <Row><!--70-->
+      <Row><!--397-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>Transportation</SimpleValue>
+            <SimpleValue>Common</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
             <SimpleValue>DeclaredForCarriageValueAmount</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Goods Item. Declared_ For Carriage Value. Amount</SimpleValue>
+            <SimpleValue>Goods Item. Declared For Carriage_ Value. Amount</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Goods Item</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTermQualifier">
-            <SimpleValue>Declared</SimpleValue>
-         </Value>
-         <Value ColumnRef="PropertyTermPossessiveNoun">
-            <SimpleValue>For Carriage</SimpleValue>
+            <SimpleValue>Declared For Carriage</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTermPrimaryNoun">
             <SimpleValue>Value</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTerm">
-            <SimpleValue>For Carriage Value</SimpleValue>
+            <SimpleValue>Value</SimpleValue>
          </Value>
          <Value ColumnRef="RepresentationTerm">
             <SimpleValue>Amount</SimpleValue>
@@ -23348,30 +23345,27 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>Transportation</SimpleValue>
          </Value>
       </Row>
-      <Row><!--71-->
+      <Row><!--398-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>Transportation</SimpleValue>
+            <SimpleValue>Common</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
             <SimpleValue>DeclaredStatisticsValueAmount</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Goods Item. Declared_ Statistics Value. Amount</SimpleValue>
+            <SimpleValue>Goods Item. Declared Statistics_ Value. Amount</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Goods Item</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTermQualifier">
-            <SimpleValue>Declared</SimpleValue>
-         </Value>
-         <Value ColumnRef="PropertyTermPossessiveNoun">
-            <SimpleValue>Statistics</SimpleValue>
+            <SimpleValue>Declared Statistics</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTermPrimaryNoun">
             <SimpleValue>Value</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTerm">
-            <SimpleValue>Statistics Value</SimpleValue>
+            <SimpleValue>Value</SimpleValue>
          </Value>
          <Value ColumnRef="RepresentationTerm">
             <SimpleValue>Amount</SimpleValue>
@@ -23401,27 +23395,27 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>Transportation</SimpleValue>
          </Value>
       </Row>
-      <Row><!--72-->
+      <Row><!--399-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>Transportation</SimpleValue>
+            <SimpleValue>Common</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
             <SimpleValue>FreeOnBoardValueAmount</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Goods Item. Free On Board Value. Amount</SimpleValue>
+            <SimpleValue>Goods Item. Free On Board_ Value. Amount</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Goods Item</SimpleValue>
          </Value>
-         <Value ColumnRef="PropertyTermPossessiveNoun">
+         <Value ColumnRef="PropertyTermQualifier">
             <SimpleValue>Free On Board</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTermPrimaryNoun">
             <SimpleValue>Value</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTerm">
-            <SimpleValue>Free On Board Value</SimpleValue>
+            <SimpleValue>Value</SimpleValue>
          </Value>
          <Value ColumnRef="RepresentationTerm">
             <SimpleValue>Amount</SimpleValue>
@@ -23451,27 +23445,27 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>Transportation</SimpleValue>
          </Value>
       </Row>
-      <Row><!--73-->
+      <Row><!--400-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>Transportation</SimpleValue>
+            <SimpleValue>Common</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
             <SimpleValue>InsuranceValueAmount</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Goods Item. Insurance Value. Amount</SimpleValue>
+            <SimpleValue>Goods Item. Insurance_ Value. Amount</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Goods Item</SimpleValue>
          </Value>
-         <Value ColumnRef="PropertyTermPossessiveNoun">
+         <Value ColumnRef="PropertyTermQualifier">
             <SimpleValue>Insurance</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTermPrimaryNoun">
             <SimpleValue>Value</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTerm">
-            <SimpleValue>Insurance Value</SimpleValue>
+            <SimpleValue>Value</SimpleValue>
          </Value>
          <Value ColumnRef="RepresentationTerm">
             <SimpleValue>Amount</SimpleValue>
@@ -23504,9 +23498,9 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>Transportation</SimpleValue>
          </Value>
       </Row>
-      <Row><!--74-->
+      <Row><!--401-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>Transportation</SimpleValue>
+            <SimpleValue>Common</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
             <SimpleValue>ValueAmount</SimpleValue>
@@ -23551,9 +23545,9 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>Transportation</SimpleValue>
          </Value>
       </Row>
-      <Row><!--75-->
+      <Row><!--402-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>Transportation</SimpleValue>
+            <SimpleValue>Common</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
             <SimpleValue>GrossWeightMeasure</SimpleValue>
@@ -23601,9 +23595,9 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>Transportation</SimpleValue>
          </Value>
       </Row>
-      <Row><!--76-->
+      <Row><!--403-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>Transportation</SimpleValue>
+            <SimpleValue>Common</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
             <SimpleValue>NetWeightMeasure</SimpleValue>
@@ -23648,9 +23642,9 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>Transportation</SimpleValue>
          </Value>
       </Row>
-      <Row><!--77-->
+      <Row><!--404-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>Transportation</SimpleValue>
+            <SimpleValue>Common</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
             <SimpleValue>NetNetWeightMeasure</SimpleValue>
@@ -23698,9 +23692,9 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>Transportation</SimpleValue>
          </Value>
       </Row>
-      <Row><!--78-->
+      <Row><!--405-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>Transportation</SimpleValue>
+            <SimpleValue>Common</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
             <SimpleValue>ChargeableWeightMeasure</SimpleValue>
@@ -23745,9 +23739,9 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>Transportation</SimpleValue>
          </Value>
       </Row>
-      <Row><!--79-->
+      <Row><!--406-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>Transportation</SimpleValue>
+            <SimpleValue>Common</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
             <SimpleValue>GrossVolumeMeasure</SimpleValue>
@@ -23795,9 +23789,9 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>Transportation</SimpleValue>
          </Value>
       </Row>
-      <Row><!--80-->
+      <Row><!--407-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>Transportation</SimpleValue>
+            <SimpleValue>Common</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
             <SimpleValue>NetVolumeMeasure</SimpleValue>
@@ -23839,9 +23833,9 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>Transportation</SimpleValue>
          </Value>
       </Row>
-      <Row><!--81-->
+      <Row><!--408-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>Transportation</SimpleValue>
+            <SimpleValue>Common</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
             <SimpleValue>QuantityNumeric</SimpleValue>
@@ -23880,9 +23874,9 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>Transportation</SimpleValue>
          </Value>
       </Row>
-      <Row><!--82-->
+      <Row><!--409-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>Transportation</SimpleValue>
+            <SimpleValue>Common</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
             <SimpleValue>PreferenceCriterionCode</SimpleValue>
@@ -23937,9 +23931,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Transportation</SimpleValue>
          </Value>
       </Row>
-      <Row><!--83-->
+      <Row><!--410-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>Transportation</SimpleValue>
+            <SimpleValue>Common</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
             <SimpleValue>RequiredCustomsID</SimpleValue>
@@ -23990,27 +23984,30 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Transportation</SimpleValue>
          </Value>
       </Row>
-      <Row><!--84-->
+      <Row><!--411-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>Transportation</SimpleValue>
+            <SimpleValue>Common</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
             <SimpleValue>CustomsStatusCode</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Goods Item. Customs Status. Code</SimpleValue>
+            <SimpleValue>Goods Item. Customs_ Status Code. Code</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Goods Item</SimpleValue>
          </Value>
-         <Value ColumnRef="PropertyTermPossessiveNoun">
+         <Value ColumnRef="PropertyTermQualifier">
             <SimpleValue>Customs</SimpleValue>
          </Value>
-         <Value ColumnRef="PropertyTermPrimaryNoun">
+         <Value ColumnRef="PropertyTermPossessiveNoun">
             <SimpleValue>Status</SimpleValue>
          </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Code</SimpleValue>
+         </Value>
          <Value ColumnRef="PropertyTerm">
-            <SimpleValue>Customs Status</SimpleValue>
+            <SimpleValue>Status Code</SimpleValue>
          </Value>
          <Value ColumnRef="RepresentationTerm">
             <SimpleValue>Code</SimpleValue>
@@ -24040,9 +24037,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Transportation</SimpleValue>
          </Value>
       </Row>
-      <Row><!--85-->
+      <Row><!--412-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>Transportation</SimpleValue>
+            <SimpleValue>Common</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
             <SimpleValue>CustomsTariffQuantity</SimpleValue>
@@ -24087,9 +24084,56 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Transportation</SimpleValue>
          </Value>
       </Row>
-      <Row><!--86-->
+      <Row><!--413-->
          <Value ColumnRef="ModelName">
+            <SimpleValue>Common</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>CustomsImportClassifiedIndicator</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Goods Item. Customs Import_ Classified Indicator. Indicator</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Goods Item</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermQualifier">
+            <SimpleValue>Customs Import</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPossessiveNoun">
+            <SimpleValue>Classified</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Indicator</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Classified Indicator</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Indicator</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Indicator. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>Indicates whether the goods have been customs classified for import</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.0</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Transportation</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--414-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Common</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
             <SimpleValue>Item</SimpleValue>
@@ -24125,9 +24169,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Transportation</SimpleValue>
          </Value>
       </Row>
-      <Row><!--87-->
+      <Row><!--415-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>Transportation</SimpleValue>
+            <SimpleValue>Common</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
             <SimpleValue>GoodsItemContainer</SimpleValue>
@@ -24163,9 +24207,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Transportation</SimpleValue>
          </Value>
       </Row>
-      <Row><!--88-->
+      <Row><!--416-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>Transportation</SimpleValue>
+            <SimpleValue>Common</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
             <SimpleValue>FreightAllowanceCharge</SimpleValue>
@@ -24210,9 +24254,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Transportation</SimpleValue>
          </Value>
       </Row>
-      <Row><!--89-->
+      <Row><!--417-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>Transportation</SimpleValue>
+            <SimpleValue>Common</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
             <SimpleValue>InvoiceLine</SimpleValue>
@@ -24248,9 +24292,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Transportation</SimpleValue>
          </Value>
       </Row>
-      <Row><!--90-->
+      <Row><!--418-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>Transportation</SimpleValue>
+            <SimpleValue>Common</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
             <SimpleValue>Temperature</SimpleValue>
@@ -24289,9 +24333,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Transportation</SimpleValue>
          </Value>
       </Row>
-      <Row><!--91-->
+      <Row><!--419-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>Transportation</SimpleValue>
+            <SimpleValue>Common</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
             <SimpleValue>ContainedGoodsItem</SimpleValue>
@@ -24330,9 +24374,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Transportation</SimpleValue>
          </Value>
       </Row>
-      <Row><!--92-->
+      <Row><!--420-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>Transportation</SimpleValue>
+            <SimpleValue>Common</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
             <SimpleValue>OriginAddress</SimpleValue>
