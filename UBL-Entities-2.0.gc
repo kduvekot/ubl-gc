@@ -45640,9 +45640,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Transportation</SimpleValue>
          </Value>
       </Row>
-      <Row><!--191-->
+      <Row><!--1014-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>Transportation</SimpleValue>
+            <SimpleValue>Common</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
             <SimpleValue>TransportHandlingUnit</SimpleValue>
@@ -45669,15 +45669,15 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Transportation</SimpleValue>
          </Value>
       </Row>
-      <Row><!--192-->
+      <Row><!--1015-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>Transportation</SimpleValue>
+            <SimpleValue>Common</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
             <SimpleValue>ID</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Transport Handling Unit. Identifier. Identifier</SimpleValue>
+            <SimpleValue>Transport Handling Unit. Identifier</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Transport Handling Unit</SimpleValue>
@@ -45710,27 +45710,27 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Transportation</SimpleValue>
          </Value>
       </Row>
-      <Row><!--193-->
+      <Row><!--1016-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>Transportation</SimpleValue>
+            <SimpleValue>Common</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
             <SimpleValue>TransportHandlingUnitTypeCode</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Transport Handling Unit. Transport Handling Unit Type. Code</SimpleValue>
+            <SimpleValue>Transport Handling Unit. Transport Handling Unit Type Code. Code</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Transport Handling Unit</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTermPossessiveNoun">
-            <SimpleValue>Transport Handling Unit</SimpleValue>
+            <SimpleValue>Transport Handling Unit Type</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTermPrimaryNoun">
-            <SimpleValue>Type</SimpleValue>
+            <SimpleValue>Code</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTerm">
-            <SimpleValue>Transport Handling Unit Type</SimpleValue>
+            <SimpleValue>Transport Handling Unit Type Code</SimpleValue>
          </Value>
          <Value ColumnRef="RepresentationTerm">
             <SimpleValue>Code</SimpleValue>
@@ -45754,9 +45754,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Transportation</SimpleValue>
          </Value>
       </Row>
-      <Row><!--194-->
+      <Row><!--1017-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>Transportation</SimpleValue>
+            <SimpleValue>Common</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
             <SimpleValue>HandlingCode</SimpleValue>
@@ -45801,27 +45801,27 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Transportation</SimpleValue>
          </Value>
       </Row>
-      <Row><!--195-->
+      <Row><!--1018-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>Transportation</SimpleValue>
+            <SimpleValue>Common</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
             <SimpleValue>HandlingInstructions</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Transport Handling Unit. Handling Instructions. Text</SimpleValue>
+            <SimpleValue>Transport Handling Unit. Handling_ Instructions. Text</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Transport Handling Unit</SimpleValue>
          </Value>
-         <Value ColumnRef="PropertyTermPossessiveNoun">
+         <Value ColumnRef="PropertyTermQualifier">
             <SimpleValue>Handling</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTermPrimaryNoun">
             <SimpleValue>Instructions</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTerm">
-            <SimpleValue>Handling Instructions</SimpleValue>
+            <SimpleValue>Instructions</SimpleValue>
          </Value>
          <Value ColumnRef="RepresentationTerm">
             <SimpleValue>Text</SimpleValue>
@@ -45848,27 +45848,27 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Transportation</SimpleValue>
          </Value>
       </Row>
-      <Row><!--196-->
+      <Row><!--1019-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>Transportation</SimpleValue>
+            <SimpleValue>Common</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
             <SimpleValue>HazardousRiskIndicator</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Transport Handling Unit. Hazardous Risk Indicator. Indicator</SimpleValue>
+            <SimpleValue>Transport Handling Unit. Hazardous Risk_ Indicator. Indicator</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Transport Handling Unit</SimpleValue>
          </Value>
-         <Value ColumnRef="PropertyTermPossessiveNoun">
+         <Value ColumnRef="PropertyTermQualifier">
             <SimpleValue>Hazardous Risk</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTermPrimaryNoun">
             <SimpleValue>Indicator</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTerm">
-            <SimpleValue>Hazardous Risk Indicator</SimpleValue>
+            <SimpleValue>Indicator</SimpleValue>
          </Value>
          <Value ColumnRef="RepresentationTerm">
             <SimpleValue>Indicator</SimpleValue>
@@ -45877,7 +45877,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Indicator. Type</SimpleValue>
          </Value>
          <Value ColumnRef="Cardinality">
-            <SimpleValue>1</SimpleValue>
+            <SimpleValue>0..1</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentType">
             <SimpleValue>BBIE</SimpleValue>
@@ -45895,9 +45895,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Transportation</SimpleValue>
          </Value>
       </Row>
-      <Row><!--197-->
+      <Row><!--1020-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>Transportation</SimpleValue>
+            <SimpleValue>Common</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
             <SimpleValue>TotalGoodsItemQuantity</SimpleValue>
@@ -45945,9 +45945,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Transportation</SimpleValue>
          </Value>
       </Row>
-      <Row><!--198-->
+      <Row><!--1021-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>Transportation</SimpleValue>
+            <SimpleValue>Common</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
             <SimpleValue>TotalPackageQuantity</SimpleValue>
@@ -45995,27 +45995,27 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Transportation</SimpleValue>
          </Value>
       </Row>
-      <Row><!--199-->
+      <Row><!--1022-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>Transportation</SimpleValue>
+            <SimpleValue>Common</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
             <SimpleValue>DamageRemarks</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Transport Handling Unit. Damage Remarks. Text</SimpleValue>
+            <SimpleValue>Transport Handling Unit. Damage_ Remarks. Text</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Transport Handling Unit</SimpleValue>
          </Value>
-         <Value ColumnRef="PropertyTermPossessiveNoun">
+         <Value ColumnRef="PropertyTermQualifier">
             <SimpleValue>Damage</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTermPrimaryNoun">
             <SimpleValue>Remarks</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTerm">
-            <SimpleValue>Damage Remarks</SimpleValue>
+            <SimpleValue>Remarks</SimpleValue>
          </Value>
          <Value ColumnRef="RepresentationTerm">
             <SimpleValue>Text</SimpleValue>
@@ -46042,27 +46042,27 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Transportation</SimpleValue>
          </Value>
       </Row>
-      <Row><!--200-->
+      <Row><!--1023-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>Transportation</SimpleValue>
+            <SimpleValue>Common</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
             <SimpleValue>ShippingMarks</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Transport Handling Unit. Shipping Marks. Text</SimpleValue>
+            <SimpleValue>Transport Handling Unit. Shipping_ Marks. Text</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Transport Handling Unit</SimpleValue>
          </Value>
-         <Value ColumnRef="PropertyTermPossessiveNoun">
+         <Value ColumnRef="PropertyTermQualifier">
             <SimpleValue>Shipping</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTermPrimaryNoun">
             <SimpleValue>Marks</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTerm">
-            <SimpleValue>Shipping Marks</SimpleValue>
+            <SimpleValue>Marks</SimpleValue>
          </Value>
          <Value ColumnRef="RepresentationTerm">
             <SimpleValue>Text</SimpleValue>
@@ -46092,20 +46092,20 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Transportation</SimpleValue>
          </Value>
       </Row>
-      <Row><!--201-->
+      <Row><!--1024-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>Transportation</SimpleValue>
+            <SimpleValue>Common</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
             <SimpleValue>HandlingUnitDespatchLine</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Transport Handling Unit. Handling Unit Despatch Line</SimpleValue>
+            <SimpleValue>Transport Handling Unit. Handling Unit_ Despatch Line</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Transport Handling Unit</SimpleValue>
          </Value>
-         <Value ColumnRef="PropertyTermPossessiveNoun">
+         <Value ColumnRef="PropertyTermQualifier">
             <SimpleValue>Handling Unit</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTerm">
@@ -46133,9 +46133,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Transportation</SimpleValue>
          </Value>
       </Row>
-      <Row><!--202-->
+      <Row><!--1025-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>Transportation</SimpleValue>
+            <SimpleValue>Common</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
             <SimpleValue>ActualPackage</SimpleValue>
@@ -46174,24 +46174,21 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Transportation</SimpleValue>
          </Value>
       </Row>
-      <Row><!--203-->
+      <Row><!--1026-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>Transportation</SimpleValue>
+            <SimpleValue>Common</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
             <SimpleValue>ReceivedHandlingUnitReceiptLine</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Transport Handling Unit. Received_ Handling Unit Receipt Line</SimpleValue>
+            <SimpleValue>Transport Handling Unit. Received Handling Unit_ Receipt Line</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Transport Handling Unit</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTermQualifier">
-            <SimpleValue>Received</SimpleValue>
-         </Value>
-         <Value ColumnRef="PropertyTermPossessiveNoun">
-            <SimpleValue>Handling Unit</SimpleValue>
+            <SimpleValue>Received Handling Unit</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTerm">
             <SimpleValue>Receipt Line</SimpleValue>
@@ -46218,9 +46215,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Transportation</SimpleValue>
          </Value>
       </Row>
-      <Row><!--204-->
+      <Row><!--1027-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>Transportation</SimpleValue>
+            <SimpleValue>Common</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
             <SimpleValue>TransportEquipment</SimpleValue>
@@ -46256,9 +46253,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Transportation</SimpleValue>
          </Value>
       </Row>
-      <Row><!--205-->
+      <Row><!--1028-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>Transportation</SimpleValue>
+            <SimpleValue>Common</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
             <SimpleValue>HazardousGoodsTransit</SimpleValue>
@@ -46294,15 +46291,15 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Transportation</SimpleValue>
          </Value>
       </Row>
-      <Row><!--206-->
+      <Row><!--1029-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>Transportation</SimpleValue>
+            <SimpleValue>Common</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
             <SimpleValue>MeasurementDimension</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Transport Handling Equipment. Measurement_ Dimension</SimpleValue>
+            <SimpleValue>Transport Handling Unit. Measurement_ Dimension</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Transport Handling Unit</SimpleValue>
@@ -46335,9 +46332,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Transportation</SimpleValue>
          </Value>
       </Row>
-      <Row><!--207-->
+      <Row><!--1030-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>Transportation</SimpleValue>
+            <SimpleValue>Common</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
             <SimpleValue>MinimumTemperature</SimpleValue>
@@ -46376,9 +46373,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Transportation</SimpleValue>
          </Value>
       </Row>
-      <Row><!--208-->
+      <Row><!--1031-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>Transportation</SimpleValue>
+            <SimpleValue>Common</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
             <SimpleValue>MaximumTemperature</SimpleValue>
