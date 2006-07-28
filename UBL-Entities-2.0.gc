@@ -19574,7 +19574,7 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--129-->
+      <Row><!--302-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Common</SimpleValue>
          </Value>
@@ -19591,19 +19591,13 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>ABIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>Information about Delivery</SimpleValue>
+            <SimpleValue>Information about Despatch</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
          </Value>
-         <Value ColumnRef="SmallBusinessSubsetQuotation">
-            <SimpleValue>Y</SimpleValue>
-         </Value>
-         <Value ColumnRef="SmallBusinessSubsetRemittanceAdvice">
-            <SimpleValue>Y</SimpleValue>
-         </Value>
       </Row>
-      <Row><!--130-->
+      <Row><!--303-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Common</SimpleValue>
          </Value>
@@ -19611,7 +19605,7 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>ID</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Despatch. Identifier. Identifier</SimpleValue>
+            <SimpleValue>Despatch. Identifier</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Despatch</SimpleValue>
@@ -19641,15 +19635,15 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>1.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--131-->
+      <Row><!--304-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Common</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
-            <SimpleValue>RequestedDespatchDateTime</SimpleValue>
+            <SimpleValue>RequestedDespatchDate</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Despatch. Requested_ Despatch Date Time. Date Time</SimpleValue>
+            <SimpleValue>Despatch. Requested_ Despatch Date. Date</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Despatch</SimpleValue>
@@ -19661,16 +19655,16 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>Despatch</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTermPrimaryNoun">
-            <SimpleValue>Date Time</SimpleValue>
+            <SimpleValue>Date</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTerm">
-            <SimpleValue>Despatch Date Time</SimpleValue>
+            <SimpleValue>Despatch Date</SimpleValue>
          </Value>
          <Value ColumnRef="RepresentationTerm">
-            <SimpleValue>Date Time</SimpleValue>
+            <SimpleValue>Date</SimpleValue>
          </Value>
          <Value ColumnRef="DataType">
-            <SimpleValue>Date Time. Type</SimpleValue>
+            <SimpleValue>Date. Type</SimpleValue>
          </Value>
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..1</SimpleValue>
@@ -19679,24 +19673,65 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The despatch (pickup) datetime requested by the Buyer</SimpleValue>
+            <SimpleValue>The despatch (pickup) date requested by the Buyer</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
          </Value>
-         <Value ColumnRef="SmallBusinessSubsetRemittanceAdvice">
-            <SimpleValue>Y</SimpleValue>
-         </Value>
       </Row>
-      <Row><!--132-->
+      <Row><!--305-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Common</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
-            <SimpleValue>EstimatedDespatchDateTime</SimpleValue>
+            <SimpleValue>RequestedDespatchTime</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Despatch. Estimated_ Despatch Date Time. Date Time</SimpleValue>
+            <SimpleValue>Despatch. Requested_ Despatch Time. Time</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Despatch</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermQualifier">
+            <SimpleValue>Requested</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPossessiveNoun">
+            <SimpleValue>Despatch</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Time</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Despatch Time</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Time</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Time. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>The despatch (pickup) time requested by the Buyer</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.0</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--306-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Common</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>EstimatedDespatchDate</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Despatch. Estimated_ Despatch Date. Date</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Despatch</SimpleValue>
@@ -19708,16 +19743,16 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>Despatch</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTermPrimaryNoun">
-            <SimpleValue>Date Time</SimpleValue>
+            <SimpleValue>Date</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTerm">
-            <SimpleValue>Despatch Date Time</SimpleValue>
+            <SimpleValue>Despatch Date</SimpleValue>
          </Value>
          <Value ColumnRef="RepresentationTerm">
-            <SimpleValue>Date Time</SimpleValue>
+            <SimpleValue>Date</SimpleValue>
          </Value>
          <Value ColumnRef="DataType">
-            <SimpleValue>Date Time. Type</SimpleValue>
+            <SimpleValue>Date. Type</SimpleValue>
          </Value>
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..1</SimpleValue>
@@ -19726,24 +19761,65 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The despatch (pickup) datetime estimated by the Seller or Despatch</SimpleValue>
+            <SimpleValue>The despatch (pickup) date estimated by the Seller or Despatch</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
          </Value>
-         <Value ColumnRef="SmallBusinessSubsetQuotation">
-            <SimpleValue>Y</SimpleValue>
-         </Value>
       </Row>
-      <Row><!--133-->
+      <Row><!--307-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Common</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
-            <SimpleValue>ActualDespatchDateTime</SimpleValue>
+            <SimpleValue>EstimatedDespatchTime</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Despatch. Actual_ Despatch Date Time. Date Time</SimpleValue>
+            <SimpleValue>Despatch. Estimated_ Despatch Time. Time</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Despatch</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermQualifier">
+            <SimpleValue>Estimated</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPossessiveNoun">
+            <SimpleValue>Despatch</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Time</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Despatch Time</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Time</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Time. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>The despatch (pickup) time estimated by the Seller or Despatch</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.0</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--308-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Common</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>ActualDespatchDate</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Despatch. Actual_ Despatch Date. Date</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Despatch</SimpleValue>
@@ -19755,16 +19831,16 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>Despatch</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTermPrimaryNoun">
-            <SimpleValue>Date Time</SimpleValue>
+            <SimpleValue>Date</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTerm">
-            <SimpleValue>Despatch Date Time</SimpleValue>
+            <SimpleValue>Despatch Date</SimpleValue>
          </Value>
          <Value ColumnRef="RepresentationTerm">
-            <SimpleValue>Date Time</SimpleValue>
+            <SimpleValue>Date</SimpleValue>
          </Value>
          <Value ColumnRef="DataType">
-            <SimpleValue>Date Time. Type</SimpleValue>
+            <SimpleValue>Date. Type</SimpleValue>
          </Value>
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..1</SimpleValue>
@@ -19773,16 +19849,57 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The actual despatch (pickup) datetime</SimpleValue>
+            <SimpleValue>The actual despatch (pickup) date</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
          </Value>
-         <Value ColumnRef="SmallBusinessSubsetQuotation">
-            <SimpleValue>Y</SimpleValue>
+      </Row>
+      <Row><!--309-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Common</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>ActualDespatchTime</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Despatch. Actual_ Despatch Time. Time</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Despatch</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermQualifier">
+            <SimpleValue>Actual</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPossessiveNoun">
+            <SimpleValue>Despatch</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Time</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Despatch Time</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Time</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Time. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>The actual despatch (pickup) time</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--134-->
+      <Row><!--310-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Common</SimpleValue>
          </Value>
@@ -19820,7 +19937,7 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--135-->
+      <Row><!--311-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Common</SimpleValue>
          </Value>
@@ -19858,7 +19975,7 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--136-->
+      <Row><!--312-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Common</SimpleValue>
          </Value>
@@ -19891,12 +20008,6 @@ A Bill of Lading can serve as a contractual document between the parties for the
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
-         </Value>
-         <Value ColumnRef="SmallBusinessSubsetQuotation">
-            <SimpleValue>Y</SimpleValue>
-         </Value>
-         <Value ColumnRef="SmallBusinessSubsetRemittanceAdvice">
-            <SimpleValue>Y</SimpleValue>
          </Value>
       </Row>
       <Row><!--137-->
