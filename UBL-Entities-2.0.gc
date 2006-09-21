@@ -23775,7 +23775,7 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>Transportation</SimpleValue>
          </Value>
       </Row>
-      <Row><!--364-->
+      <Row><!--379-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Common</SimpleValue>
          </Value>
@@ -23792,13 +23792,13 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>ABIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>Information about Exchange Rate</SimpleValue>
+            <SimpleValue>Information about Exchange Rate.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>1.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--365-->
+      <Row><!--380-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Common</SimpleValue>
          </Value>
@@ -23839,13 +23839,13 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The reference currency for the Exchange Rate; the currency from which the exchange is being made (CC Definition)</SimpleValue>
+            <SimpleValue>The reference currency for the Exchange Rate; the currency from which the exchange is being made (CC Definition).</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>1.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--366-->
+      <Row><!--381-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Common</SimpleValue>
          </Value>
@@ -23889,7 +23889,7 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>1.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--367-->
+      <Row><!--382-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Common</SimpleValue>
          </Value>
@@ -23930,13 +23930,13 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The target currency for the Exchange Rate; the currency to which the exchange is being made (CC Definition)</SimpleValue>
+            <SimpleValue>The target currency for the Exchange Rate; the currency to which the exchange is being made (CC Definition).</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>1.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--368-->
+      <Row><!--383-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Common</SimpleValue>
          </Value>
@@ -23980,7 +23980,7 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>1.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--369-->
+      <Row><!--384-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Common</SimpleValue>
          </Value>
@@ -24015,13 +24015,13 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The identifier for the currency exchange market used as the source of the Exchange Rate</SimpleValue>
+            <SimpleValue>Identifies the currency exchange market used as the source of the Exchange Rate.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>1.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--370-->
+      <Row><!--385-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Common</SimpleValue>
          </Value>
@@ -24056,30 +24056,33 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The factor applied to the source currency to calculate the target currency</SimpleValue>
+            <SimpleValue>The factor applied to the source currency to calculate the target currency.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>1.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--371-->
+      <Row><!--386-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Common</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
-            <SimpleValue>OperatorCode</SimpleValue>
+            <SimpleValue>MathematicOperatorCode</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Exchange Rate. Operator. Code</SimpleValue>
+            <SimpleValue>Exchange Rate. Mathematic Operator Code. Code</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Exchange Rate</SimpleValue>
          </Value>
+         <Value ColumnRef="PropertyTermPossessiveNoun">
+            <SimpleValue>Mathematic Operator</SimpleValue>
+         </Value>
          <Value ColumnRef="PropertyTermPrimaryNoun">
-            <SimpleValue>Operator</SimpleValue>
+            <SimpleValue>Code</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTerm">
-            <SimpleValue>Operator</SimpleValue>
+            <SimpleValue>Mathematic Operator Code</SimpleValue>
          </Value>
          <Value ColumnRef="RepresentationTerm">
             <SimpleValue>Code</SimpleValue>
@@ -24097,13 +24100,13 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>An identifier for whether the Calculation Rate should be used to multiply or to divide; expressed as a code</SimpleValue>
+            <SimpleValue>An identifier for whether the Calculation Rate should be used to multiply or to divide, expressed as a code.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>1.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--372-->
+      <Row><!--387-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Common</SimpleValue>
          </Value>
@@ -24135,13 +24138,13 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The date of the Exchange</SimpleValue>
+            <SimpleValue>The date of the Exchange.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>1.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--373-->
+      <Row><!--388-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Common</SimpleValue>
          </Value>
@@ -24149,7 +24152,7 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>ForeignExchangeContract</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Exchange Rate. Foreign Exchange_ Contract</SimpleValue>
+            <SimpleValue>Exchange Rate. Foreign Exchange_ Contract. Contract</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Exchange Rate</SimpleValue>
@@ -24173,7 +24176,7 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>ASBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>An association to Foreign Exchange Contract</SimpleValue>
+            <SimpleValue>An association to Foreign Exchange Contract.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>1.0</SimpleValue>
