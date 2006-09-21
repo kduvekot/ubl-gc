@@ -43718,7 +43718,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Transportation</SimpleValue>
          </Value>
       </Row>
-      <Row><!--868-->
+      <Row><!--885-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Common</SimpleValue>
          </Value>
@@ -43735,7 +43735,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>ABIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>Information about a Shipment Stage</SimpleValue>
+            <SimpleValue>Information about a shipment stage.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
@@ -43744,7 +43744,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Transportation</SimpleValue>
          </Value>
       </Row>
-      <Row><!--869-->
+      <Row><!--886-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Common</SimpleValue>
          </Value>
@@ -43776,7 +43776,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The identifier for a Shipment Stage</SimpleValue>
+            <SimpleValue>Identifies a shipment stage.</SimpleValue>
          </Value>
          <Value ColumnRef="Examples">
             <SimpleValue>"1","2", etc..</SimpleValue>
@@ -43788,7 +43788,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Transportation</SimpleValue>
          </Value>
       </Row>
-      <Row><!--870-->
+      <Row><!--887-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Common</SimpleValue>
          </Value>
@@ -43826,16 +43826,16 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The method of transport used for a Shipment Stage</SimpleValue>
+            <SimpleValue>The method of transport used for a shipment stage.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
-            <SimpleValue>1.0</SimpleValue>
+            <SimpleValue>2.0</SimpleValue>
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Transportation</SimpleValue>
          </Value>
       </Row>
-      <Row><!--871-->
+      <Row><!--888-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Common</SimpleValue>
          </Value>
@@ -43870,16 +43870,16 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The type of vehicle used for a Shipment Stage</SimpleValue>
+            <SimpleValue>The type of vehicle used for a shipment stage.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
-            <SimpleValue>1.0</SimpleValue>
+            <SimpleValue>2.0</SimpleValue>
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Transportation</SimpleValue>
          </Value>
       </Row>
-      <Row><!--872-->
+      <Row><!--889-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Common</SimpleValue>
          </Value>
@@ -43887,19 +43887,22 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>TransitDirectionCode</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Shipment Stage. Transit Direction Code. Code</SimpleValue>
+            <SimpleValue>Shipment Stage. Transit_ Direction Code. Code</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Shipment Stage</SimpleValue>
          </Value>
-         <Value ColumnRef="PropertyTermPossessiveNoun">
+         <Value ColumnRef="PropertyTermQualifier">
             <SimpleValue>Transit</SimpleValue>
          </Value>
-         <Value ColumnRef="PropertyTermPrimaryNoun">
+         <Value ColumnRef="PropertyTermPossessiveNoun">
             <SimpleValue>Direction</SimpleValue>
          </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Code</SimpleValue>
+         </Value>
          <Value ColumnRef="PropertyTerm">
-            <SimpleValue>Transit Direction</SimpleValue>
+            <SimpleValue>Direction Code</SimpleValue>
          </Value>
          <Value ColumnRef="RepresentationTerm">
             <SimpleValue>Code</SimpleValue>
@@ -43914,16 +43917,16 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The direction of transit for a Shipment Stage</SimpleValue>
+            <SimpleValue>The direction of transit for a shipment stage.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
-            <SimpleValue>1.0</SimpleValue>
+            <SimpleValue>2.0</SimpleValue>
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Transportation</SimpleValue>
          </Value>
       </Row>
-      <Row><!--873-->
+      <Row><!--890-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Common</SimpleValue>
          </Value>
@@ -43958,7 +43961,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>An indicator as the whether the stage is before the main carriage of the shipment </SimpleValue>
+            <SimpleValue>Indicates whether the stage is before the main carriage of the shipment.</SimpleValue>
          </Value>
          <Value ColumnRef="Examples">
             <SimpleValue>Truck delivery to wharf</SimpleValue>
@@ -43970,7 +43973,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Transportation</SimpleValue>
          </Value>
       </Row>
-      <Row><!--874-->
+      <Row><!--891-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Common</SimpleValue>
          </Value>
@@ -44005,7 +44008,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>An indicator as the whether the stage is after the main carriage of the shipment </SimpleValue>
+            <SimpleValue>Indicates whether the stage is after the main carriage of the shipment.</SimpleValue>
          </Value>
          <Value ColumnRef="Examples">
             <SimpleValue>Truck delivery from wharf</SimpleValue>
@@ -44017,7 +44020,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Transportation</SimpleValue>
          </Value>
       </Row>
-      <Row><!--875-->
+      <Row><!--892-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Common</SimpleValue>
          </Value>
@@ -44025,7 +44028,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>TransitPeriod</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Shipment Stage. Transit_ Period</SimpleValue>
+            <SimpleValue>Shipment Stage. Transit_ Period. Period</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Shipment Stage</SimpleValue>
@@ -44049,7 +44052,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>ASBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>An association to Transit Period</SimpleValue>
+            <SimpleValue>An association to Transit Period.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>1.0</SimpleValue>
@@ -44058,7 +44061,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Transportation</SimpleValue>
          </Value>
       </Row>
-      <Row><!--876-->
+      <Row><!--893-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Common</SimpleValue>
          </Value>
@@ -44066,7 +44069,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>CarrierParty</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Shipment Stage. Carrier_ Party</SimpleValue>
+            <SimpleValue>Shipment Stage. Carrier_ Party. Party</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Shipment Stage</SimpleValue>
@@ -44090,7 +44093,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>ASBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>An association to the Carrier</SimpleValue>
+            <SimpleValue>An association to Carrier.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>1.0</SimpleValue>
@@ -44099,7 +44102,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Transportation</SimpleValue>
          </Value>
       </Row>
-      <Row><!--877-->
+      <Row><!--894-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Common</SimpleValue>
          </Value>
@@ -44128,7 +44131,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>ASBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>An association to the means of transport</SimpleValue>
+            <SimpleValue>An association to the means of transport.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
@@ -44137,7 +44140,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Transportation</SimpleValue>
          </Value>
       </Row>
-      <Row><!--878-->
+      <Row><!--895-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Common</SimpleValue>
          </Value>
@@ -44169,7 +44172,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>ASBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>An association to the port location of loading</SimpleValue>
+            <SimpleValue>An association to the port location of loading.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
@@ -44178,7 +44181,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Transportation</SimpleValue>
          </Value>
       </Row>
-      <Row><!--879-->
+      <Row><!--896-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Common</SimpleValue>
          </Value>
@@ -44210,7 +44213,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>ASBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>An association to the port location of unloading</SimpleValue>
+            <SimpleValue>An association to the port location of unloading.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
@@ -44219,7 +44222,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Transportation</SimpleValue>
          </Value>
       </Row>
-      <Row><!--880-->
+      <Row><!--897-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Common</SimpleValue>
          </Value>
@@ -44251,7 +44254,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>ASBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>An association to the port loaction of transshipment</SimpleValue>
+            <SimpleValue>An association to the port location of transshipment.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
