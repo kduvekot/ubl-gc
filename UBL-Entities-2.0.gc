@@ -54113,7 +54113,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>ABIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The document used to describe the despatch or delivery of goods and services</SimpleValue>
+            <SimpleValue>The document used to describe the despatch or delivery of goods and services.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
@@ -54157,7 +54157,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The version of the UBL schema being used.</SimpleValue>
+            <SimpleValue>The earliest version of the UBL 2 schema for this document type that defines all of the elements that might be encountered in the current instance.</SimpleValue>
          </Value>
          <Value ColumnRef="Examples">
             <SimpleValue>2.0.5</SimpleValue>
@@ -54174,16 +54174,16 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Despatch Advice</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
-            <SimpleValue>SubsetID</SimpleValue>
+            <SimpleValue>CustomizationID</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Despatch Advice. Subset Identifier. Identifier</SimpleValue>
+            <SimpleValue>Despatch Advice. Customization Identifier. Identifier</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Despatch Advice</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTermPossessiveNoun">
-            <SimpleValue>Subset</SimpleValue>
+            <SimpleValue>Customization</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTermPrimaryNoun">
             <SimpleValue>Identifier</SimpleValue>
@@ -54204,7 +54204,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The identifier for a user defined subset of UBL.</SimpleValue>
+            <SimpleValue>Identifies a user-defined customization of UBL for a specific use.</SimpleValue>
          </Value>
          <Value ColumnRef="Examples">
             <SimpleValue>NES</SimpleValue>
@@ -54251,7 +54251,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The identifier for a user defined profile of the subset of UBL being used. </SimpleValue>
+            <SimpleValue>Identifies a user-defined profile of the customization of UBL being used.</SimpleValue>
          </Value>
          <Value ColumnRef="Examples">
             <SimpleValue>BasicProcurementProcess</SimpleValue>
@@ -54295,7 +54295,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>An identifier for the Despatch Advice assigned by Despatch (Party)</SimpleValue>
+            <SimpleValue>An identifier for the Despatch Advice assigned by Despatch (Party).</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>1.0</SimpleValue>
@@ -54342,7 +54342,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>Indicates whether the Despatch Advice is a copy (true) or not (false)</SimpleValue>
+            <SimpleValue>Indicates whether the Despatch Advice is a copy (true) or not (false).</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
@@ -54386,7 +54386,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>A computer-generated universally unique identifier (UUID) for the Despatch Advice instance</SimpleValue>
+            <SimpleValue>A computer-generated universally unique identifier (UUID) for the Despatch Advice instance.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
@@ -54433,7 +54433,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The date assigned by Despatch (Party) on which the Despatch Advice was issued</SimpleValue>
+            <SimpleValue>The date assigned by Despatch (Party) on which the Despatch Advice was issued.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
@@ -54480,7 +54480,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The time assigned by Despatch (Party) on which the Despatch Advice was issued</SimpleValue>
+            <SimpleValue>The time assigned by Despatch (Party) on which the Despatch Advice was issued.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
@@ -54618,7 +54618,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>Free form text applying to the Despatch Advice. This element may contain notes or any other similar information that is not contained explicitly in another structure.</SimpleValue>
+            <SimpleValue>Free-form text applying to the Despatch Advice. This element may contain notes or any other similar information that is not contained explicitly in another structure.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>1.0</SimpleValue>
@@ -54665,7 +54665,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The number of lines in the document</SimpleValue>
+            <SimpleValue>The number of lines in the document.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
@@ -54706,7 +54706,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>ASBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>An association to an Order</SimpleValue>
+            <SimpleValue>An association to an Order.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>1.0</SimpleValue>
@@ -54726,7 +54726,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>AdditionalDocumentReference</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Despatch Advice. Additional_ Document Reference</SimpleValue>
+            <SimpleValue>Despatch Advice. Additional_ Document Reference. Document Reference</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Despatch Advice</SimpleValue>
@@ -54750,7 +54750,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>ASBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>An association to other documents</SimpleValue>
+            <SimpleValue>An association to other documents.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>1.0</SimpleValue>
@@ -54811,7 +54811,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>DespatchSupplierParty</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Despatch Advice. Despatch_ Supplier Party</SimpleValue>
+            <SimpleValue>Despatch Advice. Despatch_ Supplier Party. Supplier Party</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Despatch Advice</SimpleValue>
@@ -54835,7 +54835,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>ASBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>An association to the Despatch Party</SimpleValue>
+            <SimpleValue>An association to the Despatch Party.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
@@ -54855,7 +54855,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>DeliveryCustomerParty</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Despatch Advice. Delivery_ Customer Party</SimpleValue>
+            <SimpleValue>Despatch Advice. Delivery_ Customer Party. Customer Party</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Despatch Advice</SimpleValue>
@@ -54879,7 +54879,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>ASBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>An association to the Delivery Party</SimpleValue>
+            <SimpleValue>An association to the Delivery Party.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
@@ -54899,7 +54899,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>BuyerCustomerParty</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Despatch Advice. Buyer_ Customer Party</SimpleValue>
+            <SimpleValue>Despatch Advice. Buyer_ Customer Party. Customer Party</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Despatch Advice</SimpleValue>
@@ -54923,7 +54923,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>ASBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>An association to the Buyer</SimpleValue>
+            <SimpleValue>An association to the Buyer.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
@@ -54943,7 +54943,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>SellerSupplierParty</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Despatch Advice. Seller_ Supplier Party</SimpleValue>
+            <SimpleValue>Despatch Advice. Seller_ Supplier Party. Supplier Party</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Despatch Advice</SimpleValue>
@@ -54967,7 +54967,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>ASBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>An association to the Seller</SimpleValue>
+            <SimpleValue>An association to the Seller.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
@@ -54987,7 +54987,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>OriginatorCustomerParty</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Despatch Advice. Originator_ Customer Party</SimpleValue>
+            <SimpleValue>Despatch Advice. Originator_ Customer Party. Customer Party</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Despatch Advice</SimpleValue>
@@ -55011,7 +55011,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>ASBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>An association to the Originator (Party)</SimpleValue>
+            <SimpleValue>An association to the Originator (Party).</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>1.0</SimpleValue>
@@ -55052,7 +55052,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>ASBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>An association to a Shipment detail</SimpleValue>
+            <SimpleValue>An association to a Shipment detail.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
@@ -55093,7 +55093,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>ASBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>An association to one or more Despatch Advice Lines</SimpleValue>
+            <SimpleValue>An association to one or more Despatch Advice Lines.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>1.0</SimpleValue>
