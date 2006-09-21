@@ -186,7 +186,7 @@
             <SimpleValue>ABIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>a document to indicate the application’s response to a transaction. This may be a business reposnse and/or a technical response, sent automatically by an application or initiated by a user.</SimpleValue>
+            <SimpleValue>A document to indicate the application's response to a transaction. This may be a business response and/or a technical response, sent automatically by an application or initiated by a user.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
@@ -230,7 +230,7 @@
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The version of the UBL schema being used.</SimpleValue>
+            <SimpleValue>The earliest version of the UBL 2 schema for this document type that defines all of the elements that might be encountered in the current instance.</SimpleValue>
          </Value>
          <Value ColumnRef="Examples">
             <SimpleValue>2.0.5</SimpleValue>
@@ -247,16 +247,16 @@
             <SimpleValue>Application Response</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
-            <SimpleValue>SubsetID</SimpleValue>
+            <SimpleValue>CustomizationID</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Application Response. Subset Identifier. Identifier</SimpleValue>
+            <SimpleValue>Application Response. Customization Identifier. Identifier</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Application Response</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTermPossessiveNoun">
-            <SimpleValue>Subset</SimpleValue>
+            <SimpleValue>Customization</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTermPrimaryNoun">
             <SimpleValue>Identifier</SimpleValue>
@@ -277,7 +277,7 @@
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The identifier for a user defined subset of UBL.</SimpleValue>
+            <SimpleValue>Identifies a user-defined customization of UBL for a specific use.</SimpleValue>
          </Value>
          <Value ColumnRef="Examples">
             <SimpleValue>NES</SimpleValue>
@@ -324,7 +324,7 @@
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The identifier for a user defined profile of the subset of UBL being used. </SimpleValue>
+            <SimpleValue>Identifies a user-defined profile of the customization of UBL being used.</SimpleValue>
          </Value>
          <Value ColumnRef="Examples">
             <SimpleValue>BasicProcurementProcess</SimpleValue>
@@ -368,7 +368,7 @@
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>An identifier for the Application Response assigned by the sender</SimpleValue>
+            <SimpleValue>An identifier for the Application Response assigned by the sender.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
@@ -450,7 +450,7 @@
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The date assigned by the sender's application at which the Application Response was created</SimpleValue>
+            <SimpleValue>The date assigned by the sender's application at which the Application Response was created.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
@@ -494,7 +494,7 @@
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The time assigned by the sender's application at which the Application Response was created</SimpleValue>
+            <SimpleValue>The time assigned by the sender's application at which the Application Response was created.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
@@ -538,7 +538,7 @@
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The date at which the information in the response was created</SimpleValue>
+            <SimpleValue>The date at which the information in the response was created.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
@@ -582,7 +582,7 @@
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The time at which the information in the response was created</SimpleValue>
+            <SimpleValue>The time at which the information in the response was created.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
@@ -623,7 +623,7 @@
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>Free form text applying to the Application Response. This element may contain notes or any other similar information that is not contained explicitly in another structure.</SimpleValue>
+            <SimpleValue>Free-form text applying to the Application Response. This element may contain notes or any other similar information that is not contained explicitly in another structure.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
@@ -667,7 +667,7 @@
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>Identifies the current version of this document</SimpleValue>
+            <SimpleValue>Identifies the current version of this document.</SimpleValue>
          </Value>
          <Value ColumnRef="Examples">
             <SimpleValue>"1.1"</SimpleValue>
@@ -708,7 +708,7 @@
             <SimpleValue>ASBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>One or more signatures applied to the document</SimpleValue>
+            <SimpleValue>One or more signatures applied to the document.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
@@ -725,7 +725,7 @@
             <SimpleValue>SenderParty</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Application Response. Sender_ Party</SimpleValue>
+            <SimpleValue>Application Response. Sender_ Party. Party</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Application Response</SimpleValue>
@@ -766,7 +766,7 @@
             <SimpleValue>ReceiverParty</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Application Response. Receiver_ Party</SimpleValue>
+            <SimpleValue>Application Response. Receiver_ Party. Party</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Application Response</SimpleValue>
@@ -828,7 +828,7 @@
             <SimpleValue>ASBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>A response to one or more documents</SimpleValue>
+            <SimpleValue>A response to one or more documents.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
