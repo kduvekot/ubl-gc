@@ -2702,7 +2702,7 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>ABIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The document that describes items, prices and price validity.</SimpleValue>
+            <SimpleValue>The document that describes items, prices, and price validity.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
@@ -2746,7 +2746,7 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The version of the UBL schema being used.</SimpleValue>
+            <SimpleValue>The earliest version of the UBL 2 schema for this document type that defines all of the elements that might be encountered in the current instance.</SimpleValue>
          </Value>
          <Value ColumnRef="Examples">
             <SimpleValue>2.0.5</SimpleValue>
@@ -2760,16 +2760,16 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>Catalogue</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
-            <SimpleValue>SubsetID</SimpleValue>
+            <SimpleValue>CustomizationID</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Catalogue. Subset Identifier. Identifier</SimpleValue>
+            <SimpleValue>Catalogue. Customization Identifier. Identifier</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Catalogue</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTermPossessiveNoun">
-            <SimpleValue>Subset</SimpleValue>
+            <SimpleValue>Customization</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTermPrimaryNoun">
             <SimpleValue>Identifier</SimpleValue>
@@ -2790,7 +2790,7 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The identifier for a user defined subset of UBL.</SimpleValue>
+            <SimpleValue>Identifies a user-defined customization of UBL for a specific use.</SimpleValue>
          </Value>
          <Value ColumnRef="Examples">
             <SimpleValue>NES</SimpleValue>
@@ -2834,7 +2834,7 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The identifier for a user defined profile of the subset of UBL being used. </SimpleValue>
+            <SimpleValue>Identifies a user-defined profile of the customization of UBL being used.</SimpleValue>
          </Value>
          <Value ColumnRef="Examples">
             <SimpleValue>BasicProcurementProcess</SimpleValue>
@@ -2875,7 +2875,7 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>An identifier for the Catalogue assigned by the Seller</SimpleValue>
+            <SimpleValue>An identifier for the Catalogue assigned by the Seller.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
@@ -2916,7 +2916,7 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>A computer-generated universally unique identifier (UUID) for the Catalogue instance</SimpleValue>
+            <SimpleValue>A computer-generated universally unique identifier (UUID) for the Catalogue instance.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
@@ -2957,7 +2957,7 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>A name given to a catalogue</SimpleValue>
+            <SimpleValue>A name given to a catalogue.</SimpleValue>
          </Value>
          <Value ColumnRef="Examples">
             <SimpleValue>"winter 2005 collection"</SimpleValue>
@@ -3004,7 +3004,7 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The date when the catalogue was issued</SimpleValue>
+            <SimpleValue>The date when the catalogue was issued.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
@@ -3048,7 +3048,7 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The time when the catalogue was issued</SimpleValue>
+            <SimpleValue>The time when the catalogue was issued.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
@@ -3177,7 +3177,7 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>Free form text applying to the Catalogue. This element may contain notes or any other similar information that is not contained explicitly in another structure.</SimpleValue>
+            <SimpleValue>Free-form text applying to the Catalogue. This element may contain notes or any other similar information that is not contained explicitly in another structure.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
@@ -3218,7 +3218,7 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>A description of the catalogue</SimpleValue>
+            <SimpleValue>A description of the catalogue.</SimpleValue>
          </Value>
          <Value ColumnRef="Examples">
             <SimpleValue>"computer accessories for laptops"</SimpleValue>
@@ -3262,7 +3262,7 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>To indicate the current version of the catalogue</SimpleValue>
+            <SimpleValue>Indicates the current version of the catalogue.</SimpleValue>
          </Value>
          <Value ColumnRef="Examples">
             <SimpleValue>"1.1"</SimpleValue>
@@ -3309,7 +3309,7 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>Identifies the previous version of the Catalogue which is superceded by this version</SimpleValue>
+            <SimpleValue>Identifies the previous version of the Catalogue which is superceded by this version.</SimpleValue>
          </Value>
          <Value ColumnRef="Examples">
             <SimpleValue>"1.0"</SimpleValue>
@@ -3356,7 +3356,7 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The number of lines in the the document</SimpleValue>
+            <SimpleValue>The number of lines in the the document.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
@@ -3373,7 +3373,7 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>ValidityPeriod</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Catalogue. Validity_ Period</SimpleValue>
+            <SimpleValue>Catalogue. Validity_ Period. Period</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Catalogue</SimpleValue>
@@ -3414,7 +3414,7 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>ReferencedContract</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Catalogue. Referenced_ Contract</SimpleValue>
+            <SimpleValue>Catalogue. Referenced_ Contract. Contract</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Catalogue</SimpleValue>
@@ -3438,7 +3438,7 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>ASBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>An association to a framework agreement or contract</SimpleValue>
+            <SimpleValue>An association to a framework agreement or contract.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
@@ -3476,7 +3476,7 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>ASBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>An association to one or more signatures applied to the document</SimpleValue>
+            <SimpleValue>An association to one or more signatures applied to the document.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
@@ -3493,7 +3493,7 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>ProviderParty</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Catalogue. Provider_ Party</SimpleValue>
+            <SimpleValue>Catalogue. Provider_ Party. Party</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Catalogue</SimpleValue>
@@ -3517,7 +3517,7 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>ASBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>An association to the Catalogue Provider Party</SimpleValue>
+            <SimpleValue>An association to the Catalogue Provider Party.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
@@ -3534,7 +3534,7 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>ReceiverParty</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Catalogue. Receiver_ Party</SimpleValue>
+            <SimpleValue>Catalogue. Receiver_ Party. Party</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Catalogue</SimpleValue>
@@ -3558,7 +3558,7 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>ASBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>An association to the Catalogue Receiver Party</SimpleValue>
+            <SimpleValue>An association to the Catalogue Receiver Party.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
@@ -3575,7 +3575,7 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>SellerSupplierParty</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Catalogue. Seller_ Supplier Party</SimpleValue>
+            <SimpleValue>Catalogue. Seller_ Supplier Party. Supplier Party</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Catalogue</SimpleValue>
@@ -3616,7 +3616,7 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>ContractorCustomerParty</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Catalogue. Contractor_ Customer Party</SimpleValue>
+            <SimpleValue>Catalogue. Contractor_ Customer Party. Customer Party</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Catalogue</SimpleValue>
@@ -3678,7 +3678,7 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>ASBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>An association to trading terms</SimpleValue>
+            <SimpleValue>An association to trading terms.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
