@@ -47777,7 +47777,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Procurement</SimpleValue>
          </Value>
       </Row>
-      <Row><!--980-->
+      <Row><!--998-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Common</SimpleValue>
          </Value>
@@ -47797,7 +47797,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>ABIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>Information about Transport Equipment; a piece of equipment used to transport goods</SimpleValue>
+            <SimpleValue>Information about Transport Equipment; a piece of equipment used to transport goods.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
@@ -47806,7 +47806,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Transportation</SimpleValue>
          </Value>
       </Row>
-      <Row><!--981-->
+      <Row><!--999-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Common</SimpleValue>
          </Value>
@@ -47838,7 +47838,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The identifier for Transport Equipment</SimpleValue>
+            <SimpleValue>Identifies the transport equipment.</SimpleValue>
          </Value>
          <Value ColumnRef="Examples">
             <SimpleValue>"OCLU 1234567"</SimpleValue>
@@ -47850,7 +47850,54 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Transportation</SimpleValue>
          </Value>
       </Row>
-      <Row><!--982-->
+      <Row><!--1000-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Common</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>TransportEquipmentTypeCode</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Transport Equipment. Transport Equipment Type Code. Code</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Transport Equipment</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPossessiveNoun">
+            <SimpleValue>Transport Equipment Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Code</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Transport Equipment Type Code</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Code</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataTypeQualifier">
+            <SimpleValue>Transport Equipment Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Transport Equipment Type_ Code. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>Identifies the type of provider of the transport equipment.</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>1.0</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Transportation</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--1001-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Common</SimpleValue>
          </Value>
@@ -47885,7 +47932,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>An identifier for the type of provider for the Transport Equipment</SimpleValue>
+            <SimpleValue>Identifies the type of provider of the transport equipment.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>1.0</SimpleValue>
@@ -47894,7 +47941,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Transportation</SimpleValue>
          </Value>
       </Row>
-      <Row><!--983-->
+      <Row><!--1002-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Common</SimpleValue>
          </Value>
@@ -47929,7 +47976,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>An identifier for the type of owner of a piece of Transport Equipment</SimpleValue>
+            <SimpleValue>Identifies the type of owner of a piece of transport equipment.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>1.0</SimpleValue>
@@ -47938,7 +47985,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Transportation</SimpleValue>
          </Value>
       </Row>
-      <Row><!--984-->
+      <Row><!--1003-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Common</SimpleValue>
          </Value>
@@ -47976,7 +48023,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The size and type of a piece of Transport Equipment expressed as a code. When Transport Equipment is a shipping container it is recommended to use ContainerSizeTypeCode for validation.</SimpleValue>
+            <SimpleValue>The size and type of a piece of transport equipment, expressed as a code. When the transport equipment is a shipping container, it is recommended to use ContainerSizeTypeCode for validation.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>1.0</SimpleValue>
@@ -47985,7 +48032,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Transportation</SimpleValue>
          </Value>
       </Row>
-      <Row><!--985-->
+      <Row><!--1004-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Common</SimpleValue>
          </Value>
@@ -48023,7 +48070,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The current disposition of the Transport Equipment expressed as a code</SimpleValue>
+            <SimpleValue>The current disposition of the transport equipment, expressed as a code.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>1.0</SimpleValue>
@@ -48032,7 +48079,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Transportation</SimpleValue>
          </Value>
       </Row>
-      <Row><!--986-->
+      <Row><!--1005-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Common</SimpleValue>
          </Value>
@@ -48067,7 +48114,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>A code indicating whether a piece of transport equipment is full, partially full or empty</SimpleValue>
+            <SimpleValue>A code indicating whether a piece of transport equipment is full, partially full, or empty.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>1.0</SimpleValue>
@@ -48076,7 +48123,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Transportation</SimpleValue>
          </Value>
       </Row>
-      <Row><!--987-->
+      <Row><!--1006-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Common</SimpleValue>
          </Value>
@@ -48111,7 +48158,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>Indicates whether refrigeration is on (true) or off (false) for the Transportation equipment</SimpleValue>
+            <SimpleValue>Indicates whether the transport equipment's refrigeration is on (true) or off (false).</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>1.0</SimpleValue>
@@ -48120,7 +48167,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Transportation</SimpleValue>
          </Value>
       </Row>
-      <Row><!--988-->
+      <Row><!--1007-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Common</SimpleValue>
          </Value>
@@ -48152,7 +48199,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>Additional information about the Transport Equipment</SimpleValue>
+            <SimpleValue>Additional information about the transport equipment.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>1.0</SimpleValue>
@@ -48161,7 +48208,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Transportation</SimpleValue>
          </Value>
       </Row>
-      <Row><!--989-->
+      <Row><!--1008-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Common</SimpleValue>
          </Value>
@@ -48196,7 +48243,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>Indication as to whether or not a particular item of transport equipment is returnable.</SimpleValue>
+            <SimpleValue>Indicates whether a particular item of transport equipment is returnable.</SimpleValue>
          </Value>
          <Value ColumnRef="UNTDEDCode">
             <SimpleValue>8036</SimpleValue>
@@ -48208,7 +48255,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Transportation</SimpleValue>
          </Value>
       </Row>
-      <Row><!--990-->
+      <Row><!--1009-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Common</SimpleValue>
          </Value>
@@ -48255,7 +48302,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Transportation</SimpleValue>
          </Value>
       </Row>
-      <Row><!--991-->
+      <Row><!--1010-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Common</SimpleValue>
          </Value>
@@ -48263,7 +48310,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>MeasurementDimension</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Transport Equipment. Measurement_ Dimension</SimpleValue>
+            <SimpleValue>Transport Equipment. Measurement_ Dimension. Dimension</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Transport Equipment</SimpleValue>
@@ -48287,7 +48334,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>ASBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>An association to Dimension</SimpleValue>
+            <SimpleValue>An association to Dimension.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>1.0</SimpleValue>
@@ -48296,7 +48343,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Transportation</SimpleValue>
          </Value>
       </Row>
-      <Row><!--992-->
+      <Row><!--1011-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Common</SimpleValue>
          </Value>
@@ -48325,7 +48372,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>ASBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>An association to Transport Equiment Seal</SimpleValue>
+            <SimpleValue>An association to Transport Equiment Seal.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>1.0</SimpleValue>
@@ -48334,7 +48381,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Transportation</SimpleValue>
          </Value>
       </Row>
-      <Row><!--993-->
+      <Row><!--1012-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Common</SimpleValue>
          </Value>
@@ -48342,7 +48389,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>MinimumTemperature</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Transport Equipment. Minimum_ Temperature</SimpleValue>
+            <SimpleValue>Transport Equipment. Minimum_ Temperature. Temperature</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Transport Equipment</SimpleValue>
@@ -48366,7 +48413,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>ASBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The minimum required operating temperature for the container (Reefer)</SimpleValue>
+            <SimpleValue>The minimum required operating temperature for the container (reefer).</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
@@ -48375,7 +48422,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Transportation</SimpleValue>
          </Value>
       </Row>
-      <Row><!--994-->
+      <Row><!--1013-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Common</SimpleValue>
          </Value>
@@ -48383,7 +48430,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>MaximumTemperature</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Transport Equipment. Maximum_ Temperature</SimpleValue>
+            <SimpleValue>Transport Equipment. Maximum_ Temperature. Temperature</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Transport Equipment</SimpleValue>
@@ -48407,7 +48454,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>ASBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The maximum required operating termperature for the container (Reefer)</SimpleValue>
+            <SimpleValue>The maximum required operating termperature for the container (reefer).</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
@@ -48416,7 +48463,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Transportation</SimpleValue>
          </Value>
       </Row>
-      <Row><!--995-->
+      <Row><!--1014-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Common</SimpleValue>
          </Value>
@@ -48424,7 +48471,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>ProviderParty</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Transport Equipment. Provider_ Party</SimpleValue>
+            <SimpleValue>Transport Equipment. Provider_ Party. Party</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Transport Equipment</SimpleValue>
@@ -48448,7 +48495,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>ASBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The party that provides the Transport Equipment</SimpleValue>
+            <SimpleValue>The party that provides the transport equipment.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
@@ -48457,7 +48504,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Transportation</SimpleValue>
          </Value>
       </Row>
-      <Row><!--996-->
+      <Row><!--1015-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Common</SimpleValue>
          </Value>
@@ -48465,7 +48512,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>LoadingProofParty</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Transport Equipment. Loading Proof_ Party</SimpleValue>
+            <SimpleValue>Transport Equipment. Loading Proof_ Party. Party</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Transport Equipment</SimpleValue>
@@ -48492,7 +48539,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>ASBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>the authorized party responsible for certifying that the goods were loaded into the transport equipment</SimpleValue>
+            <SimpleValue>The authorized party responsible for certifying that the goods were loaded into the transport equipment.</SimpleValue>
          </Value>
          <Value ColumnRef="UNTDEDCode">
             <SimpleValue>3036</SimpleValue>
@@ -48504,7 +48551,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Transportation</SimpleValue>
          </Value>
       </Row>
-      <Row><!--997-->
+      <Row><!--1016-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Common</SimpleValue>
          </Value>
@@ -48512,7 +48559,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>LoadingLocation</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Transport Equipment. Loading_ Location</SimpleValue>
+            <SimpleValue>Transport Equipment. Loading_ Location. Location</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Transport Equipment</SimpleValue>
@@ -48539,7 +48586,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>ASBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>To identify the location where the goods are loaded into the transport equipment.</SimpleValue>
+            <SimpleValue>Identifies the location where the goods are loaded into the transport equipment.</SimpleValue>
          </Value>
          <Value ColumnRef="UNTDEDCode">
             <SimpleValue>3268</SimpleValue>
