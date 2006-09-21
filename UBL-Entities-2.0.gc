@@ -8599,7 +8599,7 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>ABIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>Information about a structured address</SimpleValue>
+            <SimpleValue>Information about a structured address.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
@@ -8640,7 +8640,7 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>An identifier for a specific address within a scheme of registered addresses</SimpleValue>
+            <SimpleValue>An identifier for a specific address within a scheme of registered addresses.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>1.0</SimpleValue>
@@ -8651,19 +8651,22 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>Common</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
-            <SimpleValue>TypeCode</SimpleValue>
+            <SimpleValue>AddressTypeCode</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Address. Type. Code</SimpleValue>
+            <SimpleValue>Address. Address Type Code. Code</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Address</SimpleValue>
          </Value>
+         <Value ColumnRef="PropertyTermPossessiveNoun">
+            <SimpleValue>Address Type</SimpleValue>
+         </Value>
          <Value ColumnRef="PropertyTermPrimaryNoun">
-            <SimpleValue>Type</SimpleValue>
+            <SimpleValue>Code</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTerm">
-            <SimpleValue>Type</SimpleValue>
+            <SimpleValue>Address Type Code</SimpleValue>
          </Value>
          <Value ColumnRef="RepresentationTerm">
             <SimpleValue>Code</SimpleValue>
@@ -8678,7 +8681,7 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>A code specifying the type of this address such as business address or home address.</SimpleValue>
+            <SimpleValue>A code specifying the type of this address, such as business address or home address.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
@@ -8689,19 +8692,22 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>Common</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
-            <SimpleValue>FormatCode</SimpleValue>
+            <SimpleValue>AddressFormatCode</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Address. Format. Code</SimpleValue>
+            <SimpleValue>Address. Address Format Code. Code</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Address</SimpleValue>
          </Value>
+         <Value ColumnRef="PropertyTermPossessiveNoun">
+            <SimpleValue>Address Format</SimpleValue>
+         </Value>
          <Value ColumnRef="PropertyTermPrimaryNoun">
-            <SimpleValue>Format</SimpleValue>
+            <SimpleValue>Code</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTerm">
-            <SimpleValue>Format</SimpleValue>
+            <SimpleValue>Address Format Code</SimpleValue>
          </Value>
          <Value ColumnRef="RepresentationTerm">
             <SimpleValue>Code</SimpleValue>
@@ -8757,7 +8763,7 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>A post office box number</SimpleValue>
+            <SimpleValue>A post office box number.</SimpleValue>
          </Value>
          <Value ColumnRef="Examples">
             <SimpleValue>"123"</SimpleValue>
@@ -8801,7 +8807,7 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>An addressable floor of a building</SimpleValue>
+            <SimpleValue>An addressable floor of a building.</SimpleValue>
          </Value>
          <Value ColumnRef="Examples">
             <SimpleValue>"30"</SimpleValue>
@@ -8845,7 +8851,7 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>A room, suite or apartment of a building</SimpleValue>
+            <SimpleValue>A room, suite, or apartment of a building.</SimpleValue>
          </Value>
          <Value ColumnRef="Examples">
             <SimpleValue>"Reception"</SimpleValue>
@@ -8892,7 +8898,7 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The name of a street</SimpleValue>
+            <SimpleValue>The name of a street.</SimpleValue>
          </Value>
          <Value ColumnRef="Examples">
             <SimpleValue>"Kwun Tong Road"</SimpleValue>
@@ -8942,7 +8948,7 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>An additional name of a street used to further specify the Street Name</SimpleValue>
+            <SimpleValue>An additional name of a street used to further specify the street name.</SimpleValue>
          </Value>
          <Value ColumnRef="Examples">
             <SimpleValue>"Cnr Aberdeen Road"</SimpleValue>
@@ -9033,7 +9039,7 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The name of a building</SimpleValue>
+            <SimpleValue>The name of a building.</SimpleValue>
          </Value>
          <Value ColumnRef="Examples">
             <SimpleValue>"Plot 421"</SimpleValue>
@@ -9080,7 +9086,7 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The number of a building</SimpleValue>
+            <SimpleValue>The number of a building.</SimpleValue>
          </Value>
          <Value ColumnRef="Examples">
             <SimpleValue>"388"</SimpleValue>
@@ -9127,7 +9133,7 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>A specific location within a building</SimpleValue>
+            <SimpleValue>A specific location within a building.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>1.0</SimpleValue>
@@ -9168,7 +9174,7 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>An addressable department of an organisation</SimpleValue>
+            <SimpleValue>An addressable department of an organization.</SimpleValue>
          </Value>
          <Value ColumnRef="Examples">
             <SimpleValue>"Accounts Payable"</SimpleValue>
@@ -9329,7 +9335,7 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>A name, expressed as text, of a sub-division of a city for this address, for example a district or borough.</SimpleValue>
+            <SimpleValue>A name, expressed as text, of a subdivision of a city for this address, for example, a district or borough.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
@@ -9373,7 +9379,7 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The name of a city, town or village</SimpleValue>
+            <SimpleValue>The name of a city, town, or village.</SimpleValue>
          </Value>
          <Value ColumnRef="Examples">
             <SimpleValue>"Hong Kong"</SimpleValue>
@@ -9420,7 +9426,7 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The identifier for an addressable group of properties according to the relevant national postal service such as a ZIP code or Post Code</SimpleValue>
+            <SimpleValue>The identifier for an addressable group of properties according to the relevant national postal service, such as a ZIP code or Post Code.</SimpleValue>
          </Value>
          <Value ColumnRef="Examples">
             <SimpleValue>"SW11 4EW" "2500 GG"</SimpleValue>
@@ -9467,7 +9473,7 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>A territorial division of a country such as a county or state</SimpleValue>
+            <SimpleValue>A territorial division of a country, such as a county or state.</SimpleValue>
          </Value>
          <Value ColumnRef="Examples">
             <SimpleValue>"Florida","Tamilnadu"</SimpleValue>
@@ -9514,7 +9520,7 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The territorial division of a country such as a county or state expresssed as a code</SimpleValue>
+            <SimpleValue>A territorial division of a country, such as a county or state, expresssed as a code.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
@@ -9558,7 +9564,7 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>An addressable region or group of countries</SimpleValue>
+            <SimpleValue>An addressable region or group of countries.</SimpleValue>
          </Value>
          <Value ColumnRef="Examples">
             <SimpleValue>"European Union"</SimpleValue>
@@ -9602,7 +9608,7 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>A geographical division of a country</SimpleValue>
+            <SimpleValue>A geographical division of a country.</SimpleValue>
          </Value>
          <Value ColumnRef="Examples">
             <SimpleValue>"East Coast"</SimpleValue>
@@ -9646,7 +9652,7 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>For the time zone in which the address is situated, the measure of time offset from Universal Coordinated Time (UTC)</SimpleValue>
+            <SimpleValue>For the time zone in which the address is situated, the measure of time offset from Universal Coordinated Time (UTC).</SimpleValue>
          </Value>
          <Value ColumnRef="Examples">
             <SimpleValue>"+8:00" "-3:00"</SimpleValue>
@@ -9684,7 +9690,7 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>ASBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>An association to Address Line</SimpleValue>
+            <SimpleValue>An association to Address Line.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
@@ -9722,7 +9728,7 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>ASBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>An association to Country</SimpleValue>
+            <SimpleValue>An association to Country.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>1.0</SimpleValue>
@@ -9757,7 +9763,7 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>ASBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>An association to Location Coordinate</SimpleValue>
+            <SimpleValue>An association to Location Coordinate.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>1.0</SimpleValue>
