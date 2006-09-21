@@ -60272,7 +60272,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>ABIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The document used to order goods and services</SimpleValue>
+            <SimpleValue>The document used to order goods and services.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
@@ -60316,7 +60316,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The version of the UBL schema being used.</SimpleValue>
+            <SimpleValue>The earliest version of the UBL 2 schema for this document type that defines all of the elements that might be encountered in the current instance.</SimpleValue>
          </Value>
          <Value ColumnRef="Examples">
             <SimpleValue>2.0.5</SimpleValue>
@@ -60333,16 +60333,16 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Order</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
-            <SimpleValue>SubsetID</SimpleValue>
+            <SimpleValue>CustomizationID</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Order. Subset Identifier. Identifier</SimpleValue>
+            <SimpleValue>Order. Customization Identifier. Identifier</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Order</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTermPossessiveNoun">
-            <SimpleValue>Subset</SimpleValue>
+            <SimpleValue>Customization</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTermPrimaryNoun">
             <SimpleValue>Identifier</SimpleValue>
@@ -60363,7 +60363,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The identifier for a user defined subset of UBL.</SimpleValue>
+            <SimpleValue>Identifies a user-defined customization of UBL for a specific use.</SimpleValue>
          </Value>
          <Value ColumnRef="Examples">
             <SimpleValue>NES</SimpleValue>
@@ -60410,7 +60410,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The identifier for a user defined profile of the subset of UBL being used. </SimpleValue>
+            <SimpleValue>Identifies a user-defined profile of the customization of UBL being used.</SimpleValue>
          </Value>
          <Value ColumnRef="Examples">
             <SimpleValue>BasicProcurementProcess</SimpleValue>
@@ -60457,7 +60457,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>An identifier for the Order assigned by the Buyer</SimpleValue>
+            <SimpleValue>An identifier for the Order assigned by the Buyer.</SimpleValue>
          </Value>
          <Value ColumnRef="UNTDEDCode">
             <SimpleValue>1022</SimpleValue>
@@ -60507,7 +60507,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>An identifier for the Order assigned by the Seller</SimpleValue>
+            <SimpleValue>An identifier for the Order assigned by the Seller.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>1.0</SimpleValue>
@@ -60551,7 +60551,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>Indicates whether the Order is a copy (true) or not (false)</SimpleValue>
+            <SimpleValue>Indicates whether the Order is a copy (true) or not (false).</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
@@ -60595,7 +60595,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>A computer-generated universally unique identifier (UUID) for the Order instance</SimpleValue>
+            <SimpleValue>A computer-generated universally unique identifier (UUID) for the Order instance.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
@@ -60645,7 +60645,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The date assigned by the Buyer on which the Order was issued</SimpleValue>
+            <SimpleValue>The date assigned by the Buyer on which the Order was issued.</SimpleValue>
          </Value>
          <Value ColumnRef="UNTDEDCode">
             <SimpleValue>2011</SimpleValue>
@@ -60692,7 +60692,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The time assigned by the Buyer on which the Order was issued</SimpleValue>
+            <SimpleValue>The time assigned by the Buyer on which the Order was issued.</SimpleValue>
          </Value>
          <Value ColumnRef="UNTDEDCode">
             <SimpleValue>2011</SimpleValue>
@@ -60736,7 +60736,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>Free form text applying to the Order. This element may contain notes or any other similar information that is not contained explicitly in another structure.</SimpleValue>
+            <SimpleValue>Free-form text applying to the Order. This element may contain notes or any other similar information that is not contained explicitly in another structure.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>1.0</SimpleValue>
@@ -60783,7 +60783,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The currency requested for amount totals in Invoices related to this Order</SimpleValue>
+            <SimpleValue>The currency requested for amount totals in Invoices related to this Order.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
@@ -60833,7 +60833,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The default currency for the Order</SimpleValue>
+            <SimpleValue>The default currency for the Order.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
@@ -60883,7 +60883,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The currency that is used for all prices in the Order</SimpleValue>
+            <SimpleValue>The currency that is used for all prices in the Order.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
@@ -60933,7 +60933,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The currency requested for tax amounts in Invoices related to this Order</SimpleValue>
+            <SimpleValue>The currency requested for tax amounts in Invoices related to this Order.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
@@ -61024,7 +61024,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The Buyer's accounting code applied to the Order as a whole</SimpleValue>
+            <SimpleValue>The Buyer's accounting code applied to the Order as a whole.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
@@ -61065,7 +61065,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The Buyer's accounting code applied to the Order as a whole</SimpleValue>
+            <SimpleValue>The Buyer's accounting code applied to the Order as a whole, expressed as text.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
@@ -61109,7 +61109,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The number of lines in the document</SimpleValue>
+            <SimpleValue>The number of lines in the document.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
@@ -61126,7 +61126,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>ValidityPeriod</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Order. Validity_ Period</SimpleValue>
+            <SimpleValue>Order. Validity_ Period. Period</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Order</SimpleValue>
@@ -61150,7 +61150,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>ASBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The period for which the Order is valid</SimpleValue>
+            <SimpleValue>The period for which the Order is valid.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
@@ -61167,7 +61167,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>QuotationDocumentReference</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Order. Quotation_ Document Reference</SimpleValue>
+            <SimpleValue>Order. Quotation_ Document Reference. Document Reference</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Order</SimpleValue>
@@ -61191,7 +61191,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>ASBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>An association to a Quotation</SimpleValue>
+            <SimpleValue>An association to a Quotation.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>1.0</SimpleValue>
@@ -61208,7 +61208,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>OrderDocumentReference</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Order. Order_ Document Reference</SimpleValue>
+            <SimpleValue>Order. Order_ Document Reference. Document Reference</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Order</SimpleValue>
@@ -61232,7 +61232,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>ASBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>An association to other Orders</SimpleValue>
+            <SimpleValue>An association to other Orders.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
@@ -61249,7 +61249,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>OriginatorDocumentReference</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Order. Originator_ Document Reference</SimpleValue>
+            <SimpleValue>Order. Originator_ Document Reference. Document Reference</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Order</SimpleValue>
@@ -61273,7 +61273,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>ASBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>An association to an Originator document</SimpleValue>
+            <SimpleValue>An association to an Originator document.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
@@ -61290,7 +61290,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>AdditionalDocumentReference</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Order. Additional_ Document Reference</SimpleValue>
+            <SimpleValue>Order. Additional_ Document Reference. Document Reference</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Order</SimpleValue>
@@ -61314,7 +61314,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>ASBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>An association to other documents</SimpleValue>
+            <SimpleValue>An association to other documents.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>1.0</SimpleValue>
@@ -61352,7 +61352,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>ASBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>An association to a framework agreement or contract</SimpleValue>
+            <SimpleValue>An association to a framework agreement or contract.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
@@ -61407,7 +61407,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>BuyerCustomerParty</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Order. Buyer_ Customer Party</SimpleValue>
+            <SimpleValue>Order. Buyer_ Customer Party. Customer Party</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Order</SimpleValue>
@@ -61431,7 +61431,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>ASBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>An association to the Buyer</SimpleValue>
+            <SimpleValue>An association to the Buyer.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>1.0</SimpleValue>
@@ -61448,7 +61448,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>SellerSupplierParty</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Order. Seller_ Supplier Party</SimpleValue>
+            <SimpleValue>Order. Seller_ Supplier Party. Supplier Party</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Order</SimpleValue>
@@ -61472,7 +61472,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>ASBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>An association to the Seller</SimpleValue>
+            <SimpleValue>An association to the Seller.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>1.0</SimpleValue>
@@ -61489,7 +61489,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>OriginatorCustomerParty</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Order. Originator_ Customer Party</SimpleValue>
+            <SimpleValue>Order. Originator_ Customer Party. Customer Party</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Order</SimpleValue>
@@ -61513,7 +61513,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>ASBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>An association to the Originator</SimpleValue>
+            <SimpleValue>An association to the Originator.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>1.0</SimpleValue>
@@ -61530,7 +61530,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>FreightForwarderParty</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Order. Freight Forwarder_ Party</SimpleValue>
+            <SimpleValue>Order. Freight Forwarder_ Party. Party</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Order</SimpleValue>
@@ -61557,7 +61557,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>ASBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>An association to a Freight Forwarder or Carrier</SimpleValue>
+            <SimpleValue>An association to a Freight Forwarder or Carrier.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>1.0</SimpleValue>
@@ -61574,7 +61574,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>AccountingCustomerParty</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Order. Accounting_ Customer Party</SimpleValue>
+            <SimpleValue>Order. Accounting_ Customer Party. Customer Party</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Order</SimpleValue>
@@ -61598,7 +61598,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>ASBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>An association to the Accounting Customer Party. The party that invoice is expected to be send to if not the buyer party</SimpleValue>
+            <SimpleValue>An association to the Accounting Customer Party. The party that Invoice is expected to be sent to if not the buyer party.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2</SimpleValue>
@@ -61636,7 +61636,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>ASBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>An association to Delivery</SimpleValue>
+            <SimpleValue>An association to Delivery.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>1.0</SimpleValue>
@@ -61674,7 +61674,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>ASBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>An association to Delivery Terms</SimpleValue>
+            <SimpleValue>An association to Delivery Terms.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>1.0</SimpleValue>
@@ -61712,7 +61712,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>ASBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>An association to Payment Means</SimpleValue>
+            <SimpleValue>An association to Payment Means.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>1.0</SimpleValue>
@@ -61791,7 +61791,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>ASBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>An association to Allowances and Charges that apply to the Order as a whole</SimpleValue>
+            <SimpleValue>An association to Allowances and Charges that apply to the Order as a whole.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>1.0</SimpleValue>
@@ -61808,7 +61808,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>DestinationCountry</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Order. Destination_ Country</SimpleValue>
+            <SimpleValue>Order. Destination_ Country. Country</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Order</SimpleValue>
@@ -61832,7 +61832,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>ASBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>An association to the country of destination (for customs purposes)</SimpleValue>
+            <SimpleValue>An association to the country of destination (for customs purposes).</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>1.0</SimpleValue>
@@ -61870,7 +61870,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>ASBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>An association to the total tax amount of the Order (as calculated by the Buyer)</SimpleValue>
+            <SimpleValue>An association to the total tax amount of the Order (as calculated by the Buyer).</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>1.0</SimpleValue>
@@ -61884,22 +61884,25 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>Order</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
-            <SimpleValue>LegalTotal</SimpleValue>
+            <SimpleValue>AnticipatedMonetaryTotal</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Order. Legal Total</SimpleValue>
+            <SimpleValue>Order. Anticipated_ Monetary Total. Monetary Total</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Order</SimpleValue>
          </Value>
+         <Value ColumnRef="PropertyTermQualifier">
+            <SimpleValue>Anticipated</SimpleValue>
+         </Value>
          <Value ColumnRef="PropertyTerm">
-            <SimpleValue>Legal Total</SimpleValue>
+            <SimpleValue>Monetary Total</SimpleValue>
          </Value>
          <Value ColumnRef="RepresentationTerm">
-            <SimpleValue>Legal Total</SimpleValue>
+            <SimpleValue>Monetary Total</SimpleValue>
          </Value>
          <Value ColumnRef="AssociatedObjectClass">
-            <SimpleValue>Legal Total</SimpleValue>
+            <SimpleValue>Monetary Total</SimpleValue>
          </Value>
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..1</SimpleValue>
@@ -61908,10 +61911,13 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>ASBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>An assocation to the total amounts for the Order net of allowances and taxes (as projected by the Buyer)</SimpleValue>
+            <SimpleValue>An assocation to the total amounts for the Order net of allowances and taxes (as projected by the Buyer).</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
-            <SimpleValue>1.0</SimpleValue>
+            <SimpleValue>2.0</SimpleValue>
+         </Value>
+         <Value ColumnRef="AnalystNotes">
+            <SimpleValue>If payable amount is not known e.g. because some tax details are not known the best gues is given or the structure is not used.</SimpleValue>
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
@@ -61946,7 +61952,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>ASBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>An association to one or more Order Lines</SimpleValue>
+            <SimpleValue>An association to one or more Order Lines.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>1.0</SimpleValue>
