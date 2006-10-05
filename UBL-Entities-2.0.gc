@@ -854,7 +854,7 @@
             <SimpleValue>ABIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>A 'wrapper' UBL document that can contain anything. This allows a referenced document to be included in the package of documents being exchanged.</SimpleValue>
+            <SimpleValue>A UBL 'wrapper' that allows a document of any kind to be packaged with the UBL document that references it.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
@@ -1036,7 +1036,7 @@
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>An identifier for the Attached Document. Used as a reference for a business document (the parent).</SimpleValue>
+            <SimpleValue>An identifier for the Attached Document; this ID is used as a reference by the UBL 'parent' document.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
@@ -1077,7 +1077,7 @@
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>A computer-generated universally unique identifier (UUID) for the document instance.</SimpleValue>
+            <SimpleValue>A universally unique identifier for an instance of this ABIE.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
@@ -1546,7 +1546,7 @@
             <SimpleValue>ASBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>An attachement containing the document content.</SimpleValue>
+            <SimpleValue>An attachment containing the document content.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
