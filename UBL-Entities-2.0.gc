@@ -63898,7 +63898,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>A computer-generated universally unique identifier (UUID) for the Order Change instance.</SimpleValue>
+            <SimpleValue>A universally unique identifier for an instance of this ABIE.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
@@ -63989,7 +63989,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The time assigned by the Buyer on which the Order was changed.</SimpleValue>
+            <SimpleValue>The time assigned by the Buyer at which the Order was changed.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>1.0</SimpleValue>
@@ -64517,7 +64517,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>ASBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>An association to the Order being changed.</SimpleValue>
+            <SimpleValue>An association to Order Reference (the reference of the Order being changed).</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
@@ -64561,7 +64561,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>ASBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>An association to a Quotation.</SimpleValue>
+            <SimpleValue>An associative reference to Quotation.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>1.0</SimpleValue>
@@ -64602,7 +64602,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>ASBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>An association to an Originator document.</SimpleValue>
+            <SimpleValue>An associative reference to Originator Document.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
@@ -64643,7 +64643,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>ASBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>An association to other documents.</SimpleValue>
+            <SimpleValue>An associative reference to Additional Document.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>1.0</SimpleValue>
@@ -64681,7 +64681,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>ASBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>An association to a framework agreement or contract.</SimpleValue>
+            <SimpleValue>An association to Contract</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
@@ -64719,7 +64719,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>ASBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>Associates the Order Change with zero or more signatures.</SimpleValue>
+            <SimpleValue>An association to Signature.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>1.0</SimpleValue>
@@ -64924,7 +64924,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>ASBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>An association to the Accounting Customer Party. This will tell where to send the invoice if not the Buyer.</SimpleValue>
+            <SimpleValue>An association to the Accounting Customer Party.</SimpleValue>
          </Value>
          <Value ColumnRef="UNTDEDCode">
             <SimpleValue>3007</SimpleValue>
@@ -64971,7 +64971,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>ASBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>An association to the Accounting Supplier Party. This will tell where from to expect the oinvoice if not the seller. This can be copied from the OrderChange or bilateral agreed.</SimpleValue>
+            <SimpleValue>An association to the Accounting Supplier Party.</SimpleValue>
          </Value>
          <Value ColumnRef="UNTDEDCode">
             <SimpleValue>3029</SimpleValue>
@@ -65129,7 +65129,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>ASBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>Associates the Order Change with a puchasing, sales, or payment condition applying to the whole order.</SimpleValue>
+            <SimpleValue>Associates the Order Change with a purchasing, sales, or payment condition applying to the whole order.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>1.0</SimpleValue>
@@ -65287,7 +65287,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>ASBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>An assocation to the total amounts for the changed Order net of allowances and taxes (as projected by the Buyer).</SimpleValue>
+            <SimpleValue>An association to the total amounts for the Order Change anticipated by the Buyer.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
