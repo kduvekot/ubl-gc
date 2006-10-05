@@ -73231,7 +73231,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>A computer-generated universally unique identifier (UUID) for the Remittance Advice instance.</SimpleValue>
+            <SimpleValue>A universally unique identifier for an instance of this ABIE.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
@@ -73319,7 +73319,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The time assigned by the Debtor on which the Remittance Advice was issued.</SimpleValue>
+            <SimpleValue>The time assigned by the Debtor at which the Remittance Advice was issued.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
@@ -73595,10 +73595,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>A supplementary reference for the Order.</SimpleValue>
-         </Value>
-         <Value ColumnRef="Examples">
-            <SimpleValue>CRI in a purchasing card transaction</SimpleValue>
+            <SimpleValue>A reference to the Payment Order (from the Payer to the Payer's bank).</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
@@ -73642,7 +73639,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>A supplementary reference for the Payee.</SimpleValue>
+            <SimpleValue>The Payer;'s internal reference for the payment.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
@@ -73686,7 +73683,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>A supplementary reference for the InvoicingParty.</SimpleValue>
+            <SimpleValue>The Invoicing Party's reference to the payment, previously requested of the Payer to accompany remittance.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
@@ -73771,7 +73768,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>ASBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>An association to period(s) to which the Invoices related to the Remittance apply.</SimpleValue>
+            <SimpleValue>Associates the Remittance Advice with an Invoicing Period rather than a specific Invoice.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
@@ -73809,7 +73806,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>ASBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>An association to other billing documents.</SimpleValue>
+            <SimpleValue>An association to Billing Reference.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
@@ -73850,7 +73847,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>ASBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>An association to other documents.</SimpleValue>
+            <SimpleValue>An associative reference to Additional Document.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
@@ -73888,7 +73885,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>ASBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>Associates the Remittance Advice with zero or more signatures.</SimpleValue>
+            <SimpleValue>An association to Signature.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
@@ -74087,7 +74084,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>ASBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>Associates the Remittance Advice with summary information for a particular tax.</SimpleValue>
+            <SimpleValue>An association to Tax Total.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>1.0</SimpleValue>
