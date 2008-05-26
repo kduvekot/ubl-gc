@@ -73522,7 +73522,7 @@ to "Invoice. Tax Representative_ Party. Party"</SimpleValue>
             <SimpleValue>Identifier</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTerm">
-            <SimpleValue>Identifier</SimpleValue>
+            <SimpleValue>Customization Identifier</SimpleValue>
          </Value>
          <Value ColumnRef="RepresentationTerm">
             <SimpleValue>Identifier</SimpleValue>
@@ -73548,6 +73548,9 @@ to "Invoice. Tax Representative_ Party. Party"</SimpleValue>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
          </Value>
+         <Value ColumnRef="ChangesforUBL20UpdatePackage">
+            <SimpleValue>H3 formula pasted to H4 and H5</SimpleValue>
+         </Value>
       </Row>
       <Row><!--5-->
          <Value ColumnRef="ModelName">
@@ -73569,7 +73572,7 @@ to "Invoice. Tax Representative_ Party. Party"</SimpleValue>
             <SimpleValue>Identifier</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTerm">
-            <SimpleValue>Identifier</SimpleValue>
+            <SimpleValue>Profile Identifier</SimpleValue>
          </Value>
          <Value ColumnRef="RepresentationTerm">
             <SimpleValue>Identifier</SimpleValue>
@@ -73594,6 +73597,9 @@ to "Invoice. Tax Representative_ Party. Party"</SimpleValue>
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangesforUBL20UpdatePackage">
+            <SimpleValue>H3 formula pasted to H4 and H5</SimpleValue>
          </Value>
       </Row>
       <Row><!--6-->
@@ -74077,13 +74083,16 @@ to "Invoice. Tax Representative_ Party. Party"</SimpleValue>
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>A reference to the Payment Order (from the Payer to the Payer's bank).</SimpleValue>
+            <SimpleValue>An internal reference to the order for payment from the Payer to the Payer's bank.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangesforUBL20UpdatePackage">
+            <SimpleValue>Definition (cell Q16) changed from "A reference to the Payment Order (from the Payer to the Payer's bank)." to "An internal reference to the order for payment from the Payer to the Payer's bank."</SimpleValue>
          </Value>
       </Row>
       <Row><!--17-->
@@ -74121,13 +74130,16 @@ to "Invoice. Tax Representative_ Party. Party"</SimpleValue>
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The Payer;'s internal reference for the payment.</SimpleValue>
+            <SimpleValue>An internal reference to the Payer's order for payment.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangesforUBL20UpdatePackage">
+            <SimpleValue>Definition (cell Q17) changed from "The Payer;'s internal reference for the payment." to "An internal reference to the Payer's order for payment."</SimpleValue>
          </Value>
       </Row>
       <Row><!--18-->
@@ -74165,13 +74177,16 @@ to "Invoice. Tax Representative_ Party. Party"</SimpleValue>
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The Invoicing Party's reference to the payment, previously requested of the Payer to accompany remittance.</SimpleValue>
+            <SimpleValue>An internal reference of the order for payment for the Invoicing Party. This may have been requested by the Payee of the Payer to accompany their remittance.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangesforUBL20UpdatePackage">
+            <SimpleValue>Definition (cell Q18) changed from "The Invoicing Party's reference to the payment, previously requested of the Payer to accompany remittance." to "An internal reference of the order for payment for the Invoicing Party. This may have been requested by the Payee of the Payer to accompany their remittance."</SimpleValue>
          </Value>
       </Row>
       <Row><!--19-->
