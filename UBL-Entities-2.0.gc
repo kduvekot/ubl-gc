@@ -163,6 +163,11 @@
          <LongName>Editor's Notes</LongName>
          <Data Type="string"/>
       </Column>
+      <Column Id="ChangesforUBL20UpdatePackage" Use="optional">
+         <ShortName>ChangesforUBL20UpdatePackage</ShortName>
+         <LongName>Changes for UBL 2.0 Update Package</LongName>
+         <Data Type="string"/>
+      </Column>
       <Key Id="key">
          <ShortName>Key</ShortName>
          <ColumnRef Ref="DictionaryEntryName"/>
