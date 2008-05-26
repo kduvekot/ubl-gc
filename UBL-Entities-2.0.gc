@@ -10155,7 +10155,7 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>2.0</SimpleValue>
          </Value>
          <Value ColumnRef="ChangefromUBL10">
-            <SimpleValue></SimpleValue>
+            <SimpleValue>Extended code list</SimpleValue>
          </Value>
       </Row>
       <Row><!--38-->
@@ -10166,7 +10166,7 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>AllowanceChargeReason</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Allowance Charge. Reason. Text</SimpleValue>
+            <SimpleValue>Allowance Charge. Allowance Charge_ Reason. Text</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Allowance Charge</SimpleValue>
@@ -10197,6 +10197,9 @@ A Bill of Lading can serve as a contractual document between the parties for the
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangeforUBL20UpdatePackage">
+            <SimpleValue>DEN "Allowance Charge. Reason. Text" changed to "Allowance Charge. Allowance Charge_ Reason. Text"</SimpleValue>
          </Value>
       </Row>
       <Row><!--39-->
@@ -10480,13 +10483,13 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The buyer's accounting code as applied to the Allowance Charge expressed as text.</SimpleValue>
+            <SimpleValue>The buyer's accounting cost centre as applied to the Allowance Charge expressed as text.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
          </Value>
          <Value ColumnRef="ChangeforUBL20UpdatePackage">
-            <SimpleValue></SimpleValue>
+            <SimpleValue>Definition (cell Q45) changed from "The buyer's accounting code as applied to the Allowance Charge expressed as text." to "The buyer's accounting cost centre as applied to the Allowance Charge expressed as text."</SimpleValue>
          </Value>
       </Row>
       <Row><!--46-->
