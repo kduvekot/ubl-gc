@@ -56250,7 +56250,7 @@ to "An association to the Delivery Customer Party."</SimpleValue>
             <SimpleValue>Forwarding Instructions</SimpleValue>
          </Value>
          <Value ColumnRef="AlternativeBusinessTerms">
-            <SimpleValue>Forwarding Instruction</SimpleValue>
+            <SimpleValue>Forwarding Instruction, Freight Forwarding Instruction, Shippers Letter of Instruction, Shipper's Letter of Instruction, Shipping Instruction</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentType">
             <SimpleValue>ABIE</SimpleValue>
@@ -56263,6 +56263,9 @@ to "An association to the Delivery Customer Party."</SimpleValue>
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Transportation</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangesforUBL20UpdatePackage">
+            <SimpleValue>Text "Freight Forwarding Instruction, Shippers Letter of Instruction" moved from Alternative Business Terms for ID (cell N6) to Alternative Business Terms for the document itself (cell N2), joining "Forwarding Instruction"; "Shipping Instruction" and "Shipper's Letter of Instruction" (with apostrophe) added to Alternative Business Terms in the same cell</SimpleValue>
          </Value>
       </Row>
       <Row><!--3-->
@@ -56332,7 +56335,7 @@ to "An association to the Delivery Customer Party."</SimpleValue>
             <SimpleValue>Identifier</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTerm">
-            <SimpleValue>Identifier</SimpleValue>
+            <SimpleValue>Customization Identifier</SimpleValue>
          </Value>
          <Value ColumnRef="RepresentationTerm">
             <SimpleValue>Identifier</SimpleValue>
@@ -56358,6 +56361,9 @@ to "An association to the Delivery Customer Party."</SimpleValue>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Transportation</SimpleValue>
          </Value>
+         <Value ColumnRef="ChangesforUBL20UpdatePackage">
+            <SimpleValue>H3 formula pasted to H4 and H5</SimpleValue>
+         </Value>
       </Row>
       <Row><!--5-->
          <Value ColumnRef="ModelName">
@@ -56379,7 +56385,7 @@ to "An association to the Delivery Customer Party."</SimpleValue>
             <SimpleValue>Identifier</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTerm">
-            <SimpleValue>Identifier</SimpleValue>
+            <SimpleValue>Profile Identifier</SimpleValue>
          </Value>
          <Value ColumnRef="RepresentationTerm">
             <SimpleValue>Identifier</SimpleValue>
@@ -56404,6 +56410,9 @@ to "An association to the Delivery Customer Party."</SimpleValue>
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Transportation</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangesforUBL20UpdatePackage">
+            <SimpleValue>H3 formula pasted to H4 and H5</SimpleValue>
          </Value>
       </Row>
       <Row><!--6-->
@@ -56431,9 +56440,6 @@ to "An association to the Delivery Customer Party."</SimpleValue>
          <Value ColumnRef="DataType">
             <SimpleValue>Identifier. Type</SimpleValue>
          </Value>
-         <Value ColumnRef="AlternativeBusinessTerms">
-            <SimpleValue>Freight Forwarding Instruction, Shippers Letter of Instruction</SimpleValue>
-         </Value>
          <Value ColumnRef="Cardinality">
             <SimpleValue>1</SimpleValue>
          </Value>
@@ -56441,7 +56447,7 @@ to "An association to the Delivery Customer Party."</SimpleValue>
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>Unique identifier of the Forwarding Instructions. Reference number to identify a Shipping Instruction.</SimpleValue>
+            <SimpleValue>Unique identifier of the Forwarding Instructions.</SimpleValue>
          </Value>
          <Value ColumnRef="UNTDEDCode">
             <SimpleValue>1121</SimpleValue>
@@ -56451,6 +56457,9 @@ to "An association to the Delivery Customer Party."</SimpleValue>
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Transportation</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangesforUBL20UpdatePackage">
+            <SimpleValue>Definition (cell Q6) changed from "Unique identifier of the Forwarding Instructions. Reference number to identify a Shipping Instruction." to "Unique identifier of the Forwarding Instructions."</SimpleValue>
          </Value>
       </Row>
       <Row><!--7-->
@@ -56705,13 +56714,16 @@ to "An association to the Delivery Customer Party."</SimpleValue>
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>Description of the type of Forwarding Instructions.</SimpleValue>
+            <SimpleValue>Textual description of the document instance.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Transportation</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangesforUBL20UpdatePackage">
+            <SimpleValue>Definition (cell Q12) changed from "Description of the type of Forwarding Instructions." to "Textual description of the document instance."</SimpleValue>
          </Value>
       </Row>
       <Row><!--13-->
@@ -57201,13 +57213,16 @@ to "An association to the Delivery Customer Party."</SimpleValue>
             <SimpleValue>ASBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>Information about the separately identifiable collection of goods items (available to be) transported from one consignor to one consignee via one or more modes of transport.</SimpleValue>
+            <SimpleValue>An association to Shipment.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Transportation</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangesforUBL20UpdatePackage">
+            <SimpleValue>Definition changed from "Information about the separately identifiable collection of goods items (available to be) transported from one consignor to one consignee via one or more modes of transport." to "An association to Shipment."</SimpleValue>
          </Value>
       </Row>
       <Row><!--24-->
