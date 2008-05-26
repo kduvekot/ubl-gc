@@ -25819,7 +25819,7 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>Quantity</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Goods Item. Quantity. Quantity</SimpleValue>
+            <SimpleValue>Goods Item. Quantity</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Goods Item</SimpleValue>
@@ -25851,6 +25851,10 @@ A Bill of Lading can serve as a contractual document between the parties for the
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Transportation</SimpleValue>
          </Value>
+         <Value ColumnRef="ChangeforUBL20UpdatePackage">
+            <SimpleValue>DEN "Goods Item. Quantity. Quantity" changed to
+"Goods Item. Quantity"</SimpleValue>
+         </Value>
       </Row>
       <Row><!--424-->
          <Value ColumnRef="ModelName">
@@ -25866,13 +25870,13 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>Goods Item</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTermPossessiveNoun">
-            <SimpleValue>Preference</SimpleValue>
+            <SimpleValue>Preference Criterion</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTermPrimaryNoun">
-            <SimpleValue>Criterion</SimpleValue>
+            <SimpleValue>Code</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTerm">
-            <SimpleValue>Preference Criterion</SimpleValue>
+            <SimpleValue>Preference Criterion Code</SimpleValue>
          </Value>
          <Value ColumnRef="RepresentationTerm">
             <SimpleValue>Code</SimpleValue>
@@ -25907,6 +25911,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Transportation</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangeforUBL20UpdatePackage">
+            <SimpleValue>Cell G424 changed from "Criterion" to "Code"; cell F424 changed from "Preference" to "Preference Criterion"</SimpleValue>
          </Value>
       </Row>
       <Row><!--425-->
