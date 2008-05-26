@@ -22660,7 +22660,7 @@ A Bill of Lading can serve as a contractual document between the parties for the
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
          </Value>
-         <Value ColumnRef="ChangefromPreviousVersion">
+         <Value ColumnRef="ChangefromUBL10">
             <SimpleValue>changed property terms</SimpleValue>
          </Value>
       </Row>
@@ -22734,10 +22734,13 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>A description of the attribute or measurement of the attribute.</SimpleValue>
+            <SimpleValue>A description of the measurement attribute.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>1.0</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangeforUBL20UpdatePackage">
+            <SimpleValue>Definition (cell Q346) changed from "A description of the attribute or measurement of the attribute." to "A description of the measurement attribute."</SimpleValue>
          </Value>
       </Row>
       <Row><!--347-->
