@@ -75966,6 +75966,9 @@ to "Invoice. Tax Representative_ Party. Party"</SimpleValue>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Transportation</SimpleValue>
          </Value>
+         <Value ColumnRef="ChangesforUBL20UpdatePackage">
+            <SimpleValue>H3 formula pasted to H4 and H5</SimpleValue>
+         </Value>
       </Row>
       <Row><!--5-->
          <Value ColumnRef="ModelName">
@@ -76013,6 +76016,9 @@ to "Invoice. Tax Representative_ Party. Party"</SimpleValue>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Transportation</SimpleValue>
          </Value>
+         <Value ColumnRef="ChangesforUBL20UpdatePackage">
+            <SimpleValue>H3 formula pasted to H4 and H5</SimpleValue>
+         </Value>
       </Row>
       <Row><!--6-->
          <Value ColumnRef="ModelName">
@@ -76039,9 +76045,6 @@ to "Invoice. Tax Representative_ Party. Party"</SimpleValue>
          <Value ColumnRef="DataType">
             <SimpleValue>Identifier. Type</SimpleValue>
          </Value>
-         <Value ColumnRef="AlternativeBusinessTerms">
-            <SimpleValue>Freight Forwarding Instruction, Shippers Letter of Instruction</SimpleValue>
-         </Value>
          <Value ColumnRef="Cardinality">
             <SimpleValue>1</SimpleValue>
          </Value>
@@ -76056,6 +76059,9 @@ to "Invoice. Tax Representative_ Party. Party"</SimpleValue>
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Transportation</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangesforUBL20UpdatePackage">
+            <SimpleValue>Deleted contents of Alternative Business Terms (cell N6)</SimpleValue>
          </Value>
       </Row>
       <Row><!--7-->
@@ -76310,13 +76316,16 @@ to "Invoice. Tax Representative_ Party. Party"</SimpleValue>
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>Textual description of a status message.</SimpleValue>
+            <SimpleValue>Textual description of the document instance.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Transportation</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangesforUBL20UpdatePackage">
+            <SimpleValue>Definition (cell Q12) changed from "Textual description of a status message." to "Textual description of the document instance."</SimpleValue>
          </Value>
       </Row>
       <Row><!--13-->
@@ -76483,13 +76492,16 @@ to "Invoice. Tax Representative_ Party. Party"</SimpleValue>
             <SimpleValue>ASBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>An association to Consignment covered by the status message.</SimpleValue>
+            <SimpleValue>An association to Consignment.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Transportation</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangesforUBL20UpdatePackage">
+            <SimpleValue>Changed definition (cell Q16) from "An association to Consignment covered by the status message." to "An association to Consignment."</SimpleValue>
          </Value>
       </Row>
       <Row><!--17-->
