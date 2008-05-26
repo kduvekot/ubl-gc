@@ -41217,7 +41217,7 @@ cell F577 changed from "Inspection" to "Inspection Method"</SimpleValue>
             <SimpleValue>Procurement</SimpleValue>
          </Value>
          <Value ColumnRef="ChangefromUBL10">
-            <SimpleValue></SimpleValue>
+            <SimpleValue>Changed property term and changed from GUID to UUID</SimpleValue>
          </Value>
       </Row>
       <Row><!--811-->
@@ -41410,7 +41410,7 @@ cell F577 changed from "Inspection" to "Inspection Method"</SimpleValue>
             <SimpleValue>AccountingCost</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Reminder Line. Accounting Cost Text. Text</SimpleValue>
+            <SimpleValue>Reminder Line. Accounting Cost. Text</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Reminder Line</SimpleValue>
@@ -41434,13 +41434,16 @@ cell F577 changed from "Inspection" to "Inspection Method"</SimpleValue>
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The buyer's accounting code applied to the Reminder Line, expressed as text.</SimpleValue>
+            <SimpleValue>The buyer's accounting cost centre applied to the Reminder Line, expressed as text.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangeforUBL20UpdatePackage">
+            <SimpleValue>Definition (cell Q815) changed from "The buyer's accounting code applied to the Reminder Line, expressed as text." to "The buyer's accounting cost centre applied to the Reminder Line, expressed as text."; DEN (cell B815) changed from "Reminder Line. Accounting Cost Text. Text" to "Reminder Line. Accounting Cost. Text"</SimpleValue>
          </Value>
       </Row>
       <Row><!--816-->
