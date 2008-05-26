@@ -42957,20 +42957,21 @@ cell F577 changed from "Inspection" to "Inspection Method"</SimpleValue>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Shipment</SimpleValue>
          </Value>
-         <Value ColumnRef="AlternativeBusinessTerms">
-            <SimpleValue>Consignment</SimpleValue>
-         </Value>
          <Value ColumnRef="ComponentType">
             <SimpleValue>ABIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>Information about a shipment.</SimpleValue>
+            <SimpleValue>An identifiable collection of one or more goods items to be transported between the seller party and the buyer party. This information may be defined within a commercial contract. A shipment can be transported in different consignments (e.g., split for logistical purposes).</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Transportation</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangeforUBL20UpdatePackage">
+            <SimpleValue>(a) Definition (cell Q854) changed from "Information about a shipment." to "An identifiable collection of one or more goods items to be transported between the seller party and the buyer party. This information may be defined within a commercial contract. A shipment can be transported in different consignments (e.g., split for logistical purposes)."
+(b) "Consignment" removed from Alternative Business Terms (cell N854)</SimpleValue>
          </Value>
       </Row>
       <Row><!--855-->
@@ -43031,13 +43032,13 @@ cell F577 changed from "Inspection" to "Inspection Method"</SimpleValue>
             <SimpleValue>Shipment</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTermPossessiveNoun">
-            <SimpleValue>Shipping Priority</SimpleValue>
+            <SimpleValue>Shipping Priority Level</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTermPrimaryNoun">
-            <SimpleValue>Level</SimpleValue>
+            <SimpleValue>Code</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTerm">
-            <SimpleValue>Shipping Priority Level</SimpleValue>
+            <SimpleValue>Shipping Priority Level Code</SimpleValue>
          </Value>
          <Value ColumnRef="RepresentationTerm">
             <SimpleValue>Code</SimpleValue>
@@ -43062,6 +43063,10 @@ cell F577 changed from "Inspection" to "Inspection Method"</SimpleValue>
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Transportation</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangeforUBL20UpdatePackage">
+            <SimpleValue>Cell G856 changed from "Level" to "Code";
+cell F856 changed from "Shipping Priority" to "Shipping Priority Level"</SimpleValue>
          </Value>
       </Row>
       <Row><!--857-->
@@ -43465,6 +43470,12 @@ cell F577 changed from "Inspection" to "Inspection Method"</SimpleValue>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
          </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Transportation</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangeforUBL20UpdatePackage">
+            <SimpleValue>"Transportation" entered in cell W865</SimpleValue>
+         </Value>
       </Row>
       <Row><!--866-->
          <Value ColumnRef="ModelName">
@@ -43511,6 +43522,12 @@ cell F577 changed from "Inspection" to "Inspection Method"</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Transportation</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangeforUBL20UpdatePackage">
+            <SimpleValue>"Transportation" entered in cell W866</SimpleValue>
          </Value>
       </Row>
       <Row><!--867-->
@@ -44146,7 +44163,7 @@ cell F577 changed from "Inspection" to "Inspection Method"</SimpleValue>
             <SimpleValue>Shipment</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTermQualifier">
-            <SimpleValue>First Arrival Port </SimpleValue>
+            <SimpleValue>First Arrival Port</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTerm">
             <SimpleValue>Location</SimpleValue>
@@ -44175,6 +44192,9 @@ cell F577 changed from "Inspection" to "Inspection Method"</SimpleValue>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Transportation</SimpleValue>
          </Value>
+         <Value ColumnRef="ChangeforUBL20UpdatePackage">
+            <SimpleValue>Cell E881 changed to remove trailing space</SimpleValue>
+         </Value>
       </Row>
       <Row><!--882-->
          <Value ColumnRef="ModelName">
@@ -44190,7 +44210,7 @@ cell F577 changed from "Inspection" to "Inspection Method"</SimpleValue>
             <SimpleValue>Shipment</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTermQualifier">
-            <SimpleValue>Last Exit Port </SimpleValue>
+            <SimpleValue>Last Exit Port</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTerm">
             <SimpleValue>Location</SimpleValue>
@@ -44215,6 +44235,9 @@ cell F577 changed from "Inspection" to "Inspection Method"</SimpleValue>
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Transportation</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangeforUBL20UpdatePackage">
+            <SimpleValue>Cell E882 changed to remove trailing space</SimpleValue>
          </Value>
       </Row>
       <Row><!--883-->
