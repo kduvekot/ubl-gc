@@ -40196,7 +40196,7 @@ cell F577 changed from "Inspection" to "Inspection Method"</SimpleValue>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
          </Value>
-         <Value ColumnRef="ChangefromPreviousVersion">
+         <Value ColumnRef="ChangefromUBL10">
             <SimpleValue>Changed from GUID to UUID</SimpleValue>
          </Value>
       </Row>
@@ -40584,13 +40584,16 @@ cell F577 changed from "Inspection" to "Inspection Method"</SimpleValue>
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The quanitity over-supplied i.e. the quantity over and above that ordered.</SimpleValue>
+            <SimpleValue>The quantity over-supplied, i.e., the quantity over and above that ordered.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangeforUBL20UpdatePackage">
+            <SimpleValue>Definition (cell 794) changed from "The quanitity over-supplied i.e. the quantity over and above that ordered." to "The quantity over-supplied, i.e., the quantity over and above that ordered."</SimpleValue>
          </Value>
       </Row>
       <Row><!--795-->
@@ -40645,7 +40648,7 @@ cell F577 changed from "Inspection" to "Inspection Method"</SimpleValue>
             <SimpleValue>TimingComplaintCode</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Receipt Line. Timing Complaint. Code</SimpleValue>
+            <SimpleValue>Receipt Line. Timing Complaint Code. Code</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Receipt Line</SimpleValue>
@@ -40679,6 +40682,10 @@ cell F577 changed from "Inspection" to "Inspection Method"</SimpleValue>
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangeforUBL20UpdatePackage">
+            <SimpleValue>DEN "Receipt Line. Timing Complaint. Code" changed to
+"Receipt Line. Timing Complaint Code. Code"</SimpleValue>
          </Value>
       </Row>
       <Row><!--797-->
