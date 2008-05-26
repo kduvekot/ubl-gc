@@ -28019,7 +28019,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
          </Value>
-         <Value ColumnRef="ChangefromPreviousVersion">
+         <Value ColumnRef="ChangefromUBL10">
             <SimpleValue>Changed from GUID to UUID</SimpleValue>
          </Value>
       </Row>
@@ -28272,13 +28272,16 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The buyer's accounting code applied to the Invoice Line, expressed as text.</SimpleValue>
+            <SimpleValue>The buyer's accounting cost centre applied to the Invoice Line, expressed as text.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangeforUBL20UpdatePackage">
+            <SimpleValue>Definition (cell Q480) changed from "The buyer's accounting code applied to the Invoice Line, expressed as text." to "The buyer's accounting cost centre applied to the Invoice Line, expressed as text."</SimpleValue>
          </Value>
       </Row>
       <Row><!--481-->
@@ -28827,7 +28830,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
          </Value>
-         <Value ColumnRef="ChangefromPreviousVersion">
+         <Value ColumnRef="ChangefromUBL10">
             <SimpleValue>Changed from Baseprice</SimpleValue>
          </Value>
       </Row>
