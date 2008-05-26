@@ -13563,13 +13563,16 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>An identifier for the Catalogue document.</SimpleValue>
+            <SimpleValue>Identifies a reference to a Catalogue document.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangeforUBL20UpdatePackage">
+            <SimpleValue>Definition (cell Q121) changed from "An identifier for the Catalogue document." to "Identifies a reference to a Catalogue document."</SimpleValue>
          </Value>
       </Row>
       <Row><!--122-->
@@ -13612,7 +13615,7 @@ A Bill of Lading can serve as a contractual document between the parties for the
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
          </Value>
-         <Value ColumnRef="ChangefromPreviousVersion">
+         <Value ColumnRef="ChangefromUBL10">
             <SimpleValue>Changed from GUID to UUID</SimpleValue>
          </Value>
       </Row>
