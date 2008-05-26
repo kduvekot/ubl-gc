@@ -50086,7 +50086,7 @@ cell F856 changed from "Shipping Priority" to "Shipping Priority Level"</SimpleV
             <SimpleValue>TransportEventTypeCode</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Transport Event. Transport Event Type. Code</SimpleValue>
+            <SimpleValue>Transport Event. Transport Event Type Code. Code</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Transport Event</SimpleValue>
@@ -50120,6 +50120,10 @@ cell F856 changed from "Shipping Priority" to "Shipping Priority Level"</SimpleV
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Transportation</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangeforUBL20UpdatePackage">
+            <SimpleValue>DEN "Transport Event. Transport Event Type. Code" changed to
+"Transport Event. Transport Event Type Code. Code"</SimpleValue>
          </Value>
       </Row>
       <Row><!--1028-->
