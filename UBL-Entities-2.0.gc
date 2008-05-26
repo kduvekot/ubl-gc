@@ -163,6 +163,11 @@
          <LongName>Editor's Notes</LongName>
          <Data Type="string"/>
       </Column>
+      <Column Id="ChangesforUBL20UpdatePackage" Use="optional">
+         <ShortName>ChangesforUBL20UpdatePackage</ShortName>
+         <LongName>Changes for UBL 2.0 Update Package</LongName>
+         <Data Type="string"/>
+      </Column>
       <Key Id="key">
          <ShortName>Key</ShortName>
          <ColumnRef Ref="DictionaryEntryName"/>
@@ -288,6 +293,9 @@
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
          </Value>
+         <Value ColumnRef="ChangesforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
+         </Value>
       </Row>
       <Row><!--5-->
          <Value ColumnRef="ModelName">
@@ -334,6 +342,9 @@
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangesforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--6-->
@@ -956,6 +967,9 @@
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
          </Value>
+         <Value ColumnRef="ChangeforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
+         </Value>
       </Row>
       <Row><!--5-->
          <Value ColumnRef="ModelName">
@@ -1002,6 +1016,9 @@
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangeforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--6-->
@@ -1585,6 +1602,9 @@ A Bill of Lading can serve as a contractual document between the parties for the
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Transportation</SimpleValue>
          </Value>
+         <Value ColumnRef="ChangesforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
+         </Value>
       </Row>
       <Row><!--3-->
          <Value ColumnRef="ModelName">
@@ -1673,6 +1693,9 @@ A Bill of Lading can serve as a contractual document between the parties for the
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
          </Value>
+         <Value ColumnRef="ChangesforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
+         </Value>
       </Row>
       <Row><!--5-->
          <Value ColumnRef="ModelName">
@@ -1716,6 +1739,9 @@ A Bill of Lading can serve as a contractual document between the parties for the
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangesforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--6-->
@@ -1846,15 +1872,6 @@ A Bill of Lading can serve as a contractual document between the parties for the
          <Value ColumnRef="Definition">
             <SimpleValue>A universally unique identifier for an instance of this ABIE.</SimpleValue>
          </Value>
-         <Value ColumnRef="UNTDEDCode">
-            <SimpleValue>2417</SimpleValue>
-         </Value>
-         <Value ColumnRef="CurrentVersion">
-            <SimpleValue>2.0</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextBusinessProcess">
-            <SimpleValue>Transportation</SimpleValue>
-         </Value>
       </Row>
       <Row><!--9-->
          <Value ColumnRef="ModelName">
@@ -1943,8 +1960,8 @@ A Bill of Lading can serve as a contractual document between the parties for the
          <Value ColumnRef="Definition">
             <SimpleValue>Time at which the Bill Of Lading was issued.</SimpleValue>
          </Value>
-         <Value ColumnRef="Examples">
-            <SimpleValue>"House Bill", "Consolidated Bill of Lading", "Proforma"</SimpleValue>
+         <Value ColumnRef="UNTDEDCode">
+            <SimpleValue></SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
@@ -1987,11 +2004,17 @@ A Bill of Lading can serve as a contractual document between the parties for the
          <Value ColumnRef="Definition">
             <SimpleValue>The business name given to the document type.</SimpleValue>
          </Value>
+         <Value ColumnRef="Examples">
+            <SimpleValue></SimpleValue>
+         </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Transportation</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangesforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--12-->
@@ -2033,6 +2056,9 @@ A Bill of Lading can serve as a contractual document between the parties for the
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Transportation</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangesforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--13-->
@@ -2116,9 +2142,6 @@ A Bill of Lading can serve as a contractual document between the parties for the
          <Value ColumnRef="Definition">
             <SimpleValue>Indicates the status of the Bill Of Lading (revision, replacement, etc.).</SimpleValue>
          </Value>
-         <Value ColumnRef="UNTDEDCode">
-            <SimpleValue>1121</SimpleValue>
-         </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
          </Value>
@@ -2165,6 +2188,9 @@ A Bill of Lading can serve as a contractual document between the parties for the
          </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>Reference number to identify a Shipping Order or Forwarding Instruction.</SimpleValue>
+         </Value>
+         <Value ColumnRef="UNTDEDCode">
+            <SimpleValue></SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
@@ -2253,9 +2279,6 @@ A Bill of Lading can serve as a contractual document between the parties for the
          </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>A term used in commerce in reference to certain duties, called ad valorem duties, which are levied on commodities at certain rates per centum on their value.</SimpleValue>
-         </Value>
-         <Value ColumnRef="UNTDEDCode">
-            <SimpleValue>5036</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
@@ -2495,6 +2518,9 @@ A Bill of Lading can serve as a contractual document between the parties for the
          <Value ColumnRef="Definition">
             <SimpleValue>The party combining individual smaller consignments into a single larger shipment (so called consolidated shipment) that is sent to a counterpart who mirrors the consolidator's activity by dividing the consolidated consignment into its original components.</SimpleValue>
          </Value>
+         <Value ColumnRef="UNTDEDCode">
+            <SimpleValue></SimpleValue>
+         </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
          </Value>
@@ -2538,6 +2564,9 @@ A Bill of Lading can serve as a contractual document between the parties for the
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Transportation</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangesforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--24-->
@@ -2652,6 +2681,9 @@ A Bill of Lading can serve as a contractual document between the parties for the
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Transportation</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangesforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--27-->
@@ -2805,6 +2837,9 @@ A Bill of Lading can serve as a contractual document between the parties for the
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
          </Value>
+         <Value ColumnRef="ChangesforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
+         </Value>
       </Row>
       <Row><!--5-->
          <Value ColumnRef="ModelName">
@@ -2848,6 +2883,9 @@ A Bill of Lading can serve as a contractual document between the parties for the
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangesforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--6-->
@@ -2974,6 +3012,9 @@ A Bill of Lading can serve as a contractual document between the parties for the
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangesforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--9-->
@@ -3235,6 +3276,9 @@ A Bill of Lading can serve as a contractual document between the parties for the
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangesforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--15-->
@@ -3845,6 +3889,9 @@ A Bill of Lading can serve as a contractual document between the parties for the
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
          </Value>
+         <Value ColumnRef="ChangesforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
+         </Value>
       </Row>
       <Row><!--5-->
          <Value ColumnRef="ModelName">
@@ -3888,6 +3935,9 @@ A Bill of Lading can serve as a contractual document between the parties for the
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangesforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--6-->
@@ -4228,6 +4278,9 @@ A Bill of Lading can serve as a contractual document between the parties for the
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangesforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--14-->
@@ -4668,6 +4721,9 @@ A Bill of Lading can serve as a contractual document between the parties for the
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
          </Value>
+         <Value ColumnRef="ChangesforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
+         </Value>
       </Row>
       <Row><!--5-->
          <Value ColumnRef="ModelName">
@@ -4711,6 +4767,9 @@ A Bill of Lading can serve as a contractual document between the parties for the
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangesforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--6-->
@@ -5098,6 +5157,9 @@ A Bill of Lading can serve as a contractual document between the parties for the
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangesforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--15-->
@@ -5743,6 +5805,9 @@ A Bill of Lading can serve as a contractual document between the parties for the
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
          </Value>
+         <Value ColumnRef="ChangesforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
+         </Value>
       </Row>
       <Row><!--5-->
          <Value ColumnRef="ModelName">
@@ -5786,6 +5851,9 @@ A Bill of Lading can serve as a contractual document between the parties for the
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangesforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--6-->
@@ -6173,6 +6241,9 @@ A Bill of Lading can serve as a contractual document between the parties for the
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangesforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--15-->
@@ -6818,6 +6889,9 @@ A Bill of Lading can serve as a contractual document between the parties for the
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
          </Value>
+         <Value ColumnRef="ChangesforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
+         </Value>
       </Row>
       <Row><!--5-->
          <Value ColumnRef="ModelName">
@@ -6862,6 +6936,9 @@ A Bill of Lading can serve as a contractual document between the parties for the
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
          </Value>
+         <Value ColumnRef="ChangesforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
+         </Value>
       </Row>
       <Row><!--6-->
          <Value ColumnRef="ModelName">
@@ -6902,6 +6979,9 @@ A Bill of Lading can serve as a contractual document between the parties for the
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangesforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--7-->
@@ -7160,6 +7240,9 @@ A Bill of Lading can serve as a contractual document between the parties for the
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangesforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--13-->
@@ -7943,6 +8026,9 @@ A Bill of Lading can serve as a contractual document between the parties for the
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Transportation</SimpleValue>
          </Value>
+         <Value ColumnRef="ChangesforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
+         </Value>
       </Row>
       <Row><!--5-->
          <Value ColumnRef="ModelName">
@@ -7989,6 +8075,9 @@ A Bill of Lading can serve as a contractual document between the parties for the
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Transportation</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangesforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--6-->
@@ -8209,6 +8298,9 @@ A Bill of Lading can serve as a contractual document between the parties for the
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Transportation</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangesforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--11-->
@@ -9532,8 +9624,8 @@ A Bill of Lading can serve as a contractual document between the parties for the
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
          </Value>
-         <Value ColumnRef="ChangefromPreviousVersion">
-            <SimpleValue>changed property terms</SimpleValue>
+         <Value ColumnRef="ChangefromUBL10">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--24-->
@@ -9702,8 +9794,8 @@ A Bill of Lading can serve as a contractual document between the parties for the
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
          </Value>
-         <Value ColumnRef="ChangefromPreviousVersion">
-            <SimpleValue>extended cardinality</SimpleValue>
+         <Value ColumnRef="ChangefromUBL10">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--28-->
@@ -9839,8 +9931,8 @@ A Bill of Lading can serve as a contractual document between the parties for the
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
          </Value>
-         <Value ColumnRef="ChangefromPreviousVersion">
-            <SimpleValue>extended cardinality</SimpleValue>
+         <Value ColumnRef="ChangefromUBL10">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--32-->
@@ -10061,8 +10153,8 @@ A Bill of Lading can serve as a contractual document between the parties for the
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
          </Value>
-         <Value ColumnRef="ChangefromPreviousVersion">
-            <SimpleValue>Extended code list</SimpleValue>
+         <Value ColumnRef="ChangefromUBL10">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--38-->
@@ -10391,6 +10483,9 @@ A Bill of Lading can serve as a contractual document between the parties for the
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangeforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--46-->
@@ -10972,6 +11067,9 @@ A Bill of Lading can serve as a contractual document between the parties for the
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangeforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--62-->
@@ -12567,6 +12665,9 @@ A Bill of Lading can serve as a contractual document between the parties for the
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
          </Value>
+         <Value ColumnRef="ChangeforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
+         </Value>
       </Row>
       <Row><!--100-->
          <Value ColumnRef="ModelName">
@@ -13454,6 +13555,9 @@ A Bill of Lading can serve as a contractual document between the parties for the
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
          </Value>
+         <Value ColumnRef="ChangeforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
+         </Value>
       </Row>
       <Row><!--122-->
          <Value ColumnRef="ModelName">
@@ -13495,8 +13599,8 @@ A Bill of Lading can serve as a contractual document between the parties for the
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
          </Value>
-         <Value ColumnRef="ChangefromPreviousVersion">
-            <SimpleValue>Changed from GUID to UUID</SimpleValue>
+         <Value ColumnRef="ChangefromUBL10">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--123-->
@@ -14154,6 +14258,9 @@ A Bill of Lading can serve as a contractual document between the parties for the
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Transportation</SimpleValue>
          </Value>
+         <Value ColumnRef="ChangeforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
+         </Value>
       </Row>
       <Row><!--139-->
          <Value ColumnRef="ModelName">
@@ -14455,6 +14562,9 @@ A Bill of Lading can serve as a contractual document between the parties for the
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Transportation</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangeforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--146-->
@@ -15029,8 +15139,8 @@ A Bill of Lading can serve as a contractual document between the parties for the
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
          </Value>
-         <Value ColumnRef="ChangefromPreviousVersion">
-            <SimpleValue>Changed from GUID to UUID</SimpleValue>
+         <Value ColumnRef="ChangefromUBL10">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--161-->
@@ -15897,6 +16007,9 @@ A Bill of Lading can serve as a contractual document between the parties for the
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Transportation</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangeforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--183-->
@@ -17261,6 +17374,9 @@ A Bill of Lading can serve as a contractual document between the parties for the
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Transportation</SimpleValue>
          </Value>
+         <Value ColumnRef="ChangeforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
+         </Value>
       </Row>
       <Row><!--212-->
          <Value ColumnRef="ModelName">
@@ -18559,8 +18675,8 @@ A Bill of Lading can serve as a contractual document between the parties for the
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
          </Value>
-         <Value ColumnRef="ChangefromPreviousVersion">
-            <SimpleValue>Changed from GUID to UUID</SimpleValue>
+         <Value ColumnRef="ChangefromUBL10">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--246-->
@@ -18819,6 +18935,9 @@ A Bill of Lading can serve as a contractual document between the parties for the
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangeforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--252-->
@@ -19212,8 +19331,8 @@ A Bill of Lading can serve as a contractual document between the parties for the
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
          </Value>
-         <Value ColumnRef="ChangefromPreviousVersion">
-            <SimpleValue>Changed from Baseprice</SimpleValue>
+         <Value ColumnRef="ChangefromUBL10">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--262-->
@@ -19651,8 +19770,8 @@ A Bill of Lading can serve as a contractual document between the parties for the
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
          </Value>
-         <Value ColumnRef="ChangefromPreviousVersion">
-            <SimpleValue>Changed from GUID to UUID</SimpleValue>
+         <Value ColumnRef="ChangefromUBL10">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--273-->
@@ -19911,6 +20030,9 @@ A Bill of Lading can serve as a contractual document between the parties for the
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangeforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--279-->
@@ -20304,8 +20426,8 @@ A Bill of Lading can serve as a contractual document between the parties for the
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
          </Value>
-         <Value ColumnRef="ChangefromPreviousVersion">
-            <SimpleValue>Changed from Baseprice</SimpleValue>
+         <Value ColumnRef="ChangefromUBL10">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--289-->
@@ -21927,8 +22049,8 @@ A Bill of Lading can serve as a contractual document between the parties for the
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
          </Value>
-         <Value ColumnRef="ChangefromPreviousVersion">
-            <SimpleValue>Changed from GUID to UUID</SimpleValue>
+         <Value ColumnRef="ChangefromUBL10">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--331-->
@@ -22498,8 +22620,8 @@ A Bill of Lading can serve as a contractual document between the parties for the
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
          </Value>
-         <Value ColumnRef="ChangefromPreviousVersion">
-            <SimpleValue>changed property terms</SimpleValue>
+         <Value ColumnRef="ChangefromUBL10">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--345-->
@@ -22576,6 +22698,9 @@ A Bill of Lading can serve as a contractual document between the parties for the
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>1.0</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangeforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--347-->
@@ -22904,8 +23029,8 @@ A Bill of Lading can serve as a contractual document between the parties for the
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
          </Value>
-         <Value ColumnRef="ChangefromPreviousVersion">
-            <SimpleValue>made mandatory</SimpleValue>
+         <Value ColumnRef="ChangefromUBL10">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--356-->
@@ -22945,8 +23070,8 @@ A Bill of Lading can serve as a contractual document between the parties for the
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
          </Value>
-         <Value ColumnRef="ChangefromPreviousVersion">
-            <SimpleValue>Changed from GUID to UUID</SimpleValue>
+         <Value ColumnRef="ChangefromUBL10">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--357-->
@@ -23170,8 +23295,8 @@ A Bill of Lading can serve as a contractual document between the parties for the
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
          </Value>
-         <Value ColumnRef="ChangefromPreviousVersion">
-            <SimpleValue>Y</SimpleValue>
+         <Value ColumnRef="ChangefromUBL10">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--363-->
@@ -25743,6 +25868,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Transportation</SimpleValue>
          </Value>
+         <Value ColumnRef="ChangeforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
+         </Value>
       </Row>
       <Row><!--425-->
          <Value ColumnRef="ModelName">
@@ -27426,8 +27554,8 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>1.0</SimpleValue>
          </Value>
-         <Value ColumnRef="ContextBusinessProcess">
-            <SimpleValue>Transportation</SimpleValue>
+         <Value ColumnRef="ChangeforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--464-->
@@ -27470,8 +27598,8 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>1.0</SimpleValue>
          </Value>
-         <Value ColumnRef="ContextBusinessProcess">
-            <SimpleValue>Transportation</SimpleValue>
+         <Value ColumnRef="ChangeforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--465-->
@@ -27844,8 +27972,8 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
          </Value>
-         <Value ColumnRef="ChangefromPreviousVersion">
-            <SimpleValue>Changed from GUID to UUID</SimpleValue>
+         <Value ColumnRef="ChangefromUBL10">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--475-->
@@ -28104,6 +28232,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangeforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--481-->
@@ -28652,8 +28783,8 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
          </Value>
-         <Value ColumnRef="ChangefromPreviousVersion">
-            <SimpleValue>Changed from Baseprice</SimpleValue>
+         <Value ColumnRef="ChangefromUBL10">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--495-->
@@ -31393,8 +31524,8 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
          </Value>
-         <Value ColumnRef="ChangefromPreviousVersion">
-            <SimpleValue>Changed from GUID to UUID</SimpleValue>
+         <Value ColumnRef="ChangefromUBL10">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--568-->
@@ -31616,8 +31747,8 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
          </Value>
-         <Value ColumnRef="ChangefromPreviousVersion">
-            <SimpleValue>Changed property terms</SimpleValue>
+         <Value ColumnRef="ChangefromUBL10">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--573-->
@@ -31883,6 +32014,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
          </Value>
+         <Value ColumnRef="ChangeforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
+         </Value>
       </Row>
       <Row><!--579-->
          <Value ColumnRef="ModelName">
@@ -32011,6 +32145,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangeforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--582-->
@@ -32427,8 +32564,8 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
          </Value>
-         <Value ColumnRef="ChangefromPreviousVersion">
-            <SimpleValue>Changed from GUID to UUID</SimpleValue>
+         <Value ColumnRef="ChangefromUBL10">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--593-->
@@ -32848,8 +32985,8 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
          </Value>
-         <Value ColumnRef="ChangefromPreviousVersion">
-            <SimpleValue>changed property terms</SimpleValue>
+         <Value ColumnRef="ChangefromUBL10">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--604-->
@@ -33579,8 +33716,8 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
          </Value>
-         <Value ColumnRef="ChangefromPreviousVersion">
-            <SimpleValue>Change order of property terms</SimpleValue>
+         <Value ColumnRef="ChangefromUBL10">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--623-->
@@ -33623,8 +33760,8 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
          </Value>
-         <Value ColumnRef="ChangefromPreviousVersion">
-            <SimpleValue>Change order of property terms</SimpleValue>
+         <Value ColumnRef="ChangefromUBL10">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--624-->
@@ -33667,8 +33804,8 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
          </Value>
-         <Value ColumnRef="ChangefromPreviousVersion">
-            <SimpleValue>Change order of property terms</SimpleValue>
+         <Value ColumnRef="ChangefromUBL10">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--625-->
@@ -33711,8 +33848,8 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
          </Value>
-         <Value ColumnRef="ChangefromPreviousVersion">
-            <SimpleValue>Change order of property terms</SimpleValue>
+         <Value ColumnRef="ChangefromUBL10">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--626-->
@@ -33755,8 +33892,8 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
          </Value>
-         <Value ColumnRef="ChangefromPreviousVersion">
-            <SimpleValue>Change order of property terms</SimpleValue>
+         <Value ColumnRef="ChangefromUBL10">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--627-->
@@ -33843,8 +33980,8 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
          </Value>
-         <Value ColumnRef="ChangefromPreviousVersion">
-            <SimpleValue>Change order of property terms</SimpleValue>
+         <Value ColumnRef="ChangefromUBL10">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--629-->
@@ -33887,8 +34024,8 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
          </Value>
-         <Value ColumnRef="ChangefromPreviousVersion">
-            <SimpleValue>Change order of property terms</SimpleValue>
+         <Value ColumnRef="ChangefromUBL10">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--630-->
@@ -34443,8 +34580,8 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
          </Value>
-         <Value ColumnRef="ChangefromPreviousVersion">
-            <SimpleValue>Changed from GUID to UUID</SimpleValue>
+         <Value ColumnRef="ChangefromUBL10">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--644-->
@@ -34730,8 +34867,8 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
          </Value>
-         <Value ColumnRef="ChangefromPreviousVersion">
-            <SimpleValue>Changed from GUID to UUID</SimpleValue>
+         <Value ColumnRef="ChangefromUBL10">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--651-->
@@ -35736,8 +35873,8 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
          </Value>
-         <Value ColumnRef="ChangefromPreviousVersion">
-            <SimpleValue>changed cardinality</SimpleValue>
+         <Value ColumnRef="ChangefromUBL10">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--677-->
@@ -36343,8 +36480,8 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
          </Value>
-         <Value ColumnRef="ChangefromPreviousVersion">
-            <SimpleValue>changed cardinality</SimpleValue>
+         <Value ColumnRef="ChangefromUBL10">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--694-->
@@ -36369,8 +36506,8 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
          </Value>
-         <Value ColumnRef="ChangefromPreviousVersion">
-            <SimpleValue>Y</SimpleValue>
+         <Value ColumnRef="ChangefromUBL10">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--695-->
@@ -36416,8 +36553,8 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>1.0</SimpleValue>
          </Value>
-         <Value ColumnRef="ChangefromPreviousVersion">
-            <SimpleValue>Y</SimpleValue>
+         <Value ColumnRef="ChangefromUBL10">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--696-->
@@ -36469,8 +36606,8 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="AnalystNotes">
             <SimpleValue>revised definition, added business terms</SimpleValue>
          </Value>
-         <Value ColumnRef="ChangefromPreviousVersion">
-            <SimpleValue>Y</SimpleValue>
+         <Value ColumnRef="ChangefromUBL10">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--697-->
@@ -36595,8 +36732,8 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>1.0</SimpleValue>
          </Value>
-         <Value ColumnRef="ChangefromPreviousVersion">
-            <SimpleValue>Y</SimpleValue>
+         <Value ColumnRef="ChangefromUBL10">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--700-->
@@ -36671,8 +36808,8 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>1.0</SimpleValue>
          </Value>
-         <Value ColumnRef="ChangefromPreviousVersion">
-            <SimpleValue>Y</SimpleValue>
+         <Value ColumnRef="ChangefromUBL10">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--702-->
@@ -37119,8 +37256,8 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
          </Value>
-         <Value ColumnRef="ChangefromPreviousVersion">
-            <SimpleValue>modified property terms</SimpleValue>
+         <Value ColumnRef="ChangefromUBL10">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--713-->
@@ -37610,6 +37747,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangeforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--725-->
@@ -39480,6 +39620,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
          </Value>
+         <Value ColumnRef="ChangeforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
+         </Value>
       </Row>
       <Row><!--773-->
          <Value ColumnRef="ModelName">
@@ -39749,6 +39892,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="PropertyTerm">
             <SimpleValue>Line Item</SimpleValue>
          </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue></SimpleValue>
+         </Value>
          <Value ColumnRef="AssociatedObjectClass">
             <SimpleValue>Line Item</SimpleValue>
          </Value>
@@ -39766,6 +39912,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangeforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--780-->
@@ -39995,8 +40144,8 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
          </Value>
-         <Value ColumnRef="ChangefromPreviousVersion">
-            <SimpleValue>Changed from GUID to UUID</SimpleValue>
+         <Value ColumnRef="ChangefromUBL10">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--786-->
@@ -40390,6 +40539,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangeforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--795-->
@@ -41008,8 +41160,8 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
          </Value>
-         <Value ColumnRef="ChangefromPreviousVersion">
-            <SimpleValue>Changed property term and changed from GUID to UUID</SimpleValue>
+         <Value ColumnRef="ChangefromUBL10">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--811-->
@@ -41500,8 +41652,8 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
          </Value>
-         <Value ColumnRef="ChangefromPreviousVersion">
-            <SimpleValue>Changed from GUID to UUID</SimpleValue>
+         <Value ColumnRef="ChangefromUBL10">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--823-->
@@ -42150,8 +42302,8 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
          </Value>
-         <Value ColumnRef="ChangefromPreviousVersion">
-            <SimpleValue>Changed from GUID to UUID</SimpleValue>
+         <Value ColumnRef="ChangefromUBL10">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--839-->
@@ -42293,8 +42445,8 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
          </Value>
-         <Value ColumnRef="ChangefromPreviousVersion">
-            <SimpleValue>Y</SimpleValue>
+         <Value ColumnRef="ChangefromUBL10">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--843-->
@@ -42334,8 +42486,8 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
          </Value>
-         <Value ColumnRef="ChangefromPreviousVersion">
-            <SimpleValue>Y</SimpleValue>
+         <Value ColumnRef="ChangefromUBL10">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--844-->
@@ -42378,8 +42530,8 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
          </Value>
-         <Value ColumnRef="ChangefromPreviousVersion">
-            <SimpleValue>Y</SimpleValue>
+         <Value ColumnRef="ChangefromUBL10">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--845-->
@@ -42419,8 +42571,8 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
          </Value>
-         <Value ColumnRef="ChangefromPreviousVersion">
-            <SimpleValue>Y</SimpleValue>
+         <Value ColumnRef="ChangefromUBL10">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--846-->
@@ -42746,9 +42898,6 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Shipment</SimpleValue>
          </Value>
-         <Value ColumnRef="AlternativeBusinessTerms">
-            <SimpleValue>Consignment</SimpleValue>
-         </Value>
          <Value ColumnRef="ComponentType">
             <SimpleValue>ABIE</SimpleValue>
          </Value>
@@ -42760,6 +42909,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Transportation</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangeforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--855-->
@@ -42851,6 +43003,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Transportation</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangeforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--857-->
@@ -43254,6 +43409,12 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
          </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue></SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangeforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
+         </Value>
       </Row>
       <Row><!--866-->
          <Value ColumnRef="ModelName">
@@ -43300,6 +43461,12 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue></SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangeforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--867-->
@@ -43964,6 +44131,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Transportation</SimpleValue>
          </Value>
+         <Value ColumnRef="ChangeforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
+         </Value>
       </Row>
       <Row><!--882-->
          <Value ColumnRef="ModelName">
@@ -44004,6 +44174,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Transportation</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangeforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--883-->
@@ -44670,8 +44843,8 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="AnalystNotes">
             <SimpleValue>The signature can be used to secure parts of the document instance or to carry the signature that was submitted when the document instans was created.</SimpleValue>
          </Value>
-         <Value ColumnRef="ChangefromPreviousVersion">
-            <SimpleValue>Y</SimpleValue>
+         <Value ColumnRef="ChangefromUBL10">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--899-->
@@ -44711,8 +44884,8 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
          </Value>
-         <Value ColumnRef="ChangefromPreviousVersion">
-            <SimpleValue>Y</SimpleValue>
+         <Value ColumnRef="ChangefromUBL10">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--900-->
@@ -44752,8 +44925,8 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
          </Value>
-         <Value ColumnRef="ChangefromPreviousVersion">
-            <SimpleValue>Y</SimpleValue>
+         <Value ColumnRef="ChangefromUBL10">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--901-->
@@ -44878,8 +45051,8 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
          </Value>
-         <Value ColumnRef="ChangefromPreviousVersion">
-            <SimpleValue>Y</SimpleValue>
+         <Value ColumnRef="ChangefromUBL10">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--904-->
@@ -44922,8 +45095,8 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
          </Value>
-         <Value ColumnRef="ChangefromPreviousVersion">
-            <SimpleValue>Y</SimpleValue>
+         <Value ColumnRef="ChangefromUBL10">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--905-->
@@ -44966,8 +45139,8 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
          </Value>
-         <Value ColumnRef="ChangefromPreviousVersion">
-            <SimpleValue>Y</SimpleValue>
+         <Value ColumnRef="ChangefromUBL10">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--906-->
@@ -45232,8 +45405,8 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
          </Value>
-         <Value ColumnRef="ChangefromPreviousVersion">
-            <SimpleValue>Changed from GUID to UUID</SimpleValue>
+         <Value ColumnRef="ChangefromUBL10">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--913-->
@@ -46511,8 +46684,8 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
          </Value>
-         <Value ColumnRef="ChangefromPreviousVersion">
-            <SimpleValue>Y</SimpleValue>
+         <Value ColumnRef="ChangefromUBL10">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--945-->
@@ -46561,8 +46734,8 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
          </Value>
-         <Value ColumnRef="ChangefromPreviousVersion">
-            <SimpleValue>Y</SimpleValue>
+         <Value ColumnRef="ChangefromUBL10">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--946-->
@@ -46649,14 +46822,14 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="Definition">
             <SimpleValue>Capability to send invoice data via the purchase card provider (VISA/MasterCard/American Express).</SimpleValue>
          </Value>
-         <Value ColumnRef="Examples">
-            <SimpleValue>The customer's internal identifier for the supplier.</SimpleValue>
-         </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangeforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--948-->
@@ -46696,8 +46869,8 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
          </Value>
-         <Value ColumnRef="ChangefromPreviousVersion">
-            <SimpleValue>Y</SimpleValue>
+         <Value ColumnRef="ChangefromUBL10">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--949-->
@@ -46822,6 +46995,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
          </Value>
+         <Value ColumnRef="ChangeforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
+         </Value>
       </Row>
       <Row><!--952-->
          <Value ColumnRef="ModelName">
@@ -46930,8 +47106,8 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
          </Value>
-         <Value ColumnRef="ChangefromPreviousVersion">
-            <SimpleValue>Y</SimpleValue>
+         <Value ColumnRef="ChangefromUBL10">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--955-->
@@ -47275,8 +47451,8 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
          </Value>
-         <Value ColumnRef="ChangefromPreviousVersion">
-            <SimpleValue>Y</SimpleValue>
+         <Value ColumnRef="ChangefromUBL10">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--964-->
@@ -47319,8 +47495,8 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>1.0</SimpleValue>
          </Value>
-         <Value ColumnRef="ChangefromPreviousVersion">
-            <SimpleValue>Y</SimpleValue>
+         <Value ColumnRef="ChangefromUBL10">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--965-->
@@ -47363,8 +47539,8 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
          </Value>
-         <Value ColumnRef="ChangefromPreviousVersion">
-            <SimpleValue>Y</SimpleValue>
+         <Value ColumnRef="ChangefromUBL10">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--966-->
@@ -47410,8 +47586,8 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>1.0</SimpleValue>
          </Value>
-         <Value ColumnRef="ChangefromPreviousVersion">
-            <SimpleValue>Y</SimpleValue>
+         <Value ColumnRef="ChangefromUBL10">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--967-->
@@ -47495,8 +47671,8 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
          </Value>
-         <Value ColumnRef="ChangefromPreviousVersion">
-            <SimpleValue>extended qualifier and cardinality</SimpleValue>
+         <Value ColumnRef="ChangefromUBL10">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--969-->
@@ -48395,6 +48571,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
          </Value>
+         <Value ColumnRef="ChangeforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
+         </Value>
       </Row>
       <Row><!--993-->
          <Value ColumnRef="ModelName">
@@ -48707,6 +48886,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Transportation</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangeforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--1001-->
@@ -49526,8 +49708,8 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Transportation</SimpleValue>
          </Value>
-         <Value ColumnRef="ChangefromPreviousVersion">
-            <SimpleValue>Added 'Seal' to property term</SimpleValue>
+         <Value ColumnRef="ChangefromUBL10">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--1020-->
@@ -51648,6 +51830,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
          </Value>
+         <Value ColumnRef="ChangesforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
+         </Value>
       </Row>
       <Row><!--5-->
          <Value ColumnRef="ModelName">
@@ -51694,6 +51879,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangesforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--6-->
@@ -52355,6 +52543,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="RepresentationTerm">
             <SimpleValue>Numeric</SimpleValue>
          </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue></SimpleValue>
+         </Value>
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..1</SimpleValue>
          </Value>
@@ -52369,6 +52560,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangesforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--21-->
@@ -52569,6 +52763,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
          </Value>
+         <Value ColumnRef="ChangefromPreviousVersion">
+            <SimpleValue></SimpleValue>
+         </Value>
       </Row>
       <Row><!--26-->
          <Value ColumnRef="ModelName">
@@ -52609,6 +52806,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangefromPreviousVersion">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--27-->
@@ -53333,6 +53533,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
          </Value>
+         <Value ColumnRef="ChangesforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
+         </Value>
       </Row>
       <Row><!--5-->
          <Value ColumnRef="ModelName">
@@ -53379,6 +53582,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangesforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--6-->
@@ -54257,6 +54463,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
          </Value>
+         <Value ColumnRef="ChangefromPreviousVersion">
+            <SimpleValue></SimpleValue>
+         </Value>
       </Row>
       <Row><!--26-->
          <Value ColumnRef="ModelName">
@@ -54297,6 +54506,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangefromPreviousVersion">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--27-->
@@ -54933,6 +55145,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
          </Value>
+         <Value ColumnRef="ChangesforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
+         </Value>
       </Row>
       <Row><!--3-->
          <Value ColumnRef="ModelName">
@@ -55027,6 +55242,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
          </Value>
+         <Value ColumnRef="ChangesforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
+         </Value>
       </Row>
       <Row><!--5-->
          <Value ColumnRef="ModelName">
@@ -55073,6 +55291,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangesforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--6-->
@@ -55329,6 +55550,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="RepresentationTerm">
             <SimpleValue>Code</SimpleValue>
          </Value>
+         <Value ColumnRef="DataTypeQualifier">
+            <SimpleValue></SimpleValue>
+         </Value>
          <Value ColumnRef="DataType">
             <SimpleValue>Document Status_ Code. Type</SimpleValue>
          </Value>
@@ -55349,6 +55573,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          </Value>
          <Value ColumnRef="ChangefromPreviousVersion">
             <SimpleValue>Modified definition text</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangesforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--12-->
@@ -55702,6 +55929,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="ChangefromPreviousVersion">
             <SimpleValue>Changed cardinality</SimpleValue>
          </Value>
+         <Value ColumnRef="ChangesforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
+         </Value>
       </Row>
       <Row><!--20-->
          <Value ColumnRef="ModelName">
@@ -55875,6 +56105,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="ChangefromPreviousVersion">
             <SimpleValue>removed qualifier</SimpleValue>
          </Value>
+         <Value ColumnRef="ChangesforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
+         </Value>
       </Row>
       <Row><!--24-->
          <Value ColumnRef="ModelName">
@@ -55944,6 +56177,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Transportation</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangesforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--3-->
@@ -56039,6 +56275,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Transportation</SimpleValue>
          </Value>
+         <Value ColumnRef="ChangesforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
+         </Value>
       </Row>
       <Row><!--5-->
          <Value ColumnRef="ModelName">
@@ -56086,6 +56325,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Transportation</SimpleValue>
          </Value>
+         <Value ColumnRef="ChangesforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
+         </Value>
       </Row>
       <Row><!--6-->
          <Value ColumnRef="ModelName">
@@ -56112,9 +56354,6 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="DataType">
             <SimpleValue>Identifier. Type</SimpleValue>
          </Value>
-         <Value ColumnRef="AlternativeBusinessTerms">
-            <SimpleValue>Freight Forwarding Instruction, Shippers Letter of Instruction</SimpleValue>
-         </Value>
          <Value ColumnRef="Cardinality">
             <SimpleValue>1</SimpleValue>
          </Value>
@@ -56132,6 +56371,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Transportation</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangesforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--7-->
@@ -56393,6 +56635,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Transportation</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangesforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--13-->
@@ -56890,6 +57135,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Transportation</SimpleValue>
          </Value>
+         <Value ColumnRef="ChangesforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
+         </Value>
       </Row>
       <Row><!--24-->
          <Value ColumnRef="ModelName">
@@ -57124,6 +57372,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
          </Value>
+         <Value ColumnRef="ChangesforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
+         </Value>
       </Row>
       <Row><!--5-->
          <Value ColumnRef="ModelName">
@@ -57171,6 +57422,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
          </Value>
+         <Value ColumnRef="ChangesforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
+         </Value>
       </Row>
       <Row><!--6-->
          <Value ColumnRef="ModelName">
@@ -57217,6 +57471,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangesforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--7-->
@@ -57353,6 +57610,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
          </Value>
+         <Value ColumnRef="ChangesforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
+         </Value>
       </Row>
       <Row><!--10-->
          <Value ColumnRef="ModelName">
@@ -57399,6 +57659,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangesforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--11-->
@@ -57447,6 +57710,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
          </Value>
+         <Value ColumnRef="ChangesforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
+         </Value>
       </Row>
       <Row><!--12-->
          <Value ColumnRef="ModelName">
@@ -57487,6 +57753,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangesforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--13-->
@@ -57531,6 +57800,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangesforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--14-->
@@ -57631,6 +57903,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangesforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--16-->
@@ -57826,6 +58101,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
          </Value>
+         <Value ColumnRef="ChangesforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
+         </Value>
       </Row>
       <Row><!--20-->
          <Value ColumnRef="ModelName">
@@ -57866,6 +58144,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangesforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--21-->
@@ -57951,6 +58232,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangesforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--23-->
@@ -58107,6 +58391,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
          </Value>
+         <Value ColumnRef="ChangefromPreviousVersion">
+            <SimpleValue></SimpleValue>
+         </Value>
       </Row>
       <Row><!--27-->
          <Value ColumnRef="ModelName">
@@ -58147,6 +58434,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangefromPreviousVersion">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--28-->
@@ -58189,6 +58479,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
          </Value>
+         <Value ColumnRef="ChangefromPreviousVersion">
+            <SimpleValue></SimpleValue>
+         </Value>
       </Row>
       <Row><!--29-->
          <Value ColumnRef="ModelName">
@@ -58230,6 +58523,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
          </Value>
+         <Value ColumnRef="ChangefromPreviousVersion">
+            <SimpleValue></SimpleValue>
+         </Value>
       </Row>
       <Row><!--30-->
          <Value ColumnRef="ModelName">
@@ -58270,6 +58566,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangefromPreviousVersion">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--31-->
@@ -58634,6 +58933,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
          </Value>
+         <Value ColumnRef="ChangesforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
+         </Value>
       </Row>
       <Row><!--40-->
          <Value ColumnRef="ModelName">
@@ -58880,6 +59182,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
          </Value>
+         <Value ColumnRef="ChangesforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
+         </Value>
       </Row>
       <Row><!--46-->
          <Value ColumnRef="ModelName">
@@ -58917,6 +59222,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangesforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--2-->
@@ -59038,6 +59346,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
          </Value>
+         <Value ColumnRef="ChangesforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
+         </Value>
       </Row>
       <Row><!--5-->
          <Value ColumnRef="ModelName">
@@ -59084,6 +59395,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangesforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--6-->
@@ -59523,6 +59837,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="ChangefromPreviousVersion">
             <SimpleValue>Modified definition text + made mandatory</SimpleValue>
          </Value>
+         <Value ColumnRef="ChangesforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
+         </Value>
       </Row>
       <Row><!--15-->
          <Value ColumnRef="ModelName">
@@ -59819,6 +60136,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          </Value>
          <Value ColumnRef="ChangefromPreviousVersion">
             <SimpleValue>Modified definition text</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangesforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--21-->
@@ -61022,6 +61342,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="ChangefromPreviousVersion">
             <SimpleValue>Modified definition text</SimpleValue>
          </Value>
+         <Value ColumnRef="ChangesforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
+         </Value>
       </Row>
       <Row><!--49-->
          <Value ColumnRef="ModelName">
@@ -61186,6 +61509,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
          </Value>
+         <Value ColumnRef="ChangesforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
+         </Value>
       </Row>
       <Row><!--5-->
          <Value ColumnRef="ModelName">
@@ -61232,6 +61558,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangesforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--6-->
@@ -61884,6 +62213,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangesforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--20-->
@@ -62892,6 +63224,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
          </Value>
+         <Value ColumnRef="ChangesforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
+         </Value>
       </Row>
       <Row><!--5-->
          <Value ColumnRef="ModelName">
@@ -62938,6 +63273,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangesforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--6-->
@@ -63686,6 +64024,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
          </Value>
+         <Value ColumnRef="ChangesforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
+         </Value>
       </Row>
       <Row><!--5-->
          <Value ColumnRef="ModelName">
@@ -63732,6 +64073,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangesforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--6-->
@@ -65459,6 +65803,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
          </Value>
+         <Value ColumnRef="ChangesforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
+         </Value>
       </Row>
       <Row><!--5-->
          <Value ColumnRef="ModelName">
@@ -65505,6 +65852,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangesforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--6-->
@@ -67402,6 +67752,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
          </Value>
+         <Value ColumnRef="ChangesforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
+         </Value>
       </Row>
       <Row><!--5-->
          <Value ColumnRef="ModelName">
@@ -67448,6 +67801,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangesforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--6-->
@@ -68381,6 +68737,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Transportation</SimpleValue>
          </Value>
+         <Value ColumnRef="ChangesforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
+         </Value>
       </Row>
       <Row><!--5-->
          <Value ColumnRef="ModelName">
@@ -68427,6 +68786,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Transportation</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangesforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--6-->
@@ -68691,6 +69053,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Transportation</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangesforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--12-->
@@ -69000,6 +69365,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Transportation</SimpleValue>
          </Value>
+         <Value ColumnRef="ChangesforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
+         </Value>
       </Row>
       <Row><!--19-->
          <Value ColumnRef="ModelName">
@@ -69075,6 +69443,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Transportation</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangesforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--21-->
@@ -69237,6 +69608,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
          </Value>
+         <Value ColumnRef="ChangesforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
+         </Value>
       </Row>
       <Row><!--5-->
          <Value ColumnRef="ModelName">
@@ -69283,6 +69657,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangesforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--6-->
@@ -70385,6 +70762,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
          </Value>
+         <Value ColumnRef="ChangesforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
+         </Value>
       </Row>
       <Row><!--5-->
          <Value ColumnRef="ModelName">
@@ -70431,6 +70811,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangesforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--6-->
@@ -71311,6 +71694,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
          </Value>
+         <Value ColumnRef="ChangesforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
+         </Value>
       </Row>
       <Row><!--5-->
          <Value ColumnRef="ModelName">
@@ -71357,6 +71743,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangesforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--6-->
@@ -71695,6 +72084,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangesforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--13-->
@@ -73066,6 +73458,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
          </Value>
+         <Value ColumnRef="ChangesforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
+         </Value>
       </Row>
       <Row><!--5-->
          <Value ColumnRef="ModelName">
@@ -73112,6 +73507,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangesforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--6-->
@@ -73603,6 +74001,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
          </Value>
+         <Value ColumnRef="ChangesforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
+         </Value>
       </Row>
       <Row><!--17-->
          <Value ColumnRef="ModelName">
@@ -73647,6 +74048,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
          </Value>
+         <Value ColumnRef="ChangesforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
+         </Value>
       </Row>
       <Row><!--18-->
          <Value ColumnRef="ModelName">
@@ -73690,6 +74094,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangesforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--19-->
@@ -74250,6 +74657,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
          </Value>
+         <Value ColumnRef="ChangesforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
+         </Value>
       </Row>
       <Row><!--5-->
          <Value ColumnRef="ModelName">
@@ -74296,6 +74706,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangesforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--6-->
@@ -75463,6 +75876,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Transportation</SimpleValue>
          </Value>
+         <Value ColumnRef="ChangesforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
+         </Value>
       </Row>
       <Row><!--5-->
          <Value ColumnRef="ModelName">
@@ -75510,6 +75926,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Transportation</SimpleValue>
          </Value>
+         <Value ColumnRef="ChangesforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
+         </Value>
       </Row>
       <Row><!--6-->
          <Value ColumnRef="ModelName">
@@ -75536,9 +75955,6 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="DataType">
             <SimpleValue>Identifier. Type</SimpleValue>
          </Value>
-         <Value ColumnRef="AlternativeBusinessTerms">
-            <SimpleValue>Freight Forwarding Instruction, Shippers Letter of Instruction</SimpleValue>
-         </Value>
          <Value ColumnRef="Cardinality">
             <SimpleValue>1</SimpleValue>
          </Value>
@@ -75553,6 +75969,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Transportation</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangesforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--7-->
@@ -75815,6 +76234,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Transportation</SimpleValue>
          </Value>
+         <Value ColumnRef="ChangesforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
+         </Value>
       </Row>
       <Row><!--13-->
          <Value ColumnRef="ModelName">
@@ -75987,6 +76409,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Transportation</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangesforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--17-->
@@ -76225,6 +76650,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Transportation</SimpleValue>
          </Value>
+         <Value ColumnRef="ChangesforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
+         </Value>
       </Row>
       <Row><!--5-->
          <Value ColumnRef="ModelName">
@@ -76271,6 +76699,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Transportation</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangesforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--6-->
@@ -76585,6 +77016,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Transportation</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangesforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--13-->
@@ -76990,6 +77424,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Transportation</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangesforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--22-->
@@ -77478,6 +77915,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="XSDdefaultorfixed">
             <SimpleValue>default</SimpleValue>
          </Value>
+         <Value ColumnRef="ChangeforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
+         </Value>
       </Row>
       <Row><!--12-->
          <Value ColumnRef="ModelName">
@@ -77848,6 +78288,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          <Value ColumnRef="XSDdefaultorfixed">
             <SimpleValue>default</SimpleValue>
          </Value>
+         <Value ColumnRef="ChangeforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
+         </Value>
       </Row>
       <Row><!--23-->
          <Value ColumnRef="ModelName">
@@ -78208,6 +78651,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          </Value>
          <Value ColumnRef="XSDdefaultorfixed">
             <SimpleValue>default</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangeforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--34-->
@@ -78575,6 +79021,9 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</Simple
          </Value>
          <Value ColumnRef="XSDdefaultorfixed">
             <SimpleValue>default</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangeforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--45-->
@@ -78944,6 +79393,9 @@ http://www.iso.org/iso/en/commcentre/pressreleases/2003/Ref871.html</SimpleValue
          <Value ColumnRef="XSDdefaultorfixed">
             <SimpleValue>default</SimpleValue>
          </Value>
+         <Value ColumnRef="ChangeforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
+         </Value>
       </Row>
       <Row><!--56-->
          <Value ColumnRef="ModelName">
@@ -79304,6 +79756,9 @@ http://www.iso.org/iso/en/commcentre/pressreleases/2003/Ref871.html</SimpleValue
          </Value>
          <Value ColumnRef="XSDdefaultorfixed">
             <SimpleValue>default</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangeforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--67-->
@@ -79666,6 +80121,9 @@ http://www.iso.org/iso/en/commcentre/pressreleases/2003/Ref871.html</SimpleValue
          <Value ColumnRef="XSDdefaultorfixed">
             <SimpleValue>default</SimpleValue>
          </Value>
+         <Value ColumnRef="ChangeforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
+         </Value>
       </Row>
       <Row><!--78-->
          <Value ColumnRef="ModelName">
@@ -80026,6 +80484,9 @@ http://www.iso.org/iso/en/commcentre/pressreleases/2003/Ref871.html</SimpleValue
          </Value>
          <Value ColumnRef="XSDdefaultorfixed">
             <SimpleValue>default</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangeforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--89-->
@@ -80388,6 +80849,9 @@ http://www.iso.org/iso/en/commcentre/pressreleases/2003/Ref871.html</SimpleValue
          <Value ColumnRef="XSDdefaultorfixed">
             <SimpleValue>default</SimpleValue>
          </Value>
+         <Value ColumnRef="ChangeforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
+         </Value>
       </Row>
       <Row><!--100-->
          <Value ColumnRef="ModelName">
@@ -80748,6 +81212,9 @@ http://www.iso.org/iso/en/commcentre/pressreleases/2003/Ref871.html</SimpleValue
          </Value>
          <Value ColumnRef="XSDdefaultorfixed">
             <SimpleValue>default</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangeforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--111-->
@@ -81119,6 +81586,9 @@ http://www.iso.org/iso/en/commcentre/pressreleases/2003/Ref871.html</SimpleValue
          <Value ColumnRef="XSDdefaultorfixed">
             <SimpleValue>default</SimpleValue>
          </Value>
+         <Value ColumnRef="ChangeforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
+         </Value>
       </Row>
       <Row><!--122-->
          <Value ColumnRef="ModelName">
@@ -81476,6 +81946,9 @@ http://www.iso.org/iso/en/commcentre/pressreleases/2003/Ref871.html</SimpleValue
          </Value>
          <Value ColumnRef="XSDdefaultorfixed">
             <SimpleValue>default</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangeforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--133-->
@@ -81835,6 +82308,9 @@ http://www.iso.org/iso/en/commcentre/pressreleases/2003/Ref871.html</SimpleValue
          <Value ColumnRef="XSDdefaultorfixed">
             <SimpleValue>default</SimpleValue>
          </Value>
+         <Value ColumnRef="ChangeforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
+         </Value>
       </Row>
       <Row><!--144-->
          <Value ColumnRef="ModelName">
@@ -82192,6 +82668,9 @@ http://www.iso.org/iso/en/commcentre/pressreleases/2003/Ref871.html</SimpleValue
          </Value>
          <Value ColumnRef="XSDdefaultorfixed">
             <SimpleValue>default</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangeforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--155-->
@@ -82551,6 +83030,9 @@ http://www.iso.org/iso/en/commcentre/pressreleases/2003/Ref871.html</SimpleValue
          <Value ColumnRef="XSDdefaultorfixed">
             <SimpleValue>default</SimpleValue>
          </Value>
+         <Value ColumnRef="ChangeforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
+         </Value>
       </Row>
       <Row><!--166-->
          <Value ColumnRef="ModelName">
@@ -82908,6 +83390,9 @@ http://www.iso.org/iso/en/commcentre/pressreleases/2003/Ref871.html</SimpleValue
          </Value>
          <Value ColumnRef="XSDdefaultorfixed">
             <SimpleValue>default</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangeforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--177-->
@@ -83267,6 +83752,9 @@ http://www.iso.org/iso/en/commcentre/pressreleases/2003/Ref871.html</SimpleValue
          <Value ColumnRef="XSDdefaultorfixed">
             <SimpleValue>default</SimpleValue>
          </Value>
+         <Value ColumnRef="ChangeforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
+         </Value>
       </Row>
       <Row><!--188-->
          <Value ColumnRef="ModelName">
@@ -83324,6 +83812,9 @@ http://www.iso.org/iso/en/commcentre/pressreleases/2003/Ref871.html</SimpleValue
          </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>The set of code values for classifying series 1 freight containers based on external dimensions and specifies the assoziated ratings and, where appropriate, the minimum internal and door opening dimensions for certain types of containers.</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangeforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--190-->
@@ -83624,6 +84115,9 @@ http://www.iso.org/iso/en/commcentre/pressreleases/2003/Ref871.html</SimpleValue
          </Value>
          <Value ColumnRef="XSDdefaultorfixed">
             <SimpleValue>default</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangeforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--199-->
@@ -83982,6 +84476,9 @@ http://www.iso.org/iso/en/commcentre/pressreleases/2003/Ref871.html</SimpleValue
          </Value>
          <Value ColumnRef="XSDdefaultorfixed">
             <SimpleValue>default</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangeforUBL20UpdatePackage">
+            <SimpleValue></SimpleValue>
          </Value>
       </Row>
       <Row><!--210-->
