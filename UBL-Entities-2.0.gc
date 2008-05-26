@@ -34915,7 +34915,7 @@ cell F577 changed from "Inspection" to "Inspection Method"</SimpleValue>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
          </Value>
-         <Value ColumnRef="ChangefromPreviousVersion">
+         <Value ColumnRef="ChangefromUBL10">
             <SimpleValue>Changed from GUID to UUID</SimpleValue>
          </Value>
       </Row>
@@ -35015,7 +35015,7 @@ cell F577 changed from "Inspection" to "Inspection Method"</SimpleValue>
             <SimpleValue>CustomerReference</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Order Reference. Customer_Reference. Text</SimpleValue>
+            <SimpleValue>Order Reference. Customer_ Reference. Text</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Order Reference</SimpleValue>
@@ -35052,6 +35052,10 @@ cell F577 changed from "Inspection" to "Inspection Method"</SimpleValue>
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangeforUBL20UpdatePackage">
+            <SimpleValue>DEN "Order Reference. Customer_Reference. Text" changed to
+"Order Reference. Customer_ Reference. Text"</SimpleValue>
          </Value>
       </Row>
       <Row><!--654-->
