@@ -95713,9 +95713,9 @@ Thus, the column Preference Criterion will indicate either A, B, C,...</SimpleVa
             <SimpleValue>In All Contexts</SimpleValue>
          </Value>
       </Row>
-      <Row><!--552-->
+      <Row>
          <Value ColumnRef="ModelName">
-            <SimpleValue>Common</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.1</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
             <SimpleValue>ItemProperty</SimpleValue>
@@ -95736,33 +95736,33 @@ Thus, the column Preference Criterion will indicate either A, B, C,...</SimpleVa
             <SimpleValue>2.0</SimpleValue>
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
-            <SimpleValue></SimpleValue>
+            <SimpleValue>In All Contexts</SimpleValue>
          </Value>
          <Value ColumnRef="ContextRegionGeopolitical">
-            <SimpleValue></SimpleValue>
+            <SimpleValue>In All Contexts</SimpleValue>
          </Value>
          <Value ColumnRef="ContextOfficialConstraints">
-            <SimpleValue></SimpleValue>
+            <SimpleValue>None</SimpleValue>
          </Value>
          <Value ColumnRef="ContextProduct">
-            <SimpleValue></SimpleValue>
+            <SimpleValue>In All Contexts</SimpleValue>
          </Value>
          <Value ColumnRef="ContextIndustry">
-            <SimpleValue></SimpleValue>
+            <SimpleValue>In All Contexts</SimpleValue>
          </Value>
          <Value ColumnRef="ContextRole">
-            <SimpleValue></SimpleValue>
+            <SimpleValue>In All Contexts</SimpleValue>
          </Value>
          <Value ColumnRef="ContextSupportingRole">
-            <SimpleValue></SimpleValue>
+            <SimpleValue>In All Contexts</SimpleValue>
          </Value>
          <Value ColumnRef="ContextSystemConstraint">
-            <SimpleValue></SimpleValue>
+            <SimpleValue>In All Contexts</SimpleValue>
          </Value>
       </Row>
-      <Row><!--553-->
+      <Row>
          <Value ColumnRef="ModelName">
-            <SimpleValue>Common</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.1</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
             <SimpleValue>Name</SimpleValue>
@@ -95786,7 +95786,7 @@ Thus, the column Preference Criterion will indicate either A, B, C,...</SimpleVa
             <SimpleValue>Name. Type</SimpleValue>
          </Value>
          <Value ColumnRef="Cardinality">
-            <SimpleValue>1</SimpleValue>
+            <SimpleValue>0..1</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentType">
             <SimpleValue>BBIE</SimpleValue>
@@ -95795,39 +95795,104 @@ Thus, the column Preference Criterion will indicate either A, B, C,...</SimpleVa
             <SimpleValue>The name of the Item Property.</SimpleValue>
          </Value>
          <Value ColumnRef="Examples">
-            <SimpleValue>"Energy Rating", "Collar Size", "Fat Content"</SimpleValue>
+            <SimpleValue>Energy Rating , Collar Size , Fat Content </SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
-            <SimpleValue>2.0</SimpleValue>
+            <SimpleValue>2.1</SimpleValue>
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
-            <SimpleValue></SimpleValue>
+            <SimpleValue>In All Contexts</SimpleValue>
          </Value>
          <Value ColumnRef="ContextRegionGeopolitical">
-            <SimpleValue></SimpleValue>
+            <SimpleValue>In All Contexts</SimpleValue>
          </Value>
          <Value ColumnRef="ContextOfficialConstraints">
-            <SimpleValue></SimpleValue>
+            <SimpleValue>None</SimpleValue>
          </Value>
          <Value ColumnRef="ContextProduct">
-            <SimpleValue></SimpleValue>
+            <SimpleValue>In All Contexts</SimpleValue>
          </Value>
          <Value ColumnRef="ContextIndustry">
-            <SimpleValue></SimpleValue>
+            <SimpleValue>In All Contexts</SimpleValue>
          </Value>
          <Value ColumnRef="ContextRole">
-            <SimpleValue></SimpleValue>
+            <SimpleValue>In All Contexts</SimpleValue>
          </Value>
          <Value ColumnRef="ContextSupportingRole">
-            <SimpleValue></SimpleValue>
+            <SimpleValue>In All Contexts</SimpleValue>
          </Value>
          <Value ColumnRef="ContextSystemConstraint">
-            <SimpleValue></SimpleValue>
+            <SimpleValue>In All Contexts</SimpleValue>
          </Value>
       </Row>
-      <Row><!--554-->
+      <Row>
          <Value ColumnRef="ModelName">
-            <SimpleValue>Common</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.1</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>NameCode</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Item Property. Name Code. Code</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Item Property</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPossessiveNoun">
+            <SimpleValue>Name</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Code</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Name Code</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Code</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Code. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>The name of the Item Property expressed as code.</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextRegionGeopolitical">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextOfficialConstraints">
+            <SimpleValue>None</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextProduct">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextIndustry">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextRole">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextSupportingRole">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextSystemConstraint">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="ModelName">
+            <SimpleValue>UBL-CommonLibrary-2.1</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
             <SimpleValue>Value</SimpleValue>
@@ -95851,48 +95916,243 @@ Thus, the column Preference Criterion will indicate either A, B, C,...</SimpleVa
             <SimpleValue>Text. Type</SimpleValue>
          </Value>
          <Value ColumnRef="Cardinality">
-            <SimpleValue>1</SimpleValue>
+            <SimpleValue>0..n</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentType">
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The Item Property value.</SimpleValue>
+            <SimpleValue>The Item Property value expressed as a text.</SimpleValue>
          </Value>
          <Value ColumnRef="Examples">
-            <SimpleValue>"100 watts", "15 European", "20% +/- 5%"</SimpleValue>
+            <SimpleValue>100 watts , 15 European , 20% +/- 5% </SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
-            <SimpleValue>2.0</SimpleValue>
+            <SimpleValue>2.1</SimpleValue>
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
-            <SimpleValue></SimpleValue>
+            <SimpleValue>In All Contexts</SimpleValue>
          </Value>
          <Value ColumnRef="ContextRegionGeopolitical">
-            <SimpleValue></SimpleValue>
+            <SimpleValue>In All Contexts</SimpleValue>
          </Value>
          <Value ColumnRef="ContextOfficialConstraints">
-            <SimpleValue></SimpleValue>
+            <SimpleValue>None</SimpleValue>
          </Value>
          <Value ColumnRef="ContextProduct">
-            <SimpleValue></SimpleValue>
+            <SimpleValue>In All Contexts</SimpleValue>
          </Value>
          <Value ColumnRef="ContextIndustry">
-            <SimpleValue></SimpleValue>
+            <SimpleValue>In All Contexts</SimpleValue>
          </Value>
          <Value ColumnRef="ContextRole">
-            <SimpleValue></SimpleValue>
+            <SimpleValue>In All Contexts</SimpleValue>
          </Value>
          <Value ColumnRef="ContextSupportingRole">
-            <SimpleValue></SimpleValue>
+            <SimpleValue>In All Contexts</SimpleValue>
          </Value>
          <Value ColumnRef="ContextSystemConstraint">
-            <SimpleValue></SimpleValue>
+            <SimpleValue>In All Contexts</SimpleValue>
          </Value>
       </Row>
-      <Row><!--555-->
+      <Row>
          <Value ColumnRef="ModelName">
-            <SimpleValue>Common</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.1</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>ValueQuantity</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Item Property. Value_ Quantity. Quantity</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Item Property</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermQualifier">
+            <SimpleValue>Value</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Quantity</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Quantity</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Quantity</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Quantity. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>The Item Property value expressed as a quantity.</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextRegionGeopolitical">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextOfficialConstraints">
+            <SimpleValue>None</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextProduct">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextIndustry">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextRole">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextSupportingRole">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextSystemConstraint">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="ModelName">
+            <SimpleValue>UBL-CommonLibrary-2.1</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>ValueQualifier</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Item Property. Value Qualifier. Text</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Item Property</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPossessiveNoun">
+            <SimpleValue>Value</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Qualifier</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Value Qualifier</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Text</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Text. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..n</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>A text qualifier for the value of the property.</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextRegionGeopolitical">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextOfficialConstraints">
+            <SimpleValue>None</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextProduct">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextIndustry">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextRole">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextSupportingRole">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextSystemConstraint">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="ModelName">
+            <SimpleValue>UBL-CommonLibrary-2.1</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>ImportanceCode</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Item Property. Importance Code. Code</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Item Property</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPossessiveNoun">
+            <SimpleValue>Importance</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Code</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Importance Code</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Code</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Code. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>A code establishing the importance for the property when using it to describe a required Item. </SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextRegionGeopolitical">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextOfficialConstraints">
+            <SimpleValue>None</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextProduct">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextIndustry">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextRole">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextSupportingRole">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextSystemConstraint">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="ModelName">
+            <SimpleValue>UBL-CommonLibrary-2.1</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
             <SimpleValue>UsabilityPeriod</SimpleValue>
@@ -95928,33 +96188,33 @@ Thus, the column Preference Criterion will indicate either A, B, C,...</SimpleVa
             <SimpleValue>2.0</SimpleValue>
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
-            <SimpleValue></SimpleValue>
+            <SimpleValue>In All Contexts</SimpleValue>
          </Value>
          <Value ColumnRef="ContextRegionGeopolitical">
-            <SimpleValue></SimpleValue>
+            <SimpleValue>In All Contexts</SimpleValue>
          </Value>
          <Value ColumnRef="ContextOfficialConstraints">
-            <SimpleValue></SimpleValue>
+            <SimpleValue>None</SimpleValue>
          </Value>
          <Value ColumnRef="ContextProduct">
-            <SimpleValue></SimpleValue>
+            <SimpleValue>In All Contexts</SimpleValue>
          </Value>
          <Value ColumnRef="ContextIndustry">
-            <SimpleValue></SimpleValue>
+            <SimpleValue>In All Contexts</SimpleValue>
          </Value>
          <Value ColumnRef="ContextRole">
-            <SimpleValue></SimpleValue>
+            <SimpleValue>In All Contexts</SimpleValue>
          </Value>
          <Value ColumnRef="ContextSupportingRole">
-            <SimpleValue></SimpleValue>
+            <SimpleValue>In All Contexts</SimpleValue>
          </Value>
          <Value ColumnRef="ContextSystemConstraint">
-            <SimpleValue></SimpleValue>
+            <SimpleValue>In All Contexts</SimpleValue>
          </Value>
       </Row>
-      <Row><!--556-->
+      <Row>
          <Value ColumnRef="ModelName">
-            <SimpleValue>Common</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.1</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
             <SimpleValue>ItemPropertyGroup</SimpleValue>
@@ -95987,28 +96247,90 @@ Thus, the column Preference Criterion will indicate either A, B, C,...</SimpleVa
             <SimpleValue>2.0</SimpleValue>
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
-            <SimpleValue></SimpleValue>
+            <SimpleValue>In All Contexts</SimpleValue>
          </Value>
          <Value ColumnRef="ContextRegionGeopolitical">
-            <SimpleValue></SimpleValue>
+            <SimpleValue>In All Contexts</SimpleValue>
          </Value>
          <Value ColumnRef="ContextOfficialConstraints">
-            <SimpleValue></SimpleValue>
+            <SimpleValue>None</SimpleValue>
          </Value>
          <Value ColumnRef="ContextProduct">
-            <SimpleValue></SimpleValue>
+            <SimpleValue>In All Contexts</SimpleValue>
          </Value>
          <Value ColumnRef="ContextIndustry">
-            <SimpleValue></SimpleValue>
+            <SimpleValue>In All Contexts</SimpleValue>
          </Value>
          <Value ColumnRef="ContextRole">
-            <SimpleValue></SimpleValue>
+            <SimpleValue>In All Contexts</SimpleValue>
          </Value>
          <Value ColumnRef="ContextSupportingRole">
-            <SimpleValue></SimpleValue>
+            <SimpleValue>In All Contexts</SimpleValue>
          </Value>
          <Value ColumnRef="ContextSystemConstraint">
-            <SimpleValue></SimpleValue>
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="ModelName">
+            <SimpleValue>UBL-CommonLibrary-2.1</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>RangeDimension</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Item Property. Range_ Dimension. Dimension</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Item Property</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermQualifier">
+            <SimpleValue>Range</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Dimension</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Dimension</SimpleValue>
+         </Value>
+         <Value ColumnRef="AssociatedObjectClass">
+            <SimpleValue>Dimension</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>ASBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>An association to Dimension.</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextRegionGeopolitical">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextOfficialConstraints">
+            <SimpleValue>None</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextProduct">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextIndustry">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextRole">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextSupportingRole">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextSystemConstraint">
+            <SimpleValue>In All Contexts</SimpleValue>
          </Value>
       </Row>
       <Row><!--557-->
