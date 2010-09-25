@@ -58997,6 +58997,505 @@ Credit Note. UBL Version Identifier. Identifier </SimpleValue>
             <SimpleValue>UBL-CommonLibrary-2.1</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
+            <SimpleValue>AuctionTerms</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Auction Terms. Details</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Auction Terms</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>ABIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>Terms to be fulfilled by the tenderers if an auction is going to be executed before the awarding.</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Tendering</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextRegionGeopolitical">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextOfficialConstraints">
+            <SimpleValue>None</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextProduct">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextIndustry">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextRole">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextSupportingRole">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextSystemConstraint">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="ModelName">
+            <SimpleValue>UBL-CommonLibrary-2.1</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>AuctionConstraintIndicator</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Auction Terms. Auction_ Constraint. Indicator</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Auction Terms</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermQualifier">
+            <SimpleValue>Auction</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Constraint</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Constraint</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Indicator</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Indicator. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>An indicator that states the use of electronic auctions during the awarding of this tendering process</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Tendering</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextRegionGeopolitical">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextOfficialConstraints">
+            <SimpleValue>None</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextProduct">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextIndustry">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextRole">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextSupportingRole">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextSystemConstraint">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="ModelName">
+            <SimpleValue>UBL-CommonLibrary-2.1</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>JustificationDescription</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Auction Terms. Justification_ Description. Text</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Auction Terms</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermQualifier">
+            <SimpleValue>Justification</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Description</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Description</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Text</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Text. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..n</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>A textual description justifying the use of an auction for this tendering process.</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Tendering</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextRegionGeopolitical">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextOfficialConstraints">
+            <SimpleValue>None</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextProduct">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextIndustry">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextRole">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextSupportingRole">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextSystemConstraint">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="ModelName">
+            <SimpleValue>UBL-CommonLibrary-2.1</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>Description</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Auction Terms. Description. Text</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Auction Terms</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Description</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Description</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Text</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Text. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..n</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>Textual description of the information available for tenderers during the auction </SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Tendering</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextRegionGeopolitical">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextOfficialConstraints">
+            <SimpleValue>None</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextProduct">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextIndustry">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextRole">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextSupportingRole">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextSystemConstraint">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="ModelName">
+            <SimpleValue>UBL-CommonLibrary-2.1</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>ProcessDescription</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Auction Terms. Process_ Description. Text</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Auction Terms</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermQualifier">
+            <SimpleValue>Process</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Description</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Description</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Text</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Text. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..n</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>Textual description of the auction process</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Tendering</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextRegionGeopolitical">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextOfficialConstraints">
+            <SimpleValue>None</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextProduct">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextIndustry">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextRole">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextSupportingRole">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextSystemConstraint">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="ModelName">
+            <SimpleValue>UBL-CommonLibrary-2.1</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>ConditionsDescription</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Auction Terms. Conditions_ Description. Text</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Auction Terms</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermQualifier">
+            <SimpleValue>Conditions</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Description</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Description</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Text</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Text. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..n</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>Textual description of the conditions under which the tenderers will be able to bid</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Tendering</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextRegionGeopolitical">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextOfficialConstraints">
+            <SimpleValue>None</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextProduct">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextIndustry">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextRole">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextSupportingRole">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextSystemConstraint">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="ModelName">
+            <SimpleValue>UBL-CommonLibrary-2.1</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>ElectronicDeviceDescription</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Auction Terms. Electronic Device_ Description. Text</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Auction Terms</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermQualifier">
+            <SimpleValue>Electronic Device</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Description</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Description</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Text</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Text. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..n</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>Electronic device and connection technical specifications used for the auction</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Tendering</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextRegionGeopolitical">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextOfficialConstraints">
+            <SimpleValue>None</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextProduct">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextIndustry">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextRole">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextSupportingRole">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextSystemConstraint">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="ModelName">
+            <SimpleValue>UBL-CommonLibrary-2.1</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>AuctionURI</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Auction Terms. Auction_ URI. Identifier</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Auction Terms</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermQualifier">
+            <SimpleValue>Auction</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>URI</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>URI</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Identifier</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Identifier. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>URI for the used electronic device.</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Tendering</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextRegionGeopolitical">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextOfficialConstraints">
+            <SimpleValue>None</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextProduct">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextIndustry">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextRole">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextSupportingRole">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextSystemConstraint">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="ModelName">
+            <SimpleValue>UBL-CommonLibrary-2.1</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
             <SimpleValue>BillingReference</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
