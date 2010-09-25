@@ -14,9 +14,9 @@
    </Identification>
    <ColumnSet>
       <Column Id="ModelName" Use="required">
-         <ShortName>ModelName</ShortName>
-         <LongName>Model Name</LongName>
-         <Data Type="string"/>
+        <ShortName>ModelName</ShortName>
+        <LongName>Model Name</LongName>
+        <Data Type="string"/>
       </Column>
       <Column Id="UBLName" Use="optional">
          <ShortName>UBLName</ShortName>
@@ -61,6 +61,11 @@
       <Column Id="RepresentationTerm" Use="optional">
          <ShortName>RepresentationTerm</ShortName>
          <LongName>Representation Term</LongName>
+         <Data Type="string"/>
+      </Column>
+      <Column Id="DataTypeQualifier" Use="optional">
+         <ShortName>DataTypeQualifier</ShortName>
+         <LongName>Data Type Qualifier</LongName>
          <Data Type="string"/>
       </Column>
       <Column Id="DataType" Use="optional">
@@ -118,9 +123,9 @@
          <LongName>Analyst Notes</LongName>
          <Data Type="string"/>
       </Column>
-      <Column Id="CandidateCCID" Use="optional">
-         <ShortName>CandidateCCID</ShortName>
-         <LongName>Candidate CC ID</LongName>
+      <Column Id="CCLDictionaryEntryName" Use="optional">
+         <ShortName>CCLDictionaryEntryName</ShortName>
+         <LongName>CCL Dictionary Entry Name</LongName>
          <Data Type="string"/>
       </Column>
       <Column Id="ContextBusinessProcess" Use="optional">
@@ -168,9 +173,9 @@
          <LongName>Editor's Notes</LongName>
          <Data Type="string"/>
       </Column>
-      <Column Id="ChangesforUBL20UpdatePackage" Use="optional">
-         <ShortName>ChangesforUBL20UpdatePackage</ShortName>
-         <LongName>Changes for UBL 2.0 Update Package</LongName>
+      <Column Id="ChangesfromPreviousVersion" Use="optional">
+         <ShortName>ChangesfromPreviousVersion</ShortName>
+         <LongName>Changes from Previous Version</LongName>
          <Data Type="string"/>
       </Column>
       <Key Id="key">
@@ -298,9 +303,6 @@
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
          </Value>
-         <Value ColumnRef="ChangesforUBL20UpdatePackage">
-            <SimpleValue>H3 formula pasted to H4 and H5</SimpleValue>
-         </Value>
       </Row>
       <Row><!--5-->
          <Value ColumnRef="ModelName">
@@ -347,9 +349,6 @@
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
-         </Value>
-         <Value ColumnRef="ChangesforUBL20UpdatePackage">
-            <SimpleValue>H3 formula pasted to H4 and H5</SimpleValue>
          </Value>
       </Row>
       <Row><!--6-->
@@ -1607,9 +1606,6 @@ A Bill of Lading can serve as a contractual document between the parties for the
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Transportation</SimpleValue>
          </Value>
-         <Value ColumnRef="ChangesforUBL20UpdatePackage">
-            <SimpleValue>Cells R8 to AE21 (inclusive) moved down one row; extra trailing period removed from second paragraph of definition (cell Q2)</SimpleValue>
-         </Value>
       </Row>
       <Row><!--3-->
          <Value ColumnRef="ModelName">
@@ -1698,9 +1694,6 @@ A Bill of Lading can serve as a contractual document between the parties for the
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
          </Value>
-         <Value ColumnRef="ChangesforUBL20UpdatePackage">
-            <SimpleValue>H3 formula pasted to H4 and H5</SimpleValue>
-         </Value>
       </Row>
       <Row><!--5-->
          <Value ColumnRef="ModelName">
@@ -1744,9 +1737,6 @@ A Bill of Lading can serve as a contractual document between the parties for the
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
-         </Value>
-         <Value ColumnRef="ChangesforUBL20UpdatePackage">
-            <SimpleValue>H3 formula pasted to H4 and H5</SimpleValue>
          </Value>
       </Row>
       <Row><!--6-->
@@ -2018,9 +2008,6 @@ A Bill of Lading can serve as a contractual document between the parties for the
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Transportation</SimpleValue>
          </Value>
-         <Value ColumnRef="ChangesforUBL20UpdatePackage">
-            <SimpleValue>"Sea Waybill" added to list of examples in cell R11</SimpleValue>
-         </Value>
       </Row>
       <Row><!--12-->
          <Value ColumnRef="ModelName">
@@ -2061,9 +2048,6 @@ A Bill of Lading can serve as a contractual document between the parties for the
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Transportation</SimpleValue>
-         </Value>
-         <Value ColumnRef="ChangesforUBL20UpdatePackage">
-            <SimpleValue>Definition (cell Q12) changed from "Purpose of the document instance." to "Textual description of the document instance."</SimpleValue>
          </Value>
       </Row>
       <Row><!--13-->
@@ -2570,9 +2554,6 @@ A Bill of Lading can serve as a contractual document between the parties for the
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Transportation</SimpleValue>
          </Value>
-         <Value ColumnRef="ChangesforUBL20UpdatePackage">
-            <SimpleValue>Definition changed from "Information about the separately identifiable collection of goods items (available to be) transported from one consignor to one consignee via one or more modes of transport." to " An association to Shipment."</SimpleValue>
-         </Value>
       </Row>
       <Row><!--24-->
          <Value ColumnRef="ModelName">
@@ -2686,10 +2667,6 @@ A Bill of Lading can serve as a contractual document between the parties for the
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Transportation</SimpleValue>
-         </Value>
-         <Value ColumnRef="ChangesforUBL20UpdatePackage">
-            <SimpleValue>Definition (cell Q26) changed from "The distribution of the Bill to interested parties." to "The distribution of the Bill of Lading to interested parties."
-</SimpleValue>
          </Value>
       </Row>
       <Row><!--27-->
@@ -2843,9 +2820,6 @@ A Bill of Lading can serve as a contractual document between the parties for the
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
          </Value>
-         <Value ColumnRef="ChangesforUBL20UpdatePackage">
-            <SimpleValue>H3 formula pasted to H4 and H5</SimpleValue>
-         </Value>
       </Row>
       <Row><!--5-->
          <Value ColumnRef="ModelName">
@@ -2889,9 +2863,6 @@ A Bill of Lading can serve as a contractual document between the parties for the
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
-         </Value>
-         <Value ColumnRef="ChangesforUBL20UpdatePackage">
-            <SimpleValue>H3 formula pasted to H4 and H5</SimpleValue>
          </Value>
       </Row>
       <Row><!--6-->
@@ -3018,9 +2989,6 @@ A Bill of Lading can serve as a contractual document between the parties for the
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
-         </Value>
-         <Value ColumnRef="ChangesforUBL20UpdatePackage">
-            <SimpleValue>Definition (cell Q8) changed from "A name given to a catalogue." to "Text that identifies the Catalogue to business users."</SimpleValue>
          </Value>
       </Row>
       <Row><!--9-->
@@ -3282,9 +3250,6 @@ A Bill of Lading can serve as a contractual document between the parties for the
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
-         </Value>
-         <Value ColumnRef="ChangesforUBL20UpdatePackage">
-            <SimpleValue>Definition (cell Q14) changed from "A description of the catalogue." to "Textual description of the document instance."</SimpleValue>
          </Value>
       </Row>
       <Row><!--15-->
@@ -3895,9 +3860,6 @@ A Bill of Lading can serve as a contractual document between the parties for the
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
          </Value>
-         <Value ColumnRef="ChangesforUBL20UpdatePackage">
-            <SimpleValue>H3 formula pasted to H4 and H5</SimpleValue>
-         </Value>
       </Row>
       <Row><!--5-->
          <Value ColumnRef="ModelName">
@@ -3941,9 +3903,6 @@ A Bill of Lading can serve as a contractual document between the parties for the
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
-         </Value>
-         <Value ColumnRef="ChangesforUBL20UpdatePackage">
-            <SimpleValue>H3 formula pasted to H4 and H5</SimpleValue>
          </Value>
       </Row>
       <Row><!--6-->
@@ -4284,9 +4243,6 @@ A Bill of Lading can serve as a contractual document between the parties for the
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
-         </Value>
-         <Value ColumnRef="ChangesforUBL20UpdatePackage">
-            <SimpleValue>Description (cell Q13) changed from "Describes the Catalogue Deletion." to "Textual description of the document instance."</SimpleValue>
          </Value>
       </Row>
       <Row><!--14-->
@@ -4727,9 +4683,6 @@ A Bill of Lading can serve as a contractual document between the parties for the
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
          </Value>
-         <Value ColumnRef="ChangesforUBL20UpdatePackage">
-            <SimpleValue>H3 formula pasted to H4 and H5</SimpleValue>
-         </Value>
       </Row>
       <Row><!--5-->
          <Value ColumnRef="ModelName">
@@ -4773,9 +4726,6 @@ A Bill of Lading can serve as a contractual document between the parties for the
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
-         </Value>
-         <Value ColumnRef="ChangesforUBL20UpdatePackage">
-            <SimpleValue>H3 formula pasted to H4 and H5</SimpleValue>
          </Value>
       </Row>
       <Row><!--6-->
@@ -5163,9 +5113,6 @@ A Bill of Lading can serve as a contractual document between the parties for the
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
-         </Value>
-         <Value ColumnRef="ChangesforUBL20UpdatePackage">
-            <SimpleValue>Description (cell Q14) changed from "A description of the Catalogue Revision." to "Textual description of the document instance."</SimpleValue>
          </Value>
       </Row>
       <Row><!--15-->
@@ -5811,9 +5758,6 @@ A Bill of Lading can serve as a contractual document between the parties for the
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
          </Value>
-         <Value ColumnRef="ChangesforUBL20UpdatePackage">
-            <SimpleValue>H3 formula pasted to H4 and H5</SimpleValue>
-         </Value>
       </Row>
       <Row><!--5-->
          <Value ColumnRef="ModelName">
@@ -5857,9 +5801,6 @@ A Bill of Lading can serve as a contractual document between the parties for the
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
-         </Value>
-         <Value ColumnRef="ChangesforUBL20UpdatePackage">
-            <SimpleValue>H3 formula pasted to H4 and H5</SimpleValue>
          </Value>
       </Row>
       <Row><!--6-->
@@ -6247,9 +6188,6 @@ A Bill of Lading can serve as a contractual document between the parties for the
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
-         </Value>
-         <Value ColumnRef="ChangesforUBL20UpdatePackage">
-            <SimpleValue>Definition (cell Q14) changed from "Describes the Catalogue Revision." to "Textual description of the document instance."</SimpleValue>
          </Value>
       </Row>
       <Row><!--15-->
@@ -6895,9 +6833,6 @@ A Bill of Lading can serve as a contractual document between the parties for the
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
          </Value>
-         <Value ColumnRef="ChangesforUBL20UpdatePackage">
-            <SimpleValue>H3 formula pasted to H4 and H5</SimpleValue>
-         </Value>
       </Row>
       <Row><!--5-->
          <Value ColumnRef="ModelName">
@@ -6942,9 +6877,6 @@ A Bill of Lading can serve as a contractual document between the parties for the
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
          </Value>
-         <Value ColumnRef="ChangesforUBL20UpdatePackage">
-            <SimpleValue>H3 formula pasted to H4 and H5</SimpleValue>
-         </Value>
       </Row>
       <Row><!--6-->
          <Value ColumnRef="ModelName">
@@ -6985,9 +6917,6 @@ A Bill of Lading can serve as a contractual document between the parties for the
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
-         </Value>
-         <Value ColumnRef="ChangesforUBL20UpdatePackage">
-            <SimpleValue>Definition of ID (cell Q6) changed from "An identifier for the Catalogue Request assigned by the Catalogue Managing Party." to "An identifier for the Catalogue Request assigned by the party managing the catalogue (either the Catalogue Requesting Party or the Catalogue Providing Party)."</SimpleValue>
          </Value>
       </Row>
       <Row><!--7-->
@@ -7246,9 +7175,6 @@ A Bill of Lading can serve as a contractual document between the parties for the
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
-         </Value>
-         <Value ColumnRef="ChangesforUBL20UpdatePackage">
-            <SimpleValue>Definition (cell Q12) changed from "Describes the Catalogue Request." to "Textual description of the document instance."</SimpleValue>
          </Value>
       </Row>
       <Row><!--13-->
@@ -8032,9 +7958,6 @@ A Bill of Lading can serve as a contractual document between the parties for the
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Transportation</SimpleValue>
          </Value>
-         <Value ColumnRef="ChangesforUBL20UpdatePackage">
-            <SimpleValue>H3 formula pasted to H4 and H5</SimpleValue>
-         </Value>
       </Row>
       <Row><!--5-->
          <Value ColumnRef="ModelName">
@@ -8081,9 +8004,6 @@ A Bill of Lading can serve as a contractual document between the parties for the
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Transportation</SimpleValue>
-         </Value>
-         <Value ColumnRef="ChangesforUBL20UpdatePackage">
-            <SimpleValue>H3 formula pasted to H4 and H5</SimpleValue>
          </Value>
       </Row>
       <Row><!--6-->
@@ -8304,9 +8224,6 @@ A Bill of Lading can serve as a contractual document between the parties for the
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Transportation</SimpleValue>
-         </Value>
-         <Value ColumnRef="ChangesforUBL20UpdatePackage">
-            <SimpleValue>Definition (cell Q10) changed from "Textual description of a Certificate Of Origin." to "Textual description of the document instance."</SimpleValue>
          </Value>
       </Row>
       <Row><!--11-->
@@ -33114,9 +33031,6 @@ cell F577 changed from "Inspection" to "Inspection Method"</SimpleValue>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
          </Value>
-         <Value ColumnRef="CandidateCCID">
-            <SimpleValue>UN00000069</SimpleValue>
-         </Value>
       </Row>
       <Row><!--606-->
          <Value ColumnRef="ModelName">
@@ -51868,10 +51782,6 @@ cell F856 changed from "Shipping Priority" to "Shipping Priority Level"</SimpleV
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
          </Value>
-         <Value ColumnRef="ChangesforUBL20UpdatePackage">
-            <SimpleValue>cell B3 changed from "Credit Note. UBL Version. Identifier" to
-"Credit Note. UBL Version Identifier. Identifier"</SimpleValue>
-         </Value>
       </Row>
       <Row><!--4-->
          <Value ColumnRef="ModelName">
@@ -51919,9 +51829,6 @@ cell F856 changed from "Shipping Priority" to "Shipping Priority Level"</SimpleV
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
          </Value>
-         <Value ColumnRef="ChangesforUBL20UpdatePackage">
-            <SimpleValue>H3 formula pasted to H4 and H5</SimpleValue>
-         </Value>
       </Row>
       <Row><!--5-->
          <Value ColumnRef="ModelName">
@@ -51968,9 +51875,6 @@ cell F856 changed from "Shipping Priority" to "Shipping Priority Level"</SimpleV
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
-         </Value>
-         <Value ColumnRef="ChangesforUBL20UpdatePackage">
-            <SimpleValue>H3 formula pasted to H4 and H5</SimpleValue>
          </Value>
       </Row>
       <Row><!--6-->
@@ -52649,9 +52553,6 @@ cell F856 changed from "Shipping Priority" to "Shipping Priority Level"</SimpleV
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
-         </Value>
-         <Value ColumnRef="ChangesforUBL20UpdatePackage">
-            <SimpleValue>Data Type (cell K20) changed from blank to "Numeric. Type"</SimpleValue>
          </Value>
       </Row>
       <Row><!--21-->
@@ -53622,9 +53523,6 @@ cell F856 changed from "Shipping Priority" to "Shipping Priority Level"</SimpleV
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
          </Value>
-         <Value ColumnRef="ChangesforUBL20UpdatePackage">
-            <SimpleValue>H3 formula pasted to H4 and H5</SimpleValue>
-         </Value>
       </Row>
       <Row><!--5-->
          <Value ColumnRef="ModelName">
@@ -53671,9 +53569,6 @@ cell F856 changed from "Shipping Priority" to "Shipping Priority Level"</SimpleV
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
-         </Value>
-         <Value ColumnRef="ChangesforUBL20UpdatePackage">
-            <SimpleValue>H3 formula pasted to H4 and H5</SimpleValue>
          </Value>
       </Row>
       <Row><!--6-->
@@ -55234,9 +55129,6 @@ cell F856 changed from "Shipping Priority" to "Shipping Priority Level"</SimpleV
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
          </Value>
-         <Value ColumnRef="ChangesforUBL20UpdatePackage">
-            <SimpleValue>cell J1 (column header) changed from empty to "Data Type Qualifier"</SimpleValue>
-         </Value>
       </Row>
       <Row><!--3-->
          <Value ColumnRef="ModelName">
@@ -55331,9 +55223,6 @@ cell F856 changed from "Shipping Priority" to "Shipping Priority Level"</SimpleV
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
          </Value>
-         <Value ColumnRef="ChangesforUBL20UpdatePackage">
-            <SimpleValue>H3 formula pasted to H4 and H5</SimpleValue>
-         </Value>
       </Row>
       <Row><!--5-->
          <Value ColumnRef="ModelName">
@@ -55380,9 +55269,6 @@ cell F856 changed from "Shipping Priority" to "Shipping Priority Level"</SimpleV
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
-         </Value>
-         <Value ColumnRef="ChangesforUBL20UpdatePackage">
-            <SimpleValue>H3 formula pasted to H4 and H5</SimpleValue>
          </Value>
       </Row>
       <Row><!--6-->
@@ -55662,10 +55548,6 @@ cell F856 changed from "Shipping Priority" to "Shipping Priority Level"</SimpleV
          </Value>
          <Value ColumnRef="ChangefromPreviousVersion">
             <SimpleValue>Modified definition text</SimpleValue>
-         </Value>
-         <Value ColumnRef="ChangesforUBL20UpdatePackage">
-            <SimpleValue>Cell F11 changed from "Document" to "Document Status"
-and cell G11 changed from "Status" to "Code"</SimpleValue>
          </Value>
       </Row>
       <Row><!--12-->
@@ -56019,10 +55901,6 @@ and cell G11 changed from "Status" to "Code"</SimpleValue>
          <Value ColumnRef="ChangefromPreviousVersion">
             <SimpleValue>Changed cardinality</SimpleValue>
          </Value>
-         <Value ColumnRef="ChangesforUBL20UpdatePackage">
-            <SimpleValue>Definition (cell Q19) changed from "An association to the Delivery Party."
-to "An association to the Delivery Customer Party."</SimpleValue>
-         </Value>
       </Row>
       <Row><!--20-->
          <Value ColumnRef="ModelName">
@@ -56196,9 +56074,6 @@ to "An association to the Delivery Customer Party."</SimpleValue>
          <Value ColumnRef="ChangefromPreviousVersion">
             <SimpleValue>removed qualifier</SimpleValue>
          </Value>
-         <Value ColumnRef="ChangesforUBL20UpdatePackage">
-            <SimpleValue>Definition changed from "An association to a Shipment detail." to "An association to Shipment."</SimpleValue>
-         </Value>
       </Row>
       <Row><!--24-->
          <Value ColumnRef="ModelName">
@@ -56268,9 +56143,6 @@ to "An association to the Delivery Customer Party."</SimpleValue>
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Transportation</SimpleValue>
-         </Value>
-         <Value ColumnRef="ChangesforUBL20UpdatePackage">
-            <SimpleValue>Text "Freight Forwarding Instruction, Shippers Letter of Instruction" moved from Alternative Business Terms for ID (cell N6) to Alternative Business Terms for the document itself (cell N2), joining "Forwarding Instruction"; "Shipping Instruction" and "Shipper's Letter of Instruction" (with apostrophe) added to Alternative Business Terms in the same cell</SimpleValue>
          </Value>
       </Row>
       <Row><!--3-->
@@ -56366,9 +56238,6 @@ to "An association to the Delivery Customer Party."</SimpleValue>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Transportation</SimpleValue>
          </Value>
-         <Value ColumnRef="ChangesforUBL20UpdatePackage">
-            <SimpleValue>H3 formula pasted to H4 and H5</SimpleValue>
-         </Value>
       </Row>
       <Row><!--5-->
          <Value ColumnRef="ModelName">
@@ -56416,9 +56285,6 @@ to "An association to the Delivery Customer Party."</SimpleValue>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Transportation</SimpleValue>
          </Value>
-         <Value ColumnRef="ChangesforUBL20UpdatePackage">
-            <SimpleValue>H3 formula pasted to H4 and H5</SimpleValue>
-         </Value>
       </Row>
       <Row><!--6-->
          <Value ColumnRef="ModelName">
@@ -56462,9 +56328,6 @@ to "An association to the Delivery Customer Party."</SimpleValue>
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Transportation</SimpleValue>
-         </Value>
-         <Value ColumnRef="ChangesforUBL20UpdatePackage">
-            <SimpleValue>Definition (cell Q6) changed from "Unique identifier of the Forwarding Instructions. Reference number to identify a Shipping Instruction." to "Unique identifier of the Forwarding Instructions."</SimpleValue>
          </Value>
       </Row>
       <Row><!--7-->
@@ -56726,9 +56589,6 @@ to "An association to the Delivery Customer Party."</SimpleValue>
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Transportation</SimpleValue>
-         </Value>
-         <Value ColumnRef="ChangesforUBL20UpdatePackage">
-            <SimpleValue>Definition (cell Q12) changed from "Description of the type of Forwarding Instructions." to "Textual description of the document instance."</SimpleValue>
          </Value>
       </Row>
       <Row><!--13-->
@@ -57226,9 +57086,6 @@ to "An association to the Delivery Customer Party."</SimpleValue>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Transportation</SimpleValue>
          </Value>
-         <Value ColumnRef="ChangesforUBL20UpdatePackage">
-            <SimpleValue>Definition changed from "Information about the separately identifiable collection of goods items (available to be) transported from one consignor to one consignee via one or more modes of transport." to "An association to Shipment."</SimpleValue>
-         </Value>
       </Row>
       <Row><!--24-->
          <Value ColumnRef="ModelName">
@@ -57463,9 +57320,6 @@ to "An association to the Delivery Customer Party."</SimpleValue>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
          </Value>
-         <Value ColumnRef="ChangesforUBL20UpdatePackage">
-            <SimpleValue>H3 formula pasted to H4 and H5</SimpleValue>
-         </Value>
       </Row>
       <Row><!--5-->
          <Value ColumnRef="ModelName">
@@ -57513,9 +57367,6 @@ to "An association to the Delivery Customer Party."</SimpleValue>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
          </Value>
-         <Value ColumnRef="ChangesforUBL20UpdatePackage">
-            <SimpleValue>H3 formula pasted to H4 and H5</SimpleValue>
-         </Value>
       </Row>
       <Row><!--6-->
          <Value ColumnRef="ModelName">
@@ -57562,9 +57413,6 @@ to "An association to the Delivery Customer Party."</SimpleValue>
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
-         </Value>
-         <Value ColumnRef="ChangesforUBL20UpdatePackage">
-            <SimpleValue>In definition, "Invoice" changed to "Freight Invoice"</SimpleValue>
          </Value>
       </Row>
       <Row><!--7-->
@@ -57701,9 +57549,6 @@ to "An association to the Delivery Customer Party."</SimpleValue>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
          </Value>
-         <Value ColumnRef="ChangesforUBL20UpdatePackage">
-            <SimpleValue>In definition, "Invoice" changed to "Freight Invoice"</SimpleValue>
-         </Value>
       </Row>
       <Row><!--10-->
          <Value ColumnRef="ModelName">
@@ -57750,9 +57595,6 @@ to "An association to the Delivery Customer Party."</SimpleValue>
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
-         </Value>
-         <Value ColumnRef="ChangesforUBL20UpdatePackage">
-            <SimpleValue>In definition, "Invoice" changed to "Freight Invoice"</SimpleValue>
          </Value>
       </Row>
       <Row><!--11-->
@@ -57801,9 +57643,6 @@ to "An association to the Delivery Customer Party."</SimpleValue>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
          </Value>
-         <Value ColumnRef="ChangesforUBL20UpdatePackage">
-            <SimpleValue>In definition, "Invoice" changed to "Freight Invoice"</SimpleValue>
-         </Value>
       </Row>
       <Row><!--12-->
          <Value ColumnRef="ModelName">
@@ -57844,9 +57683,6 @@ to "An association to the Delivery Customer Party."</SimpleValue>
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
-         </Value>
-         <Value ColumnRef="ChangesforUBL20UpdatePackage">
-            <SimpleValue>In definition, "Invoice" changed to "Freight Invoice"</SimpleValue>
          </Value>
       </Row>
       <Row><!--13-->
@@ -57891,9 +57727,6 @@ to "An association to the Delivery Customer Party."</SimpleValue>
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
-         </Value>
-         <Value ColumnRef="ChangesforUBL20UpdatePackage">
-            <SimpleValue>In definition, "Invoice" changed to "Freight Invoice"</SimpleValue>
          </Value>
       </Row>
       <Row><!--14-->
@@ -57994,9 +57827,6 @@ to "An association to the Delivery Customer Party."</SimpleValue>
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
-         </Value>
-         <Value ColumnRef="ChangesforUBL20UpdatePackage">
-            <SimpleValue>In definition, "Invoice" changed to "Freight Invoice"</SimpleValue>
          </Value>
       </Row>
       <Row><!--16-->
@@ -58192,9 +58022,6 @@ to "An association to the Delivery Customer Party."</SimpleValue>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
          </Value>
-         <Value ColumnRef="ChangesforUBL20UpdatePackage">
-            <SimpleValue>In definition, "Invoice" changed to "Freight Invoice"</SimpleValue>
-         </Value>
       </Row>
       <Row><!--20-->
          <Value ColumnRef="ModelName">
@@ -58235,9 +58062,6 @@ to "An association to the Delivery Customer Party."</SimpleValue>
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
-         </Value>
-         <Value ColumnRef="ChangesforUBL20UpdatePackage">
-            <SimpleValue>Definition changed from "The Buyer's accounting code applied to the Invoice as a whole, expressed as text." to "The Buyer's accounting cost centre applied to the Freight Invoice as a whole, expressed as text."</SimpleValue>
          </Value>
       </Row>
       <Row><!--21-->
@@ -58323,9 +58147,6 @@ to "An association to the Delivery Customer Party."</SimpleValue>
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
-         </Value>
-         <Value ColumnRef="ChangesforUBL20UpdatePackage">
-            <SimpleValue>In definition, "Invoice" changed to "Freight Invoice"</SimpleValue>
          </Value>
       </Row>
       <Row><!--23-->
@@ -59024,9 +58845,6 @@ to "An association to the Delivery Customer Party."</SimpleValue>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
          </Value>
-         <Value ColumnRef="ChangesforUBL20UpdatePackage">
-            <SimpleValue>In definition, "Invoice" changed to "Freight Invoice"</SimpleValue>
-         </Value>
       </Row>
       <Row><!--40-->
          <Value ColumnRef="ModelName">
@@ -59273,9 +59091,6 @@ to "An association to the Delivery Customer Party."</SimpleValue>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
          </Value>
-         <Value ColumnRef="ChangesforUBL20UpdatePackage">
-            <SimpleValue>In definition, "Invoice" changed to "Freight Invoice"</SimpleValue>
-         </Value>
       </Row>
       <Row><!--46-->
          <Value ColumnRef="ModelName">
@@ -59313,9 +59128,6 @@ to "An association to the Delivery Customer Party."</SimpleValue>
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
-         </Value>
-         <Value ColumnRef="ChangesforUBL20UpdatePackage">
-            <SimpleValue>In definition, "Invoice" changed to "Freight Invoice"</SimpleValue>
          </Value>
       </Row>
       <Row><!--2-->
@@ -59437,9 +59249,6 @@ to "An association to the Delivery Customer Party."</SimpleValue>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
          </Value>
-         <Value ColumnRef="ChangesforUBL20UpdatePackage">
-            <SimpleValue>H3 formula pasted to H4 and H5</SimpleValue>
-         </Value>
       </Row>
       <Row><!--5-->
          <Value ColumnRef="ModelName">
@@ -59486,9 +59295,6 @@ to "An association to the Delivery Customer Party."</SimpleValue>
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
-         </Value>
-         <Value ColumnRef="ChangesforUBL20UpdatePackage">
-            <SimpleValue>H3 formula pasted to H4 and H5</SimpleValue>
          </Value>
       </Row>
       <Row><!--6-->
@@ -59928,9 +59734,6 @@ to "An association to the Delivery Customer Party."</SimpleValue>
          <Value ColumnRef="ChangefromPreviousVersion">
             <SimpleValue>Modified definition text + made mandatory</SimpleValue>
          </Value>
-         <Value ColumnRef="ChangesforUBL20UpdatePackage">
-            <SimpleValue>Definition modified to match the definition of the same term in Order.</SimpleValue>
-         </Value>
       </Row>
       <Row><!--15-->
          <Value ColumnRef="ModelName">
@@ -60227,9 +60030,6 @@ to "An association to the Delivery Customer Party."</SimpleValue>
          </Value>
          <Value ColumnRef="ChangefromPreviousVersion">
             <SimpleValue>Modified definition text</SimpleValue>
-         </Value>
-         <Value ColumnRef="ChangesforUBL20UpdatePackage">
-            <SimpleValue>Definition (cell Q20) changed from "The Buyer's accounting code applied to the Invoice as a whole, expressed as text." to "The Buyer's accounting cost centre applied to the Invoice as a whole, expressed as text."</SimpleValue>
          </Value>
       </Row>
       <Row><!--21-->
@@ -60932,10 +60732,6 @@ to "An association to the Delivery Customer Party."</SimpleValue>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
          </Value>
-         <Value ColumnRef="ChangesforUBL20UpdatePackage">
-            <SimpleValue>Cell B36 changed from "Invoice. Tax_ Representative_ Party. Party"
-to "Invoice. Tax Representative_ Party. Party"</SimpleValue>
-         </Value>
       </Row>
       <Row><!--37-->
          <Value ColumnRef="ModelName">
@@ -61437,9 +61233,6 @@ to "Invoice. Tax Representative_ Party. Party"</SimpleValue>
          <Value ColumnRef="ChangefromPreviousVersion">
             <SimpleValue>Modified definition text</SimpleValue>
          </Value>
-         <Value ColumnRef="ChangesforUBL20UpdatePackage">
-            <SimpleValue>Definition (cell Q48) changed from "An association to the total amount payable on the Invoice, including Allowances, Charges, and Taxes." to "An association to the legally binding total amount payable on the Invoice, including Allowances, Charges, and Taxes."</SimpleValue>
-         </Value>
       </Row>
       <Row><!--49-->
          <Value ColumnRef="ModelName">
@@ -61604,9 +61397,6 @@ to "Invoice. Tax Representative_ Party. Party"</SimpleValue>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
          </Value>
-         <Value ColumnRef="ChangesforUBL20UpdatePackage">
-            <SimpleValue>H3 formula pasted to H4 and H5</SimpleValue>
-         </Value>
       </Row>
       <Row><!--5-->
          <Value ColumnRef="ModelName">
@@ -61653,9 +61443,6 @@ to "Invoice. Tax Representative_ Party. Party"</SimpleValue>
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
-         </Value>
-         <Value ColumnRef="ChangesforUBL20UpdatePackage">
-            <SimpleValue>H3 formula pasted to H4 and H5</SimpleValue>
          </Value>
       </Row>
       <Row><!--6-->
@@ -62308,9 +62095,6 @@ to "Invoice. Tax Representative_ Party. Party"</SimpleValue>
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
-         </Value>
-         <Value ColumnRef="ChangesforUBL20UpdatePackage">
-            <SimpleValue>In definition (cell Q19), change "The Buyer's accounting code applied to the Order as a whole, expressed as text." to "The Buyer's accounting cost centre applied to the Order as a whole, expressed as text."</SimpleValue>
          </Value>
       </Row>
       <Row><!--20-->
@@ -63319,9 +63103,6 @@ to "Invoice. Tax Representative_ Party. Party"</SimpleValue>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
          </Value>
-         <Value ColumnRef="ChangesforUBL20UpdatePackage">
-            <SimpleValue>H3 formula pasted to H4 and H5</SimpleValue>
-         </Value>
       </Row>
       <Row><!--5-->
          <Value ColumnRef="ModelName">
@@ -63368,9 +63149,6 @@ to "Invoice. Tax Representative_ Party. Party"</SimpleValue>
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
-         </Value>
-         <Value ColumnRef="ChangesforUBL20UpdatePackage">
-            <SimpleValue>H3 formula pasted to H4 and H5</SimpleValue>
          </Value>
       </Row>
       <Row><!--6-->
@@ -64119,9 +63897,6 @@ to "Invoice. Tax Representative_ Party. Party"</SimpleValue>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
          </Value>
-         <Value ColumnRef="ChangesforUBL20UpdatePackage">
-            <SimpleValue>H3 formula pasted to H4 and H5</SimpleValue>
-         </Value>
       </Row>
       <Row><!--5-->
          <Value ColumnRef="ModelName">
@@ -64168,9 +63943,6 @@ to "Invoice. Tax Representative_ Party. Party"</SimpleValue>
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
-         </Value>
-         <Value ColumnRef="ChangesforUBL20UpdatePackage">
-            <SimpleValue>H3 formula pasted to H4 and H5</SimpleValue>
          </Value>
       </Row>
       <Row><!--6-->
@@ -65898,9 +65670,6 @@ to "Invoice. Tax Representative_ Party. Party"</SimpleValue>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
          </Value>
-         <Value ColumnRef="ChangesforUBL20UpdatePackage">
-            <SimpleValue>H3 formula pasted to H4 and H5</SimpleValue>
-         </Value>
       </Row>
       <Row><!--5-->
          <Value ColumnRef="ModelName">
@@ -65947,9 +65716,6 @@ to "Invoice. Tax Representative_ Party. Party"</SimpleValue>
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
-         </Value>
-         <Value ColumnRef="ChangesforUBL20UpdatePackage">
-            <SimpleValue>H3 formula pasted to H4 and H5</SimpleValue>
          </Value>
       </Row>
       <Row><!--6-->
@@ -67847,9 +67613,6 @@ to "Invoice. Tax Representative_ Party. Party"</SimpleValue>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
          </Value>
-         <Value ColumnRef="ChangesforUBL20UpdatePackage">
-            <SimpleValue>H3 formula pasted to H4 and H5</SimpleValue>
-         </Value>
       </Row>
       <Row><!--5-->
          <Value ColumnRef="ModelName">
@@ -67896,9 +67659,6 @@ to "Invoice. Tax Representative_ Party. Party"</SimpleValue>
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
-         </Value>
-         <Value ColumnRef="ChangesforUBL20UpdatePackage">
-            <SimpleValue>H3 formula pasted to H4 and H5</SimpleValue>
          </Value>
       </Row>
       <Row><!--6-->
@@ -68832,9 +68592,6 @@ to "Invoice. Tax Representative_ Party. Party"</SimpleValue>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Transportation</SimpleValue>
          </Value>
-         <Value ColumnRef="ChangesforUBL20UpdatePackage">
-            <SimpleValue>H3 formula pasted to H4 and H5</SimpleValue>
-         </Value>
       </Row>
       <Row><!--5-->
          <Value ColumnRef="ModelName">
@@ -68881,9 +68638,6 @@ to "Invoice. Tax Representative_ Party. Party"</SimpleValue>
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Transportation</SimpleValue>
-         </Value>
-         <Value ColumnRef="ChangesforUBL20UpdatePackage">
-            <SimpleValue>H3 formula pasted to H4 and H5</SimpleValue>
          </Value>
       </Row>
       <Row><!--6-->
@@ -69148,9 +68902,6 @@ to "Invoice. Tax Representative_ Party. Party"</SimpleValue>
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Transportation</SimpleValue>
-         </Value>
-         <Value ColumnRef="ChangesforUBL20UpdatePackage">
-            <SimpleValue>Definition (cell Q11) changed from "Textual description of a Packing List." to "Textual description of the document instance."</SimpleValue>
          </Value>
       </Row>
       <Row><!--12-->
@@ -69460,9 +69211,6 @@ to "Invoice. Tax Representative_ Party. Party"</SimpleValue>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Transportation</SimpleValue>
          </Value>
-         <Value ColumnRef="ChangesforUBL20UpdatePackage">
-            <SimpleValue>Definition changed from "Information about the separately identifiable collection of goods items (available to be) transported from one consignor to one consignee via one or more modes of transport." to "An association to Shipment."</SimpleValue>
-         </Value>
       </Row>
       <Row><!--19-->
          <Value ColumnRef="ModelName">
@@ -69538,9 +69286,6 @@ to "Invoice. Tax Representative_ Party. Party"</SimpleValue>
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Transportation</SimpleValue>
-         </Value>
-         <Value ColumnRef="ChangesforUBL20UpdatePackage">
-            <SimpleValue>Definition changed from "Contain information on the distribution list of the documents." to "The distribution of the Packing List to interested parties."</SimpleValue>
          </Value>
       </Row>
       <Row><!--21-->
@@ -69703,9 +69448,6 @@ to "Invoice. Tax Representative_ Party. Party"</SimpleValue>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
          </Value>
-         <Value ColumnRef="ChangesforUBL20UpdatePackage">
-            <SimpleValue>H3 formula pasted to H4 and H5</SimpleValue>
-         </Value>
       </Row>
       <Row><!--5-->
          <Value ColumnRef="ModelName">
@@ -69752,9 +69494,6 @@ to "Invoice. Tax Representative_ Party. Party"</SimpleValue>
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
-         </Value>
-         <Value ColumnRef="ChangesforUBL20UpdatePackage">
-            <SimpleValue>H3 formula pasted to H4 and H5</SimpleValue>
          </Value>
       </Row>
       <Row><!--6-->
@@ -70857,9 +70596,6 @@ to "Invoice. Tax Representative_ Party. Party"</SimpleValue>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
          </Value>
-         <Value ColumnRef="ChangesforUBL20UpdatePackage">
-            <SimpleValue>H3 formula pasted to H4 and H5</SimpleValue>
-         </Value>
       </Row>
       <Row><!--5-->
          <Value ColumnRef="ModelName">
@@ -70906,9 +70642,6 @@ to "Invoice. Tax Representative_ Party. Party"</SimpleValue>
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
-         </Value>
-         <Value ColumnRef="ChangesforUBL20UpdatePackage">
-            <SimpleValue>H3 formula pasted to H4 and H5</SimpleValue>
          </Value>
       </Row>
       <Row><!--6-->
@@ -71789,9 +71522,6 @@ to "Invoice. Tax Representative_ Party. Party"</SimpleValue>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
          </Value>
-         <Value ColumnRef="ChangesforUBL20UpdatePackage">
-            <SimpleValue>H3 formula pasted to H4 and H5</SimpleValue>
-         </Value>
       </Row>
       <Row><!--5-->
          <Value ColumnRef="ModelName">
@@ -71838,9 +71568,6 @@ to "Invoice. Tax Representative_ Party. Party"</SimpleValue>
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
-         </Value>
-         <Value ColumnRef="ChangesforUBL20UpdatePackage">
-            <SimpleValue>H3 formula pasted to H4 and H5</SimpleValue>
          </Value>
       </Row>
       <Row><!--6-->
@@ -72179,9 +71906,6 @@ to "Invoice. Tax Representative_ Party. Party"</SimpleValue>
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
-         </Value>
-         <Value ColumnRef="ChangesforUBL20UpdatePackage">
-            <SimpleValue>Literal in H12 replaced with the formula used for the other cells in column H</SimpleValue>
          </Value>
       </Row>
       <Row><!--13-->
@@ -73553,9 +73277,6 @@ to "Invoice. Tax Representative_ Party. Party"</SimpleValue>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
          </Value>
-         <Value ColumnRef="ChangesforUBL20UpdatePackage">
-            <SimpleValue>H3 formula pasted to H4 and H5</SimpleValue>
-         </Value>
       </Row>
       <Row><!--5-->
          <Value ColumnRef="ModelName">
@@ -73602,9 +73323,6 @@ to "Invoice. Tax Representative_ Party. Party"</SimpleValue>
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
-         </Value>
-         <Value ColumnRef="ChangesforUBL20UpdatePackage">
-            <SimpleValue>H3 formula pasted to H4 and H5</SimpleValue>
          </Value>
       </Row>
       <Row><!--6-->
@@ -74096,9 +73814,6 @@ to "Invoice. Tax Representative_ Party. Party"</SimpleValue>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
          </Value>
-         <Value ColumnRef="ChangesforUBL20UpdatePackage">
-            <SimpleValue>Definition (cell Q16) changed from "A reference to the Payment Order (from the Payer to the Payer's bank)." to "An internal reference to the order for payment from the Payer to the Payer's bank."</SimpleValue>
-         </Value>
       </Row>
       <Row><!--17-->
          <Value ColumnRef="ModelName">
@@ -74143,9 +73858,6 @@ to "Invoice. Tax Representative_ Party. Party"</SimpleValue>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
          </Value>
-         <Value ColumnRef="ChangesforUBL20UpdatePackage">
-            <SimpleValue>Definition (cell Q17) changed from "The Payer;'s internal reference for the payment." to "An internal reference to the Payer's order for payment."</SimpleValue>
-         </Value>
       </Row>
       <Row><!--18-->
          <Value ColumnRef="ModelName">
@@ -74189,9 +73901,6 @@ to "Invoice. Tax Representative_ Party. Party"</SimpleValue>
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
-         </Value>
-         <Value ColumnRef="ChangesforUBL20UpdatePackage">
-            <SimpleValue>Definition (cell Q18) changed from "The Invoicing Party's reference to the payment, previously requested of the Payer to accompany remittance." to "An internal reference of the order for payment for the Invoicing Party. This may have been requested by the Payee of the Payer to accompany their remittance."</SimpleValue>
          </Value>
       </Row>
       <Row><!--19-->
@@ -74752,9 +74461,6 @@ to "Invoice. Tax Representative_ Party. Party"</SimpleValue>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
          </Value>
-         <Value ColumnRef="ChangesforUBL20UpdatePackage">
-            <SimpleValue>H3 formula pasted to H4 and H5</SimpleValue>
-         </Value>
       </Row>
       <Row><!--5-->
          <Value ColumnRef="ModelName">
@@ -74801,9 +74507,6 @@ to "Invoice. Tax Representative_ Party. Party"</SimpleValue>
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Procurement</SimpleValue>
-         </Value>
-         <Value ColumnRef="ChangesforUBL20UpdatePackage">
-            <SimpleValue>H3 formula pasted to H4 and H5</SimpleValue>
          </Value>
       </Row>
       <Row><!--6-->
@@ -75971,9 +75674,6 @@ to "Invoice. Tax Representative_ Party. Party"</SimpleValue>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Transportation</SimpleValue>
          </Value>
-         <Value ColumnRef="ChangesforUBL20UpdatePackage">
-            <SimpleValue>H3 formula pasted to H4 and H5</SimpleValue>
-         </Value>
       </Row>
       <Row><!--5-->
          <Value ColumnRef="ModelName">
@@ -76021,9 +75721,6 @@ to "Invoice. Tax Representative_ Party. Party"</SimpleValue>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Transportation</SimpleValue>
          </Value>
-         <Value ColumnRef="ChangesforUBL20UpdatePackage">
-            <SimpleValue>H3 formula pasted to H4 and H5</SimpleValue>
-         </Value>
       </Row>
       <Row><!--6-->
          <Value ColumnRef="ModelName">
@@ -76064,9 +75761,6 @@ to "Invoice. Tax Representative_ Party. Party"</SimpleValue>
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Transportation</SimpleValue>
-         </Value>
-         <Value ColumnRef="ChangesforUBL20UpdatePackage">
-            <SimpleValue>Deleted contents of Alternative Business Terms (cell N6)</SimpleValue>
          </Value>
       </Row>
       <Row><!--7-->
@@ -76329,9 +76023,6 @@ to "Invoice. Tax Representative_ Party. Party"</SimpleValue>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Transportation</SimpleValue>
          </Value>
-         <Value ColumnRef="ChangesforUBL20UpdatePackage">
-            <SimpleValue>Definition (cell Q12) changed from "Textual description of a status message." to "Textual description of the document instance."</SimpleValue>
-         </Value>
       </Row>
       <Row><!--13-->
          <Value ColumnRef="ModelName">
@@ -76504,9 +76195,6 @@ to "Invoice. Tax Representative_ Party. Party"</SimpleValue>
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Transportation</SimpleValue>
-         </Value>
-         <Value ColumnRef="ChangesforUBL20UpdatePackage">
-            <SimpleValue>Changed definition (cell Q16) from "An association to Consignment covered by the status message." to "An association to Consignment."</SimpleValue>
          </Value>
       </Row>
       <Row><!--17-->
@@ -76745,9 +76433,6 @@ to "Invoice. Tax Representative_ Party. Party"</SimpleValue>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Transportation</SimpleValue>
          </Value>
-         <Value ColumnRef="ChangesforUBL20UpdatePackage">
-            <SimpleValue>H3 formula pasted to H4 and H5; A3 formula pasted to A4</SimpleValue>
-         </Value>
       </Row>
       <Row><!--5-->
          <Value ColumnRef="ModelName">
@@ -76794,9 +76479,6 @@ to "Invoice. Tax Representative_ Party. Party"</SimpleValue>
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Transportation</SimpleValue>
-         </Value>
-         <Value ColumnRef="ChangesforUBL20UpdatePackage">
-            <SimpleValue>H3 formula pasted to H4 and H5</SimpleValue>
          </Value>
       </Row>
       <Row><!--6-->
@@ -77111,9 +76793,6 @@ to "Invoice. Tax Representative_ Party. Party"</SimpleValue>
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Transportation</SimpleValue>
-         </Value>
-         <Value ColumnRef="ChangesforUBL20UpdatePackage">
-            <SimpleValue>Definition (cell Q12) changed from "Textual description of a Waybill." to "Textual description of the document instance."</SimpleValue>
          </Value>
       </Row>
       <Row><!--13-->
@@ -77519,9 +77198,6 @@ to "Invoice. Tax Representative_ Party. Party"</SimpleValue>
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Transportation</SimpleValue>
-         </Value>
-         <Value ColumnRef="ChangesforUBL20UpdatePackage">
-            <SimpleValue>Definition changed from "A separately identifiable collection of goods items (available to be) transported from one consignor to one consignee via one or more modes of transport." to "An association to Shipment."</SimpleValue>
          </Value>
       </Row>
       <Row><!--22-->
