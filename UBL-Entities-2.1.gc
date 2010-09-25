@@ -136021,6 +136021,874 @@ Shipment Stage. Transship Port_ Location. Location
             <SimpleValue>UBL-CommonLibrary-2.1</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
+            <SimpleValue>TenderResult</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Tender Result. Details</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Tender Result</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>ABIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>The result of the bid opening in the tendering process</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextRegionGeopolitical">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextOfficialConstraints">
+            <SimpleValue>None</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextProduct">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextIndustry">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextRole">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextSupportingRole">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextSystemConstraint">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="ModelName">
+            <SimpleValue>UBL-CommonLibrary-2.1</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>ResultCode</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Tender Result. Result Code. Code</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Tender Result</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPossessiveNoun">
+            <SimpleValue>Result</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Code</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Result Code</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Code</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Code. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>The code specifiying the tender result for this tendering process.</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextRegionGeopolitical">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextOfficialConstraints">
+            <SimpleValue>None</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextProduct">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextIndustry">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextRole">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextSupportingRole">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextSystemConstraint">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="ModelName">
+            <SimpleValue>UBL-CommonLibrary-2.1</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>Description</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Tender Result. Description. Text</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Tender Result</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Description</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Description</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Text</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Text. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..n</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>The textual description for this tender result for this tendering process.</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextRegionGeopolitical">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextOfficialConstraints">
+            <SimpleValue>None</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextProduct">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextIndustry">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextRole">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextSupportingRole">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextSystemConstraint">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="ModelName">
+            <SimpleValue>UBL-CommonLibrary-2.1</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>AdvertisementAmount</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Tender Result. Advertisement. Amount</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Tender Result</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Advertisement</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Advertisement</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Amount</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Amount. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>The monetary value of the advertisement for this tendering process. </SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextRegionGeopolitical">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextOfficialConstraints">
+            <SimpleValue>None</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextProduct">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextIndustry">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextRole">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextSupportingRole">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextSystemConstraint">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="ModelName">
+            <SimpleValue>UBL-CommonLibrary-2.1</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>AwardDate</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Tender Result. Award Date. Date</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Tender Result</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPossessiveNoun">
+            <SimpleValue>Award</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Date</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Award Date</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Date</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Date. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>The date at which awarding has been formalized</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextRegionGeopolitical">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextOfficialConstraints">
+            <SimpleValue>None</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextProduct">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextIndustry">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextRole">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextSupportingRole">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextSystemConstraint">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="ModelName">
+            <SimpleValue>UBL-CommonLibrary-2.1</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>AwardTime</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Tender Result. Award Time. Time</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Tender Result</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPossessiveNoun">
+            <SimpleValue>Award</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Time</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Award Time</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Time</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Time. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>The time at which awarding has been formalized</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextRegionGeopolitical">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextOfficialConstraints">
+            <SimpleValue>None</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextProduct">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextIndustry">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextRole">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextSupportingRole">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextSystemConstraint">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="ModelName">
+            <SimpleValue>UBL-CommonLibrary-2.1</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>ReceivedTenderQuantity</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Tender Result. Received_ Tender. Quantity</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Tender Result</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermQualifier">
+            <SimpleValue>Received</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Tender</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Tender</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Quantity</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Quantity. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>The total number of tenders received in this tendering process.</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextRegionGeopolitical">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextOfficialConstraints">
+            <SimpleValue>None</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextProduct">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextIndustry">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextRole">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextSupportingRole">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextSystemConstraint">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="ModelName">
+            <SimpleValue>UBL-CommonLibrary-2.1</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>LowerTenderAmount</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Tender Result. Lower_ Tender. Amount</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Tender Result</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermQualifier">
+            <SimpleValue>Lower</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Tender</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Tender</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Amount</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Amount. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>The most economical tender received in this tendering process.</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextRegionGeopolitical">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextOfficialConstraints">
+            <SimpleValue>None</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextProduct">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextIndustry">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextRole">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextSupportingRole">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextSystemConstraint">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="ModelName">
+            <SimpleValue>UBL-CommonLibrary-2.1</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>HigherTenderAmount</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Tender Result. Higher_ Tender. Amount</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Tender Result</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermQualifier">
+            <SimpleValue>Higher</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Tender</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Tender</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Amount</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Amount. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>The most expensive tender received in this tendering process.</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextRegionGeopolitical">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextOfficialConstraints">
+            <SimpleValue>None</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextProduct">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextIndustry">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextRole">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextSupportingRole">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextSystemConstraint">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="ModelName">
+            <SimpleValue>UBL-CommonLibrary-2.1</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>StartDate</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Tender Result. Start Date. Date</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Tender Result</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPossessiveNoun">
+            <SimpleValue>Start</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Date</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Start Date</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Date</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Date. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>The date on which this contract starts.</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextRegionGeopolitical">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextOfficialConstraints">
+            <SimpleValue>None</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextProduct">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextIndustry">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextRole">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextSupportingRole">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextSystemConstraint">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="ModelName">
+            <SimpleValue>UBL-CommonLibrary-2.1</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>Contract</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Tender Result. Contract</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Tender Result</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Contract</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Contract</SimpleValue>
+         </Value>
+         <Value ColumnRef="AssociatedObjectClass">
+            <SimpleValue>Contract</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>ASBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>A contract that is identified in this tender result.</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextRegionGeopolitical">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextOfficialConstraints">
+            <SimpleValue>None</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextProduct">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextIndustry">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextRole">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextSupportingRole">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextSystemConstraint">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="ModelName">
+            <SimpleValue>UBL-CommonLibrary-2.1</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>WinningParty</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Tender Result. Winning_ Party. Party</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Tender Result</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermQualifier">
+            <SimpleValue>Winning</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Party</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Party</SimpleValue>
+         </Value>
+         <Value ColumnRef="AssociatedObjectClass">
+            <SimpleValue>Party</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>ASBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>A party that is identified as the awarded by this tender result.</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextRegionGeopolitical">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextOfficialConstraints">
+            <SimpleValue>None</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextProduct">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextIndustry">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextRole">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextSupportingRole">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextSystemConstraint">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="ModelName">
+            <SimpleValue>UBL-CommonLibrary-2.1</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>AwardedTenderedProject</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Tender Result. Awarded_ Tendered Project. Tendered Project</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Tender Result</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermQualifier">
+            <SimpleValue>Awarded</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Tendered Project</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Tendered Project</SimpleValue>
+         </Value>
+         <Value ColumnRef="AssociatedObjectClass">
+            <SimpleValue>Tendered Project</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>ASBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>The awarded tendered project for this tender result.</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextRegionGeopolitical">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextOfficialConstraints">
+            <SimpleValue>None</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextProduct">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextIndustry">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextRole">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextSupportingRole">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextSystemConstraint">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="ModelName">
+            <SimpleValue>UBL-CommonLibrary-2.1</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>SubcontractTerms</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Tender Result. Subcontract Terms</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Tender Result</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Subcontract Terms</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Subcontract Terms</SimpleValue>
+         </Value>
+         <Value ColumnRef="AssociatedObjectClass">
+            <SimpleValue>Subcontract Terms</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..n</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>ASBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>The actual subcontract information for this tender result.</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextRegionGeopolitical">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextOfficialConstraints">
+            <SimpleValue>None</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextProduct">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextIndustry">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextRole">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextSupportingRole">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextSystemConstraint">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="ModelName">
+            <SimpleValue>UBL-CommonLibrary-2.1</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
             <SimpleValue>TenderedProject</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
