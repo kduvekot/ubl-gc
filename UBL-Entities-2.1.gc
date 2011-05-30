@@ -126174,7 +126174,7 @@ This clas are suplementary utility Statements, that depending of type of Utility
             <SimpleValue>ABIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>Statement of óne product. If you need to specifier more than one product, you must specifier one ChargeableConsumptionLine for each product. This could for exampel be necesarry if the customer have to pay both for the cables and the internet connection.</SimpleValue>
+            <SimpleValue>Statement of one product. If you need to specifier more than one product, you must specifier one ChargeableConsumptionLine for each product. This could for exampel be necesarry if the customer have to pay both for the cables and the internet connection.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.1</SimpleValue>
@@ -126307,7 +126307,7 @@ This clas are suplementary utility Statements, that depending of type of Utility
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>This element is used if you for each line in this document OIOUBL UTS , want to indicate which line on the OIOUBL Invoice / OIOUBL CreditNote , the line is contained in. For examples: If there is a line on the main invoice: 1 Consumption xxx £ , and in the OIOUBL UTS document there is 20 different lines, there together make up the consumption, then you make up ”Consumption” in the element ParentDocumentReferenceID </SimpleValue>
+            <SimpleValue>This element is used if you for each line in this document UBL UTS , want to indicate which line on the UBL Invoice or UBL CreditNote, the line is contained in. For examples: If there is a line on the main invoice: 1 Consumption xxx , and in the UBL UTS document there is 20 different lines, there together make up the consumption, then you make up |Consumption| in the element ParentDocumentReferenceID.</SimpleValue>
          </Value>
          <Value ColumnRef="Examples">
             <SimpleValue>Consumption</SimpleValue>
