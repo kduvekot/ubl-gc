@@ -199129,13 +199129,16 @@ Receipt Line. Timing Complaint Code. Code
             <SimpleValue>UBL-CommonLibrary-2.1</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
-            <SimpleValue>ResultCode</SimpleValue>
+            <SimpleValue>ValidationResultCode</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Result Of Verification. Result Code. Code</SimpleValue>
+            <SimpleValue>Result Of Verification. Validation_ Result Code. Code</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Result Of Verification</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermQualifier">
+            <SimpleValue>Validation</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTermPossessiveNoun">
             <SimpleValue>Result</SimpleValue>
