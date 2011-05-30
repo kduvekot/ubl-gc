@@ -213481,6 +213481,68 @@ Shipment Stage. Transship Port_ Location. Location
             <SimpleValue>UBL-CommonLibrary-2.1</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
+            <SimpleValue>ID</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Telecommunications Service. Identifier</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Telecommunications Service</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Identifier</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Identifier</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Identifier</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Identifier. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>Identifies the Telecommunications Service.</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextRegionGeopolitical">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextOfficialConstraints">
+            <SimpleValue>None</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextProduct">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextIndustry">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextRole">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextSupportingRole">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextSystemConstraint">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="ModelName">
+            <SimpleValue>UBL-CommonLibrary-2.1</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
             <SimpleValue>CallDate</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
@@ -213889,22 +213951,22 @@ Shipment Stage. Transship Port_ Location. Location
             <SimpleValue>UBL-CommonLibrary-2.1</SimpleValue>
          </Value>
          <Value ColumnRef="UBLName">
-            <SimpleValue>RoarningPartnerName</SimpleValue>
+            <SimpleValue>RoamingPartnerName</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Telecommunications Service. Roarning Partner Name. Text</SimpleValue>
+            <SimpleValue>Telecommunications Service. Roaming Partner Name. Text</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Telecommunications Service</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTermPossessiveNoun">
-            <SimpleValue>Roarning Partner</SimpleValue>
+            <SimpleValue>Roaming Partner</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTermPrimaryNoun">
             <SimpleValue>Name</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTerm">
-            <SimpleValue>Roarning Partner Name</SimpleValue>
+            <SimpleValue>Roaming Partner Name</SimpleValue>
          </Value>
          <Value ColumnRef="RepresentationTerm">
             <SimpleValue>Text</SimpleValue>
@@ -213913,13 +213975,13 @@ Shipment Stage. Transship Port_ Location. Location
             <SimpleValue>Text. Type</SimpleValue>
          </Value>
          <Value ColumnRef="Cardinality">
-            <SimpleValue>0..1</SimpleValue>
+            <SimpleValue>0..n</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentType">
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>Statement of the roarning partner name</SimpleValue>
+            <SimpleValue>Statement of the roaming partner name.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.1</SimpleValue>
@@ -214442,7 +214504,7 @@ Shipment Stage. Transship Port_ Location. Location
             <SimpleValue>2.1</SimpleValue>
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
-            <SimpleValue>Procurement</SimpleValue>
+            <SimpleValue>In All Contexts</SimpleValue>
          </Value>
          <Value ColumnRef="ContextRegionGeopolitical">
             <SimpleValue>In All Contexts</SimpleValue>
