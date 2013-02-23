@@ -35114,7 +35114,7 @@ Credit Note. UBL Version Identifier. Identifier </SimpleValue>
             <SimpleValue>In All Contexts</SimpleValue>
          </Value>
       </Row>
-      <Row>
+      <Row><!--2-->
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-ForwardingInstructions-2.1</SimpleValue>
          </Value>
@@ -35134,7 +35134,7 @@ Credit Note. UBL Version Identifier. Identifier </SimpleValue>
             <SimpleValue>ABIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The document issued to a forwarder, giving instructions regarding the action to be taken for the forwarding of goods described therein. Forwarding Instructions is used by any party who gives instructions for the transportation services required for a consignment of goods to any party who is contracted to provide the transportation services. The parties who issue this document are commonly referred to as the shipper or consignor, while the parties who receive this document are forwarders, carriers, shipping agents, etc. Note that this document may also be issued by a forwarder or shipping agent in their capacity as a shipper . This document can be used to arrange for the transportation (1) of different types of goods or cargoes; (2) whether containerized or non-containerized; (3) through different modes of transport including multi-modal; and (4) from any origin to any destination.</SimpleValue>
+            <SimpleValue>A document issued to a forwarder, giving instructions regarding the action to be taken for the forwarding of goods described therein. Forwarding Instructions is used by any party who gives instructions for the transportation services required for a consignment of goods to any party who is contracted to provide the transportation services. The parties who issue this document are commonly referred to as the shipper or consignor, while the parties who receive this document are forwarders, carriers, shipping agents, etc. This document may also be issued by a forwarder or shipping agent in its capacity as a shipper. This document can be used to arrange for the transportation (1) of different types of goods or cargoes; (2) whether containerized or non-containerized; (3) through different modes of transport including multi-modal; and (4) from any origin to any destination.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
@@ -35167,7 +35167,7 @@ Credit Note. UBL Version Identifier. Identifier </SimpleValue>
             <SimpleValue>Changes for UBL 2.0 Update Package: Text Freight Forwarding Instruction, Shippers Letter of Instruction moved from Alternative Business Terms for ID (cell N6) to Alternative Business Terms for the document itself (cell N2), joining Forwarding Instruction ; Shipping Instruction and Shipper s Letter of Instruction (with apostrophe) added to Alternative Business Terms in the same cell</SimpleValue>
          </Value>
       </Row>
-      <Row>
+      <Row><!--3-->
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-ForwardingInstructions-2.1</SimpleValue>
          </Value>
@@ -35202,7 +35202,7 @@ Credit Note. UBL Version Identifier. Identifier </SimpleValue>
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The earliest version of the UBL 2 schema for this document type that defines all of the elements that might be encountered in the current instance.</SimpleValue>
+            <SimpleValue>Identifies the earliest version of the UBL 2 schema for this document type that defines all of the elements that might be encountered in the current instance.</SimpleValue>
          </Value>
          <Value ColumnRef="Examples">
             <SimpleValue>2.0.5</SimpleValue>
@@ -35235,7 +35235,7 @@ Credit Note. UBL Version Identifier. Identifier </SimpleValue>
             <SimpleValue>In All Contexts</SimpleValue>
          </Value>
       </Row>
-      <Row>
+      <Row><!--4-->
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-ForwardingInstructions-2.1</SimpleValue>
          </Value>
@@ -35270,7 +35270,7 @@ Credit Note. UBL Version Identifier. Identifier </SimpleValue>
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>Identifies a user-defined Customization of UBL for a specific use.</SimpleValue>
+            <SimpleValue>Identifies a user-defined customization of UBL for a specific use.</SimpleValue>
          </Value>
          <Value ColumnRef="Examples">
             <SimpleValue>NES</SimpleValue>
@@ -35306,7 +35306,7 @@ Credit Note. UBL Version Identifier. Identifier </SimpleValue>
             <SimpleValue>Changes for UBL 2.0 Update Package: H3 formula pasted to H4 and H5</SimpleValue>
          </Value>
       </Row>
-      <Row>
+      <Row><!--5-->
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-ForwardingInstructions-2.1</SimpleValue>
          </Value>
@@ -35377,7 +35377,7 @@ Credit Note. UBL Version Identifier. Identifier </SimpleValue>
             <SimpleValue>Changes for UBL 2.0 Update Package: H3 formula pasted to H4 and H5</SimpleValue>
          </Value>
       </Row>
-      <Row>
+      <Row><!--6-->
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-ForwardingInstructions-2.1</SimpleValue>
          </Value>
@@ -35445,7 +35445,7 @@ Credit Note. UBL Version Identifier. Identifier </SimpleValue>
             <SimpleValue>In All Contexts</SimpleValue>
          </Value>
       </Row>
-      <Row>
+      <Row><!--7-->
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-ForwardingInstructions-2.1</SimpleValue>
          </Value>
@@ -35477,7 +35477,10 @@ Credit Note. UBL Version Identifier. Identifier </SimpleValue>
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>Unique identifier of the Forwarding Instructions.</SimpleValue>
+            <SimpleValue>An identifier for this document, assigned by the sender.</SimpleValue>
+         </Value>
+         <Value ColumnRef="UNTDEDCode">
+            <SimpleValue>1121</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
@@ -35510,7 +35513,7 @@ Credit Note. UBL Version Identifier. Identifier </SimpleValue>
             <SimpleValue>Changes for UBL 2.0 Update Package: Definition (cell Q6) changed from Unique identifier of the Forwarding Instructions. Reference number to identify a Shipping Instruction. to Unique identifier of the Forwarding Instructions. </SimpleValue>
          </Value>
       </Row>
-      <Row>
+      <Row><!--8-->
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-ForwardingInstructions-2.1</SimpleValue>
          </Value>
@@ -35545,7 +35548,7 @@ Credit Note. UBL Version Identifier. Identifier </SimpleValue>
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>Reference number assigned by a carrier or its agent to identify a specific shipment such as a booking reference number when cargo space is reserved prior to loading.</SimpleValue>
+            <SimpleValue>Reference number assigned by a carrier or its agent to identify a specific shipment, such as a booking reference number when cargo space is reserved prior to loading.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
@@ -35575,7 +35578,7 @@ Credit Note. UBL Version Identifier. Identifier </SimpleValue>
             <SimpleValue>In All Contexts</SimpleValue>
          </Value>
       </Row>
-      <Row>
+      <Row><!--9-->
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-ForwardingInstructions-2.1</SimpleValue>
          </Value>
@@ -35607,7 +35610,7 @@ Credit Note. UBL Version Identifier. Identifier </SimpleValue>
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>A universally unique identifier for an instance of this ABIE.</SimpleValue>
+            <SimpleValue>A universally unique identifier for an instance of this document.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
@@ -35637,7 +35640,7 @@ Credit Note. UBL Version Identifier. Identifier </SimpleValue>
             <SimpleValue>In All Contexts</SimpleValue>
          </Value>
       </Row>
-      <Row>
+      <Row><!--10-->
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-ForwardingInstructions-2.1</SimpleValue>
          </Value>
@@ -35672,7 +35675,10 @@ Credit Note. UBL Version Identifier. Identifier </SimpleValue>
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>Date on which the Forwarding Instructions were issued.</SimpleValue>
+            <SimpleValue>The date, assigned by the sender, on which this document was issued.</SimpleValue>
+         </Value>
+         <Value ColumnRef="UNTDEDCode">
+            <SimpleValue>2185</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
@@ -35702,7 +35708,7 @@ Credit Note. UBL Version Identifier. Identifier </SimpleValue>
             <SimpleValue>In All Contexts</SimpleValue>
          </Value>
       </Row>
-      <Row>
+      <Row><!--11-->
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-ForwardingInstructions-2.1</SimpleValue>
          </Value>
@@ -35737,7 +35743,10 @@ Credit Note. UBL Version Identifier. Identifier </SimpleValue>
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>Time at which the Forwarding Instructions were issued.</SimpleValue>
+            <SimpleValue>The time, assigned by the sender, at which this document was issued.</SimpleValue>
+         </Value>
+         <Value ColumnRef="UNTDEDCode">
+            <SimpleValue>2185</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
@@ -35767,7 +35776,7 @@ Credit Note. UBL Version Identifier. Identifier </SimpleValue>
             <SimpleValue>In All Contexts</SimpleValue>
          </Value>
       </Row>
-      <Row>
+      <Row><!--12-->
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-ForwardingInstructions-2.1</SimpleValue>
          </Value>
@@ -35799,7 +35808,7 @@ Credit Note. UBL Version Identifier. Identifier </SimpleValue>
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>Name of a Forwarding Instructions.</SimpleValue>
+            <SimpleValue>Text, assigned by the sender, that identifies this document to business users.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
@@ -35829,7 +35838,7 @@ Credit Note. UBL Version Identifier. Identifier </SimpleValue>
             <SimpleValue>In All Contexts</SimpleValue>
          </Value>
       </Row>
-      <Row>
+      <Row><!--13-->
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-ForwardingInstructions-2.1</SimpleValue>
          </Value>
@@ -35894,7 +35903,7 @@ Credit Note. UBL Version Identifier. Identifier </SimpleValue>
             <SimpleValue>Changes for UBL 2.0 Update Package: Definition (cell Q12) changed from Description of the type of Forwarding Instructions. to Textual description of the document instance. </SimpleValue>
          </Value>
       </Row>
-      <Row>
+      <Row><!--14-->
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-ForwardingInstructions-2.1</SimpleValue>
          </Value>
@@ -35926,7 +35935,7 @@ Credit Note. UBL Version Identifier. Identifier </SimpleValue>
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>Informative notes associated with the Forwarding Instructions.</SimpleValue>
+            <SimpleValue>Free-form text pertinent to this document, conveying information that is not contained explicitly in other structures.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
@@ -35956,7 +35965,7 @@ Credit Note. UBL Version Identifier. Identifier </SimpleValue>
             <SimpleValue>In All Contexts</SimpleValue>
          </Value>
       </Row>
-      <Row>
+      <Row><!--15-->
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-ForwardingInstructions-2.1</SimpleValue>
          </Value>
@@ -35994,7 +36003,7 @@ Credit Note. UBL Version Identifier. Identifier </SimpleValue>
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>Identifies the status of the Forwarding Instructions with respect to its original state. This may be used if the document precedes the event and is subsequently found to be incorrect and in need of cancelling or revising.</SimpleValue>
+            <SimpleValue>A code signifying the status of the Forwarding Instructions with respect to its original state. This code may be used if the document precedes the event and is subsequently found to be incorrect and in need of cancellation or revision.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
@@ -36024,7 +36033,7 @@ Credit Note. UBL Version Identifier. Identifier </SimpleValue>
             <SimpleValue>In All Contexts</SimpleValue>
          </Value>
       </Row>
-      <Row>
+      <Row><!--16-->
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-ForwardingInstructions-2.1</SimpleValue>
          </Value>
@@ -36061,6 +36070,9 @@ Credit Note. UBL Version Identifier. Identifier </SimpleValue>
          <Value ColumnRef="Definition">
             <SimpleValue>Reference number to identify a Shipping Order.</SimpleValue>
          </Value>
+         <Value ColumnRef="UNTDEDCode">
+            <SimpleValue>1121</SimpleValue>
+         </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
          </Value>
@@ -36089,7 +36101,7 @@ Credit Note. UBL Version Identifier. Identifier </SimpleValue>
             <SimpleValue>In All Contexts</SimpleValue>
          </Value>
       </Row>
-      <Row>
+      <Row><!--17-->
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-ForwardingInstructions-2.1</SimpleValue>
          </Value>
@@ -36124,7 +36136,7 @@ Credit Note. UBL Version Identifier. Identifier </SimpleValue>
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>Indicator of whether the transport document is consigned to order.</SimpleValue>
+            <SimpleValue>Indicates whether the transport document is consigned to order.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
@@ -36154,7 +36166,7 @@ Credit Note. UBL Version Identifier. Identifier </SimpleValue>
             <SimpleValue>In All Contexts</SimpleValue>
          </Value>
       </Row>
-      <Row>
+      <Row><!--18-->
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-ForwardingInstructions-2.1</SimpleValue>
          </Value>
@@ -36219,7 +36231,7 @@ Credit Note. UBL Version Identifier. Identifier </SimpleValue>
             <SimpleValue>In All Contexts</SimpleValue>
          </Value>
       </Row>
-      <Row>
+      <Row><!--19-->
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-ForwardingInstructions-2.1</SimpleValue>
          </Value>
@@ -36254,7 +36266,10 @@ Credit Note. UBL Version Identifier. Identifier </SimpleValue>
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>Value, declared by the shipper or his agent solely for the purpose of varying the carrier s level of liability from that provided in the contract of carriage, in case of loss or damage to goods or delayed delivery.</SimpleValue>
+            <SimpleValue>Value declared by the shipper or his agent solely for the purpose of varying the carrier's level of liability from that provided in the contract of carriage in case of loss or damage to goods or delayed delivery.</SimpleValue>
+         </Value>
+         <Value ColumnRef="UNTDEDCode">
+            <SimpleValue>5036</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
@@ -36284,7 +36299,7 @@ Credit Note. UBL Version Identifier. Identifier </SimpleValue>
             <SimpleValue>In All Contexts</SimpleValue>
          </Value>
       </Row>
-      <Row>
+      <Row><!--20-->
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-ForwardingInstructions-2.1</SimpleValue>
          </Value>
@@ -36319,7 +36334,10 @@ Credit Note. UBL Version Identifier. Identifier </SimpleValue>
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>Contains other free-text based instructions related to the shipment to the forwarders or carriers. This should only be used where such information cannot be represented in other structured information entities within the document.</SimpleValue>
+            <SimpleValue>Contains other free-text instructions to the forwarders or carriers related to the shipment. This should only be used where such information cannot be represented in other structured information entities within the document.</SimpleValue>
+         </Value>
+         <Value ColumnRef="UNTDEDCode">
+            <SimpleValue>4244</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
@@ -36349,7 +36367,7 @@ Credit Note. UBL Version Identifier. Identifier </SimpleValue>
             <SimpleValue>In All Contexts</SimpleValue>
          </Value>
       </Row>
-      <Row>
+      <Row><!--21-->
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-ForwardingInstructions-2.1</SimpleValue>
          </Value>
@@ -36386,6 +36404,9 @@ Credit Note. UBL Version Identifier. Identifier </SimpleValue>
          <Value ColumnRef="Definition">
             <SimpleValue>The party consigning goods, as stipulated in the transport contract by the party ordering transport.</SimpleValue>
          </Value>
+         <Value ColumnRef="UNTDEDCode">
+            <SimpleValue>3036 and 3039</SimpleValue>
+         </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
          </Value>
@@ -36414,7 +36435,7 @@ Credit Note. UBL Version Identifier. Identifier </SimpleValue>
             <SimpleValue>In All Contexts</SimpleValue>
          </Value>
       </Row>
-      <Row>
+      <Row><!--22-->
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-ForwardingInstructions-2.1</SimpleValue>
          </Value>
@@ -36451,6 +36472,9 @@ Credit Note. UBL Version Identifier. Identifier </SimpleValue>
          <Value ColumnRef="Definition">
             <SimpleValue>The party providing the transport of goods between named points.</SimpleValue>
          </Value>
+         <Value ColumnRef="UNTDEDCode">
+            <SimpleValue>3036 and 3039</SimpleValue>
+         </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
          </Value>
@@ -36479,7 +36503,7 @@ Credit Note. UBL Version Identifier. Identifier </SimpleValue>
             <SimpleValue>In All Contexts</SimpleValue>
          </Value>
       </Row>
-      <Row>
+      <Row><!--23-->
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-ForwardingInstructions-2.1</SimpleValue>
          </Value>
@@ -36514,7 +36538,10 @@ Credit Note. UBL Version Identifier. Identifier </SimpleValue>
             <SimpleValue>ASBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The party combining individual smaller consignments into a single larger consignment (so-called consolidated consignment) that is sent to a counterpart who mirrors the consolidator s activity by dividing the consolidated consignment into its original components.</SimpleValue>
+            <SimpleValue>A party combining individual smaller consignments into a single larger shipment (a so-called consolidated consignment or shipment) that is sent to a counterpart who mirrors the consolidator's activity by dividing the consolidated consignment into its original components.</SimpleValue>
+         </Value>
+         <Value ColumnRef="UNTDEDCode">
+            <SimpleValue>3036 and 3039</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
@@ -36544,7 +36571,7 @@ Credit Note. UBL Version Identifier. Identifier </SimpleValue>
             <SimpleValue>In All Contexts</SimpleValue>
          </Value>
       </Row>
-      <Row>
+      <Row><!--24-->
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-ForwardingInstructions-2.1</SimpleValue>
          </Value>
@@ -36573,7 +36600,7 @@ Credit Note. UBL Version Identifier. Identifier </SimpleValue>
             <SimpleValue>ASBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>An association to Shipment.</SimpleValue>
+            <SimpleValue>An identifiable collection of one or more goods items to be transported between the seller party and the buyer party.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
@@ -36606,7 +36633,7 @@ Credit Note. UBL Version Identifier. Identifier </SimpleValue>
             <SimpleValue>Changes for UBL 2.0 Update Package: Definition changed from Information about the separately identifiable collection of goods items (available to be) transported from one consignor to one consignee via one or more modes of transport. to An association to Shipment. </SimpleValue>
          </Value>
       </Row>
-      <Row>
+      <Row><!--25-->
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-ForwardingInstructions-2.1</SimpleValue>
          </Value>
@@ -36635,7 +36662,7 @@ Credit Note. UBL Version Identifier. Identifier </SimpleValue>
             <SimpleValue>ASBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>An association to Document Reference.</SimpleValue>
+            <SimpleValue>A reference to another document associated with this document.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
@@ -36665,7 +36692,7 @@ Credit Note. UBL Version Identifier. Identifier </SimpleValue>
             <SimpleValue>In All Contexts</SimpleValue>
          </Value>
       </Row>
-      <Row>
+      <Row><!--26-->
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-ForwardingInstructions-2.1</SimpleValue>
          </Value>
@@ -36694,7 +36721,7 @@ Credit Note. UBL Version Identifier. Identifier </SimpleValue>
             <SimpleValue>ASBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>Information that directly relates to the rate of exchange (conversion) between two currencies.</SimpleValue>
+            <SimpleValue>Information about the rate of exchange (conversion) between two currencies.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
@@ -36724,7 +36751,7 @@ Credit Note. UBL Version Identifier. Identifier </SimpleValue>
             <SimpleValue>In All Contexts</SimpleValue>
          </Value>
       </Row>
-      <Row>
+      <Row><!--27-->
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-ForwardingInstructions-2.1</SimpleValue>
          </Value>
@@ -36753,7 +36780,7 @@ Credit Note. UBL Version Identifier. Identifier </SimpleValue>
             <SimpleValue>ASBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>One or more signatures applied to the document instance.</SimpleValue>
+            <SimpleValue>A signature applied to this document.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
