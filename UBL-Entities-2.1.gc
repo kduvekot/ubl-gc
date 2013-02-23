@@ -153678,6 +153678,443 @@ Debit Note Line. Receipt_ Line Reference. Line Reference
             <SimpleValue>In All Contexts</SimpleValue>
          </Value>
       </Row>
+      <Row><!--879-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>UBL-CommonLibrary-2.1</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>ForecastLine</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Forecast Line. Details</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Forecast Line</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>ABIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>Detailed information about a particular Forecast Line within a Forecast Document</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Plan</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextRegionGeopolitical">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextOfficialConstraints">
+            <SimpleValue>None</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextProduct">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextIndustry">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextRole">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextSupportingRole">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextSystemConstraint">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--880-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>UBL-CommonLibrary-2.1</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>ID</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Forecast Line. Identifier</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Forecast Line</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Identifier</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Identifier</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Identifier</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Identifier. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>An identifier for this forecast line.</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Plan</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextRegionGeopolitical">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextOfficialConstraints">
+            <SimpleValue>None</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextProduct">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextIndustry">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextRole">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextSupportingRole">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextSystemConstraint">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--881-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>UBL-CommonLibrary-2.1</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>Note</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Forecast Line. Note. Text</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Forecast Line</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Note</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Note</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Text</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Text. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..n</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>Free-form text conveying information that is not contained explicitly in other structures.</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Plan</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextRegionGeopolitical">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextOfficialConstraints">
+            <SimpleValue>None</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextProduct">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextIndustry">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextRole">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextSupportingRole">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextSystemConstraint">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="EditorsNotes">
+            <SimpleValue>Change from UBL 1.0: Modified definition text
+</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--882-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>UBL-CommonLibrary-2.1</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>FrozenDocumentIndicator</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Forecast Line. Frozen Document Indicator. Indicator</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Forecast Line</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPossessiveNoun">
+            <SimpleValue>Frozen Document</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Indicator</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Frozen Document Indicator</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Indicator</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Indicator. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>An indicator that the status of the forecast is modifiable (true) or not (false).</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Plan</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextRegionGeopolitical">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextOfficialConstraints">
+            <SimpleValue>None</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextProduct">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextIndustry">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextRole">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextSupportingRole">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextSystemConstraint">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="EditorsNotes">
+            <SimpleValue>Change from UBL 1.0: Changed property term + made mandatory
+</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--883-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>UBL-CommonLibrary-2.1</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>ForecastTypeCode</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Forecast Line. Forecast Type Code. Code</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Forecast Line</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPossessiveNoun">
+            <SimpleValue>Forecast Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Code</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Forecast Type Code</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Code</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Code. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>A code signifying the type of forecast. Examples: BASE PROMOTIONAL SEASONAL TOTAL</SimpleValue>
+         </Value>
+         <Value ColumnRef="Examples">
+            <SimpleValue>seasonal, total</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Plan</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextRegionGeopolitical">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextOfficialConstraints">
+            <SimpleValue>None</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextProduct">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextIndustry">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextRole">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextSupportingRole">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextSystemConstraint">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="EditorsNotes">
+            <SimpleValue>Change from UBL 1.0: Changed property term + made mandatory
+</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--884-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>UBL-CommonLibrary-2.1</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>ForecastPeriod</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Forecast Line. Forecast_ Period. Period</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Forecast Line</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermQualifier">
+            <SimpleValue>Forecast</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Period</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Period</SimpleValue>
+         </Value>
+         <Value ColumnRef="AssociatedObjectClass">
+            <SimpleValue>Period</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>ASBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>The period to which the forecast applies.</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Plan</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextRegionGeopolitical">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextOfficialConstraints">
+            <SimpleValue>None</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextProduct">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextIndustry">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextRole">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextSupportingRole">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextSystemConstraint">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--885-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>UBL-CommonLibrary-2.1</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>SalesItem</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Forecast Line. Sales Item</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Forecast Line</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Sales Item</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Sales Item</SimpleValue>
+         </Value>
+         <Value ColumnRef="AssociatedObjectClass">
+            <SimpleValue>Sales Item</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>ASBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>Sales information for the item to which this line applies.</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Plan</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextRegionGeopolitical">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextOfficialConstraints">
+            <SimpleValue>None</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextProduct">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextIndustry">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextRole">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextSupportingRole">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextSystemConstraint">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+      </Row>
       <Row>
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-PerformanceHistory-2.1</SimpleValue>
@@ -159573,443 +160010,6 @@ Debit Note Line. Receipt_ Line Reference. Line Reference
          </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>Time basis in days for the Exception</SimpleValue>
-         </Value>
-         <Value ColumnRef="CurrentVersion">
-            <SimpleValue>2.1</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextBusinessProcess">
-            <SimpleValue>Plan</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextRegionGeopolitical">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextOfficialConstraints">
-            <SimpleValue>None</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextProduct">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextIndustry">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextRole">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextSupportingRole">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextSystemConstraint">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-      </Row>
-      <Row>
-         <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.1</SimpleValue>
-         </Value>
-         <Value ColumnRef="UBLName">
-            <SimpleValue>ForecastLine</SimpleValue>
-         </Value>
-         <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Forecast Line. Details</SimpleValue>
-         </Value>
-         <Value ColumnRef="ObjectClass">
-            <SimpleValue>Forecast Line</SimpleValue>
-         </Value>
-         <Value ColumnRef="ComponentType">
-            <SimpleValue>ABIE</SimpleValue>
-         </Value>
-         <Value ColumnRef="Definition">
-            <SimpleValue>A forecast line</SimpleValue>
-         </Value>
-         <Value ColumnRef="CurrentVersion">
-            <SimpleValue>2.1</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextBusinessProcess">
-            <SimpleValue>Plan</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextRegionGeopolitical">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextOfficialConstraints">
-            <SimpleValue>None</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextProduct">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextIndustry">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextRole">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextSupportingRole">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextSystemConstraint">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-      </Row>
-      <Row>
-         <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.1</SimpleValue>
-         </Value>
-         <Value ColumnRef="UBLName">
-            <SimpleValue>ID</SimpleValue>
-         </Value>
-         <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Forecast Line. Identifier</SimpleValue>
-         </Value>
-         <Value ColumnRef="ObjectClass">
-            <SimpleValue>Forecast Line</SimpleValue>
-         </Value>
-         <Value ColumnRef="PropertyTermPrimaryNoun">
-            <SimpleValue>Identifier</SimpleValue>
-         </Value>
-         <Value ColumnRef="PropertyTerm">
-            <SimpleValue>Identifier</SimpleValue>
-         </Value>
-         <Value ColumnRef="RepresentationTerm">
-            <SimpleValue>Identifier</SimpleValue>
-         </Value>
-         <Value ColumnRef="DataType">
-            <SimpleValue>Identifier. Type</SimpleValue>
-         </Value>
-         <Value ColumnRef="Cardinality">
-            <SimpleValue>1</SimpleValue>
-         </Value>
-         <Value ColumnRef="ComponentType">
-            <SimpleValue>BBIE</SimpleValue>
-         </Value>
-         <Value ColumnRef="Definition">
-            <SimpleValue>An identifier for the Forecast Line</SimpleValue>
-         </Value>
-         <Value ColumnRef="CurrentVersion">
-            <SimpleValue>2.1</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextBusinessProcess">
-            <SimpleValue>Plan</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextRegionGeopolitical">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextOfficialConstraints">
-            <SimpleValue>None</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextProduct">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextIndustry">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextRole">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextSupportingRole">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextSystemConstraint">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-      </Row>
-      <Row>
-         <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.1</SimpleValue>
-         </Value>
-         <Value ColumnRef="UBLName">
-            <SimpleValue>Note</SimpleValue>
-         </Value>
-         <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Forecast Line. Note. Text</SimpleValue>
-         </Value>
-         <Value ColumnRef="ObjectClass">
-            <SimpleValue>Forecast Line</SimpleValue>
-         </Value>
-         <Value ColumnRef="PropertyTermPrimaryNoun">
-            <SimpleValue>Note</SimpleValue>
-         </Value>
-         <Value ColumnRef="PropertyTerm">
-            <SimpleValue>Note</SimpleValue>
-         </Value>
-         <Value ColumnRef="RepresentationTerm">
-            <SimpleValue>Text</SimpleValue>
-         </Value>
-         <Value ColumnRef="DataType">
-            <SimpleValue>Text. Type</SimpleValue>
-         </Value>
-         <Value ColumnRef="Cardinality">
-            <SimpleValue>0..n</SimpleValue>
-         </Value>
-         <Value ColumnRef="ComponentType">
-            <SimpleValue>BBIE</SimpleValue>
-         </Value>
-         <Value ColumnRef="Definition">
-            <SimpleValue>Free-form text applying to the Forecast Line. This element may contain notes or any other similar information that is not contained explicitly in another structure.</SimpleValue>
-         </Value>
-         <Value ColumnRef="CurrentVersion">
-            <SimpleValue>2.1</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextBusinessProcess">
-            <SimpleValue>Plan</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextRegionGeopolitical">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextOfficialConstraints">
-            <SimpleValue>None</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextProduct">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextIndustry">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextRole">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextSupportingRole">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextSystemConstraint">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-         <Value ColumnRef="EditorsNotes">
-            <SimpleValue>Change from UBL 1.0: Modified definition text
-</SimpleValue>
-         </Value>
-      </Row>
-      <Row>
-         <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.1</SimpleValue>
-         </Value>
-         <Value ColumnRef="UBLName">
-            <SimpleValue>FrozenDocumentIndicator</SimpleValue>
-         </Value>
-         <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Forecast Line. Frozen Document Indicator. Indicator</SimpleValue>
-         </Value>
-         <Value ColumnRef="ObjectClass">
-            <SimpleValue>Forecast Line</SimpleValue>
-         </Value>
-         <Value ColumnRef="PropertyTermPossessiveNoun">
-            <SimpleValue>Frozen Document</SimpleValue>
-         </Value>
-         <Value ColumnRef="PropertyTermPrimaryNoun">
-            <SimpleValue>Indicator</SimpleValue>
-         </Value>
-         <Value ColumnRef="PropertyTerm">
-            <SimpleValue>Frozen Document Indicator</SimpleValue>
-         </Value>
-         <Value ColumnRef="RepresentationTerm">
-            <SimpleValue>Indicator</SimpleValue>
-         </Value>
-         <Value ColumnRef="DataType">
-            <SimpleValue>Indicator. Type</SimpleValue>
-         </Value>
-         <Value ColumnRef="Cardinality">
-            <SimpleValue>0..1</SimpleValue>
-         </Value>
-         <Value ColumnRef="ComponentType">
-            <SimpleValue>BBIE</SimpleValue>
-         </Value>
-         <Value ColumnRef="Definition">
-            <SimpleValue>The status of the forecast. Is it either modifiable or not?</SimpleValue>
-         </Value>
-         <Value ColumnRef="CurrentVersion">
-            <SimpleValue>2.1</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextBusinessProcess">
-            <SimpleValue>Plan</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextRegionGeopolitical">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextOfficialConstraints">
-            <SimpleValue>None</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextProduct">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextIndustry">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextRole">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextSupportingRole">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextSystemConstraint">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-         <Value ColumnRef="EditorsNotes">
-            <SimpleValue>Change from UBL 1.0: Changed property term + made mandatory
-</SimpleValue>
-         </Value>
-      </Row>
-      <Row>
-         <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.1</SimpleValue>
-         </Value>
-         <Value ColumnRef="UBLName">
-            <SimpleValue>ForecastTypeCode</SimpleValue>
-         </Value>
-         <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Forecast Line. Forecast Type Code. Code</SimpleValue>
-         </Value>
-         <Value ColumnRef="ObjectClass">
-            <SimpleValue>Forecast Line</SimpleValue>
-         </Value>
-         <Value ColumnRef="PropertyTermPossessiveNoun">
-            <SimpleValue>Forecast Type</SimpleValue>
-         </Value>
-         <Value ColumnRef="PropertyTermPrimaryNoun">
-            <SimpleValue>Code</SimpleValue>
-         </Value>
-         <Value ColumnRef="PropertyTerm">
-            <SimpleValue>Forecast Type Code</SimpleValue>
-         </Value>
-         <Value ColumnRef="RepresentationTerm">
-            <SimpleValue>Code</SimpleValue>
-         </Value>
-         <Value ColumnRef="DataType">
-            <SimpleValue>Code. Type</SimpleValue>
-         </Value>
-         <Value ColumnRef="Cardinality">
-            <SimpleValue>1</SimpleValue>
-         </Value>
-         <Value ColumnRef="ComponentType">
-            <SimpleValue>BBIE</SimpleValue>
-         </Value>
-         <Value ColumnRef="Definition">
-            <SimpleValue>The type of the forecast</SimpleValue>
-         </Value>
-         <Value ColumnRef="Examples">
-            <SimpleValue>seasonal, total</SimpleValue>
-         </Value>
-         <Value ColumnRef="CurrentVersion">
-            <SimpleValue>2.1</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextBusinessProcess">
-            <SimpleValue>Plan</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextRegionGeopolitical">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextOfficialConstraints">
-            <SimpleValue>None</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextProduct">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextIndustry">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextRole">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextSupportingRole">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextSystemConstraint">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-         <Value ColumnRef="EditorsNotes">
-            <SimpleValue>Change from UBL 1.0: Changed property term + made mandatory
-</SimpleValue>
-         </Value>
-      </Row>
-      <Row>
-         <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.1</SimpleValue>
-         </Value>
-         <Value ColumnRef="UBLName">
-            <SimpleValue>ForecastPeriod</SimpleValue>
-         </Value>
-         <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Forecast Line. Forecast_ Period. Period</SimpleValue>
-         </Value>
-         <Value ColumnRef="ObjectClass">
-            <SimpleValue>Forecast Line</SimpleValue>
-         </Value>
-         <Value ColumnRef="PropertyTermQualifier">
-            <SimpleValue>Forecast</SimpleValue>
-         </Value>
-         <Value ColumnRef="PropertyTerm">
-            <SimpleValue>Period</SimpleValue>
-         </Value>
-         <Value ColumnRef="RepresentationTerm">
-            <SimpleValue>Period</SimpleValue>
-         </Value>
-         <Value ColumnRef="AssociatedObjectClass">
-            <SimpleValue>Period</SimpleValue>
-         </Value>
-         <Value ColumnRef="Cardinality">
-            <SimpleValue>0..1</SimpleValue>
-         </Value>
-         <Value ColumnRef="ComponentType">
-            <SimpleValue>ASBIE</SimpleValue>
-         </Value>
-         <Value ColumnRef="Definition">
-            <SimpleValue>An association to Period for which forecast is made.</SimpleValue>
-         </Value>
-         <Value ColumnRef="CurrentVersion">
-            <SimpleValue>2.1</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextBusinessProcess">
-            <SimpleValue>Plan</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextRegionGeopolitical">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextOfficialConstraints">
-            <SimpleValue>None</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextProduct">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextIndustry">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextRole">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextSupportingRole">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextSystemConstraint">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-      </Row>
-      <Row>
-         <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.1</SimpleValue>
-         </Value>
-         <Value ColumnRef="UBLName">
-            <SimpleValue>SalesItem</SimpleValue>
-         </Value>
-         <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Forecast Line. Sales Item</SimpleValue>
-         </Value>
-         <Value ColumnRef="ObjectClass">
-            <SimpleValue>Forecast Line</SimpleValue>
-         </Value>
-         <Value ColumnRef="PropertyTerm">
-            <SimpleValue>Sales Item</SimpleValue>
-         </Value>
-         <Value ColumnRef="RepresentationTerm">
-            <SimpleValue>Sales Item</SimpleValue>
-         </Value>
-         <Value ColumnRef="AssociatedObjectClass">
-            <SimpleValue>Sales Item</SimpleValue>
-         </Value>
-         <Value ColumnRef="Cardinality">
-            <SimpleValue>0..1</SimpleValue>
-         </Value>
-         <Value ColumnRef="ComponentType">
-            <SimpleValue>ASBIE</SimpleValue>
-         </Value>
-         <Value ColumnRef="Definition">
-            <SimpleValue>An association to Sales Item.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.1</SimpleValue>
