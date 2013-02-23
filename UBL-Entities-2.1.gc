@@ -215248,6 +215248,617 @@ Shipment Stage. Transship Port_ Location. Location
             <SimpleValue>In All Contexts</SimpleValue>
          </Value>
       </Row>
+      <Row><!--1882-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>UBL-CommonLibrary-2.1</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>SubscriberConsumption</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Subscriber Consumption. Details</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Subscriber Consumption</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>ABIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>The consumption for a specific party for given consumption point provided by a numbers of suppliers. An enterprise can have one utility statement for several parties (e.g. a ministry of defence receiving a telephone bill). In this way each subscriber consumption represent a sub utility statement.</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextRegionGeopolitical">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextOfficialConstraints">
+            <SimpleValue>None</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextProduct">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextIndustry">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextRole">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextSupportingRole">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextSystemConstraint">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--1883-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>UBL-CommonLibrary-2.1</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>ConsumptionID</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Subscriber Consumption. Consumption Identifier. Identifier</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Subscriber Consumption</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPossessiveNoun">
+            <SimpleValue>Consumption</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Identifier</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Consumption Identifier</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Identifier</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Identifier. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>The identifier tor this specification.</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextRegionGeopolitical">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextOfficialConstraints">
+            <SimpleValue>None</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextProduct">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextIndustry">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextRole">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextSupportingRole">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextSystemConstraint">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--1884-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>UBL-CommonLibrary-2.1</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>SpecificationTypeCode</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Subscriber Consumption. Specification Type Code. Code</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Subscriber Consumption</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPossessiveNoun">
+            <SimpleValue>Specification Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Code</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Specification Type Code</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Code</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Code. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>The code which specifies the type of this specification, e.g. an on account specification or the yearly specification.</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextRegionGeopolitical">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextOfficialConstraints">
+            <SimpleValue>None</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextProduct">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextIndustry">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextRole">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextSupportingRole">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextSystemConstraint">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--1885-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>UBL-CommonLibrary-2.1</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>Note</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Subscriber Consumption. Note. Text</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Subscriber Consumption</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Note</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Note</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Text</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Text. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..n</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>Free-form text conveying information that is not contained explicitly in other structures.</SimpleValue>
+         </Value>
+         <Value ColumnRef="Examples">
+            <SimpleValue>This is how we have calculating your yearly statement</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextRegionGeopolitical">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextOfficialConstraints">
+            <SimpleValue>None</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextProduct">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextIndustry">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextRole">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextSupportingRole">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextSystemConstraint">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--1886-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>UBL-CommonLibrary-2.1</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>TotalMeteredQuantity</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Subscriber Consumption. Total Metered Quantity. Quantity</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Subscriber Consumption</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPossessiveNoun">
+            <SimpleValue>Total Metered</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Quantity</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Total Metered Quantity</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Quantity</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Quantity. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>The total quantity consumed, as calculated from meter readings.</SimpleValue>
+         </Value>
+         <Value ColumnRef="Examples">
+            <SimpleValue>2000.0</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextRegionGeopolitical">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextOfficialConstraints">
+            <SimpleValue>None</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextProduct">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextIndustry">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextRole">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextSupportingRole">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextSystemConstraint">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--1887-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>UBL-CommonLibrary-2.1</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>SubscriberParty</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Subscriber Consumption. Subscriber_ Party. Party</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Subscriber Consumption</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermQualifier">
+            <SimpleValue>Subscriber</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Party</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Party</SimpleValue>
+         </Value>
+         <Value ColumnRef="AssociatedObjectClass">
+            <SimpleValue>Party</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>ASBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>The party subscribing to the utility.</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextRegionGeopolitical">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextOfficialConstraints">
+            <SimpleValue>None</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextProduct">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextIndustry">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextRole">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextSupportingRole">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextSystemConstraint">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--1888-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>UBL-CommonLibrary-2.1</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>UtilityConsumptionPoint</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Subscriber Consumption. Utility_ Consumption Point. Consumption Point</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Subscriber Consumption</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermQualifier">
+            <SimpleValue>Utility</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Consumption Point</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Consumption Point</SimpleValue>
+         </Value>
+         <Value ColumnRef="AssociatedObjectClass">
+            <SimpleValue>Consumption Point</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>ASBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>The point at which the utility is consumed.</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextRegionGeopolitical">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextOfficialConstraints">
+            <SimpleValue>None</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextProduct">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextIndustry">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextRole">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextSupportingRole">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextSystemConstraint">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--1889-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>UBL-CommonLibrary-2.1</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>OnAccountPayment</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Subscriber Consumption. On Account Payment</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Subscriber Consumption</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>On Account Payment</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>On Account Payment</SimpleValue>
+         </Value>
+         <Value ColumnRef="AssociatedObjectClass">
+            <SimpleValue>On Account Payment</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..n</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>ASBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>The planned prepayments (on account) regarding this subscription.</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextRegionGeopolitical">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextOfficialConstraints">
+            <SimpleValue>None</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextProduct">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextIndustry">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextRole">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextSupportingRole">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextSystemConstraint">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--1890-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>UBL-CommonLibrary-2.1</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>Consumption</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Subscriber Consumption. Consumption</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Subscriber Consumption</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Consumption</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Consumption</SimpleValue>
+         </Value>
+         <Value ColumnRef="AssociatedObjectClass">
+            <SimpleValue>Consumption</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>ASBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>The consumption in case the consumption is from one and only one supplier.</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextRegionGeopolitical">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextOfficialConstraints">
+            <SimpleValue>None</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextProduct">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextIndustry">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextRole">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextSupportingRole">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextSystemConstraint">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--1891-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>UBL-CommonLibrary-2.1</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>SupplierConsumption</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Subscriber Consumption. Supplier Consumption</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Subscriber Consumption</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Supplier Consumption</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Supplier Consumption</SimpleValue>
+         </Value>
+         <Value ColumnRef="AssociatedObjectClass">
+            <SimpleValue>Supplier Consumption</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..n</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>ASBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>The consumption in case the consumption is from more than one supplier.</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextRegionGeopolitical">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextOfficialConstraints">
+            <SimpleValue>None</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextProduct">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextIndustry">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextRole">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextSupportingRole">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextSystemConstraint">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+      </Row>
       <Row>
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-PerformanceHistory-2.1</SimpleValue>
@@ -221754,617 +222365,6 @@ Shipment Stage. Transship Port_ Location. Location
          </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>Information about a period of time.</SimpleValue>
-         </Value>
-         <Value ColumnRef="CurrentVersion">
-            <SimpleValue>2.1</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextBusinessProcess">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextRegionGeopolitical">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextOfficialConstraints">
-            <SimpleValue>None</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextProduct">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextIndustry">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextRole">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextSupportingRole">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextSystemConstraint">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-      </Row>
-      <Row>
-         <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.1</SimpleValue>
-         </Value>
-         <Value ColumnRef="UBLName">
-            <SimpleValue>SubscriberConsumption</SimpleValue>
-         </Value>
-         <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Subscriber Consumption. Details</SimpleValue>
-         </Value>
-         <Value ColumnRef="ObjectClass">
-            <SimpleValue>Subscriber Consumption</SimpleValue>
-         </Value>
-         <Value ColumnRef="ComponentType">
-            <SimpleValue>ABIE</SimpleValue>
-         </Value>
-         <Value ColumnRef="Definition">
-            <SimpleValue>This class contain the Statement for the consumptionpoint. Is there a need for specify more than one consumptionpoint, then use one UtilityChargeableConsumption for each consumptionpoint, so you have several instance of UtilityChargeableConsumption. This could for exampel be a big company, there have severals branches.</SimpleValue>
-         </Value>
-         <Value ColumnRef="CurrentVersion">
-            <SimpleValue>2.1</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextBusinessProcess">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextRegionGeopolitical">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextOfficialConstraints">
-            <SimpleValue>None</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextProduct">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextIndustry">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextRole">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextSupportingRole">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextSystemConstraint">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-      </Row>
-      <Row>
-         <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.1</SimpleValue>
-         </Value>
-         <Value ColumnRef="UBLName">
-            <SimpleValue>ConsumptionID</SimpleValue>
-         </Value>
-         <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Subscriber Consumption. Consumption Identifier. Identifier</SimpleValue>
-         </Value>
-         <Value ColumnRef="ObjectClass">
-            <SimpleValue>Subscriber Consumption</SimpleValue>
-         </Value>
-         <Value ColumnRef="PropertyTermPossessiveNoun">
-            <SimpleValue>Consumption</SimpleValue>
-         </Value>
-         <Value ColumnRef="PropertyTermPrimaryNoun">
-            <SimpleValue>Identifier</SimpleValue>
-         </Value>
-         <Value ColumnRef="PropertyTerm">
-            <SimpleValue>Consumption Identifier</SimpleValue>
-         </Value>
-         <Value ColumnRef="RepresentationTerm">
-            <SimpleValue>Identifier</SimpleValue>
-         </Value>
-         <Value ColumnRef="DataType">
-            <SimpleValue>Identifier. Type</SimpleValue>
-         </Value>
-         <Value ColumnRef="Cardinality">
-            <SimpleValue>0..1</SimpleValue>
-         </Value>
-         <Value ColumnRef="ComponentType">
-            <SimpleValue>BBIE</SimpleValue>
-         </Value>
-         <Value ColumnRef="Definition">
-            <SimpleValue>The identifier tor this specification.</SimpleValue>
-         </Value>
-         <Value ColumnRef="CurrentVersion">
-            <SimpleValue>2.1</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextBusinessProcess">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextRegionGeopolitical">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextOfficialConstraints">
-            <SimpleValue>None</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextProduct">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextIndustry">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextRole">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextSupportingRole">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextSystemConstraint">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-      </Row>
-      <Row>
-         <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.1</SimpleValue>
-         </Value>
-         <Value ColumnRef="UBLName">
-            <SimpleValue>SpecificationTypeCode</SimpleValue>
-         </Value>
-         <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Subscriber Consumption. Specification Type Code. Code</SimpleValue>
-         </Value>
-         <Value ColumnRef="ObjectClass">
-            <SimpleValue>Subscriber Consumption</SimpleValue>
-         </Value>
-         <Value ColumnRef="PropertyTermPossessiveNoun">
-            <SimpleValue>Specification Type</SimpleValue>
-         </Value>
-         <Value ColumnRef="PropertyTermPrimaryNoun">
-            <SimpleValue>Code</SimpleValue>
-         </Value>
-         <Value ColumnRef="PropertyTerm">
-            <SimpleValue>Specification Type Code</SimpleValue>
-         </Value>
-         <Value ColumnRef="RepresentationTerm">
-            <SimpleValue>Code</SimpleValue>
-         </Value>
-         <Value ColumnRef="DataType">
-            <SimpleValue>Code. Type</SimpleValue>
-         </Value>
-         <Value ColumnRef="Cardinality">
-            <SimpleValue>0..1</SimpleValue>
-         </Value>
-         <Value ColumnRef="ComponentType">
-            <SimpleValue>BBIE</SimpleValue>
-         </Value>
-         <Value ColumnRef="Definition">
-            <SimpleValue>The code who specifices the type of this specification.</SimpleValue>
-         </Value>
-         <Value ColumnRef="CurrentVersion">
-            <SimpleValue>2.1</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextBusinessProcess">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextRegionGeopolitical">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextOfficialConstraints">
-            <SimpleValue>None</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextProduct">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextIndustry">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextRole">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextSupportingRole">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextSystemConstraint">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-      </Row>
-      <Row>
-         <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.1</SimpleValue>
-         </Value>
-         <Value ColumnRef="UBLName">
-            <SimpleValue>Note</SimpleValue>
-         </Value>
-         <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Subscriber Consumption. Note. Text</SimpleValue>
-         </Value>
-         <Value ColumnRef="ObjectClass">
-            <SimpleValue>Subscriber Consumption</SimpleValue>
-         </Value>
-         <Value ColumnRef="PropertyTermPrimaryNoun">
-            <SimpleValue>Note</SimpleValue>
-         </Value>
-         <Value ColumnRef="PropertyTerm">
-            <SimpleValue>Note</SimpleValue>
-         </Value>
-         <Value ColumnRef="RepresentationTerm">
-            <SimpleValue>Text</SimpleValue>
-         </Value>
-         <Value ColumnRef="DataType">
-            <SimpleValue>Text. Type</SimpleValue>
-         </Value>
-         <Value ColumnRef="Cardinality">
-            <SimpleValue>0..n</SimpleValue>
-         </Value>
-         <Value ColumnRef="ComponentType">
-            <SimpleValue>BBIE</SimpleValue>
-         </Value>
-         <Value ColumnRef="Definition">
-            <SimpleValue>Free form text applying to the utility Energy Water Supply . This element may contain notes or any other similar information that is not contained explicitly in another structure.</SimpleValue>
-         </Value>
-         <Value ColumnRef="Examples">
-            <SimpleValue>This is how we have calculating your yearly statement</SimpleValue>
-         </Value>
-         <Value ColumnRef="CurrentVersion">
-            <SimpleValue>2.1</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextBusinessProcess">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextRegionGeopolitical">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextOfficialConstraints">
-            <SimpleValue>None</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextProduct">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextIndustry">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextRole">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextSupportingRole">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextSystemConstraint">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-      </Row>
-      <Row>
-         <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.1</SimpleValue>
-         </Value>
-         <Value ColumnRef="UBLName">
-            <SimpleValue>TotalMeteredQuantity</SimpleValue>
-         </Value>
-         <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Subscriber Consumption. Total Metered Quantity. Quantity</SimpleValue>
-         </Value>
-         <Value ColumnRef="ObjectClass">
-            <SimpleValue>Subscriber Consumption</SimpleValue>
-         </Value>
-         <Value ColumnRef="PropertyTermPossessiveNoun">
-            <SimpleValue>Total Metered</SimpleValue>
-         </Value>
-         <Value ColumnRef="PropertyTermPrimaryNoun">
-            <SimpleValue>Quantity</SimpleValue>
-         </Value>
-         <Value ColumnRef="PropertyTerm">
-            <SimpleValue>Total Metered Quantity</SimpleValue>
-         </Value>
-         <Value ColumnRef="RepresentationTerm">
-            <SimpleValue>Quantity</SimpleValue>
-         </Value>
-         <Value ColumnRef="DataType">
-            <SimpleValue>Quantity. Type</SimpleValue>
-         </Value>
-         <Value ColumnRef="Cardinality">
-            <SimpleValue>0..1</SimpleValue>
-         </Value>
-         <Value ColumnRef="ComponentType">
-            <SimpleValue>BBIE</SimpleValue>
-         </Value>
-         <Value ColumnRef="Definition">
-            <SimpleValue>The total amount for the consumpted quantity - calculated from the meterreadings</SimpleValue>
-         </Value>
-         <Value ColumnRef="Examples">
-            <SimpleValue>2000.0</SimpleValue>
-         </Value>
-         <Value ColumnRef="CurrentVersion">
-            <SimpleValue>2.1</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextBusinessProcess">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextRegionGeopolitical">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextOfficialConstraints">
-            <SimpleValue>None</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextProduct">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextIndustry">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextRole">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextSupportingRole">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextSystemConstraint">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-      </Row>
-      <Row>
-         <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.1</SimpleValue>
-         </Value>
-         <Value ColumnRef="UBLName">
-            <SimpleValue>SubscriberParty</SimpleValue>
-         </Value>
-         <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Subscriber Consumption. Subscriber_ Party. Party</SimpleValue>
-         </Value>
-         <Value ColumnRef="ObjectClass">
-            <SimpleValue>Subscriber Consumption</SimpleValue>
-         </Value>
-         <Value ColumnRef="PropertyTermQualifier">
-            <SimpleValue>Subscriber</SimpleValue>
-         </Value>
-         <Value ColumnRef="PropertyTerm">
-            <SimpleValue>Party</SimpleValue>
-         </Value>
-         <Value ColumnRef="RepresentationTerm">
-            <SimpleValue>Party</SimpleValue>
-         </Value>
-         <Value ColumnRef="AssociatedObjectClass">
-            <SimpleValue>Party</SimpleValue>
-         </Value>
-         <Value ColumnRef="Cardinality">
-            <SimpleValue>0..1</SimpleValue>
-         </Value>
-         <Value ColumnRef="ComponentType">
-            <SimpleValue>ASBIE</SimpleValue>
-         </Value>
-         <Value ColumnRef="Definition">
-            <SimpleValue>Contact and address information about the Subscriber</SimpleValue>
-         </Value>
-         <Value ColumnRef="CurrentVersion">
-            <SimpleValue>2.1</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextBusinessProcess">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextRegionGeopolitical">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextOfficialConstraints">
-            <SimpleValue>None</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextProduct">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextIndustry">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextRole">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextSupportingRole">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextSystemConstraint">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-      </Row>
-      <Row>
-         <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.1</SimpleValue>
-         </Value>
-         <Value ColumnRef="UBLName">
-            <SimpleValue>UtilityConsumptionPoint</SimpleValue>
-         </Value>
-         <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Subscriber Consumption. Utility_ Consumption Point. Consumption Point</SimpleValue>
-         </Value>
-         <Value ColumnRef="ObjectClass">
-            <SimpleValue>Subscriber Consumption</SimpleValue>
-         </Value>
-         <Value ColumnRef="PropertyTermQualifier">
-            <SimpleValue>Utility</SimpleValue>
-         </Value>
-         <Value ColumnRef="PropertyTerm">
-            <SimpleValue>Consumption Point</SimpleValue>
-         </Value>
-         <Value ColumnRef="RepresentationTerm">
-            <SimpleValue>Consumption Point</SimpleValue>
-         </Value>
-         <Value ColumnRef="AssociatedObjectClass">
-            <SimpleValue>Consumption Point</SimpleValue>
-         </Value>
-         <Value ColumnRef="Cardinality">
-            <SimpleValue>1</SimpleValue>
-         </Value>
-         <Value ColumnRef="ComponentType">
-            <SimpleValue>ASBIE</SimpleValue>
-         </Value>
-         <Value ColumnRef="Definition">
-            <SimpleValue>Content information about UtilityConsumptionPoint</SimpleValue>
-         </Value>
-         <Value ColumnRef="CurrentVersion">
-            <SimpleValue>2.1</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextBusinessProcess">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextRegionGeopolitical">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextOfficialConstraints">
-            <SimpleValue>None</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextProduct">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextIndustry">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextRole">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextSupportingRole">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextSystemConstraint">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-      </Row>
-      <Row>
-         <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.1</SimpleValue>
-         </Value>
-         <Value ColumnRef="UBLName">
-            <SimpleValue>OnAccountPayment</SimpleValue>
-         </Value>
-         <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Subscriber Consumption. On Account Payment</SimpleValue>
-         </Value>
-         <Value ColumnRef="ObjectClass">
-            <SimpleValue>Subscriber Consumption</SimpleValue>
-         </Value>
-         <Value ColumnRef="PropertyTerm">
-            <SimpleValue>On Account Payment</SimpleValue>
-         </Value>
-         <Value ColumnRef="RepresentationTerm">
-            <SimpleValue>On Account Payment</SimpleValue>
-         </Value>
-         <Value ColumnRef="AssociatedObjectClass">
-            <SimpleValue>On Account Payment</SimpleValue>
-         </Value>
-         <Value ColumnRef="Cardinality">
-            <SimpleValue>0..n</SimpleValue>
-         </Value>
-         <Value ColumnRef="ComponentType">
-            <SimpleValue>ASBIE</SimpleValue>
-         </Value>
-         <Value ColumnRef="Definition">
-            <SimpleValue>The coming planed a conto payments</SimpleValue>
-         </Value>
-         <Value ColumnRef="CurrentVersion">
-            <SimpleValue>2.1</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextBusinessProcess">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextRegionGeopolitical">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextOfficialConstraints">
-            <SimpleValue>None</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextProduct">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextIndustry">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextRole">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextSupportingRole">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextSystemConstraint">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-      </Row>
-      <Row>
-         <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.1</SimpleValue>
-         </Value>
-         <Value ColumnRef="UBLName">
-            <SimpleValue>Consumption</SimpleValue>
-         </Value>
-         <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Subscriber Consumption. Consumption</SimpleValue>
-         </Value>
-         <Value ColumnRef="ObjectClass">
-            <SimpleValue>Subscriber Consumption</SimpleValue>
-         </Value>
-         <Value ColumnRef="PropertyTerm">
-            <SimpleValue>Consumption</SimpleValue>
-         </Value>
-         <Value ColumnRef="RepresentationTerm">
-            <SimpleValue>Consumption</SimpleValue>
-         </Value>
-         <Value ColumnRef="AssociatedObjectClass">
-            <SimpleValue>Consumption</SimpleValue>
-         </Value>
-         <Value ColumnRef="Cardinality">
-            <SimpleValue>0..1</SimpleValue>
-         </Value>
-         <Value ColumnRef="ComponentType">
-            <SimpleValue>ASBIE</SimpleValue>
-         </Value>
-         <Value ColumnRef="Definition">
-            <SimpleValue>Contain the sub Statement for one and only one supplier</SimpleValue>
-         </Value>
-         <Value ColumnRef="CurrentVersion">
-            <SimpleValue>2.1</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextBusinessProcess">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextRegionGeopolitical">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextOfficialConstraints">
-            <SimpleValue>None</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextProduct">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextIndustry">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextRole">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextSupportingRole">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextSystemConstraint">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-      </Row>
-      <Row>
-         <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.1</SimpleValue>
-         </Value>
-         <Value ColumnRef="UBLName">
-            <SimpleValue>SupplierConsumption</SimpleValue>
-         </Value>
-         <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Subscriber Consumption. Supplier Consumption</SimpleValue>
-         </Value>
-         <Value ColumnRef="ObjectClass">
-            <SimpleValue>Subscriber Consumption</SimpleValue>
-         </Value>
-         <Value ColumnRef="PropertyTerm">
-            <SimpleValue>Supplier Consumption</SimpleValue>
-         </Value>
-         <Value ColumnRef="RepresentationTerm">
-            <SimpleValue>Supplier Consumption</SimpleValue>
-         </Value>
-         <Value ColumnRef="AssociatedObjectClass">
-            <SimpleValue>Supplier Consumption</SimpleValue>
-         </Value>
-         <Value ColumnRef="Cardinality">
-            <SimpleValue>0..n</SimpleValue>
-         </Value>
-         <Value ColumnRef="ComponentType">
-            <SimpleValue>ASBIE</SimpleValue>
-         </Value>
-         <Value ColumnRef="Definition">
-            <SimpleValue>Contain the sub Statement for one and only one supplier</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.1</SimpleValue>
