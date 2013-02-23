@@ -2529,7 +2529,7 @@
             <SimpleValue>In All Contexts</SimpleValue>
          </Value>
       </Row>
-      <Row>
+      <Row><!--2-->
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-AwardedNotification-2.1</SimpleValue>
          </Value>
@@ -2546,7 +2546,7 @@
             <SimpleValue>ABIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The document used to communicate the contract award to the winner</SimpleValue>
+            <SimpleValue>The document used to communicate a contract award to the winner.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.1</SimpleValue>
@@ -2576,7 +2576,7 @@
             <SimpleValue>In All Contexts</SimpleValue>
          </Value>
       </Row>
-      <Row>
+      <Row><!--3-->
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-AwardedNotification-2.1</SimpleValue>
          </Value>
@@ -2611,7 +2611,7 @@
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The version of the UBL schema being used.</SimpleValue>
+            <SimpleValue>Identifies the earliest version of the UBL 2 schema for this document type that defines all of the elements that might be encountered in the current instance.</SimpleValue>
          </Value>
          <Value ColumnRef="Examples">
             <SimpleValue>2.0.5</SimpleValue>
@@ -2644,7 +2644,7 @@
             <SimpleValue>In All Contexts</SimpleValue>
          </Value>
       </Row>
-      <Row>
+      <Row><!--4-->
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-AwardedNotification-2.1</SimpleValue>
          </Value>
@@ -2679,7 +2679,7 @@
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The identifier for a user defined subset of UBL.</SimpleValue>
+            <SimpleValue>Identifies a user-defined customization of UBL for a specific use.</SimpleValue>
          </Value>
          <Value ColumnRef="Examples">
             <SimpleValue>NES</SimpleValue>
@@ -2712,7 +2712,7 @@
             <SimpleValue>In All Contexts</SimpleValue>
          </Value>
       </Row>
-      <Row>
+      <Row><!--5-->
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-AwardedNotification-2.1</SimpleValue>
          </Value>
@@ -2747,7 +2747,7 @@
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The identifier for a user defined profile of the subset of UBL being used. </SimpleValue>
+            <SimpleValue>Identifies a user-defined profile of the customization of UBL being used.</SimpleValue>
          </Value>
          <Value ColumnRef="Examples">
             <SimpleValue>BasicProcurementProcess</SimpleValue>
@@ -2780,7 +2780,7 @@
             <SimpleValue>In All Contexts</SimpleValue>
          </Value>
       </Row>
-      <Row>
+      <Row><!--6-->
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-AwardedNotification-2.1</SimpleValue>
          </Value>
@@ -2848,7 +2848,7 @@
             <SimpleValue>In All Contexts</SimpleValue>
          </Value>
       </Row>
-      <Row>
+      <Row><!--7-->
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-AwardedNotification-2.1</SimpleValue>
          </Value>
@@ -2880,7 +2880,7 @@
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>An identifier for the Notification assigned by the sender.</SimpleValue>
+            <SimpleValue>An identifier for this document, assigned by the sender.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.1</SimpleValue>
@@ -2910,7 +2910,7 @@
             <SimpleValue>In All Contexts</SimpleValue>
          </Value>
       </Row>
-      <Row>
+      <Row><!--8-->
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-AwardedNotification-2.1</SimpleValue>
          </Value>
@@ -2945,7 +2945,7 @@
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>Indicates whether the notification is a copy (true) or not (false)</SimpleValue>
+            <SimpleValue>Indicates whether this document is a copy (true) or not (false).</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.1</SimpleValue>
@@ -2975,7 +2975,7 @@
             <SimpleValue>In All Contexts</SimpleValue>
          </Value>
       </Row>
-      <Row>
+      <Row><!--9-->
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-AwardedNotification-2.1</SimpleValue>
          </Value>
@@ -3007,7 +3007,7 @@
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>A computer-generated universally unique identifier (UUID) </SimpleValue>
+            <SimpleValue>A universally unique identifier for an instance of this document.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.1</SimpleValue>
@@ -3037,7 +3037,7 @@
             <SimpleValue>In All Contexts</SimpleValue>
          </Value>
       </Row>
-      <Row>
+      <Row><!--10-->
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-AwardedNotification-2.1</SimpleValue>
          </Value>
@@ -3072,7 +3072,7 @@
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>An identifier for the process file (i.e. record) to which belongs the notification assigned by the sender.</SimpleValue>
+            <SimpleValue>An identifier, assigned by the sender, for the process file (i.e., record) to which this document belongs.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.1</SimpleValue>
@@ -3102,7 +3102,7 @@
             <SimpleValue>In All Contexts</SimpleValue>
          </Value>
       </Row>
-      <Row>
+      <Row><!--11-->
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-AwardedNotification-2.1</SimpleValue>
          </Value>
@@ -3137,7 +3137,7 @@
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The date assigned by the sender s application at which the Notification was created.</SimpleValue>
+            <SimpleValue>The date, assigned by the sender, on which this document was issued.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.1</SimpleValue>
@@ -3167,7 +3167,7 @@
             <SimpleValue>In All Contexts</SimpleValue>
          </Value>
       </Row>
-      <Row>
+      <Row><!--12-->
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-AwardedNotification-2.1</SimpleValue>
          </Value>
@@ -3202,7 +3202,7 @@
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The time assigned by the sender s application at which the Notification was created.</SimpleValue>
+            <SimpleValue>The time, assigned by the sender, at which this document was issued.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.1</SimpleValue>
@@ -3232,7 +3232,7 @@
             <SimpleValue>In All Contexts</SimpleValue>
          </Value>
       </Row>
-      <Row>
+      <Row><!--13-->
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-AwardedNotification-2.1</SimpleValue>
          </Value>
@@ -3261,7 +3261,7 @@
             <SimpleValue>Text. Type</SimpleValue>
          </Value>
          <Value ColumnRef="Cardinality">
-            <SimpleValue>0..1</SimpleValue>
+            <SimpleValue>0..n</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentType">
             <SimpleValue>BBIE</SimpleValue>
@@ -3297,7 +3297,7 @@
             <SimpleValue>In All Contexts</SimpleValue>
          </Value>
       </Row>
-      <Row>
+      <Row><!--14-->
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-AwardedNotification-2.1</SimpleValue>
          </Value>
@@ -3329,7 +3329,7 @@
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>A text specific for this notification.</SimpleValue>
+            <SimpleValue>Free-form text pertinent to this document, conveying information that is not contained explicitly in other structures.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.1</SimpleValue>
@@ -3359,7 +3359,7 @@
             <SimpleValue>In All Contexts</SimpleValue>
          </Value>
       </Row>
-      <Row>
+      <Row><!--15-->
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-AwardedNotification-2.1</SimpleValue>
          </Value>
@@ -3391,7 +3391,7 @@
             <SimpleValue>ASBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>An association to the Party sending this document.</SimpleValue>
+            <SimpleValue>The party sending this document.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.1</SimpleValue>
@@ -3421,7 +3421,7 @@
             <SimpleValue>In All Contexts</SimpleValue>
          </Value>
       </Row>
-      <Row>
+      <Row><!--16-->
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-AwardedNotification-2.1</SimpleValue>
          </Value>
@@ -3453,7 +3453,7 @@
             <SimpleValue>ASBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>An association to the Party receiving this document.</SimpleValue>
+            <SimpleValue>The party receiving this document.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.1</SimpleValue>
@@ -3483,7 +3483,7 @@
             <SimpleValue>In All Contexts</SimpleValue>
          </Value>
       </Row>
-      <Row>
+      <Row><!--17-->
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-AwardedNotification-2.1</SimpleValue>
          </Value>
@@ -3515,7 +3515,7 @@
             <SimpleValue>ASBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>An association to minutes Document Reference</SimpleValue>
+            <SimpleValue>A reference to a set of minutes associated with this award.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.1</SimpleValue>
@@ -3545,7 +3545,7 @@
             <SimpleValue>In All Contexts</SimpleValue>
          </Value>
       </Row>
-      <Row>
+      <Row><!--18-->
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-AwardedNotification-2.1</SimpleValue>
          </Value>
@@ -3577,7 +3577,7 @@
             <SimpleValue>ASBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>Information about a document referred to in another document. It can be used to include annex documents such as the minutes of the awarding process meetings. </SimpleValue>
+            <SimpleValue>A reference to an additional document associated with this document.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.1</SimpleValue>
@@ -3607,7 +3607,7 @@
             <SimpleValue>In All Contexts</SimpleValue>
          </Value>
       </Row>
-      <Row>
+      <Row><!--19-->
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-AwardedNotification-2.1</SimpleValue>
          </Value>
@@ -3636,7 +3636,7 @@
             <SimpleValue>ASBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>An association to the Tender Result being notified</SimpleValue>
+            <SimpleValue>The result of the tendering process reported in this notification.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.1</SimpleValue>
@@ -3666,7 +3666,7 @@
             <SimpleValue>In All Contexts</SimpleValue>
          </Value>
       </Row>
-      <Row>
+      <Row><!--20-->
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-AwardedNotification-2.1</SimpleValue>
          </Value>
@@ -3698,7 +3698,7 @@
             <SimpleValue>ASBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The Information about the bond guarantee of a tender or bid submitter required to the tender winner</SimpleValue>
+            <SimpleValue>A bond guarantee by the submitter of a tender or bid, required of the tender winner.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.1</SimpleValue>
@@ -3728,7 +3728,7 @@
             <SimpleValue>In All Contexts</SimpleValue>
          </Value>
       </Row>
-      <Row>
+      <Row><!--21-->
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-AwardedNotification-2.1</SimpleValue>
          </Value>
@@ -3757,7 +3757,7 @@
             <SimpleValue>ASBIE</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>One or more signatures applied to the Notification</SimpleValue>
+            <SimpleValue>A signature applied to this document.</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.1</SimpleValue>
