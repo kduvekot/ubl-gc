@@ -177799,6 +177799,245 @@ cell F577 changed from Inspection to Inspection Method
             <SimpleValue>In All Contexts</SimpleValue>
          </Value>
       </Row>
+      <Row><!--1262-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>UBL-CommonLibrary-2.1</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>OnAccountPayment</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>On Account Payment. Details</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>On Account Payment</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>ABIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>A scheduled prepayment (on-account payment) for a estimated utility consumption</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextRegionGeopolitical">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextOfficialConstraints">
+            <SimpleValue>None</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextProduct">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextIndustry">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextRole">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextSupportingRole">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextSystemConstraint">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--1263-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>UBL-CommonLibrary-2.1</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>EstimatedConsumedQuantity</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>On Account Payment. Estimated_ Consumed Quantity. Quantity</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>On Account Payment</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermQualifier">
+            <SimpleValue>Estimated</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPossessiveNoun">
+            <SimpleValue>Consumed</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Quantity</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Consumed Quantity</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Quantity</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Quantity. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>The estimated consumed quantity covered by the payment.</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextRegionGeopolitical">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextOfficialConstraints">
+            <SimpleValue>None</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextProduct">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextIndustry">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextRole">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextSupportingRole">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextSystemConstraint">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--1264-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>UBL-CommonLibrary-2.1</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>Note</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>On Account Payment. Note. Text</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>On Account Payment</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Note</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Note</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Text</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Text. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..n</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>Free-form text conveying information that is not contained explicitly in other structures.</SimpleValue>
+         </Value>
+         <Value ColumnRef="Examples">
+            <SimpleValue>We make a reservation for price regulations. You will receive you next yearly statement about one year from today.</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextRegionGeopolitical">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextOfficialConstraints">
+            <SimpleValue>None</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextProduct">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextIndustry">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextRole">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextSupportingRole">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextSystemConstraint">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--1265-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>UBL-CommonLibrary-2.1</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>PaymentTerms</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>On Account Payment. Payment Terms</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>On Account Payment</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Payment Terms</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Payment Terms</SimpleValue>
+         </Value>
+         <Value ColumnRef="AssociatedObjectClass">
+            <SimpleValue>Payment Terms</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>1..n</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>ASBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>A specification of payment terms associated with this payment.</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextRegionGeopolitical">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextOfficialConstraints">
+            <SimpleValue>None</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextProduct">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextIndustry">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextRole">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextSupportingRole">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextSystemConstraint">
+            <SimpleValue>In All Contexts</SimpleValue>
+         </Value>
+      </Row>
       <Row>
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-PerformanceHistory-2.1</SimpleValue>
@@ -183700,245 +183939,6 @@ cell F577 changed from Inspection to Inspection Method
          </Value>
          <Value ColumnRef="ContextBusinessProcess">
             <SimpleValue>Plan</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextRegionGeopolitical">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextOfficialConstraints">
-            <SimpleValue>None</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextProduct">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextIndustry">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextRole">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextSupportingRole">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextSystemConstraint">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-      </Row>
-      <Row>
-         <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.1</SimpleValue>
-         </Value>
-         <Value ColumnRef="UBLName">
-            <SimpleValue>OnAccountPayment</SimpleValue>
-         </Value>
-         <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>On Account Payment. Details</SimpleValue>
-         </Value>
-         <Value ColumnRef="ObjectClass">
-            <SimpleValue>On Account Payment</SimpleValue>
-         </Value>
-         <Value ColumnRef="ComponentType">
-            <SimpleValue>ABIE</SimpleValue>
-         </Value>
-         <Value ColumnRef="Definition">
-            <SimpleValue>The coming planned a conto payments</SimpleValue>
-         </Value>
-         <Value ColumnRef="CurrentVersion">
-            <SimpleValue>2.1</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextBusinessProcess">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextRegionGeopolitical">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextOfficialConstraints">
-            <SimpleValue>None</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextProduct">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextIndustry">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextRole">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextSupportingRole">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextSystemConstraint">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-      </Row>
-      <Row>
-         <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.1</SimpleValue>
-         </Value>
-         <Value ColumnRef="UBLName">
-            <SimpleValue>EstimatedConsumedQuantity</SimpleValue>
-         </Value>
-         <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>On Account Payment. Estimated_ Consumed Quantity. Quantity</SimpleValue>
-         </Value>
-         <Value ColumnRef="ObjectClass">
-            <SimpleValue>On Account Payment</SimpleValue>
-         </Value>
-         <Value ColumnRef="PropertyTermQualifier">
-            <SimpleValue>Estimated</SimpleValue>
-         </Value>
-         <Value ColumnRef="PropertyTermPossessiveNoun">
-            <SimpleValue>Consumed</SimpleValue>
-         </Value>
-         <Value ColumnRef="PropertyTermPrimaryNoun">
-            <SimpleValue>Quantity</SimpleValue>
-         </Value>
-         <Value ColumnRef="PropertyTerm">
-            <SimpleValue>Consumed Quantity</SimpleValue>
-         </Value>
-         <Value ColumnRef="RepresentationTerm">
-            <SimpleValue>Quantity</SimpleValue>
-         </Value>
-         <Value ColumnRef="DataType">
-            <SimpleValue>Quantity. Type</SimpleValue>
-         </Value>
-         <Value ColumnRef="Cardinality">
-            <SimpleValue>1</SimpleValue>
-         </Value>
-         <Value ColumnRef="ComponentType">
-            <SimpleValue>BBIE</SimpleValue>
-         </Value>
-         <Value ColumnRef="Definition">
-            <SimpleValue>The quantity utilize during the period to be paid for.</SimpleValue>
-         </Value>
-         <Value ColumnRef="CurrentVersion">
-            <SimpleValue>2.1</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextBusinessProcess">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextRegionGeopolitical">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextOfficialConstraints">
-            <SimpleValue>None</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextProduct">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextIndustry">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextRole">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextSupportingRole">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextSystemConstraint">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-      </Row>
-      <Row>
-         <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.1</SimpleValue>
-         </Value>
-         <Value ColumnRef="UBLName">
-            <SimpleValue>Note</SimpleValue>
-         </Value>
-         <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>On Account Payment. Note. Text</SimpleValue>
-         </Value>
-         <Value ColumnRef="ObjectClass">
-            <SimpleValue>On Account Payment</SimpleValue>
-         </Value>
-         <Value ColumnRef="PropertyTermPrimaryNoun">
-            <SimpleValue>Note</SimpleValue>
-         </Value>
-         <Value ColumnRef="PropertyTerm">
-            <SimpleValue>Note</SimpleValue>
-         </Value>
-         <Value ColumnRef="RepresentationTerm">
-            <SimpleValue>Text</SimpleValue>
-         </Value>
-         <Value ColumnRef="DataType">
-            <SimpleValue>Text. Type</SimpleValue>
-         </Value>
-         <Value ColumnRef="Cardinality">
-            <SimpleValue>0..1</SimpleValue>
-         </Value>
-         <Value ColumnRef="ComponentType">
-            <SimpleValue>BBIE</SimpleValue>
-         </Value>
-         <Value ColumnRef="Definition">
-            <SimpleValue>Free-form text explaining the usage of Account Payment.</SimpleValue>
-         </Value>
-         <Value ColumnRef="Examples">
-            <SimpleValue>We make a reservation for price regulations. You will receive you next yearly statement about one year from today.</SimpleValue>
-         </Value>
-         <Value ColumnRef="CurrentVersion">
-            <SimpleValue>2.1</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextBusinessProcess">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextRegionGeopolitical">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextOfficialConstraints">
-            <SimpleValue>None</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextProduct">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextIndustry">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextRole">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextSupportingRole">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextSystemConstraint">
-            <SimpleValue>In All Contexts</SimpleValue>
-         </Value>
-      </Row>
-      <Row>
-         <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.1</SimpleValue>
-         </Value>
-         <Value ColumnRef="UBLName">
-            <SimpleValue>PaymentTerms</SimpleValue>
-         </Value>
-         <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>On Account Payment. Payment Terms</SimpleValue>
-         </Value>
-         <Value ColumnRef="ObjectClass">
-            <SimpleValue>On Account Payment</SimpleValue>
-         </Value>
-         <Value ColumnRef="PropertyTerm">
-            <SimpleValue>Payment Terms</SimpleValue>
-         </Value>
-         <Value ColumnRef="RepresentationTerm">
-            <SimpleValue>Payment Terms</SimpleValue>
-         </Value>
-         <Value ColumnRef="AssociatedObjectClass">
-            <SimpleValue>Payment Terms</SimpleValue>
-         </Value>
-         <Value ColumnRef="Cardinality">
-            <SimpleValue>1..n</SimpleValue>
-         </Value>
-         <Value ColumnRef="ComponentType">
-            <SimpleValue>ASBIE</SimpleValue>
-         </Value>
-         <Value ColumnRef="Definition">
-            <SimpleValue>An association to Payment Terms.</SimpleValue>
-         </Value>
-         <Value ColumnRef="CurrentVersion">
-            <SimpleValue>2.1</SimpleValue>
-         </Value>
-         <Value ColumnRef="ContextBusinessProcess">
-            <SimpleValue>In All Contexts</SimpleValue>
          </Value>
          <Value ColumnRef="ContextRegionGeopolitical">
             <SimpleValue>In All Contexts</SimpleValue>
