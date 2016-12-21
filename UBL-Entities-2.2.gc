@@ -2734,10 +2734,10 @@
       </Row>
       <Row><!--68-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.1</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.2</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
-            <SimpleValue></SimpleValue>
+            <SimpleValue>Attachment</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>A class to describe an attached document. An attachment can refer to an external document or be included with the document being exchanged.</SimpleValue>
@@ -2757,10 +2757,10 @@
       </Row>
       <Row><!--69-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.1</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.2</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
-            <SimpleValue></SimpleValue>
+            <SimpleValue>EmbeddedDocumentBinaryObject</SimpleValue>
          </Value>
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..1</SimpleValue>
@@ -2798,10 +2798,51 @@
       </Row>
       <Row><!--70-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.1</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.2</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
-            <SimpleValue></SimpleValue>
+            <SimpleValue>EmbeddedDocument</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>A clear text object containing an attached document.</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Attachment. Embedded_ Document. Text</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Attachment</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermQualifier">
+            <SimpleValue>Embedded</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Document</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Document</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Text</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Text. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.2</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--71-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>UBL-CommonLibrary-2.2</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentName">
+            <SimpleValue>ExternalReference</SimpleValue>
          </Value>
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..1</SimpleValue>
