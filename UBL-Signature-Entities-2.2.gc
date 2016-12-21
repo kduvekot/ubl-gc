@@ -14,9 +14,9 @@
    </Identification>
    <ColumnSet>
       <Column Id="ModelName" Use="required">
-        <ShortName>ModelName</ShortName>
-        <LongName>Model Name</LongName>
-        <Data Type="string"/>
+         <ShortName>ModelName</ShortName>
+         <LongName>Model Name</LongName>
+         <Data Type="string"/>
       </Column>
       <Column Id="UBLName" Use="optional">
          <ShortName>UBLName</ShortName>
@@ -184,7 +184,6 @@
       </Key>
    </ColumnSet>
    <SimpleCodeList>
-      
       <Row>
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-SignatureLibrary-2.1</SimpleValue>
