@@ -9650,12 +9650,12 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--248-->
+      <Row><!--251-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.1</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.2</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
-            <SimpleValue></SimpleValue>
+            <SimpleValue>ClassificationScheme</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>A class to define a classification scheme, such as a taxonomy for classifying goods or services.</SimpleValue>
@@ -9673,12 +9673,12 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--249-->
+      <Row><!--252-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.1</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.2</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
-            <SimpleValue></SimpleValue>
+            <SimpleValue>ID</SimpleValue>
          </Value>
          <Value ColumnRef="Cardinality">
             <SimpleValue>1</SimpleValue>
@@ -9711,12 +9711,12 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--250-->
+      <Row><!--253-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.1</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.2</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
-            <SimpleValue></SimpleValue>
+            <SimpleValue>UUID</SimpleValue>
          </Value>
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..1</SimpleValue>
@@ -9749,16 +9749,15 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
          <Value ColumnRef="EditorsNotes">
-            <SimpleValue>Change from UBL 1.0: Changed from GUID to UUID
-</SimpleValue>
+            <SimpleValue>Change from UBL 1.0: Changed from GUID to UUID </SimpleValue>
          </Value>
       </Row>
-      <Row><!--251-->
+      <Row><!--254-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.1</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.2</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
-            <SimpleValue></SimpleValue>
+            <SimpleValue>LastRevisionDate</SimpleValue>
          </Value>
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..1</SimpleValue>
@@ -9797,12 +9796,12 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--252-->
+      <Row><!--255-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.1</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.2</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
-            <SimpleValue></SimpleValue>
+            <SimpleValue>LastRevisionTime</SimpleValue>
          </Value>
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..1</SimpleValue>
@@ -9841,12 +9840,12 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--253-->
+      <Row><!--256-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.1</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.2</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
-            <SimpleValue></SimpleValue>
+            <SimpleValue>Note</SimpleValue>
          </Value>
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..n</SimpleValue>
@@ -9876,15 +9875,15 @@
             <SimpleValue>BBIE</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
-            <SimpleValue>2.1</SimpleValue>
+            <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--254-->
+      <Row><!--257-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.1</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.2</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
-            <SimpleValue></SimpleValue>
+            <SimpleValue>Name</SimpleValue>
          </Value>
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..1</SimpleValue>
@@ -9920,12 +9919,12 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--255-->
+      <Row><!--258-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.1</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.2</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
-            <SimpleValue></SimpleValue>
+            <SimpleValue>Description</SimpleValue>
          </Value>
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..n</SimpleValue>
@@ -9961,12 +9960,12 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--256-->
+      <Row><!--259-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.1</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.2</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
-            <SimpleValue></SimpleValue>
+            <SimpleValue>AgencyID</SimpleValue>
          </Value>
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..1</SimpleValue>
@@ -10005,9 +10004,12 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--257-->
+      <Row><!--260-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.1</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.2</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentName">
+            <SimpleValue>AgencyName</SimpleValue>
          </Value>
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..1</SimpleValue>
@@ -10016,7 +10018,7 @@
             <SimpleValue>The name of the agency that maintains the classification scheme.</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Classification Scheme. Agency Name. Text</SimpleValue>
+            <SimpleValue>Classification Scheme. Agency Name. Name</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Classification Scheme</SimpleValue>
@@ -10031,10 +10033,10 @@
             <SimpleValue>Agency Name</SimpleValue>
          </Value>
          <Value ColumnRef="RepresentationTerm">
-            <SimpleValue>Text</SimpleValue>
+            <SimpleValue>Name</SimpleValue>
          </Value>
          <Value ColumnRef="DataType">
-            <SimpleValue>Text. Type</SimpleValue>
+            <SimpleValue>Name. Type</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentType">
             <SimpleValue>BBIE</SimpleValue>
@@ -10043,12 +10045,12 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--258-->
+      <Row><!--261-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.1</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.2</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
-            <SimpleValue></SimpleValue>
+            <SimpleValue>VersionID</SimpleValue>
          </Value>
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..1</SimpleValue>
@@ -10081,12 +10083,12 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--259-->
+      <Row><!--262-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.1</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.2</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
-            <SimpleValue></SimpleValue>
+            <SimpleValue>URI</SimpleValue>
          </Value>
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..1</SimpleValue>
@@ -10119,12 +10121,12 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--260-->
+      <Row><!--263-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.1</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.2</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
-            <SimpleValue></SimpleValue>
+            <SimpleValue>SchemeURI</SimpleValue>
          </Value>
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..1</SimpleValue>
@@ -10160,12 +10162,12 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--261-->
+      <Row><!--264-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.1</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.2</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
-            <SimpleValue></SimpleValue>
+            <SimpleValue>LanguageID</SimpleValue>
          </Value>
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..1</SimpleValue>
@@ -10198,12 +10200,12 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--262-->
+      <Row><!--265-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.1</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.2</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
-            <SimpleValue></SimpleValue>
+            <SimpleValue>ClassificationCategory</SimpleValue>
          </Value>
          <Value ColumnRef="Cardinality">
             <SimpleValue>1..n</SimpleValue>
