@@ -77534,12 +77534,12 @@
             <SimpleValue>2.1</SimpleValue>
          </Value>
       </Row>
-      <Row><!--2005-->
+      <Row><!--2141-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.1</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.2</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
-            <SimpleValue></SimpleValue>
+            <SimpleValue>TenderPreparation</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>A class to describe directions for preparing a tender.</SimpleValue>
@@ -77557,12 +77557,12 @@
             <SimpleValue>2.1</SimpleValue>
          </Value>
       </Row>
-      <Row><!--2006-->
+      <Row><!--2142-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.1</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.2</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
-            <SimpleValue></SimpleValue>
+            <SimpleValue>TenderEnvelopeID</SimpleValue>
          </Value>
          <Value ColumnRef="Cardinality">
             <SimpleValue>1</SimpleValue>
@@ -77598,12 +77598,12 @@
             <SimpleValue>2.1</SimpleValue>
          </Value>
       </Row>
-      <Row><!--2007-->
+      <Row><!--2143-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.1</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.2</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
-            <SimpleValue></SimpleValue>
+            <SimpleValue>TenderEnvelopeTypeCode</SimpleValue>
          </Value>
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..1</SimpleValue>
@@ -77639,12 +77639,12 @@
             <SimpleValue>2.1</SimpleValue>
          </Value>
       </Row>
-      <Row><!--2008-->
+      <Row><!--2144-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.1</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.2</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
-            <SimpleValue></SimpleValue>
+            <SimpleValue>Description</SimpleValue>
          </Value>
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..n</SimpleValue>
@@ -77677,12 +77677,12 @@
             <SimpleValue>2.1</SimpleValue>
          </Value>
       </Row>
-      <Row><!--2009-->
+      <Row><!--2145-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.1</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.2</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
-            <SimpleValue></SimpleValue>
+            <SimpleValue>OpenTenderID</SimpleValue>
          </Value>
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..1</SimpleValue>
@@ -77718,12 +77718,12 @@
             <SimpleValue>2.1</SimpleValue>
          </Value>
       </Row>
-      <Row><!--2010-->
+      <Row><!--2146-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.1</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.2</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
-            <SimpleValue></SimpleValue>
+            <SimpleValue>ProcurementProjectLot</SimpleValue>
          </Value>
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..n</SimpleValue>
@@ -77753,12 +77753,12 @@
             <SimpleValue>2.1</SimpleValue>
          </Value>
       </Row>
-      <Row><!--2011-->
+      <Row><!--2147-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.1</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.2</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
-            <SimpleValue></SimpleValue>
+            <SimpleValue>DocumentTenderRequirement</SimpleValue>
          </Value>
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..n</SimpleValue>
@@ -77792,6 +77792,44 @@
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.1</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--2148-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>UBL-CommonLibrary-2.2</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentName">
+            <SimpleValue>TenderEncryptionData</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..n</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>A reference to the details of the encryption process used for the tender.</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Tender Preparation. Tender_ Encryption Data. Encryption Data</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Tender Preparation</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermQualifier">
+            <SimpleValue>Tender</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Encryption Data</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Encryption Data</SimpleValue>
+         </Value>
+         <Value ColumnRef="AssociatedObjectClass">
+            <SimpleValue>Encryption Data</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>ASBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.2</SimpleValue>
          </Value>
       </Row>
       <Row><!--2012-->
