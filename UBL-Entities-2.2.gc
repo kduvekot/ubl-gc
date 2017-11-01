@@ -117969,7 +117969,7 @@
             <SimpleValue>DigitalCapability</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>A document used to provide information about a business party and its digital capabilities.</SimpleValue>
+            <SimpleValue>A document used to provide information about a business party and its digital trade capabilities.</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
             <SimpleValue>Digital Capability. Details</SimpleValue>
@@ -118449,7 +118449,7 @@
             <SimpleValue>SenderParty</SimpleValue>
          </Value>
          <Value ColumnRef="Cardinality">
-            <SimpleValue>1</SimpleValue>
+            <SimpleValue>0..1</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>The party sending these digital capabilities. This party could be the owner of these digital capabilities or a third-party acting on behalf of the owner (e.g. service provider).</SimpleValue>
@@ -118487,7 +118487,7 @@
             <SimpleValue>ReceiverParty</SimpleValue>
          </Value>
          <Value ColumnRef="Cardinality">
-            <SimpleValue>1</SimpleValue>
+            <SimpleValue>0..1</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>The party receiving these digital capabilities.</SimpleValue>
@@ -118525,7 +118525,7 @@
             <SimpleValue>BusinessParty</SimpleValue>
          </Value>
          <Value ColumnRef="Cardinality">
-            <SimpleValue>0..1</SimpleValue>
+            <SimpleValue>1</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>The party owning these digital capabilities.</SimpleValue>
@@ -118566,7 +118566,7 @@
             <SimpleValue>1..n</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The digital processes supported by the party.</SimpleValue>
+            <SimpleValue>The digital trade processes supported by the party.</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
             <SimpleValue>Digital Capability. Digital Process</SimpleValue>
