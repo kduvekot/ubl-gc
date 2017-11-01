@@ -127529,6 +127529,50 @@
             <SimpleValue>UBL-FreightInvoice-2.2</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
+            <SimpleValue>DueDate</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>The date on which Invoice is due.</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Freight Invoice. Due Date. Date</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Freight Invoice</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPossessiveNoun">
+            <SimpleValue>Due</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Date</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Due Date</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Date</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Date. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.2</SimpleValue>
+         </Value>
+         <Value ColumnRef="EditorsNotes">
+            <SimpleValue>Added as part of UBL-138</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--13-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>UBL-FreightInvoice-2.2</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentName">
             <SimpleValue>InvoiceTypeCode</SimpleValue>
          </Value>
          <Value ColumnRef="Cardinality">
@@ -127568,7 +127612,7 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--13-->
+      <Row><!--14-->
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-FreightInvoice-2.2</SimpleValue>
          </Value>
@@ -127606,7 +127650,7 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--14-->
+      <Row><!--15-->
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-FreightInvoice-2.2</SimpleValue>
          </Value>
@@ -127647,7 +127691,7 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--15-->
+      <Row><!--16-->
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-FreightInvoice-2.2</SimpleValue>
          </Value>
@@ -127694,7 +127738,7 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--16-->
+      <Row><!--17-->
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-FreightInvoice-2.2</SimpleValue>
          </Value>
@@ -127741,7 +127785,7 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--17-->
+      <Row><!--18-->
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-FreightInvoice-2.2</SimpleValue>
          </Value>
@@ -127788,7 +127832,7 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--18-->
+      <Row><!--19-->
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-FreightInvoice-2.2</SimpleValue>
          </Value>
@@ -127835,7 +127879,7 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--19-->
+      <Row><!--20-->
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-FreightInvoice-2.2</SimpleValue>
          </Value>
@@ -127882,7 +127926,7 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--20-->
+      <Row><!--21-->
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-FreightInvoice-2.2</SimpleValue>
          </Value>
@@ -127923,7 +127967,7 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--21-->
+      <Row><!--22-->
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-FreightInvoice-2.2</SimpleValue>
          </Value>
@@ -127964,7 +128008,7 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--22-->
+      <Row><!--23-->
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-FreightInvoice-2.2</SimpleValue>
          </Value>
@@ -128005,7 +128049,7 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--23-->
+      <Row><!--24-->
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-FreightInvoice-2.2</SimpleValue>
          </Value>
@@ -128043,7 +128087,7 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--24-->
+      <Row><!--25-->
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-FreightInvoice-2.2</SimpleValue>
          </Value>
@@ -128078,7 +128122,7 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--25-->
+      <Row><!--26-->
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-FreightInvoice-2.2</SimpleValue>
          </Value>
@@ -128113,7 +128157,7 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--26-->
+      <Row><!--27-->
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-FreightInvoice-2.2</SimpleValue>
          </Value>
@@ -128148,7 +128192,7 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--27-->
+      <Row><!--28-->
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-FreightInvoice-2.2</SimpleValue>
          </Value>
@@ -128186,7 +128230,7 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--28-->
+      <Row><!--29-->
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-FreightInvoice-2.2</SimpleValue>
          </Value>
@@ -128224,7 +128268,7 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--29-->
+      <Row><!--30-->
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-FreightInvoice-2.2</SimpleValue>
          </Value>
@@ -128262,7 +128306,7 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--30-->
+      <Row><!--31-->
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-FreightInvoice-2.2</SimpleValue>
          </Value>
@@ -128300,7 +128344,7 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--31-->
+      <Row><!--32-->
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-FreightInvoice-2.2</SimpleValue>
          </Value>
@@ -128338,7 +128382,42 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--32-->
+      <Row><!--33-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>UBL-FreightInvoice-2.2</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentName">
+            <SimpleValue>ProjectReference</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..n</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>A reference to a project associated with this document.</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Freight Invoice. Project Reference</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Freight Invoice</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Project Reference</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Project Reference</SimpleValue>
+         </Value>
+         <Value ColumnRef="AssociatedObjectClass">
+            <SimpleValue>Project Reference</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>ASBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.2</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--34-->
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-FreightInvoice-2.2</SimpleValue>
          </Value>
@@ -128373,7 +128452,7 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--33-->
+      <Row><!--35-->
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-FreightInvoice-2.2</SimpleValue>
          </Value>
@@ -128414,7 +128493,7 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--34-->
+      <Row><!--36-->
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-FreightInvoice-2.2</SimpleValue>
          </Value>
@@ -128455,7 +128534,7 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--35-->
+      <Row><!--37-->
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-FreightInvoice-2.2</SimpleValue>
          </Value>
@@ -128493,7 +128572,7 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--36-->
+      <Row><!--38-->
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-FreightInvoice-2.2</SimpleValue>
          </Value>
@@ -128531,7 +128610,7 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--37-->
+      <Row><!--39-->
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-FreightInvoice-2.2</SimpleValue>
          </Value>
@@ -128566,7 +128645,7 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--38-->
+      <Row><!--40-->
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-FreightInvoice-2.2</SimpleValue>
          </Value>
@@ -128601,7 +128680,7 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--39-->
+      <Row><!--41-->
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-FreightInvoice-2.2</SimpleValue>
          </Value>
@@ -128639,7 +128718,7 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--40-->
+      <Row><!--42-->
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-FreightInvoice-2.2</SimpleValue>
          </Value>
@@ -128674,7 +128753,7 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--41-->
+      <Row><!--43-->
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-FreightInvoice-2.2</SimpleValue>
          </Value>
@@ -128712,7 +128791,7 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--42-->
+      <Row><!--44-->
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-FreightInvoice-2.2</SimpleValue>
          </Value>
@@ -128750,7 +128829,7 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--43-->
+      <Row><!--45-->
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-FreightInvoice-2.2</SimpleValue>
          </Value>
@@ -128788,7 +128867,7 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--44-->
+      <Row><!--46-->
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-FreightInvoice-2.2</SimpleValue>
          </Value>
@@ -128826,7 +128905,7 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--45-->
+      <Row><!--47-->
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-FreightInvoice-2.2</SimpleValue>
          </Value>
@@ -128861,7 +128940,7 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--46-->
+      <Row><!--48-->
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-FreightInvoice-2.2</SimpleValue>
          </Value>
@@ -128899,7 +128978,7 @@
             <SimpleValue>2.2</SimpleValue>
          </Value>
       </Row>
-      <Row><!--47-->
+      <Row><!--49-->
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-FreightInvoice-2.2</SimpleValue>
          </Value>
@@ -128940,7 +129019,7 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--48-->
+      <Row><!--50-->
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-FreightInvoice-2.2</SimpleValue>
          </Value>
