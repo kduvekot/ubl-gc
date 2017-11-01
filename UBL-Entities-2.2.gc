@@ -102983,7 +102983,7 @@
             <SimpleValue>SenderParty</SimpleValue>
          </Value>
          <Value ColumnRef="Cardinality">
-            <SimpleValue>1</SimpleValue>
+            <SimpleValue>0..1</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>The party sending this business card. This party could be the owner of this business card or a third-party acting on behalf of the owner (e.g. business network).</SimpleValue>
@@ -103021,7 +103021,7 @@
             <SimpleValue>ReceiverParty</SimpleValue>
          </Value>
          <Value ColumnRef="Cardinality">
-            <SimpleValue>1</SimpleValue>
+            <SimpleValue>0..1</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>The party receiving this business card.</SimpleValue>
@@ -103059,7 +103059,7 @@
             <SimpleValue>BusinessParty</SimpleValue>
          </Value>
          <Value ColumnRef="Cardinality">
-            <SimpleValue>0..1</SimpleValue>
+            <SimpleValue>1</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>The party owning this business card.</SimpleValue>
