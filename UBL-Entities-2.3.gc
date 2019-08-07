@@ -5724,9 +5724,9 @@
             <SimpleValue>2.2</SimpleValue>
          </Value>
       </Row>
-      <Row><!--149-->
+      <Row><!--167-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.2</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.3</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>CardAccount</SimpleValue>
@@ -5747,9 +5747,9 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--150-->
+      <Row><!--168-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.2</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.3</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>PrimaryAccountNumberID</SimpleValue>
@@ -5794,9 +5794,9 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--151-->
+      <Row><!--169-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.2</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.3</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>NetworkID</SimpleValue>
@@ -5835,9 +5835,9 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--152-->
+      <Row><!--170-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.2</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.3</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>CardTypeCode</SimpleValue>
@@ -5879,9 +5879,9 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--153-->
+      <Row><!--171-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.2</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.3</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>ValidityStartDate</SimpleValue>
@@ -5920,9 +5920,9 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--154-->
+      <Row><!--172-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.2</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.3</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>ExpiryDate</SimpleValue>
@@ -5961,9 +5961,9 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--155-->
+      <Row><!--173-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.2</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.3</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>IssuerID</SimpleValue>
@@ -5999,9 +5999,9 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--156-->
+      <Row><!--174-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.2</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.3</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>IssueNumberID</SimpleValue>
@@ -6040,9 +6040,9 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--157-->
+      <Row><!--175-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.2</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.3</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>CV2ID</SimpleValue>
@@ -6078,9 +6078,9 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--158-->
+      <Row><!--176-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.2</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.3</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>CardChipCode</SimpleValue>
@@ -6122,9 +6122,9 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--159-->
+      <Row><!--177-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.2</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.3</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>ChipApplicationID</SimpleValue>
@@ -6163,9 +6163,9 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--160-->
+      <Row><!--178-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.2</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.3</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>HolderName</SimpleValue>
@@ -6199,6 +6199,50 @@
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--179-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>UBL-CommonLibrary-2.3</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentName">
+            <SimpleValue>RoleCode</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>The role of this card or the card holder (e.g., the buyer, when the card is used as a payment means to pay for an item), expressed as a code.</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Card Account. Role Code. Code</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Card Account</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPossessiveNoun">
+            <SimpleValue>Role</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Code</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Role Code</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Code</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Code. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.3</SimpleValue>
+         </Value>
+         <Value ColumnRef="EditorsNotes">
+            <SimpleValue>Introduced with JIRA ticket UBL-235</SimpleValue>
          </Value>
       </Row>
       <Row><!--161-->
