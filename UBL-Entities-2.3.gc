@@ -81211,9 +81211,9 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--2075-->
+      <Row><!--2161-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.2</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.3</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>TaxTotal</SimpleValue>
@@ -81234,9 +81234,9 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--2076-->
+      <Row><!--2162-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.2</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.3</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>TaxAmount</SimpleValue>
@@ -81275,9 +81275,53 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--2077-->
+      <Row><!--2163-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.2</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.3</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentName">
+            <SimpleValue>CalculationSequenceNumeric</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>The number of this tax total in the sequence of tax totals corresponding to the order in which multiple taxes are applied. If all taxes are applied to the same taxable amount (i.e., their order of application is inconsequential), then CalculationSequenceNumeric is 1 for all tax totals applied to a given amount.</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Tax Total. Calculation Sequence. Numeric</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Tax Total</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPossessiveNoun">
+            <SimpleValue>Calculation</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Sequence</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Calculation Sequence</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Numeric</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Numeric. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.3</SimpleValue>
+         </Value>
+         <Value ColumnRef="EditorsNotes">
+            <SimpleValue>Introduced with JIRA ticket UBL-231</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--2164-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>UBL-CommonLibrary-2.3</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>RoundingAmount</SimpleValue>
@@ -81316,9 +81360,9 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--2078-->
+      <Row><!--2165-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.2</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.3</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>TaxEvidenceIndicator</SimpleValue>
@@ -81360,9 +81404,9 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--2079-->
+      <Row><!--2166-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.2</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.3</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>TaxIncludedIndicator</SimpleValue>
@@ -81401,9 +81445,9 @@
             <SimpleValue>2.1</SimpleValue>
          </Value>
       </Row>
-      <Row><!--2080-->
+      <Row><!--2167-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.2</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.3</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>TaxSubtotal</SimpleValue>
