@@ -57481,9 +57481,9 @@
             <SimpleValue>2.1</SimpleValue>
          </Value>
       </Row>
-      <Row><!--1469-->
+      <Row><!--1541-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.2</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.3</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>PaymentMeans</SimpleValue>
@@ -57504,9 +57504,9 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--1470-->
+      <Row><!--1542-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.2</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.3</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>ID</SimpleValue>
@@ -57542,9 +57542,9 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--1471-->
+      <Row><!--1543-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.2</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.3</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>PaymentMeansCode</SimpleValue>
@@ -57586,9 +57586,9 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--1472-->
+      <Row><!--1544-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.2</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.3</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>PaymentDueDate</SimpleValue>
@@ -57631,9 +57631,9 @@
 </SimpleValue>
          </Value>
       </Row>
-      <Row><!--1473-->
+      <Row><!--1545-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.2</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.3</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>PaymentChannelCode</SimpleValue>
@@ -57672,9 +57672,9 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--1474-->
+      <Row><!--1546-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.2</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.3</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>InstructionID</SimpleValue>
@@ -57713,9 +57713,9 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--1475-->
+      <Row><!--1547-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.2</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.3</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>InstructionNote</SimpleValue>
@@ -57754,9 +57754,9 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--1476-->
+      <Row><!--1548-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.2</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.3</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>PaymentID</SimpleValue>
@@ -57795,15 +57795,15 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--1477-->
+      <Row><!--1549-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.2</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.3</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>CardAccount</SimpleValue>
          </Value>
          <Value ColumnRef="Cardinality">
-            <SimpleValue>0..1</SimpleValue>
+            <SimpleValue>0..n</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>A credit card, debit card, or charge card account that constitutes this means of payment.</SimpleValue>
@@ -57829,10 +57829,13 @@
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.0</SimpleValue>
          </Value>
+         <Value ColumnRef="EditorsNotes">
+            <SimpleValue>Cardinality changed to 0..n in UBL 2.3, as discussed in JIRA ticket UBL-235</SimpleValue>
+         </Value>
       </Row>
-      <Row><!--1478-->
+      <Row><!--1550-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.2</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.3</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>PayerFinancialAccount</SimpleValue>
@@ -57868,9 +57871,9 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--1479-->
+      <Row><!--1551-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.2</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.3</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>PayeeFinancialAccount</SimpleValue>
@@ -57906,9 +57909,9 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--1480-->
+      <Row><!--1552-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.2</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.3</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>CreditAccount</SimpleValue>
@@ -57941,9 +57944,9 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--1481-->
+      <Row><!--1553-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.2</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.3</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>PaymentMandate</SimpleValue>
@@ -57980,9 +57983,9 @@
 </SimpleValue>
          </Value>
       </Row>
-      <Row><!--1482-->
+      <Row><!--1554-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.2</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.3</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>TradeFinancing</SimpleValue>
