@@ -87447,7 +87447,7 @@
             <SimpleValue>2.1</SimpleValue>
          </Value>
       </Row>
-      <Row><!--2264-->
+      <Row><!--2289-->
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-CommonLibrary-2.3</SimpleValue>
          </Value>
@@ -87470,7 +87470,7 @@
             <SimpleValue>2.1</SimpleValue>
          </Value>
       </Row>
-      <Row><!--2265-->
+      <Row><!--2290-->
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-CommonLibrary-2.3</SimpleValue>
          </Value>
@@ -87508,7 +87508,7 @@
             <SimpleValue>2.1</SimpleValue>
          </Value>
       </Row>
-      <Row><!--2266-->
+      <Row><!--2291-->
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-CommonLibrary-2.3</SimpleValue>
          </Value>
@@ -87546,7 +87546,7 @@
             <SimpleValue>2.1</SimpleValue>
          </Value>
       </Row>
-      <Row><!--2267-->
+      <Row><!--2292-->
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-CommonLibrary-2.3</SimpleValue>
          </Value>
@@ -87587,7 +87587,7 @@
             <SimpleValue>2.1</SimpleValue>
          </Value>
       </Row>
-      <Row><!--2268-->
+      <Row><!--2293-->
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-CommonLibrary-2.3</SimpleValue>
          </Value>
@@ -87628,7 +87628,7 @@
             <SimpleValue>2.1</SimpleValue>
          </Value>
       </Row>
-      <Row><!--2269-->
+      <Row><!--2294-->
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-CommonLibrary-2.3</SimpleValue>
          </Value>
@@ -87669,7 +87669,7 @@
             <SimpleValue>2.1</SimpleValue>
          </Value>
       </Row>
-      <Row><!--2270-->
+      <Row><!--2295-->
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-CommonLibrary-2.3</SimpleValue>
          </Value>
@@ -87677,7 +87677,7 @@
             <SimpleValue>ProcurementProjectLot</SimpleValue>
          </Value>
          <Value ColumnRef="Cardinality">
-            <SimpleValue>0..1</SimpleValue>
+            <SimpleValue>0..n</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>The procurement project lot to which this Tender Line refers to. If there are no lots, this should not be defined.</SimpleValue>
@@ -87704,7 +87704,7 @@
             <SimpleValue>2.1</SimpleValue>
          </Value>
       </Row>
-      <Row><!--2271-->
+      <Row><!--2296-->
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-CommonLibrary-2.3</SimpleValue>
          </Value>
@@ -87742,7 +87742,7 @@
             <SimpleValue>2.1</SimpleValue>
          </Value>
       </Row>
-      <Row><!--2272-->
+      <Row><!--2297-->
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-CommonLibrary-2.3</SimpleValue>
          </Value>
@@ -87777,7 +87777,7 @@
             <SimpleValue>2.1</SimpleValue>
          </Value>
       </Row>
-      <Row><!--2273-->
+      <Row><!--2298-->
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-CommonLibrary-2.3</SimpleValue>
          </Value>
@@ -87815,7 +87815,7 @@
             <SimpleValue>2.1</SimpleValue>
          </Value>
       </Row>
-      <Row><!--2274-->
+      <Row><!--2299-->
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-CommonLibrary-2.3</SimpleValue>
          </Value>
@@ -87850,7 +87850,7 @@
             <SimpleValue>2.1</SimpleValue>
          </Value>
       </Row>
-      <Row><!--2275-->
+      <Row><!--2300-->
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-CommonLibrary-2.3</SimpleValue>
          </Value>
@@ -87883,6 +87883,47 @@
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.1</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--2301-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>UBL-CommonLibrary-2.3</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentName">
+            <SimpleValue>AdditionalFee</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..n</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>An additional fee for this tendered project.</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Tendered Project. Additional_ Fee. Fee</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Tendered Project</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermQualifier">
+            <SimpleValue>Additional</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Fee</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Fee</SimpleValue>
+         </Value>
+         <Value ColumnRef="AssociatedObjectClass">
+            <SimpleValue>Fee</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>ASBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.3</SimpleValue>
+         </Value>
+         <Value ColumnRef="EditorsNotes">
+            <SimpleValue>UBL-222</SimpleValue>
          </Value>
       </Row>
       <Row><!--2276-->
