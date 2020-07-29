@@ -76619,6 +76619,225 @@
             <SimpleValue>2.1</SimpleValue>
          </Value>
       </Row>
+      <Row><!--2117-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>UBL-CommonLibrary-2.3</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentName">
+            <SimpleValue>ShipToShipActivityRecord</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>A class to describe a ship to ship activity record.</SimpleValue>
+         </Value>
+         <Value ColumnRef="AlternativeBusinessTerms">
+            <SimpleValue>STS transfer</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Ship To Ship Activity Record. Details</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Ship To Ship Activity Record</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>ABIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.3</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--2118-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>UBL-CommonLibrary-2.3</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentName">
+            <SimpleValue>ID</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>An indentifier for this ship to ship activity.</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Ship To Ship Activity Record. Identifier</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Ship To Ship Activity Record</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Identifier</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Identifier</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Identifier</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Identifier. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.3</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--2119-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>UBL-CommonLibrary-2.3</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentName">
+            <SimpleValue>Description</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>1..n</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>A text describing the ship to ship activity.</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Ship To Ship Activity Record. Description. Text</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Ship To Ship Activity Record</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Description</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Description</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Text</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Text. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.3</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--2120-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>UBL-CommonLibrary-2.3</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentName">
+            <SimpleValue>AppliedSecurityMeasures</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..n</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>A text describing any security measures applied to this ship to ship activity in lieu of those specified in the approved Ship Security Plan (SSP).</SimpleValue>
+         </Value>
+         <Value ColumnRef="AlternativeBusinessTerms">
+            <SimpleValue>Measures Applied In Lieu</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Ship To Ship Activity Record. Applied_ Security Measures. Text</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Ship To Ship Activity Record</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermQualifier">
+            <SimpleValue>Applied</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPossessiveNoun">
+            <SimpleValue>Security</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Measures</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Security Measures</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Text</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Text. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.3</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--2121-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>UBL-CommonLibrary-2.3</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentName">
+            <SimpleValue>Period</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>The duration of this ship to ship activity.</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Ship To Ship Activity Record. Period</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Ship To Ship Activity Record</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Period</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Period</SimpleValue>
+         </Value>
+         <Value ColumnRef="AssociatedObjectClass">
+            <SimpleValue>Period</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>ASBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.3</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--2122-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>UBL-CommonLibrary-2.3</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentName">
+            <SimpleValue>Location</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>The location where this ship to ship activity took place.</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Ship To Ship Activity Record. Location</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Ship To Ship Activity Record</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Location</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Location</SimpleValue>
+         </Value>
+         <Value ColumnRef="AssociatedObjectClass">
+            <SimpleValue>Location</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>ASBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.3</SimpleValue>
+         </Value>
+      </Row>
       <Row><!--2123-->
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-CommonLibrary-2.3</SimpleValue>
