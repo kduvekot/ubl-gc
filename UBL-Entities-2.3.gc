@@ -89535,7 +89535,7 @@
             <SimpleValue>2.1</SimpleValue>
          </Value>
       </Row>
-      <Row><!--2289-->
+      <Row><!--2469-->
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-CommonLibrary-2.3</SimpleValue>
          </Value>
@@ -89558,7 +89558,7 @@
             <SimpleValue>2.1</SimpleValue>
          </Value>
       </Row>
-      <Row><!--2290-->
+      <Row><!--2470-->
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-CommonLibrary-2.3</SimpleValue>
          </Value>
@@ -89596,7 +89596,7 @@
             <SimpleValue>2.1</SimpleValue>
          </Value>
       </Row>
-      <Row><!--2291-->
+      <Row><!--2471-->
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-CommonLibrary-2.3</SimpleValue>
          </Value>
@@ -89634,7 +89634,7 @@
             <SimpleValue>2.1</SimpleValue>
          </Value>
       </Row>
-      <Row><!--2292-->
+      <Row><!--2472-->
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-CommonLibrary-2.3</SimpleValue>
          </Value>
@@ -89675,7 +89675,7 @@
             <SimpleValue>2.1</SimpleValue>
          </Value>
       </Row>
-      <Row><!--2293-->
+      <Row><!--2473-->
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-CommonLibrary-2.3</SimpleValue>
          </Value>
@@ -89716,7 +89716,7 @@
             <SimpleValue>2.1</SimpleValue>
          </Value>
       </Row>
-      <Row><!--2294-->
+      <Row><!--2474-->
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-CommonLibrary-2.3</SimpleValue>
          </Value>
@@ -89757,223 +89757,7 @@
             <SimpleValue>2.1</SimpleValue>
          </Value>
       </Row>
-      <Row><!--2295-->
-         <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.3</SimpleValue>
-         </Value>
-         <Value ColumnRef="ComponentName">
-            <SimpleValue>ProcurementProjectLot</SimpleValue>
-         </Value>
-         <Value ColumnRef="Cardinality">
-            <SimpleValue>0..n</SimpleValue>
-         </Value>
-         <Value ColumnRef="Definition">
-            <SimpleValue>The procurement project lot to which this Tender Line refers to. If there are no lots, this should not be defined.</SimpleValue>
-         </Value>
-         <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Tendered Project. Procurement Project Lot</SimpleValue>
-         </Value>
-         <Value ColumnRef="ObjectClass">
-            <SimpleValue>Tendered Project</SimpleValue>
-         </Value>
-         <Value ColumnRef="PropertyTerm">
-            <SimpleValue>Procurement Project Lot</SimpleValue>
-         </Value>
-         <Value ColumnRef="RepresentationTerm">
-            <SimpleValue>Procurement Project Lot</SimpleValue>
-         </Value>
-         <Value ColumnRef="AssociatedObjectClass">
-            <SimpleValue>Procurement Project Lot</SimpleValue>
-         </Value>
-         <Value ColumnRef="ComponentType">
-            <SimpleValue>ASBIE</SimpleValue>
-         </Value>
-         <Value ColumnRef="CurrentVersion">
-            <SimpleValue>2.1</SimpleValue>
-         </Value>
-      </Row>
-      <Row><!--2296-->
-         <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.3</SimpleValue>
-         </Value>
-         <Value ColumnRef="ComponentName">
-            <SimpleValue>EvidenceDocumentReference</SimpleValue>
-         </Value>
-         <Value ColumnRef="Cardinality">
-            <SimpleValue>0..n</SimpleValue>
-         </Value>
-         <Value ColumnRef="Definition">
-            <SimpleValue>A reference to a non-structured evidentiary document supporting this tendered project.</SimpleValue>
-         </Value>
-         <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Tendered Project. Evidence_ Document Reference. Document Reference</SimpleValue>
-         </Value>
-         <Value ColumnRef="ObjectClass">
-            <SimpleValue>Tendered Project</SimpleValue>
-         </Value>
-         <Value ColumnRef="PropertyTermQualifier">
-            <SimpleValue>Evidence</SimpleValue>
-         </Value>
-         <Value ColumnRef="PropertyTerm">
-            <SimpleValue>Document Reference</SimpleValue>
-         </Value>
-         <Value ColumnRef="RepresentationTerm">
-            <SimpleValue>Document Reference</SimpleValue>
-         </Value>
-         <Value ColumnRef="AssociatedObjectClass">
-            <SimpleValue>Document Reference</SimpleValue>
-         </Value>
-         <Value ColumnRef="ComponentType">
-            <SimpleValue>ASBIE</SimpleValue>
-         </Value>
-         <Value ColumnRef="CurrentVersion">
-            <SimpleValue>2.1</SimpleValue>
-         </Value>
-      </Row>
-      <Row><!--2297-->
-         <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.3</SimpleValue>
-         </Value>
-         <Value ColumnRef="ComponentName">
-            <SimpleValue>TaxTotal</SimpleValue>
-         </Value>
-         <Value ColumnRef="Cardinality">
-            <SimpleValue>0..n</SimpleValue>
-         </Value>
-         <Value ColumnRef="Definition">
-            <SimpleValue>A total amount of taxes of a particular kind applicable to the monetary total for this tendered project.</SimpleValue>
-         </Value>
-         <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Tendered Project. Tax Total</SimpleValue>
-         </Value>
-         <Value ColumnRef="ObjectClass">
-            <SimpleValue>Tendered Project</SimpleValue>
-         </Value>
-         <Value ColumnRef="PropertyTerm">
-            <SimpleValue>Tax Total</SimpleValue>
-         </Value>
-         <Value ColumnRef="RepresentationTerm">
-            <SimpleValue>Tax Total</SimpleValue>
-         </Value>
-         <Value ColumnRef="AssociatedObjectClass">
-            <SimpleValue>Tax Total</SimpleValue>
-         </Value>
-         <Value ColumnRef="ComponentType">
-            <SimpleValue>ASBIE</SimpleValue>
-         </Value>
-         <Value ColumnRef="CurrentVersion">
-            <SimpleValue>2.1</SimpleValue>
-         </Value>
-      </Row>
-      <Row><!--2298-->
-         <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.3</SimpleValue>
-         </Value>
-         <Value ColumnRef="ComponentName">
-            <SimpleValue>LegalMonetaryTotal</SimpleValue>
-         </Value>
-         <Value ColumnRef="Cardinality">
-            <SimpleValue>0..1</SimpleValue>
-         </Value>
-         <Value ColumnRef="Definition">
-            <SimpleValue>The total amount for this tendered project.</SimpleValue>
-         </Value>
-         <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Tendered Project. Legal_ Monetary Total. Monetary Total</SimpleValue>
-         </Value>
-         <Value ColumnRef="ObjectClass">
-            <SimpleValue>Tendered Project</SimpleValue>
-         </Value>
-         <Value ColumnRef="PropertyTermQualifier">
-            <SimpleValue>Legal</SimpleValue>
-         </Value>
-         <Value ColumnRef="PropertyTerm">
-            <SimpleValue>Monetary Total</SimpleValue>
-         </Value>
-         <Value ColumnRef="RepresentationTerm">
-            <SimpleValue>Monetary Total</SimpleValue>
-         </Value>
-         <Value ColumnRef="AssociatedObjectClass">
-            <SimpleValue>Monetary Total</SimpleValue>
-         </Value>
-         <Value ColumnRef="ComponentType">
-            <SimpleValue>ASBIE</SimpleValue>
-         </Value>
-         <Value ColumnRef="CurrentVersion">
-            <SimpleValue>2.1</SimpleValue>
-         </Value>
-      </Row>
-      <Row><!--2299-->
-         <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.3</SimpleValue>
-         </Value>
-         <Value ColumnRef="ComponentName">
-            <SimpleValue>TenderLine</SimpleValue>
-         </Value>
-         <Value ColumnRef="Cardinality">
-            <SimpleValue>0..n</SimpleValue>
-         </Value>
-         <Value ColumnRef="Definition">
-            <SimpleValue>A line in the tender for this tendered project.</SimpleValue>
-         </Value>
-         <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Tendered Project. Tender Line</SimpleValue>
-         </Value>
-         <Value ColumnRef="ObjectClass">
-            <SimpleValue>Tendered Project</SimpleValue>
-         </Value>
-         <Value ColumnRef="PropertyTerm">
-            <SimpleValue>Tender Line</SimpleValue>
-         </Value>
-         <Value ColumnRef="RepresentationTerm">
-            <SimpleValue>Tender Line</SimpleValue>
-         </Value>
-         <Value ColumnRef="AssociatedObjectClass">
-            <SimpleValue>Tender Line</SimpleValue>
-         </Value>
-         <Value ColumnRef="ComponentType">
-            <SimpleValue>ASBIE</SimpleValue>
-         </Value>
-         <Value ColumnRef="CurrentVersion">
-            <SimpleValue>2.1</SimpleValue>
-         </Value>
-      </Row>
-      <Row><!--2300-->
-         <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.3</SimpleValue>
-         </Value>
-         <Value ColumnRef="ComponentName">
-            <SimpleValue>AwardingCriterionResponse</SimpleValue>
-         </Value>
-         <Value ColumnRef="Cardinality">
-            <SimpleValue>0..n</SimpleValue>
-         </Value>
-         <Value ColumnRef="Definition">
-            <SimpleValue>An association to an Awarding Criterion Response.</SimpleValue>
-         </Value>
-         <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Tendered Project. Awarding Criterion Response</SimpleValue>
-         </Value>
-         <Value ColumnRef="ObjectClass">
-            <SimpleValue>Tendered Project</SimpleValue>
-         </Value>
-         <Value ColumnRef="PropertyTerm">
-            <SimpleValue>Awarding Criterion Response</SimpleValue>
-         </Value>
-         <Value ColumnRef="RepresentationTerm">
-            <SimpleValue>Awarding Criterion Response</SimpleValue>
-         </Value>
-         <Value ColumnRef="AssociatedObjectClass">
-            <SimpleValue>Awarding Criterion Response</SimpleValue>
-         </Value>
-         <Value ColumnRef="ComponentType">
-            <SimpleValue>ASBIE</SimpleValue>
-         </Value>
-         <Value ColumnRef="CurrentVersion">
-            <SimpleValue>2.1</SimpleValue>
-         </Value>
-      </Row>
-      <Row><!--2301-->
+      <Row><!--2475-->
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-CommonLibrary-2.3</SimpleValue>
          </Value>
@@ -90012,6 +89796,222 @@
          </Value>
          <Value ColumnRef="EditorsNotes">
             <SimpleValue>UBL-222</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--2476-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>UBL-CommonLibrary-2.3</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentName">
+            <SimpleValue>ProcurementProjectLot</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..n</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>The procurement project lot to which this Tender Line refers to. If there are no lots, this should not be defined.</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Tendered Project. Procurement Project Lot</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Tendered Project</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Procurement Project Lot</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Procurement Project Lot</SimpleValue>
+         </Value>
+         <Value ColumnRef="AssociatedObjectClass">
+            <SimpleValue>Procurement Project Lot</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>ASBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.1</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--2477-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>UBL-CommonLibrary-2.3</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentName">
+            <SimpleValue>EvidenceDocumentReference</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..n</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>A reference to a non-structured evidentiary document supporting this tendered project.</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Tendered Project. Evidence_ Document Reference. Document Reference</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Tendered Project</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermQualifier">
+            <SimpleValue>Evidence</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Document Reference</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Document Reference</SimpleValue>
+         </Value>
+         <Value ColumnRef="AssociatedObjectClass">
+            <SimpleValue>Document Reference</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>ASBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.1</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--2478-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>UBL-CommonLibrary-2.3</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentName">
+            <SimpleValue>TaxTotal</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..n</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>A total amount of taxes of a particular kind applicable to the monetary total for this tendered project.</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Tendered Project. Tax Total</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Tendered Project</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Tax Total</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Tax Total</SimpleValue>
+         </Value>
+         <Value ColumnRef="AssociatedObjectClass">
+            <SimpleValue>Tax Total</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>ASBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.1</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--2479-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>UBL-CommonLibrary-2.3</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentName">
+            <SimpleValue>LegalMonetaryTotal</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>The total amount for this tendered project.</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Tendered Project. Legal_ Monetary Total. Monetary Total</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Tendered Project</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermQualifier">
+            <SimpleValue>Legal</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Monetary Total</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Monetary Total</SimpleValue>
+         </Value>
+         <Value ColumnRef="AssociatedObjectClass">
+            <SimpleValue>Monetary Total</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>ASBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.1</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--2480-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>UBL-CommonLibrary-2.3</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentName">
+            <SimpleValue>TenderLine</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..n</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>A line in the tender for this tendered project.</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Tendered Project. Tender Line</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Tendered Project</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Tender Line</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Tender Line</SimpleValue>
+         </Value>
+         <Value ColumnRef="AssociatedObjectClass">
+            <SimpleValue>Tender Line</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>ASBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.1</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--2481-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>UBL-CommonLibrary-2.3</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentName">
+            <SimpleValue>AwardingCriterionResponse</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..n</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>An association to an Awarding Criterion Response.</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Tendered Project. Awarding Criterion Response</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Tendered Project</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Awarding Criterion Response</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Awarding Criterion Response</SimpleValue>
+         </Value>
+         <Value ColumnRef="AssociatedObjectClass">
+            <SimpleValue>Awarding Criterion Response</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>ASBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.1</SimpleValue>
          </Value>
       </Row>
       <Row><!--2302-->
