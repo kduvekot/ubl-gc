@@ -3181,7 +3181,7 @@
             <SimpleValue>IssuerParty</SimpleValue>
          </Value>
          <Value ColumnRef="Cardinality">
-            <SimpleValue>1</SimpleValue>
+            <SimpleValue>0..1</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>The party issuing this attestation</SimpleValue>
@@ -3219,7 +3219,7 @@
             <SimpleValue>AttestationLine</SimpleValue>
          </Value>
          <Value ColumnRef="Cardinality">
-            <SimpleValue>1</SimpleValue>
+            <SimpleValue>1..n</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>An attestation or statement made and which forms part of this attestation</SimpleValue>
