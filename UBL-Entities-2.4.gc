@@ -59035,9 +59035,9 @@
             <SimpleValue>2.1</SimpleValue>
          </Value>
       </Row>
-      <Row><!--1518-->
+      <Row><!--1549-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.3</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.4</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>MonetaryTotal</SimpleValue>
@@ -59058,9 +59058,9 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--1519-->
+      <Row><!--1550-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.3</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.4</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>LineExtensionAmount</SimpleValue>
@@ -59099,9 +59099,9 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--1520-->
+      <Row><!--1551-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.3</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.4</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>TaxExclusiveAmount</SimpleValue>
@@ -59140,9 +59140,9 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--1521-->
+      <Row><!--1552-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.3</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.4</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>TaxInclusiveAmount</SimpleValue>
@@ -59181,9 +59181,9 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--1522-->
+      <Row><!--1553-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.3</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.4</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>AllowanceTotalAmount</SimpleValue>
@@ -59225,9 +59225,56 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--1523-->
+      <Row><!--1554-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.3</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.4</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentName">
+            <SimpleValue>AllowanceTotalTaxInclusiveAmount</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>The total monetary amount of all allowances, inclusive of all taxes.</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Monetary Total. Allowance Total_ Tax Inclusive Amount. Amount</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Monetary Total</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermQualifier">
+            <SimpleValue>Allowance Total</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPossessiveNoun">
+            <SimpleValue>Tax Inclusive</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Amount</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Tax Inclusive Amount</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Amount</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Amount. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.4</SimpleValue>
+         </Value>
+         <Value ColumnRef="EditorsNotes">
+            <SimpleValue>Introduced with UBL-350.</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--1555-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>UBL-CommonLibrary-2.4</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>ChargeTotalAmount</SimpleValue>
@@ -59269,9 +59316,56 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--1524-->
+      <Row><!--1556-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.3</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.4</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentName">
+            <SimpleValue>ChargeTotalTaxInclusiveAmount</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>The total monetary amount of all charges, inclusive of all taxes.</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Monetary Total. Charge Total_ Tax Inclusive Amount. Amount</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Monetary Total</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermQualifier">
+            <SimpleValue>Charge Total</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPossessiveNoun">
+            <SimpleValue>Tax Inclusive</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Amount</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Tax Inclusive Amount</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Amount</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Amount. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.4</SimpleValue>
+         </Value>
+         <Value ColumnRef="EditorsNotes">
+            <SimpleValue>Introduced with UBL-350.</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--1557-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>UBL-CommonLibrary-2.4</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>WithholdingTaxTotalAmount</SimpleValue>
@@ -59316,9 +59410,9 @@
             <SimpleValue>Added as part of Issue UBL-44</SimpleValue>
          </Value>
       </Row>
-      <Row><!--1525-->
+      <Row><!--1558-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.3</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.4</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>PrepaidAmount</SimpleValue>
@@ -59357,9 +59451,9 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--1526-->
+      <Row><!--1559-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.3</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.4</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>PayableRoundingAmount</SimpleValue>
@@ -59405,9 +59499,9 @@
 </SimpleValue>
          </Value>
       </Row>
-      <Row><!--1527-->
+      <Row><!--1560-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.3</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.4</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>PayableAmount</SimpleValue>
@@ -59450,9 +59544,9 @@
 </SimpleValue>
          </Value>
       </Row>
-      <Row><!--1528-->
+      <Row><!--1561-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.3</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.4</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>PayableAlternativeAmount</SimpleValue>
