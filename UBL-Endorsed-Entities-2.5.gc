@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gc:CodeList xmlns:gc="http://docs.oasis-open.org/codelist/ns/genericode/1.0/">
+   <Identification>
+      <ShortName>UBL-2.5-CSD01-Endorsed</ShortName>
+      <LongName>UBL 2.5 CSD01 Endorsed Business Entity Summary</LongName>
+      <Version>2.5</Version>
+      <CanonicalUri>urn:oasis:names:specification:ubl:BIE:ENDORSED</CanonicalUri>
+      <CanonicalVersionUri>urn:oasis:names:specification:ubl:BIE:ENDORSED:2.5</CanonicalVersionUri>
+      <LocationUri>http://docs.oasis-open.org/ubl/csd01-UBL-2.5/mod/UBL-Entities-2.5-Endorsed.gc</LocationUri>
+      <Agency>
+         <LongName xml:lang="en">OASIS Universal Business Language</LongName>
+         <Identifier>UBL</Identifier>
+      </Agency>
+   </Identification>
+   <ColumnSet>
+      <Column Id="ModelName" Use="required">
+         <ShortName>ModelName</ShortName>
+         <LongName>Model Name</LongName>
+         <Data Type="string"/>
+      </Column>
+      <Column Id="ComponentName" Use="optional">
+         <ShortName>ComponentName</ShortName>
+         <LongName>Component Name</LongName>
+         <Data Type="string"/>
+      </Column>
+      <Column Id="Subset" Use="optional">
+         <ShortName>Subset</ShortName>
+         <LongName>Subset</LongName>
+         <Data Type="string"/>
+      </Column>
+      <Column Id="Cardinality" Use="optional">
+         <ShortName>Cardinality</ShortName>
+         <LongName>Cardinality</LongName>
+         <Data Type="string"/>
+      </Column>
+      
+      
+      <Column Id="Definition" Use="optional">
+         <ShortName>Definition</ShortName>
+         <LongName>Definition</LongName>
+         <Data Type="string"/>
+      </Column>
+      <Column Id="DeprecatedDefinition" Use="optional">
+         <ShortName>DeprecatedDefinition</ShortName>
+         <LongName>Deprecated Definition</LongName>
+         <Data Type="string"/>
+      </Column>
+      <Column Id="AlternativeBusinessTerms" Use="optional">
+         <ShortName>AlternativeBusinessTerms</ShortName>
+         <LongName>Alternative Business Terms</LongName>
+         <Data Type="string"/>
+      </Column>
+      <Column Id="Examples" Use="optional">
+         <ShortName>Examples</ShortName>
+         <LongName>Examples</LongName>
+         <Data Type="string"/>
+      </Column>
+      <Column Id="DictionaryEntryName" Use="required">
+         <ShortName>DictionaryEntryName</ShortName>
+         <LongName>Dictionary Entry Name</LongName>
+         <Data Type="string"/>
+      </Column>
+      <Column Id="ObjectClassQualifier" Use="optional">
+         <ShortName>ObjectClassQualifier</ShortName>
+         <LongName>Object Class Qualifier</LongName>
+         <Data Type="string"/>
+      </Column>
+      <Column Id="ObjectClass" Use="optional">
+         <ShortName>ObjectClass</ShortName>
+         <LongName>Object Class</LongName>
+         <Data Type="string"/>
+      </Column>
+      <Column Id="PropertyTermQualifier" Use="optional">
+         <ShortName>PropertyTermQualifier</ShortName>
+         <LongName>Property Term Qualifier</LongName>
+         <Data Type="string"/>
+      </Column>
+      <Column Id="PropertyTermPossessiveNoun" Use="optional">
+         <ShortName>PropertyTermPossessiveNoun</ShortName>
+         <LongName>Property Term Possessive Noun</LongName>
+         <Data Type="string"/>
+      </Column>
+      <Column Id="PropertyTermPrimaryNoun" Use="optional">
+         <ShortName>PropertyTermPrimaryNoun</ShortName>
+         <LongName>Property Term Primary Noun</LongName>
+         <Data Type="string"/>
+      </Column>
+      <Column Id="PropertyTerm" Use="optional">
+         <ShortName>PropertyTerm</ShortName>
+         <LongName>Property Term</LongName>
+         <Data Type="string"/>
+      </Column>
+      <Column Id="RepresentationTerm" Use="optional">
+         <ShortName>RepresentationTerm</ShortName>
+         <LongName>Representation Term</LongName>
+         <Data Type="string"/>
+      </Column>
+      <Column Id="DataTypeQualifier" Use="optional">
+         <ShortName>DataTypeQualifier</ShortName>
+         <LongName>Data Type Qualifier</LongName>
+         <Data Type="string"/>
+      </Column>
+      <Column Id="DataType" Use="optional">
+         <ShortName>DataType</ShortName>
+         <LongName>Data Type</LongName>
+         <Data Type="string"/>
+      </Column>
+      <Column Id="AssociatedObjectClassQualifier" Use="optional">
+         <ShortName>AssociatedObjectClassQualifier</ShortName>
+         <LongName>Associated Object Class Qualifier</LongName>
+         <Data Type="string"/>
+      </Column>
+      <Column Id="AssociatedObjectClass" Use="optional">
+         <ShortName>AssociatedObjectClass</ShortName>
+         <LongName>Associated Object Class</LongName>
+         <Data Type="string"/>
+      </Column>
+      <Column Id="ComponentType" Use="optional">
+         <ShortName>ComponentType</ShortName>
+         <LongName>Component Type</LongName>
+         <Data Type="string"/>
+      </Column>
+      <Column Id="UNTDEDCode" Use="optional">
+         <ShortName>UNTDEDCode</ShortName>
+         <LongName>UN/TDED Code</LongName>
+         <Data Type="string"/>
+      </Column>
+      <Column Id="CurrentVersion" Use="optional">
+         <ShortName>CurrentVersion</ShortName>
+         <LongName>Current Version</LongName>
+         <Data Type="string"/>
+      </Column>
+      <Column Id="LastChanged" Use="optional">
+         <ShortName>LastChanged</ShortName>
+         <LongName>Last Changed</LongName>
+         <Data Type="string"/>
+      </Column>
+      <Column Id="EditorsNotes" Use="optional">
+         <ShortName>EditorsNotes</ShortName>
+         <LongName>Editor's Notes</LongName>
+         <Data Type="string"/>
+      </Column>
+      <Key Id="key">
+         <ShortName>Key</ShortName>
+         <ColumnRef Ref="DictionaryEntryName"/>
+      </Key>
+   </ColumnSet>
+   <SimpleCodeList>
+   </SimpleCodeList>
+</gc:CodeList>
