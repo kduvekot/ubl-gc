@@ -582,7 +582,7 @@
       </Row>
       <Row><!--14-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.4</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>Address</SimpleValue>
@@ -605,7 +605,7 @@
       </Row>
       <Row><!--15-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.4</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>ID</SimpleValue>
@@ -646,7 +646,7 @@
       </Row>
       <Row><!--16-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.4</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>AddressTypeCode</SimpleValue>
@@ -687,7 +687,7 @@
       </Row>
       <Row><!--17-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.4</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>AddressFormatCode</SimpleValue>
@@ -728,7 +728,7 @@
       </Row>
       <Row><!--18-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.4</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>Postbox</SimpleValue>
@@ -772,7 +772,7 @@
       </Row>
       <Row><!--19-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.4</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>Floor</SimpleValue>
@@ -816,7 +816,7 @@
       </Row>
       <Row><!--20-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.4</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>Room</SimpleValue>
@@ -860,16 +860,16 @@
       </Row>
       <Row><!--21-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.4</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>StreetName</SimpleValue>
          </Value>
          <Value ColumnRef="Cardinality">
-            <SimpleValue>0..1</SimpleValue>
+            <SimpleValue>0..n</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The name of the street, road, avenue, way, etc. to which the number of the building is attached.</SimpleValue>
+            <SimpleValue>The name of the street, road, avenue, way, etc. to which the number of the building is attached (may be repeated only to provide the same content in multiple natural languages).</SimpleValue>
          </Value>
          <Value ColumnRef="AlternativeBusinessTerms">
             <SimpleValue>Thoroughfare</SimpleValue>
@@ -907,16 +907,16 @@
       </Row>
       <Row><!--22-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.4</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>AdditionalStreetName</SimpleValue>
          </Value>
          <Value ColumnRef="Cardinality">
-            <SimpleValue>0..1</SimpleValue>
+            <SimpleValue>0..n</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>An additional street name used to further clarify the address.</SimpleValue>
+            <SimpleValue>An additional street name used to further clarify the address (may be repeated only to provide the same content in multiple natural languages).</SimpleValue>
          </Value>
          <Value ColumnRef="AlternativeBusinessTerms">
             <SimpleValue>Thoroughfare</SimpleValue>
@@ -957,7 +957,7 @@
       </Row>
       <Row><!--23-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.4</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>BlockName</SimpleValue>
@@ -1001,7 +1001,7 @@
       </Row>
       <Row><!--24-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.4</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>BuildingName</SimpleValue>
@@ -1048,7 +1048,7 @@
       </Row>
       <Row><!--25-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.4</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>BuildingNumber</SimpleValue>
@@ -1095,7 +1095,7 @@
       </Row>
       <Row><!--26-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.4</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>Description</SimpleValue>
@@ -1136,7 +1136,7 @@
       </Row>
       <Row><!--27-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.4</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>InhouseMail</SimpleValue>
@@ -1180,7 +1180,7 @@
       </Row>
       <Row><!--28-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.4</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>Department</SimpleValue>
@@ -1224,7 +1224,7 @@
       </Row>
       <Row><!--29-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.4</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>MarkAttention</SimpleValue>
@@ -1265,7 +1265,7 @@
       </Row>
       <Row><!--30-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.4</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>MarkCare</SimpleValue>
@@ -1306,7 +1306,7 @@
       </Row>
       <Row><!--31-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.4</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>PlotIdentification</SimpleValue>
@@ -1347,7 +1347,7 @@
       </Row>
       <Row><!--32-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.4</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>CitySubdivisionName</SimpleValue>
@@ -1388,16 +1388,16 @@
       </Row>
       <Row><!--33-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.4</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>CityName</SimpleValue>
          </Value>
          <Value ColumnRef="Cardinality">
-            <SimpleValue>0..1</SimpleValue>
+            <SimpleValue>0..n</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The name of a city, town, or village.</SimpleValue>
+            <SimpleValue>The name of a city, town, or village (may be repeated only to provide the same content in multiple natural languages).</SimpleValue>
          </Value>
          <Value ColumnRef="AlternativeBusinessTerms">
             <SimpleValue>LocalityName</SimpleValue>
@@ -1435,16 +1435,16 @@
       </Row>
       <Row><!--34-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.4</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>PostalZone</SimpleValue>
          </Value>
          <Value ColumnRef="Cardinality">
-            <SimpleValue>0..1</SimpleValue>
+            <SimpleValue>0..n</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The postal identifier for this address according to the relevant national postal service, such as a ZIP code or Post Code.</SimpleValue>
+            <SimpleValue>The postal identifier for this address according to the relevant national postal service, such as a ZIP code or Post Code (may be repeated only to provide the same content in multiple natural languages).</SimpleValue>
          </Value>
          <Value ColumnRef="AlternativeBusinessTerms">
             <SimpleValue>PostalCodeNumber</SimpleValue>
@@ -1482,16 +1482,16 @@
       </Row>
       <Row><!--35-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.4</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>CountrySubentity</SimpleValue>
          </Value>
          <Value ColumnRef="Cardinality">
-            <SimpleValue>0..1</SimpleValue>
+            <SimpleValue>0..n</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The political or administrative division of a country in which this address is located, such as the name of its county, province, or state, expressed as text.</SimpleValue>
+            <SimpleValue>The political or administrative division of a country in which this address is located, such as the name of its county, province, or state, expressed as text (may be repeated only to provide the same content in multiple natural languages).</SimpleValue>
          </Value>
          <Value ColumnRef="AlternativeBusinessTerms">
             <SimpleValue>AdministrativeArea, State, Country, Shire, Canton</SimpleValue>
@@ -1529,7 +1529,7 @@
       </Row>
       <Row><!--36-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.4</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>CountrySubentityCode</SimpleValue>
@@ -1577,7 +1577,7 @@
       </Row>
       <Row><!--37-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.4</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>Region</SimpleValue>
@@ -1621,7 +1621,7 @@
       </Row>
       <Row><!--38-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.4</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>District</SimpleValue>
@@ -1665,7 +1665,7 @@
       </Row>
       <Row><!--39-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.4</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>TimezoneOffset</SimpleValue>
@@ -1709,7 +1709,7 @@
       </Row>
       <Row><!--40-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.4</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>AddressLine</SimpleValue>
@@ -1718,7 +1718,7 @@
             <SimpleValue>0..n</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>An unstructured address line.</SimpleValue>
+            <SimpleValue>A single address line expressed as unstructured text.</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
             <SimpleValue>Address. Address Line</SimpleValue>
@@ -1748,7 +1748,7 @@
       </Row>
       <Row><!--41-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.4</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>Country</SimpleValue>
@@ -1783,7 +1783,7 @@
       </Row>
       <Row><!--42-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.4</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>LocationCoordinate</SimpleValue>
