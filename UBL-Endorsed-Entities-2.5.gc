@@ -14037,6 +14037,263 @@
             <SimpleValue>2.1</SimpleValue>
          </Value>
       </Row>
+      <Row><!--599-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>UBL-CommonLibrary-2.5</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentName">
+            <SimpleValue>ContractExtension</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>A class to describe possible extensions to a contract.</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Contract Extension. Details</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Contract Extension</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>ABIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.1</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--600-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>UBL-CommonLibrary-2.5</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentName">
+            <SimpleValue>OptionsDescription</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..n</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>A description for the possible options that can be carried out during the execution of the contract.</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Contract Extension. Options Description. Text</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Contract Extension</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPossessiveNoun">
+            <SimpleValue>Options</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Description</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Options Description</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Text</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Text. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.1</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--601-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>UBL-CommonLibrary-2.5</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentName">
+            <SimpleValue>MinimumNumberNumeric</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>The fixed minimum number of contract extensions or renewals.</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Contract Extension. Minimum_ Number. Numeric</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Contract Extension</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermQualifier">
+            <SimpleValue>Minimum</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Number</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Number</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Numeric</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Numeric. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.1</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--602-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>UBL-CommonLibrary-2.5</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentName">
+            <SimpleValue>MaximumNumberNumeric</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>The maximum allowed number of contract extensions.</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Contract Extension. Maximum_ Number. Numeric</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Contract Extension</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermQualifier">
+            <SimpleValue>Maximum</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Number</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Number</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Numeric</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Numeric. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.1</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--603-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>UBL-CommonLibrary-2.5</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentName">
+            <SimpleValue>RenewalsIndicator</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>Indicates that the contract can be extended using renewals.</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Contract Extension. Renewals. Indicator</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Contract Extension</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Renewals</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Renewals</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Indicator</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Indicator. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.2</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--604-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>UBL-CommonLibrary-2.5</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentName">
+            <SimpleValue>OptionValidityPeriod</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>The period during which the option for extending the contract is available.</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Contract Extension. Option Validity_ Period. Period</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Contract Extension</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermQualifier">
+            <SimpleValue>Option Validity</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Period</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Period</SimpleValue>
+         </Value>
+         <Value ColumnRef="AssociatedObjectClass">
+            <SimpleValue>Period</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>ASBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.1</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--605-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>UBL-CommonLibrary-2.5</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentName">
+            <SimpleValue>Renewal</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..n</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>The period allowed for each contract extension.</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Contract Extension. Renewal</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Contract Extension</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Renewal</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Renewal</SimpleValue>
+         </Value>
+         <Value ColumnRef="AssociatedObjectClass">
+            <SimpleValue>Renewal</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>ASBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.1</SimpleValue>
+         </Value>
+      </Row>
       <Row><!--625-->
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-CommonLibrary-2.5</SimpleValue>
