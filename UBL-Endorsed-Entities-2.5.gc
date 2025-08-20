@@ -21690,6 +21690,345 @@
             <SimpleValue>UBL-357</SimpleValue>
          </Value>
       </Row>
+      <Row><!--973-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>UBL-CommonLibrary-2.5</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentName">
+            <SimpleValue>EvaluationCriterion</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>A class defining the required criterion for a tenderer to be elligible in a tendering process. </SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Evaluation Criterion. Details</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Evaluation Criterion</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>ABIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.1</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--974-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>UBL-CommonLibrary-2.5</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentName">
+            <SimpleValue>EvaluationCriterionTypeCode</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>A code that specifies the criterion; it may be financial, technical or organizational.</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Evaluation Criterion. Evaluation Criterion Type Code. Code</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Evaluation Criterion</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPossessiveNoun">
+            <SimpleValue>Evaluation Criterion Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Code</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Evaluation Criterion Type Code</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Code</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Code. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.1</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--975-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>UBL-CommonLibrary-2.5</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentName">
+            <SimpleValue>Description</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..n</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>A description of the criterion.</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Evaluation Criterion. Description. Text</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Evaluation Criterion</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Description</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Description</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Text</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Text. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.1</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--976-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>UBL-CommonLibrary-2.5</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentName">
+            <SimpleValue>ThresholdAmount</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>Estimated monetary amount of the threshold for the criterion.</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Evaluation Criterion. Threshold_ Amount. Amount</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Evaluation Criterion</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermQualifier">
+            <SimpleValue>Threshold</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Amount</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Amount</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Amount</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Amount. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.1</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--977-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>UBL-CommonLibrary-2.5</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentName">
+            <SimpleValue>ThresholdQuantity</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>Estimated quantity of the threshold for the criterion.</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Evaluation Criterion. Threshold_ Quantity. Quantity</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Evaluation Criterion</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermQualifier">
+            <SimpleValue>Threshold</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Quantity</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Quantity</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Quantity</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Quantity. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.1</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--978-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>UBL-CommonLibrary-2.5</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentName">
+            <SimpleValue>ExpressionCode</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>A code identifying the expression that will be used to evaluate the criterion.</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Evaluation Criterion. Expression Code. Code</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Evaluation Criterion</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPossessiveNoun">
+            <SimpleValue>Expression</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Code</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Expression Code</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Code</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Code. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.1</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--979-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>UBL-CommonLibrary-2.5</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentName">
+            <SimpleValue>Expression</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..n</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>The expression that will be used to evaluate the criterion.</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Evaluation Criterion. Expression. Text</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Evaluation Criterion</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Expression</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Expression</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Text</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Text. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.1</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--980-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>UBL-CommonLibrary-2.5</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentName">
+            <SimpleValue>DurationPeriod</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>Describes the period for which the evaluation criterion is valid.</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Evaluation Criterion. Duration_ Period. Period</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Evaluation Criterion</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermQualifier">
+            <SimpleValue>Duration</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Period</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Period</SimpleValue>
+         </Value>
+         <Value ColumnRef="AssociatedObjectClass">
+            <SimpleValue>Period</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>ASBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.1</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--981-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>UBL-CommonLibrary-2.5</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentName">
+            <SimpleValue>SuggestedEvidence</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..n</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>Describes any evidences that ought to be used to satisfy the criterion. </SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Evaluation Criterion. Suggested_ Evidence. Evidence</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Evaluation Criterion</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermQualifier">
+            <SimpleValue>Suggested</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Evidence</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Evidence</SimpleValue>
+         </Value>
+         <Value ColumnRef="AssociatedObjectClass">
+            <SimpleValue>Evidence</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>ASBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.1</SimpleValue>
+         </Value>
+      </Row>
       <Row><!--982-->
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-CommonLibrary-2.5</SimpleValue>
