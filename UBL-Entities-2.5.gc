@@ -33,9 +33,24 @@
          <LongName>Cardinality</LongName>
          <Data Type="string"/>
       </Column>
+      <Column Id="EndorsedCardinality" Use="optional">
+         <ShortName>EndorsedCardinality</ShortName>
+         <LongName>Endorsed Cardinality</LongName>
+         <Data Type="string"/>
+      </Column>
+      <Column Id="EndorsedCardinalityRationale" Use="optional">
+         <ShortName>EndorsedCardinalityRationale</ShortName>
+         <LongName>Endorsed Cardinality Rationale</LongName>
+         <Data Type="string"/>
+      </Column>
       <Column Id="Definition" Use="optional">
          <ShortName>Definition</ShortName>
          <LongName>Definition</LongName>
+         <Data Type="string"/>
+      </Column>
+      <Column Id="DeprecatedDefinition" Use="optional">
+         <ShortName>DeprecatedDefinition</ShortName>
+         <LongName>Deprecated Definition</LongName>
          <Data Type="string"/>
       </Column>
       <Column Id="AlternativeBusinessTerms" Use="optional">
@@ -121,6 +136,11 @@
       <Column Id="CurrentVersion" Use="optional">
          <ShortName>CurrentVersion</ShortName>
          <LongName>Current Version</LongName>
+         <Data Type="string"/>
+      </Column>
+      <Column Id="LastChanged" Use="optional">
+         <ShortName>LastChanged</ShortName>
+         <LongName>Last Changed</LongName>
          <Data Type="string"/>
       </Column>
       <Column Id="EditorsNotes" Use="optional">
@@ -7605,6 +7625,12 @@
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..n</SimpleValue>
          </Value>
+         <Value ColumnRef="EndorsedCardinality">
+            <SimpleValue></SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinalityRationale">
+            <SimpleValue></SimpleValue>
+         </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>The evidence that supports the capability claim.</SimpleValue>
          </Value>
@@ -13026,6 +13052,12 @@
          </Value>
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..n</SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinality">
+            <SimpleValue></SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinalityRationale">
+            <SimpleValue></SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>The evidence justifying a designation of "complete" for this task.</SimpleValue>
@@ -26973,6 +27005,12 @@
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..n</SimpleValue>
          </Value>
+         <Value ColumnRef="EndorsedCardinality">
+            <SimpleValue></SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinalityRationale">
+            <SimpleValue></SimpleValue>
+         </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>The evidence supporting this declaration.</SimpleValue>
          </Value>
@@ -31534,6 +31572,12 @@
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..1</SimpleValue>
          </Value>
+         <Value ColumnRef="EndorsedCardinality">
+            <SimpleValue></SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinalityRationale">
+            <SimpleValue></SimpleValue>
+         </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>Text describing the interested party’s rights and limitations for distributing originals and copies of this document.</SimpleValue>
          </Value>
@@ -31578,6 +31622,12 @@
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..1</SimpleValue>
          </Value>
+         <Value ColumnRef="EndorsedCardinality">
+            <SimpleValue></SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinalityRationale">
+            <SimpleValue></SimpleValue>
+         </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>An indicator that the document in this ditribution is a copy (true) or the original (false).</SimpleValue>
          </Value>
@@ -31619,6 +31669,12 @@
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..1</SimpleValue>
          </Value>
+         <Value ColumnRef="EndorsedCardinality">
+            <SimpleValue></SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinalityRationale">
+            <SimpleValue></SimpleValue>
+         </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>The maximum number of printed copies of the document that the interested party is allowed to make.</SimpleValue>
          </Value>
@@ -31659,6 +31715,12 @@
          </Value>
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinality">
+            <SimpleValue></SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinalityRationale">
+            <SimpleValue></SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>The maximum number of printed originals of the document that the interested party is allowed to make.</SimpleValue>
@@ -32068,6 +32130,12 @@
          </Value>
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinality">
+            <SimpleValue></SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinalityRationale">
+            <SimpleValue></SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>An indicator that the referenced document is a copy (true) or the original (false).</SimpleValue>
@@ -35772,6 +35840,12 @@
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..1</SimpleValue>
          </Value>
+         <Value ColumnRef="EndorsedCardinality">
+            <SimpleValue></SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinalityRationale">
+            <SimpleValue></SimpleValue>
+         </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>The location of this event.</SimpleValue>
          </Value>
@@ -36848,6 +36922,12 @@
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>EvidenceSupplied</SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinality">
+            <SimpleValue></SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinalityRationale">
+            <SimpleValue></SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>A reference to evidence.</SimpleValue>
@@ -61735,6 +61815,12 @@
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..1</SimpleValue>
          </Value>
+         <Value ColumnRef="EndorsedCardinality">
+            <SimpleValue></SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinalityRationale">
+            <SimpleValue></SimpleValue>
+         </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>Indicates whether the referenced Order is a copy (true) or the original (false).</SimpleValue>
          </Value>
@@ -63198,6 +63284,12 @@
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..1</SimpleValue>
          </Value>
+         <Value ColumnRef="EndorsedCardinality">
+            <SimpleValue></SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinalityRationale">
+            <SimpleValue></SimpleValue>
+         </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>An indicator that this party is "care of" (c/o) (true) or not (false).</SimpleValue>
          </Value>
@@ -63238,6 +63330,12 @@
          </Value>
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinality">
+            <SimpleValue></SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinalityRationale">
+            <SimpleValue></SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>An indicator that this party is "for the attention of" (FAO) (true) or not (false).</SimpleValue>
@@ -63453,6 +63551,12 @@
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..n</SimpleValue>
          </Value>
+         <Value ColumnRef="EndorsedCardinality">
+            <SimpleValue></SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinalityRationale">
+            <SimpleValue></SimpleValue>
+         </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>An identifier for this party.</SimpleValue>
          </Value>
@@ -63487,6 +63591,12 @@
          </Value>
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..n</SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinality">
+            <SimpleValue></SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinalityRationale">
+            <SimpleValue></SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>A name for this party.</SimpleValue>
@@ -68223,6 +68333,12 @@
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..n</SimpleValue>
          </Value>
+         <Value ColumnRef="EndorsedCardinality">
+            <SimpleValue></SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinalityRationale">
+            <SimpleValue></SimpleValue>
+         </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>A description of this period, expressed as a code.</SimpleValue>
          </Value>
@@ -68649,6 +68765,12 @@
          </Value>
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinality">
+            <SimpleValue></SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinalityRationale">
+            <SimpleValue></SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>An identifier for this person's nationality.</SimpleValue>
@@ -71228,6 +71350,12 @@
          </Value>
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..n</SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinality">
+            <SimpleValue></SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinalityRationale">
+            <SimpleValue></SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>An indicator on whether electronic payment will be used in the post award process.</SimpleValue>
@@ -74518,6 +74646,12 @@
          </Value>
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinality">
+            <SimpleValue></SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinalityRationale">
+            <SimpleValue></SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>The first day that products will be available to ship from buyer to seller if the proposal for this promotional event is accepted.</SimpleValue>
@@ -84362,6 +84496,12 @@
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..1</SimpleValue>
          </Value>
+         <Value ColumnRef="EndorsedCardinality">
+            <SimpleValue></SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinalityRationale">
+            <SimpleValue></SimpleValue>
+         </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>The shareholder participation, expressed as a percentage.</SimpleValue>
          </Value>
@@ -92341,6 +92481,9 @@
          <Value ColumnRef="Definition">
             <SimpleValue>An indicator that the subcontract price is known (true) or not (false).</SimpleValue>
          </Value>
+         <Value ColumnRef="DeprecatedDefinition">
+            <SimpleValue></SimpleValue>
+         </Value>
          <Value ColumnRef="DictionaryEntryName">
             <SimpleValue>Subcontract Terms. Unknown_ Price. Indicator</SimpleValue>
          </Value>
@@ -93541,9 +93684,6 @@
          <Value ColumnRef="Definition">
             <SimpleValue>An identifier for this tax category.</SimpleValue>
          </Value>
-         <Value ColumnRef="Examples">
-            <SimpleValue>http://www.unece.org/uncefact/codelist/standard/UNECE_DutyorTaxorFeeCategoryCode_D09B.xsd</SimpleValue>
-         </Value>
          <Value ColumnRef="DictionaryEntryName">
             <SimpleValue>Tax Category. Identifier</SimpleValue>
          </Value>
@@ -93746,9 +93886,6 @@
          </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>The reason for tax being exempted, expressed as a code.</SimpleValue>
-         </Value>
-         <Value ColumnRef="Examples">
-            <SimpleValue>http://www.unece.org/uncefact/codelist/standard/UNECE_DutyTaxFeeTypeCode_D09B.xsd</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
             <SimpleValue>Tax Category. Tax Exemption Reason Code. Code</SimpleValue>
@@ -93975,9 +94112,6 @@
          </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>An identifier for this taxation scheme.</SimpleValue>
-         </Value>
-         <Value ColumnRef="Examples">
-            <SimpleValue>http://www.unece.org/uncefact/codelist/standard/EDIFICASEU_TaxExemptionReason_D09B.xsd</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
             <SimpleValue>Tax Scheme. Identifier</SimpleValue>
@@ -102286,6 +102420,12 @@
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..n</SimpleValue>
          </Value>
+         <Value ColumnRef="EndorsedCardinality">
+            <SimpleValue></SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinalityRationale">
+            <SimpleValue></SimpleValue>
+         </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>A reference to the evidence supporting this criterion property response.</SimpleValue>
          </Value>
@@ -106033,9 +106173,6 @@
          <Value ColumnRef="Definition">
             <SimpleValue>A reference quoting the basis of the terms</SimpleValue>
          </Value>
-         <Value ColumnRef="Examples">
-            <SimpleValue>http://www1.ap.dell.com/content/topics/topic.aspx/ap/policy/en/au/sales_terms_au</SimpleValue>
-         </Value>
          <Value ColumnRef="DictionaryEntryName">
             <SimpleValue>Trading Terms. Reference. Text</SimpleValue>
          </Value>
@@ -109758,6 +109895,9 @@
          </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>Terms relating to payment of applicable bonuses associated with the transport service.</SimpleValue>
+         </Value>
+         <Value ColumnRef="Examples">
+            <SimpleValue></SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
             <SimpleValue>Transport Execution Terms. Bonus_ Payment Terms. Payment Terms</SimpleValue>
@@ -117688,6 +117828,12 @@
          <Value ColumnRef="ComponentName">
             <SimpleValue>AttachedDocument</SimpleValue>
          </Value>
+         <Value ColumnRef="EndorsedCardinality">
+            <SimpleValue></SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinalityRationale">
+            <SimpleValue></SimpleValue>
+         </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>A wrapper that allows a document of any kind to be packaged with the UBL document that references it.</SimpleValue>
          </Value>
@@ -118717,6 +118863,12 @@
          </Value>
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinality">
+            <SimpleValue></SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinalityRationale">
+            <SimpleValue></SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>Indicates whether this document is a copy (true) or not (false).</SimpleValue>
@@ -122538,6 +122690,12 @@
          </Value>
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinality">
+            <SimpleValue></SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinalityRationale">
+            <SimpleValue></SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>Indicates whether this document is a copy (true) or not (false).</SimpleValue>
@@ -130564,6 +130722,12 @@
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..1</SimpleValue>
          </Value>
+         <Value ColumnRef="EndorsedCardinality">
+            <SimpleValue></SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinalityRationale">
+            <SimpleValue></SimpleValue>
+         </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>Indicates whether this document is a copy (true) or not (false).</SimpleValue>
          </Value>
@@ -131778,6 +131942,12 @@
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..1</SimpleValue>
          </Value>
+         <Value ColumnRef="EndorsedCardinality">
+            <SimpleValue></SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinalityRationale">
+            <SimpleValue></SimpleValue>
+         </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>Indicates whether this document is a copy (true) or not (false).</SimpleValue>
          </Value>
@@ -132884,6 +133054,12 @@
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..1</SimpleValue>
          </Value>
+         <Value ColumnRef="EndorsedCardinality">
+            <SimpleValue></SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinalityRationale">
+            <SimpleValue></SimpleValue>
+         </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>Indicates whether this document is a copy (true) or not (false).</SimpleValue>
          </Value>
@@ -133566,6 +133742,12 @@
          </Value>
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinality">
+            <SimpleValue></SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinalityRationale">
+            <SimpleValue></SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>A reference provided by the buyer used for internal routing of the document.</SimpleValue>
@@ -134756,6 +134938,9 @@
          <Value ColumnRef="Definition">
             <SimpleValue>A document used to specify debts incurred by the Debtor.</SimpleValue>
          </Value>
+         <Value ColumnRef="DeprecatedDefinition">
+            <SimpleValue></SimpleValue>
+         </Value>
          <Value ColumnRef="DictionaryEntryName">
             <SimpleValue>Debit Note. Details</SimpleValue>
          </Value>
@@ -134992,6 +135177,12 @@
          </Value>
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinality">
+            <SimpleValue></SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinalityRationale">
+            <SimpleValue></SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>Indicates whether this document is a copy (true) or not (false).</SimpleValue>
@@ -136190,6 +136381,12 @@
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..n</SimpleValue>
          </Value>
+         <Value ColumnRef="EndorsedCardinality">
+            <SimpleValue></SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinalityRationale">
+            <SimpleValue></SimpleValue>
+         </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>A prepaid payment.</SimpleValue>
          </Value>
@@ -136628,6 +136825,12 @@
          <Value ColumnRef="Cardinality">
             <SimpleValue>1</SimpleValue>
          </Value>
+         <Value ColumnRef="EndorsedCardinality">
+            <SimpleValue></SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinalityRationale">
+            <SimpleValue></SimpleValue>
+         </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>The total amount payable on the Debit Note, including allowances, charges, and taxes.</SimpleValue>
          </Value>
@@ -136937,6 +137140,12 @@
          </Value>
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinality">
+            <SimpleValue></SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinalityRationale">
+            <SimpleValue></SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>Indicates whether this document is a copy (true) or not (false).</SimpleValue>
@@ -139416,6 +139625,12 @@
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..1</SimpleValue>
          </Value>
+         <Value ColumnRef="EndorsedCardinality">
+            <SimpleValue></SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinalityRationale">
+            <SimpleValue></SimpleValue>
+         </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>Indicates whether this document is a copy (true) or not (false).</SimpleValue>
          </Value>
@@ -140035,6 +140250,12 @@
          </Value>
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinality">
+            <SimpleValue></SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinalityRationale">
+            <SimpleValue></SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>Indicates whether this document is a copy (true) or not (false).</SimpleValue>
@@ -140661,6 +140882,12 @@
          </Value>
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinality">
+            <SimpleValue></SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinalityRationale">
+            <SimpleValue></SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>Indicates whether this document is a copy (true) or not (false).</SimpleValue>
@@ -141370,6 +141597,12 @@
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..1</SimpleValue>
          </Value>
+         <Value ColumnRef="EndorsedCardinality">
+            <SimpleValue></SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinalityRationale">
+            <SimpleValue></SimpleValue>
+         </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>Indicates whether this document is a copy (true) or not (false).</SimpleValue>
          </Value>
@@ -142033,6 +142266,12 @@
          </Value>
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinality">
+            <SimpleValue></SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinalityRationale">
+            <SimpleValue></SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>Indicates whether this document is a copy (true) or not (false).</SimpleValue>
@@ -142811,6 +143050,12 @@
          </Value>
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinality">
+            <SimpleValue></SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinalityRationale">
+            <SimpleValue></SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>Indicates whether this document is a copy (true) or not (false).</SimpleValue>
@@ -144160,6 +144405,12 @@
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..1</SimpleValue>
          </Value>
+         <Value ColumnRef="EndorsedCardinality">
+            <SimpleValue></SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinalityRationale">
+            <SimpleValue></SimpleValue>
+         </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>Indicates whether this document is a copy (true) or not (false).</SimpleValue>
          </Value>
@@ -144961,6 +145212,12 @@
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..1</SimpleValue>
          </Value>
+         <Value ColumnRef="EndorsedCardinality">
+            <SimpleValue></SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinalityRationale">
+            <SimpleValue></SimpleValue>
+         </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>Indicates whether this document is a copy (true) or not (false).</SimpleValue>
          </Value>
@@ -145744,6 +146001,12 @@
          </Value>
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinality">
+            <SimpleValue></SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinalityRationale">
+            <SimpleValue></SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>Indicates whether this document is a copy (true) or not (false).</SimpleValue>
@@ -146610,6 +146873,12 @@
          </Value>
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinality">
+            <SimpleValue></SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinalityRationale">
+            <SimpleValue></SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>Indicates whether this document is a copy (true) or not (false).</SimpleValue>
@@ -148323,6 +148592,12 @@
          <Value ColumnRef="ComponentName">
             <SimpleValue>FreightInvoice</SimpleValue>
          </Value>
+         <Value ColumnRef="EndorsedCardinality">
+            <SimpleValue></SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinalityRationale">
+            <SimpleValue></SimpleValue>
+         </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>A document stating the charges incurred for a logistics service.</SimpleValue>
          </Value>
@@ -148568,6 +148843,12 @@
          </Value>
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinality">
+            <SimpleValue></SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinalityRationale">
+            <SimpleValue></SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>Indicates whether this document is a copy (true) or not (false).</SimpleValue>
@@ -150502,6 +150783,12 @@
          </Value>
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinality">
+            <SimpleValue></SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinalityRationale">
+            <SimpleValue></SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>Indicates whether this document is a copy (true) or not (false).</SimpleValue>
@@ -152561,6 +152848,12 @@
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..1</SimpleValue>
          </Value>
+         <Value ColumnRef="EndorsedCardinality">
+            <SimpleValue></SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinalityRationale">
+            <SimpleValue></SimpleValue>
+         </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>Indicates whether this document is a copy (true) or not (false).</SimpleValue>
          </Value>
@@ -154484,6 +154777,12 @@
          </Value>
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinality">
+            <SimpleValue></SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinalityRationale">
+            <SimpleValue></SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>Indicates whether this document is a copy (true) or not (false).</SimpleValue>
@@ -156465,6 +156764,12 @@
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..1</SimpleValue>
          </Value>
+         <Value ColumnRef="EndorsedCardinality">
+            <SimpleValue></SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinalityRationale">
+            <SimpleValue></SimpleValue>
+         </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>Indicates whether this document is a copy (true) or not (false).</SimpleValue>
          </Value>
@@ -157160,6 +157465,12 @@
          </Value>
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinality">
+            <SimpleValue></SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinalityRationale">
+            <SimpleValue></SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>Indicates whether this document is a copy (true) or not (false).</SimpleValue>
@@ -157907,6 +158218,12 @@
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..1</SimpleValue>
          </Value>
+         <Value ColumnRef="EndorsedCardinality">
+            <SimpleValue></SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinalityRationale">
+            <SimpleValue></SimpleValue>
+         </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>Indicates whether this document is a copy (true) or not (false).</SimpleValue>
          </Value>
@@ -158598,6 +158915,12 @@
          </Value>
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinality">
+            <SimpleValue></SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinalityRationale">
+            <SimpleValue></SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>A reference provided by the buyer used for internal routing of the document.</SimpleValue>
@@ -160036,6 +160359,12 @@
          </Value>
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinality">
+            <SimpleValue></SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinalityRationale">
+            <SimpleValue></SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>Indicates whether this document is a copy (true) or not (false).</SimpleValue>
@@ -161820,6 +162149,12 @@
          </Value>
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinality">
+            <SimpleValue></SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinalityRationale">
+            <SimpleValue></SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>Indicates whether this document is a copy (true) or not (false).</SimpleValue>
@@ -163652,6 +163987,12 @@
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..1</SimpleValue>
          </Value>
+         <Value ColumnRef="EndorsedCardinality">
+            <SimpleValue></SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinalityRationale">
+            <SimpleValue></SimpleValue>
+         </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>Indicates whether this document is a copy (true) or not (false).</SimpleValue>
          </Value>
@@ -164470,6 +164811,12 @@
          </Value>
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinality">
+            <SimpleValue></SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinalityRationale">
+            <SimpleValue></SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>Indicates whether this document is a copy (true) or not (false).</SimpleValue>
@@ -166314,6 +166661,12 @@
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..1</SimpleValue>
          </Value>
+         <Value ColumnRef="EndorsedCardinality">
+            <SimpleValue></SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinalityRationale">
+            <SimpleValue></SimpleValue>
+         </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>Indicates whether this document is a copy (true) or not (false).</SimpleValue>
          </Value>
@@ -168101,6 +168454,12 @@
          <Value ColumnRef="ComponentName">
             <SimpleValue>OrderResponseSimple</SimpleValue>
          </Value>
+         <Value ColumnRef="EndorsedCardinality">
+            <SimpleValue></SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinalityRationale">
+            <SimpleValue></SimpleValue>
+         </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>A document used to indicate simple acceptance or rejection of an entire Order.</SimpleValue>
          </Value>
@@ -168346,6 +168705,12 @@
          </Value>
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinality">
+            <SimpleValue></SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinalityRationale">
+            <SimpleValue></SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>Indicates whether this document is a copy (true) or not (false).</SimpleValue>
@@ -170152,6 +170517,12 @@
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..1</SimpleValue>
          </Value>
+         <Value ColumnRef="EndorsedCardinality">
+            <SimpleValue></SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinalityRationale">
+            <SimpleValue></SimpleValue>
+         </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>Indicates whether this document is a copy (true) or not (false).</SimpleValue>
          </Value>
@@ -171304,6 +171675,12 @@
          </Value>
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinality">
+            <SimpleValue></SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinalityRationale">
+            <SimpleValue></SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>Indicates whether this document is a copy (true) or not (false).</SimpleValue>
@@ -172735,6 +173112,12 @@
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..1</SimpleValue>
          </Value>
+         <Value ColumnRef="EndorsedCardinality">
+            <SimpleValue></SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinalityRationale">
+            <SimpleValue></SimpleValue>
+         </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>Indicates whether this document is a copy (true) or not (false).</SimpleValue>
          </Value>
@@ -174092,6 +174475,9 @@
          <Value ColumnRef="Definition">
             <SimpleValue>A document issued by a procurement organization to notify an economic operator whether it has been admitted to or excluded from the tendering process.</SimpleValue>
          </Value>
+         <Value ColumnRef="DeprecatedDefinition">
+            <SimpleValue></SimpleValue>
+         </Value>
          <Value ColumnRef="DictionaryEntryName">
             <SimpleValue>Qualification Application Request. Details</SimpleValue>
          </Value>
@@ -174328,6 +174714,12 @@
          </Value>
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinality">
+            <SimpleValue></SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinalityRationale">
+            <SimpleValue></SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>Indicates whether this document is a copy (true) or not (false).</SimpleValue>
@@ -175116,6 +175508,9 @@
          <Value ColumnRef="Definition">
             <SimpleValue>A document whereby an Economic Operator (the tenderer) replies to the Qualification Application Request of the Contracting Authority.</SimpleValue>
          </Value>
+         <Value ColumnRef="DeprecatedDefinition">
+            <SimpleValue></SimpleValue>
+         </Value>
          <Value ColumnRef="DictionaryEntryName">
             <SimpleValue>Qualification Application Response. Details</SimpleValue>
          </Value>
@@ -175352,6 +175747,12 @@
          </Value>
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinality">
+            <SimpleValue></SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinalityRationale">
+            <SimpleValue></SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>Indicates whether this document is a copy (true) or not (false).</SimpleValue>
@@ -176487,6 +176888,12 @@
          </Value>
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinality">
+            <SimpleValue></SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinalityRationale">
+            <SimpleValue></SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>Indicates whether this document is a copy (true) or not (false).</SimpleValue>
@@ -177631,6 +178038,12 @@
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..1</SimpleValue>
          </Value>
+         <Value ColumnRef="EndorsedCardinality">
+            <SimpleValue></SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinalityRationale">
+            <SimpleValue></SimpleValue>
+         </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>Indicates whether this document is a copy (true) or not (false).</SimpleValue>
          </Value>
@@ -178757,6 +179170,12 @@
          </Value>
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinality">
+            <SimpleValue></SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinalityRationale">
+            <SimpleValue></SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>Indicates whether this document is a copy (true) or not (false).</SimpleValue>
@@ -180362,6 +180781,12 @@
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..1</SimpleValue>
          </Value>
+         <Value ColumnRef="EndorsedCardinality">
+            <SimpleValue></SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinalityRationale">
+            <SimpleValue></SimpleValue>
+         </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>Indicates whether this document is a copy (true) or not (false).</SimpleValue>
          </Value>
@@ -181509,6 +181934,12 @@
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..1</SimpleValue>
          </Value>
+         <Value ColumnRef="EndorsedCardinality">
+            <SimpleValue></SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinalityRationale">
+            <SimpleValue></SimpleValue>
+         </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>Indicates whether this document is a copy (true) or not (false).</SimpleValue>
          </Value>
@@ -182521,6 +182952,12 @@
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..1</SimpleValue>
          </Value>
+         <Value ColumnRef="EndorsedCardinality">
+            <SimpleValue></SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinalityRationale">
+            <SimpleValue></SimpleValue>
+         </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>Indicates whether this document is a copy (true) or not (false).</SimpleValue>
          </Value>
@@ -183527,6 +183964,12 @@
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..1</SimpleValue>
          </Value>
+         <Value ColumnRef="EndorsedCardinality">
+            <SimpleValue></SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinalityRationale">
+            <SimpleValue></SimpleValue>
+         </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>Indicates whether this document is a copy (true) or not (false).</SimpleValue>
          </Value>
@@ -184212,6 +184655,12 @@
          </Value>
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinality">
+            <SimpleValue></SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinalityRationale">
+            <SimpleValue></SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>A reference provided by the buyer used for internal routing of the document.</SimpleValue>
@@ -185633,6 +186082,12 @@
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..1</SimpleValue>
          </Value>
+         <Value ColumnRef="EndorsedCardinality">
+            <SimpleValue></SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinalityRationale">
+            <SimpleValue></SimpleValue>
+         </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>Indicates whether this document is a copy (true) or not (false).</SimpleValue>
          </Value>
@@ -186315,6 +186770,12 @@
          </Value>
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinality">
+            <SimpleValue></SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinalityRationale">
+            <SimpleValue></SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>A reference provided by the buyer used for internal routing of the document.</SimpleValue>
@@ -187739,6 +188200,12 @@
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..1</SimpleValue>
          </Value>
+         <Value ColumnRef="EndorsedCardinality">
+            <SimpleValue></SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinalityRationale">
+            <SimpleValue></SimpleValue>
+         </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>Indicates whether this document is a copy (true) or not (false).</SimpleValue>
          </Value>
@@ -188710,6 +189177,12 @@
          <Value ColumnRef="ComponentName">
             <SimpleValue>StockAvailabilityReport</SimpleValue>
          </Value>
+         <Value ColumnRef="EndorsedCardinality">
+            <SimpleValue></SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinalityRationale">
+            <SimpleValue></SimpleValue>
+         </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>A report on the quantities of each item that are, or will be, in stock. This document is sent by a Seller (for example a producer) to a Buyer (for example a retailer).</SimpleValue>
          </Value>
@@ -188955,6 +189428,12 @@
          </Value>
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinality">
+            <SimpleValue></SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinalityRationale">
+            <SimpleValue></SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>Indicates whether this document is a copy (true) or not (false).</SimpleValue>
@@ -189695,6 +190174,12 @@
          </Value>
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinality">
+            <SimpleValue></SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinalityRationale">
+            <SimpleValue></SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>Indicates whether this document is a copy (true) or not (false).</SimpleValue>
@@ -190610,6 +191095,12 @@
          </Value>
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinality">
+            <SimpleValue></SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinalityRationale">
+            <SimpleValue></SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>Indicates whether this document is a copy (true) or not (false).</SimpleValue>
@@ -191605,6 +192096,12 @@
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..1</SimpleValue>
          </Value>
+         <Value ColumnRef="EndorsedCardinality">
+            <SimpleValue></SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinalityRationale">
+            <SimpleValue></SimpleValue>
+         </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>Indicates whether this document is a copy (true) or not (false).</SimpleValue>
          </Value>
@@ -192353,6 +192850,12 @@
          </Value>
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinality">
+            <SimpleValue></SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinalityRationale">
+            <SimpleValue></SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>Indicates whether this document is a copy (true) or not (false).</SimpleValue>
@@ -193471,6 +193974,12 @@
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..1</SimpleValue>
          </Value>
+         <Value ColumnRef="EndorsedCardinality">
+            <SimpleValue></SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinalityRationale">
+            <SimpleValue></SimpleValue>
+         </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>Indicates whether this document is a copy (true) or not (false).</SimpleValue>
          </Value>
@@ -194163,6 +194672,12 @@
          </Value>
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinality">
+            <SimpleValue></SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinalityRationale">
+            <SimpleValue></SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>Indicates whether this document is a copy (true) or not (false).</SimpleValue>
@@ -194904,6 +195419,12 @@
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..1</SimpleValue>
          </Value>
+         <Value ColumnRef="EndorsedCardinality">
+            <SimpleValue></SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinalityRationale">
+            <SimpleValue></SimpleValue>
+         </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>Indicates whether this document is a copy (true) or not (false).</SimpleValue>
          </Value>
@@ -195644,6 +196165,12 @@
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..1</SimpleValue>
          </Value>
+         <Value ColumnRef="EndorsedCardinality">
+            <SimpleValue></SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinalityRationale">
+            <SimpleValue></SimpleValue>
+         </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>Indicates whether this document is a copy (true) or not (false).</SimpleValue>
          </Value>
@@ -196383,6 +196910,12 @@
          </Value>
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinality">
+            <SimpleValue></SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinalityRationale">
+            <SimpleValue></SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>Indicates whether this document is a copy (true) or not (false).</SimpleValue>
@@ -198302,6 +198835,12 @@
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..1</SimpleValue>
          </Value>
+         <Value ColumnRef="EndorsedCardinality">
+            <SimpleValue></SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinalityRationale">
+            <SimpleValue></SimpleValue>
+         </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>Indicates whether this document is a copy (true) or not (false).</SimpleValue>
          </Value>
@@ -198866,6 +199405,12 @@
          </Value>
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinality">
+            <SimpleValue></SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinalityRationale">
+            <SimpleValue></SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>Describes the party that will pay for the transport service(s) provided in a Transport Execution Plan</SimpleValue>
@@ -199845,6 +200390,12 @@
          </Value>
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinality">
+            <SimpleValue></SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinalityRationale">
+            <SimpleValue></SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>Indicates whether this document is a copy (true) or not (false).</SimpleValue>
@@ -201194,6 +201745,12 @@
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..1</SimpleValue>
          </Value>
+         <Value ColumnRef="EndorsedCardinality">
+            <SimpleValue></SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinalityRationale">
+            <SimpleValue></SimpleValue>
+         </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>Indicates whether this document is a copy (true) or not (false).</SimpleValue>
          </Value>
@@ -201916,6 +202473,12 @@
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..1</SimpleValue>
          </Value>
+         <Value ColumnRef="EndorsedCardinality">
+            <SimpleValue></SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinalityRationale">
+            <SimpleValue></SimpleValue>
+         </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>Indicates whether this document is a copy (true) or not (false).</SimpleValue>
          </Value>
@@ -202523,6 +203086,12 @@
          </Value>
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinality">
+            <SimpleValue></SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinalityRationale">
+            <SimpleValue></SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>Indicates whether this document is a copy (true) or not (false).</SimpleValue>
@@ -203327,6 +203896,12 @@
          </Value>
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinality">
+            <SimpleValue></SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinalityRationale">
+            <SimpleValue></SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>Indicates whether this document is a copy (true) or not (false).</SimpleValue>
@@ -206051,6 +206626,12 @@
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..1</SimpleValue>
          </Value>
+         <Value ColumnRef="EndorsedCardinality">
+            <SimpleValue></SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinalityRationale">
+            <SimpleValue></SimpleValue>
+         </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>Indicates whether this document is a copy (true) or not (false).</SimpleValue>
          </Value>
@@ -206814,6 +207395,12 @@
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..1</SimpleValue>
          </Value>
+         <Value ColumnRef="EndorsedCardinality">
+            <SimpleValue></SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinalityRationale">
+            <SimpleValue></SimpleValue>
+         </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>Indicates whether this document is a copy (true) or not (false).</SimpleValue>
          </Value>
@@ -207453,6 +208040,12 @@
          </Value>
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinality">
+            <SimpleValue></SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinalityRationale">
+            <SimpleValue></SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>Indicates whether this document is a copy (true) or not (false).</SimpleValue>
@@ -208150,6 +208743,12 @@
          </Value>
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinality">
+            <SimpleValue></SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinalityRationale">
+            <SimpleValue></SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>Indicates whether this document is a copy (true) or not (false).</SimpleValue>
