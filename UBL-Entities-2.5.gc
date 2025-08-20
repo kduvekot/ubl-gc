@@ -104878,9 +104878,9 @@
             <SimpleValue>2.2</SimpleValue>
          </Value>
       </Row>
-      <Row><!--2651-->
+      <Row><!--2770-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.4</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>TenderingCriterionResponse</SimpleValue>
@@ -104901,9 +104901,9 @@
             <SimpleValue>2.2</SimpleValue>
          </Value>
       </Row>
-      <Row><!--2652-->
+      <Row><!--2771-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.4</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>ID</SimpleValue>
@@ -104939,9 +104939,9 @@
             <SimpleValue>2.2</SimpleValue>
          </Value>
       </Row>
-      <Row><!--2653-->
+      <Row><!--2772-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.4</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>Name</SimpleValue>
@@ -104977,9 +104977,9 @@
             <SimpleValue>2.2</SimpleValue>
          </Value>
       </Row>
-      <Row><!--2654-->
+      <Row><!--2773-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.4</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>Description</SimpleValue>
@@ -105015,9 +105015,9 @@
             <SimpleValue>2.2</SimpleValue>
          </Value>
       </Row>
-      <Row><!--2655-->
+      <Row><!--2774-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.4</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>ValidatedCriterionPropertyID</SimpleValue>
@@ -105056,9 +105056,9 @@
             <SimpleValue>2.2</SimpleValue>
          </Value>
       </Row>
-      <Row><!--2656-->
+      <Row><!--2775-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.4</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>ConfidentialityLevelCode</SimpleValue>
@@ -105097,9 +105097,9 @@
             <SimpleValue>2.2</SimpleValue>
          </Value>
       </Row>
-      <Row><!--2657-->
+      <Row><!--2776-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.4</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>ResponseValue</SimpleValue>
@@ -105132,9 +105132,9 @@
             <SimpleValue>2.2</SimpleValue>
          </Value>
       </Row>
-      <Row><!--2658-->
+      <Row><!--2777-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.4</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>ApplicablePeriod</SimpleValue>
@@ -105170,9 +105170,9 @@
             <SimpleValue>2.2</SimpleValue>
          </Value>
       </Row>
-      <Row><!--2659-->
+      <Row><!--2778-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.4</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>EvidenceSupplied</SimpleValue>
@@ -105181,13 +105181,13 @@
             <SimpleValue>0..n</SimpleValue>
          </Value>
          <Value ColumnRef="EndorsedCardinality">
-            <SimpleValue></SimpleValue>
+            <SimpleValue>0</SimpleValue>
          </Value>
          <Value ColumnRef="EndorsedCardinalityRationale">
-            <SimpleValue></SimpleValue>
+            <SimpleValue>Deprecated since UBL 2.5. Use SuppliedEvidence instead.</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>A reference to the evidence supporting this criterion property response.</SimpleValue>
+            <SimpleValue>(Deprecated) A reference to the evidence supporting this criterion property response.</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
             <SimpleValue>Tendering Criterion Response. Evidence Supplied</SimpleValue>
@@ -105211,9 +105211,50 @@
             <SimpleValue>2.2</SimpleValue>
          </Value>
       </Row>
-      <Row><!--2660-->
+      <Row><!--2779-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.4</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.5</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentName">
+            <SimpleValue>SuppliedEvidence</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..n</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>A reference to the Evidence supporting this criterion property response.</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Tendering Criterion Response. Supplied_ Evidence. Evidence</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Tendering Criterion Response</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermQualifier">
+            <SimpleValue>Supplied</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Evidence</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Evidence</SimpleValue>
+         </Value>
+         <Value ColumnRef="AssociatedObjectClass">
+            <SimpleValue>Evidence</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>ASBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.5</SimpleValue>
+         </Value>
+         <Value ColumnRef="EditorsNotes">
+            <SimpleValue>UBL-415</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--2780-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>UBL-CommonLibrary-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>ProcurementProjectLotReference</SimpleValue>
@@ -105249,9 +105290,9 @@
             <SimpleValue>UBL-184</SimpleValue>
          </Value>
       </Row>
-      <Row><!--2661-->
+      <Row><!--2781-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.4</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>CommodityClassification</SimpleValue>
