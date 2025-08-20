@@ -70790,9 +70790,9 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--1773-->
+      <Row><!--1870-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.4</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>Person</SimpleValue>
@@ -70813,9 +70813,9 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--1774-->
+      <Row><!--1871-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.4</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>ID</SimpleValue>
@@ -70851,9 +70851,9 @@
             <SimpleValue>2.1</SimpleValue>
          </Value>
       </Row>
-      <Row><!--1775-->
+      <Row><!--1872-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.4</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>FirstName</SimpleValue>
@@ -70892,9 +70892,9 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--1776-->
+      <Row><!--1873-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.4</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>FamilyName</SimpleValue>
@@ -70933,9 +70933,9 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--1777-->
+      <Row><!--1874-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.4</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>Title</SimpleValue>
@@ -70971,9 +70971,9 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--1778-->
+      <Row><!--1875-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.4</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>MiddleName</SimpleValue>
@@ -71012,9 +71012,9 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--1779-->
+      <Row><!--1876-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.4</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>OtherName</SimpleValue>
@@ -71056,9 +71056,9 @@
             <SimpleValue>2.1</SimpleValue>
          </Value>
       </Row>
-      <Row><!--1780-->
+      <Row><!--1877-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.4</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>NameSuffix</SimpleValue>
@@ -71097,9 +71097,9 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--1781-->
+      <Row><!--1878-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.4</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>JobTitle</SimpleValue>
@@ -71138,9 +71138,9 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--1782-->
+      <Row><!--1879-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.4</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>NationalityID</SimpleValue>
@@ -71149,13 +71149,13 @@
             <SimpleValue>0..1</SimpleValue>
          </Value>
          <Value ColumnRef="EndorsedCardinality">
-            <SimpleValue></SimpleValue>
+            <SimpleValue>0</SimpleValue>
          </Value>
          <Value ColumnRef="EndorsedCardinalityRationale">
-            <SimpleValue></SimpleValue>
+            <SimpleValue>Deprecated since UBL 2.5. The use of this element is unclear. Use NationalityCode to specify a person's nationality, or NationalID to include a persons national identification number.</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>An identifier for this person's nationality.</SimpleValue>
+            <SimpleValue>(Deprecated) An identifier for this person's nationality.</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
             <SimpleValue>Person. Nationality. Identifier</SimpleValue>
@@ -71182,9 +71182,97 @@
             <SimpleValue>2.1</SimpleValue>
          </Value>
       </Row>
-      <Row><!--1783-->
+      <Row><!--1880-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.4</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.5</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentName">
+            <SimpleValue>NationalID</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..n</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>An identifier issued by a national authority that uniquely identifies the person within that country, such as a social security number or national registration number.</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Person. National Identifier. Identifier</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Person</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPossessiveNoun">
+            <SimpleValue>National</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Identifier</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>National Identifier</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Identifier</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Identifier. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.5</SimpleValue>
+         </Value>
+         <Value ColumnRef="EditorsNotes">
+            <SimpleValue>UBL-391</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--1881-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>UBL-CommonLibrary-2.5</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentName">
+            <SimpleValue>NationalityCode</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>A code signifying the person’s nationality as defined by the applicable legal or administrative framework.</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Person. Nationality Code. Code</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Person</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPossessiveNoun">
+            <SimpleValue>Nationality</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Code</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Nationality Code</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Code</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Code. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.5</SimpleValue>
+         </Value>
+         <Value ColumnRef="EditorsNotes">
+            <SimpleValue>UBL-391</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--1882-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>UBL-CommonLibrary-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>GenderCode</SimpleValue>
@@ -71193,7 +71281,7 @@
             <SimpleValue>0..1</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>A code (e.g., ISO 5218) signifying the gender of this person.</SimpleValue>
+            <SimpleValue>A code (e.g., ISO 5218, ICAO Doc 9303, etc.) signifying the gender of this person.</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
             <SimpleValue>Person. Gender Code. Code</SimpleValue>
@@ -71223,9 +71311,9 @@
             <SimpleValue>2.1</SimpleValue>
          </Value>
       </Row>
-      <Row><!--1784-->
+      <Row><!--1883-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.4</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>BirthDate</SimpleValue>
@@ -71264,9 +71352,9 @@
             <SimpleValue>2.1</SimpleValue>
          </Value>
       </Row>
-      <Row><!--1785-->
+      <Row><!--1884-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.4</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>BirthplaceName</SimpleValue>
@@ -71305,9 +71393,9 @@
             <SimpleValue>2.1</SimpleValue>
          </Value>
       </Row>
-      <Row><!--1786-->
+      <Row><!--1885-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.4</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>OrganizationDepartment</SimpleValue>
@@ -71346,9 +71434,9 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--1787-->
+      <Row><!--1886-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.4</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>RoleCode</SimpleValue>
@@ -71387,9 +71475,9 @@
             <SimpleValue>2.2</SimpleValue>
          </Value>
       </Row>
-      <Row><!--1788-->
+      <Row><!--1887-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.4</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>BirthplaceLocation</SimpleValue>
@@ -71425,15 +71513,15 @@
             <SimpleValue>2.3</SimpleValue>
          </Value>
       </Row>
-      <Row><!--1789-->
+      <Row><!--1888-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.4</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>CitizenshipCountry</SimpleValue>
          </Value>
          <Value ColumnRef="Cardinality">
-            <SimpleValue>0..1</SimpleValue>
+            <SimpleValue>0..n</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>The country of the person's citizenship.</SimpleValue>
@@ -71463,9 +71551,9 @@
             <SimpleValue>2.2</SimpleValue>
          </Value>
       </Row>
-      <Row><!--1790-->
+      <Row><!--1889-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.4</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>Contact</SimpleValue>
@@ -71498,9 +71586,9 @@
             <SimpleValue>2.1</SimpleValue>
          </Value>
       </Row>
-      <Row><!--1791-->
+      <Row><!--1890-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.4</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>FinancialAccount</SimpleValue>
@@ -71533,9 +71621,9 @@
             <SimpleValue>2.1</SimpleValue>
          </Value>
       </Row>
-      <Row><!--1792-->
+      <Row><!--1891-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.4</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>IdentityDocumentReference</SimpleValue>
@@ -71571,9 +71659,9 @@
             <SimpleValue>2.1</SimpleValue>
          </Value>
       </Row>
-      <Row><!--1793-->
+      <Row><!--1892-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.4</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>ResidenceAddress</SimpleValue>
