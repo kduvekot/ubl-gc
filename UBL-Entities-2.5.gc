@@ -70480,9 +70480,9 @@
             <SimpleValue>2.1</SimpleValue>
          </Value>
       </Row>
-      <Row><!--1765-->
+      <Row><!--1862-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.4</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>Period</SimpleValue>
@@ -70503,9 +70503,9 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--1766-->
+      <Row><!--1863-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.4</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>StartDate</SimpleValue>
@@ -70544,9 +70544,9 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--1767-->
+      <Row><!--1864-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.4</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>StartTime</SimpleValue>
@@ -70585,9 +70585,9 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--1768-->
+      <Row><!--1865-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.4</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>EndDate</SimpleValue>
@@ -70626,9 +70626,9 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--1769-->
+      <Row><!--1866-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.4</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>EndTime</SimpleValue>
@@ -70667,9 +70667,9 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--1770-->
+      <Row><!--1867-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.4</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>DurationMeasure</SimpleValue>
@@ -70705,9 +70705,9 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--1771-->
+      <Row><!--1868-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.4</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>DescriptionCode</SimpleValue>
@@ -70716,13 +70716,13 @@
             <SimpleValue>0..n</SimpleValue>
          </Value>
          <Value ColumnRef="EndorsedCardinality">
-            <SimpleValue></SimpleValue>
+            <SimpleValue>0..1</SimpleValue>
          </Value>
          <Value ColumnRef="EndorsedCardinalityRationale">
-            <SimpleValue></SimpleValue>
+            <SimpleValue>A Period should at most be associated with a single Code.</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>A description of this period, expressed as a code.</SimpleValue>
+            <SimpleValue>(Endorsed cardinality: 0..1) A description of this period, expressed as a code.</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
             <SimpleValue>Period. Description Code. Code</SimpleValue>
@@ -70752,9 +70752,9 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--1772-->
+      <Row><!--1869-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.4</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>Description</SimpleValue>
