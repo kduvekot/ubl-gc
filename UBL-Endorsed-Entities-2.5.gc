@@ -5061,6 +5061,550 @@
             <SimpleValue>2.1</SimpleValue>
          </Value>
       </Row>
+      <Row><!--130-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>UBL-CommonLibrary-2.5</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentName">
+            <SimpleValue>AwardingTerms</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>A class to define the terms for awarding a contract.</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Awarding Terms. Details</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Awarding Terms</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>ABIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.1</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--131-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>UBL-CommonLibrary-2.5</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentName">
+            <SimpleValue>WeightingAlgorithmCode</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>A code signifying the weighting algorithm for awarding criteria. When multiple awarding criteria is used, different weighting and choices management algorithms based upon scores and weights of all award criteria can be used. An algorithm for weighting criteria will be reported in the call for tenders document. It is used to determine how to perform the final management of tenders based on the results in each of the established award criteria</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Awarding Terms. Weighting Algorithm Code. Code</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Awarding Terms</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPossessiveNoun">
+            <SimpleValue>Weighting Algorithm</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Code</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Weighting Algorithm Code</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Code</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Code. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.1</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--132-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>UBL-CommonLibrary-2.5</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentName">
+            <SimpleValue>Description</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..n</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>Text describing terms under which the contract is to be awarded.</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Awarding Terms. Description. Text</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Awarding Terms</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Description</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Description</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Text</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Text. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.1</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--133-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>UBL-CommonLibrary-2.5</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentName">
+            <SimpleValue>TechnicalCommitteeDescription</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..n</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>Text describing the committee of experts evaluating the subjective criteria for awarding the contract.</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Awarding Terms. Technical Committee_ Description. Text</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Awarding Terms</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermQualifier">
+            <SimpleValue>Technical Committee</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Description</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Description</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Text</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Text. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.1</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--134-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>UBL-CommonLibrary-2.5</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentName">
+            <SimpleValue>LowTendersDescription</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..n</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>Text describing the exclusion criterion for abnormally low tenders.</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Awarding Terms. Low Tenders_ Description. Text</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Awarding Terms</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermQualifier">
+            <SimpleValue>Low Tenders</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Description</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Description</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Text</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Text. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.1</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--135-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>UBL-CommonLibrary-2.5</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentName">
+            <SimpleValue>PrizeIndicator</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>Indicates whether a prize will be awarded (true) or not (false).</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Awarding Terms. Prize Indicator. Indicator</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Awarding Terms</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPossessiveNoun">
+            <SimpleValue>Prize</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Indicator</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Prize Indicator</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Indicator</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Indicator. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.1</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--136-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>UBL-CommonLibrary-2.5</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentName">
+            <SimpleValue>PrizeDescription</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..n</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>Number and value of the prizes to be awarded.</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Awarding Terms. Prize Description. Text</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Awarding Terms</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPossessiveNoun">
+            <SimpleValue>Prize</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Description</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Prize Description</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Text</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Text. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.1</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--137-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>UBL-CommonLibrary-2.5</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentName">
+            <SimpleValue>PaymentDescription</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..n</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>Details of payments to all participants.</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Awarding Terms. Payment Description. Text</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Awarding Terms</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPossessiveNoun">
+            <SimpleValue>Payment</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Description</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Payment Description</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Text</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Text. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.1</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--138-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>UBL-CommonLibrary-2.5</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentName">
+            <SimpleValue>FollowupContractIndicator</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>Indicates if any service contract following the contest will be awarded to the winner or one of the winners of the contest (true) or not (false).</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Awarding Terms. Followup Contract Indicator. Indicator</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Awarding Terms</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPossessiveNoun">
+            <SimpleValue>Followup Contract</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Indicator</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Followup Contract Indicator</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Indicator</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Indicator. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.1</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--139-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>UBL-CommonLibrary-2.5</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentName">
+            <SimpleValue>BindingOnBuyerIndicator</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>Indicates if the decision is binding on the buyer (true) or not (false). </SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Awarding Terms. Binding On Buyer Indicator. Indicator</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Awarding Terms</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPossessiveNoun">
+            <SimpleValue>Binding On Buyer</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Indicator</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Binding On Buyer Indicator</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Indicator</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Indicator. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.1</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--140-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>UBL-CommonLibrary-2.5</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentName">
+            <SimpleValue>NoFurtherNegotiationIndicator</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>Indicates if no further negotiation is allowed (true) or not (false). </SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Awarding Terms. No Further Negotiation Indicator. Indicator</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Awarding Terms</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPossessiveNoun">
+            <SimpleValue>No Further Negotiation</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Indicator</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>No Further Negotiation Indicator</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Indicator</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Indicator. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.2</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--141-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>UBL-CommonLibrary-2.5</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentName">
+            <SimpleValue>AwardingCriterion</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..n</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>Defines a criterion for awarding this tender.</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Awarding Terms. Awarding Criterion</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Awarding Terms</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Awarding Criterion</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Awarding Criterion</SimpleValue>
+         </Value>
+         <Value ColumnRef="AssociatedObjectClass">
+            <SimpleValue>Awarding Criterion</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>ASBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.1</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--142-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>UBL-CommonLibrary-2.5</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentName">
+            <SimpleValue>TechnicalCommitteePerson</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..n</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>A member of a committee of experts evaluating the subjective criteria for awarding the contract.</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Awarding Terms. Technical Committee_ Person. Person</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Awarding Terms</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermQualifier">
+            <SimpleValue>Technical Committee</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Person</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Person</SimpleValue>
+         </Value>
+         <Value ColumnRef="AssociatedObjectClass">
+            <SimpleValue>Person</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>ASBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.1</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--143-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>UBL-CommonLibrary-2.5</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentName">
+            <SimpleValue>Prize</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..n</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>Information about the value amount that will be offered to the winner depending on his rank.</SimpleValue>
+         </Value>
+         <Value ColumnRef="Examples">
+            <SimpleValue>In a design context , 1st place EUR 10 000 , 2nd place EUR 5000 </SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Awarding Terms. Prize</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Awarding Terms</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Prize</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Prize</SimpleValue>
+         </Value>
+         <Value ColumnRef="AssociatedObjectClass">
+            <SimpleValue>Prize</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>ASBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.3</SimpleValue>
+         </Value>
+         <Value ColumnRef="EditorsNotes">
+            <SimpleValue>UBL-255</SimpleValue>
+         </Value>
+      </Row>
       <Row><!--144-->
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-CommonLibrary-2.5</SimpleValue>
