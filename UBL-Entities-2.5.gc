@@ -37053,9 +37053,9 @@
             <SimpleValue>2.1</SimpleValue>
          </Value>
       </Row>
-      <Row><!--922-->
+      <Row><!--982-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.4</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>Event</SimpleValue>
@@ -37076,9 +37076,9 @@
             <SimpleValue>2.1</SimpleValue>
          </Value>
       </Row>
-      <Row><!--923-->
+      <Row><!--983-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.4</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>IdentificationID</SimpleValue>
@@ -37114,9 +37114,9 @@
             <SimpleValue>2.1</SimpleValue>
          </Value>
       </Row>
-      <Row><!--924-->
+      <Row><!--984-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.4</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>OccurrenceDate</SimpleValue>
@@ -37155,9 +37155,9 @@
             <SimpleValue>2.1</SimpleValue>
          </Value>
       </Row>
-      <Row><!--925-->
+      <Row><!--985-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.4</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>OccurrenceTime</SimpleValue>
@@ -37196,9 +37196,9 @@
             <SimpleValue>2.1</SimpleValue>
          </Value>
       </Row>
-      <Row><!--926-->
+      <Row><!--986-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.4</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>TypeCode</SimpleValue>
@@ -37237,9 +37237,9 @@
             <SimpleValue>2.1</SimpleValue>
          </Value>
       </Row>
-      <Row><!--927-->
+      <Row><!--987-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.4</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>Description</SimpleValue>
@@ -37275,9 +37275,9 @@
             <SimpleValue>2.1</SimpleValue>
          </Value>
       </Row>
-      <Row><!--928-->
+      <Row><!--988-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.4</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>CompletionIndicator</SimpleValue>
@@ -37316,9 +37316,9 @@
             <SimpleValue>2.1</SimpleValue>
          </Value>
       </Row>
-      <Row><!--929-->
+      <Row><!--989-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.4</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>CurrentStatus</SimpleValue>
@@ -37354,9 +37354,9 @@
             <SimpleValue>2.1</SimpleValue>
          </Value>
       </Row>
-      <Row><!--930-->
+      <Row><!--990-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.4</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>Contact</SimpleValue>
@@ -37389,9 +37389,9 @@
             <SimpleValue>2.1</SimpleValue>
          </Value>
       </Row>
-      <Row><!--931-->
+      <Row><!--991-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-CommonLibrary-2.4</SimpleValue>
+            <SimpleValue>UBL-CommonLibrary-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>OccurenceLocation</SimpleValue>
@@ -37400,13 +37400,13 @@
             <SimpleValue>0..1</SimpleValue>
          </Value>
          <Value ColumnRef="EndorsedCardinality">
-            <SimpleValue></SimpleValue>
+            <SimpleValue>0</SimpleValue>
          </Value>
          <Value ColumnRef="EndorsedCardinalityRationale">
-            <SimpleValue></SimpleValue>
+            <SimpleValue>Misspelled element name. Use OccurrenceLocation instead.</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The location of this event.</SimpleValue>
+            <SimpleValue>(Deprecated) The location of this event.</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
             <SimpleValue>Event. Occurence_ Location. Location</SimpleValue>
@@ -37431,6 +37431,47 @@
          </Value>
          <Value ColumnRef="CurrentVersion">
             <SimpleValue>2.1</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--992-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>UBL-CommonLibrary-2.5</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentName">
+            <SimpleValue>OccurrenceLocation</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>The location of this event.</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Event. Occurrence_ Location. Location</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Event</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermQualifier">
+            <SimpleValue>Occurrence</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Location</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Location</SimpleValue>
+         </Value>
+         <Value ColumnRef="AssociatedObjectClass">
+            <SimpleValue>Location</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>ASBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.5</SimpleValue>
+         </Value>
+         <Value ColumnRef="EditorsNotes">
+            <SimpleValue>UBL-420</SimpleValue>
          </Value>
       </Row>
       <Row><!--932-->
