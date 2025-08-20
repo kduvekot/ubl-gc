@@ -136840,16 +136840,16 @@
       </Row>
       <Row><!--2-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-DebitNote-2.4</SimpleValue>
+            <SimpleValue>UBL-DebitNote-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>DebitNote</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>A document used to specify debts incurred by the Debtor.</SimpleValue>
+            <SimpleValue>A document used to specify debits due to the Creditor from the Debtor.</SimpleValue>
          </Value>
          <Value ColumnRef="DeprecatedDefinition">
-            <SimpleValue></SimpleValue>
+            <SimpleValue>A document used to specify debts incurred by the Debtor.</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
             <SimpleValue>Debit Note. Details</SimpleValue>
@@ -136866,7 +136866,7 @@
       </Row>
       <Row><!--3-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-DebitNote-2.4</SimpleValue>
+            <SimpleValue>UBL-DebitNote-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>UBLVersionID</SimpleValue>
@@ -136910,7 +136910,7 @@
       </Row>
       <Row><!--4-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-DebitNote-2.4</SimpleValue>
+            <SimpleValue>UBL-DebitNote-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>CustomizationID</SimpleValue>
@@ -136954,7 +136954,7 @@
       </Row>
       <Row><!--5-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-DebitNote-2.4</SimpleValue>
+            <SimpleValue>UBL-DebitNote-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>ProfileID</SimpleValue>
@@ -136998,7 +136998,7 @@
       </Row>
       <Row><!--6-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-DebitNote-2.4</SimpleValue>
+            <SimpleValue>UBL-DebitNote-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>ProfileExecutionID</SimpleValue>
@@ -137042,7 +137042,7 @@
       </Row>
       <Row><!--7-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-DebitNote-2.4</SimpleValue>
+            <SimpleValue>UBL-DebitNote-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>ID</SimpleValue>
@@ -137080,7 +137080,7 @@
       </Row>
       <Row><!--8-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-DebitNote-2.4</SimpleValue>
+            <SimpleValue>UBL-DebitNote-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>CopyIndicator</SimpleValue>
@@ -137089,10 +137089,10 @@
             <SimpleValue>0..1</SimpleValue>
          </Value>
          <Value ColumnRef="EndorsedCardinality">
-            <SimpleValue></SimpleValue>
+            <SimpleValue>0</SimpleValue>
          </Value>
          <Value ColumnRef="EndorsedCardinalityRationale">
-            <SimpleValue></SimpleValue>
+            <SimpleValue>No consensus of real use cases for this.</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>Indicates whether this document is a copy (true) or not (false).</SimpleValue>
@@ -137127,7 +137127,7 @@
       </Row>
       <Row><!--9-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-DebitNote-2.4</SimpleValue>
+            <SimpleValue>UBL-DebitNote-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>UUID</SimpleValue>
@@ -137165,7 +137165,7 @@
       </Row>
       <Row><!--10-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-DebitNote-2.4</SimpleValue>
+            <SimpleValue>UBL-DebitNote-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>IssueDate</SimpleValue>
@@ -137206,7 +137206,7 @@
       </Row>
       <Row><!--11-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-DebitNote-2.4</SimpleValue>
+            <SimpleValue>UBL-DebitNote-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>IssueTime</SimpleValue>
@@ -137247,7 +137247,51 @@
       </Row>
       <Row><!--12-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-DebitNote-2.4</SimpleValue>
+            <SimpleValue>UBL-DebitNote-2.5</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentName">
+            <SimpleValue>DueDate</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>The date on which this Debit Note is due.</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Debit Note. Due Date. Date</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Debit Note</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPossessiveNoun">
+            <SimpleValue>Due</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Date</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Due Date</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Date</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Date. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.5</SimpleValue>
+         </Value>
+         <Value ColumnRef="EditorsNotes">
+            <SimpleValue>UBL-395</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--13-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>UBL-DebitNote-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>Note</SimpleValue>
@@ -137283,9 +137327,53 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--13-->
+      <Row><!--14-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-DebitNote-2.4</SimpleValue>
+            <SimpleValue>UBL-DebitNote-2.5</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentName">
+            <SimpleValue>DebitNoteTypeCode</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>A code signifying the type of the Debit Note.</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Debit Note. Debit Note Type Code. Code</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Debit Note</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPossessiveNoun">
+            <SimpleValue>Debit Note Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Code</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Debit Note Type Code</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Code</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Code. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.5</SimpleValue>
+         </Value>
+         <Value ColumnRef="EditorsNotes">
+            <SimpleValue>UBL-395</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--15-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>UBL-DebitNote-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>TaxPointDate</SimpleValue>
@@ -137324,9 +137412,9 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--14-->
+      <Row><!--16-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-DebitNote-2.4</SimpleValue>
+            <SimpleValue>UBL-DebitNote-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>DocumentCurrencyCode</SimpleValue>
@@ -137371,9 +137459,9 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--15-->
+      <Row><!--17-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-DebitNote-2.4</SimpleValue>
+            <SimpleValue>UBL-DebitNote-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>TaxCurrencyCode</SimpleValue>
@@ -137418,9 +137506,9 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--16-->
+      <Row><!--18-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-DebitNote-2.4</SimpleValue>
+            <SimpleValue>UBL-DebitNote-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>PricingCurrencyCode</SimpleValue>
@@ -137465,9 +137553,9 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--17-->
+      <Row><!--19-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-DebitNote-2.4</SimpleValue>
+            <SimpleValue>UBL-DebitNote-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>PaymentCurrencyCode</SimpleValue>
@@ -137512,9 +137600,9 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--18-->
+      <Row><!--20-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-DebitNote-2.4</SimpleValue>
+            <SimpleValue>UBL-DebitNote-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>PaymentAlternativeCurrencyCode</SimpleValue>
@@ -137559,9 +137647,9 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--19-->
+      <Row><!--21-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-DebitNote-2.4</SimpleValue>
+            <SimpleValue>UBL-DebitNote-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>AccountingCostCode</SimpleValue>
@@ -137600,9 +137688,9 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--20-->
+      <Row><!--22-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-DebitNote-2.4</SimpleValue>
+            <SimpleValue>UBL-DebitNote-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>AccountingCost</SimpleValue>
@@ -137641,9 +137729,9 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--21-->
+      <Row><!--23-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-DebitNote-2.4</SimpleValue>
+            <SimpleValue>UBL-DebitNote-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>LineCountNumeric</SimpleValue>
@@ -137682,9 +137770,53 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--22-->
+      <Row><!--24-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-DebitNote-2.4</SimpleValue>
+            <SimpleValue>UBL-DebitNote-2.5</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentName">
+            <SimpleValue>DefaultLanguageCode</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>A code signifying the default natural language used by the sender for human-readable textual content that does not include a languageID.</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Debit Note. Default_ Language. Code</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Debit Note</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermQualifier">
+            <SimpleValue>Default</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Language</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Language</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Code</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Code. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.5</SimpleValue>
+         </Value>
+         <Value ColumnRef="EditorsNotes">
+            <SimpleValue>UBL-446</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--25-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>UBL-DebitNote-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>InvoicePeriod</SimpleValue>
@@ -137720,9 +137852,9 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--23-->
+      <Row><!--26-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-DebitNote-2.4</SimpleValue>
+            <SimpleValue>UBL-DebitNote-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>DiscrepancyResponse</SimpleValue>
@@ -137758,9 +137890,9 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--24-->
+      <Row><!--27-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-DebitNote-2.4</SimpleValue>
+            <SimpleValue>UBL-DebitNote-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>OrderReference</SimpleValue>
@@ -137793,9 +137925,9 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--25-->
+      <Row><!--28-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-DebitNote-2.4</SimpleValue>
+            <SimpleValue>UBL-DebitNote-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>BillingReference</SimpleValue>
@@ -137828,9 +137960,9 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--26-->
+      <Row><!--29-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-DebitNote-2.4</SimpleValue>
+            <SimpleValue>UBL-DebitNote-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>DespatchDocumentReference</SimpleValue>
@@ -137866,9 +137998,91 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--27-->
+      <Row><!--30-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-DebitNote-2.4</SimpleValue>
+            <SimpleValue>UBL-DebitNote-2.5</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentName">
+            <SimpleValue>DeliveryNoteDocumentReference</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..n</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>A reference to a Delivery Note associated with this document.</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Debit Note. Delivery Note_ Document Reference. Document Reference</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Debit Note</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermQualifier">
+            <SimpleValue>Delivery Note</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Document Reference</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Document Reference</SimpleValue>
+         </Value>
+         <Value ColumnRef="AssociatedObjectClass">
+            <SimpleValue>Document Reference</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>ASBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.5</SimpleValue>
+         </Value>
+         <Value ColumnRef="EditorsNotes">
+            <SimpleValue>UBL-409</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--31-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>UBL-DebitNote-2.5</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentName">
+            <SimpleValue>WorkReportDocumentReference</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..n</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>A reference to a Work Report associated with this document.</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Debit Note. Work Report_ Document Reference. Document Reference</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Debit Note</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermQualifier">
+            <SimpleValue>Work Report</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Document Reference</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Document Reference</SimpleValue>
+         </Value>
+         <Value ColumnRef="AssociatedObjectClass">
+            <SimpleValue>Document Reference</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>ASBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.5</SimpleValue>
+         </Value>
+         <Value ColumnRef="EditorsNotes">
+            <SimpleValue>UBL-408</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--32-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>UBL-DebitNote-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>ReceiptDocumentReference</SimpleValue>
@@ -137904,9 +138118,9 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--28-->
+      <Row><!--33-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-DebitNote-2.4</SimpleValue>
+            <SimpleValue>UBL-DebitNote-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>StatementDocumentReference</SimpleValue>
@@ -137942,9 +138156,50 @@
             <SimpleValue>2.1</SimpleValue>
          </Value>
       </Row>
-      <Row><!--29-->
+      <Row><!--34-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-DebitNote-2.4</SimpleValue>
+            <SimpleValue>UBL-DebitNote-2.5</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentName">
+            <SimpleValue>OriginatorDocumentReference</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..n</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>A reference to an originator document associated with this document.</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Debit Note. Originator_ Document Reference. Document Reference</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Debit Note</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermQualifier">
+            <SimpleValue>Originator</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Document Reference</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Document Reference</SimpleValue>
+         </Value>
+         <Value ColumnRef="AssociatedObjectClass">
+            <SimpleValue>Document Reference</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>ASBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.5</SimpleValue>
+         </Value>
+         <Value ColumnRef="EditorsNotes">
+            <SimpleValue>UBL-395</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--35-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>UBL-DebitNote-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>ContractDocumentReference</SimpleValue>
@@ -137980,9 +138235,9 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--30-->
+      <Row><!--36-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-DebitNote-2.4</SimpleValue>
+            <SimpleValue>UBL-DebitNote-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>AdditionalDocumentReference</SimpleValue>
@@ -138018,9 +138273,161 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--31-->
+      <Row><!--37-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-DebitNote-2.4</SimpleValue>
+            <SimpleValue>UBL-DebitNote-2.5</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentName">
+            <SimpleValue>ProjectReference</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..n</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>A reference to a project associated with this document.</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Debit Note. Project Reference</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Debit Note</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Project Reference</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Project Reference</SimpleValue>
+         </Value>
+         <Value ColumnRef="AssociatedObjectClass">
+            <SimpleValue>Project Reference</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>ASBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.5</SimpleValue>
+         </Value>
+         <Value ColumnRef="EditorsNotes">
+            <SimpleValue>UBL-395</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--38-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>UBL-DebitNote-2.5</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentName">
+            <SimpleValue>BuyerReference</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..n</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>A reference provided by the buyer used for internal routing of the document.</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Debit Note. Buyer Reference</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Debit Note</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Buyer Reference</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Buyer Reference</SimpleValue>
+         </Value>
+         <Value ColumnRef="AssociatedObjectClass">
+            <SimpleValue>Buyer Reference</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>ASBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.5</SimpleValue>
+         </Value>
+         <Value ColumnRef="EditorsNotes">
+            <SimpleValue>UBL-395 and UBL-438</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--39-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>UBL-DebitNote-2.5</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentName">
+            <SimpleValue>PurchaseReference</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..n</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>A reference to an object, such as a subscription number, telephone number, meter, vehicle, person, etc., to which this Debit Note relates.</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Debit Note. Purchase Reference</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Debit Note</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Purchase Reference</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Purchase Reference</SimpleValue>
+         </Value>
+         <Value ColumnRef="AssociatedObjectClass">
+            <SimpleValue>Purchase Reference</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>ASBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.5</SimpleValue>
+         </Value>
+         <Value ColumnRef="EditorsNotes">
+            <SimpleValue>UBL-395 and UBL-445</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--40-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>UBL-DebitNote-2.5</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentName">
+            <SimpleValue>Annotation</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..n</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>A structured annotation providing contextual or explanatory information related to this Debit Note.</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Debit Note. Annotation</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Debit Note</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Annotation</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Annotation</SimpleValue>
+         </Value>
+         <Value ColumnRef="AssociatedObjectClass">
+            <SimpleValue>Annotation</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>ASBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.5</SimpleValue>
+         </Value>
+         <Value ColumnRef="EditorsNotes">
+            <SimpleValue>UBL-444</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--41-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>UBL-DebitNote-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>Signature</SimpleValue>
@@ -138053,9 +138460,9 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--32-->
+      <Row><!--42-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-DebitNote-2.4</SimpleValue>
+            <SimpleValue>UBL-DebitNote-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>AccountingSupplierParty</SimpleValue>
@@ -138091,9 +138498,9 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--33-->
+      <Row><!--43-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-DebitNote-2.4</SimpleValue>
+            <SimpleValue>UBL-DebitNote-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>AccountingCustomerParty</SimpleValue>
@@ -138129,9 +138536,9 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--34-->
+      <Row><!--44-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-DebitNote-2.4</SimpleValue>
+            <SimpleValue>UBL-DebitNote-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>PayeeParty</SimpleValue>
@@ -138167,9 +138574,9 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--35-->
+      <Row><!--45-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-DebitNote-2.4</SimpleValue>
+            <SimpleValue>UBL-DebitNote-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>BuyerCustomerParty</SimpleValue>
@@ -138205,9 +138612,9 @@
             <SimpleValue>2.1</SimpleValue>
          </Value>
       </Row>
-      <Row><!--36-->
+      <Row><!--46-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-DebitNote-2.4</SimpleValue>
+            <SimpleValue>UBL-DebitNote-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>SellerSupplierParty</SimpleValue>
@@ -138243,9 +138650,9 @@
             <SimpleValue>2.1</SimpleValue>
          </Value>
       </Row>
-      <Row><!--37-->
+      <Row><!--47-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-DebitNote-2.4</SimpleValue>
+            <SimpleValue>UBL-DebitNote-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>TaxRepresentativeParty</SimpleValue>
@@ -138281,9 +138688,9 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--38-->
+      <Row><!--48-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-DebitNote-2.4</SimpleValue>
+            <SimpleValue>UBL-DebitNote-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>PrepaidPayment</SimpleValue>
@@ -138292,10 +138699,10 @@
             <SimpleValue>0..n</SimpleValue>
          </Value>
          <Value ColumnRef="EndorsedCardinality">
-            <SimpleValue></SimpleValue>
+            <SimpleValue>0</SimpleValue>
          </Value>
          <Value ColumnRef="EndorsedCardinalityRationale">
-            <SimpleValue></SimpleValue>
+            <SimpleValue>To avoid confusion in the financial settlement process, a prepaid payment should be declared in an initiating billing document, such as an Invoice, and not in a delta or adjustment document like a Debit Note.</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>A prepaid payment.</SimpleValue>
@@ -138325,9 +138732,9 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--39-->
+      <Row><!--49-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-DebitNote-2.4</SimpleValue>
+            <SimpleValue>UBL-DebitNote-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>AllowanceCharge</SimpleValue>
@@ -138360,9 +138767,9 @@
             <SimpleValue>2.1</SimpleValue>
          </Value>
       </Row>
-      <Row><!--40-->
+      <Row><!--50-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-DebitNote-2.4</SimpleValue>
+            <SimpleValue>UBL-DebitNote-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>Delivery</SimpleValue>
@@ -138395,9 +138802,9 @@
             <SimpleValue>2.1</SimpleValue>
          </Value>
       </Row>
-      <Row><!--41-->
+      <Row><!--51-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-DebitNote-2.4</SimpleValue>
+            <SimpleValue>UBL-DebitNote-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>DeliveryTerms</SimpleValue>
@@ -138430,9 +138837,9 @@
             <SimpleValue>2.1</SimpleValue>
          </Value>
       </Row>
-      <Row><!--42-->
+      <Row><!--52-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-DebitNote-2.4</SimpleValue>
+            <SimpleValue>UBL-DebitNote-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>PaymentMeans</SimpleValue>
@@ -138465,9 +138872,9 @@
             <SimpleValue>2.1</SimpleValue>
          </Value>
       </Row>
-      <Row><!--43-->
+      <Row><!--53-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-DebitNote-2.4</SimpleValue>
+            <SimpleValue>UBL-DebitNote-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>PaymentTerms</SimpleValue>
@@ -138500,9 +138907,9 @@
             <SimpleValue>2.1</SimpleValue>
          </Value>
       </Row>
-      <Row><!--44-->
+      <Row><!--54-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-DebitNote-2.4</SimpleValue>
+            <SimpleValue>UBL-DebitNote-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>TaxExchangeRate</SimpleValue>
@@ -138538,9 +138945,9 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--45-->
+      <Row><!--55-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-DebitNote-2.4</SimpleValue>
+            <SimpleValue>UBL-DebitNote-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>PricingExchangeRate</SimpleValue>
@@ -138576,9 +138983,9 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--46-->
+      <Row><!--56-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-DebitNote-2.4</SimpleValue>
+            <SimpleValue>UBL-DebitNote-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>PaymentExchangeRate</SimpleValue>
@@ -138614,9 +139021,9 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--47-->
+      <Row><!--57-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-DebitNote-2.4</SimpleValue>
+            <SimpleValue>UBL-DebitNote-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>PaymentAlternativeExchangeRate</SimpleValue>
@@ -138652,9 +139059,9 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--48-->
+      <Row><!--58-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-DebitNote-2.4</SimpleValue>
+            <SimpleValue>UBL-DebitNote-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>TaxTotal</SimpleValue>
@@ -138687,9 +139094,9 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--49-->
+      <Row><!--59-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-DebitNote-2.4</SimpleValue>
+            <SimpleValue>UBL-DebitNote-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>WithholdingTaxTotal</SimpleValue>
@@ -138725,21 +139132,21 @@
             <SimpleValue>2.2</SimpleValue>
          </Value>
       </Row>
-      <Row><!--50-->
+      <Row><!--60-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-DebitNote-2.4</SimpleValue>
+            <SimpleValue>UBL-DebitNote-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>RequestedMonetaryTotal</SimpleValue>
          </Value>
          <Value ColumnRef="Cardinality">
-            <SimpleValue>1</SimpleValue>
+            <SimpleValue>0..1</SimpleValue>
          </Value>
          <Value ColumnRef="EndorsedCardinality">
-            <SimpleValue></SimpleValue>
+            <SimpleValue>0</SimpleValue>
          </Value>
          <Value ColumnRef="EndorsedCardinalityRationale">
-            <SimpleValue></SimpleValue>
+            <SimpleValue>To align with Credit Note and Invoice use: A Debit Note is used to adjust an existing billing document. It should not express the final settlement amount. Use LegalMonetaryTotal to represent the total legal monetary impact of the Debit Note instead.</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>The total amount payable on the Debit Note, including allowances, charges, and taxes.</SimpleValue>
@@ -138769,9 +139176,97 @@
             <SimpleValue>2.0</SimpleValue>
          </Value>
       </Row>
-      <Row><!--51-->
+      <Row><!--61-->
          <Value ColumnRef="ModelName">
-            <SimpleValue>UBL-DebitNote-2.4</SimpleValue>
+            <SimpleValue>UBL-DebitNote-2.5</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentName">
+            <SimpleValue>LegalMonetaryTotal</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinality">
+            <SimpleValue>1</SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinalityRationale">
+            <SimpleValue>Required to indicate the total debit amount.</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>The total amount payable on the Debit Note, including allowances, charges, and taxes.</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Debit Note. Legal_ Monetary Total. Monetary Total</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Debit Note</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermQualifier">
+            <SimpleValue>Legal</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Monetary Total</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Monetary Total</SimpleValue>
+         </Value>
+         <Value ColumnRef="AssociatedObjectClass">
+            <SimpleValue>Monetary Total</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>ASBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.5</SimpleValue>
+         </Value>
+         <Value ColumnRef="EditorsNotes">
+            <SimpleValue>UBL-395</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--62-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>UBL-DebitNote-2.5</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentName">
+            <SimpleValue>CollectionDebitNoteLine</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..n</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>A line describing an item or amount collected on behalf of a third party.</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Debit Note. Collection_ Debit Note Line. Debit Note Line</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Debit Note</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermQualifier">
+            <SimpleValue>Collection</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Debit Note Line</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Debit Note Line</SimpleValue>
+         </Value>
+         <Value ColumnRef="AssociatedObjectClass">
+            <SimpleValue>Debit Note Line</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>ASBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.5</SimpleValue>
+         </Value>
+         <Value ColumnRef="EditorsNotes">
+            <SimpleValue>UBL-395 and UBL-438</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--63-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>UBL-DebitNote-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
             <SimpleValue>DebitNoteLine</SimpleValue>
