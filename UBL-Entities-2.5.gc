@@ -203599,8 +203599,14 @@
          <Value ColumnRef="ComponentName">
             <SimpleValue>TenderStatus</SimpleValue>
          </Value>
+         <Value ColumnRef="EndorsedCardinality">
+            <SimpleValue>0</SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinalityRationale">
+            <SimpleValue>Deprecated since UBL 2.5. Use Procurement Status instead.</SimpleValue>
+         </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>A document sent by the Contracting Party to an Economic Operator describing the status of a tendering procedure.</SimpleValue>
+            <SimpleValue>(Deprecated) A document sent by the Contracting Party to an Economic Operator describing the status of a tendering procedure.</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
             <SimpleValue>Tender Status. Details</SimpleValue>
@@ -203843,10 +203849,10 @@
             <SimpleValue>0</SimpleValue>
          </Value>
          <Value ColumnRef="EndorsedCardinalityRationale">
-            <SimpleValue>No consensus of real use cases for this.</SimpleValue>
+            <SimpleValue>Deprecated since UBL 2.5. No consensus of real use cases for this.</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>Indicates whether this document is a copy (true) or not (false).</SimpleValue>
+            <SimpleValue>(Deprecated) Indicates whether this document is a copy (true) or not (false).</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
             <SimpleValue>Tender Status. Copy_ Indicator. Indicator</SimpleValue>
@@ -204580,7 +204586,7 @@
             <SimpleValue>0..1</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The party that has the contract documents for the tendering process.</SimpleValue>
+            <SimpleValue>The Party who has the Contract Documents for the tendering process.</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
             <SimpleValue>Tender Status. Document Provider_ Party. Party</SimpleValue>
@@ -204618,7 +204624,7 @@
             <SimpleValue>0..1</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The party to which tenders will be presented.</SimpleValue>
+            <SimpleValue>The Party who receives Tenders.</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
             <SimpleValue>Tender Status. Tender Recipient_ Party. Party</SimpleValue>
