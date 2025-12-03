@@ -148458,6 +148458,12 @@
          <Value ColumnRef="ComponentName">
             <SimpleValue>EnquiryResponse</SimpleValue>
          </Value>
+         <Value ColumnRef="EndorsedCardinality">
+            <SimpleValue>0</SimpleValue>
+         </Value>
+         <Value ColumnRef="EndorsedCardinalityRationale">
+            <SimpleValue>Deprecated since UBL 2.5. Use Document Status instead.</SimpleValue>
+         </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>A document sent by a responder to a requester answering a particular enqury.</SimpleValue>
          </Value>
@@ -148702,10 +148708,10 @@
             <SimpleValue>0</SimpleValue>
          </Value>
          <Value ColumnRef="EndorsedCardinalityRationale">
-            <SimpleValue>No consensus of real use cases for this.</SimpleValue>
+            <SimpleValue>Deprecated since UBL 2.5. No consensus of real use cases for this.</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>Indicates whether this document is a copy (true) or not (false).</SimpleValue>
+            <SimpleValue>(Deprecated) Indicates whether this document is a copy (true) or not (false).</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
             <SimpleValue>Enquiry Response. Copy_ Indicator. Indicator</SimpleValue>
@@ -148939,7 +148945,7 @@
             <SimpleValue>1</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The party issuing the enquiry.</SimpleValue>
+            <SimpleValue>The Party who issued the Enquiry.</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
             <SimpleValue>Enquiry Response. Requestor_ Party. Party</SimpleValue>
@@ -148977,7 +148983,7 @@
             <SimpleValue>1</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The party that has to respond to the enquiry.</SimpleValue>
+            <SimpleValue>The Party who responds to the Enquiry.</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
             <SimpleValue>Enquiry Response. Responder_ Party. Party</SimpleValue>
