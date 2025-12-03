@@ -164618,10 +164618,10 @@
             <SimpleValue>0</SimpleValue>
          </Value>
          <Value ColumnRef="EndorsedCardinalityRationale">
-            <SimpleValue>No consensus of real use cases for this.</SimpleValue>
+            <SimpleValue>Deprecated since UBL 2.5. No consensus of real use cases for this.</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>Indicates whether this document is a copy (true) or not (false).</SimpleValue>
+            <SimpleValue>(Deprecated) Indicates whether this document is a copy (true) or not (false).</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
             <SimpleValue>Inventory Report. Copy_ Indicator. Indicator</SimpleValue>
@@ -165013,6 +165013,9 @@
             <SimpleValue>1</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
+            <SimpleValue>The Party that is reporting the inventory details.</SimpleValue>
+         </Value>
+         <Value ColumnRef="DeprecatedDefinition">
             <SimpleValue>An association to the Party that will really use the Inventory report (normally the branch for which the stock is reported).</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
