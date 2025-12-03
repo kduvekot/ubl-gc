@@ -189399,10 +189399,10 @@
             <SimpleValue>0</SimpleValue>
          </Value>
          <Value ColumnRef="EndorsedCardinalityRationale">
-            <SimpleValue>No consensus of real use cases for this.</SimpleValue>
+            <SimpleValue>Deprecated since UBL 2.5. No consensus of real use cases for this.</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>Indicates whether this document is a copy (true) or not (false).</SimpleValue>
+            <SimpleValue>(Deprecated) Indicates whether this document is a copy (true) or not (false).</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
             <SimpleValue>Reminder. Copy_ Indicator. Indicator</SimpleValue>
@@ -190287,7 +190287,7 @@
             <SimpleValue>0..1</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The payee.</SimpleValue>
+            <SimpleValue>The Party who receives the Payment.</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
             <SimpleValue>Reminder. Payee_ Party. Party</SimpleValue>
@@ -190325,7 +190325,7 @@
             <SimpleValue>0..1</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The tax representative.</SimpleValue>
+            <SimpleValue>The Party authorized to act as the Tax Representative for the taxpayer.</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
             <SimpleValue>Reminder. Tax Representative_ Party. Party</SimpleValue>
