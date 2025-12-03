@@ -169012,10 +169012,10 @@
             <SimpleValue>0</SimpleValue>
          </Value>
          <Value ColumnRef="EndorsedCardinalityRationale">
-            <SimpleValue>No consensus of real use cases for this.</SimpleValue>
+            <SimpleValue>Deprecated since UBL 2.5. No consensus of real use cases for this.</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>Indicates whether this document is a copy (true) or not (false).</SimpleValue>
+            <SimpleValue>(Deprecated) Indicates whether this document is a copy (true) or not (false).</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
             <SimpleValue>Item Information Request. Copy_ Indicator. Indicator</SimpleValue>
@@ -169322,7 +169322,7 @@
             <SimpleValue>1</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The buyer.</SimpleValue>
+            <SimpleValue>The Party sending this Item Information Request.</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
             <SimpleValue>Item Information Request. Sender_ Party. Party</SimpleValue>
@@ -169360,7 +169360,7 @@
             <SimpleValue>1</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The seller.</SimpleValue>
+            <SimpleValue>The Party receiving this Item Information Request.</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
             <SimpleValue>Item Information Request. Receiver_ Party. Party</SimpleValue>
@@ -169398,7 +169398,7 @@
             <SimpleValue>0..1</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The buyer.</SimpleValue>
+            <SimpleValue>The Buyer from whom the Item Information is requested.</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
             <SimpleValue>Item Information Request. Buyer_ Customer Party. Customer Party</SimpleValue>
@@ -169436,7 +169436,7 @@
             <SimpleValue>0..1</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The seller.</SimpleValue>
+            <SimpleValue>The Seller requesting the Item Information.</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
             <SimpleValue>Item Information Request. Seller_ Supplier Party. Supplier Party</SimpleValue>
