@@ -170141,7 +170141,7 @@
             <SimpleValue>1</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The logistics operator party issuing this manifest</SimpleValue>
+            <SimpleValue>The Party who issues this Manifest.This Party is normally the Logistics Operator.</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
             <SimpleValue>Manifest. Sending Logistics Operator_ Party. Party</SimpleValue>
@@ -170179,7 +170179,7 @@
             <SimpleValue>0..1</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The authority or regulator receiving this manifest.</SimpleValue>
+            <SimpleValue>The Authority or regulator who receives this Manifest.</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
             <SimpleValue>Manifest. Authority_ Party. Party</SimpleValue>
@@ -170217,7 +170217,7 @@
             <SimpleValue>0..1</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The party responsible for sending the goods mentioned in this manifest.</SimpleValue>
+            <SimpleValue>The Party who is reponsible for sending the goods.</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
             <SimpleValue>Manifest. Consignor_ Party. Party</SimpleValue>
@@ -170255,7 +170255,7 @@
             <SimpleValue>0..1</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The party receiving the goods mentioned in this manifest.</SimpleValue>
+            <SimpleValue>The Party who receives the goods.</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
             <SimpleValue>Manifest. Consignee_ Party. Party</SimpleValue>
