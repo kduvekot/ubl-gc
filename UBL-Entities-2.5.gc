@@ -222260,7 +222260,7 @@
             <SimpleValue>1</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The party sending this weight statement (e.g. Weighing Station, Shipper, Freight Forwarder, Carrier, ...).</SimpleValue>
+            <SimpleValue>The Party who sends this Weight Statement (e.g. Weighing Station, Shipper, Freight Forwarder, Carrier, ...).</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
             <SimpleValue>Weight Statement. Sender_ Party. Party</SimpleValue>
@@ -222298,7 +222298,7 @@
             <SimpleValue>1</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The party receiving this weight statement (e.g. Carrier, Terminal Operator, ...).</SimpleValue>
+            <SimpleValue>The Party who receives this Weight Statement (e.g. carrier, terminal operator, ...).</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
             <SimpleValue>Weight Statement. Receiver_ Party. Party</SimpleValue>
@@ -222336,7 +222336,7 @@
             <SimpleValue>0..1</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The party executing the weight measure (e.g. Weighing Station).</SimpleValue>
+            <SimpleValue>The Party who executes the weight measure (e.g. weighing station).</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
             <SimpleValue>Weight Statement. Weighing_ Party. Party</SimpleValue>
@@ -222374,7 +222374,7 @@
             <SimpleValue>0..1</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The party playing the role of the Shipper (BCO, FF or NVOCC) who is responsible for the VGM (e.g. according the SOLAS Convention).</SimpleValue>
+            <SimpleValue>The Party who plays the role of the Shipper (BCO, FF or NVOCC) who is responsible for the VGM (e.g. according the SOLAS Convention).</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
             <SimpleValue>Weight Statement. Shipper_ Party. Party</SimpleValue>
@@ -222412,7 +222412,7 @@
             <SimpleValue>0..1</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The party responsible for signing the VGM on behalf of the Shipper.</SimpleValue>
+            <SimpleValue>The Party who signs the Verified Gross Mass (VGM) on behalf of the Shipper.</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
             <SimpleValue>Weight Statement. Responsible_ Party. Party</SimpleValue>
