@@ -219786,10 +219786,10 @@
             <SimpleValue>0</SimpleValue>
          </Value>
          <Value ColumnRef="EndorsedCardinalityRationale">
-            <SimpleValue>No consensus of real use cases for this.</SimpleValue>
+            <SimpleValue>Deprecated since UBL 2.5. No consensus of real use cases for this.</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>Indicates whether this document is a copy (true) or not (false).</SimpleValue>
+            <SimpleValue>(Deprecated) Indicates whether this document is a copy (true) or not (false).</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
             <SimpleValue>Utility Statement. Copy_ Indicator. Indicator</SimpleValue>
@@ -220287,7 +220287,7 @@
             <SimpleValue>1</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The party sending this document.</SimpleValue>
+            <SimpleValue>The Party who sends this Utility Statement.</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
             <SimpleValue>Utility Statement. Sender_ Party. Party</SimpleValue>
@@ -220325,7 +220325,7 @@
             <SimpleValue>1</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The party receiving this document.</SimpleValue>
+            <SimpleValue>The Party who receives this Utility Statement.</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
             <SimpleValue>Utility Statement. Receiver_ Party. Party</SimpleValue>
@@ -220398,7 +220398,7 @@
             <SimpleValue>0..1</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The subscriber (user or receiver of the service), if different from the buyer and from the party receiving this document.</SimpleValue>
+            <SimpleValue>The Party that is the subscriber of the utility.</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
             <SimpleValue>Utility Statement. Subscriber_ Party. Party</SimpleValue>
