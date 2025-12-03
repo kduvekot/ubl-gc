@@ -140747,10 +140747,10 @@
             <SimpleValue>0</SimpleValue>
          </Value>
          <Value ColumnRef="EndorsedCardinalityRationale">
-            <SimpleValue>No consensus of real use cases for this.</SimpleValue>
+            <SimpleValue>Deprecated since UBL 2.5. No consensus of real use cases for this.</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>Indicates whether this document is a copy (true) or not (false).</SimpleValue>
+            <SimpleValue>(Deprecated) Indicates whether this document is a copy (true) or not (false).</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
             <SimpleValue>Debit Note. Copy_ Indicator. Indicator</SimpleValue>
@@ -142202,7 +142202,7 @@
             <SimpleValue>0..1</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The payee.</SimpleValue>
+            <SimpleValue>The Party who receives the Payment.</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
             <SimpleValue>Debit Note. Payee_ Party. Party</SimpleValue>
@@ -142316,7 +142316,7 @@
             <SimpleValue>0..1</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The tax representative.</SimpleValue>
+            <SimpleValue>The Party authorized to act as the Tax Representative for this Debit Note.</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
             <SimpleValue>Debit Note. Tax Representative_ Party. Party</SimpleValue>
@@ -142357,7 +142357,7 @@
             <SimpleValue>0</SimpleValue>
          </Value>
          <Value ColumnRef="EndorsedCardinalityRationale">
-            <SimpleValue>To avoid confusion in the financial settlement process, a prepaid payment should be declared in an initiating billing document, such as an Invoice, and not in a delta or adjustment document like a Debit Note.</SimpleValue>
+            <SimpleValue>Deprecated since UBL 2.5. To avoid confusion in the financial settlement process, a prepaid payment should be declared in an initiating billing document, such as an Invoice, and not in a delta or adjustment document like a Debit Note.</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
             <SimpleValue>A prepaid payment.</SimpleValue>
