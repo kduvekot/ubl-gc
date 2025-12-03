@@ -215577,10 +215577,10 @@
             <SimpleValue>0</SimpleValue>
          </Value>
          <Value ColumnRef="EndorsedCardinalityRationale">
-            <SimpleValue>No consensus of real use cases for this.</SimpleValue>
+            <SimpleValue>Deprecated since UBL 2.5. No consensus of real use cases for this.</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>Indicates whether this document is a copy (true) or not (false).</SimpleValue>
+            <SimpleValue>(Deprecated) Indicates whether this document is a copy (true) or not (false).</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
             <SimpleValue>Transport Progress Status Request. Copy_ Indicator. Indicator</SimpleValue>
@@ -215814,7 +215814,7 @@
             <SimpleValue>0..1</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The party sending the Transport Progress Status Request.</SimpleValue>
+            <SimpleValue>The Party who sends the Transport Progress Status Request.</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
             <SimpleValue>Transport Progress Status Request. Sender_ Party. Party</SimpleValue>
@@ -215852,7 +215852,7 @@
             <SimpleValue>0..1</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The party receiving the Transport Progress Status Request.</SimpleValue>
+            <SimpleValue>The Party who receives the Transport Progress Status Request.</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
             <SimpleValue>Transport Progress Status Request. Receiver_ Party. Party</SimpleValue>
