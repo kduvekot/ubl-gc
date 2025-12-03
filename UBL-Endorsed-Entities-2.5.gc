@@ -163090,7 +163090,7 @@
             <SimpleValue>1</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The buyer.</SimpleValue>
+            <SimpleValue>The Party sending this Item Information Request.</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
             <SimpleValue>Item Information Request. Sender_ Party. Party</SimpleValue>
@@ -163128,7 +163128,7 @@
             <SimpleValue>1</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The seller.</SimpleValue>
+            <SimpleValue>The Party receiving this Item Information Request.</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
             <SimpleValue>Item Information Request. Receiver_ Party. Party</SimpleValue>
@@ -163166,7 +163166,7 @@
             <SimpleValue>0..1</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The buyer.</SimpleValue>
+            <SimpleValue>The Buyer from whom the Item Information is requested.</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
             <SimpleValue>Item Information Request. Buyer_ Customer Party. Customer Party</SimpleValue>
@@ -163204,7 +163204,7 @@
             <SimpleValue>0..1</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The seller.</SimpleValue>
+            <SimpleValue>The Seller requesting the Item Information.</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
             <SimpleValue>Item Information Request. Seller_ Supplier Party. Supplier Party</SimpleValue>
