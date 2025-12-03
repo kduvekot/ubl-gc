@@ -209196,7 +209196,7 @@
             <SimpleValue>0..1</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The Party who makes the transit declaration, or on whose behalf the transit declaration is made, and who is the owner of the goods or has similar right of disposal over them at the time when the declaration is accepted.</SimpleValue>
+            <SimpleValue>The Party who makes the Transit Customs Declaration, or on whose behalf the Transit Customs Declaration is made. This Party is the owner of the Goods or has similar right of disposal over them at the time when the Declaration is accepted.</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
             <SimpleValue>Transit Customs Declaration. Transit Exporter_ Party. Party</SimpleValue>
@@ -209234,7 +209234,7 @@
             <SimpleValue>0..1</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The Party responsible for the consignment.</SimpleValue>
+            <SimpleValue>The Party who is reponsible for sending the goods.</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
             <SimpleValue>Transit Customs Declaration. Consignor_ Party. Party</SimpleValue>
@@ -209272,7 +209272,7 @@
             <SimpleValue>0..1</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The Party responsible for receiving the goods.</SimpleValue>
+            <SimpleValue>The Party who receives the goods.</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
             <SimpleValue>Transit Customs Declaration. Consignee_ Party. Party</SimpleValue>
@@ -209310,7 +209310,7 @@
             <SimpleValue>0..1</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The Party responsibe for the freight forwarding.</SimpleValue>
+            <SimpleValue>The Party who combines individual smaller consignments into a single larger shipment (a so-called consolidated consignment or shipment) which is sent to a counterpart who mirrors the consolidator's activity by dividing the consolidated consignment into its original components.</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
             <SimpleValue>Transit Customs Declaration. Freight Forwarder_ Party. Party</SimpleValue>
@@ -209348,7 +209348,7 @@
             <SimpleValue>1</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The authority who is legally responsible for processing the declaration.</SimpleValue>
+            <SimpleValue>The Authority who is legally responsible for processing the Declaration.</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
             <SimpleValue>Transit Customs Declaration. Customs_ Party. Party</SimpleValue>
@@ -209386,7 +209386,7 @@
             <SimpleValue>0..1</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The party responsible for contact on master level.</SimpleValue>
+            <SimpleValue>The Party who is responsible for contact on master level.</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
             <SimpleValue>Transit Customs Declaration. Notifier_ Party. Party</SimpleValue>
