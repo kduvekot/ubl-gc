@@ -202597,7 +202597,7 @@
             <SimpleValue>0..1</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The party sending the Transport Execution Plan Request.</SimpleValue>
+            <SimpleValue>The Party who sends the Transport Execution Plan Request.</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
             <SimpleValue>Transport Execution Plan Request. Sender_ Party. Party</SimpleValue>
@@ -202635,7 +202635,7 @@
             <SimpleValue>0..1</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The party receiving the Transport Execution Plan Request.</SimpleValue>
+            <SimpleValue>The Party who receives the Transport Execution Plan Request.</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
             <SimpleValue>Transport Execution Plan Request. Receiver_ Party. Party</SimpleValue>
@@ -202673,7 +202673,7 @@
             <SimpleValue>0..1</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The party requesting the transport services referenced in the Transport Execution Plan Request.</SimpleValue>
+            <SimpleValue>The Party who requests the transport services referenced in the Transport Execution Plan Request.</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
             <SimpleValue>Transport Execution Plan Request. Transport User_ Party. Party</SimpleValue>
@@ -202711,7 +202711,7 @@
             <SimpleValue>1</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The party providing the transport services referenced in the Transport Execution Plan Request.</SimpleValue>
+            <SimpleValue>The Party who provides the transport services referenced in the Transport Execution Plan Request.</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
             <SimpleValue>Transport Execution Plan Request. Transport Service Provider_ Party. Party</SimpleValue>
@@ -202738,27 +202738,27 @@
             <SimpleValue>2.1</SimpleValue>
          </Value>
       </Row>
-      <Row><!--22-->
+      <Row><!--23-->
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-TransportExecutionPlanRequest-2.5</SimpleValue>
          </Value>
          <Value ColumnRef="ComponentName">
-            <SimpleValue>PayeeParty</SimpleValue>
+            <SimpleValue>BillToParty</SimpleValue>
          </Value>
          <Value ColumnRef="Cardinality">
             <SimpleValue>0..1</SimpleValue>
          </Value>
          <Value ColumnRef="Definition">
-            <SimpleValue>The party that will pay for the transport service(s) referred to in a Transport Execution Plan.</SimpleValue>
+            <SimpleValue>The Party that will receive the invoice for the transport service(s) referred to in the Transport Execution Plan.</SimpleValue>
          </Value>
          <Value ColumnRef="DictionaryEntryName">
-            <SimpleValue>Transport Execution Plan Request. Payee_ Party. Party</SimpleValue>
+            <SimpleValue>Transport Execution Plan Request. Bill To_ Party. Party</SimpleValue>
          </Value>
          <Value ColumnRef="ObjectClass">
             <SimpleValue>Transport Execution Plan Request</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTermQualifier">
-            <SimpleValue>Payee</SimpleValue>
+            <SimpleValue>Bill To</SimpleValue>
          </Value>
          <Value ColumnRef="PropertyTerm">
             <SimpleValue>Party</SimpleValue>
@@ -202773,10 +202773,10 @@
             <SimpleValue>ASBIE</SimpleValue>
          </Value>
          <Value ColumnRef="CurrentVersion">
-            <SimpleValue>2.1</SimpleValue>
+            <SimpleValue>2.5</SimpleValue>
          </Value>
       </Row>
-      <Row><!--23-->
+      <Row><!--24-->
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-TransportExecutionPlanRequest-2.5</SimpleValue>
          </Value>
@@ -202811,7 +202811,7 @@
             <SimpleValue>2.1</SimpleValue>
          </Value>
       </Row>
-      <Row><!--24-->
+      <Row><!--25-->
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-TransportExecutionPlanRequest-2.5</SimpleValue>
          </Value>
@@ -202849,7 +202849,7 @@
             <SimpleValue>2.1</SimpleValue>
          </Value>
       </Row>
-      <Row><!--25-->
+      <Row><!--26-->
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-TransportExecutionPlanRequest-2.5</SimpleValue>
          </Value>
@@ -202887,7 +202887,7 @@
             <SimpleValue>2.1</SimpleValue>
          </Value>
       </Row>
-      <Row><!--26-->
+      <Row><!--27-->
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-TransportExecutionPlanRequest-2.5</SimpleValue>
          </Value>
@@ -202925,7 +202925,7 @@
             <SimpleValue>2.1</SimpleValue>
          </Value>
       </Row>
-      <Row><!--27-->
+      <Row><!--28-->
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-TransportExecutionPlanRequest-2.5</SimpleValue>
          </Value>
@@ -202963,7 +202963,7 @@
             <SimpleValue>2.1</SimpleValue>
          </Value>
       </Row>
-      <Row><!--28-->
+      <Row><!--29-->
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-TransportExecutionPlanRequest-2.5</SimpleValue>
          </Value>
@@ -203001,7 +203001,7 @@
             <SimpleValue>2.1</SimpleValue>
          </Value>
       </Row>
-      <Row><!--29-->
+      <Row><!--30-->
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-TransportExecutionPlanRequest-2.5</SimpleValue>
          </Value>
@@ -203039,7 +203039,7 @@
             <SimpleValue>2.1</SimpleValue>
          </Value>
       </Row>
-      <Row><!--30-->
+      <Row><!--31-->
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-TransportExecutionPlanRequest-2.5</SimpleValue>
          </Value>
@@ -203077,7 +203077,7 @@
             <SimpleValue>2.1</SimpleValue>
          </Value>
       </Row>
-      <Row><!--31-->
+      <Row><!--32-->
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-TransportExecutionPlanRequest-2.5</SimpleValue>
          </Value>
@@ -203115,7 +203115,7 @@
             <SimpleValue>2.1</SimpleValue>
          </Value>
       </Row>
-      <Row><!--32-->
+      <Row><!--33-->
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-TransportExecutionPlanRequest-2.5</SimpleValue>
          </Value>
@@ -203153,7 +203153,7 @@
             <SimpleValue>2.1</SimpleValue>
          </Value>
       </Row>
-      <Row><!--33-->
+      <Row><!--34-->
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-TransportExecutionPlanRequest-2.5</SimpleValue>
          </Value>
@@ -203191,7 +203191,7 @@
             <SimpleValue>2.1</SimpleValue>
          </Value>
       </Row>
-      <Row><!--34-->
+      <Row><!--35-->
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-TransportExecutionPlanRequest-2.5</SimpleValue>
          </Value>
@@ -203229,7 +203229,7 @@
             <SimpleValue>2.1</SimpleValue>
          </Value>
       </Row>
-      <Row><!--35-->
+      <Row><!--36-->
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-TransportExecutionPlanRequest-2.5</SimpleValue>
          </Value>
@@ -203267,7 +203267,7 @@
             <SimpleValue>2.1</SimpleValue>
          </Value>
       </Row>
-      <Row><!--36-->
+      <Row><!--37-->
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-TransportExecutionPlanRequest-2.5</SimpleValue>
          </Value>
@@ -203302,7 +203302,7 @@
             <SimpleValue>2.1</SimpleValue>
          </Value>
       </Row>
-      <Row><!--37-->
+      <Row><!--38-->
          <Value ColumnRef="ModelName">
             <SimpleValue>UBL-TransportExecutionPlanRequest-2.5</SimpleValue>
          </Value>
