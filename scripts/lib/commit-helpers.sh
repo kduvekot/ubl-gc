@@ -124,10 +124,16 @@ Source: history/$release/ (OASIS official release)
 $SESSION_URL"
     fi
 
-    # Create commit
-    git commit -m "$commit_message" || die "Failed to create commit for $release"
-
-    log_success "Commit created for $release"
+    # Create commit (or empty commit if no changes)
+    if git diff --cached --quiet; then
+        # No changes - create empty commit
+        git commit --allow-empty -m "$commit_message" || die "Failed to create commit for $release"
+        log_success "Commit created for $release (no changes from previous release)"
+    else
+        # Normal commit with changes
+        git commit -m "$commit_message" || die "Failed to create commit for $release"
+        log_success "Commit created for $release"
+    fi
 
     # Return to main repo
     cd "$REPO_ROOT"
