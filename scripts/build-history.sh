@@ -55,6 +55,15 @@ main() {
     # Initialize the history branch
     init_history_branch "$HISTORY_BRANCH"
 
+    # Create a temporary directory to hold scripts during execution
+    local temp_scripts_dir
+    temp_scripts_dir=$(mktemp -d)
+    trap "rm -rf '$temp_scripts_dir'" EXIT
+
+    # Copy scripts to temp directory
+    log_info "Copying scripts to temporary directory..."
+    cp -r "$REPO_ROOT/scripts" "$temp_scripts_dir/"
+
     # Run each version builder in sequence
     log_step "Building version-specific evolution"
     log_info "Total builders: ${#BUILDERS[@]}"
@@ -65,9 +74,9 @@ main() {
 
         log_step "Builder $builder_count/${#BUILDERS[@]}: $builder"
 
-        # Run the builder from git (since we may be on different branch)
-        # This ensures the builder script is available even if working tree changes
-        if ! bash <(git show HEAD:"$builder"); then
+        # Run the builder from temp directory
+        local temp_builder="$temp_scripts_dir/$builder"
+        if ! bash "$temp_builder"; then
             die "Builder failed: $builder"
         fi
     done
