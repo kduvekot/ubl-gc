@@ -47,17 +47,38 @@ Bash scripts that orchestrate the full conversion process:
 
 ## Usage
 
-For complete usage instructions, see `/README.md` > "UBL 2.0 GenericCode Synthesis" > "Reproducibility"
+### Quick Start
 
-Quick example:
+**For UBL 2.0 conversion:**
 ```bash
-java -jar tools/saxon9he/saxon9he.jar \
-  -xsl:tools/crane-ods2obdgc/Crane-ods2obdgc.xsl \
+./scripts/ubl20-ods-to-gc-convert.sh [output_dir] [input_dir]
+```
+
+**For manual conversion:**
+```bash
+java -jar saxon9he/saxon9he.jar \
+  -xsl:Crane-ods2obdgc/Crane-ods2obdgc.xsl \
   -o:output.gc \
   -it:ods-uri \
   ods-uri="file1.ods,file2.ods,..." \
   identification-uri=ident.xml
 ```
+
+### Complete Documentation
+
+📖 **[CONVERSION_GUIDE.md](CONVERSION_GUIDE.md)** - Step-by-step conversion instructions
+- Quick start for UBL 2.0
+- Manual conversion walkthrough
+- Parameter explanations
+- Detailed examples
+- Troubleshooting guide
+
+📋 **[TOOL_VERIFICATION.md](TOOL_VERIFICATION.md)** - Tools and verification report
+- Tool inventory and status
+- Verification results for all 8 UBL 2.0 stages
+- Known issues and workarounds
+- Quality assurance procedures
+- Performance characteristics
 
 ## License and Attribution
 
