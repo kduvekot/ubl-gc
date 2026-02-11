@@ -8,12 +8,12 @@ Complete chronological list of all UBL specification versions from 2.0 through 2
 
 ## UBL 2.0 (Released: 2006)
 
-**Note:** Only PRD3 and later stages are archived locally. PRD and PRD2 can be accessed via OASIS documentation portal.
+**Note:** All UBL 2.0 stages from first draft (PRD) through official release (OS) are now archived locally with complete GenericCode generated.
 
 | Stage | Directory | Link | Local Archive |
 |-------|-----------|------|---|
-| Proposed Recommendation | prd-UBL-2.0 | https://docs.oasis-open.org/ubl/prd-UBL-2.0/ | ❌ |
-| Proposed Recommendation 2 | prd2-UBL-2.0 | https://docs.oasis-open.org/ubl/prd2-UBL-2.0/ | ❌ |
+| Proposed Recommendation | prd-UBL-2.0 | https://docs.oasis-open.org/ubl/prd-UBL-2.0/ | ✅ |
+| Proposed Recommendation 2 | prd2-UBL-2.0 | https://docs.oasis-open.org/ubl/prd2-UBL-2.0/ | ✅ |
 | Proposed Recommendation 3 | prd3-UBL-2.0 | https://docs.oasis-open.org/ubl/prd3-UBL-2.0/ | ✅ |
 | Proposed Recommendation 3 Revision 1 | prd3r1-UBL-2.0 | https://docs.oasis-open.org/ubl/prd3r1-UBL-2.0/ | ✅ |
 | Committee Specification | cs-UBL-2.0 | https://docs.oasis-open.org/ubl/cs-UBL-2.0/ | ✅ |
@@ -89,15 +89,15 @@ Complete chronological list of all UBL specification versions from 2.0 through 2
 
 ## Summary Statistics
 
-| Version | Total Stages | Locally Archived | Final Status |
-|---------|--------------|------------------|--------------|
-| 2.0 | 8 | 6 | Official Standard (OS) |
-| 2.1 | 8 | 8 | Official Standard (OS) |
-| 2.2 | 6 | 6 | Official Standard (OS) |
-| 2.3 | 7 | 7 | Official Standard (OS) |
-| 2.4 | 4 | 4 | Official Standard (OS) |
-| 2.5 | 2 | 2 | Committee Specification Draft (CSD02) |
-| **Total** | **35** | **33** | - |
+| Version | Total Stages | Locally Archived | GenericCode | Final Status |
+|---------|--------------|------------------|-------------|--------------|
+| 2.0 | 8 | 8 ✅ | 8 generated | Official Standard (OS) |
+| 2.1 | 8 | 8 ✅ | 8 OASIS | Official Standard (OS) |
+| 2.2 | 6 | 6 ✅ | 6 OASIS | Official Standard (OS) |
+| 2.3 | 7 | 7 ✅ | 7 OASIS | Official Standard (OS) |
+| 2.4 | 4 | 4 ✅ | 4 OASIS | Official Standard (OS) |
+| 2.5 | 2 | 2 ✅ | 2 OASIS | Committee Specification Draft (CSD02) |
+| **Total** | **35** | **35 ✅ (100%)** | **65 GC files** | - |
 
 ---
 
