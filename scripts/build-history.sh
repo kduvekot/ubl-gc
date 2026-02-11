@@ -63,16 +63,11 @@ main() {
     for builder in "${BUILDERS[@]}"; do
         ((builder_count++))
 
-        # Check builder exists
-        local builder_path="$REPO_ROOT/$builder"
-        if [[ ! -f "$builder_path" ]]; then
-            die "Builder not found: $builder_path"
-        fi
-
         log_step "Builder $builder_count/${#BUILDERS[@]}: $builder"
 
-        # Run the builder
-        if ! bash "$builder_path"; then
+        # Run the builder from git (since we may be on different branch)
+        # This ensures the builder script is available even if working tree changes
+        if ! bash <(git show HEAD:"$builder"); then
             die "Builder failed: $builder"
         fi
     done
