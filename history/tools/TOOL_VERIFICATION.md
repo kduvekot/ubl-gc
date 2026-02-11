@@ -34,9 +34,14 @@ This document provides a comprehensive overview of the tools available in this d
 
 **Purpose:** Official OASIS tool that converts ODS spreadsheets to GenericCode XML format
 
+**Creator:** Crane Softwrights Ltd.
+- **Website:** http://www.CraneSoftwrights.com
+- **Principal:** G. Ken Holman
+- **Tool:** GenericCode Toolkit
+
 **Source:** https://github.com/oasis-tcs/ubl/tree/review/utilities/Crane-ods2obdgc
 
-**License:** OASIS license (see source repository)
+**License:** Copyright © Crane Softwrights Ltd. | Portions © OASIS Open 2015
 
 **Documentation:** `Crane-ods2obdgc/readme-Crane-ods2obdgc.txt`
 

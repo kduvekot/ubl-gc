@@ -239,6 +239,16 @@ done
 
 5. **No Manual Edits**: All files are preserved exactly as provided by OASIS (except UBL 2.0, which is synthesized).
 
+## Acknowledgments
+
+This archive makes extensive use of tools and expertise from the broader UBL community:
+
+- **Crane Softwrights Ltd.** (http://www.CraneSoftwrights.com) - For the GenericCode Toolkit
+- **G. Ken Holman** - Principal at Crane Softwrights, pioneering work in XSLT and semantic standardization
+- **OASIS** - For the UBL specification, tools, and community support
+- **Saxonica Ltd.** - For the Saxon XSLT processor
+- **UBL Technical Committee** - For 20 years of semantic model development
+
 ## References
 
 - **OASIS UBL Portal**: https://docs.oasis-open.org/ubl/
@@ -246,6 +256,8 @@ done
 - **UBL Technical Committee**: https://www.oasis-open.org/committees/tc_home.php?wg_abbrev=ubl
 - **GenericCode Specification**: https://docs.oasis-open.org/codelist/genericode/v1.0/
 - **Crane-ods2obdgc Tool**: https://cranesoftwrights.github.io/resources/ubl/
+- **Crane Softwrights**: http://www.CraneSoftwrights.com
+- **Saxon XSLT**: https://www.saxonica.com/
 
 ## Notes
 

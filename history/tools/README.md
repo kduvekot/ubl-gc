@@ -82,14 +82,38 @@ java -jar saxon9he/saxon9he.jar \
 
 ## License and Attribution
 
-All tools are used under their respective licenses:
-- Crane-ods2obdgc: OASIS license (official UBL repository)
-- Saxon 9 HE: Mozilla Public License
-- Scripts: Created for this project
+### Tools Authors & Credits
 
-For official source code and licenses, see:
-- OASIS UBL: https://github.com/oasis-tcs/ubl
-- Saxon: https://sourceforge.net/projects/saxon/
+**Crane-ods2obdgc XSLT Stylesheet**
+- **Creator**: Crane Softwrights Ltd. (http://www.CraneSoftwrights.com)
+- **Principal**: G. Ken Holman - Expert in XML, XSLT, and UBL
+- **Part of**: GenericCode Toolkit
+- **License**: Copyright © Crane Softwrights Ltd. | Portions © OASIS Open 2015
+- **Source**: https://github.com/oasis-tcs/ubl/tree/review/utilities/Crane-ods2obdgc
+
+**Saxon 9 HE XSLT Processor**
+- **Creator**: Saxonica Ltd. (https://www.saxonica.com/)
+- **License**: Mozilla Public License
+- **Source**: https://sourceforge.net/projects/saxon/
+
+**Conversion Scripts & Documentation**
+- **Created for**: This UBL semantic model archive
+- **License**: Same as repository
+
+### Acknowledgments
+
+This project would not be possible without:
+- **Crane Softwrights Ltd.** for the powerful GenericCode conversion toolkit
+- **G. Ken Holman** for pioneering work in XML/XSLT and standardization
+- **OASIS** for the UBL specification and related tools
+- **Saxonica** for the robust XSLT processor
+
+### Official Sources
+
+For official source code and licenses:
+- OASIS UBL Repository: https://github.com/oasis-tcs/ubl
+- Crane Softwrights: http://www.CraneSoftwrights.com
+- Saxon XSLT Processor: https://www.saxonica.com/
 
 ## Auditability
 
