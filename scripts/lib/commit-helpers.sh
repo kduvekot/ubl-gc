@@ -56,7 +56,7 @@ create_release_commit() {
     local release="$1"        # e.g., "prd-UBL-2.0"
     local version="$2"        # e.g., "2.0"
     local release_dir="$3"    # Full path to release directory
-    local commit_message="$4" # Custom commit message (optional)
+    local commit_message="${4:-}" # Custom commit message (optional)
 
     log_step "Creating commit for $release"
 
