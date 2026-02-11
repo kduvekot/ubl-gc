@@ -294,29 +294,44 @@ create_schema_transition_step6() {
     # Go to history work directory
     cd "$HISTORY_WORK_DIR" || die "HISTORY_WORK_DIR not set"
 
-    # FIRST: Remove all old version files (e.g., *-2.1.gc when transitioning to 2.2)
-    log_info "Removing old UBL $from_version files..."
-    local old_files_removed=0
-    for old_file in UBL-*-${from_version}.gc; do
-        if [ -f "$old_file" ]; then
-            git rm "$old_file"
-            log_info "  Removed: $old_file"
-            old_files_removed=$((old_files_removed + 1))
+    # Strategy: Rename old version files to new version names, then update content
+    # This preserves git history better than rm+add
+    log_info "Transitioning files from UBL $from_version to $to_version..."
+
+    # First, identify which files need to be renamed
+    for gc_file in "${gc_files[@]}"; do
+        local new_basename
+        new_basename=$(basename "$gc_file")
+
+        # Derive old filename by replacing version number
+        local old_basename
+        old_basename=$(echo "$new_basename" | sed "s/-${to_version}\.gc$/-${from_version}.gc/")
+
+        if [ -f "$old_basename" ]; then
+            # Rename old file to new name (preserves history)
+            git mv "$old_basename" "$new_basename"
+            log_info "  Renamed: $old_basename → $new_basename"
         fi
+
+        # Update content with new version data
+        cp "$gc_file" "$new_basename"
+        git add "$new_basename"
+        log_info "  Updated: $new_basename (content from $to_version)"
     done
 
-    if [ $old_files_removed -eq 0 ]; then
-        log_info "  (No old version files to remove)"
-    fi
-
-    # THEN: Copy new version files from main repo
-    log_info "Adding new UBL $to_version files..."
+    # Handle any new file types that didn't exist in old version (e.g., Endorsed in 2.5)
     for gc_file in "${gc_files[@]}"; do
-        local basename
-        basename=$(basename "$gc_file")
-        cp "$gc_file" "$basename"
-        git add "$basename"
-        log_info "  Added: $basename"
+        local new_basename
+        new_basename=$(basename "$gc_file")
+        local old_basename
+        old_basename=$(echo "$new_basename" | sed "s/-${to_version}\.gc$/-${from_version}.gc/")
+
+        if [ ! -f "$new_basename" ]; then
+            # This is a completely new file type
+            cp "$gc_file" "$new_basename"
+            git add "$new_basename"
+            log_info "  Added new: $new_basename (new in $to_version)"
+        fi
     done
 
     local commit_message="Schema transition 6/6: Complete transition to UBL $to_version

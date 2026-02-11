@@ -72,7 +72,9 @@ jobs:
 
           # Check if history branch exists on remote
           if git ls-remote --heads origin "$HISTORY_BRANCH" | grep -q "$HISTORY_BRANCH"; then
-            echo "History branch exists, cloning to temp directory..."
+            echo "History branch exists, fetching and cloning to temp directory..."
+            # CRITICAL: Fetch the branch first so it exists in local .git
+            git fetch origin "$HISTORY_BRANCH:$HISTORY_BRANCH"
             git clone --no-hardlinks --single-branch --branch "$HISTORY_BRANCH" \
               "file://$(pwd)/.git" "$HISTORY_WORK_DIR"
           else
