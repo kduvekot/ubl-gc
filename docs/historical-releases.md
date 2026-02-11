@@ -8,16 +8,18 @@ Complete chronological list of all UBL specification versions from 2.0 through 2
 
 ## UBL 2.0 (Released: 2006)
 
-| Stage | Directory | Link |
-|-------|-----------|------|
-| Proposed Recommendation | prd-UBL-2.0 | https://docs.oasis-open.org/ubl/prd-UBL-2.0/ |
-| Proposed Recommendation 2 | prd2-UBL-2.0 | https://docs.oasis-open.org/ubl/prd2-UBL-2.0/ |
-| Proposed Recommendation 3 | prd3-UBL-2.0 | https://docs.oasis-open.org/ubl/prd3-UBL-2.0/ |
-| Proposed Recommendation 3 Revision 1 | prd3r1-UBL-2.0 | https://docs.oasis-open.org/ubl/prd3r1-UBL-2.0/ |
-| Committee Specification | cs-UBL-2.0 | https://docs.oasis-open.org/ubl/cs-UBL-2.0/ |
-| **Official Standard** | **os-UBL-2.0** | **https://docs.oasis-open.org/ubl/os-UBL-2.0/** |
-| Official Standard Update | os-UBL-2.0-update | https://docs.oasis-open.org/ubl/os-UBL-2.0-update/ |
-| Errata | errata-UBL-2.0 | https://docs.oasis-open.org/ubl/errata-UBL-2.0/ |
+**Note:** Only PRD3 and later stages are archived locally. PRD and PRD2 can be accessed via OASIS documentation portal.
+
+| Stage | Directory | Link | Local Archive |
+|-------|-----------|------|---|
+| Proposed Recommendation | prd-UBL-2.0 | https://docs.oasis-open.org/ubl/prd-UBL-2.0/ | ❌ |
+| Proposed Recommendation 2 | prd2-UBL-2.0 | https://docs.oasis-open.org/ubl/prd2-UBL-2.0/ | ❌ |
+| Proposed Recommendation 3 | prd3-UBL-2.0 | https://docs.oasis-open.org/ubl/prd3-UBL-2.0/ | ✅ |
+| Proposed Recommendation 3 Revision 1 | prd3r1-UBL-2.0 | https://docs.oasis-open.org/ubl/prd3r1-UBL-2.0/ | ✅ |
+| Committee Specification | cs-UBL-2.0 | https://docs.oasis-open.org/ubl/cs-UBL-2.0/ | ✅ |
+| **Official Standard** | **os-UBL-2.0** | **https://docs.oasis-open.org/ubl/os-UBL-2.0/** | **✅** |
+| Official Standard Update | os-update-UBL-2.0 | https://docs.oasis-open.org/ubl/os-update-UBL-2.0/ | ✅ |
+| Errata | errata-UBL-2.0 | https://docs.oasis-open.org/ubl/errata-UBL-2.0/ | ✅ |
 
 ---
 
@@ -87,15 +89,15 @@ Complete chronological list of all UBL specification versions from 2.0 through 2
 
 ## Summary Statistics
 
-| Version | Total Stages | Public Releases | Final Status |
-|---------|--------------|-----------------|--------------|
-| 2.0 | 8 | 8 | Official Standard (OS) |
+| Version | Total Stages | Locally Archived | Final Status |
+|---------|--------------|------------------|--------------|
+| 2.0 | 8 | 6 | Official Standard (OS) |
 | 2.1 | 8 | 8 | Official Standard (OS) |
 | 2.2 | 6 | 6 | Official Standard (OS) |
 | 2.3 | 7 | 7 | Official Standard (OS) |
 | 2.4 | 4 | 4 | Official Standard (OS) |
 | 2.5 | 2 | 2 | Committee Specification Draft (CSD02) |
-| **Total** | **35+** | **35+** | - |
+| **Total** | **35** | **33** | - |
 
 ---
 
