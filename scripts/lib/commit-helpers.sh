@@ -41,6 +41,10 @@ init_history_branch() {
     # Show current state
     log_info "Current history:"
     git log --oneline -3
+
+    # Checkout back to main so builders can run
+    git checkout - >/dev/null 2>&1 || git checkout main
+    log_info "Switched back to main branch (history branch created and ready)"
 }
 
 # Create a simple release commit (copies files and commits)

@@ -28,6 +28,9 @@ readonly VERSION="2.3"
 
 # Main function
 main() {
+    # Switch to history branch for committing
+    git checkout "$HISTORY_BRANCH" >/dev/null 2>&1 || die "Failed to checkout $HISTORY_BRANCH"
+
     log_step "Building UBL 2.3 Evolution"
 
     log_info "Version: UBL $VERSION"
