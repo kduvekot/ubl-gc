@@ -99,10 +99,16 @@ jobs:
           cd "$HISTORY_WORK_DIR"
           git config commit.gpgsign false
 
-          # Set up remote if not already set
-          if ! git remote get-url origin > /dev/null 2>&1; then
-            git remote add origin "$(cd $REPO_ROOT && git remote get-url origin)"
+          # Always set the authenticated remote URL from main repo
+          # (The clone may have file:// URL, we need the https:// with token)
+          MAIN_REMOTE_URL=$(cd $REPO_ROOT && git remote get-url origin)
+          if git remote get-url origin > /dev/null 2>&1; then
+            git remote set-url origin "$MAIN_REMOTE_URL"
+          else
+            git remote add origin "$MAIN_REMOTE_URL"
           fi
+
+          echo "Remote URL configured: $MAIN_REMOTE_URL"
 
       - name: Build UBL 2.0 history
         run: |
