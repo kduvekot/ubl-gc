@@ -191,11 +191,11 @@ Data transformation ensures backward compatibility where possible.
 
 Files remain at UBL $from_version structure with new columns populated.
 Next step: Mark old columns as deprecated.
-    # Go to history work directory
-    cd "$HISTORY_WORK_DIR" || die "HISTORY_WORK_DIR not set"
-
 
 $SESSION_URL"
+
+    # Go to history work directory
+    cd "$HISTORY_WORK_DIR" || die "HISTORY_WORK_DIR not set"
 
     git commit --allow-empty -m "$commit_message" || die "Failed to create schema step 2 commit"
     cd "$REPO_ROOT"
@@ -212,14 +212,14 @@ create_schema_transition_step3() {
     local commit_message="Schema transition 3/6: Deprecate UBL $from_version columns
 
 Old columns from UBL $from_version are now marked as deprecated.
-    # Go to history work directory
-    cd "$HISTORY_WORK_DIR" || die "HISTORY_WORK_DIR not set"
-
 Both old and new columns coexist for transitional compatibility.
 
 Next step: Remove references to old columns.
 
 $SESSION_URL"
+
+    # Go to history work directory
+    cd "$HISTORY_WORK_DIR" || die "HISTORY_WORK_DIR not set"
 
     git commit --allow-empty -m "$commit_message" || die "Failed to create schema step 3 commit"
     cd "$REPO_ROOT"
@@ -234,9 +234,6 @@ create_schema_transition_step4() {
     log_step "Schema Transition Step 4/6: Remove references to old columns"
 
     local commit_message="Schema transition 4/6: Remove references to deprecated columns
-    # Go to history work directory
-    cd "$HISTORY_WORK_DIR" || die "HISTORY_WORK_DIR not set"
-
 
 All references to deprecated UBL $from_version columns have been removed.
 System now uses only UBL $to_version column structure.
@@ -245,6 +242,9 @@ Deprecated columns still present but unused.
 Next step: Remove deprecated columns entirely.
 
 $SESSION_URL"
+
+    # Go to history work directory
+    cd "$HISTORY_WORK_DIR" || die "HISTORY_WORK_DIR not set"
 
     git commit --allow-empty -m "$commit_message" || die "Failed to create schema step 4 commit"
     cd "$REPO_ROOT"
@@ -255,9 +255,6 @@ $SESSION_URL"
 create_schema_transition_step5() {
     local from_version="$1"
     local to_version="$2"
-    # Go to history work directory
-    cd "$HISTORY_WORK_DIR" || die "HISTORY_WORK_DIR not set"
-
 
     log_step "Schema Transition Step 5/6: Remove deprecated columns"
 
@@ -269,6 +266,9 @@ Schema now contains only UBL $to_version structure.
 Next step: Final cleanup and normalization.
 
 $SESSION_URL"
+
+    # Go to history work directory
+    cd "$HISTORY_WORK_DIR" || die "HISTORY_WORK_DIR not set"
 
     git commit --allow-empty -m "$commit_message" || die "Failed to create schema step 5 commit"
     cd "$REPO_ROOT"
