@@ -294,13 +294,29 @@ create_schema_transition_step6() {
     # Go to history work directory
     cd "$HISTORY_WORK_DIR" || die "HISTORY_WORK_DIR not set"
 
-    # Copy files from main repo to history work directory
+    # FIRST: Remove all old version files (e.g., *-2.1.gc when transitioning to 2.2)
+    log_info "Removing old UBL $from_version files..."
+    local old_files_removed=0
+    for old_file in UBL-*-${from_version}.gc; do
+        if [ -f "$old_file" ]; then
+            git rm "$old_file"
+            log_info "  Removed: $old_file"
+            old_files_removed=$((old_files_removed + 1))
+        fi
+    done
+
+    if [ $old_files_removed -eq 0 ]; then
+        log_info "  (No old version files to remove)"
+    fi
+
+    # THEN: Copy new version files from main repo
+    log_info "Adding new UBL $to_version files..."
     for gc_file in "${gc_files[@]}"; do
         local basename
         basename=$(basename "$gc_file")
         cp "$gc_file" "$basename"
         git add "$basename"
-        log_info "Updated: $basename"
+        log_info "  Added: $basename"
     done
 
     local commit_message="Schema transition 6/6: Complete transition to UBL $to_version
