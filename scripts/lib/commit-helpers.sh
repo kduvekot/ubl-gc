@@ -29,9 +29,9 @@ init_history_branch() {
 
     log_info "History branch working directory: $HISTORY_WORK_DIR"
 
-    # Clone main repo with only history branch
+    # Clone main repo with only history branch (no hardlinks to avoid issues)
     log_info "Cloning history branch from main repo..."
-    git clone --single-branch --branch history "$REPO_ROOT" "$HISTORY_WORK_DIR" || die "Failed to clone history branch"
+    git clone --no-hardlinks --single-branch --branch history "$REPO_ROOT" "$HISTORY_WORK_DIR" || die "Failed to clone history branch"
 
     # Go into the temp directory and create our new branch
     cd "$HISTORY_WORK_DIR"
