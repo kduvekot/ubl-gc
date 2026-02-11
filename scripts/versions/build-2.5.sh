@@ -60,17 +60,30 @@ main() {
         log_success "  ✓ $release (Entities${has_signature}${has_endorsed})"
     done
 
-    # Create commits for all releases
-    log_step "Creating commits for UBL 2.5 releases"
+    # SCHEMA TRANSITION: UBL 2.4 → 2.5 (6-step process)
+    log_step "Schema Transition: UBL 2.4 → 2.5"
+    log_info "This is a major version transition requiring 6-step commit process"
+    log_info "Plus introduction of NEW file: UBL-Endorsed-Entities"
 
-    for release in "${UBL_2_5_RELEASES[@]}"; do
+    local first_release_dir
+    first_release_dir=$(get_release_dir "${UBL_2_5_RELEASES[0]}" ".")
+
+    create_schema_transition "2.4" "$VERSION" "$first_release_dir"
+
+    # Note: The Endorsed-Entities file is included in the first release commit (step 6)
+    # It's automatically picked up by get_gc_files() which checks for endorsed/ directory
+
+    # Create commits for remaining releases (first release already done in step 6)
+    log_step "Creating commits for remaining UBL 2.5 releases"
+
+    for release in "${UBL_2_5_RELEASES[@]:1}"; do
         local release_dir
         release_dir=$(get_release_dir "$release" ".")
 
         create_release_commit "$release" "$VERSION" "$release_dir"
     done
 
-    log_success "UBL 2.5 evolution complete! (${#UBL_2_5_RELEASES[@]} commits created)"
+    log_success "UBL 2.5 evolution complete! (6 schema transition + ${#UBL_2_5_RELEASES[@]} release commits + Endorsed file!)"
 }
 
 # Run main function
