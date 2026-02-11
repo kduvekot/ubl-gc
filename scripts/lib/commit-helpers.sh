@@ -35,6 +35,10 @@ init_history_branch() {
 
     # Go into the temp directory and create our new branch
     cd "$HISTORY_WORK_DIR"
+
+    # Disable commit signing in this repo (to avoid issues)
+    git config commit.gpgsign false
+
     git checkout -b "$branch" || die "Failed to create branch $branch"
 
     log_success "History branch initialized in $HISTORY_WORK_DIR"
