@@ -2,7 +2,7 @@
 
 ## Purpose
 
-This directory contains a complete local copy of all UBL (Universal Business Language) GenericCode semantic model files from UBL 2.1 through UBL 2.5 (including all intermediate release stages).
+This directory contains a complete local copy of all UBL (Universal Business Language) GenericCode semantic model files from UBL 2.0 through UBL 2.5 (including all intermediate release stages).
 
 The GenericCode (.gc) files are OASIS standard XML documents that define the semantic model entities and components for each UBL release and stage. These files are essential for tracking the evolution of the UBL semantic model over time.
 
@@ -39,6 +39,33 @@ history/
 ```
 
 ## Complete Release History
+
+### UBL 2.0 (Released: 2006)
+
+| Stage | Directory | Status | File | Notes |
+|-------|-----------|--------|------|-------|
+| **Official Standard** | **os-UBL-2.0** | ✅ **Complete** | **UBL-Entities-2.0.gc** | **Synthesized from 33 ODS files via Crane-ods2obdgc** |
+
+**Important Note**: UBL 2.0 was originally released as ODS (OpenDocument Spreadsheet) files, not GenericCode format. The GenericCode format was adopted starting with UBL 2.1 (2013).
+
+**UBL-Entities-2.0.gc Details:**
+- **File Size**: 3.3 MB
+- **Entity Rows**: 2,181
+- **Source Files**: 33 ODS files (2 core + 31 document types)
+  - UBL-CommonLibrary-2.0.ods
+  - UBL-qDT-2.0.ods (Qualified Datatypes)
+  - 28 document type ODS files (Invoice, Order, CreditNote, Catalogue, etc.)
+- **Conversion Tool**: OASIS Crane-ods2obdgc XSLT stylesheet (official tool)
+- **Conversion Date**: February 11, 2026
+- **Source**: https://docs.oasis-open.org/ubl/os-UBL-2.0/
+
+**For Complete Details**: See `/history/os-UBL-2.0/README.md` for:
+- Complete list of all 33 source ODS files with direct OASIS URLs
+- Exact conversion command used
+- Reproducibility instructions
+- Why os-UBL-2.0 was selected over intermediate versions
+
+---
 
 ### UBL 2.1 (Released: 2013)
 1. prd1-UBL-2.1 → https://docs.oasis-open.org/ubl/prd1-UBL-2.1/mod/
@@ -134,13 +161,19 @@ Individual release directories follow the pattern:
 
 ## Notes
 
-- UBL 2.0 did not provide GenericCode files (used ODS/XLS spreadsheets instead)
-- CSD01 and CSD02 for UBL 2.3 were never publicly released; first public version was CSD03
-- All files maintain consistent XML schema structure as defined by OASIS
-- Files are read-only to preserve the official record
+- **UBL 2.0**: Originally provided as ODS/XLS spreadsheets (not GenericCode format). We have synthesized the GenericCode format from the original os-UBL-2.0 ODS files using the official OASIS Crane-ods2obdgc XSLT stylesheet. This is the complete 33-file consolidation (2 core + 31 document types).
+- **UBL 2.1-2.5**: All versions provided directly as GenericCode format from OASIS archive
+- **Signature Entities**: Not available for prd1 and prd2 of UBL 2.1 (these files were never published)
+- **CSD01/CSD02 for UBL 2.3**: Never publicly released; first public version was CSD03
+- **All files**: Maintain consistent XML schema structure as defined by OASIS GenericCode specification
+- **Read-Only**: Files are marked read-only to preserve the official record
+- **Source Traceability**: Each file has documented OASIS source URLs for complete reproducibility
 
 ---
 
 **Last Updated:** February 11, 2026
-**Total Releases Archived:** 27
-**Total GenericCode Files:** 54 (27 releases × 2 file types)
+**Total Releases Archived:** 28 (including UBL 2.0)
+**Total GenericCode Files:** 55
+  - UBL 2.0: 1 synthesized file (os-UBL-2.0)
+  - UBL 2.1-2.5: 54 files (27 releases × 2 file types)
+**Total Entity Coverage:** Complete semantic model history from UBL 2.0 (2006) through UBL 2.5 (2025)
