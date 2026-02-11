@@ -17,10 +17,11 @@ For complete documentation about this archive, including:
 
 Each release is organized following the official OASIS naming convention:
 
+**Direct from OASIS (ODS source files and GenericCode files):**
 ```
 history/
 ├── os-UBL-2.0/mod/
-│   ├── UBL-Entities-2.0.gc              (synthesized from 30 ODS files)
+│   └── UBL-*.ods files                  (30 ODS source files from OASIS)
 │
 ├── prd1-UBL-2.1/mod/
 ├── prd2-UBL-2.1/mod/
@@ -35,6 +36,13 @@ history/
     └── UBL-Signature-Entities-2.5.gc
 ```
 
+**Generated/Synthesized files (separated):**
+```
+history/generated/
+├── os-UBL-2.0/mod/
+│   └── UBL-Entities-2.0.gc              (synthesized from 30 ODS files)
+```
+
 **Total**: 28 releases, 55 GenericCode files
 
 ## Quick Links
@@ -46,11 +54,12 @@ history/
 
 ## Key Notes
 
-- **UBL 2.0**: Synthesized from 30 ODS source files using OASIS Crane-ods2obdgc tool
-- **UBL 2.1-2.5**: Direct GenericCode files downloaded from OASIS archive
+- **UBL 2.0 ODS Sources** (`history/os-UBL-2.0/mod/`): 30 ODS files downloaded directly from OASIS os-UBL-2.0
+- **UBL 2.0 GenericCode** (`history/generated/os-UBL-2.0/mod/`): Synthesized from ODS files using OASIS Crane-ods2obdgc tool
+- **UBL 2.1-2.5**: Direct GenericCode files downloaded from OASIS archive (in `history/` root)
 - **Complete Coverage**: All intermediate release stages for historical tracking
 - **Source Traceability**: Every file has documented OASIS source URLs
-- **Read-Only**: Files preserved exactly as published (except UBL 2.0, which is synthesized)
+- **Separation of Generated vs. Downloaded**: Synthesized files kept in `history/generated/` to clearly distinguish from pure OASIS files
 
 ---
 

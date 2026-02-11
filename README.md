@@ -14,18 +14,26 @@ This repository maintains a complete historical archive of UBL (Universal Busine
 ├── docs/
 │   └── historical-releases.md         (complete list of all UBL versions with OASIS URLs)
 └── history/
-    ├── README.md                      (brief overview, points to root documentation)
+    ├── README.md                      (brief overview)
+    │
     ├── os-UBL-2.0/mod/
-    │   ├── UBL-Entities-2.0.gc        (synthesized from 33 ODS files)
-    │   └── README.md                  (stored GC files from OASIS)
-    ├── prd1-UBL-2.1/mod/
+    │   └── UBL-*.ods files            (30 ODS source files from OASIS os-UBL-2.0)
+    │
+    ├── prd1-UBL-2.1/mod/              (GenericCode files from OASIS)
     │   ├── UBL-Entities-2.1.gc
     │   └── UBL-Signature-Entities-2.1.gc
-    ├── ... (other intermediate releases)
-    └── csd02-UBL-2.5/mod/
-        ├── UBL-Entities-2.5.gc
-        └── UBL-Signature-Entities-2.5.gc
+    │
+    ├── ... (other UBL 2.1-2.5 releases from OASIS)
+    │
+    └── generated/                     (Generated/Synthesized files)
+        └── os-UBL-2.0/mod/
+            └── UBL-Entities-2.0.gc    (synthesized from 30 ODS files)
 ```
+
+**Key Structure Notes:**
+- `history/` contains files directly from OASIS (ODS and GenericCode)
+- `history/generated/` contains files we created/synthesized (currently just UBL 2.0 GenericCode)
+- Version directories follow OASIS naming convention: `{release-stage}-UBL-{version}/mod/`
 
 ## UBL 2.0 GenericCode Synthesis
 
@@ -33,12 +41,13 @@ This repository maintains a complete historical archive of UBL (Universal Busine
 
 UBL 2.0 (2006) was originally released as ODS (OpenDocument Spreadsheet) files, not GenericCode format. We have synthesized a GenericCode representation from the official OASIS UBL 2.0 source files to enable complete git history tracking from UBL 2.0 through 2.5.
 
-**File**: `/history/os-UBL-2.0/mod/UBL-Entities-2.0.gc`
+**Generated File**: `/history/generated/os-UBL-2.0/mod/UBL-Entities-2.0.gc`
 - **Source Release**: os-UBL-2.0 (Official Standard, 2006-12-12)
 - **Status**: Final, approved OASIS standard
 - **File Size**: 3.3 MB
 - **Entity Rows**: 2,181
-- **Source Files**: 33 ODS files consolidated (2 core + 31 document types)
+- **Source Files**: 30 ODS files consolidated (2 core + 28 document types)
+  - Located in: `/history/os-UBL-2.0/mod/` (all downloaded directly from OASIS)
 
 ### Source Data (All 33 ODS Files)
 
@@ -240,11 +249,12 @@ done
 
 ## Notes
 
-- **UBL 2.0**: Synthesized from ODS files via Crane-ods2obdgc (official OASIS tool)
+- **UBL 2.0 ODS Sources** (`history/os-UBL-2.0/mod/`): Downloaded from OASIS archive (2006)
+- **UBL 2.0 GenericCode** (`history/generated/os-UBL-2.0/mod/`): Synthesized via Crane-ods2obdgc (official OASIS tool)
 - **UBL 2.1-2.5**: Direct GenericCode files from OASIS
 - **Signature Entities**: Not available for prd1/prd2 of UBL 2.1 (never published)
 - **CSD01/CSD02 UBL 2.3**: Not publicly released; first release was CSD03
-- **Read-Only**: All files are marked read-only to preserve the official record
+- **Generated vs. Downloaded**: Files we synthesized are separated in `history/generated/` to distinguish from pure OASIS files
 - **Complete Coverage**: Semantic model history from UBL 2.0 (2006) through UBL 2.5 (2025)
 
 ---
