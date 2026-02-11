@@ -6,15 +6,27 @@ The UBL GenericCode representation of the UBL Semantic Model
 
 This repository maintains a complete historical archive of UBL (Universal Business Language) GenericCode semantic model files from UBL 2.0 through UBL 2.5, including all intermediate release stages. This enables complete git-based version control and full blame tracking of semantic model evolution across 20 years of UBL development (2006-2026).
 
+## Quick Navigation
+
+- 📖 **[history/README.md](history/README.md)** - History directory overview and semantic model evolution
+- 🛠️ **[history/tools/README.md](history/tools/README.md)** - Tool documentation, provenance, and verification
+- 📋 **[docs/historical-releases.md](docs/historical-releases.md)** - Complete list of all UBL versions with URLs
+- 🏗️ **[ARCHITECTURE.md](ARCHITECTURE.md)** - System architecture and design decisions
+
 ## Directory Structure
 
 ```
 /home/user/ubl-gc/
 ├── README.md                          (this file - comprehensive documentation)
+├── ARCHITECTURE.md                    (system architecture & design)
 ├── docs/
 │   └── historical-releases.md         (complete list of all UBL versions with OASIS URLs)
 └── history/
-    ├── README.md                      (brief overview)
+    ├── README.md                      (history directory overview & evolution)
+    ├── tools/
+    │   ├── README.md                  (tool documentation, provenance, verification)
+    │   ├── CONVERSION_GUIDE.md        (step-by-step conversion instructions)
+    │   └── TOOL_VERIFICATION.md       (known issues, performance, maintenance)
     │
     ├── os-UBL-2.0/mod/
     │   └── UBL-*.ods files            (30 ODS source files from OASIS os-UBL-2.0)

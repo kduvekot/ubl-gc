@@ -1,6 +1,12 @@
 # ODS to GenericCode Conversion Guide
 
+📍 **Navigation:** [Main](../../README.md) › [History](../README.md) › [Tools](README.md) › Conversion Guide
+
 This guide explains how to use the tools in this directory to convert UBL ODS (OpenDocument Spreadsheet) files to GenericCode (GC) format.
+
+**Related Documentation:**
+- 🛠️ **[Tools Overview](README.md)** - Tool descriptions, provenance, and verification
+- 📊 **[Tool Verification](TOOL_VERIFICATION.md)** - Known issues, performance, maintenance
 
 ## Quick Start
 
