@@ -11,40 +11,40 @@ fi
 # Session URL for commit messages
 readonly SESSION_URL="https://claude.ai/code/session_01DootdmjSDVpY6qQJprMW84"
 
-# Initialize history branch (builds on origin/history)
+# Initialize history branch in /tmp (separate working directory)
 init_history_branch() {
     local branch="$1"
 
-    log_step "Initializing history branch: $branch"
+    log_step "Initializing history branch: $branch in /tmp"
 
-    # Check if branch already exists
-    if git rev-parse --verify "$branch" &>/dev/null; then
-        log_warning "Branch $branch already exists"
-        read -p "Delete and recreate? (y/N): " -n 1 -r
-        echo
-        if [[ $REPLY =~ ^[Yy]$ ]]; then
-            git branch -D "$branch" || die "Failed to delete existing branch"
-        else
-            die "Cannot proceed with existing branch"
-        fi
+    # Create temporary working directory for history branch
+    export HISTORY_WORK_DIR="/tmp/ubl-history-$$"
+
+    if [[ -d "$HISTORY_WORK_DIR" ]]; then
+        log_warning "Cleaning up existing temp directory..."
+        rm -rf "$HISTORY_WORK_DIR"
     fi
 
-    # Fetch origin/history if not up to date
-    log_info "Fetching origin/history..."
-    git fetch origin history || die "Failed to fetch origin/history"
+    mkdir -p "$HISTORY_WORK_DIR"
 
-    # Create new branch based on origin/history
-    git checkout -b "$branch" origin/history || die "Failed to create branch from origin/history"
+    log_info "History branch working directory: $HISTORY_WORK_DIR"
 
-    log_success "Branch $branch created from origin/history"
+    # Clone main repo with only history branch
+    log_info "Cloning history branch from main repo..."
+    git clone --single-branch --branch history "$REPO_ROOT" "$HISTORY_WORK_DIR" || die "Failed to clone history branch"
 
-    # Show current state
-    log_info "Current history:"
-    git log --oneline -3
+    # Go into the temp directory and create our new branch
+    cd "$HISTORY_WORK_DIR"
+    git checkout -b "$branch" || die "Failed to create branch $branch"
 
-    # Checkout back to main so builders can run
-    git checkout - >/dev/null 2>&1 || git checkout main
-    log_info "Switched back to main branch (history branch created and ready)"
+    log_success "History branch initialized in $HISTORY_WORK_DIR"
+    log_info "Current commit:"
+    git log --oneline -1
+
+    # Go back to main repo
+    cd "$REPO_ROOT"
+
+    log_success "Ready to build - main repo untouched, commits go to $HISTORY_WORK_DIR"
 }
 
 # Create a simple release commit (copies files and commits)
@@ -79,7 +79,10 @@ create_release_commit() {
         die "Some GenericCode files failed validation"
     fi
 
-    # Copy files to working directory
+    # Go to history work directory
+    cd "$HISTORY_WORK_DIR" || die "HISTORY_WORK_DIR not set or doesn't exist"
+
+    # Copy files from main repo to history work directory
     for gc_file in "${gc_files[@]}"; do
         local basename
         basename=$(basename "$gc_file")
@@ -121,6 +124,9 @@ $SESSION_URL"
     git commit -m "$commit_message" || die "Failed to create commit for $release"
 
     log_success "Commit created for $release"
+
+    # Return to main repo
+    cd "$REPO_ROOT"
 }
 
 # Multi-step schema transition: 6-step process
@@ -151,8 +157,13 @@ Next step: Populate new columns with data.
 
 $SESSION_URL"
 
+    # Go to history work directory
+    cd "$HISTORY_WORK_DIR" || die "HISTORY_WORK_DIR not set"
+
     # Create empty commit (documentation only)
+
     git commit --allow-empty -m "$commit_message" || die "Failed to create schema step 1 commit"
+    cd "$REPO_ROOT"
     log_success "Schema transition step 1/6 complete"
 }
 
@@ -170,10 +181,14 @@ Data transformation ensures backward compatibility where possible.
 
 Files remain at UBL $from_version structure with new columns populated.
 Next step: Mark old columns as deprecated.
+    # Go to history work directory
+    cd "$HISTORY_WORK_DIR" || die "HISTORY_WORK_DIR not set"
+
 
 $SESSION_URL"
 
     git commit --allow-empty -m "$commit_message" || die "Failed to create schema step 2 commit"
+    cd "$REPO_ROOT"
     log_success "Schema transition step 2/6 complete"
 }
 
@@ -187,6 +202,9 @@ create_schema_transition_step3() {
     local commit_message="Schema transition 3/6: Deprecate UBL $from_version columns
 
 Old columns from UBL $from_version are now marked as deprecated.
+    # Go to history work directory
+    cd "$HISTORY_WORK_DIR" || die "HISTORY_WORK_DIR not set"
+
 Both old and new columns coexist for transitional compatibility.
 
 Next step: Remove references to old columns.
@@ -194,6 +212,7 @@ Next step: Remove references to old columns.
 $SESSION_URL"
 
     git commit --allow-empty -m "$commit_message" || die "Failed to create schema step 3 commit"
+    cd "$REPO_ROOT"
     log_success "Schema transition step 3/6 complete"
 }
 
@@ -205,6 +224,9 @@ create_schema_transition_step4() {
     log_step "Schema Transition Step 4/6: Remove references to old columns"
 
     local commit_message="Schema transition 4/6: Remove references to deprecated columns
+    # Go to history work directory
+    cd "$HISTORY_WORK_DIR" || die "HISTORY_WORK_DIR not set"
+
 
 All references to deprecated UBL $from_version columns have been removed.
 System now uses only UBL $to_version column structure.
@@ -215,6 +237,7 @@ Next step: Remove deprecated columns entirely.
 $SESSION_URL"
 
     git commit --allow-empty -m "$commit_message" || die "Failed to create schema step 4 commit"
+    cd "$REPO_ROOT"
     log_success "Schema transition step 4/6 complete"
 }
 
@@ -222,6 +245,9 @@ $SESSION_URL"
 create_schema_transition_step5() {
     local from_version="$1"
     local to_version="$2"
+    # Go to history work directory
+    cd "$HISTORY_WORK_DIR" || die "HISTORY_WORK_DIR not set"
+
 
     log_step "Schema Transition Step 5/6: Remove deprecated columns"
 
@@ -235,6 +261,7 @@ Next step: Final cleanup and normalization.
 $SESSION_URL"
 
     git commit --allow-empty -m "$commit_message" || die "Failed to create schema step 5 commit"
+    cd "$REPO_ROOT"
     log_success "Schema transition step 5/6 complete"
 }
 
@@ -254,7 +281,10 @@ create_schema_transition_step6() {
         die "No GenericCode files found in $first_release_dir"
     fi
 
-    # Copy files
+    # Go to history work directory
+    cd "$HISTORY_WORK_DIR" || die "HISTORY_WORK_DIR not set"
+
+    # Copy files from main repo to history work directory
     for gc_file in "${gc_files[@]}"; do
         local basename
         basename=$(basename "$gc_file")
@@ -278,6 +308,9 @@ $SESSION_URL"
 
     git commit -m "$commit_message" || die "Failed to create schema step 6 commit"
     log_success "Schema transition step 6/6 complete - transition to UBL $to_version done!"
+
+    # Return to main repo
+    cd "$REPO_ROOT"
 }
 
 # Complete 6-step schema transition

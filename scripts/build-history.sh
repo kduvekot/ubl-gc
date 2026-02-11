@@ -52,17 +52,11 @@ main() {
         die "Must be on 'main' branch to build history, currently on: $current_branch"
     fi
 
-    # Initialize the history branch
+    # Initialize the history branch in /tmp
     init_history_branch "$HISTORY_BRANCH"
 
-    # Create a temporary directory to hold scripts during execution
-    local temp_scripts_dir
-    temp_scripts_dir=$(mktemp -d)
-    trap "rm -rf '$temp_scripts_dir'" EXIT
-
-    # Copy scripts to temp directory
-    log_info "Copying scripts to temporary directory..."
-    cp -r "$REPO_ROOT/scripts" "$temp_scripts_dir/"
+    # Clean up temp directory on exit
+    trap "rm -rf '$HISTORY_WORK_DIR'" EXIT
 
     # Run each version builder in sequence
     log_step "Building version-specific evolution"
@@ -74,12 +68,18 @@ main() {
 
         log_step "Builder $builder_count/${#BUILDERS[@]}: $builder"
 
-        # Run the builder from temp directory
-        local temp_builder="$temp_scripts_dir/$builder"
-        if ! bash "$temp_builder"; then
+        # Run the builder from main repo
+        local builder_path="$REPO_ROOT/$builder"
+        if ! bash "$builder_path"; then
             die "Builder failed: $builder"
         fi
     done
+
+    # Push history branch back to main repo
+    log_step "Pushing history branch to main repo"
+    cd "$HISTORY_WORK_DIR"
+    git push "$REPO_ROOT" "$HISTORY_BRANCH:$HISTORY_BRANCH" || die "Failed to push history branch"
+    cd "$REPO_ROOT"
 
     # Final summary
     log_step "History Branch Build Complete"
