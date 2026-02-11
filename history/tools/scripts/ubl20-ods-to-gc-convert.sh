@@ -16,7 +16,7 @@ set -e
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 TOOLS_DIR="$(dirname "$SCRIPT_DIR")"
 SAXON_JAR="$TOOLS_DIR/saxon9he/saxon9he.jar"
-XSLT_STYLESHEET="$TOOLS_DIR/crane-ods2obdgc/Crane-ods2obdgc.xsl"
+XSLT_STYLESHEET="$TOOLS_DIR/Crane-ods2obdgc/Crane-ods2obdgc.xsl"
 
 # Parameters
 OUTPUT_DIR="${1:-.}"
@@ -80,10 +80,13 @@ fi
 echo "Creating identification file..."
 cat > "$TMPDIR/ident-UBL-2.0.xml" << 'IDENT'
 <?xml version="1.0" encoding="UTF-8"?>
-<gc:Identification xmlns:gc="http://docs.oasis-open.org/codelist/ns/genericode/1.0/">
-  <gc:ShortName>UBL-2.0</gc:ShortName>
-  <gc:Version>2.0</gc:Version>
-</gc:Identification>
+<Identification>
+  <ShortName>UBL-2.0</ShortName>
+  <LongName>UBL Version 2.0 Semantic Model</LongName>
+  <Version>2.0</Version>
+  <CanonicalUri>urn:oasis:names:specification:ubl:2.0</CanonicalUri>
+  <CanonicalVersionUri>urn:oasis:names:specification:ubl:2.0</CanonicalVersionUri>
+</Identification>
 IDENT
 
 # Build ODS file list
