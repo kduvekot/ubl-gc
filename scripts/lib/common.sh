@@ -24,9 +24,6 @@ readonly SESSION_SUFFIX="bunUn"
 # History branch name (output branch)
 readonly HISTORY_BRANCH="claude/history-${SESSION_SUFFIX}"
 
-# Session URL for commit messages
-readonly SESSION_URL="https://claude.ai/code/session_01DootdmjSDVpY6qQJprMW84"
-
 # Logging functions
 log_info() {
     echo -e "${BLUE}[INFO]${NC} $*" >&2
