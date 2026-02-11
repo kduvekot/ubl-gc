@@ -41,6 +41,18 @@ jobs:
           echo "REPO_ROOT=$(pwd)" >> $GITHUB_ENV
           echo "HISTORY_BRANCH=${{ inputs.target_branch || 'history-test' }}" >> $GITHUB_ENV
 
+      - name: Debug - List repository structure
+        run: |
+          echo "Current directory: $(pwd)"
+          echo "Repository structure:"
+          ls -la
+          echo ""
+          echo "Scripts directory:"
+          ls -la scripts/ || echo "scripts/ not found"
+          echo ""
+          echo "Scripts/versions directory:"
+          ls -la scripts/versions/ || echo "scripts/versions/ not found"
+
       - name: Verify all GenericCode files present
         run: |
           echo "Checking for GenericCode files..."
