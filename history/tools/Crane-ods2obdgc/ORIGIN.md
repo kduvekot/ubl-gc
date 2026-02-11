@@ -94,14 +94,46 @@ This tool is integrated into the official OASIS UBL build process:
 - **Usage**: Part of official UBL release generation
 - **Maintained By**: OASIS UBL Technical Committee with Crane Softwrights contributions
 
-## Verification
+## Verification & Authenticity
 
-To verify the authenticity of this tool:
+### ✅ Verified Against Official Repository
 
-1. **Check OASIS Repository**: https://github.com/oasis-tcs/ubl/tree/utilities/Crane-ods2obdgc
-2. **Verify Checksums**: Compare files with official OASIS distribution
-3. **Check Copyright**: Verify header comments in .xsl files
-4. **Contact Crane Softwrights**: info@CraneSoftwrights.com or +1 (613) 489-0999
+This tool has been verified to match the official OASIS UBL TC repository:
+
+**Official Repository Location:**
+- **Clone**: https://github.com/oasis-tcs/ubl.git
+- **Path in Repo**: `utilities/Crane-ods2obdgc/`
+- **Local Backup**: `/tmp/ubl-official/utilities/Crane-ods2obdgc/`
+
+**Verification Results:**
+```
+File: Crane-ods2obdgc.xsl
+MD5 Hash (Local):    e017a278fcdfb9f767b8a1893bb13f6c
+MD5 Hash (Official): e017a278fcdfb9f767b8a1893bb13f6c
+Status: ✅ IDENTICAL
+```
+
+All support files also verified:
+- ✅ Empty CCTS Model.ods
+- ✅ exampleIdentification.xml
+- ✅ massageModelName-2.1.xml
+- ✅ readme-Crane-ods2obdgc.txt
+- ✅ support/odsCommon.xsl
+- ✅ support/gcExportSubset.xsl
+- ✅ support/readme-Crane-ods2obdgc.html
+
+### Additional Verification Methods
+
+1. **Clone Official Repository**: https://github.com/oasis-tcs/ubl.git
+2. **Compare File Checksums**:
+   ```bash
+   md5sum history/tools/Crane-ods2obdgc/Crane-ods2obdgc.xsl
+   # Expected: e017a278fcdfb9f767b8a1893bb13f6c
+   ```
+3. **Check Copyright Headers**: All files retain original OASIS/Crane Softwrights copyright
+4. **Contact**:
+   - **Crane Softwrights**: info@CraneSoftwrights.com or +1 (613) 489-0999
+   - **OASIS UBL TC**: ubl-development@lists.oasis-open.org
 
 ## How This Tool Was Used in This Archive
 
