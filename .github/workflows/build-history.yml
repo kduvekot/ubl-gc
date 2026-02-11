@@ -108,7 +108,17 @@ jobs:
             git remote add origin "$MAIN_REMOTE_URL"
           fi
 
-          echo "Remote URL configured: $MAIN_REMOTE_URL"
+          # CRITICAL: Copy GitHub Actions authentication config
+          # The token is passed via http.extraheader, not in the URL
+          AUTH_HEADER=$(cd $REPO_ROOT && git config --get http.https://github.com/.extraheader || echo "")
+          if [ -n "$AUTH_HEADER" ]; then
+            git config http.https://github.com/.extraheader "$AUTH_HEADER"
+            echo "✓ GitHub authentication configured"
+          else
+            echo "⚠ Warning: No GitHub auth header found"
+          fi
+
+          echo "Remote URL: $MAIN_REMOTE_URL"
 
       - name: Build UBL 2.0 history
         run: |
