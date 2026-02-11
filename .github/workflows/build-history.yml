@@ -6,11 +6,12 @@ on:
       target_branch:
         description: 'Target history branch name'
         required: true
-        default: 'history'
+        default: 'history-test'
         type: string
   push:
     branches:
       - main
+      - 'claude/git-history-exploration-bunUn'  # Test on feature branch
     paths:
       - 'scripts/**'
       - 'history/**'
@@ -38,7 +39,7 @@ jobs:
       - name: Set up environment
         run: |
           echo "REPO_ROOT=$(pwd)" >> $GITHUB_ENV
-          echo "HISTORY_BRANCH=${{ inputs.target_branch || 'history' }}" >> $GITHUB_ENV
+          echo "HISTORY_BRANCH=${{ inputs.target_branch || 'history-test' }}" >> $GITHUB_ENV
 
       - name: Verify all GenericCode files present
         run: |
