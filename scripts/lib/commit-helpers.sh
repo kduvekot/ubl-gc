@@ -21,7 +21,19 @@ export GIT_COMMITTER_EMAIL="${GIT_COMMITTER_EMAIL:-ubl-tc@oasis-open.org}"
 # Usage: get_release_date "prd-UBL-2.0"
 get_release_date() {
     local stage="$1"
-    local dates_file="${REPO_ROOT}/docs/historical-releases.md"
+
+    # Find the dates file (try both REPO_ROOT and relative to script)
+    local dates_file=""
+    if [ -n "${REPO_ROOT:-}" ] && [ -f "${REPO_ROOT}/docs/historical-releases.md" ]; then
+        dates_file="${REPO_ROOT}/docs/historical-releases.md"
+    elif [ -f "$(dirname "$SCRIPT_DIR")/docs/historical-releases.md" ]; then
+        dates_file="$(dirname "$SCRIPT_DIR")/docs/historical-releases.md"
+    else
+        echo "ERROR: Cannot find historical-releases.md" >&2
+        date=$(date -u +"%Y-%m-%d")
+        echo "$date"
+        return
+    fi
 
     # Extract ISO date from the markdown table
     # Format: | Stage Name | stage-UBL-X.X | YYYY-MM-DD | URL |
@@ -29,7 +41,7 @@ get_release_date() {
                  grep -oE '[0-9]{4}-[0-9]{2}-[0-9]{2}' | head -1)
 
     if [ -z "$date" ]; then
-        log_warn "No date found for $stage, using current date"
+        echo "WARN: No date found for $stage in $dates_file" >&2
         date=$(date -u +"%Y-%m-%d")
     fi
 
