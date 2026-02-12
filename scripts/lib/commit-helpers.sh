@@ -26,10 +26,12 @@ get_release_date() {
     local dates_file=""
     if [ -n "${REPO_ROOT:-}" ] && [ -f "${REPO_ROOT}/docs/historical-releases.md" ]; then
         dates_file="${REPO_ROOT}/docs/historical-releases.md"
+        echo "DEBUG: Found dates file at: $dates_file" >&2
     elif [ -f "$(dirname "$SCRIPT_DIR")/docs/historical-releases.md" ]; then
         dates_file="$(dirname "$SCRIPT_DIR")/docs/historical-releases.md"
+        echo "DEBUG: Found dates file at: $dates_file" >&2
     else
-        echo "ERROR: Cannot find historical-releases.md" >&2
+        echo "ERROR: Cannot find historical-releases.md (REPO_ROOT=${REPO_ROOT:-unset}, SCRIPT_DIR=${SCRIPT_DIR:-unset})" >&2
         date=$(date -u +"%Y-%m-%d")
         echo "$date"
         return
@@ -41,8 +43,12 @@ get_release_date() {
                  grep -oE '[0-9]{4}-[0-9]{2}-[0-9]{2}' | head -1)
 
     if [ -z "$date" ]; then
-        echo "WARN: No date found for $stage in $dates_file" >&2
+        echo "ERROR: No date found for '$stage' in $dates_file" >&2
+        echo "DEBUG: Grep result:" >&2
+        grep -E "^\|.*\|.*${stage}.*\|" "$dates_file" >&2 || echo "  (no matches)" >&2
         date=$(date -u +"%Y-%m-%d")
+    else
+        echo "DEBUG: Found date $date for $stage" >&2
     fi
 
     echo "$date"
