@@ -9,7 +9,7 @@ if [[ -z "${REPO_ROOT:-}" ]]; then
 fi
 
 # Session URL for commit messages
-readonly SESSION_URL="https://claude.ai/code/session_01DootdmjSDVpY6qQJprMW84"
+readonly SESSION_URL="https://claude.ai/code/session_01B5kfoVeuncQaSCz9nX4H1j"
 
 # Git commit author configuration
 export GIT_AUTHOR_NAME="${GIT_AUTHOR_NAME:-OASIS UBL TC}"

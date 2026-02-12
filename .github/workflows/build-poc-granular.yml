@@ -1,4 +1,4 @@
-name: Build PoC - Ultra-Granular History
+name: Build PoC - ABIE-Level History
 
 on:
   workflow_dispatch:
@@ -10,299 +10,222 @@ on:
         default: true
   push:
     branches:
-      - 'claude/git-history-exploration-bunUn'
+      - 'claude/review-ubl-build-scripts-wsfi6'
     paths:
       - '.github/workflows/build-poc-granular.yml'
       - 'scripts/lib/gc_*.py'
+      - 'scripts/build-poc-granular.sh'
 
 permissions:
-  contents: write  # Need write access to push to PoC branch
+  contents: write
 
 jobs:
   build-poc:
     runs-on: ubuntu-latest
-    timeout-minutes: 90
+    timeout-minutes: 30
+
+    env:
+      POC_BRANCH: claude/poc-abie-history-wsfi6
+      SOURCE_FILE: history/generated/prd-UBL-2.0/mod/UBL-Entities-2.0.gc
+      TARGET_FILE: UBL-Entities.gc
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # Full history
-          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
 
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
+          python-version: '3.12'
 
       - name: Configure Git
         run: |
-          git config --global user.name "OASIS UBL TC"
-          git config --global user.email "ubl-tc@oasis-open.org"
-          git config --global commit.gpgsign false
-
-      - name: Set up environment
-        run: |
-          echo "REPO_ROOT=$(pwd)" >> $GITHUB_ENV
-          echo "POC_BRANCH=claude/poc-granular-history-bunUn" >> $GITHUB_ENV
-          echo "SOURCE_FILE=history/generated/prd-UBL-2.0/mod/UBL-Entities-2.0.gc" >> $GITHUB_ENV
-          echo "TARGET_FILE=UBL-Entities.gc" >> $GITHUB_ENV
-
-      - name: Delete existing PoC branch if requested
-        if: ${{ inputs.clean_start }}
-        run: |
-          cd "$REPO_ROOT"
-          if git ls-remote --heads origin $POC_BRANCH | grep -q $POC_BRANCH; then
-            echo "Deleting existing remote branch..."
-            git push origin --delete $POC_BRANCH || true
-          fi
-
-      - name: Set up working directory for PoC
-        run: |
-          # Use /tmp for isolation (same pattern as history branch workflow)
-          export POC_WORK_DIR="/tmp/ubl-poc-$$"
-          echo "POC_WORK_DIR=$POC_WORK_DIR" >> $GITHUB_ENV
-
-          echo "Creating new PoC branch in temp directory..."
-          mkdir -p "$POC_WORK_DIR"
-          cd "$POC_WORK_DIR"
-
-          # Initialize fresh repo with orphan branch
-          git init
-          git checkout --orphan "$POC_BRANCH"
-
-          # Configure git
           git config user.name "OASIS UBL TC"
           git config user.email "ubl-tc@oasis-open.org"
-          git config commit.gpgsign false
 
-          # Set up authenticated remote
-          REMOTE_URL=$(cd $REPO_ROOT && git remote get-url origin)
-          git remote add origin "$REMOTE_URL"
-
-          # CRITICAL: Copy GitHub Actions authentication config
-          # The token is passed via http.extraheader, not in the URL
-          AUTH_HEADER=$(cd $REPO_ROOT && git config --get http.https://github.com/.extraheader || echo "")
-          if [ -n "$AUTH_HEADER" ]; then
-            git config http.https://github.com/.extraheader "$AUTH_HEADER"
-            echo "✓ GitHub authentication configured"
-          else
-            echo "⚠ Warning: No GitHub auth header found"
+      - name: Delete existing PoC branch (if clean start)
+        if: inputs.clean_start != false
+        run: |
+          if git ls-remote --heads origin "$POC_BRANCH" | grep -q "$POC_BRANCH"; then
+            echo "Deleting existing remote branch $POC_BRANCH..."
+            git push origin --delete "$POC_BRANCH" || true
           fi
+          git branch -D "$POC_BRANCH" 2>/dev/null || true
 
-          echo "✓ Initialized PoC branch in $POC_WORK_DIR"
+      - name: Create orphan branch
+        run: |
+          git checkout --orphan "$POC_BRANCH"
+          git rm -rf --cached . 2>/dev/null || true
+          git clean -fd 2>/dev/null || true
+
+      - name: Restore source files
+        run: |
+          # Restore only what we need from main branch
+          git checkout "${{ github.sha }}" -- "$SOURCE_FILE"
+          git checkout "${{ github.sha }}" -- scripts/lib/gc_analyzer.py
+          git checkout "${{ github.sha }}" -- scripts/lib/gc_builder.py
+          git checkout "${{ github.sha }}" -- scripts/lib/gc_commit_builder.py
 
       - name: Create initial README
         run: |
-          cd "$POC_WORK_DIR"
+          cat > README.md << 'READMEEOF'
+          # UBL GenericCode Evolution - Proof of Concept (ABIE-Level)
 
-          cat > README-POC.md << 'EOF'
-          # UBL GenericCode Evolution - Proof of Concept
-
-          This branch demonstrates **ultra-granular git history** for UBL semantic model evolution.
+          This branch demonstrates **ABIE-level git history** for UBL semantic model evolution.
 
           ## What is this?
 
           A proof-of-concept showing UBL 2.0 PRD built incrementally:
-          - **232 commits** for one release
-          - Each commit adds one element (ABIE, BBIE, or ASBIE)
-          - File is valid XML at every commit
-          - No forward references
+          - **~131 commits** for one release (1 skeleton + 130 ABIE groups)
+          - Each commit adds one complete ABIE (with all its BBIEs and ASBIEs)
+          - File is valid GenericCode XML at every commit
+          - No forward references (topologically sorted using Tarjan's SCC algorithm)
+          - One cycle group (4 mutually dependent ABIEs committed together)
 
           ## Build Strategy
 
-          **Phase 1: Leaf ABIEs (34 commits)**
-          - Add ABIEs with no dependencies
-          - Complete with all BBIEs and ASBIEs
+          ABIEs are added in **dependency order** (leaves first, documents last):
 
-          **Phase 2: Non-leaf ABIEs + BBIEs (99 commits)**
-          - Add ABIEs with dependencies
-          - Include BBIEs only (defer ASBIEs)
-
-          **Phase 3: ASBIEs (99 commits)**
-          - Add deferred ASBIEs
-          - All references now valid
-
-          ## Viewing the History
-
-          ```bash
-          # Clone the repository and checkout this branch
-          git clone https://github.com/${{ github.repository }}.git
-          cd ubl-gc
-          git checkout claude/poc-granular-history-bunUn
-
-          # See all commits
-          git log --oneline --graph
-
-          # See first 20 commits
-          git log --oneline -20
-
-          # See a specific commit
-          git show <commit-hash>
-
-          # See the file at a specific point
-          git show <commit-hash>:UBL-Entities.gc
-
-          # See what changed in each commit
-          git log --patch UBL-Entities.gc
-          ```
-
-          ## Example Commits
-
-          The history shows the incremental build process:
-
-          ```
-          🌱 Step 1/232: Add leaf ABIE: Address Line. Details
-          🌱 Step 2/232: Add leaf ABIE: Classification Category. Details
-          ...
-          🏗️ Step 35/232: Add ABIE+BBIEs: Application Response. Details
-          ...
-          🔗 Step 134/232: Add ASBIEs: Application Response. Details
-          ```
+          1. **Skeleton** - Empty GenericCode file with header and column definitions
+          2. **Leaf ABIEs** - ABIEs with no external dependencies (Address Line, Country, etc.)
+          3. **Dependent ABIEs** - ABIEs that reference others (topologically sorted)
+          4. **Cycle group** - Mutually dependent ABIEs committed together (Despatch Line + Receipt Line + Shipment + Transport Handling Unit)
+          5. **Document ABIEs** - Top-level documents (Invoice, Order, etc.)
 
           ## Statistics
 
-          - **Total commits**: 233 (1 initial + 232 build steps)
-          - **Total rows added**: 1,604
-          - **ABIEs**: 133
-          - **Leaf ABIEs**: 34
-          - **Non-leaf ABIEs**: 99
+          | Metric | Count |
+          |--------|-------|
+          | Total commits | ~131 |
+          | Total rows | 1,604 |
+          | ABIEs | 133 |
+          | BBIEs | 848 |
+          | ASBIEs | 623 |
+          | Cycle groups | 1 (4 ABIEs) |
+          | Self-referencing ABIEs | 5 |
 
-          ## Evolution Potential
+          ## Commit Message Format
 
-          If applied to all 35 UBL releases with transitions:
-          - **~8,120 commits** showing complete evolution
-          - From UBL 2.0 (2006) to UBL 2.5 (2025)
-          - Every element addition visible as a commit
+          ```
+          UBL 2.0 PRD [42/130]: Add "Party"
+
+          ABIE: Party
+          Components: 3 BBIEs, 9 ASBIEs
+          Total rows: 13
+          ```
 
           ---
 
           Built with GitHub Actions
-          Workflow run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
-          EOF
+          READMEEOF
 
-          git add README-POC.md
-          git commit -m "📋 Initialize PoC: Ultra-granular UBL history
+          git add README.md
+          git commit -m "Initialize PoC: ABIE-level UBL history
 
           This branch demonstrates building UBL GenericCode files
-          incrementally with one commit per element addition.
+          incrementally with one commit per ABIE group.
 
-          For UBL 2.0 prd: 232+ commits showing element-by-element evolution.
+          For UBL 2.0 PRD: ~131 commits showing ABIE-by-ABIE evolution.
+          Strategy: Tarjan's SCC + topological sort for dependency ordering.
 
-          Workflow: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          Workflow: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
 
-          echo "✓ Created initial commit"
+          https://claude.ai/code/session_01B5kfoVeuncQaSCz9nX4H1j"
 
-      - name: Copy Python scripts and source file
+      - name: Build ABIE-level commits
         run: |
-          cd "$POC_WORK_DIR"
+          cd "$GITHUB_WORKSPACE"
 
-          # Copy Python analyzer/builder from main repo
-          mkdir -p scripts/lib
-          cp "$REPO_ROOT"/scripts/lib/gc_analyzer.py scripts/lib/
-          cp "$REPO_ROOT"/scripts/lib/gc_builder.py scripts/lib/
-          cp "$REPO_ROOT"/scripts/lib/gc_commit_builder.py scripts/lib/
-
-          # Copy source file
-          mkdir -p $(dirname "$SOURCE_FILE")
-          cp "$REPO_ROOT/$SOURCE_FILE" "$SOURCE_FILE"
-
-          echo "✓ Copied scripts and source file"
-
-      - name: Run PoC builder
-        run: |
-          cd "$POC_WORK_DIR"
-
-          python3 << 'PYTHON_SCRIPT'
+          python3 << 'PYEOF'
           import sys
-          import os
-
-          # Add lib to path
           sys.path.insert(0, 'scripts/lib')
 
           from gc_analyzer import GCAnalyzer
           from gc_builder import GCBuilder
           from gc_commit_builder import GCCommitBuilder
+          import os
 
           SOURCE_FILE = os.environ['SOURCE_FILE']
           TARGET_FILE = os.environ['TARGET_FILE']
 
-          print("="*70)
+          print("=" * 70)
           print("ANALYZING SOURCE FILE")
-          print("="*70)
+          print("=" * 70)
 
           analyzer = GCAnalyzer(SOURCE_FILE)
           analyzer.parse()
           analyzer.build_abies()
           analyzer.build_dependency_graph()
+          analyzer.find_sccs_tarjan()
+          analyzer.topological_sort_sccs()
 
-          print("\n" + "="*70)
+          print("\n" + "=" * 70)
           print("PLANNING BUILD")
-          print("="*70)
+          print("=" * 70)
 
           builder = GCBuilder(analyzer)
           steps = builder.plan_build()
           print(builder.generate_build_plan_summary())
 
-          print("\n" + "="*70)
+          print("\n" + "=" * 70)
           print("CREATING COMMITS")
-          print("="*70)
+          print("=" * 70)
 
           commit_builder = GCCommitBuilder(SOURCE_FILE, TARGET_FILE, '.')
+          commit_builder.analyzer_abies = analyzer.abies
 
-          # Create initial empty file
           print("\nCreating initial empty GenericCode file...")
           commit_builder.create_empty_gc_file()
-          commit_builder._git_add_and_commit("📋 Initialize empty GenericCode file structure")
+          commit_builder._git_add_and_commit(
+              "UBL 2.0 PRD: Initialize GenericCode file structure\n\n"
+              "Empty file with header, column definitions, and empty SimpleCodeList.\n"
+              "Source: UBL 2.0 Proposed Recommendation Draft (2006)"
+          )
 
-          # Build incrementally
           commit_builder.build_incremental(steps)
 
-          print("\n" + "="*70)
-          print("✓ BUILD COMPLETE - 232+ commits created!")
-          print("="*70)
-          PYTHON_SCRIPT
+          print("\n" + "=" * 70)
+          print(f"BUILD COMPLETE: {len(steps) + 1} commits created")
+          print("=" * 70)
+          PYEOF
 
-      - name: Push PoC branch with retry
+      - name: Push PoC branch
         run: |
-          cd "$POC_WORK_DIR"
-
           MAX_RETRIES=4
-          RETRY_DELAY=2
+          DELAY=2
 
           for i in $(seq 1 $MAX_RETRIES); do
-            if git push -u origin $POC_BRANCH; then
-              echo "✓ Push successful!"
+            if git push -u origin "$POC_BRANCH" --force; then
+              echo "Push successful!"
               exit 0
+            fi
+            if [ $i -lt $MAX_RETRIES ]; then
+              echo "Push failed, retrying in ${DELAY}s..."
+              sleep $DELAY
+              DELAY=$((DELAY * 2))
             else
-              if [ $i -lt $MAX_RETRIES ]; then
-                echo "Push failed, retrying in ${RETRY_DELAY}s..."
-                sleep $RETRY_DELAY
-                RETRY_DELAY=$((RETRY_DELAY * 2))
-              else
-                echo "❌ Push failed after $MAX_RETRIES attempts"
-                exit 1
-              fi
+              echo "Push failed after $MAX_RETRIES attempts"
+              exit 1
             fi
           done
 
       - name: Summary
         if: always()
         run: |
-          cd "$POC_WORK_DIR"
-          COMMIT_COUNT=$(git rev-list --count $POC_BRANCH)
-
-          echo "="*70
-          echo "PoC Build Summary"
-          echo "="*70
-          echo ""
-          echo "Branch: $POC_BRANCH"
-          echo "Commits: $COMMIT_COUNT"
-          echo "File: $TARGET_FILE"
-          echo ""
-          echo "View the history:"
-          echo "  git clone ${{ github.server_url }}/${{ github.repository }}.git"
-          echo "  cd ubl-gc"
-          echo "  git checkout $POC_BRANCH"
-          echo "  git log --oneline --graph"
-          echo ""
+          COMMIT_COUNT=$(git rev-list --count HEAD 2>/dev/null || echo "unknown")
+          echo "## PoC Build Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Property | Value |" >> $GITHUB_STEP_SUMMARY
+          echo "|----------|-------|" >> $GITHUB_STEP_SUMMARY
+          echo "| Branch | \`$POC_BRANCH\` |" >> $GITHUB_STEP_SUMMARY
+          echo "| Commits | $COMMIT_COUNT |" >> $GITHUB_STEP_SUMMARY
+          echo "| File | \`$TARGET_FILE\` |" >> $GITHUB_STEP_SUMMARY
+          echo "| Strategy | ABIE-level (Tarjan SCC + topological sort) |" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "View:" >> $GITHUB_STEP_SUMMARY
+          echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
+          echo "git fetch origin $POC_BRANCH" >> $GITHUB_STEP_SUMMARY
+          echo "git log --oneline origin/$POC_BRANCH" >> $GITHUB_STEP_SUMMARY
+          echo "\`\`\`" >> $GITHUB_STEP_SUMMARY

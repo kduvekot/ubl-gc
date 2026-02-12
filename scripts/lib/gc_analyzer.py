@@ -5,19 +5,16 @@ GenericCode File Analyzer
 Analyzes UBL GenericCode (.gc) files to:
 1. Parse the semantic model structure
 2. Build dependency graphs between ABIEs
-3. Perform topological sort for bottom-up ordering
-4. Determine optimal insertion order for git history
+3. Find strongly connected components (Tarjan's algorithm)
+4. Produce topological ordering of SCC-condensed DAG
+5. Determine optimal ABIE-group insertion order for git history
 """
 
 import xml.etree.ElementTree as ET
 from dataclasses import dataclass, field
-from typing import Dict, List, Set, Tuple, Optional
+from typing import Dict, List, Set, Optional
 from collections import defaultdict
 import sys
-
-
-# Namespace for GenericCode XML
-NS = {'gc': 'http://docs.oasis-open.org/codelist/ns/genericode/1.0/'}
 
 
 @dataclass
@@ -50,6 +47,20 @@ class ABIE:
         return hash(self.name)
 
 
+@dataclass
+class SCCGroup:
+    """A strongly connected component - one or more ABIEs that form a cycle"""
+    index: int
+    members: List[str]  # Object class names
+    is_cycle: bool  # True if more than one member, or self-referencing
+
+    @property
+    def label(self) -> str:
+        if len(self.members) == 1:
+            return self.members[0]
+        return " + ".join(sorted(self.members))
+
+
 class GCAnalyzer:
     """Analyzes GenericCode files and builds dependency graphs"""
 
@@ -60,13 +71,15 @@ class GCAnalyzer:
         self.rows: List[Row] = []
         self.abies: Dict[str, ABIE] = {}  # object_class -> ABIE
         self.dependency_graph: Dict[str, Set[str]] = defaultdict(set)
+        self.sccs: List[SCCGroup] = []
+        self.scc_order: List[SCCGroup] = []  # Topologically sorted
 
     def parse(self) -> None:
         """Parse the GenericCode XML file"""
         self.tree = ET.parse(self.file_path)
         self.root = self.tree.getroot()
 
-        # Parse all rows - Row elements are NOT in gc namespace
+        # Parse all rows
         row_elements = self.root.findall('.//Row')
 
         for idx, row_elem in enumerate(row_elements, start=1):
@@ -79,7 +92,6 @@ class GCAnalyzer:
     def _parse_row(self, row_elem: ET.Element, row_num: int) -> Optional[Row]:
         """Parse a single row element"""
         values = {}
-        # Value and SimpleValue are NOT in gc namespace
         for value_elem in row_elem.findall('Value'):
             col_ref = value_elem.get('ColumnRef')
             simple_value = value_elem.find('SimpleValue')
@@ -107,7 +119,6 @@ class GCAnalyzer:
 
         for row in self.rows:
             if row.component_type == 'ABIE':
-                # Start new ABIE
                 current_abie = ABIE(
                     name=row.dictionary_entry_name,
                     object_class=row.object_class,
@@ -116,174 +127,189 @@ class GCAnalyzer:
                 self.abies[row.object_class] = current_abie
 
             elif row.component_type == 'BBIE' and current_abie:
-                # Add BBIE to current ABIE
                 current_abie.bbies.append(row)
 
             elif row.component_type == 'ASBIE' and current_abie:
-                # Add ASBIE to current ABIE
                 current_abie.asbies.append(row)
-
-                # Track dependency
                 if row.associated_object_class:
                     current_abie.depends_on.add(row.associated_object_class)
 
         print(f"Built {len(self.abies)} ABIEs")
 
-        # Print dependency summary
-        leaf_count = sum(1 for abie in self.abies.values() if not abie.depends_on)
-        print(f"  - {leaf_count} leaf ABIEs (no dependencies)")
-        print(f"  - {len(self.abies) - leaf_count} ABIEs with dependencies")
+        leaf_count = sum(1 for abie in self.abies.values()
+                         if not abie.depends_on - {abie.object_class})
+        print(f"  - {leaf_count} leaf ABIEs (no external dependencies)")
+        print(f"  - {len(self.abies) - leaf_count} ABIEs with external dependencies")
 
     def build_dependency_graph(self) -> None:
-        """Build directed graph of ABIE dependencies"""
+        """Build directed graph of ABIE dependencies (excluding self-refs)"""
         for obj_class, abie in self.abies.items():
             for dep in abie.depends_on:
-                # Skip self-references
                 if dep != obj_class and dep in self.abies:
                     self.dependency_graph[obj_class].add(dep)
 
-        print(f"Built dependency graph with {len(self.dependency_graph)} nodes")
+        print(f"Built dependency graph with {len(self.dependency_graph)} nodes with edges")
 
-    def topological_sort(self) -> List[str]:
+    def find_sccs_tarjan(self) -> List[SCCGroup]:
         """
-        Perform topological sort to get bottom-up ordering.
-        Returns list of object class names in dependency order.
-
-        ABIEs with no dependencies come first, then ABIEs that depend on them, etc.
+        Find strongly connected components using Tarjan's algorithm.
+        Returns SCCs in reverse topological order (leaves first).
         """
-        # Kahn's algorithm
-        in_degree = {obj_class: 0 for obj_class in self.abies}
+        index_counter = [0]
+        stack = []
+        lowlink = {}
+        index = {}
+        on_stack = {}
+        sccs_raw = []
 
-        # Calculate in-degrees
-        for obj_class in self.abies:
-            for dep in self.dependency_graph[obj_class]:
-                in_degree[dep] += 1
+        def strongconnect(v):
+            index[v] = index_counter[0]
+            lowlink[v] = index_counter[0]
+            index_counter[0] += 1
+            stack.append(v)
+            on_stack[v] = True
 
-        # Start with nodes that have no incoming edges (leaves)
-        queue = [obj_class for obj_class, degree in in_degree.items() if degree == 0]
-        result = []
+            for w in self.dependency_graph.get(v, set()):
+                if w not in self.abies:
+                    continue
+                if w not in index:
+                    strongconnect(w)
+                    lowlink[v] = min(lowlink[v], lowlink[w])
+                elif on_stack.get(w, False):
+                    lowlink[v] = min(lowlink[v], index[w])
 
-        while queue:
-            # Sort queue for deterministic ordering
-            queue.sort()
-            current = queue.pop(0)
-            result.append(current)
+            if lowlink[v] == index[v]:
+                scc = []
+                while True:
+                    w = stack.pop()
+                    on_stack[w] = False
+                    scc.append(w)
+                    if w == v:
+                        break
+                sccs_raw.append(scc)
 
-            # For each node that depends on current
-            for obj_class in self.abies:
-                if current in self.dependency_graph[obj_class]:
-                    in_degree[obj_class] -= 1
-                    if in_degree[obj_class] == 0:
-                        queue.append(obj_class)
+        for v in sorted(self.abies.keys()):
+            if v not in index:
+                strongconnect(v)
 
-        # Check for cycles
-        if len(result) != len(self.abies):
-            remaining = set(self.abies.keys()) - set(result)
-            print(f"WARNING: Circular dependencies detected! {len(remaining)} ABIEs not sorted:")
-            for obj_class in sorted(remaining)[:5]:
-                deps = self.dependency_graph[obj_class]
-                print(f"  - {obj_class} depends on: {deps}")
-            # Add remaining in alphabetical order
-            result.extend(sorted(remaining))
+        # Build SCCGroup objects
+        self_refs = {oc for oc, abie in self.abies.items()
+                     if oc in abie.depends_on}
 
-        return result
+        self.sccs = []
+        for i, members in enumerate(sccs_raw):
+            is_cycle = len(members) > 1 or (len(members) == 1 and members[0] in self_refs)
+            self.sccs.append(SCCGroup(
+                index=i,
+                members=sorted(members),
+                is_cycle=is_cycle
+            ))
 
-    def get_insertion_order(self) -> List[ABIE]:
+        print(f"Found {len(self.sccs)} SCCs ({sum(1 for s in self.sccs if s.is_cycle)} with cycles)")
+        return self.sccs
+
+    def topological_sort_sccs(self) -> List[SCCGroup]:
         """
-        Get the optimal order for inserting ABIEs (with their BBIEs/ASBIEs).
-        Returns ABIEs in bottom-up dependency order.
+        Topologically sort the SCC-condensed DAG.
+        Returns SCCs in dependency order (leaves first, documents last).
         """
-        sorted_classes = self.topological_sort()
-        return [self.abies[obj_class] for obj_class in sorted_classes]
+        if not self.sccs:
+            self.find_sccs_tarjan()
 
-    def find_cycles(self) -> List[List[str]]:
-        """Find circular dependencies using DFS"""
-        cycles = []
+        # Map each ABIE to its SCC
+        scc_map = {}
+        for scc in self.sccs:
+            for member in scc.members:
+                scc_map[member] = scc.index
+
+        # Build SCC-level DAG
+        scc_deps = defaultdict(set)
+        for node in self.abies:
+            for ref in self.dependency_graph.get(node, set()):
+                if ref in self.abies and scc_map[node] != scc_map[ref]:
+                    scc_deps[scc_map[node]].add(scc_map[ref])
+
+        # Topological sort via DFS (post-order)
         visited = set()
-        rec_stack = set()
-        path = []
+        topo_order = []
 
-        def dfs(node: str) -> bool:
-            visited.add(node)
-            rec_stack.add(node)
-            path.append(node)
+        def dfs(n):
+            if n in visited:
+                return
+            visited.add(n)
+            for dep in scc_deps[n]:
+                dfs(dep)
+            topo_order.append(n)
 
-            for neighbor in self.dependency_graph.get(node, []):
-                if neighbor not in visited:
-                    if dfs(neighbor):
-                        return True
-                elif neighbor in rec_stack:
-                    # Found a cycle
-                    cycle_start = path.index(neighbor)
-                    cycle = path[cycle_start:] + [neighbor]
-                    cycles.append(cycle)
-                    return True
+        for scc in self.sccs:
+            dfs(scc.index)
 
-            path.pop()
-            rec_stack.remove(node)
-            return False
+        # Map back to SCCGroup objects
+        scc_by_index = {scc.index: scc for scc in self.sccs}
+        self.scc_order = [scc_by_index[i] for i in topo_order]
 
-        for obj_class in self.abies:
-            if obj_class not in visited:
-                dfs(obj_class)
+        print(f"Topological order: {len(self.scc_order)} groups")
+        return self.scc_order
 
-        return cycles
+    def get_abie_commit_order(self) -> List[List[ABIE]]:
+        """
+        Get the optimal commit order: one commit per SCC group.
+        Each entry is a list of ABIEs to commit together.
+        Most entries will be a single ABIE; cycle groups have multiple.
+        """
+        if not self.scc_order:
+            self.topological_sort_sccs()
+
+        commit_order = []
+        for scc in self.scc_order:
+            abies = [self.abies[oc] for oc in scc.members]
+            # Sort within group by original row order
+            abies.sort(key=lambda a: a.row.row_num)
+            commit_order.append(abies)
+
+        return commit_order
 
     def analyze_dependencies(self) -> None:
         """Print detailed dependency analysis"""
-        print("\n" + "="*70)
+        print("\n" + "=" * 70)
         print("DEPENDENCY ANALYSIS")
-        print("="*70)
+        print("=" * 70)
 
-        # Check for cycles
-        cycles = self.find_cycles()
-        if cycles:
-            print(f"\n⚠️  Found {len(cycles)} circular dependency chain(s):")
-            for i, cycle in enumerate(cycles[:5], 1):  # Show first 5
-                print(f"  {i}. {' → '.join(cycle)}")
-            if len(cycles) > 5:
-                print(f"  ... and {len(cycles) - 5} more cycles")
+        if not self.scc_order:
+            self.topological_sort_sccs()
 
-        sorted_order = self.topological_sort()
+        # Summary
+        single_count = sum(1 for scc in self.sccs if not scc.is_cycle)
+        cycle_count = sum(1 for scc in self.sccs if scc.is_cycle)
+        self_ref_only = sum(1 for scc in self.sccs
+                           if scc.is_cycle and len(scc.members) == 1)
+        multi_cycles = [scc for scc in self.sccs
+                        if scc.is_cycle and len(scc.members) > 1]
 
-        # Group by dependency level
-        levels: Dict[int, List[str]] = defaultdict(list)
-        level_map: Dict[str, int] = {}
+        print(f"\nSCC Summary:")
+        print(f"  Single ABIEs (no cycles):  {single_count}")
+        print(f"  Self-referencing ABIEs:    {self_ref_only}")
+        print(f"  Multi-ABIE cycles:         {len(multi_cycles)}")
 
-        for obj_class in sorted_order:
-            # Calculate level (max dependency level + 1)
-            deps = self.dependency_graph[obj_class]
-            if not deps:
-                level = 0
+        for mc in multi_cycles:
+            print(f"    Cycle: {mc.label}")
+
+        # Commit order
+        commit_order = self.get_abie_commit_order()
+        print(f"\nCommit order ({len(commit_order)} commits):")
+        for i, abies in enumerate(commit_order[:10], 1):
+            if len(abies) == 1:
+                a = abies[0]
+                print(f"  {i:3d}. {a.object_class}"
+                      f" ({len(a.bbies)} BBIEs, {len(a.asbies)} ASBIEs)")
             else:
-                # Get levels of dependencies that have been processed
-                dep_levels = [level_map[dep] for dep in deps if dep in level_map]
-                if dep_levels:
-                    level = max(dep_levels) + 1
-                else:
-                    # Dependencies not yet processed (circular dependency)
-                    level = 0
-
-            level_map[obj_class] = level
-            levels[level].append(obj_class)
-
-        # Print by level
-        for level in sorted(levels.keys()):
-            print(f"\nLevel {level} ({len(levels[level])} ABIEs):")
-            for obj_class in sorted(levels[level])[:10]:  # Show first 10
-                abie = self.abies[obj_class]
-                deps = self.dependency_graph[obj_class]
-                print(f"  - {abie.name}")
-                print(f"    BBIEs: {len(abie.bbies)}, ASBIEs: {len(abie.asbies)}")
-                if deps:
-                    print(f"    Depends on: {', '.join(sorted(deps)[:3])}")
-            if len(levels[level]) > 10:
-                print(f"  ... and {len(levels[level]) - 10} more")
-
-        if levels:
-            print(f"\nTotal levels: {max(levels.keys()) + 1}")
-        else:
-            print("\nNo ABIEs found!")
+                names = [a.object_class for a in abies]
+                total_bbies = sum(len(a.bbies) for a in abies)
+                total_asbies = sum(len(a.asbies) for a in abies)
+                print(f"  {i:3d}. [CYCLE] {' + '.join(names)}"
+                      f" ({total_bbies} BBIEs, {total_asbies} ASBIEs)")
+        if len(commit_order) > 10:
+            print(f"  ... and {len(commit_order) - 10} more")
 
 
 def main():
@@ -298,15 +324,23 @@ def main():
     analyzer.parse()
     analyzer.build_abies()
     analyzer.build_dependency_graph()
+    analyzer.find_sccs_tarjan()
+    analyzer.topological_sort_sccs()
     analyzer.analyze_dependencies()
 
-    print("\n" + "="*70)
-    print("INSERTION ORDER (first 20):")
-    print("="*70)
-    insertion_order = analyzer.get_insertion_order()
-    for i, abie in enumerate(insertion_order[:20], start=1):
-        print(f"{i:3d}. {abie.name}")
-        print(f"     {len(abie.bbies)} BBIEs, {len(abie.asbies)} ASBIEs")
+    print("\n" + "=" * 70)
+    print("COMMIT ORDER (first 20):")
+    print("=" * 70)
+    commit_order = analyzer.get_abie_commit_order()
+    for i, abies in enumerate(commit_order[:20], start=1):
+        if len(abies) == 1:
+            a = abies[0]
+            print(f"{i:3d}. {a.name}")
+            print(f"     {len(a.bbies)} BBIEs, {len(a.asbies)} ASBIEs")
+        else:
+            print(f"{i:3d}. [CYCLE GROUP]")
+            for a in abies:
+                print(f"     - {a.name} ({len(a.bbies)} BBIEs, {len(a.asbies)} ASBIEs)")
 
 
 if __name__ == '__main__':

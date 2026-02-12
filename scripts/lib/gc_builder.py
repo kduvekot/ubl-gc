@@ -2,17 +2,17 @@
 """
 GenericCode File Builder
 
-Builds a GenericCode file incrementally, element by element,
+Builds a GenericCode file incrementally with one commit per ABIE group,
 ensuring the file is valid at every step with no forward references.
 
 Strategy:
-1. Phase 1: Add leaf ABIEs (no dependencies) completely
-2. Phase 2: Add remaining ABIEs + BBIEs (creates all types)
-3. Phase 3: Add ASBIEs for remaining ABIEs (all refs now valid)
+- Topologically sort ABIEs using Tarjan's SCC algorithm
+- One commit per ABIE group (ABIE + all its BBIEs + all its ASBIEs)
+- Cycle groups (mutually dependent ABIEs) are committed together
+- Self-referencing ABIEs are fine as single commits
 """
 
-import xml.etree.ElementTree as ET
-from typing import List, Set, Dict
+from typing import List
 from dataclasses import dataclass
 import sys
 import os
@@ -22,153 +22,109 @@ from gc_analyzer import GCAnalyzer, ABIE, Row
 
 @dataclass
 class BuildStep:
-    """Represents a single incremental build step (commit)"""
+    """Represents a single incremental build step (one git commit)"""
     step_num: int
     description: str
     rows_to_add: List[Row]
-    phase: str  # 'leaf', 'abie+bbie', 'asbie'
+    abie_names: List[str]  # Object class names in this step
+    is_cycle: bool  # Whether this is a multi-ABIE cycle group
+    bbie_count: int
+    asbie_count: int
 
 
 class GCBuilder:
-    """Incrementally builds a GenericCode file with valid commits"""
+    """Incrementally builds a GenericCode file with valid ABIE-level commits"""
 
     def __init__(self, analyzer: GCAnalyzer):
         self.analyzer = analyzer
         self.build_steps: List[BuildStep] = []
 
-    def identify_leaf_abies(self) -> List[ABIE]:
-        """
-        Find ABIEs with no external ASBIE dependencies.
-        These can be added completely in Phase 1.
-        """
-        leaf_abies = []
-
-        for abie in self.analyzer.abies.values():
-            # Check if it has any external dependencies
-            external_deps = [dep for dep in abie.depends_on if dep != abie.object_class]
-
-            if not external_deps:
-                leaf_abies.append(abie)
-
-        # Sort by original order (row number)
-        leaf_abies.sort(key=lambda a: a.row.row_num)
-        return leaf_abies
-
-    def identify_non_leaf_abies(self) -> List[ABIE]:
-        """
-        Find ABIEs with external dependencies.
-        These are added in Phases 2 and 3.
-        """
-        leaf_names = {abie.object_class for abie in self.identify_leaf_abies()}
-
-        non_leaf_abies = [
-            abie for abie in self.analyzer.abies.values()
-            if abie.object_class not in leaf_names
-        ]
-
-        # Sort by original order
-        non_leaf_abies.sort(key=lambda a: a.row.row_num)
-        return non_leaf_abies
-
     def plan_build(self) -> List[BuildStep]:
         """
-        Plan all build steps in correct order.
-        Returns list of BuildSteps.
+        Plan all build steps using topological SCC ordering.
+        One step per SCC group (usually one ABIE, sometimes a cycle group).
+        Each step includes ABIE + all BBIEs + all ASBIEs.
         """
+        commit_order = self.analyzer.get_abie_commit_order()
         steps = []
-        step_num = 1
 
-        # Phase 1: Leaf ABIEs (complete)
-        print("\n" + "="*70)
-        print("PHASE 1: Leaf ABIEs (no dependencies)")
-        print("="*70)
+        print(f"\nPlanning {len(commit_order)} ABIE-level commits...")
+        print("=" * 70)
 
-        leaf_abies = self.identify_leaf_abies()
-        print(f"Found {len(leaf_abies)} leaf ABIEs\n")
+        for step_num, abies in enumerate(commit_order, 1):
+            # Collect all rows for this group
+            rows = []
+            abie_names = []
+            total_bbies = 0
+            total_asbies = 0
 
-        for abie in leaf_abies:
-            # Add ABIE + all BBIEs + all ASBIEs in one step
-            rows = [abie.row] + abie.bbies + abie.asbies
+            for abie in abies:
+                rows.append(abie.row)
+                rows.extend(abie.bbies)
+                rows.extend(abie.asbies)
+                abie_names.append(abie.object_class)
+                total_bbies += len(abie.bbies)
+                total_asbies += len(abie.asbies)
 
-            steps.append(BuildStep(
+            is_cycle = len(abies) > 1
+
+            # Build description
+            if is_cycle:
+                desc = f"Add cycle group: {' + '.join(abie_names)}"
+            else:
+                desc = f'Add "{abie_names[0]}"'
+
+            step = BuildStep(
                 step_num=step_num,
-                description=f"Add leaf ABIE: {abie.name}",
+                description=desc,
                 rows_to_add=rows,
-                phase='leaf'
-            ))
+                abie_names=abie_names,
+                is_cycle=is_cycle,
+                bbie_count=total_bbies,
+                asbie_count=total_asbies,
+            )
+            steps.append(step)
 
-            print(f"  {step_num}. {abie.name} ({len(abie.bbies)} BBIEs, {len(abie.asbies)} ASBIEs)")
-            step_num += 1
+            # Print progress
+            abie_count = len(abies)
+            total_rows = len(rows)
+            cycle_tag = " [CYCLE]" if is_cycle else ""
+            print(f"  {step_num:3d}. {desc}{cycle_tag}"
+                  f" ({abie_count} ABIE, {total_bbies} BBIEs,"
+                  f" {total_asbies} ASBIEs = {total_rows} rows)")
 
-        # Phase 2: Non-leaf ABIEs + BBIEs only
-        print("\n" + "="*70)
-        print("PHASE 2: Non-leaf ABIEs + BBIEs (defer ASBIEs)")
-        print("="*70)
-
-        non_leaf_abies = self.identify_non_leaf_abies()
-        print(f"Found {len(non_leaf_abies)} non-leaf ABIEs\n")
-
-        for abie in non_leaf_abies:
-            # Add ABIE + BBIEs only (no ASBIEs yet)
-            rows = [abie.row] + abie.bbies
-
-            steps.append(BuildStep(
-                step_num=step_num,
-                description=f"Add ABIE+BBIEs: {abie.name}",
-                rows_to_add=rows,
-                phase='abie+bbie'
-            ))
-
-            deps_str = ', '.join(sorted(abie.depends_on)[:3])
-            if len(abie.depends_on) > 3:
-                deps_str += f", +{len(abie.depends_on)-3} more"
-
-            print(f"  {step_num}. {abie.name} ({len(abie.bbies)} BBIEs, {len(abie.asbies)} ASBIEs deferred)")
-            print(f"       Depends on: {deps_str}")
-            step_num += 1
-
-        # Phase 3: ASBIEs for non-leaf ABIEs
-        print("\n" + "="*70)
-        print("PHASE 3: ASBIEs for non-leaf ABIEs (all types now exist)")
-        print("="*70)
-        print(f"Adding ASBIEs for {len(non_leaf_abies)} ABIEs\n")
-
-        for abie in non_leaf_abies:
-            if abie.asbies:  # Only if there are ASBIEs
-                steps.append(BuildStep(
-                    step_num=step_num,
-                    description=f"Add ASBIEs: {abie.name}",
-                    rows_to_add=abie.asbies,
-                    phase='asbie'
-                ))
-
-                print(f"  {step_num}. {abie.name} ({len(abie.asbies)} ASBIEs)")
-                step_num += 1
-
+        self.build_steps = steps
         return steps
 
     def generate_build_plan_summary(self) -> str:
         """Generate a summary of the build plan"""
-        steps = self.plan_build()
+        if not self.build_steps:
+            self.plan_build()
 
-        phase1_count = sum(1 for s in steps if s.phase == 'leaf')
-        phase2_count = sum(1 for s in steps if s.phase == 'abie+bbie')
-        phase3_count = sum(1 for s in steps if s.phase == 'asbie')
-
+        steps = self.build_steps
         total_rows = sum(len(s.rows_to_add) for s in steps)
+        cycle_steps = sum(1 for s in steps if s.is_cycle)
+        single_steps = len(steps) - cycle_steps
+
+        total_abies = sum(len(s.abie_names) for s in steps)
+        total_bbies = sum(s.bbie_count for s in steps)
+        total_asbies = sum(s.asbie_count for s in steps)
 
         summary = f"""
 BUILD PLAN SUMMARY
-{'='*70}
-Total steps: {len(steps)}
-Total rows to add: {total_rows}
+{'=' * 70}
+Total commits:     {len(steps)} (+ 1 skeleton = {len(steps) + 1} total)
+Total rows:        {total_rows}
+  ABIEs:           {total_abies}
+  BBIEs:           {total_bbies}
+  ASBIEs:          {total_asbies}
 
-Phase 1 (Leaf ABIEs):           {phase1_count:4d} steps
-Phase 2 (Non-leaf ABIE+BBIEs):  {phase2_count:4d} steps
-Phase 3 (Non-leaf ASBIEs):      {phase3_count:4d} steps
+Single-ABIE commits:  {single_steps}
+Cycle-group commits:  {cycle_steps}
 
-File will be valid at every step!
-{'='*70}
+Every intermediate state is a valid GenericCode file.
+No forward references at any commit.
+{'=' * 70}
 """
         return summary
 
@@ -186,6 +142,8 @@ def main():
     analyzer.parse()
     analyzer.build_abies()
     analyzer.build_dependency_graph()
+    analyzer.find_sccs_tarjan()
+    analyzer.topological_sort_sccs()
 
     # Plan the build
     builder = GCBuilder(analyzer)
@@ -193,14 +151,6 @@ def main():
 
     # Print summary
     print(builder.generate_build_plan_summary())
-
-    # Show first few steps
-    print("\nFIRST 10 STEPS:")
-    print("="*70)
-    for step in steps[:10]:
-        row_count = len(step.rows_to_add)
-        print(f"Step {step.step_num:3d} [{step.phase:12s}]: {step.description}")
-        print(f"          ({row_count} rows)")
 
 
 if __name__ == '__main__':
