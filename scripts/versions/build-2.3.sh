@@ -56,17 +56,27 @@ main() {
         fi
     done
 
-    # Create commits for all releases
-    log_step "Creating commits for UBL 2.3 releases"
+    # SCHEMA TRANSITION: UBL 2.2 → 2.3 (6-step process)
+    log_step "Schema Transition: UBL 2.2 → 2.3"
+    log_info "This is a major version transition requiring 6-step commit process"
+    log_info "Filename changes: UBL-Entities-2.2.gc → UBL-Entities-2.3.gc"
 
-    for release in "${UBL_2_3_RELEASES[@]}"; do
+    local first_release_dir
+    first_release_dir=$(get_release_dir "${UBL_2_3_RELEASES[0]}" ".")
+
+    create_schema_transition "2.2" "$VERSION" "$first_release_dir"
+
+    # Create commits for remaining releases (first release already done in step 6)
+    log_step "Creating commits for remaining UBL 2.3 releases"
+
+    for release in "${UBL_2_3_RELEASES[@]:1}"; do
         local release_dir
         release_dir=$(get_release_dir "$release" ".")
 
         create_release_commit "$release" "$VERSION" "$release_dir"
     done
 
-    log_success "UBL 2.3 evolution complete! (${#UBL_2_3_RELEASES[@]} commits created)"
+    log_success "UBL 2.3 evolution complete! (6 schema transition + 6 release commits)"
 }
 
 # Run main function

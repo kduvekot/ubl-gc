@@ -119,34 +119,43 @@ ubl-gc/
   5. Remove deprecated columns
   6. Final cleanup/normalization
 
-**Schema changes occur at:**
-- 2.1 → 2.2 (6-step commit sequence)
-- 2.4 → 2.5 (6-step commit sequence + add Endorsed file)
+**Transitions occur at ALL major version bumps:**
+- 2.0 → 2.1 (6-step: filename changes)
+- 2.1 → 2.2 (6-step: filename + column structure changes)
+- 2.2 → 2.3 (6-step: filename changes)
+- 2.3 → 2.4 (6-step: filename changes)
+- 2.4 → 2.5 (6-step: filename + column structure changes + add Endorsed file)
 
-### Release Sequence (35 commits + multi-step transitions)
+### Release Sequence (35 release commits + 30 transition commits = 60 total)
 
 ```
 UBL 2.0 (8 commits):
 prd → prd2 → prd3 → prd3r1 → cs → os → os-update → errata
 
-UBL 2.1 (8 commits):
-prd1 → prd2 → prd3 → prd4 → csd4 → cs1 → cos1 → os
+2.0 → 2.1 Transition (6-step commit sequence)
+
+UBL 2.1 (7 commits - prd1 done in transition step 6):
+prd2 → prd3 → prd4 → csd4 → cs1 → cos1 → os
 
 2.1 → 2.2 Transition (6-step commit sequence)
 
-UBL 2.2 (6 commits):
-csprd01 → csprd02 → csprd03 → cs01 → cos01 → os
+UBL 2.2 (5 commits - csprd01 done in transition step 6):
+csprd02 → csprd03 → cs01 → cos01 → os
 
-UBL 2.3 (7 commits):
-csprd01 → csprd02 → csd03 → csd04 → cs01 → cs02 → os
+2.2 → 2.3 Transition (6-step commit sequence)
 
-UBL 2.4 (4 commits):
-csd01 → csd02 → cs01 → os
+UBL 2.3 (6 commits - csprd01 done in transition step 6):
+csprd02 → csd03 → csd04 → cs01 → cs02 → os
+
+2.3 → 2.4 Transition (6-step commit sequence)
+
+UBL 2.4 (3 commits - csd01 done in transition step 6):
+csd02 → cs01 → os
 
 2.4 → 2.5 Transition (6-step commit sequence + add Endorsed)
 
-UBL 2.5 (2 commits):
-csd01 → csd02
+UBL 2.5 (1 commit - csd01 done in transition step 6):
+csd02
 ```
 
 ---
@@ -229,9 +238,11 @@ scripts/
    - Tool: Crane-ods2obdgc + Saxon 9 HE
    - Location: history/generated/*-UBL-2.0/
 
-4. **Schema changes occur twice**
-   - 2.1 → 2.2: Column changes (6-step process)
-   - 2.4 → 2.5: Column changes + Endorsed file (6-step + new file)
+4. **Transitions occur at every major version**
+   - All version bumps use 6-step transition process
+   - Tracks filename changes (e.g., 2.0.gc → 2.1.gc)
+   - Column structure changes: 2.1→2.2 and 2.4→2.5
+   - New file type: Endorsed-Entities in 2.5
 
 5. **Files are already here**
    - Don't download in scripts
