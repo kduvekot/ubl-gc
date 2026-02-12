@@ -63817,5 +63817,664 @@ It can serve as a contractual document between the parties for the transportatio
             <SimpleValue>Procurement</SimpleValue>
          </Value>
       </Row>
+      <Row>
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Quotation</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>ValidityPeriod</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Quotation. Validity_ Period</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Quotation</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermQualifier">
+            <SimpleValue>Validity</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Period</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Period</SimpleValue>
+         </Value>
+         <Value ColumnRef="AssociatedObjectClass">
+            <SimpleValue>Period</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>ASBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>The period for which the Quotation is valid</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>1.0</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Procurement</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Quotation</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>RequestForQuotationDocumentReference</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Quotation. Request For Quotation_ Document Reference</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Quotation</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermQualifier">
+            <SimpleValue>Request For Quotation</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Document Reference</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Document Reference</SimpleValue>
+         </Value>
+         <Value ColumnRef="AssociatedObjectClass">
+            <SimpleValue>Document Reference</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>ASBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>An association to a Request For Quotation</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.0</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetQuote">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Quotation</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>AdditionalDocumentReference</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Quotation. Additional_ Document Reference</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Quotation</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermQualifier">
+            <SimpleValue>Additional</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Document Reference</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Document Reference</SimpleValue>
+         </Value>
+         <Value ColumnRef="AssociatedObjectClass">
+            <SimpleValue>Document Reference</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..n</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>ASBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>An association to other documents</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.0</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Procurement</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Quotation</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>Contract</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Quotation. Contract</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Quotation</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Contract</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Contract</SimpleValue>
+         </Value>
+         <Value ColumnRef="AssociatedObjectClass">
+            <SimpleValue>Contract</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..n</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>ASBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>An association to a framework agreement or contract</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.0</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Procurement</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Quotation</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>Signature</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Quotation. Signature</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Quotation</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Signature</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Signature</SimpleValue>
+         </Value>
+         <Value ColumnRef="AssociatedObjectClass">
+            <SimpleValue>Signature</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..n</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>ASBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>Associates the Quotation with zero or more signatures.</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>1.0</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetOrder">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Quotation</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>SellerSupplierParty</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Quotation. Seller_ Supplier Party</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Quotation</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermQualifier">
+            <SimpleValue>Seller</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Supplier Party</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Supplier Party</SimpleValue>
+         </Value>
+         <Value ColumnRef="AssociatedObjectClass">
+            <SimpleValue>Supplier Party</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>ASBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>An association to the Seller</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.0</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetQuote">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Quotation</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>OriginatorCustomerParty</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Quotation. Originator_Customer Party</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Quotation</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermQualifier">
+            <SimpleValue>Originator</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Customer Party</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Customer Party</SimpleValue>
+         </Value>
+         <Value ColumnRef="AssociatedObjectClass">
+            <SimpleValue>Customer Party</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>ASBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>An association to the Originator</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.0</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetQuote">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Quotation</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>Delivery</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Quotation. Delivery</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Quotation</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Delivery</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Delivery</SimpleValue>
+         </Value>
+         <Value ColumnRef="AssociatedObjectClass">
+            <SimpleValue>Delivery</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..n</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>ASBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>An association to Delivery</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.0</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetQuote">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Quotation</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>DeliveryTerms</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Quotation. Delivery Terms</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Quotation</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Delivery Terms</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Delivery Terms</SimpleValue>
+         </Value>
+         <Value ColumnRef="AssociatedObjectClass">
+            <SimpleValue>Delivery Terms</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>ASBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>An association to Delivery Terms</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.0</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetQuote">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Quotation</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>PaymentMeans</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Quotation. Payment Means</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Quotation</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Payment Means</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Payment Means</SimpleValue>
+         </Value>
+         <Value ColumnRef="AssociatedObjectClass">
+            <SimpleValue>Payment Means</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>ASBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>An association to potential Payment Means for Orders related to this Quotation</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>1.0</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Procurement</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Quotation</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>TransactionConditions</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Quotation. Transaction Conditions</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Quotation</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Transaction Conditions</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Transaction Conditions</SimpleValue>
+         </Value>
+         <Value ColumnRef="AssociatedObjectClass">
+            <SimpleValue>Transaction Conditions</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>ASBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>An association with any sales or purchasing conditions applying to Orders related to this Quotation.</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.0</SimpleValue>
+         </Value>
+         <Value ColumnRef="AnalystNotes">
+            <SimpleValue>previous sales condition</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetOrder">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Quotation</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>AllowanceCharge</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Quotation. Allowance Charge</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Quotation</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Allowance Charge</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Allowance Charge</SimpleValue>
+         </Value>
+         <Value ColumnRef="AssociatedObjectClass">
+            <SimpleValue>Allowance Charge</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..n</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>ASBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>An association to Allowances and Charges that apply to the Quotation as a whole</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.0</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Procurement</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Quotation</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>DestinationCountry</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Quotation. Destination_ Country</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Quotation</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermQualifier">
+            <SimpleValue>Destination</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Country</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Country</SimpleValue>
+         </Value>
+         <Value ColumnRef="AssociatedObjectClass">
+            <SimpleValue>Country</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>ASBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>An association to the country of destination (for customs purposes for potential orders)</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.0</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Procurement</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Quotation</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>TaxTotal</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Quotation. Tax Total</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Quotation</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Tax Total</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Tax Total</SimpleValue>
+         </Value>
+         <Value ColumnRef="AssociatedObjectClass">
+            <SimpleValue>Tax Total</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..n</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>ASBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>An association to the total tax amount of the Order (as estimated by the Seller)</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>1.0</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetInvoice">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Quotation</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>LegalTotal</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Quotation. Legal Total</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Quotation</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Legal Total</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Legal Total</SimpleValue>
+         </Value>
+         <Value ColumnRef="AssociatedObjectClass">
+            <SimpleValue>Legal Total</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>ASBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>An assocation to the total amounts for the Order net of allowances and taxes (as quoted by the Seller)</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>1.0</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetInvoice">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Quotation</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>QuotationLine</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Quotation. Quotation Line</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Quotation</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Quotation Line</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Quotation Line</SimpleValue>
+         </Value>
+         <Value ColumnRef="AssociatedObjectClass">
+            <SimpleValue>Quotation Line</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>1..n</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>ASBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>An association to one or more Quotation Lines</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.0</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetQuote">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+      </Row>
    </SimpleCodeList>
 </ns0:CodeList>
