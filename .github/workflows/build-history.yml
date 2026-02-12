@@ -122,37 +122,37 @@ jobs:
 
           echo "Remote URL: $MAIN_REMOTE_URL"
 
-      - name: Build UBL 2.0 history
+      - name: Build UBL 2.0 (8 commits)
         run: |
           cd "$HISTORY_WORK_DIR"
           export HISTORY_WORK_DIR="$HISTORY_WORK_DIR"
           bash "$REPO_ROOT/scripts/versions/build-2.0.sh"
 
-      - name: Build UBL 2.1 history
+      - name: Build UBL 2.1 (includes 2.0→2.1 transition, 13 commits)
         run: |
           cd "$HISTORY_WORK_DIR"
           export HISTORY_WORK_DIR="$HISTORY_WORK_DIR"
           bash "$REPO_ROOT/scripts/versions/build-2.1.sh"
 
-      - name: Build UBL 2.1→2.2 transition
+      - name: Build UBL 2.2 (includes 2.1→2.2 transition, 11 commits)
         run: |
           cd "$HISTORY_WORK_DIR"
           export HISTORY_WORK_DIR="$HISTORY_WORK_DIR"
           bash "$REPO_ROOT/scripts/versions/build-2.2.sh"
 
-      - name: Build UBL 2.3 history
+      - name: Build UBL 2.3 (includes 2.2→2.3 transition, 12 commits)
         run: |
           cd "$HISTORY_WORK_DIR"
           export HISTORY_WORK_DIR="$HISTORY_WORK_DIR"
           bash "$REPO_ROOT/scripts/versions/build-2.3.sh"
 
-      - name: Build UBL 2.4 history
+      - name: Build UBL 2.4 (includes 2.3→2.4 transition, 9 commits)
         run: |
           cd "$HISTORY_WORK_DIR"
           export HISTORY_WORK_DIR="$HISTORY_WORK_DIR"
           bash "$REPO_ROOT/scripts/versions/build-2.4.sh"
 
-      - name: Build UBL 2.4→2.5 transition
+      - name: Build UBL 2.5 (includes 2.4→2.5 transition, 7 commits)
         run: |
           cd "$HISTORY_WORK_DIR"
           export HISTORY_WORK_DIR="$HISTORY_WORK_DIR"
