@@ -34,8 +34,12 @@ When to use:
 import json
 import os
 import re
+import signal
 import sys
 from pathlib import Path
+
+# Handle SIGPIPE gracefully (e.g. when piped to `head`)
+signal.signal(signal.SIGPIPE, signal.SIG_DFL)
 
 
 # ---------------------------------------------------------------------------
@@ -54,8 +58,15 @@ def find_session_files(cwd: str | None = None) -> list[Path]:
     cwd = cwd or os.getcwd()
     base = Path.home() / ".claude" / "projects" / project_dir_name(cwd)
     if not base.is_dir():
+        print(json.dumps({"warning": f"No session directory found: {base}"}),
+              file=sys.stderr)
         return []
-    return sorted(base.glob("*.jsonl"), key=lambda p: p.stat().st_mtime)
+    try:
+        return sorted(base.glob("*.jsonl"), key=lambda p: p.stat().st_mtime)
+    except OSError as e:
+        print(json.dumps({"error": f"Failed to list session files: {e}"}),
+              file=sys.stderr)
+        return []
 
 
 # ---------------------------------------------------------------------------
@@ -107,7 +118,13 @@ def _extract_tool_names(content) -> list[str]:
 def parse_file(path: Path, include_tool_results: bool = False) -> list[dict]:
     """Parse a JSONL file into structured conversation entries."""
     entries = []
-    with open(path) as f:
+    try:
+        f = open(path)
+    except OSError as e:
+        print(json.dumps({"error": f"Cannot read {path.name}: {e}"}),
+              file=sys.stderr)
+        return []
+    with f:
         for line in f:
             line = line.strip()
             if not line:
@@ -154,7 +171,13 @@ def parse_all(include_tool_results: bool = False) -> list[dict]:
 def parse_raw_records() -> list[dict]:
     records = []
     for path in find_session_files():
-        with open(path) as f:
+        try:
+            f = open(path)
+        except OSError as e:
+            print(json.dumps({"error": f"Cannot read {path.name}: {e}"}),
+                  file=sys.stderr)
+            continue
+        with f:
             for line in f:
                 line = line.strip()
                 if not line:
@@ -171,7 +194,16 @@ def parse_raw_records() -> list[dict]:
 # ---------------------------------------------------------------------------
 
 def _json_out(data) -> None:
-    print(json.dumps(data, indent=2))
+    try:
+        print(json.dumps(data, indent=2))
+        sys.stdout.flush()
+    except BrokenPipeError:
+        # Downstream consumer closed the pipe (e.g. `| head`). Exit quietly.
+        try:
+            sys.stdout.close()
+        except BrokenPipeError:
+            pass
+        sys.exit(0)
 
 
 def _apply_filters(entries: list[dict], last: int | None = None,
@@ -415,4 +447,12 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except BrokenPipeError:
+        sys.exit(0)
+    except Exception as e:
+        # Always produce valid JSON on stderr so piped consumers don't choke
+        print(json.dumps({"error": str(e), "type": type(e).__name__}),
+              file=sys.stderr)
+        sys.exit(1)

@@ -7,11 +7,26 @@
 
 ---
 
-## Summary
+## ✅ UPDATE: ALL ISSUES FIXED!
 
-The `claude-memory` tool works for most commands but has issues with:
-1. Output piping (BrokenPipeError)
-2. JSON parsing when combining with stderr redirects
+**The tool author released an updated version (2026-02-12) that fixes all reported issues!**
+
+### Fixes Applied:
+1. ✅ **SIGPIPE handling** - Added `signal.signal(signal.SIGPIPE, signal.SIG_DFL)`
+2. ✅ **BrokenPipeError wrapper** - Graceful exit when pipe closes early
+3. ✅ **OSError handling** - File operations wrapped with try/except
+4. ✅ **JSON error output** - Always outputs valid JSON to stderr
+5. ✅ **All test cases now pass!**
+
+**Updated tool size:** 14KB → 16KB (with fixes)
+
+---
+
+## Original Bug Report (Fixed)
+
+The `claude-memory` tool works for most commands but **HAD** issues with:
+1. Output piping (BrokenPipeError) - ✅ FIXED
+2. JSON parsing when combining with stderr redirects - ✅ FIXED
 
 ---
 
@@ -290,3 +305,55 @@ The tool integrates well with Claude Code workflows:
 **Repository:** https://github.com/kduvekot/ubl-gc
 
 **For tool author:** This is excellent work! The core functionality is solid. The pipe handling issue is a minor Python quirk that's easy to fix. Would love to see this tool become a standard part of Claude Code! 🙌
+
+---
+
+## ✅ FIX VERIFICATION (2026-02-12)
+
+All reported issues have been verified as fixed in the updated version:
+
+### Test Results:
+
+```bash
+# Test 1: Pipe to head (previously failed with BrokenPipeError)
+$ .claude/scripts/claude-memory search "Option K" | head -10
+✅ SUCCESS - No BrokenPipeError, clean exit
+
+# Test 2: JSON parsing with stderr redirect (previously failed)
+$ .claude/scripts/claude-memory search "test" 2>/dev/null | python3 -c "import json, sys; d=json.load(sys.stdin); print(f'Found {d[\"count\"]} matches')"
+✅ Found 339 matches
+
+# Test 3: Large output with pipe (stress test)
+$ .claude/scripts/claude-memory conversation | head -20
+✅ No errors, clean pipe handling
+```
+
+### Code Changes Verified:
+
+1. **SIGPIPE handler added** (line 37-38):
+   ```python
+   import signal
+   signal.signal(signal.SIGPIPE, signal.SIG_DFL)
+   ```
+
+2. **BrokenPipeError wrapper in _json_out** (line 197-205):
+   ```python
+   try:
+       print(json.dumps(data, indent=2))
+       sys.stdout.flush()
+   except BrokenPipeError:
+       sys.stdout.close()
+       sys.exit(0)
+   ```
+
+3. **Error handling in main** (line 450-457):
+   ```python
+   try:
+       main()
+   except BrokenPipeError:
+       sys.exit(0)
+   ```
+
+**Tool rating updated:** 🌟🌟🌟🌟🌟 (5/5) - All issues resolved!
+
+**Recommendation:** This tool is production-ready and should be promoted as an official Claude Code utility! 🚀
