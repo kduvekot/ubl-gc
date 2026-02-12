@@ -11,6 +11,41 @@ fi
 # Session URL for commit messages
 readonly SESSION_URL="https://claude.ai/code/session_01DootdmjSDVpY6qQJprMW84"
 
+# Git commit author configuration
+export GIT_AUTHOR_NAME="${GIT_AUTHOR_NAME:-OASIS UBL TC}"
+export GIT_AUTHOR_EMAIL="${GIT_AUTHOR_EMAIL:-ubl-tc@oasis-open.org}"
+export GIT_COMMITTER_NAME="${GIT_COMMITTER_NAME:-OASIS UBL TC}"
+export GIT_COMMITTER_EMAIL="${GIT_COMMITTER_EMAIL:-ubl-tc@oasis-open.org}"
+
+# Function to get publication date for a release stage
+# Usage: get_release_date "prd-UBL-2.0"
+get_release_date() {
+    local stage="$1"
+    local dates_file="${REPO_ROOT}/docs/historical-releases.md"
+
+    # Extract ISO date from the markdown table
+    # Format: | Stage Name | stage-UBL-X.X | YYYY-MM-DD | URL |
+    local date=$(grep -E "^\|.*\|.*${stage}.*\|.*[0-9]{4}-[0-9]{2}-[0-9]{2}" "$dates_file" | \
+                 grep -oE '[0-9]{4}-[0-9]{2}-[0-9]{2}' | head -1)
+
+    if [ -z "$date" ]; then
+        log_warn "No date found for $stage, using current date"
+        date=$(date -u +"%Y-%m-%d")
+    fi
+
+    echo "$date"
+}
+
+# Function to set git commit date environment variables
+# Usage: set_commit_date "2006-01-19"
+set_commit_date() {
+    local date="$1"
+    # Git expects dates in RFC 2822 or ISO 8601 format
+    # ISO 8601: YYYY-MM-DD HH:MM:SS +0000
+    export GIT_AUTHOR_DATE="${date} 12:00:00 +0000"
+    export GIT_COMMITTER_DATE="${date} 12:00:00 +0000"
+}
+
 # Initialize history branch in /tmp (separate working directory)
 init_history_branch() {
     local branch="$1"
@@ -59,6 +94,11 @@ create_release_commit() {
     local commit_message="${4:-}" # Custom commit message (optional)
 
     log_step "Creating commit for $release"
+
+    # Set the commit date from historical records
+    local commit_date=$(get_release_date "$release")
+    set_commit_date "$commit_date"
+    log_info "Using publication date: $commit_date"
 
     # Verify release directory exists
     check_dir_exists "$release_dir"
@@ -366,6 +406,14 @@ create_schema_transition() {
     local first_release_dir="$3"
 
     log_step "Starting 6-step schema transition: UBL $from_version → $to_version"
+
+    # Get the first release name for date lookup
+    local first_release=$(basename "$(dirname "$first_release_dir")")
+    local base_date=$(get_release_date "$first_release")
+    log_info "Using base date: $base_date (from $first_release)"
+
+    # Set date for all transition commits (same date as first release of new version)
+    set_commit_date "$base_date"
 
     create_schema_transition_step1 "$from_version" "$to_version"
     create_schema_transition_step2 "$from_version" "$to_version"
