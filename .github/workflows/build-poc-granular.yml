@@ -8,6 +8,12 @@ on:
         required: false
         type: boolean
         default: true
+  push:
+    branches:
+      - 'claude/git-history-exploration-bunUn'
+    paths:
+      - '.github/workflows/build-poc-granular.yml'
+      - 'scripts/lib/gc_*.py'
 
 permissions:
   contents: write  # Need write access to push to PoC branch
