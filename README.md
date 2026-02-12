@@ -12,6 +12,7 @@ This repository maintains a complete historical archive of UBL (Universal Busine
 - 🛠️ **[history/tools/README.md](history/tools/README.md)** - Tool documentation, provenance, and verification
 - 📋 **[docs/historical-releases.md](docs/historical-releases.md)** - Complete list of all UBL versions with URLs
 - 🏗️ **[ARCHITECTURE.md](ARCHITECTURE.md)** - System architecture and design decisions
+- ⚙️ **[docs/workflows.md](docs/workflows.md)** - GitHub Actions workflows and build scripts documentation
 
 ## Directory Structure
 
