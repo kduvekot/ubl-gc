@@ -30084,5 +30084,307 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>Procurement</SimpleValue>
          </Value>
       </Row>
+      <Row>
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>CustomerParty</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Customer Party. Details</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Customer Party</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>ABIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>Information about the Customer Party</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>1.0</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangefromPreviousVersion">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetCatalogue">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetCreditNote">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetDebitNote">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetDespatchAdvice">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetInvoice">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetOrder">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetOrderCancellation">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetOrderChange">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetOrderResponse">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetQuotation">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetReceiptAdvice">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetRequestforQuotation">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetSelfBilledInvoice">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetSelfBilledCreditNote">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>CustomerAssignedAccountID</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Customer Party. Customer Assigned_ Account Identifier. Identifier</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Customer Party</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermQualifier">
+            <SimpleValue>Customer Assigned</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPossessiveNoun">
+            <SimpleValue>Account</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Identifier</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Account Identifier</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Identifier</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Identifier. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>An identifier for the Customer assigned by the Customer itself</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>1.0</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangefromPreviousVersion">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetCatalogue">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetCreditNote">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetDebitNote">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetDespatchAdvice">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetInvoice">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetOrder">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetOrderCancellation">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetOrderChange">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetOrderResponse">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetQuotation">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetReceiptAdvice">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetRequestforQuotation">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetSelfBilledInvoice">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetSelfBilledCreditNote">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>SupplierAssignedAccountID</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Customer Party. Supplier Assigned_ Account Identifier. Identifier</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Customer Party</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermQualifier">
+            <SimpleValue>Supplier Assigned</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPossessiveNoun">
+            <SimpleValue>Account</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Identifier</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Account Identifier</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Identifier</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Identifier. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>An identifier for the Customer assigned by the Supplier</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>1.0</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangefromPreviousVersion">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetCatalogue">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetCreditNote">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetDebitNote">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetDespatchAdvice">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetInvoice">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetOrder">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetOrderCancellation">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetOrderChange">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetOrderResponse">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetQuotation">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetReceiptAdvice">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetRequestforQuotation">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetSelfBilledInvoice">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetSelfBilledCreditNote">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>AdditionalAccountID</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Customer Party. Additional_ Account Identifier. Identifier</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Customer Party</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermQualifier">
+            <SimpleValue>Additional</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPossessiveNoun">
+            <SimpleValue>Account</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Identifier</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Account Identifier</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Identifier</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Identifier. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..n</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>An identifier for the Customer assigned by a third party</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>1.0</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Procurement</SimpleValue>
+         </Value>
+      </Row>
    </SimpleCodeList>
 </ns0:CodeList>
