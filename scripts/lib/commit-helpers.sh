@@ -462,15 +462,6 @@ create_version_commits() {
     log_success "Completed all commits for UBL $version"
 }
 
-# Get commit date from release metadata (or use current date)
-get_release_date() {
-    local release="$1"
-
-    # TODO: Extract actual release dates from OASIS metadata
-    # For now, use current date
-    date -R
-}
-
 # Export functions
 export -f init_history_branch create_release_commit create_version_commits
 export -f create_schema_transition_step1 create_schema_transition_step2
