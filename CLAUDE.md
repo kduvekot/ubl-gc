@@ -270,6 +270,12 @@ mkdir -p scripts/{lib,versions}
 
 # 5. Push result
 git push -u origin claude/git-history-exploration-bunUn
+
+# 6. Check workflow status (use --repo for this local git server)
+gh run list --repo kduvekot/ubl-gc --workflow=build-history.yml --limit 5
+
+# 7. View workflow logs if there are failures
+gh run view --repo kduvekot/ubl-gc <run-id> --log
 ```
 
 ---
