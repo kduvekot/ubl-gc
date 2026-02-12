@@ -1,0 +1,418 @@
+#!/usr/bin/env python3
+"""claude-memory: Session data extraction for Claude Code.
+
+Parses the JSONL conversation logs under ~/.claude/projects/ for the current
+working directory. All output is JSON, designed for LLM consumption.
+
+The tool extracts and structures data. Summarization and interpretation
+should be done by the LLM consuming the output.
+
+Usage: .claude/scripts/claude-memory <command> [args]
+
+Commands:
+  conversation     Structured JSON of user/assistant exchanges (no tool
+                   results or system metadata). Feed this to the LLM to
+                   produce a summary of decisions, agreements, and context.
+
+  search <query>   Case-insensitive search across all conversation content.
+                   Returns matching entries as JSON array.
+
+  topics           First user message from each .jsonl file. Quick index
+                   of what was discussed.
+
+  tokens           Token usage totals and estimated cost (USD) as JSON.
+
+  full             All conversation entries including tool results.
+
+When to use:
+  - Context was compressed or lost -- run 'conversation', then reason
+    over the output to reconstruct what was agreed.
+  - Need to find a specific discussion -- run 'search "keyword"'.
+  - Check session spend -- run 'tokens'.
+"""
+
+import json
+import os
+import re
+import sys
+from pathlib import Path
+
+
+# ---------------------------------------------------------------------------
+# Discover the JSONL files for the current project
+# ---------------------------------------------------------------------------
+
+def project_dir_name(cwd: str) -> str:
+    """Convert an absolute path to the dash-separated directory name
+    that Claude Code uses under ~/.claude/projects/.
+    """
+    return cwd.replace("/", "-")
+
+
+def find_session_files(cwd: str | None = None) -> list[Path]:
+    """Return all .jsonl files for the current project, sorted by mtime."""
+    cwd = cwd or os.getcwd()
+    base = Path.home() / ".claude" / "projects" / project_dir_name(cwd)
+    if not base.is_dir():
+        return []
+    return sorted(base.glob("*.jsonl"), key=lambda p: p.stat().st_mtime)
+
+
+# ---------------------------------------------------------------------------
+# Parse JSONL into structured entries
+# ---------------------------------------------------------------------------
+
+_SYSTEM_TAG_RE = re.compile(r"<system-reminder>.*?</system-reminder>", re.DOTALL)
+
+
+def _strip_system_tags(text: str) -> str:
+    return _SYSTEM_TAG_RE.sub("", text).strip()
+
+
+def _extract_text(content, include_tool_results: bool = False) -> str:
+    """Pull plain text out of the message content field."""
+    if isinstance(content, str):
+        return _strip_system_tags(content)
+    if isinstance(content, list):
+        parts = []
+        for block in content:
+            if isinstance(block, dict):
+                if block.get("type") == "text":
+                    text = _strip_system_tags(block.get("text", ""))
+                    if text:
+                        parts.append(text)
+                elif block.get("type") == "tool_result" and include_tool_results:
+                    inner = block.get("content", "")
+                    if isinstance(inner, str) and len(inner) < 500:
+                        cleaned = _strip_system_tags(inner)
+                        if cleaned:
+                            parts.append(cleaned)
+            elif isinstance(block, str):
+                cleaned = _strip_system_tags(block)
+                if cleaned:
+                    parts.append(cleaned)
+        return "\n".join(parts)
+    return ""
+
+
+def _extract_tool_names(content) -> list[str]:
+    tools = []
+    if isinstance(content, list):
+        for block in content:
+            if isinstance(block, dict) and block.get("type") == "tool_use":
+                tools.append(block.get("name", "?"))
+    return tools
+
+
+def parse_file(path: Path, include_tool_results: bool = False) -> list[dict]:
+    """Parse a JSONL file into structured conversation entries."""
+    entries = []
+    with open(path) as f:
+        for line in f:
+            line = line.strip()
+            if not line:
+                continue
+            try:
+                record = json.loads(line)
+            except json.JSONDecodeError:
+                continue
+
+            if record.get("type") not in ("user", "assistant"):
+                continue
+
+            msg = record.get("message", {})
+            role = msg.get("role")
+            if role not in ("user", "assistant"):
+                continue
+
+            content = msg.get("content", "")
+            text = _extract_text(content, include_tool_results=include_tool_results)
+            tools = _extract_tool_names(content) if role == "assistant" else []
+
+            if not text:
+                continue
+
+            entry = {
+                "role": role,
+                "text": text,
+                "timestamp": record.get("timestamp", ""),
+            }
+            if tools:
+                entry["tools"] = tools
+            entries.append(entry)
+
+    return entries
+
+
+def parse_all(include_tool_results: bool = False) -> list[dict]:
+    all_entries = []
+    for path in find_session_files():
+        all_entries.extend(parse_file(path, include_tool_results=include_tool_results))
+    return all_entries
+
+
+def parse_raw_records() -> list[dict]:
+    records = []
+    for path in find_session_files():
+        with open(path) as f:
+            for line in f:
+                line = line.strip()
+                if not line:
+                    continue
+                try:
+                    records.append(json.loads(line))
+                except json.JSONDecodeError:
+                    continue
+    return records
+
+
+# ---------------------------------------------------------------------------
+# Commands -- all output JSON
+# ---------------------------------------------------------------------------
+
+def _json_out(data) -> None:
+    print(json.dumps(data, indent=2))
+
+
+def _apply_filters(entries: list[dict], last: int | None = None,
+                   user_only: bool = False, truncate: int | None = None) -> list[dict]:
+    """Apply common filters to a list of entries."""
+    if user_only:
+        entries = [e for e in entries if e["role"] == "user"]
+    if last is not None:
+        entries = entries[-last:]
+    if truncate is not None:
+        entries = [{**e, "text": e["text"][:truncate]} for e in entries]
+    return entries
+
+
+def cmd_conversation(last: int | None = None, user_only: bool = False,
+                     truncate: int | None = None) -> None:
+    """Conversation entries without tool results -- the core back-and-forth."""
+    entries = parse_all(include_tool_results=False)
+    _json_out(_apply_filters(entries, last, user_only, truncate))
+
+
+def cmd_search(query: str) -> None:
+    query_lower = query.lower()
+    hits = [e for e in parse_all(include_tool_results=True)
+            if query_lower in e["text"].lower()]
+    _json_out({"query": query, "count": len(hits), "matches": hits})
+
+
+def cmd_topics() -> None:
+    topics = []
+    for path in find_session_files():
+        entries = parse_file(path)
+        first_user = next((e for e in entries if e["role"] == "user"), None)
+        topics.append({
+            "file": path.stem,
+            "first_message": first_user["text"][:200] if first_user else None,
+            "timestamp": first_user["timestamp"] if first_user else None,
+        })
+    _json_out(topics)
+
+
+def cmd_full(last: int | None = None, user_only: bool = False,
+             truncate: int | None = None) -> None:
+    entries = parse_all(include_tool_results=True)
+    _json_out(_apply_filters(entries, last, user_only, truncate))
+
+
+# Pricing per million tokens (USD).
+# Source: https://platform.claude.com/docs/en/about-claude/pricing
+PRICING = {
+    "claude-opus-4": {
+        "input": 5.00, "output": 25.00,
+        "cache_write_5m": 6.25, "cache_write_1h": 10.00, "cache_read": 0.50,
+    },
+    "claude-sonnet-4": {
+        "input": 3.00, "output": 15.00,
+        "cache_write_5m": 3.75, "cache_write_1h": 6.00, "cache_read": 0.30,
+    },
+    "claude-haiku-4": {
+        "input": 1.00, "output": 5.00,
+        "cache_write_5m": 1.25, "cache_write_1h": 2.00, "cache_read": 0.10,
+    },
+}
+
+
+def _get_pricing(model: str) -> dict | None:
+    for prefix, prices in PRICING.items():
+        if model.startswith(prefix):
+            return prices
+    return None
+
+
+def cmd_tokens() -> None:
+    totals = {
+        "input": 0, "output": 0,
+        "cache_write_5m": 0, "cache_write_1h": 0, "cache_read": 0,
+    }
+    api_calls = 0
+    models = set()
+
+    for rec in parse_raw_records():
+        if rec.get("type") != "assistant":
+            continue
+        msg = rec.get("message", {})
+        usage = msg.get("usage")
+        if not usage:
+            continue
+
+        api_calls += 1
+        models.add(msg.get("model", "unknown"))
+        totals["input"] += usage.get("input_tokens", 0)
+        totals["output"] += usage.get("output_tokens", 0)
+        totals["cache_read"] += usage.get("cache_read_input_tokens", 0)
+        cache_detail = usage.get("cache_creation", {})
+        totals["cache_write_5m"] += cache_detail.get("ephemeral_5m_input_tokens", 0)
+        totals["cache_write_1h"] += cache_detail.get("ephemeral_1h_input_tokens", 0)
+
+    model = sorted(models)[0] if models else "unknown"
+    prices = _get_pricing(model)
+
+    costs = {}
+    total_cost = 0.0
+    if prices:
+        for key in totals:
+            cost = (totals[key] / 1_000_000) * prices[key]
+            costs[key] = round(cost, 4)
+            total_cost += cost
+        costs["total"] = round(total_cost, 4)
+
+    result = {
+        "api_calls": api_calls,
+        "models": sorted(models),
+        "tokens": totals,
+        "tokens_total": sum(totals.values()),
+    }
+    if costs:
+        result["cost_usd"] = costs
+    else:
+        result["cost_usd"] = None
+        result["cost_note"] = f"no pricing data for model '{model}'"
+
+    _json_out(result)
+
+
+# ---------------------------------------------------------------------------
+# Main
+# ---------------------------------------------------------------------------
+
+USAGE = """\
+claude-memory: Session data extraction for Claude Code.
+
+Parses JSONL conversation logs under ~/.claude/projects/ for the current
+working directory. All output is JSON, designed for LLM consumption.
+
+Usage: .claude/scripts/claude-memory <command> [options]
+
+Commands:
+  conversation     User/assistant exchanges as JSON array (no tool results).
+                   Feed to LLM to summarize decisions and agreements.
+
+  search <query>   Case-insensitive search across all conversation text.
+                   Returns {"query", "count", "matches": [...]}.
+
+  topics           First user message per .jsonl file. Quick session index.
+
+  tokens           Token totals + estimated cost in USD as JSON.
+
+  full             All entries including tool results, as JSON array.
+
+Options (for conversation / full):
+  --last N         Only return the last N entries. Use this to avoid
+                   flooding context after compression.
+  --user-only      Only return user messages (skips assistant responses).
+                   User messages carry intent and decisions compactly.
+  --truncate N     Truncate each entry's text to N characters.
+
+Workflow:
+  1. Run the appropriate command to get structured JSON data
+  2. Process and reason over the output internally
+  3. Present a clean, human-friendly result to the user
+  Never show raw JSON output to the user.
+
+When to use:
+  - After compaction (context compressed):
+      The compaction summary is lossy. Use it as an index, not the final word.
+      1. Scan the compaction summary for key topics and decisions.
+      2. Run 'search "keyword"' for each topic to retrieve full detail
+         the compaction may have compressed away.
+      3. Use 'tokens' for cost data (never preserved by compaction).
+      Avoid broad reads (conversation/full without filters) -- they add
+      on top of the compaction summary and may refill the context.
+  - Targeted recall of a specific discussion:
+      Run 'search "keyword"', then summarize the relevant matches.
+  - Quick session index:
+      Run 'topics' to see what was discussed across session files.
+  - Check session spend:
+      Run 'tokens', then present cost breakdown with context.
+
+Installation:
+  1. Place this script at .claude/scripts/claude-memory in your repo root.
+  2. Make it executable: chmod +x .claude/scripts/claude-memory
+  3. Add the following to your CLAUDE.md (create it if needed):
+
+     ## Session Memory Tool
+
+     A session data extraction tool is available at `.claude/scripts/claude-memory`.
+     Run it with `--help` for full usage, workflow, and examples.
+
+     ```bash
+     .claude/scripts/claude-memory --help
+     ```
+"""
+
+
+def _parse_args(argv: list[str]) -> tuple[str, dict, list[str]]:
+    """Parse command, flags, and remaining positional args."""
+    cmd = argv[0]
+    opts = {"last": None, "user_only": False, "truncate": None}
+    positional = []
+    i = 1
+    while i < len(argv):
+        if argv[i] == "--last" and i + 1 < len(argv):
+            opts["last"] = int(argv[i + 1])
+            i += 2
+        elif argv[i] == "--user-only":
+            opts["user_only"] = True
+            i += 1
+        elif argv[i] == "--truncate" and i + 1 < len(argv):
+            opts["truncate"] = int(argv[i + 1])
+            i += 2
+        else:
+            positional.append(argv[i])
+            i += 1
+    return cmd, opts, positional
+
+
+def main():
+    if len(sys.argv) < 2 or sys.argv[1] in ("-h", "--help", "help"):
+        print(USAGE)
+        sys.exit(0)
+
+    cmd, opts, positional = _parse_args(sys.argv[1:])
+
+    if cmd == "conversation":
+        cmd_conversation(**opts)
+    elif cmd == "topics":
+        cmd_topics()
+    elif cmd == "tokens":
+        cmd_tokens()
+    elif cmd == "full":
+        cmd_full(**opts)
+    elif cmd == "search":
+        if not positional:
+            print("Usage: claude-memory search <query>", file=sys.stderr)
+            sys.exit(1)
+        cmd_search(" ".join(positional))
+    else:
+        print(f"Unknown command: {cmd}", file=sys.stderr)
+        print(USAGE, file=sys.stderr)
+        sys.exit(1)
+
+
+if __name__ == "__main__":
+    main()
