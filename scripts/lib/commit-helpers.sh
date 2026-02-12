@@ -426,7 +426,7 @@ create_schema_transition() {
     log_step "Starting 6-step schema transition: UBL $from_version → $to_version"
 
     # Get the first release name for date lookup
-    local first_release=$(basename "$(dirname "$first_release_dir")")
+    local first_release=$(basename "$first_release_dir")
     local base_date=$(get_release_date "$first_release")
     log_info "Using base date: $base_date (from $first_release)"
 
