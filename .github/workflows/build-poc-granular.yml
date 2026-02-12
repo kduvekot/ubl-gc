@@ -76,9 +76,19 @@ jobs:
           git config user.email "ubl-tc@oasis-open.org"
           git config commit.gpgsign false
 
-          # Set up remote (will be authenticated in push step)
+          # Set up authenticated remote
           REMOTE_URL=$(cd $REPO_ROOT && git remote get-url origin)
           git remote add origin "$REMOTE_URL"
+
+          # CRITICAL: Copy GitHub Actions authentication config
+          # The token is passed via http.extraheader, not in the URL
+          AUTH_HEADER=$(cd $REPO_ROOT && git config --get http.https://github.com/.extraheader || echo "")
+          if [ -n "$AUTH_HEADER" ]; then
+            git config http.https://github.com/.extraheader "$AUTH_HEADER"
+            echo "✓ GitHub authentication configured"
+          else
+            echo "⚠ Warning: No GitHub auth header found"
+          fi
 
           echo "✓ Initialized PoC branch in $POC_WORK_DIR"
 
