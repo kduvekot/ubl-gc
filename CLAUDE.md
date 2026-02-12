@@ -263,6 +263,37 @@ git push -u origin claude/git-history-exploration-bunUn
 
 ---
 
-**Last Updated:** 2026-02-11
+## 🧠 Session Memory Tool
+
+A session data extraction tool is available at `.claude/scripts/claude-memory`.
+Run it with `--help` for full usage, workflow, and examples.
+
+```bash
+.claude/scripts/claude-memory --help
+```
+
+**Common commands:**
+```bash
+# Search for specific discussions
+.claude/scripts/claude-memory search "keyword"
+
+# View conversation history (compact)
+.claude/scripts/claude-memory conversation --last 20
+
+# Quick session index
+.claude/scripts/claude-memory topics
+
+# Check token usage and costs
+.claude/scripts/claude-memory tokens
+```
+
+**When to use:**
+- After context compression to retrieve details lost in summary
+- To recall specific decisions or discussions
+- To find what was agreed upon about implementation details
+
+---
+
+**Last Updated:** 2026-02-12
 **Current Branch:** claude/git-history-exploration-bunUn
 **Status:** Ready to build scripts and history
