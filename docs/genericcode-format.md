@@ -420,6 +420,78 @@ history/xsd/2.5/common/*.xsd
 
 ---
 
+## GenericCode vs XSD: Two Different Views of UBL
+
+The GenericCode semantic model and the XSD schemas represent the **same UBL standard** but from fundamentally different perspectives. Understanding this distinction is key to working with either format.
+
+### XSD View: Structural Reuse Through Composition
+
+In the XSD world, UBL is built through **modular assembly**. Components are defined once and reused everywhere by reference:
+
+```
+CommonBasicComponents (cbc):
+  cbc:IssueDateType         ← defined ONCE
+
+CommonAggregateComponents (cac):
+  cac:PartyType             ← defined ONCE, composes cbc elements
+  cac:AddressType           ← defined ONCE, composes cbc elements
+
+Document Schemas:
+  Invoice                   ← references cbc:IssueDate, cac:Party, etc.
+  CreditNote                ← references cbc:IssueDate, cac:Party, etc.
+  Order                     ← references cbc:IssueDate, cac:Party, etc.
+```
+
+A single element like `cbc:IssueDate` is shared across dozens of document types. Common Aggregate Components (CACs) compose Common Basic Components (CBCs), and document types compose CACs — it's a layered system of reuse. This makes schemas compact and DRY.
+
+### GenericCode View: Fully Expanded Semantic Catalog
+
+In the GenericCode world, there is **no reuse**. Every property is spelled out in full for every context it appears in:
+
+```
+Invoice. Issue Date. Date              ← BBIE belonging to Invoice
+Credit Note. Issue Date. Date          ← separate BBIE belonging to Credit Note
+Order. Issue Date. Date                ← separate BBIE belonging to Order
+```
+
+These are three distinct rows. They share the same `PropertyTerm` ("Issue Date") and `DataType` ("Date. Type"), but each has a unique `DictionaryEntryName` because it belongs to a different `ObjectClass`. The file is a **flat, denormalized catalog** — every combination of entity + property is an independent entry.
+
+### Why the Difference Matters
+
+| Aspect | GenericCode (Semantic) | XSD (Structural) |
+|--------|----------------------|-------------------|
+| **Purpose** | What things *mean* | How things are *structured* |
+| **Reuse model** | None — every entry is explicit | Composition — define once, reference many |
+| **"Invoice. Issue Date"** | A standalone row with its own definition | A reference to shared `cbc:IssueDate` element |
+| **Granularity** | One row per property-in-context | One definition per reusable component |
+| **Row count** | ~1,800 entries (all combinations) | ~60 CBCs + ~100 CACs + ~80 document types |
+| **Diff-friendly** | Yes — flat rows, easy to compare | Harder — changes in a shared type affect many documents |
+
+### The Relationship
+
+GenericCode is the **source of truth** for semantics. The XSD schemas are **generated from** the GenericCode model. The generation process takes the flat, denormalized GC catalog and produces the modular, reuse-oriented XSD structure:
+
+```
+GenericCode (flat, semantic)
+  │
+  │  generation / compilation
+  ▼
+XSD Schemas (modular, structural)
+  ├── CommonBasicComponents-2.x.xsd      ← shared basic elements
+  ├── CommonAggregateComponents-2.x.xsd  ← shared aggregate types
+  ├── UBL-Invoice-2.x.xsd               ← document-level schemas
+  ├── UBL-Order-2.x.xsd
+  └── ...
+```
+
+In the GC file, "Invoice. Issue Date. Date" and "Order. Issue Date. Date" are independent rows. In the generated XSD, both document schemas reference the same `cbc:IssueDateType` — the generator recognizes that they share the same property term and data type, and factors out the common definition.
+
+### Practical Implication for This Repository
+
+This repository tracks the **GenericCode files** — the semantic layer. When you see what looks like duplication (the same property appearing under many ABIEs), that's by design. Each row captures the meaning of that property *in that specific business context*. The structural deduplication happens downstream, in the XSD generation step.
+
+---
+
 ## Related Documentation
 
 - [README.md](../README.md) - Complete project overview
