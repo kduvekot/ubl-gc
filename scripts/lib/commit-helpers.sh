@@ -308,6 +308,11 @@ create_schema_transition_step6() {
         old_basename=$(echo "$new_basename" | sed "s/-${to_version}\.gc$/-${from_version}.gc/")
 
         if [ -f "$old_basename" ]; then
+            # Remove new file if it exists (from previous runs)
+            if [ -f "$new_basename" ]; then
+                git rm -f "$new_basename" 2>/dev/null || rm -f "$new_basename"
+            fi
+
             # Rename old file to new name (preserves history)
             git mv "$old_basename" "$new_basename"
             log_info "  Renamed: $old_basename → $new_basename"
