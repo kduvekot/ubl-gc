@@ -341,6 +341,11 @@ create_schema_transition_step6() {
 
     log_step "Schema Transition Step 6/6: Final cleanup ($from_version → $to_version)"
 
+    # Extract the first release name for the commit message
+    local first_release=$(basename "$first_release_dir")
+    local stage_name=$(get_stage_name "$first_release")
+    local stage_desc=$(get_stage_description "$stage_name")
+
     # Now copy the actual first release files of the new version
     local gc_files
     mapfile -t gc_files < <(get_gc_files "$first_release_dir" "$to_version")
@@ -397,16 +402,20 @@ create_schema_transition_step6() {
         fi
     done
 
-    local commit_message="Schema transition 6/6: Complete transition to UBL $to_version
+    local commit_message="UBL $to_version - $stage_name ($stage_desc) + Schema Transition 6/6
 
-Final cleanup and normalization complete.
-Schema transition from UBL $from_version to $to_version is now complete.
+This commit completes the 6-step schema transition from UBL $from_version to $to_version
+AND represents the first release of UBL $to_version: $first_release
 
-Files updated to UBL $to_version structure:
-$(for f in "${gc_files[@]}"; do echo "- $(basename "$f")"; done)
+Schema changes:
+- File renames: UBL-*-$from_version.gc → UBL-*-$to_version.gc
+- Column structure updated to UBL $to_version semantic model
+- All data migrated and normalized
 
-The semantic model now uses UBL $to_version column definitions,
-ready for subsequent $to_version releases.
+Files in this release:
+$(for f in "${gc_files[@]}"; do basename "$f"; done | sed 's/^/- /')
+
+Source: history/$first_release/ (OASIS official release)
 
 $SESSION_URL"
 
