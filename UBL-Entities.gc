@@ -49214,5 +49214,1655 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>Y</SimpleValue>
          </Value>
       </Row>
+      <Row>
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Freight Invoice</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>FreightInvoice</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Freight Invoice. Details</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Freight Invoice</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>ABIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>A document stating the charges incurred for the logistics service.</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.0</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetInvoice">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Freight Invoice</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>ID</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Freight Invoice. Identifier. Identifier</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Freight Invoice</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Identifier</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Identifier</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Identifier</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Identifier. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="AlternativeBusinessTerms">
+            <SimpleValue>Invoice Number</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>An identifier for the Invoice assigned by the Creditor</SimpleValue>
+         </Value>
+         <Value ColumnRef="UNTDEDCode">
+            <SimpleValue>1334</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>1.0</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangefromPreviousVersion">
+            <SimpleValue>Modified definition text</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetInvoice">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Freight Invoice</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>CopyIndicator</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Freight Invoice. Copy Indicator. Indicator</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Freight Invoice</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPossessiveNoun">
+            <SimpleValue>Copy</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Indicator</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Copy Indicator</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Indicator</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Indicator. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>Indicates whether a document is a copy (true) or not (false)</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.0</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangefromPreviousVersion">
+            <SimpleValue>made qualifer in property term possesive noun + made mandatory</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetInvoice">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Freight Invoice</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>GUID</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Freight Invoice. Globally Unique Identifier. Identifier</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Freight Invoice</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPossessiveNoun">
+            <SimpleValue>Globally Unique</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Identifier</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Globally Unique Identifier</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Identifier</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Identifier. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>A computer-generated globally unique identifier (GUID) for the Invoice instance</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.0</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangefromPreviousVersion">
+            <SimpleValue>made qualifer in property term possesive noun</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetInvoice">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Freight Invoice</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>IssueDate</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Freight Invoice. Issue Date. Date</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Freight Invoice</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPossessiveNoun">
+            <SimpleValue>Issue</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Date</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Issue Date</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Date</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Date. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="AlternativeBusinessTerms">
+            <SimpleValue>Invoice Date</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>The date assigned by the Creditor on which the Invoice was issued</SimpleValue>
+         </Value>
+         <Value ColumnRef="UNTDEDCode">
+            <SimpleValue>2377</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.0</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangefromPreviousVersion">
+            <SimpleValue>Split Date Time into Date and Time</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetInvoice">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Freight Invoice</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>IssueTime</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Freight Invoice. Issue Time. Time</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Freight Invoice</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPossessiveNoun">
+            <SimpleValue>Issue</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Time</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Issue Time</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Time</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Time. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>The time assigned by the Creditor on which the Invoice was issued</SimpleValue>
+         </Value>
+         <Value ColumnRef="UNTDEDCode">
+            <SimpleValue>2377</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.0</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangefromPreviousVersion">
+            <SimpleValue>Split Date Time into Date and Time</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetInvoice">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Freight Invoice</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>InvoiceTypeCode</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Freight Invoice. Freight Invoice Type. Code</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Freight Invoice</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPossessiveNoun">
+            <SimpleValue>Invoice</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Invoice Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Code</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Code. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>Code specifying the type of the Invoice.</SimpleValue>
+         </Value>
+         <Value ColumnRef="UNTDEDCode">
+            <SimpleValue>1027</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>1.0</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangefromPreviousVersion">
+            <SimpleValue>Modified definition text</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetInvoice">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Freight Invoice</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>Note</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Freight Invoice. Note. Text</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Freight Invoice</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Note</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Note</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Text</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Text. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>Free form text applying to the Invoice. This element may contain notes or any other similar information that is not contained explicitly in another structure.</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>1.0</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangefromPreviousVersion">
+            <SimpleValue>Modified definition text</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetInvoice">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Freight Invoice</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>TaxPointDate</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Freight Invoice. Tax Point Date. Date</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Freight Invoice</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPossessiveNoun">
+            <SimpleValue>Tax Point</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Date</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Tax Point Date</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Date</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Date. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>The date of the Invoice used to indicate the point at which tax becomes applicable.</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>1.0</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangefromPreviousVersion">
+            <SimpleValue>Modified definition text</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetInvoice">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Freight Invoice</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>TransactionCurrencyCode</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Freight Invoice. Transaction_ Currency. Code</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Freight Invoice</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermQualifier">
+            <SimpleValue>Transaction</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Currency</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Currency</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Code</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataTypeQualifier">
+            <SimpleValue>Currency</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Currency_ Code. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>The default currency for the overall transaction</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>1.0</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangefromPreviousVersion">
+            <SimpleValue>Modified definition text</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Freight Invoice</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>DocumentCurrencyCode</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Freight Invoice. Document_ Currency. Code</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Freight Invoice</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermQualifier">
+            <SimpleValue>Document</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Currency</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Currency</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Code</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataTypeQualifier">
+            <SimpleValue>Currency</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Currency_ Code. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>The currency in which the Document is presented. This may be the same currency as the pricing or as the tax.</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.0</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangefromPreviousVersion">
+            <SimpleValue>Modified definition text + made mandatory</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Freight Invoice</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>TaxCurrencyCode</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Freight Invoice. Tax_ Currency. Code</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Freight Invoice</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermQualifier">
+            <SimpleValue>Tax</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Currency</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Currency</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Code</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataTypeQualifier">
+            <SimpleValue>Currency</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Currency_ Code. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>The currency used for tax amounts in the Invoice</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.0</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangefromPreviousVersion">
+            <SimpleValue>Modified definition text</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Freight Invoice</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>PricingCurrencyCode</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Freight Invoice. Pricing_ Currency. Code</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Freight Invoice</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermQualifier">
+            <SimpleValue>Pricing</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Currency</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Currency</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Code</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataTypeQualifier">
+            <SimpleValue>Currency</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Currency_ Code. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>The currency used for prices in the Invoice</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>1.0</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangefromPreviousVersion">
+            <SimpleValue>Modified definition text</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Freight Invoice</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>AccountingCostCode</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Freight Invoice. Accounting_ Cost Code. Code</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Freight Invoice</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermQualifier">
+            <SimpleValue>Accounting</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPossessiveNoun">
+            <SimpleValue>Cost</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Code</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Cost Code</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Code</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Code. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>The Buyer's accounting code applied to the Invoice as a whole</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>1.0</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangefromPreviousVersion">
+            <SimpleValue>Modified definition text</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Freight Invoice</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>InvoicePeriod</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Freight Invoice. Invoice_ Period</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Freight Invoice</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermQualifier">
+            <SimpleValue>Invoice</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Period</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Period</SimpleValue>
+         </Value>
+         <Value ColumnRef="AssociatedObjectClass">
+            <SimpleValue>Period</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..n</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>ASBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>An association to period(s) to which the Invoice applies</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>1.0</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangefromPreviousVersion">
+            <SimpleValue>Modified definition text</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Freight Invoice</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>Shipment</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Freight Invoice. Shipment</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Freight Invoice</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Shipment</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Shipment</SimpleValue>
+         </Value>
+         <Value ColumnRef="AssociatedObjectClass">
+            <SimpleValue>Shipment</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>ASBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>An association to Shipment</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.0</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Freight Invoice</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>OrderReference</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Freight Invoice. Order Reference</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Freight Invoice</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Order Reference</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Order Reference</SimpleValue>
+         </Value>
+         <Value ColumnRef="AssociatedObjectClass">
+            <SimpleValue>Order Reference</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..n</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>ASBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>An association to an Order</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>1.0</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangefromPreviousVersion">
+            <SimpleValue>Modified definition text</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetInvoice">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Freight Invoice</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>DespatchDocumentReference</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Freight Invoice. Despatch_ Document Reference</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Freight Invoice</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermQualifier">
+            <SimpleValue>Despatch</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Document Reference</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Document Reference</SimpleValue>
+         </Value>
+         <Value ColumnRef="AssociatedObjectClass">
+            <SimpleValue>Document Reference</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..n</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>ASBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>An association to a Despatch Advice</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>1.0</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangefromPreviousVersion">
+            <SimpleValue>Modified definition text</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Freight Invoice</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>ReceiptDocumentReference</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Freight Invoice. Receipt_ Document Reference</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Freight Invoice</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermQualifier">
+            <SimpleValue>Receipt</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Document Reference</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Document Reference</SimpleValue>
+         </Value>
+         <Value ColumnRef="AssociatedObjectClass">
+            <SimpleValue>Document Reference</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..n</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>ASBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>An association to a Receipt Advice</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>1.0</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangefromPreviousVersion">
+            <SimpleValue>Modified definition text</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Freight Invoice</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>AccountingDocumentReference</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Freight Invoice. Accounting Document Reference</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Freight Invoice</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Accounting Document Reference</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Accounting Document Reference</SimpleValue>
+         </Value>
+         <Value ColumnRef="AssociatedObjectClass">
+            <SimpleValue>Accounting Document Reference</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..n</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>ASBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>An association to other accounting documents.</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.0</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangefromPreviousVersion">
+            <SimpleValue>Modified definition text</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Freight Invoice</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>OriginatorDocumentReference</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Freight Invoice. Requisitionist_ Document Reference</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Freight Invoice</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermQualifier">
+            <SimpleValue>Originator</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Document Reference</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Document Reference</SimpleValue>
+         </Value>
+         <Value ColumnRef="AssociatedObjectClass">
+            <SimpleValue>Document Reference</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..n</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>ASBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>An association to an Originator Document</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>1.0</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangefromPreviousVersion">
+            <SimpleValue>Modified definition text</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Freight Invoice</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>ContractDocumentReference</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Freight Invoice. Contract_ Document Reference</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Freight Invoice</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermQualifier">
+            <SimpleValue>Contract</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Document Reference</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Document Reference</SimpleValue>
+         </Value>
+         <Value ColumnRef="AssociatedObjectClass">
+            <SimpleValue>Document Reference</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..n</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>ASBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>An association to a framework agreement or contract</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>1.0</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangefromPreviousVersion">
+            <SimpleValue>Modified definition text</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Freight Invoice</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>AdditionalDocumentReference</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Freight Invoice. Additional_ Document Reference</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Freight Invoice</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermQualifier">
+            <SimpleValue>Additional</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Document Reference</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Document Reference</SimpleValue>
+         </Value>
+         <Value ColumnRef="AssociatedObjectClass">
+            <SimpleValue>Document Reference</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..n</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>ASBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>An association to other documents</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>1.0</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangefromPreviousVersion">
+            <SimpleValue>Modified definition text</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Freight Invoice</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>Signature</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Freight Invoice. Signature</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Freight Invoice</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Signature</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Signature</SimpleValue>
+         </Value>
+         <Value ColumnRef="AssociatedObjectClass">
+            <SimpleValue>Signature</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..n</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>ASBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>One or more signatures applied to the Invoice</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.0</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangefromPreviousVersion">
+            <SimpleValue>Modified definition text</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetDebitNote">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Freight Invoice</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>CreditorSupplierParty</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Freight Invoice. Creditor_ Supplier Party</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Freight Invoice</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermQualifier">
+            <SimpleValue>Creditor</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Supplier Party</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Supplier Party</SimpleValue>
+         </Value>
+         <Value ColumnRef="AssociatedObjectClass">
+            <SimpleValue>Supplier Party</SimpleValue>
+         </Value>
+         <Value ColumnRef="AlternativeBusinessTerms">
+            <SimpleValue>Invoice Issuer</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>ASBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>An association to the Creditor. The party issuing an invoice.</SimpleValue>
+         </Value>
+         <Value ColumnRef="UNTDEDCode">
+            <SimpleValue>3029</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.0</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangefromPreviousVersion">
+            <SimpleValue>Modified definition text</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Freight Invoice</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>DebtorCustomerParty</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Freight Invoice. Debtor_ Customer Party</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Freight Invoice</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermQualifier">
+            <SimpleValue>Debtor</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Customer Party</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Customer Party</SimpleValue>
+         </Value>
+         <Value ColumnRef="AssociatedObjectClass">
+            <SimpleValue>Customer Party</SimpleValue>
+         </Value>
+         <Value ColumnRef="AlternativeBusinessTerms">
+            <SimpleValue>Invoicee</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>ASBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>An association to the Debtor. The party to whom an invoice is issued.</SimpleValue>
+         </Value>
+         <Value ColumnRef="UNTDEDCode">
+            <SimpleValue>3007</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.0</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangefromPreviousVersion">
+            <SimpleValue>Modified definition text</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Freight Invoice</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>PayeeParty</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Freight Invoice. Payee_ Party</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Freight Invoice</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermQualifier">
+            <SimpleValue>Payee</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Party</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Party</SimpleValue>
+         </Value>
+         <Value ColumnRef="AssociatedObjectClass">
+            <SimpleValue>Party</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>ASBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>An association to the Payee</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.0</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangefromPreviousVersion">
+            <SimpleValue>Modified definition text</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Freight Invoice</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>PaymentMeans</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Freight Invoice. Payment Means</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Freight Invoice</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Payment Means</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Payment Means</SimpleValue>
+         </Value>
+         <Value ColumnRef="AssociatedObjectClass">
+            <SimpleValue>Payment Means</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..n</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>ASBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>An association to Payment Means</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>1.0</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangefromPreviousVersion">
+            <SimpleValue>Modified definition text</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Freight Invoice</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>PaymentTerms</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Freight Invoice. Payment Terms</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Freight Invoice</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Payment Terms</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Payment Terms</SimpleValue>
+         </Value>
+         <Value ColumnRef="AssociatedObjectClass">
+            <SimpleValue>Payment Terms</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..n</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>ASBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>An association to Payment Terms</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>1.0</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangefromPreviousVersion">
+            <SimpleValue>Modified definition text</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetInvoice">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Freight Invoice</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>AllowanceCharge</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Freight Invoice. Allowance Charge</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Freight Invoice</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Allowance Charge</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Allowance Charge</SimpleValue>
+         </Value>
+         <Value ColumnRef="AssociatedObjectClass">
+            <SimpleValue>Allowance Charge</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..n</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>ASBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>An association to Allowances and Charges that apply to the Invoice as a whole</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>1.0</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangefromPreviousVersion">
+            <SimpleValue>Modified definition text</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetInvoice">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Freight Invoice</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>TransactionExchangeRate</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Freight Invoice. Transaction_ Exchange Rate</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Freight Invoice</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermQualifier">
+            <SimpleValue>Transaction</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Exchange Rate</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Exchange Rate</SimpleValue>
+         </Value>
+         <Value ColumnRef="AssociatedObjectClass">
+            <SimpleValue>Exchange Rate</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>ASBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>An association to Exchange Rate between the Document Currency and the Transaction Currency</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.0</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Procurement</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Freight Invoice</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>TaxExchangeRate</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Freight Invoice. Tax_ Exchange Rate</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Freight Invoice</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermQualifier">
+            <SimpleValue>Tax</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Exchange Rate</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Exchange Rate</SimpleValue>
+         </Value>
+         <Value ColumnRef="AssociatedObjectClass">
+            <SimpleValue>Exchange Rate</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>ASBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>An association to Exchange Rate between the Document Currency and the Pricing Currency</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.0</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Procurement</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Freight Invoice</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>PricingExchangeRate</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Freight Invoice. Pricing_ Exchange Rate</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Freight Invoice</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermQualifier">
+            <SimpleValue>Pricing</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Exchange Rate</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Exchange Rate</SimpleValue>
+         </Value>
+         <Value ColumnRef="AssociatedObjectClass">
+            <SimpleValue>Exchange Rate</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>ASBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>An association to Exchange Rate between the Document Currency and the Tax Currency</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.0</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Procurement</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Freight Invoice</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>TaxTotal</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Freight Invoice. Tax Total</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Freight Invoice</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Tax Total</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Tax Total</SimpleValue>
+         </Value>
+         <Value ColumnRef="AssociatedObjectClass">
+            <SimpleValue>Tax Total</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..n</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>ASBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>An association to tax total for specific tax types/rates</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>1.0</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangefromPreviousVersion">
+            <SimpleValue>Modified definition text</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetInvoice">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Freight Invoice</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>LegalTotal</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Freight Invoice. Legal Total</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Freight Invoice</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Legal Total</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Legal Total</SimpleValue>
+         </Value>
+         <Value ColumnRef="AssociatedObjectClass">
+            <SimpleValue>Legal Total</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>ASBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>An association to the total amount payable on the Invoice including Allowances, Charges and Taxes</SimpleValue>
+         </Value>
+         <Value ColumnRef="UNTDEDCode">
+            <SimpleValue>5214</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>1.0</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangefromPreviousVersion">
+            <SimpleValue>Modified definition text</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetInvoice">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Freight Invoice</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>InvoiceLine</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Freight Invoice. Freight Invoice Line</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Freight Invoice</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Invoice Line</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Invoice Line</SimpleValue>
+         </Value>
+         <Value ColumnRef="AssociatedObjectClass">
+            <SimpleValue>Invoice Line</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>1..n</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>ASBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>An association to one or more Invoice Lines</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>1.0</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangefromPreviousVersion">
+            <SimpleValue>Modified definition text</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetInvoice">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+      </Row>
    </SimpleCodeList>
 </ns0:CodeList>
