@@ -17,6 +17,9 @@ from pathlib import Path
 from gc_analyzer import GCAnalyzer
 from gc_builder import GCBuilder, BuildStep
 
+# Preserve the 'gc' namespace prefix (ElementTree defaults to 'ns0')
+ET.register_namespace('gc', 'http://docs.oasis-open.org/codelist/ns/genericode/1.0/')
+
 SESSION_URL = "https://claude.ai/code/session_01B5kfoVeuncQaSCz9nX4H1j"
 
 
@@ -69,8 +72,8 @@ class GCCommitBuilder:
             if line.strip():
                 cleaned.append(line)
 
-        # Reassemble with proper declaration
-        pretty_xml = '<?xml version="1.0" encoding="UTF-8"?>\n' + '\n'.join(cleaned) + '\n'
+        # Reassemble with proper declaration (no trailing newline, matching OASIS originals)
+        pretty_xml = '<?xml version="1.0" encoding="UTF-8"?>\n' + '\n'.join(cleaned)
 
         with open(self.target_path, 'w', encoding='utf-8') as f:
             f.write(pretty_xml)
