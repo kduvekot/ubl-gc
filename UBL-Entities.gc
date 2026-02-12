@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ns0:CodeList xmlns:ns0="http://docs.oasis-open.org/codelist/ns/genericode/1.0/">
+   <Identification>
+      <ShortName>UBL-2.0-PRD</ShortName>
+      <LongName>UBL Version 2.0 Proposed Recommendation Semantic Model</LongName>
+      <Version>2.0</Version>
+      <CanonicalUri>urn:oasis:names:specification:ubl:2.0:prd</CanonicalUri>
+      <CanonicalVersionUri>urn:oasis:names:specification:ubl:2.0:prd</CanonicalVersionUri>
+   </Identification>
+   <ColumnSet>
+      <Column Id="ModelName" Use="required">
+         <ShortName>ModelName</ShortName>
+         <LongName>Model Name</LongName>
+         <Data Type="string"/>
+      </Column>
+      <Column Id="UBLName" Use="optional">
+         <ShortName>UBLName</ShortName>
+         <LongName>UBL Name</LongName>
+         <Data Type="string"/>
+      </Column>
+      <Column Id="DictionaryEntryName" Use="required">
+         <ShortName>DictionaryEntryName</ShortName>
+         <LongName>Dictionary Entry Name</LongName>
+         <Data Type="string"/>
+      </Column>
+      <Column Id="ObjectClassQualifier" Use="optional">
+         <ShortName>ObjectClassQualifier</ShortName>
+         <LongName>Object Class Qualifier</LongName>
+         <Data Type="string"/>
+      </Column>
+      <Column Id="ObjectClass" Use="optional">
+         <ShortName>ObjectClass</ShortName>
+         <LongName>Object Class</LongName>
+         <Data Type="string"/>
+      </Column>
+      <Column Id="PropertyTermQualifier" Use="optional">
+         <ShortName>PropertyTermQualifier</ShortName>
+         <LongName>Property Term Qualifier</LongName>
+         <Data Type="string"/>
+      </Column>
+      <Column Id="PropertyTermPossessiveNoun" Use="optional">
+         <ShortName>PropertyTermPossessiveNoun</ShortName>
+         <LongName>Property Term Possessive Noun</LongName>
+         <Data Type="string"/>
+      </Column>
+      <Column Id="PropertyTermPrimaryNoun" Use="optional">
+         <ShortName>PropertyTermPrimaryNoun</ShortName>
+         <LongName>Property Term Primary Noun</LongName>
+         <Data Type="string"/>
+      </Column>
+      <Column Id="PropertyTerm" Use="optional">
+         <ShortName>PropertyTerm</ShortName>
+         <LongName>Property Term</LongName>
+         <Data Type="string"/>
+      </Column>
+      <Column Id="RepresentationTerm" Use="optional">
+         <ShortName>RepresentationTerm</ShortName>
+         <LongName>Representation Term</LongName>
+         <Data Type="string"/>
+      </Column>
+      <Column Id="DataType" Use="optional">
+         <ShortName>DataType</ShortName>
+         <LongName>Data Type</LongName>
+         <Data Type="string"/>
+      </Column>
+      <Column Id="AssociatedObjectClassQualifier" Use="optional">
+         <ShortName>AssociatedObjectClassQualifier</ShortName>
+         <LongName>Associated Object Class Qualifier</LongName>
+         <Data Type="string"/>
+      </Column>
+      <Column Id="AssociatedObjectClass" Use="optional">
+         <ShortName>AssociatedObjectClass</ShortName>
+         <LongName>Associated Object Class</LongName>
+         <Data Type="string"/>
+      </Column>
+      <Column Id="AlternativeBusinessTerms" Use="optional">
+         <ShortName>AlternativeBusinessTerms</ShortName>
+         <LongName>Alternative Business Terms</LongName>
+         <Data Type="string"/>
+      </Column>
+      <Column Id="Cardinality" Use="optional">
+         <ShortName>Cardinality</ShortName>
+         <LongName>Cardinality</LongName>
+         <Data Type="string"/>
+      </Column>
+      <Column Id="ComponentType" Use="optional">
+         <ShortName>ComponentType</ShortName>
+         <LongName>Component Type</LongName>
+         <Data Type="string"/>
+      </Column>
+      <Column Id="Definition" Use="optional">
+         <ShortName>Definition</ShortName>
+         <LongName>Definition</LongName>
+         <Data Type="string"/>
+      </Column>
+      <Column Id="Examples" Use="optional">
+         <ShortName>Examples</ShortName>
+         <LongName>Examples</LongName>
+         <Data Type="string"/>
+      </Column>
+      <Column Id="UNTDEDCode" Use="optional">
+         <ShortName>UNTDEDCode</ShortName>
+         <LongName>UN/TDED Code</LongName>
+         <Data Type="string"/>
+      </Column>
+      <Column Id="CurrentVersion" Use="optional">
+         <ShortName>CurrentVersion</ShortName>
+         <LongName>Current Version</LongName>
+         <Data Type="string"/>
+      </Column>
+      <Column Id="AnalystNotes" Use="optional">
+         <ShortName>AnalystNotes</ShortName>
+         <LongName>Analyst Notes</LongName>
+         <Data Type="string"/>
+      </Column>
+      <Column Id="CandidateCCID" Use="optional">
+         <ShortName>CandidateCCID</ShortName>
+         <LongName>Candidate CC ID</LongName>
+         <Data Type="string"/>
+      </Column>
+      <Column Id="ContextBusinessProcess" Use="optional">
+         <ShortName>ContextBusinessProcess</ShortName>
+         <LongName>Context: Business Process</LongName>
+         <Data Type="string"/>
+      </Column>
+      <Column Id="ContextRegionGeopolitical" Use="optional">
+         <ShortName>ContextRegionGeopolitical</ShortName>
+         <LongName>Context: Region (Geopolitical)</LongName>
+         <Data Type="string"/>
+      </Column>
+      <Column Id="ContextOfficialConstraints" Use="optional">
+         <ShortName>ContextOfficialConstraints</ShortName>
+         <LongName>Context: Official Constraints</LongName>
+         <Data Type="string"/>
+      </Column>
+      <Column Id="ContextProduct" Use="optional">
+         <ShortName>ContextProduct</ShortName>
+         <LongName>Context: Product</LongName>
+         <Data Type="string"/>
+      </Column>
+      <Column Id="ContextIndustry" Use="optional">
+         <ShortName>ContextIndustry</ShortName>
+         <LongName>Context: Industry</LongName>
+         <Data Type="string"/>
+      </Column>
+      <Column Id="ContextRole" Use="optional">
+         <ShortName>ContextRole</ShortName>
+         <LongName>Context: Role</LongName>
+         <Data Type="string"/>
+      </Column>
+      <Column Id="ContextSupportingRole" Use="optional">
+         <ShortName>ContextSupportingRole</ShortName>
+         <LongName>Context: Supporting Role</LongName>
+         <Data Type="string"/>
+      </Column>
+      <Column Id="ContextSystemConstraint" Use="optional">
+         <ShortName>ContextSystemConstraint</ShortName>
+         <LongName>Context: System Constraint</LongName>
+         <Data Type="string"/>
+      </Column>
+      <Column Id="EditorsNotes" Use="optional">
+         <ShortName>EditorsNotes</ShortName>
+         <LongName>Editor's Notes</LongName>
+         <Data Type="string"/>
+      </Column>
+      <Column Id="SmallBusinessSubsetAccountResponse" Use="optional">
+         <ShortName>SmallBusinessSubsetAccountResponse</ShortName>
+         <LongName>Small Business Subset Account Response</LongName>
+         <Data Type="string"/>
+      </Column>
+      <Column Id="SmallBusinessSubsetCatalogue" Use="optional">
+         <ShortName>SmallBusinessSubsetCatalogue</ShortName>
+         <LongName>Small Business Subset Catalogue</LongName>
+         <Data Type="string"/>
+      </Column>
+      <Column Id="SmallBusinessSubsetCreditNote" Use="optional">
+         <ShortName>SmallBusinessSubsetCreditNote</ShortName>
+         <LongName>Small Business Subset Credit Note</LongName>
+         <Data Type="string"/>
+      </Column>
+      <Column Id="SmallBusinessSubsetDebitNote" Use="optional">
+         <ShortName>SmallBusinessSubsetDebitNote</ShortName>
+         <LongName>Small Business Subset Debit Note</LongName>
+         <Data Type="string"/>
+      </Column>
+      <Column Id="SmallBusinessSubsetDespatchAdvice" Use="optional">
+         <ShortName>SmallBusinessSubsetDespatchAdvice</ShortName>
+         <LongName>Small Business Subset Despatch Advice</LongName>
+         <Data Type="string"/>
+      </Column>
+      <Column Id="SmallBusinessSubsetInvoice" Use="optional">
+         <ShortName>SmallBusinessSubsetInvoice</ShortName>
+         <LongName>Small Business Subset Invoice</LongName>
+         <Data Type="string"/>
+      </Column>
+      <Column Id="SmallBusinessSubsetOrder" Use="optional">
+         <ShortName>SmallBusinessSubsetOrder</ShortName>
+         <LongName>Small Business Subset Order</LongName>
+         <Data Type="string"/>
+      </Column>
+      <Column Id="SmallBusinessSubsetOrderCancellation" Use="optional">
+         <ShortName>SmallBusinessSubsetOrderCancellation</ShortName>
+         <LongName>Small Business Subset Order Cancellation</LongName>
+         <Data Type="string"/>
+      </Column>
+      <Column Id="SmallBusinessSubsetOrderChange" Use="optional">
+         <ShortName>SmallBusinessSubsetOrderChange</ShortName>
+         <LongName>Small Business Subset Order Change</LongName>
+         <Data Type="string"/>
+      </Column>
+      <Column Id="SmallBusinessSubsetOrderResponse" Use="optional">
+         <ShortName>SmallBusinessSubsetOrderResponse</ShortName>
+         <LongName>Small Business Subset Order Response</LongName>
+         <Data Type="string"/>
+      </Column>
+      <Column Id="SmallBusinessSubsetOrderResponseSimple" Use="optional">
+         <ShortName>SmallBusinessSubsetOrderResponseSimple</ShortName>
+         <LongName>Small Business Subset Order Response Simple</LongName>
+         <Data Type="string"/>
+      </Column>
+      <Column Id="SmallBusinessSubsetQuote" Use="optional">
+         <ShortName>SmallBusinessSubsetQuote</ShortName>
+         <LongName>Small Business Subset Quote</LongName>
+         <Data Type="string"/>
+      </Column>
+      <Column Id="SmallBusinessSubsetReceiptAdvice" Use="optional">
+         <ShortName>SmallBusinessSubsetReceiptAdvice</ShortName>
+         <LongName>Small Business Subset Receipt Advice</LongName>
+         <Data Type="string"/>
+      </Column>
+      <Column Id="SmallBusinessSubsetRemittance" Use="optional">
+         <ShortName>SmallBusinessSubsetRemittance</ShortName>
+         <LongName>Small Business Subset Remittance</LongName>
+         <Data Type="string"/>
+      </Column>
+      <Column Id="SmallBusinessSubsetRequestforQuotation" Use="optional">
+         <ShortName>SmallBusinessSubsetRequestforQuotation</ShortName>
+         <LongName>Small Business Subset Request for Quotation</LongName>
+         <Data Type="string"/>
+      </Column>
+      <Column Id="SmallBusinessSubsetSelfBilledInvoice" Use="optional">
+         <ShortName>SmallBusinessSubsetSelfBilledInvoice</ShortName>
+         <LongName>Small Business Subset Self Billed Invoice</LongName>
+         <Data Type="string"/>
+      </Column>
+      <Column Id="SmallBusinessSubsetSelfBillingCreditNote" Use="optional">
+         <ShortName>SmallBusinessSubsetSelfBillingCreditNote</ShortName>
+         <LongName>Small Business Subset Self Billing Credit Note</LongName>
+         <Data Type="string"/>
+      </Column>
+      <Column Id="SmallBusinessSubsetStatementofAccount" Use="optional">
+         <ShortName>SmallBusinessSubsetStatementofAccount</ShortName>
+         <LongName>Small Business Subset Statement of Account</LongName>
+         <Data Type="string"/>
+      </Column>
+      <Key Id="key">
+         <ShortName>Key</ShortName>
+         <ColumnRef Ref="DictionaryEntryName"/>
+      </Key>
+   </ColumnSet>
+   <SimpleCodeList/>
+</ns0:CodeList>
