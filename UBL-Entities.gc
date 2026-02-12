@@ -47477,5 +47477,789 @@ A Bill of Lading can serve as a contractual document between the parties for the
             <SimpleValue>Y</SimpleValue>
          </Value>
       </Row>
+      <Row>
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Despatch Advice</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>DespatchAdvice</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Despatch Advice. Details</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Despatch Advice</SimpleValue>
+         </Value>
+         <Value ColumnRef="AlternativeBusinessTerms">
+            <SimpleValue>Ship Note, Dispatch Advice, Consignment Note</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>ABIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>The document used to describe the despatch or delivery of goods and services</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.0</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetDespatchAdvice">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Despatch Advice</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>ID</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Despatch Advice. Identifier</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Despatch Advice</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Identifier</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Identifier</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Identifier</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Identifier. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>An identifier for the Despatch Advice assigned by Despatch (Party)</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>1.0</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangefromPreviousVersion">
+            <SimpleValue>Modified definition text</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetDespatchAdvice">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Despatch Advice</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>CopyIndicator</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Despatch Advice. Copy Indicator. Indicator</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Despatch Advice</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPossessiveNoun">
+            <SimpleValue>Copy</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Indicator</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Copy Indicator</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Indicator</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Indicator. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>Indicates whether the Despatch Advice is a copy (true) or not (false)</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.0</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangefromPreviousVersion">
+            <SimpleValue>Changed Property Terms</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetDespatchAdvice">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Despatch Advice</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>GUID</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Despatch Advice. Globally Unique Identifier. Identifier</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Despatch Advice</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPossessiveNoun">
+            <SimpleValue>Globally Unique</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Identifier</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Globally Unique Identifier</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Identifier</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Identifier. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>A computer-generated globally unique identifier (GUID) for the Despatch Advice instance</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.0</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangefromPreviousVersion">
+            <SimpleValue>Changed Property Terms</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetDespatchAdvice">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Despatch Advice</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>IssueDate</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Despatch Advice. Issue Date. Date</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Despatch Advice</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPossessiveNoun">
+            <SimpleValue>Issue</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Date</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Issue Date</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Date</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Date. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>The date assigned by Despatch (Party) on which the Despatch Advice was issued</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.0</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangefromPreviousVersion">
+            <SimpleValue>Split Date Time into Date and Time</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetDespatchAdvice">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Despatch Advice</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>IssueTime</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Despatch Advice. Issue Time. Time</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Despatch Advice</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPossessiveNoun">
+            <SimpleValue>Issue</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Time</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Issue Time</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Time</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Time. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>The time assigned by Despatch (Party) on which the Despatch Advice was issued</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.0</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangefromPreviousVersion">
+            <SimpleValue>Split Date Time into Date and Time</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetDespatchAdvice">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Despatch Advice</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>DocumentStatusCode</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Despatch Advice. Document Status. Code</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Despatch Advice</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPossessiveNoun">
+            <SimpleValue>Document</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Status</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Document Status</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Code</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Document Status_ Code. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>Identifies the status of the Despatch Advice with respect to its original state. This may be used if the document precedes the event and is subsequently found to be incorrect and in need of cancelling or revising.</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>1.0</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangefromPreviousVersion">
+            <SimpleValue>Modified definition text</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetDespatchAdvice">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Despatch Advice</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>DespatchAdviceTypeCode</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Despatch Advice. Despatch Advice Type. Code</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Despatch Advice</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPossessiveNoun">
+            <SimpleValue>Despatch Advice </SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Despatch Advice Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Code</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Code. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>Identifies the type of the Despatch Advice.</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>1.0</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangefromPreviousVersion">
+            <SimpleValue>Modified definition text</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetDespatchAdvice">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Despatch Advice</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>Note</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Despatch Advice. Note. Text</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Despatch Advice</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Note</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Note</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Text</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Text. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>Free form text applying to the Despatch Advice. This element may contain notes or any other similar information that is not contained explicitly in another structure.</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>1.0</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangefromPreviousVersion">
+            <SimpleValue>Modified definition text</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetDespatchAdvice">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Despatch Advice</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>OrderReference</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Despatch Advice. Order Reference</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Despatch Advice</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Order Reference</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Order Reference</SimpleValue>
+         </Value>
+         <Value ColumnRef="AssociatedObjectClass">
+            <SimpleValue>Order Reference</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..n</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>ASBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>An association to an Order</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>1.0</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangefromPreviousVersion">
+            <SimpleValue>Modified definition text</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetDespatchAdvice">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Despatch Advice</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>AdditionalDocumentReference</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Despatch Advice. Additional_ Document Reference</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Despatch Advice</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermQualifier">
+            <SimpleValue>Additional</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Document Reference</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Document Reference</SimpleValue>
+         </Value>
+         <Value ColumnRef="AssociatedObjectClass">
+            <SimpleValue>Document Reference</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..n</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>ASBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>An association to other documents</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>1.0</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangefromPreviousVersion">
+            <SimpleValue>Modified definition text</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Despatch Advice</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>Signature</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Despatch Advice. Signature</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Despatch Advice</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Signature</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Signature</SimpleValue>
+         </Value>
+         <Value ColumnRef="AssociatedObjectClass">
+            <SimpleValue>Signature</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..n</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>ASBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>Associates the Despatch Advice with zero or more signatures.</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.0</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangefromPreviousVersion">
+            <SimpleValue>Modified definition text</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetDebitNote">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Despatch Advice</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>BuyerCustomerParty</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Despatch Advice. Buyer_ Customer Party</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Despatch Advice</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermQualifier">
+            <SimpleValue>Buyer</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Customer Party</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Customer Party</SimpleValue>
+         </Value>
+         <Value ColumnRef="AssociatedObjectClass">
+            <SimpleValue>Customer Party</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>ASBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>An association to the Buyer</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.0</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangefromPreviousVersion">
+            <SimpleValue>Changed cardinality</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetDespatchAdvice">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Despatch Advice</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>SellerSupplierParty</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Despatch Advice. Seller_ Supplier Party</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Despatch Advice</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermQualifier">
+            <SimpleValue>Seller</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Supplier Party</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Supplier Party</SimpleValue>
+         </Value>
+         <Value ColumnRef="AssociatedObjectClass">
+            <SimpleValue>Supplier Party</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>ASBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>An association to the Seller</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.0</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangefromPreviousVersion">
+            <SimpleValue>Changed cardinality</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetDespatchAdvice">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Despatch Advice</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>OriginatorCustomerParty</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Despatch Advice. Originator_ Customer Party</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Despatch Advice</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermQualifier">
+            <SimpleValue>Originator</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Customer Party</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Customer Party</SimpleValue>
+         </Value>
+         <Value ColumnRef="AssociatedObjectClass">
+            <SimpleValue>Customer Party</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>ASBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>An association to the Originator (Party)</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>1.0</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangefromPreviousVersion">
+            <SimpleValue>Modified definition text</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetOrder">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Despatch Advice</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>Shipment</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Despatch Advice. Shipment</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Despatch Advice</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Shipment</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Shipment</SimpleValue>
+         </Value>
+         <Value ColumnRef="AssociatedObjectClass">
+            <SimpleValue>Shipment</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>ASBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>An association to a Shipment detail</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.0</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangefromPreviousVersion">
+            <SimpleValue>removed qualifier</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Despatch Advice</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>DespatchLine</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Despatch Advice. Despatch Line</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Despatch Advice</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Despatch Line</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Despatch Line</SimpleValue>
+         </Value>
+         <Value ColumnRef="AssociatedObjectClass">
+            <SimpleValue>Despatch Line</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>1..n</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>ASBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>An association to one or more Despatch Advice Lines</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>1.0</SimpleValue>
+         </Value>
+         <Value ColumnRef="ContextBusinessProcess">
+            <SimpleValue>Procurement</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangefromPreviousVersion">
+            <SimpleValue>Modified definition text</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetDespatchAdvice">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+      </Row>
    </SimpleCodeList>
 </ns0:CodeList>
