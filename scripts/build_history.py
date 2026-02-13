@@ -6,14 +6,16 @@ Processes all 35 UBL releases and creates git commits showing the complete
 evolution of UBL GenericCode semantic models.
 
 Strategy:
-1. First release (UBL 2.0 PRD): Use ABIE-by-ABIE creation (~131 commits)
-2. Subsequent releases: Use gc_diff to compute changes, create commits per change
-3. File types: Track Entities, Signature-Entities, Endorsed-Entities separately
-4. Versioning: Files in history branch use versioned names matching OASIS originals:
+1. First release (UBL 2.0 PRD): Generate empty skeleton, then diff against
+   full source to create ABIE-by-ABIE commits via the unified diff engine.
+2. Subsequent releases: Use gc_diff to compute changes, create commits per change.
+3. New files (Signature/Endorsed): Same skeleton+diff approach as first release.
+4. File types: Track Entities, Signature-Entities, Endorsed-Entities separately.
+5. Versioning: Files in history branch use versioned names matching OASIS originals:
    - UBL-Entities-{version}.gc
    - UBL-Signature-Entities-{version}.gc
    - UBL-Endorsed-Entities-{version}.gc
-5. Version transitions use git mv to preserve file provenance
+6. Version transitions use git mv to preserve file provenance.
 """
 
 import subprocess
@@ -22,7 +24,7 @@ import os
 import tempfile
 import shutil
 from pathlib import Path
-from typing import Optional, Tuple, List
+from typing import Optional
 import argparse
 
 # Add lib directory to path
@@ -30,9 +32,6 @@ sys.path.insert(0, str(Path(__file__).parent / 'lib'))
 
 from release_manifest import RELEASES, get_release_pairs
 from gc_diff import GCDiff, GCFileState
-from gc_analyzer import GCAnalyzer
-from gc_builder import GCBuilder
-from gc_commit_builder import GCCommitBuilder
 
 DEFAULT_BRANCH = "history"
 
@@ -138,32 +137,6 @@ class HistoryBuilder:
         self.commits_created += 1
 
 
-    def _set_git_env_global(self, release: dict) -> dict:
-        """Set git author/date env vars on os.environ so subprocess inherits them.
-        Returns the old values for restoration."""
-        keys = ['GIT_AUTHOR_DATE', 'GIT_COMMITTER_DATE',
-                'GIT_AUTHOR_NAME', 'GIT_AUTHOR_EMAIL',
-                'GIT_COMMITTER_NAME', 'GIT_COMMITTER_EMAIL']
-        old_vals = {k: os.environ.get(k) for k in keys}
-
-        date = release['date']
-        os.environ['GIT_AUTHOR_DATE'] = f'{date}T12:00:00+00:00'
-        os.environ['GIT_COMMITTER_DATE'] = f'{date}T12:00:00+00:00'
-        os.environ['GIT_AUTHOR_NAME'] = 'OASIS UBL TC'
-        os.environ['GIT_AUTHOR_EMAIL'] = 'ubl-tc@oasis-open.org'
-        os.environ['GIT_COMMITTER_NAME'] = 'OASIS UBL TC'
-        os.environ['GIT_COMMITTER_EMAIL'] = 'ubl-tc@oasis-open.org'
-        return old_vals
-
-    @staticmethod
-    def _restore_git_env(old_vals: dict) -> None:
-        """Restore git env vars to previous values."""
-        for k, v in old_vals.items():
-            if v is None:
-                os.environ.pop(k, None)
-            else:
-                os.environ[k] = v
-
     def git_commit_staged(self, message: str, release: dict, env: dict) -> None:
         """Commit whatever is already staged (used after git rm)."""
         if self.dry_run:
@@ -202,12 +175,92 @@ class HistoryBuilder:
                f"Release: {release['label']}\nDate: {release['date']}")
         self.git_commit_staged(msg, release, env)
 
-    def process_first_release(
-        self, release: dict
-    ) -> None:
-        """Process UBL 2.0 PRD using ABIE-by-ABIE creation.
+    def _generate_empty_skeleton(self, source_file: Path) -> Path:
+        """Generate an empty .gc skeleton from a source file.
 
-        Creates ~131 commits (1 skeleton + 130 ABIE groups).
+        Extracts the header (everything before first <Row>) and footer
+        (everything after last </Row>), producing a valid .gc file with
+        no data rows. If the source has no rows, the whole file is
+        returned as the skeleton header.
+
+        Returns:
+            Path to the temporary skeleton file.
+        """
+        with open(source_file, 'r', encoding='utf-8') as f:
+            all_lines = f.readlines()
+
+        # Find first <Row> and last </Row>
+        first_row = None
+        last_row_end = None
+        for i, line in enumerate(all_lines):
+            stripped = line.strip()
+            if first_row is None and (stripped.startswith('<Row>') or stripped.startswith('<Row ')):
+                first_row = i
+            if stripped == '</Row>':
+                last_row_end = i
+
+        if first_row is None:
+            # No rows — file is already "empty"
+            header = all_lines
+            footer = []
+        else:
+            header = all_lines[:first_row]
+            footer = all_lines[last_row_end + 1:]
+
+        # Write skeleton to a temp file
+        skeleton_path = Path(tempfile.mktemp(suffix='.gc', prefix='skeleton-'))
+        with open(skeleton_path, 'w', encoding='utf-8') as f:
+            for line in header:
+                f.write(line)
+            for line in footer:
+                f.write(line)
+
+        return skeleton_path
+
+    def _add_via_skeleton_diff(
+        self, source_file: Path, target_name: str, release: dict
+    ) -> None:
+        """Add a new file by diffing an empty skeleton against the source.
+
+        Creates a skeleton commit, then uses _diff_and_commit() to add
+        all ABIEs one-by-one in dependency order — the same code path
+        used for all transitions.
+        """
+        print(f"  Adding via skeleton diff: {target_name}")
+
+        if self.dry_run:
+            print(f"    [DRY-RUN] Would create skeleton + diff commits for {target_name}")
+            self.commits_created += 100  # Rough estimate
+            return
+
+        # Generate empty skeleton
+        skeleton_path = self._generate_empty_skeleton(source_file)
+        try:
+            # Write skeleton to work dir and commit it
+            target_path = self.work_dir / target_name
+            shutil.copy2(skeleton_path, target_path)
+
+            env = self.set_git_env(release)
+            version = release["version"]
+            stage = release["stage"].upper()
+            msg = (f"UBL {version} {stage}: Initialize {target_name}\n\n"
+                   f"Empty file with header, column definitions, and "
+                   f"empty SimpleCodeList.\n\n"
+                   f"Release: {release['label']}\nDate: {release['date']}")
+            self.git_add_and_commit(target_name, msg, release, env)
+
+            # Now diff skeleton against full source — produces ABIE-by-ABIE commits
+            self._diff_and_commit(
+                skeleton_path, source_file, target_name, release, release
+            )
+        finally:
+            skeleton_path.unlink(missing_ok=True)
+
+    def process_first_release(self, release: dict) -> None:
+        """Process the first release (UBL 2.0 PRD) via skeleton + diff.
+
+        Creates an empty skeleton, then diffs against the full source
+        file, producing one commit per ABIE in dependency order.
         """
         print(f"\nProcessing first release: {release['label']}")
         print("=" * 70)
@@ -217,55 +270,7 @@ class HistoryBuilder:
             raise ValueError(f"No entities file for {release['label']}")
 
         target_name = self.get_target_name("entities", release["version"])
-
-        if self.dry_run:
-            print(f"  [DRY-RUN] Would analyze {source_file}")
-            print(f"  [DRY-RUN] Would create ~131 ABIE-by-ABIE commits to {target_name}")
-            self.commits_created += 131
-            return
-
-        # Analyze source file
-        print(f"  Analyzing {source_file.name}...")
-        analyzer = GCAnalyzer(str(source_file))
-        analyzer.parse()
-        analyzer.build_abies()
-        analyzer.build_dependency_graph()
-        analyzer.find_sccs_tarjan()
-        analyzer.topological_sort_sccs()
-
-        # Plan build
-        print(f"  Planning build...")
-        builder = GCBuilder(analyzer)
-        steps = builder.plan_build()
-
-        # Set git env globally so GCCommitBuilder inherits proper dates/author
-        old_env = self._set_git_env_global(release)
-
-        try:
-            # Create commits using GCCommitBuilder
-            print(f"  Creating {len(steps) + 1} commits...")
-            commit_builder = GCCommitBuilder(str(source_file), target_name, str(self.work_dir))
-            commit_builder.analyzer_abies = analyzer.abies
-
-            # Create initial empty file
-            commit_builder.create_empty_gc_file()
-            commit_builder._git_add_and_commit(
-                "UBL 2.0 PRD: Initialize GenericCode file structure\n\n"
-                "Empty file with header, column definitions, and empty SimpleCodeList.\n"
-                "Columns: ModelName, UBLName, DictionaryEntryName, ObjectClass,\n"
-                "PropertyTerm, RepresentationTerm, DataType, AssociatedObjectClass,\n"
-                "Cardinality, ComponentType, Definition, and more.\n\n"
-                "Source: UBL 2.0 Proposed Recommendation Draft (2006)"
-            )
-            self.commits_created += 1
-
-            # Build incrementally
-            commit_builder.build_incremental(steps)
-            self.commits_created += len(steps)
-        finally:
-            self._restore_git_env(old_env)
-
-        print(f"  Created {len(steps) + 1} commits for first release")
+        self._add_via_skeleton_diff(source_file, target_name, release)
 
     def process_transition(self, old_rel: dict, new_rel: dict) -> None:
         """Process a transition between two releases.
@@ -315,79 +320,9 @@ class HistoryBuilder:
     def _add_new_file(
         self, new_file: Path, target_name: str, release: dict
     ) -> None:
-        """Add a new file to the history."""
+        """Add a new file via skeleton + diff (unified approach for all file sizes)."""
         print(f"  Adding new file: {target_name}")
-
-        if "Endorsed-Entities" in target_name:
-            # Large file: use ABIE-by-ABIE creation
-            self._add_large_file(new_file, target_name, release)
-        else:
-            # Small file (Signature): just copy the whole thing
-            self._add_small_file(new_file, target_name, release)
-
-    def _add_small_file(
-        self, new_file: Path, target_name: str, release: dict
-    ) -> None:
-        """Add a small file (Signature-Entities) in one commit."""
-        if self.dry_run:
-            print(f"    [DRY-RUN] Copy {new_file.name} -> {target_name}")
-            self.commits_created += 1
-            return
-
-        target_path = self.work_dir / target_name
-        shutil.copy2(new_file, target_path)
-
-        env = self.set_git_env(release)
-        version = release["version"]
-        stage = release["stage"].upper()
-        msg = f"UBL {version} {stage}: Add {target_name}\n\nRelease: {release['label']}\nDate: {release['date']}"
-        self.git_add_and_commit(target_name, msg, release, env)
-
-    def _add_large_file(
-        self, new_file: Path, target_name: str, release: dict
-    ) -> None:
-        """Add a large file (Endorsed-Entities) using ABIE-by-ABIE creation."""
-        print(f"    Using ABIE-by-ABIE creation for {target_name}")
-
-        if self.dry_run:
-            print(f"    [DRY-RUN] Would analyze {new_file.name}")
-            print(f"    [DRY-RUN] Would create multiple ABIE commits")
-            self.commits_created += 10  # Rough estimate
-            return
-
-        analyzer = GCAnalyzer(str(new_file))
-        analyzer.parse()
-        analyzer.build_abies()
-        analyzer.build_dependency_graph()
-        analyzer.find_sccs_tarjan()
-        analyzer.topological_sort_sccs()
-
-        builder = GCBuilder(analyzer)
-        steps = builder.plan_build()
-
-        # Set git env globally so GCCommitBuilder inherits proper dates/author
-        old_env = self._set_git_env_global(release)
-
-        try:
-            commit_builder = GCCommitBuilder(str(new_file), target_name, str(self.work_dir))
-            commit_builder.analyzer_abies = analyzer.abies
-
-            # Create initial empty file
-            commit_builder.create_empty_gc_file()
-            version = release["version"]
-            stage = release["stage"].upper()
-            msg = (f"UBL {version} {stage}: Initialize {target_name}\n\n"
-                   f"Release: {release['label']}\nDate: {release['date']}")
-            commit_builder._git_add_and_commit(msg)
-            self.commits_created += 1
-
-            # Build incrementally
-            commit_builder.build_incremental(steps)
-            self.commits_created += len(steps)
-        finally:
-            self._restore_git_env(old_env)
-
-        print(f"    Created {len(steps) + 1} commits for {target_name}")
+        self._add_via_skeleton_diff(new_file, target_name, release)
 
     def _remove_file(self, target_name: str, release: dict) -> None:
         """Remove a file from the history."""

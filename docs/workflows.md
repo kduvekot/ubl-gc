@@ -256,8 +256,7 @@ scripts/
 │   ├── common.sh                 # Utility functions
 │   ├── commit-helpers.sh         # Git commit creation
 │   ├── gc_analyzer.py            # GenericCode parser
-│   ├── gc_builder.py             # Build planner
-│   └── gc_commit_builder.py      # Incremental commit creator
+│   └── gc_diff.py                # Semantic diff engine
 └── versions/                     # Version-specific builders
     ├── build-2.0.sh              # UBL 2.0 (8 commits)
     ├── build-2.1.sh              # UBL 2.1 (6 transitions + 7 releases)
@@ -447,68 +446,32 @@ analyzer.build_dependency_graph()
 leaf_abies = analyzer.get_leaf_abies()  # ABIEs with no dependencies
 ```
 
-### lib/gc_builder.py
+### lib/gc_diff.py
 
-**Build planner** for incremental GenericCode construction.
+**Semantic diff engine** for computing structured changes between GenericCode files.
 
-**Purpose:** Plan the order of element additions to avoid forward references.
-
-**Key Classes:**
-
-- `GCBuilder` - Build planner
-  - `plan_build()` - Create 3-phase build plan
-  - `generate_build_plan_summary()` - Human-readable plan
-
-**Build Phases:**
-
-1. **Phase 1: Leaf ABIEs** (complete)
-   - Add ABIEs with no dependencies
-   - Include all BBIEs and ASBIEs
-   - Safe: no forward references possible
-
-2. **Phase 2: Non-leaf ABIEs + BBIEs** (partial)
-   - Add ABIEs with dependencies
-   - Include BBIEs only
-   - Skip ASBIEs (would create forward references)
-
-3. **Phase 3: ASBIEs** (complete associations)
-   - Add deferred ASBIEs
-   - Now safe: all referenced ABIEs exist
-
-**Output:**
-```python
-[
-  {"phase": 1, "abie": "Address Line", "add_bbies": True, "add_asbies": True},
-  {"phase": 2, "abie": "Application Response", "add_bbies": True, "add_asbies": False},
-  {"phase": 3, "abie": "Application Response", "add_bbies": False, "add_asbies": True}
-]
-```
-
-### lib/gc_commit_builder.py
-
-**Incremental commit creator** using the build plan.
-
-**Purpose:** Execute build plan and create git commits for each step.
+**Purpose:** Diff two .gc files and produce an ordered list of change operations that can be applied incrementally to create granular commits.
 
 **Key Classes:**
 
-- `GCCommitBuilder` - Commit creator
-  - `create_empty_gc_file()` - Initialize empty XML structure
-  - `build_incremental()` - Execute build plan with commits
-  - `_git_add_and_commit()` - Create git commit
+- `GCDiff` - Semantic differ
+  - `compute()` - Produce ordered list of ChangeOp objects
+  - `apply_change()` - Apply a single change to file state
+  - `write_state()` - Write file state back to disk
+  - `parse_file()` - Parse .gc file into GCFileState (header, ABIE blocks, footer)
 
-**Commit Emojis:**
-- 🌱 Phase 1 - Leaf ABIEs
-- 🏗️ Phase 2 - Non-leaf ABIEs + BBIEs
-- 🔗 Phase 3 - ASBIEs
+**Change Operations (in commit order):**
+1. Metadata changes (Identification section)
+2. Column structure changes (ColumnSet additions/removals)
+3. ABIE removals
+4. ABIE modifications (with position correction)
+5. ABIE additions (in dependency order, at correct position)
+6. ABIE moves (unmodified ABIEs that changed position)
+7. Footer updates
 
-**Usage:**
-```python
-builder = GCCommitBuilder(source_file, target_file, work_dir)
-builder.create_empty_gc_file()
-builder._git_add_and_commit("Initialize empty structure")
-builder.build_incremental(build_steps)
-```
+**Note:** This engine handles all file creation as well — the first release and
+new files (Signature/Endorsed) are created by diffing an empty skeleton against
+the full source file, producing ABIE-by-ABIE commits via the same code path.
 
 ---
 
