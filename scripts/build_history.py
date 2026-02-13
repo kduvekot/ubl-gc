@@ -117,6 +117,17 @@ class HistoryBuilder:
             capture_output=True,
         )
 
+        # Check if there's actually anything staged to commit
+        result = subprocess.run(
+            ["git", "diff", "--cached", "--quiet"],
+            cwd=self.work_dir,
+            capture_output=True,
+        )
+        if result.returncode == 0:
+            # Nothing staged — skip this commit
+            print(f"    Skipping no-op commit: {message.splitlines()[0]}")
+            return
+
         subprocess.run(
             ["git", "commit", "-m", message],
             cwd=self.work_dir,

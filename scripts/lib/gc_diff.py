@@ -459,25 +459,32 @@ class GCDiff:
                 unmodified_common.append(name)
 
         # Check which unmodified ABIEs are out of position relative to
-        # the new file's order. We simulate the expected order after
-        # all other operations (removals, modifications, additions) and
-        # see if any unmodified ABIEs are displaced.
-        # For each unmodified ABIE, check if its predecessor in the new
-        # order matches what would be its predecessor in the old order.
+        # the new file's order. Compare predecessor relationships using
+        # only ABIEs that exist in both old and new (i.e. skip removed
+        # and added ABIEs when finding predecessors, since those are
+        # handled by their own removal/addition commits).
+        removed_abies = old_abies - new_abies
         changes = []
+        old_order = list(old_blocks.keys())
         for name in unmodified_common:
             target_idx = new_file_order.index(name)
-            # Find expected predecessor in new order (among ABIEs in common)
+            # Find expected predecessor in new order (among ABIEs that
+            # also existed in old — skip additions)
             expected_prev = None
             for i in range(target_idx - 1, -1, -1):
                 if new_file_order[i] in old_blocks:
                     expected_prev = new_file_order[i]
                     break
 
-            # Find actual predecessor in old order
-            old_order = list(old_blocks.keys())
+            # Find actual predecessor in old order, skipping ABIEs that
+            # were removed (they won't exist in the new file, so they
+            # can't serve as a stable reference point)
             old_idx = old_order.index(name) if name in old_order else -1
-            actual_prev = old_order[old_idx - 1] if old_idx > 0 else None
+            actual_prev = None
+            for i in range(old_idx - 1, -1, -1):
+                if old_order[i] not in removed_abies:
+                    actual_prev = old_order[i]
+                    break
 
             if expected_prev != actual_prev:
                 changes.append(ChangeOp(
