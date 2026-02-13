@@ -9,10 +9,11 @@ Strategy:
 1. First release (UBL 2.0 PRD): Use ABIE-by-ABIE creation (~131 commits)
 2. Subsequent releases: Use gc_diff to compute changes, create commits per change
 3. File types: Track Entities, Signature-Entities, Endorsed-Entities separately
-4. Versioning: All files in history branch use version-free names:
-   - UBL-Entities.gc
-   - UBL-Signature-Entities.gc
-   - UBL-Endorsed-Entities.gc
+4. Versioning: Files in history branch use versioned names matching OASIS originals:
+   - UBL-Entities-{version}.gc
+   - UBL-Signature-Entities-{version}.gc
+   - UBL-Endorsed-Entities-{version}.gc
+5. Version transitions use git mv to preserve file provenance
 """
 
 import subprocess
@@ -73,14 +74,18 @@ class HistoryBuilder:
         return self.repo_root / release["dir"] / filename
 
     @staticmethod
-    def get_target_name(file_type: str) -> str:
-        """Get the version-free target filename for a file type."""
+    def get_target_name(file_type: str, version: str) -> str:
+        """Get the versioned target filename for a file type.
+
+        Preserves the original OASIS naming convention with version numbers.
+        At version transitions, git mv is used to rename the file.
+        """
         if file_type == "entities":
-            return "UBL-Entities.gc"
+            return f"UBL-Entities-{version}.gc"
         elif file_type == "signature":
-            return "UBL-Signature-Entities.gc"
+            return f"UBL-Signature-Entities-{version}.gc"
         elif file_type == "endorsed":
-            return "UBL-Endorsed-Entities.gc"
+            return f"UBL-Endorsed-Entities-{version}.gc"
         else:
             raise ValueError(f"Unknown file type: {file_type}")
 
@@ -179,6 +184,29 @@ class HistoryBuilder:
         )
         self.commits_created += 1
 
+    def git_mv_and_commit(
+        self, old_name: str, new_name: str, release: dict, env: dict
+    ) -> None:
+        """Rename a file using git mv and commit the rename."""
+        if self.dry_run:
+            print(f"  [DRY-RUN] git mv {old_name} {new_name}")
+            print(f"  [DRY-RUN] git commit: Rename {old_name} -> {new_name}")
+            self.commits_created += 1
+            return
+
+        subprocess.run(
+            ["git", "mv", old_name, new_name],
+            cwd=self.work_dir,
+            check=True,
+            capture_output=True,
+        )
+
+        version = release["version"]
+        stage = release["stage"].upper()
+        msg = (f"UBL {version} {stage}: Rename {old_name} to {new_name}\n\n"
+               f"Release: {release['label']}\nDate: {release['date']}")
+        self.git_commit_staged(msg, release, env)
+
     def process_first_release(
         self, release: dict
     ) -> None:
@@ -193,7 +221,7 @@ class HistoryBuilder:
         if source_file is None:
             raise ValueError(f"No entities file for {release['label']}")
 
-        target_name = self.get_target_name("entities")
+        target_name = self.get_target_name("entities", release["version"])
 
         if self.dry_run:
             print(f"  [DRY-RUN] Would analyze {source_file}")
@@ -252,28 +280,41 @@ class HistoryBuilder:
         - If file existed before and exists now: compute diff and create commits
         - If file existed before but doesn't exist now: remove it
         - If both are None: skip
+
+        At version transitions (e.g. 2.0->2.1), uses git mv to rename the
+        versioned file before applying content changes.
         """
         rel_label = f"{old_rel['label']} -> {new_rel['label']}"
         print(f"\nProcessing: {rel_label}")
         print("=" * 70)
 
+        is_version_change = old_rel["version"] != new_rel["version"]
+
         for file_type in ["entities", "signature", "endorsed"]:
             old_file = self.get_source_path(old_rel, file_type)
             new_file = self.get_source_path(new_rel, file_type)
-            target_name = self.get_target_name(file_type)
+            old_target = self.get_target_name(file_type, old_rel["version"])
+            new_target = self.get_target_name(file_type, new_rel["version"])
 
             if old_file is None and new_file is None:
                 continue
 
             elif old_file is None and new_file is not None:
-                self._add_new_file(new_file, target_name, new_rel)
+                self._add_new_file(new_file, new_target, new_rel)
 
             elif old_file is not None and new_file is None:
-                self._remove_file(target_name, new_rel)
+                self._remove_file(old_target, new_rel)
 
             else:
+                # If version changed, rename file first to preserve provenance
+                if is_version_change:
+                    env = self.set_git_env(new_rel)
+                    self.git_mv_and_commit(
+                        old_target, new_target, new_rel, env
+                    )
+
                 self._diff_and_commit(
-                    old_file, new_file, target_name, old_rel, new_rel
+                    old_file, new_file, new_target, old_rel, new_rel
                 )
 
     def _add_new_file(
@@ -282,7 +323,7 @@ class HistoryBuilder:
         """Add a new file to the history."""
         print(f"  Adding new file: {target_name}")
 
-        if target_name == "UBL-Endorsed-Entities.gc":
+        if "Endorsed-Entities" in target_name:
             # Large file: use ABIE-by-ABIE creation
             self._add_large_file(new_file, target_name, release)
         else:
