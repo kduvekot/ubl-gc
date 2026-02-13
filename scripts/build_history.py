@@ -33,7 +33,6 @@ from gc_analyzer import GCAnalyzer
 from gc_builder import GCBuilder
 from gc_commit_builder import GCCommitBuilder
 
-SESSION_URL = "https://claude.ai/code/session_01B5kfoVeuncQaSCz9nX4H1j"
 DEFAULT_BRANCH = "history"
 
 
@@ -113,9 +112,8 @@ class HistoryBuilder:
             capture_output=True,
         )
 
-        full_message = f"{message}\n\n{SESSION_URL}"
         subprocess.run(
-            ["git", "commit", "-m", full_message],
+            ["git", "commit", "-m", message],
             cwd=self.work_dir,
             check=True,
             capture_output=True,
@@ -131,9 +129,8 @@ class HistoryBuilder:
             print(f"  [DRY-RUN] git commit --allow-empty: {message}")
             return
 
-        full_message = f"{message}\n\n{SESSION_URL}"
         subprocess.run(
-            ["git", "commit", "--allow-empty", "-m", full_message],
+            ["git", "commit", "--allow-empty", "-m", message],
             cwd=self.work_dir,
             check=True,
             capture_output=True,
@@ -173,9 +170,8 @@ class HistoryBuilder:
             print(f"  [DRY-RUN] git commit: {message.splitlines()[0]}")
             return
 
-        full_message = f"{message}\n\n{SESSION_URL}"
         subprocess.run(
-            ["git", "commit", "-m", full_message],
+            ["git", "commit", "-m", message],
             cwd=self.work_dir,
             check=True,
             capture_output=True,

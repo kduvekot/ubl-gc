@@ -21,9 +21,6 @@ from pathlib import Path
 from gc_analyzer import GCAnalyzer
 from gc_builder import GCBuilder, BuildStep
 
-SESSION_URL = "https://claude.ai/code/session_01B5kfoVeuncQaSCz9nX4H1j"
-
-
 class GCCommitBuilder:
     """Creates git commits by inserting raw text blocks from the source file"""
 
@@ -107,10 +104,8 @@ class GCCommitBuilder:
             cwd=self.repo_path, check=True
         )
 
-        full_message = f"{message}\n\n{SESSION_URL}"
-
         subprocess.run(
-            ['git', 'commit', '-m', full_message],
+            ['git', 'commit', '-m', message],
             cwd=self.repo_path, check=True
         )
 
