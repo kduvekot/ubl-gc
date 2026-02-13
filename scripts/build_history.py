@@ -34,7 +34,7 @@ from gc_builder import GCBuilder
 from gc_commit_builder import GCCommitBuilder
 
 SESSION_URL = "https://claude.ai/code/session_01B5kfoVeuncQaSCz9nX4H1j"
-BRANCH_NAME = "claude/git-history-exploration-bunUn"
+DEFAULT_BRANCH = "history"
 
 
 class HistoryBuilder:
@@ -461,7 +461,7 @@ class HistoryBuilder:
         print(f"Total commits created: {self.commits_created}")
 
 
-def setup_work_dir(repo_root: Path) -> Path:
+def setup_work_dir(repo_root: Path, branch_name: str) -> Path:
     """Create temporary directory and clone repo."""
     work_dir = Path(tempfile.mkdtemp(prefix="ubl-history-"))
     print(f"\nSetting up work directory: {work_dir}")
@@ -475,7 +475,7 @@ def setup_work_dir(repo_root: Path) -> Path:
 
     # Create orphan branch
     subprocess.run(
-        ["git", "checkout", "--orphan", BRANCH_NAME],
+        ["git", "checkout", "--orphan", branch_name],
         cwd=work_dir,
         check=True,
         capture_output=True,
@@ -497,21 +497,80 @@ def setup_work_dir(repo_root: Path) -> Path:
         capture_output=True,
     )
 
-    print(f"Created orphan branch: {BRANCH_NAME}")
+    # Set remote URL to the source repo's origin (so push goes to the right place)
+    try:
+        result = subprocess.run(
+            ["git", "remote", "get-url", "origin"],
+            cwd=repo_root,
+            capture_output=True,
+            text=True,
+        )
+        if result.returncode == 0:
+            remote_url = result.stdout.strip()
+            subprocess.run(
+                ["git", "remote", "set-url", "origin", remote_url],
+                cwd=work_dir,
+                check=True,
+                capture_output=True,
+            )
+            # Copy GitHub Actions auth config if present
+            auth_result = subprocess.run(
+                ["git", "config", "--get", "http.https://github.com/.extraheader"],
+                cwd=repo_root,
+                capture_output=True,
+                text=True,
+            )
+            if auth_result.returncode == 0 and auth_result.stdout.strip():
+                subprocess.run(
+                    ["git", "config", "http.https://github.com/.extraheader",
+                     auth_result.stdout.strip()],
+                    cwd=work_dir,
+                    check=True,
+                    capture_output=True,
+                )
+    except subprocess.CalledProcessError:
+        pass  # Non-critical, push instructions will still work
+
+    print(f"Created orphan branch: {branch_name}")
 
     return work_dir
 
 
-def push_results(work_dir: Path) -> None:
-    """Push the history branch to remote."""
-    print("\n" + "=" * 70)
-    print("PUSH INSTRUCTIONS")
-    print("=" * 70)
-    print(f"\nTo push the history branch, run:")
-    print(f"  git -C {work_dir} push -u origin {BRANCH_NAME}")
-    print(f"\nOr manually:")
-    print(f"  cd {work_dir}")
-    print(f"  git push -u origin {BRANCH_NAME}")
+def push_results(work_dir: Path, branch_name: str, do_push: bool = False) -> None:
+    """Push the history branch to remote (or print instructions)."""
+    if do_push:
+        print("\n" + "=" * 70)
+        print("PUSHING TO REMOTE")
+        print("=" * 70)
+        for attempt in range(4):
+            try:
+                result = subprocess.run(
+                    ["git", "push", "-u", "origin", branch_name, "--force"],
+                    cwd=work_dir,
+                    check=True,
+                    capture_output=True,
+                    text=True,
+                )
+                print(f"Successfully pushed to {branch_name}")
+                return
+            except subprocess.CalledProcessError as e:
+                if attempt < 3:
+                    delay = 2 ** (attempt + 1)
+                    print(f"Push failed, retrying in {delay}s... ({e.stderr.strip()})")
+                    import time
+                    time.sleep(delay)
+                else:
+                    print(f"Push failed after 4 attempts: {e.stderr.strip()}")
+                    raise
+    else:
+        print("\n" + "=" * 70)
+        print("PUSH INSTRUCTIONS")
+        print("=" * 70)
+        print(f"\nTo push the history branch, run:")
+        print(f"  git -C {work_dir} push -u origin {branch_name} --force")
+        print(f"\nOr manually:")
+        print(f"  cd {work_dir}")
+        print(f"  git push -u origin {branch_name} --force")
 
 
 def cleanup(work_dir: Path) -> None:
@@ -526,6 +585,11 @@ def main():
         description="Build UBL GenericCode git history from 35 releases"
     )
     parser.add_argument(
+        "--branch",
+        default=DEFAULT_BRANCH,
+        help=f"Target branch name (default: {DEFAULT_BRANCH})",
+    )
+    parser.add_argument(
         "--start-at",
         type=int,
         default=0,
@@ -537,6 +601,11 @@ def main():
         help="Print what would be done without creating commits",
     )
     parser.add_argument(
+        "--push",
+        action="store_true",
+        help="Push the history branch to remote after building",
+    )
+    parser.add_argument(
         "--keep-work-dir",
         action="store_true",
         help="Keep temporary work directory for inspection",
@@ -544,7 +613,7 @@ def main():
 
     args = parser.parse_args()
 
-    # Find repo root: go up from scripts/lib to repository root
+    # Find repo root: go up from scripts/ to repository root
     script_file = Path(__file__).resolve()
     repo_root = script_file.parent.parent
 
@@ -555,15 +624,17 @@ def main():
         print(f"Script location: {script_file}")
         sys.exit(1)
 
+    print(f"Target branch: {args.branch}")
+
     work_dir = None
     try:
-        work_dir = setup_work_dir(repo_root)
+        work_dir = setup_work_dir(repo_root, args.branch)
 
         builder = HistoryBuilder(repo_root, work_dir, dry_run=args.dry_run)
         builder.build(start_at=args.start_at)
 
         if not args.dry_run:
-            push_results(work_dir)
+            push_results(work_dir, args.branch, do_push=args.push)
 
     except KeyboardInterrupt:
         print("\n\nInterrupted by user")
