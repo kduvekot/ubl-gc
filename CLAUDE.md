@@ -311,6 +311,21 @@ Run it with `--help` for full usage, workflow, and examples.
 
 ---
 
-**Last Updated:** 2026-02-12
+## Cost Optimization
+
+When spawning Task subagents, use `model: "haiku"` for straightforward work:
+- Simple file searches and grep operations
+- Clear-cut log analysis or output parsing
+- Checking workflow status or run results
+- Any task with well-defined inputs and expected outputs
+
+Reserve the default (Sonnet/Opus) for tasks requiring deeper reasoning:
+- Analyzing complex code logic or debugging
+- Designing algorithms or architectural decisions
+- Multi-step investigations with ambiguous scope
+
+---
+
+**Last Updated:** 2026-02-13
 **Current Branch:** claude/git-history-exploration-bunUn
-**Status:** Ready to build scripts and history
+**Status:** Build scripts complete, history branch building via CI
