@@ -8,6 +8,12 @@ on:
         required: true
         default: 'history'
         type: string
+  push:
+    branches:
+      - 'claude/review-ubl-build-scripts-wsfi6'
+    paths:
+      - 'scripts/**'
+      - '.github/workflows/build-history.yml'
 
 permissions:
   contents: write
@@ -47,8 +53,12 @@ jobs:
 
       - name: Build history (all 35 releases)
         run: |
+          # Use input branch for workflow_dispatch, or "history-test" for push triggers
+          TARGET="${{ inputs.target_branch || 'history-test' }}"
+          echo "Building history on branch: $TARGET"
+
           python3 scripts/build_history.py \
-            --branch "${{ inputs.target_branch }}" \
+            --branch "$TARGET" \
             --push \
             --keep-work-dir
         env:
@@ -57,15 +67,16 @@ jobs:
       - name: Summary
         if: always()
         run: |
+          TARGET="${{ inputs.target_branch || 'history-test' }}"
           echo "## Build History Summary" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "| Property | Value |" >> $GITHUB_STEP_SUMMARY
           echo "|----------|-------|" >> $GITHUB_STEP_SUMMARY
-          echo "| Target branch | \`${{ inputs.target_branch }}\` |" >> $GITHUB_STEP_SUMMARY
+          echo "| Target branch | \`$TARGET\` |" >> $GITHUB_STEP_SUMMARY
           echo "| Workflow run | ${{ github.run_id }} |" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "View the history:" >> $GITHUB_STEP_SUMMARY
-          echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
-          echo "git fetch origin ${{ inputs.target_branch }}" >> $GITHUB_STEP_SUMMARY
-          echo "git log --oneline origin/${{ inputs.target_branch }}" >> $GITHUB_STEP_SUMMARY
-          echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+          echo "git fetch origin $TARGET" >> $GITHUB_STEP_SUMMARY
+          echo "git log --oneline origin/$TARGET" >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
