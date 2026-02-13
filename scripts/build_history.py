@@ -126,22 +126,6 @@ class HistoryBuilder:
         )
         self.commits_created += 1
 
-    def git_commit_empty(
-        self, message: str, release: dict, env: dict
-    ) -> None:
-        """Create an empty commit (no file changes)."""
-        if self.dry_run:
-            print(f"  [DRY-RUN] git commit --allow-empty: {message}")
-            return
-
-        subprocess.run(
-            ["git", "commit", "--allow-empty", "-m", message],
-            cwd=self.work_dir,
-            check=True,
-            capture_output=True,
-            env=env,
-        )
-        self.commits_created += 1
 
     def _set_git_env_global(self, release: dict) -> dict:
         """Set git author/date env vars on os.environ so subprocess inherits them.
@@ -439,14 +423,10 @@ class HistoryBuilder:
         changes = differ.compute()
 
         if not changes:
-            # Empty commit for identical files
-            env = self.set_git_env(new_rel)
+            # No changes - skip commit (file is identical to previous release)
             version = new_rel["version"]
             stage = new_rel["stage"].upper()
-            msg = (f"UBL {version} {stage}: No changes to {target_name} "
-                   f"(identical to {old_rel['stage'].upper()})\n\n"
-                   f"Release: {new_rel['label']}\nDate: {new_rel['date']}")
-            self.git_commit_empty(msg, new_rel, env)
+            print(f"    {target_name}: No changes from {old_rel['stage'].upper()} - skipping")
             return
 
         # Apply changes incrementally

@@ -182,11 +182,10 @@ Source: history/$release/ (OASIS official release)
 $SESSION_URL"
     fi
 
-    # Create commit (or empty commit if no changes)
+    # Create commit only if there are staged changes
     if git diff --cached --quiet; then
-        # No changes - create empty commit
-        git commit --allow-empty -m "$commit_message" || die "Failed to create commit for $release"
-        log_success "Commit created for $release (no changes from previous release)"
+        # No changes - skip commit (file is identical to previous release)
+        log_success "Skipped commit for $release (no changes from previous release)"
     else
         # Normal commit with changes
         git commit -m "$commit_message" || die "Failed to create commit for $release"
@@ -228,9 +227,13 @@ $SESSION_URL"
     # Go to history work directory
     cd "$HISTORY_WORK_DIR" || die "HISTORY_WORK_DIR not set"
 
-    # Create empty commit (documentation only)
-
-    git commit --allow-empty -m "$commit_message" || die "Failed to create schema step 1 commit"
+    # Commit only if there are staged changes
+    if git diff --cached --quiet; then
+        log_success "Schema transition step 1/6 skipped (no staged changes)"
+        cd "$REPO_ROOT"
+        return
+    fi
+    git commit -m "$commit_message" || die "Failed to create schema step 1 commit"
     cd "$REPO_ROOT"
     log_success "Schema transition step 1/6 complete"
 }
@@ -255,7 +258,12 @@ $SESSION_URL"
     # Go to history work directory
     cd "$HISTORY_WORK_DIR" || die "HISTORY_WORK_DIR not set"
 
-    git commit --allow-empty -m "$commit_message" || die "Failed to create schema step 2 commit"
+    if git diff --cached --quiet; then
+        log_success "Schema transition step 2/6 skipped (no staged changes)"
+        cd "$REPO_ROOT"
+        return
+    fi
+    git commit -m "$commit_message" || die "Failed to create schema step 2 commit"
     cd "$REPO_ROOT"
     log_success "Schema transition step 2/6 complete"
 }
@@ -279,7 +287,12 @@ $SESSION_URL"
     # Go to history work directory
     cd "$HISTORY_WORK_DIR" || die "HISTORY_WORK_DIR not set"
 
-    git commit --allow-empty -m "$commit_message" || die "Failed to create schema step 3 commit"
+    if git diff --cached --quiet; then
+        log_success "Schema transition step 3/6 skipped (no staged changes)"
+        cd "$REPO_ROOT"
+        return
+    fi
+    git commit -m "$commit_message" || die "Failed to create schema step 3 commit"
     cd "$REPO_ROOT"
     log_success "Schema transition step 3/6 complete"
 }
@@ -304,7 +317,12 @@ $SESSION_URL"
     # Go to history work directory
     cd "$HISTORY_WORK_DIR" || die "HISTORY_WORK_DIR not set"
 
-    git commit --allow-empty -m "$commit_message" || die "Failed to create schema step 4 commit"
+    if git diff --cached --quiet; then
+        log_success "Schema transition step 4/6 skipped (no staged changes)"
+        cd "$REPO_ROOT"
+        return
+    fi
+    git commit -m "$commit_message" || die "Failed to create schema step 4 commit"
     cd "$REPO_ROOT"
     log_success "Schema transition step 4/6 complete"
 }
@@ -328,7 +346,12 @@ $SESSION_URL"
     # Go to history work directory
     cd "$HISTORY_WORK_DIR" || die "HISTORY_WORK_DIR not set"
 
-    git commit --allow-empty -m "$commit_message" || die "Failed to create schema step 5 commit"
+    if git diff --cached --quiet; then
+        log_success "Schema transition step 5/6 skipped (no staged changes)"
+        cd "$REPO_ROOT"
+        return
+    fi
+    git commit -m "$commit_message" || die "Failed to create schema step 5 commit"
     cd "$REPO_ROOT"
     log_success "Schema transition step 5/6 complete"
 }
