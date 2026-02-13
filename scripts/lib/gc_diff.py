@@ -160,9 +160,10 @@ class GCDiff:
         1. Metadata changes (Identification section only)
         2. Column structure change (replaces ColumnSet area + strips removed col values)
         3. ABIE removals
-        4. ABIE modifications (compared after column adjustment)
-        5. ABIE additions (in dependency order)
-        6. Reorder check (ensure ABIE blocks match new file's order)
+        4. ABIE modifications (compared after column adjustment, with position fix)
+        5. ABIE additions (in dependency order, inserted at correct position)
+        6. ABIE moves (unmodified ABIEs that changed position)
+        7. Footer update (if file footer changed)
         """
         changes = []
 
@@ -201,10 +202,16 @@ class GCDiff:
         abie_additions = self._compute_abie_additions()
         changes.extend(abie_additions)
 
-        # 7. Reorder check (ensure final ordering matches new file)
-        reorder_op = self._compute_reorder()
-        if reorder_op:
-            changes.append(reorder_op)
+        # 7. Check for position changes in unmodified ABIEs.
+        # Additions and modifications already handle their own positioning,
+        # so this only catches ABIEs that moved without content changes.
+        move_ops = self._compute_abie_moves(adjusted_old_blocks)
+        changes.extend(move_ops)
+
+        # 8. Footer update if needed (the new file may have a different footer)
+        footer_change = self._compute_footer_change()
+        if footer_change:
+            changes.append(footer_change)
 
         return changes
 
@@ -362,6 +369,10 @@ class GCDiff:
         # Use GCAnalyzer on the new file to get dependency ordering
         added_in_order = self._get_dependency_order(self.new_file, added)
 
+        # Include new file's ABIE order so additions can be inserted
+        # at the correct position rather than appended at the end
+        new_file_order = list(self.new_state.abie_blocks.keys())
+
         changes = []
         for abie_name in added_in_order:
             changes.append(ChangeOp(
@@ -370,7 +381,8 @@ class GCDiff:
                 details={
                     'object_class': abie_name,
                     'added_abies': added,
-                    'block_lines': self.new_state.abie_blocks[abie_name]
+                    'block_lines': self.new_state.abie_blocks[abie_name],
+                    'new_file_order': new_file_order,
                 }
             ))
         return changes
@@ -389,6 +401,7 @@ class GCDiff:
         new_abies = set(self.new_state.abie_blocks.keys())
 
         common = old_abies & new_abies
+        new_file_order = list(self.new_state.abie_blocks.keys())
 
         # Maintain new file's ordering
         modified = []
@@ -414,51 +427,129 @@ class GCDiff:
                 details={
                     'object_class': abie_name,
                     'old_block': self.old_state.abie_blocks[abie_name],
-                    'new_block': self.new_state.abie_blocks[abie_name]
+                    'new_block': self.new_state.abie_blocks[abie_name],
+                    'new_file_order': new_file_order,
                 }
             ))
         return changes
 
-    def _compute_reorder(self) -> Optional[ChangeOp]:
-        """Check if ABIE blocks need reordering to match new file"""
-        # The new file's ordering is authoritative
-        new_order = list(self.new_state.abie_blocks.keys())
+    def _compute_abie_moves(self, old_blocks: Optional[ODict] = None) -> List[ChangeOp]:
+        """Find unmodified ABIEs that need to move to a different position.
 
-        # After applying removals and additions, what's the expected set?
-        # Exclude orphaned rows from ordering check (they should always be last)
-        old_surviving = [k for k in self.old_state.abie_blocks.keys()
-                         if k in self.new_state.abie_blocks and k != '__ORPHANED_ROWS__']
-        added = [k for k in self.new_state.abie_blocks.keys()
-                 if k not in self.old_state.abie_blocks and k != '__ORPHANED_ROWS__']
+        Additions and modifications already handle their own positioning,
+        so this only catches ABIEs whose content is unchanged but whose
+        position differs between old and new files.
+        """
+        if old_blocks is None:
+            old_blocks = self.old_state.abie_blocks
 
-        # Orphaned rows should always be at the end if they exist
-        orphaned_in_new = '__ORPHANED_ROWS__' in self.new_state.abie_blocks
-        expected_order = old_surviving + added
-        if orphaned_in_new:
-            expected_order.append('__ORPHANED_ROWS__')
+        new_file_order = list(self.new_state.abie_blocks.keys())
+        old_abies = set(old_blocks.keys())
+        new_abies = set(self.new_state.abie_blocks.keys())
+        common = old_abies & new_abies
 
-        current_order = expected_order  # This is what we expect after other changes
+        # Only consider ABIEs that are common AND unmodified
+        unmodified_common = []
+        for name in new_file_order:
+            if name not in common:
+                continue
+            old_text = ''.join(old_blocks.get(name, []))
+            new_text = ''.join(self.new_state.abie_blocks.get(name, []))
+            if old_text == new_text:
+                unmodified_common.append(name)
 
-        if current_order != new_order:
+        # Check which unmodified ABIEs are out of position relative to
+        # the new file's order. We simulate the expected order after
+        # all other operations (removals, modifications, additions) and
+        # see if any unmodified ABIEs are displaced.
+        # For each unmodified ABIE, check if its predecessor in the new
+        # order matches what would be its predecessor in the old order.
+        changes = []
+        for name in unmodified_common:
+            target_idx = new_file_order.index(name)
+            # Find expected predecessor in new order (among ABIEs in common)
+            expected_prev = None
+            for i in range(target_idx - 1, -1, -1):
+                if new_file_order[i] in old_blocks:
+                    expected_prev = new_file_order[i]
+                    break
+
+            # Find actual predecessor in old order
+            old_order = list(old_blocks.keys())
+            old_idx = old_order.index(name) if name in old_order else -1
+            actual_prev = old_order[old_idx - 1] if old_idx > 0 else None
+
+            if expected_prev != actual_prev:
+                changes.append(ChangeOp(
+                    op_type='abie_move',
+                    description=f'Move ABIE "{name}"',
+                    details={
+                        'object_class': name,
+                        'new_file_order': new_file_order,
+                    }
+                ))
+
+        return changes
+
+    def _compute_footer_change(self) -> Optional[ChangeOp]:
+        """Check if the footer (after last </Row>) changed."""
+        old_footer = ''.join(self.old_state.footer_lines)
+        new_footer = ''.join(self.new_state.footer_lines)
+        if old_footer != new_footer:
             return ChangeOp(
-                op_type='reorder',
-                description='Reorder ABIEs to match new release ordering',
-                details={'new_order': new_order, 'new_footer': self.new_state.footer_lines}
+                op_type='footer',
+                description='Update file footer',
+                details={'new_footer': self.new_state.footer_lines}
             )
         return None
 
     @staticmethod
-    def _apply_reorder(state: GCFileState, change: ChangeOp) -> GCFileState:
-        """Reorder ABIE blocks to match new file's ordering"""
-        new_order = change.details['new_order']
+    def _apply_abie_move(state: GCFileState, change: ChangeOp) -> GCFileState:
+        """Move an unmodified ABIE to its correct position."""
+        abie_name = change.details['object_class']
+        new_file_order = change.details['new_file_order']
+
+        if abie_name not in state.abie_blocks:
+            return state
+
+        block = state.abie_blocks[abie_name]
+
+        # Find correct predecessor
+        target_idx = new_file_order.index(abie_name)
+        insert_after = None
+        for i in range(target_idx - 1, -1, -1):
+            if new_file_order[i] in state.abie_blocks and new_file_order[i] != abie_name:
+                insert_after = new_file_order[i]
+                break
+
         new_state = GCFileState()
         new_state.header_lines = state.header_lines.copy()
-        new_state.footer_lines = change.details.get('new_footer', state.footer_lines.copy())
-        new_state.abie_blocks = ODict()
-        for name in new_order:
-            if name in state.abie_blocks:
-                # Copy the list to avoid shared references
-                new_state.abie_blocks[name] = state.abie_blocks[name].copy()
+        new_state.footer_lines = state.footer_lines.copy()
+
+        new_blocks = ODict()
+        if insert_after is None:
+            new_blocks[abie_name] = block.copy()
+            for k, v in state.abie_blocks.items():
+                if k != abie_name:
+                    new_blocks[k] = v.copy()
+        else:
+            for k, v in state.abie_blocks.items():
+                if k == abie_name:
+                    continue
+                new_blocks[k] = v.copy()
+                if k == insert_after:
+                    new_blocks[abie_name] = block.copy()
+
+        new_state.abie_blocks = new_blocks
+        return new_state
+
+    @staticmethod
+    def _apply_footer_change(state: GCFileState, change: ChangeOp) -> GCFileState:
+        """Apply footer update."""
+        new_state = GCFileState()
+        new_state.header_lines = state.header_lines.copy()
+        new_state.abie_blocks = ODict((k, v.copy()) for k, v in state.abie_blocks.items())
+        new_state.footer_lines = change.details['new_footer']
         return new_state
 
     @staticmethod
@@ -505,8 +596,10 @@ class GCDiff:
             return self._apply_abie_remove(state, change)
         elif change.op_type == 'abie_modify':
             return self._apply_abie_modify(state, change)
-        elif change.op_type == 'reorder':
-            return self._apply_reorder(state, change)
+        elif change.op_type == 'abie_move':
+            return self._apply_abie_move(state, change)
+        elif change.op_type == 'footer':
+            return self._apply_footer_change(state, change)
         else:
             return state
 
@@ -592,18 +685,43 @@ class GCDiff:
 
     @staticmethod
     def _apply_abie_add(state: GCFileState, change: ChangeOp) -> GCFileState:
-        """Apply ABIE addition (add new ABIE block to abie_blocks)"""
+        """Apply ABIE addition, inserting at the correct position based on new file ordering."""
         abie_name = change.details['object_class']
         block_lines = change.details['block_lines']
+        new_file_order = change.details.get('new_file_order', [])
 
         new_state = GCFileState()
         new_state.header_lines = state.header_lines.copy()
         new_state.footer_lines = state.footer_lines.copy()
-        # Deep copy the abie_blocks to avoid sharing list references
-        new_state.abie_blocks = ODict((k, v.copy()) for k, v in state.abie_blocks.items())
 
-        new_state.abie_blocks[abie_name] = block_lines
+        if not new_file_order or abie_name not in new_file_order:
+            # Fallback: append at end
+            new_state.abie_blocks = ODict((k, v.copy()) for k, v in state.abie_blocks.items())
+            new_state.abie_blocks[abie_name] = block_lines
+            return new_state
 
+        # Find the ABIE that should precede this one in the target order
+        # (looking only at ABIEs that already exist in the current state)
+        target_idx = new_file_order.index(abie_name)
+        insert_after = None
+        for i in range(target_idx - 1, -1, -1):
+            if new_file_order[i] in state.abie_blocks:
+                insert_after = new_file_order[i]
+                break
+
+        new_blocks = ODict()
+        if insert_after is None:
+            # Insert at the beginning
+            new_blocks[abie_name] = block_lines
+            for k, v in state.abie_blocks.items():
+                new_blocks[k] = v.copy()
+        else:
+            for k, v in state.abie_blocks.items():
+                new_blocks[k] = v.copy()
+                if k == insert_after:
+                    new_blocks[abie_name] = block_lines
+
+        new_state.abie_blocks = new_blocks
         return new_state
 
     @staticmethod
@@ -624,18 +742,64 @@ class GCDiff:
 
     @staticmethod
     def _apply_abie_modify(state: GCFileState, change: ChangeOp) -> GCFileState:
-        """Apply ABIE modification (replace old block with new block)"""
+        """Apply ABIE modification (replace content and fix position if needed)."""
         abie_name = change.details['object_class']
         new_block = change.details['new_block']
+        new_file_order = change.details.get('new_file_order', [])
 
         new_state = GCFileState()
         new_state.header_lines = state.header_lines.copy()
         new_state.footer_lines = state.footer_lines.copy()
-        # Deep copy the abie_blocks to avoid sharing list references
-        new_state.abie_blocks = ODict((k, v.copy()) for k, v in state.abie_blocks.items())
 
-        new_state.abie_blocks[abie_name] = new_block
+        if not new_file_order or abie_name not in new_file_order:
+            # Fallback: replace in place
+            new_state.abie_blocks = ODict((k, v.copy()) for k, v in state.abie_blocks.items())
+            new_state.abie_blocks[abie_name] = new_block
+            return new_state
 
+        # Check if position needs to change
+        current_keys = list(state.abie_blocks.keys())
+        current_idx = current_keys.index(abie_name) if abie_name in current_keys else -1
+
+        # Find correct position: what should come before this ABIE?
+        target_idx = new_file_order.index(abie_name)
+        insert_after = None
+        for i in range(target_idx - 1, -1, -1):
+            if new_file_order[i] in state.abie_blocks and new_file_order[i] != abie_name:
+                insert_after = new_file_order[i]
+                break
+
+        # Check if it's already in the right position
+        if insert_after is not None:
+            expected_prev_idx = current_keys.index(insert_after) if insert_after in current_keys else -1
+            if expected_prev_idx >= 0 and current_idx == expected_prev_idx + 1:
+                # Already in correct position, just replace content
+                new_state.abie_blocks = ODict((k, v.copy()) for k, v in state.abie_blocks.items())
+                new_state.abie_blocks[abie_name] = new_block
+                return new_state
+        elif current_idx == 0:
+            # Should be first and already is first
+            new_state.abie_blocks = ODict((k, v.copy()) for k, v in state.abie_blocks.items())
+            new_state.abie_blocks[abie_name] = new_block
+            return new_state
+
+        # Position needs to change: rebuild with ABIE at correct position
+        new_blocks = ODict()
+        if insert_after is None:
+            # Should be first
+            new_blocks[abie_name] = new_block
+            for k, v in state.abie_blocks.items():
+                if k != abie_name:
+                    new_blocks[k] = v.copy()
+        else:
+            for k, v in state.abie_blocks.items():
+                if k == abie_name:
+                    continue  # Skip, will insert at correct position
+                new_blocks[k] = v.copy()
+                if k == insert_after:
+                    new_blocks[abie_name] = new_block
+
+        new_state.abie_blocks = new_blocks
         return new_state
 
     @staticmethod
