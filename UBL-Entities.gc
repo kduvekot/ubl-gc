@@ -3707,6 +3707,525 @@
             <SimpleValue>1.0</SimpleValue>
          </Value>
       </Row>
+      <Row><!--363-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Common</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>TaxCategory</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Tax Category. Details</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Tax Category</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>ABIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>Information anout a Tax Category</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.0</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetCatalogue">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetCreditNote">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetDespatchAdvice">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetRequestforQuotation">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetSelfBilledInvoice">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--364-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Common</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>ID</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Tax Category. Identifier. Identifier</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Tax Category</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Identifier</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Identifier</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Identifier</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Identifier. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>The identifier for the Tax Category</SimpleValue>
+         </Value>
+         <Value ColumnRef="Examples">
+            <SimpleValue>"ZeroRatedGoods" "NotTaxable" "Standard Rate"</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.0</SimpleValue>
+         </Value>
+         <Value ColumnRef="AnalystNotes">
+            <SimpleValue>Amended definition to cater for tax calculations which are not based on rates</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetCatalogue">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetCreditNote">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetDespatchAdvice">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetRequestforQuotation">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetSelfBilledInvoice">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--365-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Common</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>Name</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Tax Category. Name. Name</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Tax Category</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Name</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Name</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Name</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Name. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>The name of the Tax Category</SimpleValue>
+         </Value>
+         <Value ColumnRef="Examples">
+            <SimpleValue>"Luxury Goods","Wine Equalization", "Exempt"</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.0</SimpleValue>
+         </Value>
+         <Value ColumnRef="ChangefromPreviousVersion">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetAccountResponse">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetCatalogue">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetCreditNote">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetDebitNote">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetDespatchAdvice">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetInvoice">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetOrder">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetOrderCancellation">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetOrderChange">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetOrderResponse">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetOrderResponseSimple">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetQuotation">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetReceiptAdvice">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetRemittanceAdvice">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetRequestforQuotation">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetSelfBilledInvoice">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetSelfBilledCreditNote">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--366-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Common</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>Percent</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Tax Category. Percent. Percent</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Tax Category</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Percent</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Percent</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Percent</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Percent. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>The Tax Rate for the category expressed as a percentage</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>1.0</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetCatalogue">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetCreditNote">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetDespatchAdvice">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetRequestforQuotation">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetSelfBilledInvoice">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--367-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Common</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>BaseUnitMeasure</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Tax Category. Base Unit Measure. Measure</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Tax Category</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPossessiveNoun">
+            <SimpleValue>Base Unit</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Measure</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Base Unit Measure</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Measure</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Measure. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>Where a tax is applied at a certain rate per unit, the measure of units on which the tax calculation is based</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.0</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetCatalogue">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetCreditNote">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetDespatchAdvice">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetRequestforQuotation">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetSelfBilledInvoice">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--368-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Common</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>PerUnitAmount</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Tax Category. Per Unit Amount. Amount</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Tax Category</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPossessiveNoun">
+            <SimpleValue>Per Unit</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Amount</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Per Unit Amount</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Amount</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Amount. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>Where a tax is applied at a certain rate per unit, the rate per unit applied</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.0</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetCatalogue">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetCreditNote">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetDespatchAdvice">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetRequestforQuotation">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetSelfBilledInvoice">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--369-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Common</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>TierRange</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Tax Category. Tier Range. Text</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Tax Category</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPossessiveNoun">
+            <SimpleValue>Tier</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Range</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Tier Range</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Text</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Text. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>Where a tax is tiered, the range of tiers applied in the calculation of the Tax Sub Total for the Tax Category</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.0</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetCatalogue">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetCreditNote">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetDespatchAdvice">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetRequestforQuotation">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetSelfBilledInvoice">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--370-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Common</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>TierRatePercent</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Tax Category. Tier Rate. Percent</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Tax Category</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPossessiveNoun">
+            <SimpleValue>Tier</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTermPrimaryNoun">
+            <SimpleValue>Rate</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Tier Rate</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Percent</SimpleValue>
+         </Value>
+         <Value ColumnRef="DataType">
+            <SimpleValue>Percent. Type</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>0..1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>BBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>Where a tax is tiered, the rate of tax applied to the range of tiers in the calculation of the Tax Sub Total for the Tax Category</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>2.0</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetCatalogue">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetCreditNote">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetDespatchAdvice">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetRequestforQuotation">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetSelfBilledInvoice">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+      </Row>
+      <Row><!--371-->
+         <Value ColumnRef="ModelName">
+            <SimpleValue>Common</SimpleValue>
+         </Value>
+         <Value ColumnRef="UBLName">
+            <SimpleValue>TaxScheme</SimpleValue>
+         </Value>
+         <Value ColumnRef="DictionaryEntryName">
+            <SimpleValue>Tax Category. Tax Scheme</SimpleValue>
+         </Value>
+         <Value ColumnRef="ObjectClass">
+            <SimpleValue>Tax Category</SimpleValue>
+         </Value>
+         <Value ColumnRef="PropertyTerm">
+            <SimpleValue>Tax Scheme</SimpleValue>
+         </Value>
+         <Value ColumnRef="RepresentationTerm">
+            <SimpleValue>Tax Scheme</SimpleValue>
+         </Value>
+         <Value ColumnRef="AssociatedObjectClass">
+            <SimpleValue>Tax Scheme</SimpleValue>
+         </Value>
+         <Value ColumnRef="Cardinality">
+            <SimpleValue>1</SimpleValue>
+         </Value>
+         <Value ColumnRef="ComponentType">
+            <SimpleValue>ASBIE</SimpleValue>
+         </Value>
+         <Value ColumnRef="Definition">
+            <SimpleValue>An association to Tax Scheme</SimpleValue>
+         </Value>
+         <Value ColumnRef="CurrentVersion">
+            <SimpleValue>1.0</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetCatalogue">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetCreditNote">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetDespatchAdvice">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetRequestforQuotation">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+         <Value ColumnRef="SmallBusinessSubsetSelfBilledInvoice">
+            <SimpleValue>Y</SimpleValue>
+         </Value>
+      </Row>
       <Row><!--372-->
          <Value ColumnRef="ModelName">
             <SimpleValue>Common</SimpleValue>
