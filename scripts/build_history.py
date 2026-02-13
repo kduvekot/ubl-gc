@@ -260,7 +260,11 @@ class HistoryBuilder:
             self.commits_created += 1
 
             # Build incrementally
-            commit_builder.build_incremental(steps)
+            version = release["version"]
+            stage = release["stage"].upper()
+            release_prefix = f"UBL {version} {stage}"
+            commit_builder.build_incremental(
+                steps, release_prefix, release["label"], release["date"])
             self.commits_created += len(steps)
         finally:
             self._restore_git_env(old_env)
@@ -382,7 +386,11 @@ class HistoryBuilder:
             self.commits_created += 1
 
             # Build incrementally
-            commit_builder.build_incremental(steps)
+            version = release["version"]
+            stage = release["stage"].upper()
+            release_prefix = f"UBL {version} {stage}"
+            commit_builder.build_incremental(
+                steps, release_prefix, release["label"], release["date"])
             self.commits_created += len(steps)
         finally:
             self._restore_git_env(old_env)

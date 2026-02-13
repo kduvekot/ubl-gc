@@ -119,8 +119,17 @@ class GCCommitBuilder:
         self._write_file(all_row_nums)
         self._git_add_and_commit(commit_message)
 
-    def build_incremental(self, steps: list[BuildStep]) -> None:
-        """Execute all build steps, creating one commit per ABIE group"""
+    def build_incremental(self, steps: list[BuildStep],
+                          release_prefix: str, release_label: str,
+                          release_date: str) -> None:
+        """Execute all build steps, creating one commit per ABIE group.
+
+        Args:
+            steps: Build steps from GCBuilder.plan_build()
+            release_prefix: e.g. "UBL 2.0 PRD" or "UBL 2.5 CSD01"
+            release_label: e.g. "prd-UBL-2.0" or "csd01-UBL-2.5"
+            release_date: e.g. "2006-01-19"
+        """
         total = len(steps)
         print(f"\nBuilding {total} ABIE-level commits...")
         print("=" * 70)
@@ -138,7 +147,7 @@ class GCCommitBuilder:
             row_count = len(step.rows_to_add)
 
             if step.is_cycle:
-                subject = (f"UBL 2.0 PRD [{step.step_num}/{total}]: "
+                subject = (f"{release_prefix}: "
                            f"Add cycle group: {' + '.join(step.abie_names)}")
                 body_lines = [
                     f"Cycle group of {abie_count} mutually dependent ABIEs.",
@@ -152,7 +161,7 @@ class GCCommitBuilder:
                     )
             else:
                 name = step.abie_names[0]
-                subject = (f"UBL 2.0 PRD [{step.step_num}/{total}]: "
+                subject = (f"{release_prefix}: "
                            f'Add "{name}"')
                 body_lines = [
                     f"ABIE: {name}",
@@ -160,6 +169,9 @@ class GCCommitBuilder:
                     f"Total rows: {row_count}",
                 ]
 
+            body_lines.extend(["", f"Release: {release_label}",
+                               f"File: {self.target_file}",
+                               f"Date: {release_date}"])
             commit_msg = subject + "\n\n" + "\n".join(body_lines)
 
             self.add_rows(new_row_nums, accumulated_rows, commit_msg)
@@ -232,7 +244,8 @@ def main():
     )
 
     # Build incrementally
-    commit_builder.build_incremental(steps)
+    commit_builder.build_incremental(
+        steps, "UBL 2.0 PRD", "prd-UBL-2.0", "2006-01-19")
 
     print("\n" + "=" * 70)
     print("BUILD COMPLETE")
