@@ -102,10 +102,10 @@ class GCDiff:
             block = all_lines[start_line:end_line + 1]
             row_blocks[row_num] = block
 
-        # Group rows into ABIE blocks
+        # Group rows into ABIE blocks and QDT (Qualified Data Type) blocks
         abie_blocks = ODict()
         current_object_class = None
-        orphaned_rows = []  # Rows with no component type or other types
+        qdt_rows = []  # Qualified Data Type rows (no ComponentType, UBL 2.0 only)
 
         for row_num in sorted(row_blocks.keys()):
             block_lines = row_blocks[row_num]
@@ -119,12 +119,12 @@ class GCDiff:
                 # Append to current ABIE's block
                 abie_blocks[current_object_class].extend(block_lines)
             else:
-                # Orphaned rows (empty component type or other types)
-                orphaned_rows.extend(block_lines)
+                # Rows without ComponentType — Qualified Data Types in UBL 2.0
+                qdt_rows.extend(block_lines)
 
-        # Add orphaned rows as a special ABIE block if any exist
-        if orphaned_rows:
-            abie_blocks['__ORPHANED_ROWS__'] = orphaned_rows
+        # Add QDT rows as a named block if any exist
+        if qdt_rows:
+            abie_blocks['QDT'] = qdt_rows
 
         state = GCFileState()
         state.header_lines = header_lines
@@ -556,8 +556,8 @@ class GCDiff:
         """
         Get optimal insertion order for ABIEs using dependency analysis.
         Uses GCAnalyzer to compute dependency graph and topological sort.
-        Names not found in the analyzer (e.g., __ORPHANED_ROWS__) are
-        appended at the end.
+        Names not found in the analyzer (e.g., QDT) are appended at
+        the end.
         """
         analyzer = GCAnalyzer(file_path)
         analyzer.parse()
@@ -577,7 +577,7 @@ class GCDiff:
                     result.append(abie.object_class)
                     found.add(abie.object_class)
 
-        # Append any names not found by the analyzer (e.g., __ORPHANED_ROWS__)
+        # Append any names not found by the analyzer (e.g., QDT)
         for name in sorted(abie_names - found):
             result.append(name)
 
