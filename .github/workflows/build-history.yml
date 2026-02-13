@@ -10,10 +10,11 @@ on:
         type: string
   push:
     branches:
-      - 'claude/review-ubl-build-scripts-wsfi6'
+      - 'claude/**'
     paths:
       - 'scripts/**'
       - '.github/workflows/build-history.yml'
+      - '.trigger-build'
 
 permissions:
   contents: write
