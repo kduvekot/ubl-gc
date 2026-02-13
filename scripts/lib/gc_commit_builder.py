@@ -2,23 +2,27 @@
 """
 GenericCode Commit Builder
 
-Builds a GenericCode file incrementally with one git commit per step.
-Creates an ultra-granular git history showing element-by-element evolution.
+Builds a GenericCode file incrementally with one git commit per ABIE group.
+Creates a git history showing the semantic model being assembled
+in dependency order.
+
+Instead of DOM manipulation, works directly with the source file's text lines.
+This preserves exact formatting, XML comments, namespace prefixes, and row order.
+The final commit produces a file byte-identical to the original source.
 """
 
 import xml.etree.ElementTree as ET
-from xml.dom import minidom
 import subprocess
 import sys
 import os
+import re
 from pathlib import Path
 
 from gc_analyzer import GCAnalyzer
 from gc_builder import GCBuilder, BuildStep
 
-
 class GCCommitBuilder:
-    """Creates git commits for each incremental build step"""
+    """Creates git commits by inserting raw text blocks from the source file"""
 
     def __init__(self, source_gc_file: str, target_file: str, repo_path: str):
         self.source_gc_file = source_gc_file
@@ -26,103 +30,144 @@ class GCCommitBuilder:
         self.repo_path = repo_path
         self.target_path = Path(repo_path) / target_file
 
-    def create_empty_gc_file(self) -> None:
-        """Create an empty GenericCode file with header and column definitions"""
-        # Parse source to get structure
-        tree = ET.parse(self.source_gc_file)
-        root = tree.getroot()
+        # Parse the source file into header, row blocks, and footer
+        self.header_lines = []    # Everything before first <Row>
+        self.footer_lines = []    # Everything after last </Row>
+        self.row_blocks = {}      # row_num -> list of text lines for that row
 
-        # Create new document with same namespace
-        new_root = ET.Element(root.tag, root.attrib)
+        self._parse_source_text()
 
-        # Copy Identification
-        identification = root.find('Identification')
-        if identification is not None:
-            new_root.append(identification)
+    def _parse_source_text(self) -> None:
+        """Parse source file into text blocks: header, per-row blocks, footer"""
+        with open(self.source_gc_file, 'r', encoding='utf-8') as f:
+            all_lines = f.readlines()
 
-        # Copy ColumnSet
-        column_set = root.find('ColumnSet')
-        if column_set is not None:
-            new_root.append(column_set)
+        # Find all <Row> and </Row> boundaries
+        row_starts = []  # (line_index, row_num)
+        row_ends = []    # line_index of </Row>
 
-        # Add empty SimpleCodeList
-        simple_code_list = ET.SubElement(new_root, 'SimpleCodeList')
+        row_counter = 0
+        for i, line in enumerate(all_lines):
+            stripped = line.strip()
+            if stripped.startswith('<Row>') or stripped.startswith('<Row '):
+                row_counter += 1
+                row_starts.append((i, row_counter))
+            elif stripped == '</Row>':
+                row_ends.append(i)
 
-        # Write to file
-        self._write_xml(new_root, "Create empty GenericCode file with header and columns")
+        if not row_starts:
+            raise ValueError(f"No <Row> elements found in {self.source_gc_file}")
 
-    def _write_xml(self, root: ET.Element, commit_message: str) -> None:
-        """Write XML to file and create git commit"""
-        # Ensure directory exists
+        # Header: everything before first <Row>
+        first_row_line = row_starts[0][0]
+        self.header_lines = all_lines[:first_row_line]
+
+        # Footer: everything after last </Row>
+        last_row_end = row_ends[-1]
+        self.footer_lines = all_lines[last_row_end + 1:]
+
+        # Extract each row block (including the <Row><!--N--> and </Row> lines)
+        for idx, (start_line, row_num) in enumerate(row_starts):
+            end_line = row_ends[idx]
+            block = all_lines[start_line:end_line + 1]
+            self.row_blocks[row_num] = block
+
+        print(f"Parsed source: {len(self.header_lines)} header lines, "
+              f"{len(self.row_blocks)} row blocks, "
+              f"{len(self.footer_lines)} footer lines")
+
+    def _write_file(self, row_nums: list[int]) -> None:
+        """Write the GC file with header + selected rows (in order) + footer"""
         self.target_path.parent.mkdir(parents=True, exist_ok=True)
 
-        # Pretty print XML
-        xml_str = ET.tostring(root, encoding='unicode')
-        dom = minidom.parseString(xml_str)
-        pretty_xml = dom.toprettyxml(indent='   ')
+        # Sort row_nums to maintain original file order
+        sorted_nums = sorted(row_nums)
 
-        # Remove extra blank lines
-        lines = [line for line in pretty_xml.split('\n') if line.strip()]
-        pretty_xml = '\n'.join(lines) + '\n'
-
-        # Write to file
         with open(self.target_path, 'w', encoding='utf-8') as f:
-            f.write(pretty_xml)
+            # Header
+            for line in self.header_lines:
+                f.write(line)
+
+            # Row blocks in original order
+            for num in sorted_nums:
+                for line in self.row_blocks[num]:
+                    f.write(line)
+
+            # Footer
+            for line in self.footer_lines:
+                f.write(line)
 
     def _git_add_and_commit(self, message: str) -> None:
         """Add file and create git commit"""
-        subprocess.run(['git', 'add', self.target_file], cwd=self.repo_path, check=True)
-
-        full_message = f"{message}\n\nhttps://claude.ai/code/session_01J8Cq8ZxE5GAVoSg2e5LFvK"
-
         subprocess.run(
-            ['git', 'commit', '-m', full_message],
-            cwd=self.repo_path,
-            check=True
+            ['git', 'add', self.target_file],
+            cwd=self.repo_path, check=True
         )
 
-    def add_rows(self, rows, commit_message: str) -> None:
-        """Add rows to the SimpleCodeList and commit"""
-        # Parse current file
-        tree = ET.parse(self.target_path)
-        root = tree.getroot()
+        subprocess.run(
+            ['git', 'commit', '-m', message],
+            cwd=self.repo_path, check=True
+        )
 
-        # Find SimpleCodeList
-        simple_code_list = root.find('SimpleCodeList')
-        if simple_code_list is None:
-            simple_code_list = ET.SubElement(root, 'SimpleCodeList')
+    def create_empty_gc_file(self) -> None:
+        """Create the GC file with header and empty SimpleCodeList (no rows)"""
+        self._write_file([])
 
-        # Add new rows
-        for row in rows:
-            simple_code_list.append(row.xml_data)
-
-        # Write and commit
-        self._write_xml(root, commit_message)
+    def add_rows(self, row_nums: list[int], all_row_nums: list[int],
+                 commit_message: str) -> None:
+        """Write the file with all accumulated rows and commit"""
+        self._write_file(all_row_nums)
         self._git_add_and_commit(commit_message)
 
     def build_incremental(self, steps: list[BuildStep]) -> None:
-        """Execute all build steps, creating one commit per step"""
-        print(f"\nBuilding {len(steps)} incremental commits...")
-        print("="*70)
+        """Execute all build steps, creating one commit per ABIE group"""
+        total = len(steps)
+        print(f"\nBuilding {total} ABIE-level commits...")
+        print("=" * 70)
+
+        # Track all row_nums added so far
+        accumulated_rows = []
 
         for i, step in enumerate(steps, 1):
-            # Create commit message
-            phase_prefix = {
-                'leaf': '🌱',
-                'abie+bbie': '🏗️',
-                'asbie': '🔗'
-            }.get(step.phase, '📝')
+            # Collect row_nums for this step
+            new_row_nums = [row.row_num for row in step.rows_to_add]
+            accumulated_rows.extend(new_row_nums)
 
-            commit_msg = f"{phase_prefix} Step {step.step_num}/{len(steps)}: {step.description}"
+            # Build commit message
+            abie_count = len(step.abie_names)
+            row_count = len(step.rows_to_add)
 
-            # Add rows and commit
-            self.add_rows(step.rows_to_add, commit_msg)
+            if step.is_cycle:
+                subject = (f"UBL 2.0 PRD [{step.step_num}/{total}]: "
+                           f"Add cycle group: {' + '.join(step.abie_names)}")
+                body_lines = [
+                    f"Cycle group of {abie_count} mutually dependent ABIEs.",
+                    f"These ABIEs reference each other and must be added together.",
+                    "",
+                ]
+                for name in step.abie_names:
+                    abie = self.analyzer_abies[name]
+                    body_lines.append(
+                        f"  {name}: {len(abie.bbies)} BBIEs, {len(abie.asbies)} ASBIEs"
+                    )
+            else:
+                name = step.abie_names[0]
+                subject = (f"UBL 2.0 PRD [{step.step_num}/{total}]: "
+                           f'Add "{name}"')
+                body_lines = [
+                    f"ABIE: {name}",
+                    f"Components: {step.bbie_count} BBIEs, {step.asbie_count} ASBIEs",
+                    f"Total rows: {row_count}",
+                ]
 
-            # Progress indicator
-            if i % 10 == 0:
-                print(f"  ✓ Completed {i}/{len(steps)} steps")
+            commit_msg = subject + "\n\n" + "\n".join(body_lines)
 
-        print(f"\n✓ All {len(steps)} commits created!")
+            self.add_rows(new_row_nums, accumulated_rows, commit_msg)
+
+            if i % 20 == 0 or i == total:
+                print(f"  Completed {i}/{total} commits")
+
+        print(f"\nAll {total} ABIE-level commits created!")
 
 
 def main():
@@ -144,19 +189,21 @@ def main():
     print(f"Repo:   {repo_path}")
 
     # Analyze source file
-    print("\n" + "="*70)
+    print("\n" + "=" * 70)
     print("ANALYZING SOURCE FILE")
-    print("="*70)
+    print("=" * 70)
 
     analyzer = GCAnalyzer(source_file)
     analyzer.parse()
     analyzer.build_abies()
     analyzer.build_dependency_graph()
+    analyzer.find_sccs_tarjan()
+    analyzer.topological_sort_sccs()
 
     # Plan build
-    print("\n" + "="*70)
+    print("\n" + "=" * 70)
     print("PLANNING BUILD")
-    print("="*70)
+    print("=" * 70)
 
     builder = GCBuilder(analyzer)
     steps = builder.plan_build()
@@ -164,25 +211,35 @@ def main():
     print(builder.generate_build_plan_summary())
 
     # Create commits
-    print("\n" + "="*70)
+    print("\n" + "=" * 70)
     print("CREATING COMMITS")
-    print("="*70)
+    print("=" * 70)
 
     commit_builder = GCCommitBuilder(source_file, target_file, repo_path)
+    # Store analyzer reference for commit message generation
+    commit_builder.analyzer_abies = analyzer.abies
 
     # Create initial empty file
     print("\nCreating initial empty GenericCode file...")
     commit_builder.create_empty_gc_file()
-    commit_builder._git_add_and_commit("📋 Initialize empty GenericCode file structure")
+    commit_builder._git_add_and_commit(
+        "UBL 2.0 PRD: Initialize GenericCode file structure\n\n"
+        "Empty file with header, column definitions, and empty SimpleCodeList.\n"
+        "Columns: ModelName, UBLName, DictionaryEntryName, ObjectClass,\n"
+        "PropertyTerm, RepresentationTerm, DataType, AssociatedObjectClass,\n"
+        "Cardinality, ComponentType, Definition, and more.\n\n"
+        "Source: UBL 2.0 Proposed Recommendation Draft (2006)"
+    )
 
     # Build incrementally
     commit_builder.build_incremental(steps)
 
-    print("\n" + "="*70)
-    print("✓ BUILD COMPLETE")
-    print("="*70)
+    print("\n" + "=" * 70)
+    print("BUILD COMPLETE")
+    print("=" * 70)
+    print(f"\n{len(steps) + 1} commits created (1 skeleton + {len(steps)} ABIE groups)")
     print("\nView commit history with:")
-    print(f"  git log --oneline --graph")
+    print("  git log --oneline --graph")
 
 
 if __name__ == '__main__':

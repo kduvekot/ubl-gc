@@ -1,7 +1,7 @@
 name: Build UBL History Branch
 
 on:
-  workflow_dispatch:  # Manual trigger
+  workflow_dispatch:
     inputs:
       target_branch:
         description: 'Target history branch name'
@@ -10,48 +10,39 @@ on:
         type: string
   push:
     branches:
-      - main
-      - 'claude/git-history-exploration-bunUn'  # Test on feature branch
+      - 'claude/review-ubl-build-scripts-wsfi6'
     paths:
       - 'scripts/**'
-      - 'history/**'
       - '.github/workflows/build-history.yml'
 
 permissions:
-  contents: write  # Need write access to push to history branch
+  contents: write
+
+concurrency:
+  group: build-history
+  cancel-in-progress: false
 
 jobs:
   build-history:
     runs-on: ubuntu-latest
+    timeout-minutes: 60
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # Full history for proper git operations
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
 
       - name: Configure Git
         run: |
           git config --global user.name "OASIS UBL TC"
           git config --global user.email "ubl-tc@oasis-open.org"
           git config --global commit.gpgsign false
-
-      - name: Set up environment
-        run: |
-          echo "REPO_ROOT=$(pwd)" >> $GITHUB_ENV
-          echo "HISTORY_BRANCH=${{ inputs.target_branch || 'history' }}" >> $GITHUB_ENV
-
-      - name: Debug - List repository structure
-        run: |
-          echo "Current directory: $(pwd)"
-          echo "Repository structure:"
-          ls -la
-          echo ""
-          echo "Scripts directory:"
-          ls -la scripts/ || echo "scripts/ not found"
-          echo ""
-          echo "Scripts/versions directory:"
-          ls -la scripts/versions/ || echo "scripts/versions/ not found"
 
       - name: Verify all GenericCode files present
         run: |
@@ -62,152 +53,34 @@ jobs:
             echo "ERROR: Expected at least 60 files, found $total_files"
             exit 1
           fi
-          echo "✓ Verification passed ($total_files files found)"
+          echo "Verification passed ($total_files files found)"
 
-      - name: Set up working directory for history
+      - name: Build history (all 35 releases)
         run: |
-          # Use /tmp for isolation (DON'T checkout history branch in main repo!)
-          export HISTORY_WORK_DIR="/tmp/ubl-history-$$"
-          echo "HISTORY_WORK_DIR=$HISTORY_WORK_DIR" >> $GITHUB_ENV
+          # Use input branch for workflow_dispatch, or "history-test" for push triggers
+          TARGET="${{ inputs.target_branch || 'history-test' }}"
+          echo "Building history on branch: $TARGET"
 
-          # ALWAYS create fresh history branch for reproducibility
-          # (Don't clone existing branch - we want to rebuild from scratch)
-          echo "Creating new history branch in temp directory..."
-          mkdir -p "$HISTORY_WORK_DIR"
-          cd "$HISTORY_WORK_DIR"
-          git init
-          git checkout --orphan "$HISTORY_BRANCH"
+          python3 scripts/build_history.py \
+            --branch "$TARGET" \
+            --push \
+            --keep-work-dir
+        env:
+          PYTHONUNBUFFERED: "1"
 
-          echo "# UBL GenericCode Evolution" > README.md
-          echo "" >> README.md
-          echo "This branch contains the complete evolution of UBL GenericCode files" >> README.md
-          echo "from UBL 2.0 (2006) through UBL 2.5 (2025)." >> README.md
-          echo "" >> README.md
-          echo "Generated automatically by GitHub Actions workflow." >> README.md
-
-          git add README.md
-          git config user.name "OASIS UBL TC"
-          git config user.email "ubl-tc@oasis-open.org"
-          git config commit.gpgsign false
-          git commit -m "Initialize history branch"
-
-          cd "$HISTORY_WORK_DIR"
-          git config commit.gpgsign false
-
-          # Always set the authenticated remote URL from main repo
-          # (The clone may have file:// URL, we need the https:// with token)
-          MAIN_REMOTE_URL=$(cd $REPO_ROOT && git remote get-url origin)
-          if git remote get-url origin > /dev/null 2>&1; then
-            git remote set-url origin "$MAIN_REMOTE_URL"
-          else
-            git remote add origin "$MAIN_REMOTE_URL"
-          fi
-
-          # CRITICAL: Copy GitHub Actions authentication config
-          # The token is passed via http.extraheader, not in the URL
-          AUTH_HEADER=$(cd $REPO_ROOT && git config --get http.https://github.com/.extraheader || echo "")
-          if [ -n "$AUTH_HEADER" ]; then
-            git config http.https://github.com/.extraheader "$AUTH_HEADER"
-            echo "✓ GitHub authentication configured"
-          else
-            echo "⚠ Warning: No GitHub auth header found"
-          fi
-
-          echo "Remote URL: $MAIN_REMOTE_URL"
-
-      - name: Build UBL 2.0 (8 commits)
-        run: |
-          cd "$HISTORY_WORK_DIR"
-          export HISTORY_WORK_DIR="$HISTORY_WORK_DIR"
-          bash "$REPO_ROOT/scripts/versions/build-2.0.sh"
-
-      - name: Build UBL 2.1 (includes 2.0→2.1 transition, 13 commits)
-        run: |
-          cd "$HISTORY_WORK_DIR"
-          export HISTORY_WORK_DIR="$HISTORY_WORK_DIR"
-          bash "$REPO_ROOT/scripts/versions/build-2.1.sh"
-
-      - name: Build UBL 2.2 (includes 2.1→2.2 transition, 11 commits)
-        run: |
-          cd "$HISTORY_WORK_DIR"
-          export HISTORY_WORK_DIR="$HISTORY_WORK_DIR"
-          bash "$REPO_ROOT/scripts/versions/build-2.2.sh"
-
-      - name: Build UBL 2.3 (includes 2.2→2.3 transition, 12 commits)
-        run: |
-          cd "$HISTORY_WORK_DIR"
-          export HISTORY_WORK_DIR="$HISTORY_WORK_DIR"
-          bash "$REPO_ROOT/scripts/versions/build-2.3.sh"
-
-      - name: Build UBL 2.4 (includes 2.3→2.4 transition, 9 commits)
-        run: |
-          cd "$HISTORY_WORK_DIR"
-          export HISTORY_WORK_DIR="$HISTORY_WORK_DIR"
-          bash "$REPO_ROOT/scripts/versions/build-2.4.sh"
-
-      - name: Build UBL 2.5 (includes 2.4→2.5 transition, 7 commits)
-        run: |
-          cd "$HISTORY_WORK_DIR"
-          export HISTORY_WORK_DIR="$HISTORY_WORK_DIR"
-          bash "$REPO_ROOT/scripts/versions/build-2.5.sh"
-
-      - name: Generate summary
-        run: |
-          cd "$HISTORY_WORK_DIR"
-          echo "## Build Summary" > build-summary.md
-          echo "" >> build-summary.md
-          echo "- **Total commits:** $(git rev-list --count HEAD)" >> build-summary.md
-          echo "- **Date:** $(date -u +"%Y-%m-%d %H:%M:%S UTC")" >> build-summary.md
-          echo "- **Workflow:** $GITHUB_WORKFLOW" >> build-summary.md
-          echo "- **Run:** $GITHUB_RUN_NUMBER" >> build-summary.md
-          echo "" >> build-summary.md
-          echo "### Commit History:" >> build-summary.md
-          git log --oneline --graph --all >> build-summary.md
-
-      - name: Push history branch
-        run: |
-          cd "$HISTORY_WORK_DIR"
-
-          # Push with retry logic (exponential backoff)
-          max_attempts=5
-          attempt=1
-          while [ $attempt -le $max_attempts ]; do
-            echo "Push attempt $attempt/$max_attempts..."
-
-            # Use --force since we're rebuilding from scratch (not --force-with-lease)
-            if git push -u origin "$HISTORY_BRANCH" --force; then
-              echo "✓ Successfully pushed to $HISTORY_BRANCH"
-              exit 0
-            fi
-
-            if [ $attempt -lt $max_attempts ]; then
-              sleep_time=$((2 ** attempt))
-              echo "Push failed, retrying in ${sleep_time}s..."
-              sleep $sleep_time
-            fi
-
-            attempt=$((attempt + 1))
-          done
-
-          echo "✗ Failed to push after $max_attempts attempts"
-          exit 1
-
-      - name: Post summary comment (on PR)
-        if: github.event_name == 'pull_request'
-        uses: actions/github-script@v7
-        with:
-          script: |
-            const fs = require('fs');
-            const summary = fs.readFileSync(process.env.HISTORY_WORK_DIR + '/build-summary.md', 'utf8');
-
-            github.rest.issues.createComment({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: summary
-            });
-
-      - name: Cleanup
+      - name: Summary
         if: always()
         run: |
-          rm -rf "$HISTORY_WORK_DIR"
+          TARGET="${{ inputs.target_branch || 'history-test' }}"
+          echo "## Build History Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Property | Value |" >> $GITHUB_STEP_SUMMARY
+          echo "|----------|-------|" >> $GITHUB_STEP_SUMMARY
+          echo "| Target branch | \`$TARGET\` |" >> $GITHUB_STEP_SUMMARY
+          echo "| Workflow run | ${{ github.run_id }} |" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "View the history:" >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+          echo "git fetch origin $TARGET" >> $GITHUB_STEP_SUMMARY
+          echo "git log --oneline origin/$TARGET" >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY

@@ -1,265 +1,103 @@
 # UBL-GC Scripts
 
-This directory contains scripts for building and managing the UBL GenericCode historical repository.
+Scripts for building and managing the UBL GenericCode historical repository.
 
 ## Overview
 
-These scripts enable **reproducible** construction of the git history branch that demonstrates the complete evolution of UBL semantic models across all 35 releases.
+The build system creates a git history branch showing the complete evolution of UBL semantic models across all 35 releases — with individual commits per ABIE change, proper dependency ordering, and position-aware insertions.
 
 ---
 
-## Available Scripts
+## Build Script
 
-### 📥 Download & Setup Scripts
+### `build_history.py`
 
-#### `download-oasis-distributions.sh`
+Single Python entry point that builds the complete git history branch.
 
-Downloads complete OASIS UBL distributions for all 35 releases (2.0-2.5).
-
-**Purpose:**
-- Download full ZIP distributions from OASIS
-- Extract XSD schemas, code lists, examples, and documentation
-- Preserve complete historical artifacts beyond just GenericCode files
-
-**Usage:**
-```bash
-# Download everything for all 35 releases
-./scripts/download-oasis-distributions.sh
-
-# Dry run (see what would be downloaded)
-./scripts/download-oasis-distributions.sh --dry-run
-
-# Download specific version only
-./scripts/download-oasis-distributions.sh --version 2.4
-
-# Download specific release only
-./scripts/download-oasis-distributions.sh --release os-UBL-2.4
-
-# Skip releases that already have xsd/ directory
-./scripts/download-oasis-distributions.sh --skip-existing
-
-# Verify existing downloads
-./scripts/download-oasis-distributions.sh --verify-only
-```
-
-**What it downloads:**
-- `xsd/` - XML Schema files (shows .gc → .xsd mapping)
-- `cl/` - Code lists (enumeration values)
-- `val/` - Validation resources
-- `cva/` - Context/value association files
-- `db/` - Database files
-- `art/` - Artifacts
-- `xml/` - Example XML documents
-- `xsdrt/` - XSD runtime resources
-- Documentation (HTML, PDF, XML)
-
-**What it preserves:**
-- `mod/` - Skips extraction (preserves our existing .gc files)
-
-**Output structure:**
-```
-history/
-├─ generated/prd-UBL-2.0/
-│  ├─ mod/    (existing - preserved)
-│  ├─ xsd/    (new - downloaded)
-│  ├─ cl/     (new - downloaded)
-│  └─ ...
-├─ prd1-UBL-2.1/
-│  ├─ mod/    (existing - preserved)
-│  ├─ xsd/    (new - downloaded)
-│  └─ ...
-└─ ...
-```
-
----
-
-### 🔨 Build Scripts (To Be Created)
-
-#### `build-history.sh` *(Planned)*
-
-Master orchestrator that builds the complete git history branch.
-
-**Will do:**
-- Create or reset the history branch
-- Call version-specific build scripts in order
-- Apply multi-step transitions between major versions
-- Verify commit sequence
-- Push to remote
+**What it does:**
+- Creates an orphan branch from scratch
+- Processes all 35 UBL releases in chronological order (2.0 through 2.5)
+- Computes granular diffs between consecutive releases
+- Creates individual commits for each change (ABIE add/modify/remove/move, metadata, column structure, footer)
+- Uses `git mv` at version transitions to preserve file rename history
+- Inserts ABIEs in dependency order (topological sort)
+- Positions ABIEs correctly relative to the target file's ordering
 
 **Usage:**
 ```bash
 # Build complete history from scratch
-./scripts/build-history.sh
+python3 scripts/build_history.py
 
-# Resume from specific version
-./scripts/build-history.sh --start-from 2.3
+# Dry run (see what would happen without creating commits)
+python3 scripts/build_history.py --dry-run
 
-# Build and push
-./scripts/build-history.sh --push
+# Resume from a specific release index
+python3 scripts/build_history.py --start-at 15
+
+# Build into a specific branch
+python3 scripts/build_history.py --branch my-branch
+
+# Keep the work directory after completion
+python3 scripts/build_history.py --keep-workdir
 ```
 
----
-
-### 📚 Library Modules (To Be Created)
-
-#### `lib/common.sh` *(Planned)*
-
-Shared utility functions used by all build scripts.
-
-**Functions:**
-- Git operations (commit, tag, branch management)
-- File operations (copy, compare, diff)
-- Logging and reporting
-- Error handling
-
-#### `lib/commit-helpers.sh` *(Planned)*
-
-Specialized functions for creating consistent git commits.
-
-**Functions:**
-- Standard commit message formatting
-- Multi-step transition commits
-- Commit metadata tracking
-- Verification helpers
+**Tracked files (3 types):**
+- `UBL-Entities-{version}.gc` — Main semantic model (all versions)
+- `UBL-Signature-Entities-{version}.gc` — Digital signature entities (2.1+)
+- `UBL-Endorsed-Entities-{version}.gc` — Endorsed subset (2.5+ only)
 
 ---
 
-### 🎯 Version-Specific Builders (To Be Created)
+## Library Modules (`lib/`)
 
-#### `versions/build-2.0.sh` *(Planned)*
+### `gc_diff.py`
+Computes structured diffs between two GenericCode files. Produces an ordered list of change operations:
+1. Metadata changes (Identification section)
+2. Column structure changes (ColumnSet additions/removals)
+3. ABIE removals
+4. ABIE modifications (with position correction)
+5. ABIE additions (in dependency order, at correct position)
+6. ABIE moves (unmodified ABIEs that changed position)
+7. Footer updates
 
-Processes UBL 2.0 releases (8 stages) using generated GenericCode files.
+### `gc_analyzer.py`
+Parses GenericCode XML to extract ABIE structure, builds dependency graphs between ABIEs, and computes topological sort order for correct insertion sequencing.
 
-**Handles:**
-- Simple transitions between prd → prd2 → ... → errata
-- Single commit per release stage
+### `gc_builder.py`
+Constructs GenericCode XML files incrementally — used for building the initial UBL 2.0 file ABIE-by-ABIE.
 
-#### `versions/build-2.1.sh` *(Planned)*
+### `gc_commit_builder.py`
+Generates the sequence of git commits for the first release (UBL 2.0 PRD), adding ABIEs one at a time in dependency order.
 
-Processes UBL 2.1 releases (8 stages) and transition from 2.0.
-
-**Handles:**
-- 6-step transition from 2.0 to 2.1 (filename change)
-- 7 simple commits for remaining stages (prd2 → os)
-
-#### `versions/build-2.2.sh` *(Planned)*
-
-Processes UBL 2.2 releases (6 stages) and transition from 2.1.
-
-**Handles:**
-- 6-step transition from 2.1 to 2.2 (filename + column structure)
-- 5 simple commits for remaining stages
-
-#### `versions/build-2.3.sh` *(Planned)*
-
-Processes UBL 2.3 releases (7 stages) and transition from 2.2.
-
-**Handles:**
-- 6-step transition from 2.2 to 2.3 (filename change)
-- 6 simple commits for remaining stages
-
-#### `versions/build-2.4.sh` *(Planned)*
-
-Processes UBL 2.4 releases (4 stages) and transition from 2.3.
-
-**Handles:**
-- 6-step transition from 2.3 to 2.4 (filename change)
-- 3 simple commits for remaining stages
-
-#### `versions/build-2.5.sh` *(Planned)*
-
-Processes UBL 2.5 releases (2 stages) and transition from 2.4.
-
-**Handles:**
-- 6-step transition from 2.4 to 2.5 (filename + structure + Endorsed file)
-- 1 simple commit for csd02
+### `release_manifest.py`
+Complete manifest of all 35 UBL releases with metadata: version, stage, date, label, and source file paths for each file type (entities, signature, endorsed).
 
 ---
 
-## The 6-Step Transition Process
+## Utility Scripts
 
-Major version transitions use a careful 6-step process to track schema evolution:
+### `download-oasis-distributions.sh`
+Downloads complete OASIS UBL distribution ZIPs for all 35 releases and extracts XSD schemas, code lists, examples, etc.
 
-```
-Step 1: Add new columns (empty)
-Step 2: Populate new columns with data
-Step 3: Mark old columns as deprecated
-Step 4: Remove references to old columns
-Step 5: Remove deprecated columns
-Step 6: Final cleanup/normalization + first release of new version
-```
-
-**Applied at:**
-- 2.0 → 2.1: Filename changes
-- 2.1 → 2.2: Filename + column structure changes (add DEN, AlternativeBusinessTerms)
-- 2.2 → 2.3: Filename changes
-- 2.3 → 2.4: Filename changes
-- 2.4 → 2.5: Filename + column structure changes (add CardinalitySupplement) + add Endorsed file
-
----
-
-## Expected Output
-
-**Total commits:**
-- 35 release commits (one per release stage)
-- 30 transition commits (5 transitions × 6 steps)
-- **= 65 total commits**
-
-**Timeline:**
-- 2006: UBL 2.0 (8 commits)
-- 2010-2013: UBL 2.1 (6 transition + 7 release = 13 commits)
-- 2016-2018: UBL 2.2 (6 transition + 5 release = 11 commits)
-- 2019-2021: UBL 2.3 (6 transition + 6 release = 12 commits)
-- 2023-2024: UBL 2.4 (6 transition + 3 release = 9 commits)
-- 2025: UBL 2.5 (6 transition + 1 release = 7 commits)
-
----
-
-## Development Workflow
-
-1. **Download distributions:**
-   ```bash
-   ./scripts/download-oasis-distributions.sh
-   ```
-
-2. **Build history branch:**
-   ```bash
-   ./scripts/build-history.sh
-   ```
-
-3. **Verify result:**
-   ```bash
-   git checkout claude/git-history-exploration-bunUn
-   git log --oneline --all --graph
-   ```
-
-4. **Push to remote:**
-   ```bash
-   git push -u origin claude/git-history-exploration-bunUn
-   ```
+### `extract-xsd-from-reference.sh`
+Extracts XSD schema files from the ubl-release-package reference repository.
 
 ---
 
 ## Design Principles
 
-1. ✅ **Reproducible** - Delete branch, re-run scripts → identical result
-2. ✅ **Version controlled** - Scripts are in main branch, reviewable
-3. ✅ **Idempotent** - Can re-run without breaking
-4. ✅ **Documented** - Each script explains what it does
-5. ✅ **No downloads in build scripts** - All files from history/
-6. ✅ **Preserves existing files** - Never overwrites our .gc files
+1. **Reproducible** — Delete the history branch, re-run → identical result
+2. **Single entry point** — One Python script orchestrates everything
+3. **Granular commits** — One commit per logical change, not bulk operations
+4. **Dependency-aware** — ABIEs added in topological order
+5. **Position-aware** — Insertions, modifications, and moves respect target file ordering
+6. **No downloads** — All source files already present in `history/`
 
 ---
 
 ## Related Documentation
 
-- [README.md](../README.md) - Complete project overview
-- [CLAUDE.md](../CLAUDE.md) - Guide for Claude Code sessions
-- [ARCHITECTURE.md](../ARCHITECTURE.md) - Design decisions
-- [docs/historical-releases.md](../docs/historical-releases.md) - All 35 releases
-- [docs/genericcode-format.md](../docs/genericcode-format.md) - GenericCode format documentation
-
----
-
-**Last Updated:** 2026-02-12
-**Status:** Download script ready, build scripts planned
+- [README.md](../README.md) — Project overview
+- [ARCHITECTURE.md](../ARCHITECTURE.md) — Design decisions
+- [docs/historical-releases.md](../docs/historical-releases.md) — All 35 releases
+- [docs/genericcode-format.md](../docs/genericcode-format.md) — GenericCode format
