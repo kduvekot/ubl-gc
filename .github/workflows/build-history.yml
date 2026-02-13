@@ -18,6 +18,10 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: build-history
+  cancel-in-progress: false
+
 jobs:
   build-history:
     runs-on: ubuntu-latest
