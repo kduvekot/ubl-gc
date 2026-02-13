@@ -202,10 +202,11 @@ class GCDiff:
         abie_additions = self._compute_abie_additions()
         changes.extend(abie_additions)
 
-        # 7. Check for position changes in unmodified ABIEs.
-        # Additions and modifications already handle their own positioning,
-        # so this only catches ABIEs that moved without content changes.
-        move_ops = self._compute_abie_moves(adjusted_old_blocks)
+        # 7. Compute moves by simulating the state after all prior changes.
+        # Additions, removals, and modifications already handle their own
+        # positioning via new_file_order, so we only need to move ABIEs
+        # that are genuinely still out of position after those operations.
+        move_ops = self._compute_abie_moves(changes)
         changes.extend(move_ops)
 
         # 8. Footer update if needed (the new file may have a different footer)
@@ -433,68 +434,59 @@ class GCDiff:
             ))
         return changes
 
-    def _compute_abie_moves(self, old_blocks: Optional[ODict] = None) -> List[ChangeOp]:
-        """Find unmodified ABIEs that need to move to a different position.
+    def _compute_abie_moves(self, prior_changes: List[ChangeOp]) -> List[ChangeOp]:
+        """Find ABIEs still out of position after all prior changes are applied.
 
-        Additions and modifications already handle their own positioning,
-        so this only catches ABIEs whose content is unchanged but whose
-        position differs between old and new files.
+        Simulates the state after removals, modifications, and additions,
+        then walks the target order and generates moves only for ABIEs that
+        are genuinely misplaced. Each move is simulated before checking the
+        next ABIE, so moves don't interfere with each other.
         """
-        if old_blocks is None:
-            old_blocks = self.old_state.abie_blocks
+        # Simulate applying all prior changes to get intermediate state
+        state = GCFileState(
+            header_lines=self.old_state.header_lines.copy(),
+            abie_blocks=ODict((k, v.copy()) for k, v in self.old_state.abie_blocks.items()),
+            footer_lines=self.old_state.footer_lines.copy(),
+        )
+        for change in prior_changes:
+            state = self.apply_change(state, change)
 
         new_file_order = list(self.new_state.abie_blocks.keys())
-        old_abies = set(old_blocks.keys())
-        new_abies = set(self.new_state.abie_blocks.keys())
-        common = old_abies & new_abies
 
-        # Only consider ABIEs that are common AND unmodified
-        unmodified_common = []
-        for name in new_file_order:
-            if name not in common:
-                continue
-            old_text = ''.join(old_blocks.get(name, []))
-            new_text = ''.join(self.new_state.abie_blocks.get(name, []))
-            if old_text == new_text:
-                unmodified_common.append(name)
-
-        # Check which unmodified ABIEs are out of position relative to
-        # the new file's order. Compare predecessor relationships using
-        # only ABIEs that exist in both old and new (i.e. skip removed
-        # and added ABIEs when finding predecessors, since those are
-        # handled by their own removal/addition commits).
-        removed_abies = old_abies - new_abies
+        # Walk the target order; for each ABIE that has the wrong
+        # predecessor, generate a move and apply it before continuing.
         changes = []
-        old_order = list(old_blocks.keys())
-        for name in unmodified_common:
+        for name in new_file_order:
+            if name not in state.abie_blocks:
+                continue
+
+            current_order = list(state.abie_blocks.keys())
+
+            # Find expected predecessor in target order
+            # (among ABIEs that exist in current state)
             target_idx = new_file_order.index(name)
-            # Find expected predecessor in new order (among ABIEs that
-            # also existed in old — skip additions)
             expected_prev = None
             for i in range(target_idx - 1, -1, -1):
-                if new_file_order[i] in old_blocks:
+                if new_file_order[i] in state.abie_blocks:
                     expected_prev = new_file_order[i]
                     break
 
-            # Find actual predecessor in old order, skipping ABIEs that
-            # were removed (they won't exist in the new file, so they
-            # can't serve as a stable reference point)
-            old_idx = old_order.index(name) if name in old_order else -1
-            actual_prev = None
-            for i in range(old_idx - 1, -1, -1):
-                if old_order[i] not in removed_abies:
-                    actual_prev = old_order[i]
-                    break
+            # Find actual predecessor in current state
+            current_idx = current_order.index(name)
+            actual_prev = current_order[current_idx - 1] if current_idx > 0 else None
 
             if expected_prev != actual_prev:
-                changes.append(ChangeOp(
+                move = ChangeOp(
                     op_type='abie_move',
                     description=f'Move ABIE "{name}"',
                     details={
                         'object_class': name,
                         'new_file_order': new_file_order,
                     }
-                ))
+                )
+                changes.append(move)
+                # Simulate the move so subsequent checks see updated order
+                state = self.apply_change(state, move)
 
         return changes
 
