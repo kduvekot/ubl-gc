@@ -295,8 +295,7 @@ class GCDiff:
 
         - Columns in target_col_refs order
         - Old values for columns that exist in the old row
-        - Actual values from target for new columns (populated, not empty)
-        - Empty placeholders only as fallback for rows not in new file
+        - Empty placeholders for new columns (values populated later in modify commits)
 
         Args:
             opening: The <Row><!--N--> line
@@ -304,6 +303,7 @@ class GCDiff:
             closing: The </Row> line
             target_col_refs: Column refs present in the target row, in order
             target_values: OrderedDict of col_ref -> value text lines from new file row
+                (used only for column presence detection, not for populating values)
         """
         # Detect indentation from existing Value elements (fallback only)
         indent = '         '       # 9 spaces default
@@ -323,11 +323,9 @@ class GCDiff:
         for col_ref in target_col_refs:
             if col_ref in old_values:
                 new_lines.extend(old_values[col_ref])
-            elif target_values and col_ref in target_values:
-                # Use actual values from the target (new file) row
-                new_lines.extend(target_values[col_ref])
             else:
-                # Empty placeholder (fallback for rows not in new file)
+                # Empty placeholder for new columns — actual values will be
+                # populated by subsequent per-ABIE modify commits
                 new_lines.append(f'{indent}<Value ColumnRef="{col_ref}">\n')
                 new_lines.append(f'{inner_indent}<SimpleValue></SimpleValue>\n')
                 new_lines.append(f'{indent}</Value>\n')
@@ -380,8 +378,8 @@ class GCDiff:
         # the ColumnSet formatting (indentation, whitespace) often changes between
         # versions, making individual column commits impossible without also
         # reformatting all unchanged columns.
-        # Now populates actual values from new file for old ABIEs (not empty
-        # placeholders), so modification commits only show genuine content changes.
+        # New columns are added with empty placeholders; actual values are
+        # populated later in per-ABIE modify commits.
         column_change = self._compute_column_structure_change()
         removed_cols = []
         new_col_order = []
@@ -392,9 +390,9 @@ class GCDiff:
 
         # Compute restructured old blocks for ABIE comparison.
         # After restructuring, old rows have the same column layout as the
-        # new file's rows with actual values populated from the new file.
-        # This lets ABIE modification commits contain only genuine
-        # content changes (value updates, row adds/removes).
+        # new file but with empty placeholders for new columns.
+        # ABIE modify commits will then show the population of new column
+        # values alongside any other content changes.
         if removed_cols or new_col_order:
             adjusted_old_blocks = self._restructure_blocks(
                 self.old_state.abie_blocks, removed_cols, new_col_order
