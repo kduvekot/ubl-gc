@@ -59,7 +59,7 @@ jobs:
       - name: Build history (all 35 releases)
         run: |
           # Use input branch for workflow_dispatch, or "history-test" for push triggers
-          TARGET="${{ inputs.target_branch || 'history-test' }}"
+          TARGET="${{ inputs.target_branch || 'history-test2' }}"
           echo "Building history on branch: $TARGET"
 
           python3 scripts/build_history.py \
@@ -72,7 +72,7 @@ jobs:
       - name: Summary
         if: always()
         run: |
-          TARGET="${{ inputs.target_branch || 'history-test' }}"
+          TARGET="${{ inputs.target_branch || 'history-test2' }}"
           echo "## Build History Summary" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "| Property | Value |" >> $GITHUB_STEP_SUMMARY

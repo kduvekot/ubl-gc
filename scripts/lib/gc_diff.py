@@ -213,15 +213,15 @@ class GCDiff:
 
         return opening_line, values, closing_line
 
-    def _build_target_row_lookup(self) -> Dict[str, List[str]]:
-        """Build a lookup from DictionaryEntryName to the target row's column refs.
+    def _build_target_row_lookup(self) -> Dict[str, tuple]:
+        """Build a lookup from DictionaryEntryName to the target row's column data.
 
-        For each row in the new file, records which columns are present
-        and in what order. Used by the structure commit to know the
-        exact column layout each row should have.
+        For each row in the new file, records which columns are present,
+        in what order, and what their value lines are. Used by the structure
+        commit to populate actual values on old ABIEs.
 
         Returns:
-            dict mapping DEN -> list of column refs in order
+            dict mapping DEN -> (col_refs_in_order, col_ref_to_value_lines)
         """
         lookup = {}
         for abie_name, block_lines in self.new_state.abie_blocks.items():
@@ -229,7 +229,7 @@ class GCDiff:
             for row_lines, den in rows:
                 if den:
                     _, values, _ = self._parse_row_values(row_lines)
-                    lookup[den] = list(values.keys())
+                    lookup[den] = (list(values.keys()), values)
         return lookup
 
     def _restructure_blocks(
@@ -267,9 +267,10 @@ class GCDiff:
 
                 if den and den in target_lookup:
                     # Full restructuring: match target row's exact column set
-                    target_cols = target_lookup[den]
+                    # and populate actual values from new file
+                    target_cols, target_values = target_lookup[den]
                     new_row = self._restructure_row_to_target(
-                        opening, old_values, closing, target_cols
+                        opening, old_values, closing, target_cols, target_values
                     )
                 else:
                     # Basic cleanup: strip removed cols, reorder remaining
@@ -288,20 +289,23 @@ class GCDiff:
         old_values: ODict,
         closing: str,
         target_col_refs: List[str],
+        target_values: Optional[ODict] = None,
     ) -> List[str]:
         """Restructure a single row to match a target row's column layout.
 
         - Columns in target_col_refs order
         - Old values for columns that exist in the old row
-        - Empty placeholders for columns that only exist in the target
+        - Actual values from target for new columns (populated, not empty)
+        - Empty placeholders only as fallback for rows not in new file
 
         Args:
             opening: The <Row><!--N--> line
             old_values: OrderedDict of col_ref -> value text lines from old row
             closing: The </Row> line
             target_col_refs: Column refs present in the target row, in order
+            target_values: OrderedDict of col_ref -> value text lines from new file row
         """
-        # Detect indentation from existing Value elements
+        # Detect indentation from existing Value elements (fallback only)
         indent = '         '       # 9 spaces default
         inner_indent = '            '  # 12 spaces default
         for val_lines in old_values.values():
@@ -319,8 +323,11 @@ class GCDiff:
         for col_ref in target_col_refs:
             if col_ref in old_values:
                 new_lines.extend(old_values[col_ref])
+            elif target_values and col_ref in target_values:
+                # Use actual values from the target (new file) row
+                new_lines.extend(target_values[col_ref])
             else:
-                # Empty placeholder — modify commit will fill in the actual value
+                # Empty placeholder (fallback for rows not in new file)
                 new_lines.append(f'{indent}<Value ColumnRef="{col_ref}">\n')
                 new_lines.append(f'{inner_indent}<SimpleValue></SimpleValue>\n')
                 new_lines.append(f'{indent}</Value>\n')
@@ -353,13 +360,13 @@ class GCDiff:
 
     def compute(self) -> List[ChangeOp]:
         """
-        Compute all change operations in commit order:
+        Compute all change operations in unified commit order:
         1. Metadata changes (Identification section only)
-        2. Column structure change (replaces ColumnSet area + restructures all rows)
-        3. ABIE removals
-        4. ABIE modifications (compared after restructuring, with position fix)
+        2. Column structure + populate values on old ABIEs from new file
+        3. Reorder old ABIEs (bulk, only if relative order changed)
+        4. ABIE modifications (content changes, compared after restructuring)
         5. ABIE additions (in dependency order, inserted at correct position)
-        6. ABIE moves (unmodified ABIEs that changed position)
+        6. ABIE removals
         7. Footer update (if file footer changed)
         """
         changes = []
@@ -373,6 +380,8 @@ class GCDiff:
         # the ColumnSet formatting (indentation, whitespace) often changes between
         # versions, making individual column commits impossible without also
         # reformatting all unchanged columns.
+        # Now populates actual values from new file for old ABIEs (not empty
+        # placeholders), so modification commits only show genuine content changes.
         column_change = self._compute_column_structure_change()
         removed_cols = []
         new_col_order = []
@@ -381,10 +390,10 @@ class GCDiff:
             removed_cols = column_change.details.get('removed_columns', [])
             new_col_order = column_change.details.get('new_columns', [])
 
-        # 3. Compute restructured old blocks for ABIE comparison.
+        # Compute restructured old blocks for ABIE comparison.
         # After restructuring, old rows have the same column layout as the
-        # new file's rows (reordered, removed cols stripped, empty new cols
-        # added). This lets ABIE modification commits contain only genuine
+        # new file's rows with actual values populated from the new file.
+        # This lets ABIE modification commits contain only genuine
         # content changes (value updates, row adds/removes).
         if removed_cols or new_col_order:
             adjusted_old_blocks = self._restructure_blocks(
@@ -393,26 +402,24 @@ class GCDiff:
         else:
             adjusted_old_blocks = self.old_state.abie_blocks
 
-        # 4. ABIE removals
-        abie_removals = self._compute_abie_removals()
-        changes.extend(abie_removals)
+        # 3. Reorder old ABIEs (bulk operation, only when relative order changed)
+        reorder_change = self._compute_old_abie_reorder()
+        if reorder_change:
+            changes.append(reorder_change)
 
-        # 5. ABIE modifications (using column-adjusted old blocks)
+        # 4. ABIE modifications (using column-adjusted old blocks)
         abie_modifications = self._compute_abie_modifications(adjusted_old_blocks)
         changes.extend(abie_modifications)
 
-        # 6. ABIE additions (in dependency order)
+        # 5. ABIE additions (in dependency order)
         abie_additions = self._compute_abie_additions()
         changes.extend(abie_additions)
 
-        # 7. Compute moves by simulating the state after all prior changes.
-        # Additions, removals, and modifications already handle their own
-        # positioning via new_file_order, so we only need to move ABIEs
-        # that are genuinely still out of position after those operations.
-        move_ops = self._compute_abie_moves(changes)
-        changes.extend(move_ops)
+        # 6. ABIE removals
+        abie_removals = self._compute_abie_removals()
+        changes.extend(abie_removals)
 
-        # 8. Footer update if needed (the new file may have a different footer)
+        # 7. Footer update if needed (the new file may have a different footer)
         footer_change = self._compute_footer_change()
         if footer_change:
             changes.append(footer_change)
@@ -579,6 +586,35 @@ class GCDiff:
             ))
         return changes
 
+    def _compute_old_abie_reorder(self) -> Optional[ChangeOp]:
+        """Check if old ABIEs need reordering to match new file layout.
+
+        Compares the relative order of ABIEs common to both old and new files.
+        Returns a single bulk reorder operation if the order changed, None otherwise.
+        """
+        old_keys = list(self.old_state.abie_blocks.keys())
+        new_keys = list(self.new_state.abie_blocks.keys())
+
+        new_set = set(new_keys)
+        old_set = set(old_keys)
+
+        old_common = [k for k in old_keys if k in new_set]
+        new_common = [k for k in new_keys if k in old_set]
+
+        if old_common == new_common:
+            return None
+
+        # Count how many positions differ
+        moved = sum(1 for a, b in zip(old_common, new_common) if a != b)
+
+        return ChangeOp(
+            op_type='abie_reorder',
+            description=f'Reorder existing ABIEs ({moved} of {len(old_common)} changed position)',
+            details={
+                'new_file_order': new_keys,
+            }
+        )
+
     def _compute_abie_modifications(self, old_blocks: Optional[ODict] = None) -> List[ChangeOp]:
         """Find ABIEs that changed between old and new files.
 
@@ -625,62 +661,6 @@ class GCDiff:
             ))
         return changes
 
-    def _compute_abie_moves(self, prior_changes: List[ChangeOp]) -> List[ChangeOp]:
-        """Find ABIEs still out of position after all prior changes are applied.
-
-        Simulates the state after removals, modifications, and additions,
-        then walks the target order and generates moves only for ABIEs that
-        are genuinely misplaced. Each move is simulated before checking the
-        next ABIE, so moves don't interfere with each other.
-        """
-        # Simulate applying all prior changes to get intermediate state
-        state = GCFileState(
-            header_lines=self.old_state.header_lines.copy(),
-            abie_blocks=ODict((k, v.copy()) for k, v in self.old_state.abie_blocks.items()),
-            footer_lines=self.old_state.footer_lines.copy(),
-        )
-        for change in prior_changes:
-            state = self.apply_change(state, change)
-
-        new_file_order = list(self.new_state.abie_blocks.keys())
-
-        # Walk the target order; for each ABIE that has the wrong
-        # predecessor, generate a move and apply it before continuing.
-        changes = []
-        for name in new_file_order:
-            if name not in state.abie_blocks:
-                continue
-
-            current_order = list(state.abie_blocks.keys())
-
-            # Find expected predecessor in target order
-            # (among ABIEs that exist in current state)
-            target_idx = new_file_order.index(name)
-            expected_prev = None
-            for i in range(target_idx - 1, -1, -1):
-                if new_file_order[i] in state.abie_blocks:
-                    expected_prev = new_file_order[i]
-                    break
-
-            # Find actual predecessor in current state
-            current_idx = current_order.index(name)
-            actual_prev = current_order[current_idx - 1] if current_idx > 0 else None
-
-            if expected_prev != actual_prev:
-                move = ChangeOp(
-                    op_type='abie_move',
-                    description=f'Move ABIE "{name}"',
-                    details={
-                        'object_class': name,
-                        'new_file_order': new_file_order,
-                    }
-                )
-                changes.append(move)
-                # Simulate the move so subsequent checks see updated order
-                state = self.apply_change(state, move)
-
-        return changes
-
     def _compute_footer_change(self) -> Optional[ChangeOp]:
         """Check if the footer (after last </Row>) changed."""
         old_footer = ''.join(self.old_state.footer_lines)
@@ -692,6 +672,30 @@ class GCDiff:
                 details={'new_footer': self.new_state.footer_lines}
             )
         return None
+
+    @staticmethod
+    def _apply_abie_reorder(state: GCFileState, change: ChangeOp) -> GCFileState:
+        """Reorder all existing ABIEs to match the new file's ordering (bulk)."""
+        new_file_order = change.details['new_file_order']
+
+        new_state = GCFileState()
+        new_state.header_lines = state.header_lines.copy()
+        new_state.footer_lines = state.footer_lines.copy()
+
+        # Reorder: put existing ABIEs in the order they appear in new_file_order
+        new_blocks = ODict()
+        existing = set(state.abie_blocks.keys())
+        for name in new_file_order:
+            if name in existing:
+                new_blocks[name] = state.abie_blocks[name].copy()
+                existing.discard(name)
+        # Append any ABIEs not in new_file_order (safety net)
+        for name in state.abie_blocks:
+            if name in existing:
+                new_blocks[name] = state.abie_blocks[name].copy()
+
+        new_state.abie_blocks = new_blocks
+        return new_state
 
     @staticmethod
     def _apply_abie_move(state: GCFileState, change: ChangeOp) -> GCFileState:
@@ -786,6 +790,8 @@ class GCDiff:
             return self._apply_abie_remove(state, change)
         elif change.op_type == 'abie_modify':
             return self._apply_abie_modify(state, change)
+        elif change.op_type == 'abie_reorder':
+            return self._apply_abie_reorder(state, change)
         elif change.op_type == 'abie_move':
             return self._apply_abie_move(state, change)
         elif change.op_type == 'footer':
