@@ -154,13 +154,210 @@ class GCDiff:
                 break
         return ""
 
+    @staticmethod
+    def _split_block_into_rows(block_lines: List[str]) -> List[tuple]:
+        """Split an ABIE block into individual row segments.
+
+        Returns a list of (row_lines, dict_entry_name) tuples.
+        Each row_lines includes the <Row>...</Row> tags.
+        """
+        rows = []
+        current_row = []
+        in_row = False
+
+        for line in block_lines:
+            stripped = line.strip()
+            if stripped.startswith('<Row>') or stripped.startswith('<Row '):
+                in_row = True
+                current_row = [line]
+            elif stripped == '</Row>' and in_row:
+                current_row.append(line)
+                den = GCDiff._extract_column_value(current_row, 'DictionaryEntryName')
+                rows.append((current_row, den))
+                current_row = []
+                in_row = False
+            elif in_row:
+                current_row.append(line)
+
+        return rows
+
+    @staticmethod
+    def _parse_row_values(row_lines: List[str]) -> tuple:
+        """Parse a row's text lines into components.
+
+        Returns:
+            (opening_line, values_dict, closing_line)
+            where values_dict is an OrderedDict of col_ref -> list of text lines
+            (including the <Value> and </Value> lines).
+        """
+        opening_line = row_lines[0]
+        closing_line = row_lines[-1]
+
+        values = ODict()
+        current_col = None
+        current_lines = []
+
+        for line in row_lines[1:-1]:
+            col_match = re.search(r'ColumnRef="([^"]+)"', line)
+            if col_match and '<Value' in line:
+                current_col = col_match.group(1)
+                current_lines = [line]
+                if '</Value>' in line:
+                    values[current_col] = current_lines
+                    current_col = None
+            elif current_col is not None:
+                current_lines.append(line)
+                if '</Value>' in line:
+                    values[current_col] = current_lines
+                    current_col = None
+
+        return opening_line, values, closing_line
+
+    def _build_target_row_lookup(self) -> Dict[str, List[str]]:
+        """Build a lookup from DictionaryEntryName to the target row's column refs.
+
+        For each row in the new file, records which columns are present
+        and in what order. Used by the structure commit to know the
+        exact column layout each row should have.
+
+        Returns:
+            dict mapping DEN -> list of column refs in order
+        """
+        lookup = {}
+        for abie_name, block_lines in self.new_state.abie_blocks.items():
+            rows = self._split_block_into_rows(block_lines)
+            for row_lines, den in rows:
+                if den:
+                    _, values, _ = self._parse_row_values(row_lines)
+                    lookup[den] = list(values.keys())
+        return lookup
+
+    def _restructure_blocks(
+        self,
+        abie_blocks: ODict,
+        removed_columns: List[str],
+        new_column_order: List[str],
+    ) -> ODict:
+        """Restructure all rows in all ABIE blocks to match the new file's layout.
+
+        For each row that has a match in the new file (by DictionaryEntryName):
+        - Reorder columns to match the target row's column order
+        - Strip columns not present in the target row
+        - Add empty placeholders for new columns the target has
+
+        For rows without a match (will be removed/added later):
+        - Strip removed schema columns
+        - Reorder remaining to new schema column order
+
+        This is used both for building the structure commit state and
+        for creating comparison blocks (so modify commits only show
+        actual value changes).
+        """
+        target_lookup = self._build_target_row_lookup()
+        order_map = {col: idx for idx, col in enumerate(new_column_order)}
+        removed_set = set(removed_columns)
+
+        adjusted = ODict()
+        for abie_name, block_lines in abie_blocks.items():
+            rows = self._split_block_into_rows(block_lines)
+            new_block_lines = []
+
+            for row_lines, den in rows:
+                opening, old_values, closing = self._parse_row_values(row_lines)
+
+                if den and den in target_lookup:
+                    # Full restructuring: match target row's exact column set
+                    target_cols = target_lookup[den]
+                    new_row = self._restructure_row_to_target(
+                        opening, old_values, closing, target_cols
+                    )
+                else:
+                    # Basic cleanup: strip removed cols, reorder remaining
+                    new_row = self._basic_reorder_row(
+                        opening, old_values, closing, order_map, removed_set
+                    )
+
+                new_block_lines.extend(new_row)
+
+            adjusted[abie_name] = new_block_lines
+        return adjusted
+
+    @staticmethod
+    def _restructure_row_to_target(
+        opening: str,
+        old_values: ODict,
+        closing: str,
+        target_col_refs: List[str],
+    ) -> List[str]:
+        """Restructure a single row to match a target row's column layout.
+
+        - Columns in target_col_refs order
+        - Old values for columns that exist in the old row
+        - Empty placeholders for columns that only exist in the target
+
+        Args:
+            opening: The <Row><!--N--> line
+            old_values: OrderedDict of col_ref -> value text lines from old row
+            closing: The </Row> line
+            target_col_refs: Column refs present in the target row, in order
+        """
+        # Detect indentation from existing Value elements
+        indent = '         '       # 9 spaces default
+        inner_indent = '            '  # 12 spaces default
+        for val_lines in old_values.values():
+            m = re.match(r'^(\s+)<Value', val_lines[0])
+            if m:
+                indent = m.group(1)
+            for vl in val_lines:
+                m2 = re.match(r'^(\s+)<SimpleValue', vl)
+                if m2:
+                    inner_indent = m2.group(1)
+                    break
+            break  # Only need first Value element for indentation
+
+        new_lines = [opening]
+        for col_ref in target_col_refs:
+            if col_ref in old_values:
+                new_lines.extend(old_values[col_ref])
+            else:
+                # Empty placeholder — modify commit will fill in the actual value
+                new_lines.append(f'{indent}<Value ColumnRef="{col_ref}">\n')
+                new_lines.append(f'{inner_indent}<SimpleValue></SimpleValue>\n')
+                new_lines.append(f'{indent}</Value>\n')
+        new_lines.append(closing)
+        return new_lines
+
+    @staticmethod
+    def _basic_reorder_row(
+        opening: str,
+        old_values: ODict,
+        closing: str,
+        order_map: Dict[str, int],
+        removed_cols: set,
+    ) -> List[str]:
+        """Basic cleanup for rows without a target match.
+
+        Strips removed columns and reorders remaining to new schema order.
+        Used for rows that will be removed in a subsequent commit.
+        """
+        remaining = ODict(
+            (k, v) for k, v in old_values.items() if k not in removed_cols
+        )
+        sorted_cols = sorted(remaining.keys(), key=lambda c: order_map.get(c, 999))
+
+        new_lines = [opening]
+        for col_ref in sorted_cols:
+            new_lines.extend(remaining[col_ref])
+        new_lines.append(closing)
+        return new_lines
+
     def compute(self) -> List[ChangeOp]:
         """
         Compute all change operations in commit order:
         1. Metadata changes (Identification section only)
-        2. Column structure change (replaces ColumnSet area + strips removed col values)
+        2. Column structure change (replaces ColumnSet area + restructures all rows)
         3. ABIE removals
-        4. ABIE modifications (compared after column adjustment, with position fix)
+        4. ABIE modifications (compared after restructuring, with position fix)
         5. ABIE additions (in dependency order, inserted at correct position)
         6. ABIE moves (unmodified ABIEs that changed position)
         7. Footer update (if file footer changed)
@@ -178,17 +375,23 @@ class GCDiff:
         # reformatting all unchanged columns.
         column_change = self._compute_column_structure_change()
         removed_cols = []
+        new_col_order = []
         if column_change:
             changes.append(column_change)
             removed_cols = column_change.details.get('removed_columns', [])
+            new_col_order = column_change.details.get('new_columns', [])
 
-        # 3. Compute column-adjusted old blocks for ABIE comparison.
-        # After column removals are applied, the old rows no longer have
-        # removed column values. This lets ABIE modification commits contain
-        # only genuine content changes (plus new column values from additions).
-        adjusted_old_blocks = self._apply_column_removals_to_blocks(
-            self.old_state.abie_blocks, removed_cols
-        )
+        # 3. Compute restructured old blocks for ABIE comparison.
+        # After restructuring, old rows have the same column layout as the
+        # new file's rows (reordered, removed cols stripped, empty new cols
+        # added). This lets ABIE modification commits contain only genuine
+        # content changes (value updates, row adds/removes).
+        if removed_cols or new_col_order:
+            adjusted_old_blocks = self._restructure_blocks(
+                self.old_state.abie_blocks, removed_cols, new_col_order
+            )
+        else:
+            adjusted_old_blocks = self.old_state.abie_blocks
 
         # 4. ABIE removals
         abie_removals = self._compute_abie_removals()
@@ -269,18 +472,6 @@ class GCDiff:
         if start is not None:
             return header_lines[start:]
         return []
-
-    def _apply_column_removals_to_blocks(self, abie_blocks: ODict, removed_columns: List[str]) -> ODict:
-        """Apply column value removals to old blocks for comparison purposes"""
-        if not removed_columns:
-            return abie_blocks
-        adjusted = ODict()
-        for name, lines in abie_blocks.items():
-            adjusted_lines = lines
-            for col_name in removed_columns:
-                adjusted_lines = self._remove_column_from_block(adjusted_lines, col_name)
-            adjusted[name] = adjusted_lines
-        return adjusted
 
     def _compute_metadata_change(self) -> Optional[ChangeOp]:
         """Detect changes in the Identification section by comparing text blocks"""
@@ -621,9 +812,10 @@ class GCDiff:
         """
         Apply column structure change:
         1. Replace the ColumnSet area (everything after </Identification>) from new file
-        2. Strip removed column values from all ABIE blocks
+        2. Restructure all rows: reorder columns, strip removed, add empty new cols
         """
         removed_cols = change.details.get('removed_columns', [])
+        new_col_order = change.details.get('new_columns', [])
 
         new_state = GCFileState()
 
@@ -642,45 +834,13 @@ class GCDiff:
 
         new_state.footer_lines = state.footer_lines.copy()
 
-        # Strip removed column values from all ABIE blocks
-        new_abie_blocks = ODict()
-        for abie_name, block_lines in state.abie_blocks.items():
-            filtered_lines = block_lines
-            for col_name in removed_cols:
-                filtered_lines = self._remove_column_from_block(filtered_lines, col_name)
-            new_abie_blocks[abie_name] = filtered_lines
+        # Restructure all rows to match new file's column layout
+        new_state.abie_blocks = self._restructure_blocks(
+            state.abie_blocks, removed_cols, new_col_order
+        )
 
-        new_state.abie_blocks = new_abie_blocks
         return new_state
 
-    @staticmethod
-    def _remove_column_from_block(block_lines: List[str], col_name: str) -> List[str]:
-        """Remove Value elements for a specific column from a row block"""
-        result = []
-        i = 0
-
-        while i < len(block_lines):
-            line = block_lines[i]
-
-            # Check if this line starts a Value element for the column to remove
-            if f'ColumnRef="{col_name}"' in line:
-                # Find the matching </Value> tag
-                if '</Value>' in line:
-                    # Single-line value, skip it
-                    i += 1
-                    continue
-                else:
-                    # Multi-line value, skip until we find </Value>
-                    while i < len(block_lines) and '</Value>' not in block_lines[i]:
-                        i += 1
-                    # Skip the </Value> line too
-                    i += 1
-                    continue
-
-            result.append(line)
-            i += 1
-
-        return result
 
     @staticmethod
     def _apply_abie_add(state: GCFileState, change: ChangeOp) -> GCFileState:
