@@ -20,224 +20,110 @@ serves all stages within a version (csd01 → csd02 → cs01 → os).
 
 ---
 
-## What "More Detailed History" Means
+## Phase 1 Results: Access Probing (COMPLETED)
 
-Currently we have **one snapshot per OASIS release stage** (35 releases). But the
-Google Sheets are continuously edited between releases. The edit history would give us:
+### What works anonymously
 
-1. **Inter-release changes** — Individual TC member edits between official stages
-2. **Finer granularity** — See exactly when each entity/column was added or modified
-3. **Attribution** — Who made each change (via revision metadata)
-4. **Draft/work-in-progress states** — How the model evolved within a release cycle
+| Access Method | Works? | Gives History? |
+|--------------|--------|----------------|
+| Current export (`/export?format=ods`) | **Yes** (6/7 sheets) | No (current only) |
+| Revision export (`&revision=N`) | HTTP 200 but **silently ignored** | **No** |
+| Drive API v2/v3 revisions.list | **No** (403 Forbidden) | Would if authenticated |
+| /revisions page | **No** (404) | N/A |
 
----
+**Key finding:** The `revision=N` parameter is silently ignored for anonymous
+exports. All revision numbers (1, 2, 50, 100, 999999) return the identical
+`content.xml` (verified by SHA256: `5cda4343...`). The difference in ODS-level
+hashes is just ZIP re-packaging artifacts.
 
-## Exploration Plan
+**Conclusion:** Accessing Google Sheets revision history **requires OAuth
+authentication**. There is no anonymous workaround.
 
-### Phase 1: Probe — Assess Access & Revision Depth
+### Detailed evidence
 
-**Goal:** Determine what's actually accessible and how much history exists.
-
-#### Step 1.1: Check public accessibility of each sheet
-
-For each of the 7 unique sheet IDs, attempt:
-```
-wget --spider "https://docs.google.com/spreadsheets/d/{ID}/export?format=ods"
-```
-This tells us which sheets allow anonymous export (the CI workflow uses no
-Google auth — it downloads via plain `wget --no-check-certificate`).
-
-#### Step 1.2: Probe the revision list via Drive API v2
-
-Use the **undocumented but functional** revision export endpoint:
-```
-https://docs.google.com/spreadsheets/d/{ID}/revisions
-```
-Or attempt the Drive API v2 revisions list (may require auth):
-```
-GET https://www.googleapis.com/drive/v2/files/{ID}/revisions
-```
-
-If anonymous access doesn't work, we'll need a Google API key or OAuth token.
-
-#### Step 1.3: Test revision export
-
-Try downloading a specific revision:
-```
-wget "https://docs.google.com/spreadsheets/d/{ID}/export?format=ods&revision=1"
-wget "https://docs.google.com/spreadsheets/d/{ID}/export?format=ods&revision=100"
-```
-This endpoint reportedly works even when the Drive API revisions endpoint doesn't.
-The `revision` parameter is a sequential integer starting from 1.
-
-#### Step 1.4: Binary search for max revision number
-
-If revision export works, find the total number of revisions per sheet using
-binary search:
-```python
-lo, hi = 1, 100000
-while lo < hi:
-    mid = (lo + hi + 1) // 2
-    if download_revision(sheet_id, mid) succeeds:
-        lo = mid
-    else:
-        hi = mid - 1
-max_revision = lo
-```
-
-**Expected output of Phase 1:**
-- Which sheets are publicly exportable
-- Whether revision-specific export works anonymously
-- Approximate revision count per sheet
-- Whether auth is required (and what kind)
+- Script: `/home/user/ubl-sheets-history/probes/probe-access.sh`
+- Full log: `/home/user/ubl-sheets-history/probes/probe-results.log`
+- Provenance: `/home/user/ubl-sheets-history/PROVENANCE.md`
 
 ---
 
-### Phase 2: Map — Build a Revision Timeline
+## Alternative Discovery: CI Build Artifacts
 
-**Goal:** Create a metadata index of all revisions with timestamps.
+The `oasis-tcs/ubl` CI workflow captures Google Sheet state on every push:
 
-#### Step 2.1: If Drive API access works
+- **189 total workflow runs** since early 2025
+- **58 non-expired artifacts** spanning 2025-11-17 to 2026-02-09
+- Each artifact contains the 3 Google ODS files downloaded at build time
+- Plus the generated GC files
 
-Use `revisions.list` (v2 or v3) to get metadata for each revision:
-- `revisionId`
-- `modifiedTime`
-- `lastModifyingUser` (if available)
-- File size changes
+This gives us ~58 point-in-time snapshots of the Google Sheets from the last
+~3 months, with no authentication needed (just `gh api` to download artifacts).
 
-#### Step 2.2: If only export-with-revision works
+### Limitation
 
-Download a sparse sample of revisions (e.g., every 50th or 100th revision) as
-ODS files. Extract metadata from the ODS internal XML:
-```bash
-unzip -p revision_N.ods meta.xml | xmllint --format -
-```
-This gives us creation date, modification date, and potentially author info.
-
-#### Step 2.3: Correlate revisions with known release dates
-
-Cross-reference revision timestamps against the known OASIS release dates
-(documented in `docs/historical-releases.md`) to identify which revisions
-correspond to which release stages.
-
-**Expected output of Phase 2:**
-- Timeline mapping: revision number → timestamp → OASIS stage
-- Identification of "interesting" revisions (large changes, schema modifications)
-- Gaps or periods of heavy editing
+The 93 expired artifacts (older than ~90 days) are gone. So this only covers
+a recent window of UBL 2.5 CSD02/CSD03 development, not the full history.
 
 ---
 
-### Phase 3: Extract — Download Historical Snapshots
+## Viable Paths Forward
 
-**Goal:** Download ODS snapshots at meaningful points in the sheet history.
+### Path A: Authenticated Google Drive API (comprehensive, needs setup)
 
-#### Step 3.1: Define snapshot strategy
+**What it gives us:** Full revision history of all 7 sheets, potentially
+hundreds or thousands of revisions spanning years.
 
-Options (from coarse to fine):
-- **Coarse:** One snapshot per known release date (validates our existing GC files)
-- **Medium:** Weekly snapshots during active editing periods
-- **Fine:** Every Nth revision (e.g., every 10th or 50th)
-- **Complete:** Every single revision (potentially thousands of files)
+**Requirements:**
+1. Create Google Cloud project
+2. Enable Drive API
+3. Create OAuth2 credentials (service account or user consent)
+4. Use Drive API v2 `revisions.list` to enumerate revisions
+5. Use `revisions.get` with export links to download each revision as ODS
+6. Convert each ODS to GC via Crane pipeline
 
-Recommended: Start with **coarse**, then selectively go finer for interesting periods.
+**Pros:** Most comprehensive; covers full history
+**Cons:** Requires Google Cloud setup; may need OASIS TC's permission if
+sheets require specific sharing for revision access
 
-#### Step 3.2: Download snapshots as ODS
+### Path B: CI Artifact Mining (partial, ready now)
 
-```bash
-for rev in $REVISION_LIST; do
-    wget -O "snapshot-${rev}.ods" \
-        "https://docs.google.com/spreadsheets/d/${ID}/export?format=ods&revision=${rev}"
-done
-```
+**What it gives us:** ~58 snapshots from the last 3 months of UBL 2.5
+development.
 
-Rate-limit to avoid Google throttling (1-2 second delay between requests).
+**Requirements:**
+1. Download all 58 non-expired artifacts via `gh api`
+2. Extract ODS files from each (inside 7z inside zip)
+3. Compare ODS content.xml hashes to find which are actually different
+4. Convert unique snapshots to GC
+5. Diff consecutive GC files
 
-#### Step 3.3: Convert each snapshot to GenericCode
+**Pros:** No auth needed; data is available right now; proves the concept
+**Cons:** Only covers ~3 months; only UBL 2.5; many may be identical
+(same sheet state across rapid CI re-runs)
 
-Use the existing Crane-ods2obdgc pipeline (already in `history/tools/`):
-```bash
-java -jar saxon9he.jar \
-    -xsl:Crane-ods2obdgc.xsl \
-    -o:UBL-Entities-snapshot-${rev}.gc \
-    -it:ods-uri \
-    ods-uri="Library-${rev}.ods,Documents-${rev}.ods" \
-    ...
-```
+### Path C: Hybrid — Mine artifacts now, set up auth for full history
 
-This gives us diffable GenericCode for each snapshot.
+**Recommended approach:**
 
-#### Step 3.4: Diff consecutive snapshots
+1. **Immediate:** Extract unique ODS snapshots from the 58 CI artifacts
+   to prove the concept and see what inter-release changes look like
+2. **Next:** Set up Google OAuth to access the full revision history
+3. **Then:** Build the comprehensive timeline with all available data
 
-Generate diffs between consecutive GC snapshots to identify:
-- When entities were added/removed/modified
-- Column structure changes
-- Cardinality modifications
-- Name changes
+### Path D: Ask the OASIS TC
 
-**Expected output of Phase 3:**
-- ODS snapshots at meaningful revision points
-- Corresponding GC files for each snapshot
-- Diff reports showing what changed between snapshots
-
----
-
-### Phase 4: Integrate — Build Enhanced Git History
-
-**Goal:** Create a richer git history branch using Google Sheets revision data.
-
-#### Step 4.1: Determine commit strategy
-
-For each Google Sheets revision that produces a different GC file:
-- Use the revision's timestamp as the commit date
-- Use the revision's author (if available) as commit metadata
-- Include a commit message noting the revision number and any known context
-
-#### Step 4.2: Build the enhanced history branch
-
-Same approach as the current `build-history.sh` but with many more commits
-representing the inter-release evolution.
-
-#### Step 4.3: Tag known release stages
-
-Apply git tags at commits that correspond to known OASIS release stages,
-linking the fine-grained history to the official milestones.
+The TC members have direct access to the sheet revision history UI.
+They could potentially:
+- Export the full revision history
+- Share a version history summary
+- Grant specific API access to the sheets
 
 ---
 
-## Key Risks & Unknowns
+## Next Steps
 
-| Risk | Impact | Mitigation |
-|------|--------|------------|
-| Sheets not publicly accessible for revision export | Blocks everything | Test in Phase 1; may need OASIS TC member to share/export |
-| Revision export requires authentication | Adds complexity | Try anonymous first; fall back to API key or OAuth |
-| Google merges small edits into single revisions | Reduces granularity | Accept merged revisions; still better than release-only |
-| Rate limiting on bulk downloads | Slows extraction | Add delays; download over multiple sessions |
-| Crane XSLT fails on intermediate sheet states | Some snapshots won't convert | Skip unconvertible snapshots; log errors |
-| Sheets were replaced (not edited in-place) across versions | Older versions may have short history | Each version has its own sheet IDs; history is per-sheet |
-| Very large number of revisions | Storage/time concerns | Start coarse, refine selectively |
-
-## Authentication Considerations
-
-The UBL CI workflow downloads sheets anonymously (`wget --no-check-certificate`).
-This suggests the sheets have "Anyone with the link can view" permissions. However:
-
-- **Current content export:** Likely works anonymously (CI proves this)
-- **Revision-specific export:** May or may not work anonymously
-- **Drive API revisions.list:** Almost certainly requires OAuth or API key
-
-If auth is needed, options:
-1. **Google API key** (simplest, read-only, no user consent needed)
-2. **OAuth2 service account** (more capable, can access Drive API)
-3. **Manual export** (ask TC member to export revision history from UI)
-
----
-
-## Proposed First Step
-
-Write a small probe script (`scripts/probe-sheets-history.sh`) that:
-1. Tests anonymous ODS export for each sheet (current version)
-2. Tests revision-specific export (revision=1 and revision=2)
-3. Reports what's accessible and what's not
-4. If revision export works, does binary search for max revision number
-
-This gives us concrete data to decide how to proceed.
+1. Compare the Jan 21 artifact ODS with today's download to verify CI
+   artifacts capture real content changes
+2. Download a few more artifacts from different dates and deduplicate
+3. Decide on Path A vs Path C based on findings
+4. Update provenance log with all decisions and data
