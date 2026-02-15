@@ -35,14 +35,10 @@ except ImportError:
             return e.code, e.read().decode()
 
 # --- Configuration ---
-# Set these via environment variables or you'll be prompted:
-#   export GOOGLE_REFRESH_TOKEN="1//04..."
-#   export GOOGLE_CLIENT_ID="407408718192.apps.googleusercontent.com"
-#   export GOOGLE_CLIENT_SECRET="kHqIqF7..."
+# Set via environment variable or you'll be prompted:
+#   export GOOGLE_ACCESS_TOKEN="ya29.a0..."
 import os
-REFRESH_TOKEN = os.environ.get("GOOGLE_REFRESH_TOKEN") or input("Refresh token: ").strip()
-CLIENT_ID = os.environ.get("GOOGLE_CLIENT_ID", "407408718192.apps.googleusercontent.com")
-CLIENT_SECRET = os.environ.get("GOOGLE_CLIENT_SECRET") or input("Client secret: ").strip()
+ACCESS_TOKEN = os.environ.get("GOOGLE_ACCESS_TOKEN") or input("Access token: ").strip()
 
 SHEETS = {
     "ubl25_library":  "18o1YqjHWUw0-s8mb3ja4i99obOUhs-4zpgso6RZrGaY",
@@ -53,29 +49,9 @@ SHEETS = {
 
 FOLDER_ID = "0B4X4evii3UjcdG5wNlVFTXlaYVU"
 
-def refresh_access_token():
-    """Get a fresh access token using the refresh token."""
-    try:
-        import requests
-        r = requests.post("https://oauth2.googleapis.com/token", data={
-            "client_id": CLIENT_ID,
-            "client_secret": CLIENT_SECRET,
-            "refresh_token": REFRESH_TOKEN,
-            "grant_type": "refresh_token",
-        }, timeout=15)
-        return r.json().get("access_token")
-    except ImportError:
-        from urllib.request import Request, urlopen
-        from urllib.parse import urlencode
-        data = urlencode({
-            "client_id": CLIENT_ID,
-            "client_secret": CLIENT_SECRET,
-            "refresh_token": REFRESH_TOKEN,
-            "grant_type": "refresh_token",
-        }).encode()
-        req = Request("https://oauth2.googleapis.com/token", data=data, method="POST")
-        with urlopen(req, timeout=15) as resp:
-            return json.loads(resp.read()).get("access_token")
+def get_access_token():
+    """Return the access token provided by the user."""
+    return ACCESS_TOKEN
 
 def get_all_revisions(file_id, token):
     """Paginate through all revisions of a file."""
@@ -126,12 +102,11 @@ def list_folder(folder_id, token):
 def main():
     print("=== UBL Google Sheets Revision Metadata Fetcher ===\n")
 
-    print("Refreshing access token...")
-    token = refresh_access_token()
+    token = get_access_token()
     if not token:
-        print("ERROR: Could not get access token. Check refresh token.")
+        print("ERROR: No access token provided.")
         sys.exit(1)
-    print(f"Got token: {token[:20]}...\n")
+    print(f"Using token: {token[:20]}...\n")
 
     output = {"sheets": {}, "folder": None, "fetched_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())}
 
