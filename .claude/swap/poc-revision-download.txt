@@ -7,43 +7,70 @@ Testing 4 revisions that should have different content
 --- Method 1: POST files.download (v3) ---
 
   rev 1843 (2025-11-12): V1 — initial CSD02 working copy
-    HTTP 401, size=0, content_type=?
-    ERROR: {
-  "error": {
-    "code": 401,
-    "message": "Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://develo
+    HTTP 200, size=571, content_type=application/json; charset=UTF-8
+    sha256=00a2dc22bea3342849fbf7a0...
+    Operation: {
+  "name": "AeM7YHkb_-zeGm7uKEHSL70_tpTYUJNPGeRxXZywJLeLdKyAtTDScFW_fJltunMiMeilYBkN68oYZkD3UVzG8KSflWHFeNU5sih9xZm7ev9_7CrCoyBteSPO0Zd40J1-P_93PBJLOiXLebdVG5BZxG_0zvdwNQ==",
+  "metadata": {
+    "@type": "type.googleapis.com/google.apps.drive.v3.DownloadFileMetadata"
+  },
+  "done": true,
+  "respons
 
   rev 1868 (2025-11-19): V2 — Customs definitions rewritten
-    HTTP 401, size=0, content_type=?
-    ERROR: {
-  "error": {
-    "code": 401,
-    "message": "Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://develo
+    HTTP 200, size=567, content_type=application/json; charset=UTF-8
+    sha256=90bd730e3f9667d906218a4d...
+    Operation: {
+  "name": "AeM7YHkG4819uV3WHgAkgppvZvoQHs_fFgnEMXG8XCORt8AmCjAFcOc-pjjtfSIkJbgDihPYvdJcWkH05tyoe4QOKAvRcALAmk0jF28d5GL27bKquJMWtV9_37iR9UB4ga2ythXnddJi8r0UG3C2JKUfQeh7",
+  "metadata": {
+    "@type": "type.googleapis.com/google.apps.drive.v3.DownloadFileMetadata"
+  },
+  "done": true,
+  "response": 
 
   rev 1899 (2025-11-20): V3 — WasteMovement ABIE added
-    HTTP 401, size=0, content_type=?
-    ERROR: {
-  "error": {
-    "code": 401,
-    "message": "Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://develo
+    HTTP 200, size=571, content_type=application/json; charset=UTF-8
+    sha256=8340e1dd46e6f630e5199ed0...
+    Operation: {
+  "name": "AeM7YHmm23uID188BZU9ur_k_YApb4ZgVLxh0EV5sVi-Rx2XZQo4H70eipDuMGrO9hc2a2E8IOW-FWLiV42Rfq3d5JtsYM9SwNAlQJPUFrVOIgSglKXHTwSqKdN6-p2WpP1nuImbVzLvwOCU6YN8P7c76cGcBg==",
+  "metadata": {
+    "@type": "type.googleapis.com/google.apps.drive.v3.DownloadFileMetadata"
+  },
+  "done": true,
+  "respons
 
   rev 2005 (2026-01-21): V6-V8 — post-CSD02, BuyerReference renamed
-    HTTP 401, size=0, content_type=?
-    ERROR: {
-  "error": {
-    "code": 401,
-    "message": "Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://develo
+    HTTP 200, size=571, content_type=application/json; charset=UTF-8
+    sha256=5c808fcd993be7686da2be05...
+    Operation: {
+  "name": "AeM7YHnMXmmNdPnQuoNSaPlu7gvR_ui9CUcTe0tyLGMZP0n-7GfMMHo65gNZ46M0zWP3095AY1Xz30fkusA0WWUpJn8J_3vDML2LqUZ_ueus3hpYdirQAlQb23f3TqyrXydugqaYJFzerD4gcmtp-4qJhEMSZQ==",
+  "metadata": {
+    "@type": "type.googleapis.com/google.apps.drive.v3.DownloadFileMetadata"
+  },
+  "done": true,
+  "respons
+
+  RESULT: 4 unique hashes out of 4 downloads
+  *** SUCCESS: Different revisions return different content! ***
 
 --- Method 2: GET revisions/{id} (v2) for exportLinks ---
   Testing rev 1843...
-  HTTP 401
-  ERROR: {
-  "error": {
-    "code": 401,
-    "message": "Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.",
-    "errors": [
-      {
-        "message"
+  HTTP 200
+  exportLinks found:
+    application/x-vnd.oasis.opendocument.spreadsheet: https://docs.google.com/spreadsheets/export?id=18o1YqjHWUw0-s8mb3ja4i99obOUhs-4z...
+    text/tab-separated-values: https://docs.google.com/spreadsheets/export?id=18o1YqjHWUw0-s8mb3ja4i99obOUhs-4z...
+    application/pdf: https://docs.google.com/spreadsheets/export?id=18o1YqjHWUw0-s8mb3ja4i99obOUhs-4z...
+    application/vnd.openxmlformats-officedocument.spreadsheetml.sheet: https://docs.google.com/spreadsheets/export?id=18o1YqjHWUw0-s8mb3ja4i99obOUhs-4z...
+    text/csv: https://docs.google.com/spreadsheets/export?id=18o1YqjHWUw0-s8mb3ja4i99obOUhs-4z...
+    application/zip: https://docs.google.com/spreadsheets/export?id=18o1YqjHWUw0-s8mb3ja4i99obOUhs-4z...
+    application/vnd.oasis.opendocument.spreadsheet: https://docs.google.com/spreadsheets/export?id=18o1YqjHWUw0-s8mb3ja4i99obOUhs-4z...
+
+  Downloading CSV via exportLink...
+    size=741575, sha256=ff624db27adeae03da2913a1...
+
+  Testing rev 2005 via v2...
+  Downloading CSV via exportLink...
+    size=742475, sha256=00703cd2d095917b87c09c34...
 
 ======================================================================
 Done. If any method produced different hashes, that's our path forward.
