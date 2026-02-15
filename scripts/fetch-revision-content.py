@@ -521,11 +521,30 @@ def main():
         if f.is_file()
     )
     print(f"  Total size: {total_size:,} bytes ({total_size/1024/1024:.1f} MB)")
+
+    # Create compressed archive
+    import tarfile
+    tar_path = Path("revision-exports.tar.gz")
+    print(f"\n  Creating {tar_path}...", end="", flush=True)
+    with tarfile.open(tar_path, "w:gz") as tar:
+        tar.add(EXPORT_DIR, arcname="revision-exports")
+    tar_size = tar_path.stat().st_size
+    print(f" {tar_size:,} bytes ({tar_size/1024/1024:.1f} MB)")
+    print()
+
+    # Copy to swap for git upload
+    swap_dir = Path(".claude/swap")
+    if swap_dir.exists():
+        import shutil
+        swap_dest = swap_dir / "revision-exports.tar.gz"
+        shutil.copy2(tar_path, swap_dest)
+        print(f"  Copied to {swap_dest}")
+
     print()
     print("Next steps:")
-    print("  1. Compress: tar czf revision-exports.tar.gz revision-exports/")
-    print("  2. Upload to repo: cp revision-exports.tar.gz .claude/swap/")
-    print("  3. Or just upload manifest.json for metadata-only analysis")
+    print("  git add .claude/swap/revision-exports.tar.gz")
+    print("  git commit -m 'Step 2: Google Sheets revision exports'")
+    print("  git push -u origin claude/google-sheets-history-cQ6AV")
 
 
 if __name__ == "__main__":
