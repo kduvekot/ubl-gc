@@ -1,0 +1,50 @@
+======================================================================
+PoC: Testing files.download with revisionId for Google Sheets
+======================================================================
+File: ubl25_library (18o1YqjHWUw0-s8mb3ja4i99obOUhs-4zpgso6RZrGaY)
+Testing 4 revisions that should have different content
+
+--- Method 1: POST files.download (v3) ---
+
+  rev 1843 (2025-11-12): V1 — initial CSD02 working copy
+    HTTP 401, size=0, content_type=?
+    ERROR: {
+  "error": {
+    "code": 401,
+    "message": "Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://develo
+
+  rev 1868 (2025-11-19): V2 — Customs definitions rewritten
+    HTTP 401, size=0, content_type=?
+    ERROR: {
+  "error": {
+    "code": 401,
+    "message": "Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://develo
+
+  rev 1899 (2025-11-20): V3 — WasteMovement ABIE added
+    HTTP 401, size=0, content_type=?
+    ERROR: {
+  "error": {
+    "code": 401,
+    "message": "Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://develo
+
+  rev 2005 (2026-01-21): V6-V8 — post-CSD02, BuyerReference renamed
+    HTTP 401, size=0, content_type=?
+    ERROR: {
+  "error": {
+    "code": 401,
+    "message": "Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://develo
+
+--- Method 2: GET revisions/{id} (v2) for exportLinks ---
+  Testing rev 1843...
+  HTTP 401
+  ERROR: {
+  "error": {
+    "code": 401,
+    "message": "Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.",
+    "errors": [
+      {
+        "message"
+
+======================================================================
+Done. If any method produced different hashes, that's our path forward.
+======================================================================
