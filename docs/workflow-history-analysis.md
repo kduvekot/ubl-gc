@@ -129,23 +129,34 @@ Date              Time   Branch                Sig ODS  Lib ODS  Doc ODS  NDR   
 
 ## NDR (Naming and Design Rules) Validation History
 
+**Important nuance:** The NDR check has three observable states:
+
+1. **XSLT_ERROR** -- The NDR checker stylesheet (`Crane-checkgc4obdndr.xsl`) crashes
+   when comparing against the previous stage's .gc file (e.g., csd01.gc for a csd02 build).
+   This masks the actual NDR result. The check against UBL-2.4-os.gc runs fine.
+2. **FAIL(N)+XSLT_ERROR** -- Same XSLT crash, but the 2.4 comparison also finds N errors.
+3. **FAIL(N)** -- XSLT error fixed; actual NDR error count is revealed.
+
+**No run ever had fully clean NDR.** Every single one of the 55 runs had either XSLT
+crashes (47 runs) or actual NDR errors (12 runs), or both.
+
 ```
-Date              Status      Details
-──────────────────────────────────────────────────────────────────
-Nov 17 - Nov 20   PASS        Clean
-Nov 20 13:50      FAIL(2)     WasteProducer naming error (no space)
-Nov 20 14:05      PASS        Fixed: "Waste Producer"
-Nov 20 - Jan 15   PASS        Stable for ~2 months
-Jan 21 16:38      FAIL(5)     5 new NDR errors introduced
-Jan 21 19:26      FAIL(6)     Grew to 6 errors
-Jan 21 20:28      PASS        Fixed on kentest branch
-Jan 28            FAIL(6)     Errors reintroduced on ubl-2.5
-Feb 09 14:42      PASS        Fixed again (CSD03)
-Feb 09 15:13      FAIL(5)     Last run shows 5 errors (flaky?)
+Date              NDR Status              Details
+──────────────────────────────────────────────────────────────────────
+Nov 17 - Nov 20   XSLT_ERROR only         csd01.gc missing/invalid; NDR crashes
+Nov 20 13:50      FAIL(2)+XSLT_ERROR      WasteProducer naming error exposed
+Nov 20 14:05      XSLT_ERROR only         2 errors appear fixed (2.4 comparison passes)
+Nov 20 - Jan 15   XSLT_ERROR only         Stable -- but XSLT crash masks real state
+Jan 21 16:38      FAIL(5)+XSLT_ERROR      5 errors vs 2.4 comparison
+Jan 21 19:26      FAIL(6)                 XSLT fixed! 6 Entities + 9 Endorsed errors
+Jan 21 20:28      XSLT_ERROR only         kentest branch reverts to old build config
+Jan 28            FAIL(6)                 6 Entities + 9 Endorsed (no XSLT crash)
+Feb 09 14:42      XSLT_ERROR only         csd03 stage -- now crashes on csd02.gc
+Feb 09 15:13      FAIL(5)                 Final full build: 5+5 errors (improved!)
 ```
 
-The NDR validation shows a pattern of active development: errors are introduced when
-the TC adds new content, then fixed within hours or days.
+The shift from 6+9 errors (csd02 vs csd01) to 5+5 errors (csd03 vs csd02) suggests
+some NDR issues were fixed in the stage transition.
 
 ---
 
@@ -255,6 +266,19 @@ build system migration.
 
 ---
 
+## Spec-to-PDF Server Transition
+
+| Server | First Use | Last Use | Runs |
+|--------|-----------|----------|:----:|
+| `OASIS-2020-spec2pdfhtml` | Nov 17 (run 3) | Jan 21 (run 48) | 20 |
+| `OASIS-2025-specnote2pdfhtml` | Jan 10 (run 34) | Feb 9 (run 55) | 8 |
+| Neither (HUB-SKIPPED) | throughout | throughout | 27 |
+
+The new 2025 spec server was introduced on the `ubl-2.5-2025-layout` branch on Jan 10
+and became the default by Jan 28.
+
+---
+
 ## Key Findings
 
 1. **The Google Sheets are the source of truth.** All .gc files are generated from
@@ -264,8 +288,10 @@ build system migration.
 2. **The TC works in bursts.** Nov 17-21 was intensely active (new document types,
    definition rewrites). Then 12-day gaps. Then another burst in Jan 21.
 
-3. **NDR validation is aspirational, not blocking.** The build succeeds even with
-   NDR errors (setting `Fail = no`). Errors are introduced and fixed iteratively.
+3. **No run ever had fully clean NDR.** The XSLT crash in the NDR checker
+   (`Crane-checkgc4obdndr.xsl` line 48) masks the real NDR state on 47 of 55 runs.
+   When it doesn't crash, actual errors are found. The build still succeeds
+   (setting `Fail = no`).
 
 4. **CSD03 is in progress.** The Feb 9 builds already use the CSD03 stage label
    with real cardinality changes, suggesting the TC is preparing for the next
@@ -274,3 +300,10 @@ build system migration.
 5. **Artifact retention is 90 days.** Everything before Nov 2025 is permanently lost.
    For historical preservation, artifacts should be downloaded within their retention
    window.
+
+6. **The XSLT crash is a tooling bug, not a spec issue.** It occurs when comparing
+   against the previous committee stage draft (csd01.gc for csd02 builds). The
+   comparison against UBL 2.4-os works fine.
+
+7. **4 missing files are persistent.** From run 5 onward, 4 `old2newDocBook` XML
+   files are consistently missing -- a build configuration issue never resolved.
