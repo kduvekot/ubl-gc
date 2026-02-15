@@ -311,21 +311,47 @@ Run it with `--help` for full usage, workflow, and examples.
 
 ---
 
-## Cost Optimization
+## Task Subagents
 
-When spawning Task subagents, use `model: "haiku"` for straightforward work:
-- Simple file searches and grep operations
-- Clear-cut log analysis or output parsing
-- Checking workflow status or run results
-- Any task with well-defined inputs and expected outputs
+### How to call them
 
-Reserve the default (Sonnet/Opus) for tasks requiring deeper reasoning:
-- Analyzing complex code logic or debugging
-- Designing algorithms or architectural decisions
-- Multi-step investigations with ambiguous scope
+The Task tool has TWO separate parameters — don't confuse them:
+
+- **`subagent_type`** — which agent capability: `"general-purpose"`, `"Bash"`, `"Explore"`, `"Plan"`, `"claude-code-guide"`, `"statusline-setup"`
+- **`model`** — which LLM to run it on: `"haiku"`, `"sonnet"`, `"opus"`
+
+**Correct example:**
+```
+Task(subagent_type="general-purpose", model="haiku", prompt="Write a script that...")
+```
+
+**Wrong** (model is not a subagent_type):
+```
+Task(subagent_type="haiku", ...)  ← ERROR: 'haiku' is not an agent type
+```
+
+### Which model for what
+
+| Model | Cost | Use for |
+|-------|------|---------|
+| **haiku** | Cheapest | File searches, grep, log parsing, clear-cut scripting, well-defined tasks |
+| **sonnet** | Medium | Code analysis, moderate reasoning, multi-file changes |
+| **opus** | Expensive | Complex debugging, architecture decisions, ambiguous investigations |
+
+Default to **haiku** unless the task clearly needs more reasoning.
+
+### Show prompts to the user
+
+When delegating to a subagent, **always show the prompt** in your response text
+before the tool call, so the user can see what you're asking and learn from it.
+Format it as a brief quote, e.g.:
+
+> Delegating to haiku: "Search for all .gc files in history/ and count them per version"
+
+This makes the delegation visible and reviewable.
 
 ---
 
-**Last Updated:** 2026-02-13
-**Current Branch:** claude/git-history-exploration-bunUn
-**Status:** Build scripts complete, history branch building via CI
+**Last Updated:** 2026-02-15
+**Current Branch:** claude/google-sheets-history-cQ6AV
+**Status:** Google Sheets discovery complete, revision content download next
