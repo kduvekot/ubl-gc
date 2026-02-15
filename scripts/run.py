@@ -34,7 +34,16 @@ def main():
         return
 
     # Step 2: Download revision content
-    if not manifest.exists():
+    # Check manifest has actual downloads (not just an empty/failed run)
+    manifest_ok = False
+    if manifest.exists():
+        import json
+        try:
+            m = json.loads(manifest.read_text())
+            manifest_ok = m.get("stats", {}).get("downloaded", 0) > 0
+        except (json.JSONDecodeError, KeyError):
+            pass
+    if not manifest_ok:
         print("=== Step 2: Downloading revision content ===")
         print(f"  Discovery data: {discovery}")
         r = subprocess.run([sys.executable, "scripts/fetch-revision-content.py", "--resume"], cwd=ROOT)
