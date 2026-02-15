@@ -79,15 +79,44 @@ def main():
         print("  git push -u origin claude/google-sheets-history-cQ6AV")
         return
 
+    # Step 4: Download ODS for key revisions (using v2 exportLinks — proven by PoC)
+    ods_manifest = ROOT / ".claude" / "swap" / "revision-ods" / "manifest.json"
+    ods_tar = ROOT / ".claude" / "swap" / "revision-ods.tar.gz"
+    ods_ok = False
+    if ods_manifest.exists():
+        import json as _json
+        try:
+            m = _json.loads(ods_manifest.read_text())
+            ods_ok = m.get("stats", {}).get("total_ok", 0) > 0
+        except (json.JSONDecodeError, KeyError):
+            pass
+    if not ods_ok:
+        print("=== Step 4: Download ODS for key revisions ===")
+        print("  Using Drive API v2 exportLinks (proven by PoC in Step 3).")
+        print("  Downloads 10 ODS files: 4 library + 6 documents revisions.")
+        print("  These map to the 10 workflow-generated GC versions (V1-V10).")
+        print()
+        r = subprocess.run(
+            [sys.executable, "scripts/download-revision-ods.py"],
+            cwd=ROOT
+        )
+        if r.returncode != 0:
+            sys.exit(r.returncode)
+        print()
+        print("Done! Now commit and push the results:")
+        print("  git add .claude/swap/revision-ods.tar.gz")
+        print("  git commit -m 'Step 4: ODS exports for key revisions'")
+        print("  git push -u origin claude/google-sheets-history-cQ6AV")
+        return
+
     # All done
     print("=== All steps complete ===")
-    print(f"  Discovery: {discovery}")
-    print(f"  Exports:   {exports_dir}")
-    print(f"  Manifest:  {manifest}")
-    print(f"  PoC test:  {poc_result}")
+    print(f"  Step 1 - Discovery:    {discovery}")
+    print(f"  Step 2 - Bulk exports: {exports_dir}")
+    print(f"  Step 3 - PoC test:     {poc_result}")
+    print(f"  Step 4 - ODS revisions:{ods_tar}")
     print()
-    print("Check PoC results:")
-    print(f"  cat {poc_result.relative_to(ROOT)}")
+    print("ODS files ready for Crane ODS→GC conversion.")
 
 if __name__ == "__main__":
     main()
