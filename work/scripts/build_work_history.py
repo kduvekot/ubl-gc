@@ -91,6 +91,21 @@ class WorkHistoryBuilder(HistoryBuilder):
         os.environ['GIT_COMMITTER_EMAIL'] = 'ubl-tc@oasis-open.org'
         return old_vals
 
+    def _format_stage(self, release: dict) -> str:
+        """Format stage for commit messages.
+
+        Intermediate releases use the full timestamp-based label
+        (e.g., pre-csd02-2025-11-17-1042).
+        Official releases use the uppercased stage name (e.g., CSD01).
+        """
+        if release.get("timestamp"):
+            label = release["label"]
+            suffix = f"-UBL-{release['version']}"
+            if label.endswith(suffix):
+                return label[:-len(suffix)]
+            return label
+        return release["stage"].upper()
+
     def _format_commit_body(self, release: dict) -> str:
         """Format extra commit body lines for source/description metadata."""
         lines = []
@@ -119,14 +134,14 @@ class WorkHistoryBuilder(HistoryBuilder):
 
         if not changes:
             version = new_rel["version"]
-            stage = new_rel["stage"].upper()
-            print(f"    {target_name}: No changes from {old_rel['stage'].upper()} - skipping")
+            stage = self._format_stage(new_rel)
+            print(f"    {target_name}: No changes from {self._format_stage(old_rel)} - skipping")
             return
 
         state = GCDiff.parse_file(str(old_file))
         env = self.set_git_env(new_rel)
         version = new_rel["version"]
-        stage = new_rel["stage"].upper()
+        stage = self._format_stage(new_rel)
         extra = self._format_commit_body(new_rel)
 
         for i, change in enumerate(changes, 1):
@@ -156,7 +171,7 @@ class WorkHistoryBuilder(HistoryBuilder):
 
         env = self.set_git_env(release)
         version = release["version"]
-        stage = release["stage"].upper()
+        stage = self._format_stage(release)
         extra = self._format_commit_body(release)
         msg = (f"UBL {version} {stage}: Add {target_name}\n\n"
                f"Release: {release['label']}\nDate: {release['date']}")
