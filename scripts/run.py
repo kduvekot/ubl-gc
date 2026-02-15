@@ -40,7 +40,7 @@ def main():
         import json
         try:
             m = json.loads(manifest.read_text())
-            manifest_ok = m.get("stats", {}).get("downloaded", 0) > 0
+            manifest_ok = m.get("stats", {}).get("total_revisions_downloaded", 0) > 0
         except (json.JSONDecodeError, KeyError):
             pass
     if not manifest_ok:
@@ -49,16 +49,26 @@ def main():
         r = subprocess.run([sys.executable, "scripts/fetch-revision-content.py", "--resume"], cwd=ROOT)
         if r.returncode != 0:
             sys.exit(r.returncode)
-        print("\nDone! Upload results:")
-        print("  cp revision-exports.tar.gz .claude/swap/")
-        print("  git add .claude/swap/revision-exports.tar.gz && git commit && git push")
+        print("\nDone! The tar.gz and swap copy were created automatically.")
+        print("Now commit and push:")
+        print("  git add .claude/swap/revision-exports.tar.gz")
+        print("  git commit -m 'Step 2: Google Sheets revision exports'")
+        print("  git push -u origin claude/google-sheets-history-cQ6AV")
         return
 
     # All done
     print("=== All steps complete ===")
     print(f"  Discovery: {discovery}")
     print(f"  Exports:   {exports_dir}")
-    print("Upload revision-exports.tar.gz if not already done.")
+    print(f"  Manifest:  {manifest}")
+    swap_tar = ROOT / ".claude" / "swap" / "revision-exports.tar.gz"
+    if swap_tar.exists():
+        print(f"  Swap tar:  {swap_tar} ({swap_tar.stat().st_size:,} bytes)")
+    print()
+    print("If not yet pushed:")
+    print("  git add .claude/swap/revision-exports.tar.gz")
+    print("  git commit -m 'Step 2: Google Sheets revision exports'")
+    print("  git push -u origin claude/google-sheets-history-cQ6AV")
 
 if __name__ == "__main__":
     main()
