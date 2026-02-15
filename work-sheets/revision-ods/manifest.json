@@ -1,0 +1,199 @@
+{
+  "_provenance": {
+    "description": "ODS exports of specific Google Sheets revisions for UBL CSD02/CSD03 analysis",
+    "method": "Drive API v2 revisions/{id} \u2192 exportLinks \u2192 ODS download",
+    "poc_confirmation": "PoC in .claude/swap/poc-revision-download.txt proved v2 exportLinks return revision-specific content",
+    "script": "scripts/download-revision-ods.py",
+    "started_at": "2026-02-15T15:41:14Z",
+    "completed_at": "2026-02-15T15:45:07Z"
+  },
+  "revision_to_workflow_mapping": {
+    "V1": {
+      "timestamp": "2025-11-17T10:42",
+      "library": "rev-1843",
+      "documents": "rev-1793"
+    },
+    "V2": {
+      "timestamp": "2025-11-19T09:15",
+      "library": "rev-1843",
+      "documents": "rev-1793"
+    },
+    "V3": {
+      "timestamp": "2025-11-20T13:50",
+      "library": "rev-1868",
+      "documents": "rev-1803"
+    },
+    "V4": {
+      "timestamp": "2025-11-20T14:05",
+      "library": "rev-1868",
+      "documents": "rev-1983"
+    },
+    "V5": {
+      "timestamp": "2025-12-03T~09:00",
+      "library": "rev-1999",
+      "documents": "rev-2190",
+      "note": "csd02 official"
+    },
+    "V6": {
+      "timestamp": "2026-01-21T16:38",
+      "library": "rev-1999",
+      "documents": "rev-2190"
+    },
+    "V7": {
+      "timestamp": "2026-01-21T17:01",
+      "library": "rev-2005",
+      "documents": "rev-2190"
+    },
+    "V8": {
+      "timestamp": "2026-01-21T19:26",
+      "library": "rev-2005",
+      "documents": "rev-2200"
+    },
+    "V9": {
+      "timestamp": "2026-02-09T14:42",
+      "library": "rev-2005",
+      "documents": "rev-2204"
+    },
+    "V10": {
+      "timestamp": "2026-02-09T14:46",
+      "library": "rev-2005",
+      "documents": "rev-2204"
+    }
+  },
+  "stats": {
+    "total_ok": 10,
+    "total_failed": 0
+  },
+  "entries": [
+    {
+      "sheet_key": "ubl25_library",
+      "file_id": "18o1YqjHWUw0-s8mb3ja4i99obOUhs-4zpgso6RZrGaY",
+      "revision_id": "1843",
+      "date": "2025-11-12",
+      "maps_to": "V1+V2",
+      "description": "Pre-CSD02 initial working copy",
+      "ods_path": ".claude/swap/revision-ods/ubl25_library/rev-1843.ods",
+      "ods_size": 639454,
+      "ods_sha256": "739eb59af31fed532cb5447084133584d810778d80b6324e8c1cf393ce175b9d",
+      "status": "ok",
+      "downloaded_at": "2026-02-15T15:41:26Z"
+    },
+    {
+      "sheet_key": "ubl25_library",
+      "file_id": "18o1YqjHWUw0-s8mb3ja4i99obOUhs-4zpgso6RZrGaY",
+      "revision_id": "1868",
+      "date": "2025-11-19",
+      "maps_to": "V3+V4",
+      "description": "Customs definitions rewritten",
+      "ods_path": ".claude/swap/revision-ods/ubl25_library/rev-1868.ods",
+      "ods_size": 640303,
+      "ods_sha256": "25dee244334cba9a2efba57e0a9931e615b2bca65bebd8607abbe086492f73a8",
+      "status": "ok",
+      "downloaded_at": "2026-02-15T15:41:38Z"
+    },
+    {
+      "sheet_key": "ubl25_library",
+      "file_id": "18o1YqjHWUw0-s8mb3ja4i99obOUhs-4zpgso6RZrGaY",
+      "revision_id": "1999",
+      "date": "2025-12-03",
+      "maps_to": "V5(csd02)+V6",
+      "description": "CSD02 official state",
+      "ods_path": ".claude/swap/revision-ods/ubl25_library/rev-1999.ods",
+      "ods_size": 640635,
+      "ods_sha256": "1abcef85fc371fda08c6def02d2891dfe9b71746cd64af72ae2659be47650779",
+      "status": "ok",
+      "downloaded_at": "2026-02-15T15:41:50Z"
+    },
+    {
+      "sheet_key": "ubl25_library",
+      "file_id": "18o1YqjHWUw0-s8mb3ja4i99obOUhs-4zpgso6RZrGaY",
+      "revision_id": "2005",
+      "date": "2026-01-21",
+      "maps_to": "V7+V8+V9+V10",
+      "description": "Post-CSD02, BuyerReference renamed",
+      "ods_path": ".claude/swap/revision-ods/ubl25_library/rev-2005.ods",
+      "ods_size": 640702,
+      "ods_sha256": "81ca61be7f2c0f287df675e0c726f3a8387bfc198e46b9e2c7d97039fca77579",
+      "status": "ok",
+      "downloaded_at": "2026-02-15T15:42:02Z"
+    },
+    {
+      "sheet_key": "ubl25_documents",
+      "file_id": "1024Th-Uj8cqliNEJc-3pDOR7DxAAW7gCG4e-pbtarsg",
+      "revision_id": "1793",
+      "date": "2025-10-17",
+      "maps_to": "V1+V2",
+      "description": "Pre-CSD02 baseline",
+      "ods_path": ".claude/swap/revision-ods/ubl25_documents/rev-1793.ods",
+      "ods_size": 912050,
+      "ods_sha256": "3d62ba6768897052e47b21b9692aee982c6f369d4a7a1f5eb992214ea20ea94d",
+      "status": "ok",
+      "downloaded_at": "2026-02-15T15:42:38Z"
+    },
+    {
+      "sheet_key": "ubl25_documents",
+      "file_id": "1024Th-Uj8cqliNEJc-3pDOR7DxAAW7gCG4e-pbtarsg",
+      "revision_id": "1803",
+      "date": "2025-11-19",
+      "maps_to": "V3",
+      "description": "Before Nov 20 edit",
+      "ods_path": ".claude/swap/revision-ods/ubl25_documents/rev-1803.ods",
+      "ods_size": 912270,
+      "ods_sha256": "aec99ad9aa64ddcdcec9f45978664fcc94a3b320672246cdccc6444e74300a39",
+      "status": "ok",
+      "downloaded_at": "2026-02-15T15:43:08Z"
+    },
+    {
+      "sheet_key": "ubl25_documents",
+      "file_id": "1024Th-Uj8cqliNEJc-3pDOR7DxAAW7gCG4e-pbtarsg",
+      "revision_id": "1983",
+      "date": "2025-11-20",
+      "maps_to": "V4",
+      "description": "Nov 20 14:00 edit (between V3 and V4 workflow runs)",
+      "ods_path": ".claude/swap/revision-ods/ubl25_documents/rev-1983.ods",
+      "ods_size": 930986,
+      "ods_sha256": "409deb8070a193ff525f28a3b6db2bc9bbcb0e4a97d02f4f38709034ea312ad0",
+      "status": "ok",
+      "downloaded_at": "2026-02-15T15:43:36Z"
+    },
+    {
+      "sheet_key": "ubl25_documents",
+      "file_id": "1024Th-Uj8cqliNEJc-3pDOR7DxAAW7gCG4e-pbtarsg",
+      "revision_id": "2190",
+      "date": "2025-11-21",
+      "maps_to": "V5(csd02)+V6+V7",
+      "description": "Last edit before csd02",
+      "ods_path": ".claude/swap/revision-ods/ubl25_documents/rev-2190.ods",
+      "ods_size": 931744,
+      "ods_sha256": "f33ed101ada7656f113691d35f1291b33c59028d9b351d5f7f1fb0df1dbfe13f",
+      "status": "ok",
+      "downloaded_at": "2026-02-15T15:44:01Z"
+    },
+    {
+      "sheet_key": "ubl25_documents",
+      "file_id": "1024Th-Uj8cqliNEJc-3pDOR7DxAAW7gCG4e-pbtarsg",
+      "revision_id": "2200",
+      "date": "2026-01-21",
+      "maps_to": "V8",
+      "description": "Jan 21 19:26 edit",
+      "ods_path": ".claude/swap/revision-ods/ubl25_documents/rev-2200.ods",
+      "ods_size": 931858,
+      "ods_sha256": "a003bcafe5248fcf862738cbc9a505e6fc2049d0bbee5ac52bb54fbf0c3f13e2",
+      "status": "ok",
+      "downloaded_at": "2026-02-15T15:44:37Z"
+    },
+    {
+      "sheet_key": "ubl25_documents",
+      "file_id": "1024Th-Uj8cqliNEJc-3pDOR7DxAAW7gCG4e-pbtarsg",
+      "revision_id": "2204",
+      "date": "2026-02-04",
+      "maps_to": "V9+V10",
+      "description": "Feb 4 edit, latest before V9/V10",
+      "ods_path": ".claude/swap/revision-ods/ubl25_documents/rev-2204.ods",
+      "ods_size": 931899,
+      "ods_sha256": "4213671be510eba75be14d16e4c29dea9db99f02bd5dfdfab64f4b500e23ac9c",
+      "status": "ok",
+      "downloaded_at": "2026-02-15T15:45:06Z"
+    }
+  ]
+}
