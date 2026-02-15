@@ -56,19 +56,38 @@ def main():
         print("  git push -u origin claude/google-sheets-history-cQ6AV")
         return
 
+    # Step 3: Test files.download endpoint (PoC for revision-specific content)
+    poc_result = ROOT / ".claude" / "swap" / "poc-revision-download.txt"
+    if not poc_result.exists():
+        print("=== Step 3: PoC — testing files.download with revisionId ===")
+        print("  Previous approach (files.export) returned identical data for all revisions.")
+        print("  Testing files.download (POST) which officially supports revisionId for Sheets.")
+        print()
+        poc_result.parent.mkdir(parents=True, exist_ok=True)
+        with open(poc_result, "w") as f:
+            r = subprocess.run(
+                [sys.executable, "scripts/test-revision-download.py"],
+                cwd=ROOT, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True
+            )
+            output = r.stdout
+            f.write(output)
+            print(output)
+        print(f"\n  Output saved to: {poc_result}")
+        print("\nDone! Upload results:")
+        print(f"  git add {poc_result.relative_to(ROOT)}")
+        print("  git commit -m 'Step 3: PoC revision download test results'")
+        print("  git push -u origin claude/google-sheets-history-cQ6AV")
+        return
+
     # All done
     print("=== All steps complete ===")
     print(f"  Discovery: {discovery}")
     print(f"  Exports:   {exports_dir}")
     print(f"  Manifest:  {manifest}")
-    swap_tar = ROOT / ".claude" / "swap" / "revision-exports.tar.gz"
-    if swap_tar.exists():
-        print(f"  Swap tar:  {swap_tar} ({swap_tar.stat().st_size:,} bytes)")
+    print(f"  PoC test:  {poc_result}")
     print()
-    print("If not yet pushed:")
-    print("  git add .claude/swap/revision-exports.tar.gz")
-    print("  git commit -m 'Step 2: Google Sheets revision exports'")
-    print("  git push -u origin claude/google-sheets-history-cQ6AV")
+    print("Check PoC results:")
+    print(f"  cat {poc_result.relative_to(ROOT)}")
 
 if __name__ == "__main__":
     main()
