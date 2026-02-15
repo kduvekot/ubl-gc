@@ -1,0 +1,104 @@
+name: Build UBL Work History Branch
+
+on:
+  workflow_dispatch:
+    inputs:
+      target_branch:
+        description: 'Target work-history branch name'
+        required: true
+        default: 'work-history'
+        type: string
+  push:
+    branches:
+      - 'claude/analyze-workflow-history-Gdrth'
+    paths:
+      # Only triggers on work/ changes — never on scripts/ changes
+      - 'work/.trigger-build-work-history'
+      - 'work/scripts/**'
+      - 'work/work-history/**'
+      - '.github/workflows/build-work-history.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: build-work-history
+  cancel-in-progress: false
+
+jobs:
+  build-work-history:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Configure Git
+        run: |
+          git config --global user.name "OASIS UBL TC"
+          git config --global user.email "ubl-tc@oasis-open.org"
+          git config --global commit.gpgsign false
+
+      - name: Verify all GenericCode files present
+        run: |
+          echo "Checking official history files..."
+          history_files=$(find history -name "*.gc" | wc -l)
+          echo "Found $history_files official GenericCode files"
+          if [ "$history_files" -lt 60 ]; then
+            echo "ERROR: Expected at least 60 official files, found $history_files"
+            exit 1
+          fi
+
+          echo "Checking work-history intermediate files..."
+          work_files=$(find work/work-history -name "*.gc" | wc -l)
+          echo "Found $work_files intermediate GenericCode files"
+          if [ "$work_files" -lt 27 ]; then
+            echo "ERROR: Expected at least 27 intermediate files, found $work_files"
+            exit 1
+          fi
+
+          echo "Verification passed ($history_files official + $work_files intermediate)"
+
+      - name: Validate work manifest
+        run: |
+          python3 work/scripts/work_release_manifest.py
+
+      - name: Build work history (44 releases)
+        run: |
+          TARGET="${{ inputs.target_branch || 'work-history-test' }}"
+          echo "Building work history on branch: $TARGET"
+
+          python3 work/scripts/build_work_history.py \
+            --branch "$TARGET" \
+            --push \
+            --keep-work-dir
+        env:
+          PYTHONUNBUFFERED: "1"
+
+      - name: Summary
+        if: always()
+        run: |
+          TARGET="${{ inputs.target_branch || 'work-history-test' }}"
+          echo "## Build Work History Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Property | Value |" >> $GITHUB_STEP_SUMMARY
+          echo "|----------|-------|" >> $GITHUB_STEP_SUMMARY
+          echo "| Target branch | \`$TARGET\` |" >> $GITHUB_STEP_SUMMARY
+          echo "| Manifest | work_release_manifest (44 releases) |" >> $GITHUB_STEP_SUMMARY
+          echo "| Official releases | 35 |" >> $GITHUB_STEP_SUMMARY
+          echo "| Intermediate drafts | 9 |" >> $GITHUB_STEP_SUMMARY
+          echo "| Workflow run | ${{ github.run_id }} |" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "View the history:" >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+          echo "git fetch origin $TARGET" >> $GITHUB_STEP_SUMMARY
+          echo "git log --oneline origin/$TARGET" >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
