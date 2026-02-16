@@ -33,8 +33,7 @@ This repository maintains a complete historical archive of UBL (Universal Busine
     │   └── UBL-*.ods files            (30 ODS source files from OASIS os-UBL-2.0)
     │
     ├── prd1-UBL-2.1/mod/              (GenericCode files from OASIS)
-    │   ├── UBL-Entities-2.1.gc
-    │   └── UBL-Signature-Entities-2.1.gc
+    │   └── UBL-Entities-2.1.gc       (Signature-Entities first appears at prd3-UBL-2.1)
     │
     ├── ... (other UBL 2.1-2.5 releases from OASIS)
     │
@@ -57,12 +56,12 @@ UBL 2.0 (2006) was originally released as ODS (OpenDocument Spreadsheet) files, 
 **Generated File**: `/history/generated/os-UBL-2.0/mod/UBL-Entities-2.0.gc`
 - **Source Release**: os-UBL-2.0 (Official Standard, 2006-12-12)
 - **Status**: Final, approved OASIS standard
-- **File Size**: 3.3 MB
-- **Entity Rows**: 2,181
+- **File Size**: 3.1 MB
+- **Entity Rows**: 2,074
 - **Source Files**: 30 ODS files consolidated (2 core + 28 document types)
   - Located in: `/history/os-UBL-2.0/mod/` (all downloaded directly from OASIS)
 
-### Source Data (All 33 ODS Files)
+### Source Data (All 30 ODS Files)
 
 All files obtained from the official OASIS UBL 2.0 release (os-UBL-2.0):
 https://docs.oasis-open.org/ubl/os-UBL-2.0/
@@ -123,7 +122,7 @@ java -jar saxon9he.jar \
   included-sheet-name-regex='^([Ll]($|[^o].*|o($|[^g].*|g($|[^s].*))))|^[^Ll].*'
 ```
 
-**Result**: All 30 ODS files consolidated into a single GenericCode file with 2,181 entity rows.
+**Result**: All 30 ODS files consolidated into a single GenericCode file with 2,074 entity rows.
 
 ### Why os-UBL-2.0?
 

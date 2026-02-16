@@ -1,5 +1,14 @@
 # GitHub Actions Workflows
 
+> **Partial Deprecation Notice (2026-02-16):** The shell-based build scripts
+> documented in the "Build Scripts Architecture" and "Script Library" sections
+> below (`build-history.sh`, `common.sh`, `commit-helpers.sh`, `build-2.X.sh`)
+> were the original design but were **replaced by a Python-based system**:
+> `scripts/build_history.py` with supporting modules in `scripts/lib/`.
+> The workflow descriptions (`build-history.yml`) and Python library docs
+> (`gc_analyzer.py`, `gc_builder.py`, `gc_commit_builder.py`) remain accurate.
+> The `build-poc-granular.yml` workflow no longer exists.
+
 This document describes the GitHub Actions workflows and build scripts that power the automated generation of UBL semantic model history branches.
 
 ## Table of Contents
@@ -45,7 +54,7 @@ This repository uses GitHub Actions to automatically build git history branches 
 ┌─────────────────────────────────────────────────────────────┐
 │ Main Branch (source)                                        │
 │ ├── scripts/                  ← Build scripts               │
-│ ├── history/                  ← Source data (65 .gc files) │
+│ ├── history/                  ← Source data (62 .gc files) │
 │ └── .github/workflows/        ← Workflow definitions        │
 └─────────────────────────────────────────────────────────────┘
                     │
@@ -574,7 +583,7 @@ gh run view --repo kduvekot/ubl-gc <run-id> --log
 # Check file count
 find history -name "*.gc" | wc -l
 
-# Should show 65 files
+# Should show 62 files
 # If missing, re-run download/generation scripts
 ```
 

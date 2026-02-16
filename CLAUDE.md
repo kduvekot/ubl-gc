@@ -21,7 +21,7 @@ Before making any assumptions, READ these files:
 A **complete historical archive** of UBL (Universal Business Language) GenericCode semantic model files:
 - **Coverage:** UBL 2.0 (2006) through UBL 2.5 (2025)
 - **Total Releases:** 35 releases across 5 major versions
-- **Total Files:** 65 GenericCode (.gc) files
+- **Total Files:** 62 GenericCode (.gc) files
 - **Status:** All source files downloaded and organized
 
 ### Version Breakdown
@@ -29,12 +29,12 @@ A **complete historical archive** of UBL (Universal Business Language) GenericCo
 | Version | Releases | Files | Source | Status |
 |---------|----------|-------|--------|--------|
 | **UBL 2.0** (2006) | 8 | 8 generated .gc | history/generated/ | ✅ Complete |
-| **UBL 2.1** (2013) | 8 | 16 .gc (2 per release) | history/*-UBL-2.1/ | ✅ Complete |
+| **UBL 2.1** (2013) | 8 | 14 .gc (2 per release except prd1/prd2 which lack Signature) | history/*-UBL-2.1/ | ✅ Complete |
 | **UBL 2.2** (2018) | 6 | 12 .gc (2 per release) | history/*-UBL-2.2/ | ✅ Complete |
 | **UBL 2.3** (2021) | 7 | 14 .gc (2 per release) | history/*-UBL-2.3/ | ✅ Complete |
 | **UBL 2.4** (2024) | 4 | 8 .gc (2 per release) | history/*-UBL-2.4/ | ✅ Complete |
-| **UBL 2.5** (2025) | 2 | 7 .gc (3 per release: Entities + Signature + Endorsed) | history/*-UBL-2.5/ | ✅ Complete |
-| **TOTAL** | **35** | **65 files** | | |
+| **UBL 2.5** (2025) | 2 | 6 .gc (3 per release: Entities + Signature + Endorsed) | history/*-UBL-2.5/ | ✅ Complete |
+| **TOTAL** | **35** | **62 files** | | |
 
 ### Three Types of GenericCode Files
 
@@ -164,22 +164,24 @@ csd02
 
 **Location:** `scripts/`
 
-### Proposed Structure
+### Actual Structure (Python-based)
 
 ```
 scripts/
-├── build-history.sh                 ← Master orchestrator
+├── build_history.py                 ← Master orchestrator (Python)
 ├── lib/
-│   ├── common.sh                    ← Shared functions
-│   └── commit-helpers.sh            ← Git commit creation
-└── versions/
-    ├── build-2.0.sh                 ← Process generated/ files
-    ├── build-2.1.sh                 ← Process 2.1 releases
-    ├── build-2.2.sh                 ← Multi-step schema + releases
-    ├── build-2.3.sh                 ← Process 2.3 releases
-    ├── build-2.4.sh                 ← Process 2.4 releases
-    └── build-2.5.sh                 ← Multi-step + Endorsed file
+│   ├── gc_diff.py                   ← GenericCode diff engine
+│   ├── gc_analyzer.py               ← Column/row analysis
+│   ├── gc_builder.py                ← File construction
+│   ├── gc_commit_builder.py         ← Git commit creation
+│   └── release_manifest.py          ← Release metadata
+├── download-oasis-distributions.sh  ← OASIS file downloader
+└── extract-xsd-from-reference.sh    ← XSD extraction
 ```
+
+> **Note:** An earlier shell-based approach (`build-history.sh`, `common.sh`,
+> `commit-helpers.sh`, `build-2.X.sh`) was planned but replaced by the Python
+> system above. Some older docs may still reference the shell scripts.
 
 ### Key Principles
 
@@ -228,9 +230,9 @@ scripts/
    - UBL 2.0: 8 releases (all generated .gc files)
    - UBL 2.1-2.5: 27 releases
 
-2. **65 GenericCode files** (not 55!)
+2. **62 GenericCode files** (not 55!)
    - Entities: 35 files (one per release)
-   - Signature-Entities: 28 files (2.1-2.5, not all releases have them)
+   - Signature-Entities: 25 files (2.1-2.5; prd1/prd2 of 2.1 lack Signature)
    - Endorsed-Entities: 2 files (NEW in 2.5!)
 
 3. **UBL 2.0 GenericCode is generated**
