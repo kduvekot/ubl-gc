@@ -20,6 +20,9 @@ Two sheets matter for UBL 2.5:
 Each sheet accumulates revisions as the TC edits it. The same sheet ID
 serves all stages within a version (csd01 → csd02 → cs01 → os).
 
+Bulk revision downloads and GC conversions are stored on Google Drive:
+https://drive.google.com/drive/folders/1SVXV_8CF4ib9YsVZ6G7AqIP3gNK6q3Gj
+
 ---
 
 ## Directory Structure
