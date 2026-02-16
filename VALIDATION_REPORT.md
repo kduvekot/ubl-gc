@@ -8,18 +8,19 @@
 
 ## Executive Summary
 
-Checked 26 .md files against actual files on disk. Found **11 errors** and
-**3 inconsistencies** across 6 documents. All SHA-256 checksums, OASIS URLs,
-release dates, ODS file counts, and row counts for UBL 2.0 stages are correct.
-The main problems are inflated file counts, a stale directory listing in
-README.md, and extensive documentation referencing shell scripts that no longer
-exist (replaced by `build_history.py`).
+Checked 26 .md files, 2 Jupyter notebooks, 1 manifest.json, and all data in
+`work/` and `work-sheets/` against actual files on disk. Found **19 errors**
+and **4 inconsistencies** across 8 documents. All SHA-256 checksums, OASIS URLs,
+release dates, ODS file counts, row counts, and intermediate version data are
+correct. The main problems are inflated file counts (multiple docs say 65, actual
+is 62), stale early-stage numbers in ARCHITECTURE.md, and extensive documentation
+referencing 12 shell scripts that no longer exist (replaced by `build_history.py`).
 
 | Severity | Count | Summary |
 |----------|:-----:|---------|
-| ERROR (factually wrong) | 11 | Wrong file counts, wrong row count, wrong column count, missing files documented as existing |
-| INCONSISTENCY (self-contradictory) | 3 | "30" vs "33" ODS, "3.3 MB" approximation, stale script references |
-| VERIFIED OK | ~95 claims | Checksums, URLs, dates, column structures, row counts, tool provenance |
+| ERROR (factually wrong) | 19 | Wrong file counts (x8), wrong row count (x2), wrong column count (x2), nonexistent files (x5), nonexistent directory (x1), wrong case (x1) |
+| INCONSISTENCY (self-contradictory) | 4 | "30" vs "33" ODS, "3.3 MB" approximation, stale script refs, manifest path mismatch |
+| VERIFIED OK | ~120 claims | Checksums, URLs, dates, column structures, row counts, tool provenance, intermediate versions, revision ODS |
 | UNVERIFIABLE | ~10 claims | Artifact data not on disk, Google auth required, Java not tested |
 
 ---
@@ -202,6 +203,115 @@ since the actual implementation took a different path.
 
 ---
 
+## Additional ERRORS Found (Round 2: work/ and ARCHITECTURE.md)
+
+### E13. ARCHITECTURE.md says "28 releases, 55 GenericCode files"
+
+**Location:** ARCHITECTURE.md line 9
+
+**Claim:** "Total Coverage: 28 releases, 55 GenericCode files, complete from 2006-2026"
+
+**Actual:** 35 releases, 62 GenericCode files. This appears to be from an early
+version of the docs before UBL 2.0 was included (28 = 35 - 7 generated stages
+that were added later).
+
+---
+
+### E14. ARCHITECTURE.md UBL 2.1 file count says 16
+
+**Location:** ARCHITECTURE.md line 56
+
+Same error as E2. Claims 16 files for UBL 2.1, actual is 14.
+
+---
+
+### E15. ARCHITECTURE.md UBL 2.5 file count says 4
+
+**Location:** ARCHITECTURE.md line 60
+
+**Claim:** "UBL 2.5 | 2 (csd01-02) | 4"
+
+**Actual:** 6 files (2 Entities + 2 Signature + 2 Endorsed). The "4" may be from
+a time before Endorsed files were included.
+
+---
+
+### E16. ARCHITECTURE.md row count says 2,181, columns says 33
+
+**Location:** ARCHITECTURE.md lines 101-104
+
+Same errors as E5: row count should be 2,074. Column count of "33" for generated
+os-UBL-2.0 is also wrong -- actual is 31 (the os stage uses the 31-column structure).
+
+---
+
+### E17. ARCHITECTURE.md shows nonexistent directory `os-UBL-2.5/mod/`
+
+**Location:** ARCHITECTURE.md line 144
+
+There is no `os-UBL-2.5` directory. UBL 2.5 only has csd01 and csd02 so far.
+
+---
+
+### E18. ARCHITECTURE.md tool path has wrong case
+
+**Location:** ARCHITECTURE.md line 82
+
+**Claim:** `history/tools/crane-ods2obdgc/Crane-ods2obdgc.xsl` (lowercase `crane`)
+
+**Actual:** `history/tools/Crane-ods2obdgc/Crane-ods2obdgc.xsl` (capital `C`)
+
+---
+
+### E19. ARCHITECTURE.md "28+" releases in docs reference
+
+**Location:** ARCHITECTURE.md line 130
+
+**Claim:** "List of all 28+ releases with URLs"
+
+**Actual:** Should be 35.
+
+---
+
+### I4. manifest.json ods_path uses old location
+
+**Location:** work-sheets/revision-ods/manifest.json
+
+All `ods_path` values point to `.claude/swap/revision-ods/...` but the files
+actually live in `work-sheets/revision-ods/...`. The files were moved after
+download. Not an error per se (the manifest records where they were originally
+downloaded to), but could confuse anyone trying to use the paths.
+
+---
+
+## Additional VERIFIED CORRECT (Round 2)
+
+### work/work-history/ intermediate versions
+- 9 directories containing 27 .gc files (3 per directory): OK
+- Maps to TIMELINE.md versions V1-V4, V6-V10: OK (V5 is in history/csd02)
+- All Entities hashes are unique across the 9 directories: OK
+- Signature hash is identical across first 8 directories, changes in 9th (V10): OK
+- This matches TIMELINE.md claim of "2 Signature versions": OK
+
+### work-sheets/revision-ods/ files
+- 4 Library ODS files (rev-1843, 1868, 1999, 2005): OK, all present
+- 6 Documents ODS files (rev-1793, 1803, 1983, 2190, 2200, 2204): OK, all present
+- File sizes match manifest.json exactly: OK
+- SHA-256 spot-check (rev-1843.ods): OK, matches manifest
+
+### work/gc-versions/csd01-ref/
+- 3 V1-original files present: OK
+- Sizes match TIMELINE.md claims: OK
+- Hashes match TIMELINE.md claims (verified in Step 4): OK
+
+### ARCHITECTURE.md correct claims
+- Line 63 note about prd1/prd2 lacking Signature: CORRECT
+- ODS file list (30 files, 2 core + 28 docs): CORRECT
+- Tool provenance and license info: CORRECT
+- history/tools/README.md row count table: ALL CORRECT
+
+---
+
 ## VERIFIED CORRECT
 
 ### File counts and directories
@@ -268,19 +378,45 @@ since the actual implementation took a different path.
 1. **CLAUDE.md:** Change "65" to "62", "16" to "14", "7" to "6", "28" to "25"
 2. **README.md:** Change "2,181" to "2,074", fix prd1 directory listing, fix "33" heading
 3. **column-structure-analysis.md:** Change Endorsed column count from "27" to "25"
+4. **ARCHITECTURE.md:** Change "28 releases, 55 files" to "35 releases, 62 files",
+   fix UBL 2.1 count (16->14), fix UBL 2.5 count (4->6), fix row count (2181->2074),
+   fix column count (33->31), fix tool path case, remove `os-UBL-2.5` from tree,
+   fix "28+" to "35"
 
 ### Documentation cleanup (stale references):
-4. **docs/workflows.md:** Major rewrite needed -- most of the documented shell scripts
+5. **docs/workflows.md:** Major rewrite needed -- most of the documented shell scripts
    don't exist. Should document the actual Python-based system.
-5. **CLAUDE.md "Proposed Structure":** Update to reflect actual `build_history.py` system
-6. **build-analysis.md:** Note that the analyzed scripts were since replaced
-7. **transition-analysis.md:** Note that the analyzed scripts were since replaced
+6. **CLAUDE.md "Proposed Structure":** Update to reflect actual `build_history.py` system
+7. **build-analysis.md:** Note that the analyzed scripts were since replaced
+8. **transition-analysis.md:** Note that the analyzed scripts were since replaced
 
 ### Nice-to-have:
-8. Add a note about when Signature-Entities first appears (prd3-UBL-2.1, not prd1)
-9. Clarify that Endorsed uses 25 columns (a proper subset of the 27 Entities columns)
+9. Add a note about when Signature-Entities first appears (prd3-UBL-2.1, not prd1)
+10. Clarify that Endorsed uses 25 columns (a proper subset of the 27 Entities columns)
+11. Update manifest.json `ods_path` entries to reflect current location
 
 ---
 
-*Validated: 2026-02-16 by Claude Code*
+## Scope of Validation
+
+### Round 1 (initial pass):
+- All 26 .md files
+- All .gc files in `history/` (62 files)
+- Scripts and workflows in `scripts/` and `.github/workflows/`
+
+### Round 2 (additional coverage):
+- `work/work-history/` (27 .gc files across 9 intermediate version directories)
+- `work/gc-versions/csd01-ref/` (3 .gc files)
+- `work-sheets/revision-ods/` (10 ODS files + manifest.json)
+- `ARCHITECTURE.md` (detailed reading)
+- Cross-verification of manifest checksums against on-disk files
+
+### Not covered:
+- `notebooks/*.ipynb` (2 Jupyter notebooks -- informational/exploratory, not claims)
+- Python script internals (existence verified, logic not audited)
+
+---
+
+*Validated: 2026-02-16 by Claude Code (2 rounds)*
 *Methodology: Sequential subagent execution (haiku for data collection, sonnet for XML parsing)*
+*Total files checked: 62 .gc (history) + 27 .gc (work-history) + 3 .gc (csd01-ref) + 10 ODS + 15 scripts = 117 data files*
