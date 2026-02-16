@@ -161,42 +161,72 @@ Multiple documents make overlapping claims. Check for contradictions.
 
 ---
 
-## Subagent Execution Plan
+## Subagent Execution Plan (SEQUENTIAL)
 
-### Phase 1: Data Collection (parallel)
+All agents run one at a time so I can review each result before launching the
+next. This avoids parallel-execution issues and lets me course-correct haiku
+if it drifts.
 
-Launch 5 agents simultaneously to collect raw facts from disk:
+### Step 1: File Counts & Directory Structure (Category A)
 
-| Agent | Type | Model | Task | Est. Turns |
-|-------|------|-------|------|-----------|
-| **A1** | Bash | haiku | Count all .gc files by version, count release dirs, count ODS files | 5 |
-| **A2** | general-purpose | sonnet | Write+run Python to extract column IDs from all 62 .gc files | 8 |
-| **A3** | Bash | haiku | Count `<Row>` elements in all .gc files via grep | 5 |
-| **A4** | Bash | haiku | SHA-256 checksums of all .gc files in history/ and work/ | 3 |
-| **A5** | Bash | haiku | Verify script/workflow file existence, grep for documented functions | 5 |
+| Agent | Type | Model | Task |
+|-------|------|-------|------|
+| **A1** | Bash | haiku | Count .gc files per version, count release dirs, count ODS files |
 
-### Phase 2: Cross-Reference (sequential, main thread)
+**Instructions for haiku:** Very specific commands provided. No exploration,
+just run the listed commands and report results.
 
-Using results from Phase 1:
+### Step 2: Column Structure Extraction (Category B)
+
+| Agent | Type | Model | Task |
+|-------|------|-------|------|
+| **A2** | general-purpose | sonnet | Write+run Python to extract column IDs from all .gc files |
+
+**Why sonnet:** Needs to understand GenericCode XML namespace handling and
+write correct parsing code. Creative problem-solving may be needed.
+
+### Step 3: Row Counts (Category C)
+
+| Agent | Type | Model | Task |
+|-------|------|-------|------|
+| **A3** | Bash | haiku | Count `<Row>` elements in each .gc file |
+
+**Instructions for haiku:** Single grep command with specific pattern.
+Report filename + count, nothing else.
+
+### Step 4: SHA-256 Checksums (Category D)
+
+| Agent | Type | Model | Task |
+|-------|------|-------|------|
+| **A4** | Bash | haiku | Run sha256sum on specific files, report results |
+
+**Instructions for haiku:** Exact file paths provided. Just hash and report.
+
+### Step 5: Script & Workflow Verification (Category E)
+
+| Agent | Type | Model | Task |
+|-------|------|-------|------|
+| **A5** | Bash | haiku | Check file existence, grep for documented functions |
+
+### Step 6: URL Spot-Check (Category F, optional)
+
+| Agent | Type | Model | Task |
+|-------|------|-------|------|
+| **A6** | general-purpose | haiku | Spot-check 3-5 OASIS URLs |
+
+### Step 7: Cross-Reference & Report (main thread)
+
+Compare all results from Steps 1-6 against documented claims:
 1. Compare actual file counts vs all documented counts
 2. Compare actual column structures vs documented structures
 3. Compare actual row counts vs documented row counts
 4. Compare actual checksums vs documented checksums
 5. Compare actual scripts vs documented scripts
 6. Check for contradictions between documents
-
-### Phase 3: URL Spot-Check (optional, parallel)
-
-| Agent | Type | Model | Task |
-|-------|------|-------|------|
-| **A6** | general-purpose | haiku | Spot-check 3-5 OASIS URLs from historical-releases.md |
-
-### Phase 4: Report & Fix (sequential, main thread)
-
-1. Write `VALIDATION_REPORT.md` with all findings
-2. Fix any incorrect claims in .md files (Edit tool)
-3. Update this plan with completion status
-4. Commit and push
+7. Write `VALIDATION_REPORT.md` with all findings
+8. Fix any incorrect claims in .md files
+9. Update this plan with completion status
+10. Commit and push
 
 ---
 
@@ -226,13 +256,36 @@ From initial reconnaissance:
 
 ## Progress Tracker
 
-| Phase | Status | Findings |
-|-------|--------|----------|
-| Phase 1: Data Collection | NOT STARTED | |
-| Phase 2: Cross-Reference | NOT STARTED | |
-| Phase 3: URL Spot-Check | NOT STARTED | |
-| Phase 4: Report & Fix | NOT STARTED | |
+| Step | Status | Model | Findings |
+|------|--------|-------|----------|
+| 1. File counts | DONE | haiku | 62 files, not 65. UBL 2.1 has 14 not 16. UBL 2.5 has 6 not 7. |
+| 2. Column structure | DONE | sonnet | 7 distinct structures found. Endorsed=25 cols, not 27. |
+| 3. Row counts | DONE | haiku (re-run manually) | All UBL 2.0 counts correct. README os-UBL-2.0 says 2181, actual 2074. |
+| 4. SHA-256 checksums | DONE | haiku | All 9 TIMELINE.md checksums verified correct. |
+| 5. Scripts/workflows | DONE | haiku | 12 documented shell scripts don't exist (replaced by Python). |
+| 6. URL spot-check | DONE | haiku | 4/4 OASIS URLs accessible and correct. |
+| 7. Report & fix | DONE | main thread | Report written to VALIDATION_REPORT.md. |
+
+### Subagent Performance Notes
+
+- **haiku** worked well with very specific, step-by-step commands. Struggled when
+  given freedom to summarize (fabricated "65 files" count in Step 3). Re-running
+  commands directly was necessary to get raw data.
+- **sonnet** performed well on the XML parsing task -- correctly handled namespaces
+  and produced accurate column groupings.
+- **Sequential execution** was the right call -- catching haiku's Step 3 error
+  before it could contaminate downstream analysis was important.
 
 ---
 
-*Last updated: 2026-02-16*
+## Final Results
+
+See **[VALIDATION_REPORT.md](VALIDATION_REPORT.md)** for complete findings:
+- 11 errors found
+- 3 inconsistencies found
+- ~95 claims verified correct
+- ~10 claims unverifiable in current environment
+
+---
+
+*Last updated: 2026-02-16 (completed)*
