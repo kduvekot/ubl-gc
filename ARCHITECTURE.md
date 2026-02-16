@@ -6,7 +6,7 @@ This document describes what was created, where files came from, and how everyth
 
 Created a complete historical archive of UBL GenericCode semantic model files from UBL 2.0 (2006) through UBL 2.5 (2025), with full git version control enabling complete blame tracking across 20 years of UBL development.
 
-**Total Coverage**: 28 releases, 55 GenericCode files, complete from 2006-2026
+**Total Coverage**: 35 releases, 62 GenericCode files, complete from 2006-2026
 
 ## Data Sources & Origins
 
@@ -53,11 +53,11 @@ curl -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36" \
 
 | Version | Stages | Files |
 |---------|--------|-------|
-| UBL 2.1 | 8 (prd1-prd4, csd4, cos1, cs1, os) | 16 |
+| UBL 2.1 | 8 (prd1-prd4, csd4, cos1, cs1, os) | 14 |
 | UBL 2.2 | 6 (csprd01-03, cos01, cs01, os) | 12 |
 | UBL 2.3 | 7 (csd03-04, csprd01-02, cs01-02, os) | 14 |
 | UBL 2.4 | 4 (csd01-02, cs01, os) | 8 |
-| UBL 2.5 | 2 (csd01-02) | 4 |
+| UBL 2.5 | 2 (csd01-02) | 6 |
 | **Total** | **27 releases** | **54 files** |
 
 **Note**: prd1/prd2 of UBL 2.1 never had Signature-Entities files published
@@ -79,7 +79,7 @@ curl -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36" \
 **Tools Used**:
 - **Crane-ods2obdgc XSLT**: Official OASIS tool from UBL repository
   - Source: https://github.com/oasis-tcs/ubl/tree/review/utilities/Crane-ods2obdgc
-  - Location in archive: `history/tools/crane-ods2obdgc/Crane-ods2obdgc.xsl`
+  - Location in archive: `history/tools/Crane-ods2obdgc/Crane-ods2obdgc.xsl`
 
 - **Saxon 9 HE**: XSLT 2.0 processor
   - Source: https://sourceforge.net/projects/saxon/
@@ -98,10 +98,10 @@ java -jar saxon9he.jar \
 ```
 
 **Output Statistics**:
-- File size: 3.3 MB
+- File size: 3.1 MB
 - Lines: 88,492
-- Entity rows: 2,181
-- Column definitions: 33
+- Entity rows: 2,074
+- Column definitions: 31
 - Status: Valid XML, properly balanced tags
 
 **Reproducibility**: Script provided at `history/tools/scripts/ubl20-ods-to-gc-convert.sh`
@@ -127,7 +127,7 @@ java -jar saxon9he.jar \
 ├── README.md                          Main documentation (all details here)
 ├── ARCHITECTURE.md                    This file
 ├── docs/
-│   └── historical-releases.md         List of all 28+ releases with URLs
+│   └── historical-releases.md         List of all 35 releases with URLs
 │
 └── history/
     ├── README.md                      Brief overview
@@ -141,7 +141,7 @@ java -jar saxon9he.jar \
     ├── prd1-UBL-2.1/mod/              GenericCode files from OASIS
     ├── prd2-UBL-2.1/mod/              (all 27 UBL 2.1-2.5 releases)
     ├── ... (other releases)
-    ├── os-UBL-2.5/mod/
+    ├── csd01-UBL-2.5/mod/
     ├── csd02-UBL-2.5/mod/
     │
     ├── generated/                     Our synthesized files
@@ -150,7 +150,7 @@ java -jar saxon9he.jar \
     │
     └── tools/                         Conversion tools (for reproducibility)
         ├── README.md
-        ├── crane-ods2obdgc/
+        ├── Crane-ods2obdgc/
         │   ├── Crane-ods2obdgc.xsl    Official OASIS XSLT stylesheet
         │   └── README.md
         ├── saxon9he/
@@ -164,12 +164,12 @@ java -jar saxon9he.jar \
 ## File Counts & Statistics
 
 **Downloads from OASIS**:
-- 30 ODS files (UBL 2.0)
+- 30 ODS files (UBL 2.0 os stage)
 - 54 GenericCode files (UBL 2.1-2.5)
 - **Total downloaded**: 84 files
 
 **Generated**:
-- 1 GenericCode file (UBL 2.0 synthesized)
+- 8 GenericCode files (UBL 2.0 synthesized, all 8 stages)
 
 **Tools Stored**:
 - 1 XSLT stylesheet (Crane-ods2obdgc)

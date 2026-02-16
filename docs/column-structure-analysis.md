@@ -238,8 +238,10 @@ The columns are identical to the UBL 2.1 Entities structure listed above.
 
 ### Endorsed-Entities (2.5 only)
 
-New file type introduced in UBL 2.5. Uses the same 27-column structure as the
-UBL 2.5 Entities file.
+New file type introduced in UBL 2.5. Uses a 25-column structure -- a subset of
+the 27-column UBL 2.5 Entities structure, minus the `EndorsedCardinality` and
+`EndorsedCardinalityRationale` columns (which are only needed in the main
+Entities file to derive the endorsed subset).
 
 ---
 

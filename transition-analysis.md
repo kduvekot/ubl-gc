@@ -1,5 +1,14 @@
 # UBL Version Transition Analysis
 
+> **Note (2026-02-13):** The shell-based build scripts analyzed in this document
+> (`scripts/versions/build-2.1.sh` through `build-2.4.sh` and
+> `scripts/lib/commit-helpers.sh`) were **removed in commit `76e0538`** on
+> 2026-02-13 and replaced by `scripts/build_history.py` with supporting Python
+> modules in `scripts/lib/`. The file-accumulation bug and `git mv` issues
+> documented here were addressed in the Python rewrite. This document is
+> retained as historical context for the design decisions that shaped the
+> current implementation.
+
 **Date:** 2026-02-12
 **Issue:** Files are accumulating instead of being renamed/transitioned
 **Impact:** CRITICAL - History branch doesn't show evolution, just accumulation
