@@ -1,5 +1,15 @@
 # UBL History Build - Analysis & Recommendations
 
+> **Note (2026-02-13):** The shell-based build scripts analyzed in this document
+> (`build-history.sh`, `lib/common.sh`, `lib/commit-helpers.sh`,
+> `versions/build-2.0.sh` through `build-2.5.sh`, `build-poc-granular.sh`,
+> `run-poc-granular.py`, and `.github/workflows/build-poc-granular.yml`) were
+> **removed in commit `76e0538`** on 2026-02-13 and replaced by
+> `scripts/build_history.py` with supporting Python modules in `scripts/lib/`.
+> The issues and recommendations below were addressed in the Python rewrite.
+> This document is retained as historical context for the design decisions that
+> shaped the current implementation.
+
 **Date:** 2026-02-12
 **Branch:** claude/git-history-exploration-bunUn
 **Analyzed:** Scripts, workflow, and actual output (origin/history-test)

@@ -372,28 +372,27 @@ downloaded to), but could confuse anyone trying to use the paths.
 
 ---
 
-## Recommendations
+## Recommendations and Resolution
 
-### Immediate fixes (factual errors):
-1. **CLAUDE.md:** Change "65" to "62", "16" to "14", "7" to "6", "28" to "25"
-2. **README.md:** Change "2,181" to "2,074", fix prd1 directory listing, fix "33" heading
-3. **column-structure-analysis.md:** Change Endorsed column count from "27" to "25"
-4. **ARCHITECTURE.md:** Change "28 releases, 55 files" to "35 releases, 62 files",
+### Immediate fixes (factual errors) — all DONE in commit `8826b4a`:
+1. ~~**CLAUDE.md:** Change "65" to "62", "16" to "14", "7" to "6", "28" to "25"~~ FIXED
+2. ~~**README.md:** Change "2,181" to "2,074", fix prd1 directory listing, fix "33" heading~~ FIXED
+3. ~~**column-structure-analysis.md:** Change Endorsed column count from "27" to "25"~~ FIXED
+4. ~~**ARCHITECTURE.md:** Change "28 releases, 55 files" to "35 releases, 62 files",
    fix UBL 2.1 count (16->14), fix UBL 2.5 count (4->6), fix row count (2181->2074),
    fix column count (33->31), fix tool path case, remove `os-UBL-2.5` from tree,
-   fix "28+" to "35"
+   fix "28+" to "35"~~ FIXED
 
 ### Documentation cleanup (stale references):
-5. **docs/workflows.md:** Major rewrite needed -- most of the documented shell scripts
-   don't exist. Should document the actual Python-based system.
-6. **CLAUDE.md "Proposed Structure":** Update to reflect actual `build_history.py` system
-7. **build-analysis.md:** Note that the analyzed scripts were since replaced
-8. **transition-analysis.md:** Note that the analyzed scripts were since replaced
+5. ~~**docs/workflows.md:** Deprecation notice added~~ DONE (partial -- notice added, not full rewrite)
+6. ~~**CLAUDE.md "Proposed Structure":** Updated to reflect actual `build_history.py` system~~ FIXED
+7. ~~**build-analysis.md:** Added deprecation note referencing commit `76e0538`~~ FIXED
+8. ~~**transition-analysis.md:** Added deprecation note referencing commit `76e0538`~~ FIXED
 
 ### Nice-to-have:
-9. Add a note about when Signature-Entities first appears (prd3-UBL-2.1, not prd1)
-10. Clarify that Endorsed uses 25 columns (a proper subset of the 27 Entities columns)
-11. Update manifest.json `ods_path` entries to reflect current location
+9. Add a note about when Signature-Entities first appears (prd3-UBL-2.1, not prd1) — NOT DONE (already documented correctly in ARCHITECTURE.md line 63)
+10. ~~Clarify that Endorsed uses 25 columns (a proper subset of the 27 Entities columns)~~ FIXED in column-structure-analysis.md
+11. ~~Update manifest.json `ods_path` entries to reflect current location~~ FIXED
 
 ---
 
