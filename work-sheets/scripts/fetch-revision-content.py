@@ -13,16 +13,16 @@ status, and file hash so results are independently reproducible.
 
 Usage:
     # First run: discovers revisions and downloads all of them
-    GOOGLE_ACCESS_TOKEN="ya29.a0..." python3 fetch-revision-content.py
+    GOOGLE_ACCESS_TOKEN="ya29.a0..." python3 work-sheets/scripts/fetch-revision-content.py
 
     # Resume after interruption (skips already-downloaded revisions)
-    GOOGLE_ACCESS_TOKEN="ya29.a0..." python3 fetch-revision-content.py --resume
+    GOOGLE_ACCESS_TOKEN="ya29.a0..." python3 work-sheets/scripts/fetch-revision-content.py --resume
 
     # Download only a specific sheet
-    GOOGLE_ACCESS_TOKEN="ya29.a0..." python3 fetch-revision-content.py --sheet ubl25_library
+    GOOGLE_ACCESS_TOKEN="ya29.a0..." python3 work-sheets/scripts/fetch-revision-content.py --sheet ubl25_library
 
     # Limit to last N revisions (useful for testing)
-    GOOGLE_ACCESS_TOKEN="ya29.a0..." python3 fetch-revision-content.py --last 5
+    GOOGLE_ACCESS_TOKEN="ya29.a0..." python3 work-sheets/scripts/fetch-revision-content.py --last 5
 
 Output:
     revision-exports/
@@ -475,7 +475,7 @@ def main():
                 "https://developers.google.com/drive/api/v3/reference/revisions/list",
                 "https://developers.google.com/drive/api/v3/reference/files/export",
             ],
-            "script": "scripts/fetch-revision-content.py",
+            "script": "work-sheets/scripts/fetch-revision-content.py",
             "script_version": "1.0.0",
             "started_at": start_time,
             "completed_at": _now_iso(),

@@ -7,7 +7,7 @@ The correct endpoint is files.download (POST), which officially supports
 revisionId for Google Sheets.
 
 Usage:
-    GOOGLE_ACCESS_TOKEN="ya29.a0..." python3 scripts/test-revision-download.py
+    GOOGLE_ACCESS_TOKEN="ya29.a0..." python3 work-sheets/scripts/test-revision-download.py
 
 Tests against ubl25_library where we KNOW content changed:
   - rev 1843 (Nov 12, 2025) — pre-CSD02 state

@@ -11,7 +11,7 @@ existing Crane-ods2obdgc + Saxon pipeline for comparison against
 workflow-generated GC files.
 
 Usage:
-    GOOGLE_ACCESS_TOKEN="ya29.a0..." python3 scripts/download-revision-ods.py
+    GOOGLE_ACCESS_TOKEN="ya29.a0..." python3 work-sheets/scripts/download-revision-ods.py
 
 Proven by PoC (Step 3): v2 exportLinks return different content per revision.
 
@@ -292,7 +292,7 @@ def main():
             "description": "ODS exports of specific Google Sheets revisions for UBL CSD02/CSD03 analysis",
             "method": "Drive API v2 revisions/{id} → exportLinks → ODS download",
             "poc_confirmation": "PoC in .claude/swap/poc-revision-download.txt proved v2 exportLinks return revision-specific content",
-            "script": "scripts/download-revision-ods.py",
+            "script": "work-sheets/scripts/download-revision-ods.py",
             "started_at": start_time,
             "completed_at": _now_iso(),
         },

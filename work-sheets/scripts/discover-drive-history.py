@@ -9,7 +9,7 @@ PROVENANCE: Every API call is logged with its exact URL, timestamp, and HTTP sta
 so anyone with the correct Google Drive access can independently reproduce these results.
 
 Usage:
-    GOOGLE_ACCESS_TOKEN="ya29.a0..." python3 discover-drive-history.py
+    GOOGLE_ACCESS_TOKEN="ya29.a0..." python3 work-sheets/scripts/discover-drive-history.py
 
 Output:
     drive-discovery.json.gz   (compressed, upload to Claude Code session)
@@ -426,7 +426,7 @@ def main():
                 "https://developers.google.com/drive/api/v3/reference/revisions/list",
                 "https://developers.google.com/drive/api/v3/reference/files/get",
             ],
-            "script": "scripts/discover-drive-history.py",
+            "script": "work-sheets/scripts/discover-drive-history.py",
             "script_version": "1.0.0",
             "started_at": start_time,
             "completed_at": end_time,

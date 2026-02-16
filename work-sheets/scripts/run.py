@@ -3,13 +3,15 @@
 
 Usage:
     export GOOGLE_ACCESS_TOKEN="ya29.a0..."
-    python3 scripts/run.py
+    python3 work-sheets/scripts/run.py
 """
 import os, sys, subprocess
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parent.parent
+ROOT = Path(__file__).resolve().parent.parent.parent
 os.chdir(ROOT)
+
+SCRIPTS = "work-sheets/scripts"
 
 def main():
     token = os.environ.get("GOOGLE_ACCESS_TOKEN", "")
@@ -27,7 +29,7 @@ def main():
     # Step 1: Discovery
     if not discovery.exists():
         print("=== Step 1: Discovering Google Drive contents ===")
-        r = subprocess.run([sys.executable, "scripts/discover-drive-history.py"], cwd=ROOT)
+        r = subprocess.run([sys.executable, f"{SCRIPTS}/discover-drive-history.py"], cwd=ROOT)
         if r.returncode != 0:
             sys.exit(r.returncode)
         print("\nDone! Re-run this script to continue to Step 2.")
@@ -46,7 +48,7 @@ def main():
     if not manifest_ok:
         print("=== Step 2: Downloading revision content ===")
         print(f"  Discovery data: {discovery}")
-        r = subprocess.run([sys.executable, "scripts/fetch-revision-content.py", "--resume"], cwd=ROOT)
+        r = subprocess.run([sys.executable, f"{SCRIPTS}/fetch-revision-content.py", "--resume"], cwd=ROOT)
         if r.returncode != 0:
             sys.exit(r.returncode)
         print("\nDone! The tar.gz and swap copy were created automatically.")
@@ -66,7 +68,7 @@ def main():
         poc_result.parent.mkdir(parents=True, exist_ok=True)
         with open(poc_result, "w") as f:
             r = subprocess.run(
-                [sys.executable, "scripts/test-revision-download.py"],
+                [sys.executable, f"{SCRIPTS}/test-revision-download.py"],
                 cwd=ROOT, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True
             )
             output = r.stdout
@@ -97,7 +99,7 @@ def main():
         print("  These map to the 10 workflow-generated GC versions (V1-V10).")
         print()
         r = subprocess.run(
-            [sys.executable, "scripts/download-revision-ods.py"],
+            [sys.executable, f"{SCRIPTS}/download-revision-ods.py"],
             cwd=ROOT
         )
         if r.returncode != 0:
