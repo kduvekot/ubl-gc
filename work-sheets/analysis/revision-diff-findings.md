@@ -1,11 +1,16 @@
-# ODS Revision Diff Analysis: ubl25_library (rev 1-2005)
+# ODS Revision Diff Analysis: ubl25_library & ubl25_documents
 
 **Date:** 2026-02-17
-**Sheet:** ubl25_library
 **Source:** Google Drive public folder, slow-validation ODS exports
-**Revisions analyzed:** 92 files (rev 1-100 consecutive, samples at 150, 200, 500, 1000, 1500, 1843, 1999, 2005)
+**Revisions analyzed:**
+- **Library:** 92 files (rev 1-100 consecutive, samples at 150, 200, 500, 1000, 1500, 1843, 1999, 2005)
+- **Documents:** 132 files (rev 1-50, 146-194, 1719-1751)
 
-## Summary
+---
+
+## Part 1: ubl25_library (2,005 revisions)
+
+### Summary
 
 The Google Sheets revision history for ubl25_library contains **2,005 revisions**.
 Analysis of the first 100 consecutive revisions reveals that:
@@ -14,8 +19,6 @@ Analysis of the first 100 consecutive revisions reveals that:
 2. **"Massive" diffs are artifacts** of column/row insertion shifting data positions
 3. **One worksheet** ("CommonLibrary") for rev 1-~1200, then a **second sheet** ("Logs-sheet") appears
 4. **Formulas** use OpenFormula syntax with absolute column references that shift on insert
-
-## Change Categories
 
 ### 1. Column Structure Changes (header additions/removals/renames)
 
@@ -80,7 +83,7 @@ The **computed values are identical** — only the formula text differs.
 Occasional cell formatting changes without any text or formula change.
 Example: rev 11→12 (style change on Endorsed cardinality cell).
 
-## Quantitative Summary (rev 1-100)
+### Quantitative Summary (rev 1-100)
 
 | Metric | Count |
 |--------|-------|
@@ -90,20 +93,7 @@ Example: rev 11→12 (style change on Endorsed cardinality cell).
 | Transitions with row/col insertion artifacts | 6 (7%) |
 | **Real text edits** (across all 100 revisions) | **~50 cells** |
 
-## Key Insight: ODS Export Non-Determinism
-
-The ODS export from Google Sheets is **not deterministic**:
-- Same logical sheet state → different ODS XML
-- Column insertion changes formula text (reference shifts)
-- Row insertion shifts all data positions
-- These produce massive apparent diffs that are pure artifacts
-
-For meaningful comparison, diffs must be:
-1. **Header-aware** (match by column name, not position)
-2. **Content-hash based** (compare text, ignore formula references)
-3. **Row-identity based** (match by Component Name, not row number)
-
-## Worksheet Evolution (full range)
+### Worksheet Evolution (full range)
 
 | Revision | Sheets | CommonLibrary Rows | Cols | Notes |
 |----------|--------|-------------------|------|-------|
@@ -125,16 +115,142 @@ Appears between rev 1000 and 1500. Contains automated script execution logs:
 - 26-38 rows (varies per revision)
 - Records when Apps Script automations ran against the sheet
 
+---
+
+## Part 2: ubl25_documents (2,161 revisions)
+
+### Summary
+
+The documents sheet contains **93-102 worksheets** — one per UBL document type (ApplicationResponse, AttachedDocument, Invoice, Order, etc.) plus a Logs-sheet.
+
+Key findings:
+
+1. **Editing proceeds one document type at a time**, in strict **alphabetical order**
+2. Each document type takes exactly **4 revisions** to process
+3. The "fast download" first attempt produced mostly collapsed revisions, but **three clusters** retained actual historical content
+4. 9 document types were temporarily removed and later re-added
+
+### Fast Download Collapse Pattern
+
+The first-attempt bulk download (without rate limiting) produced 2,161 files, but most are collapsed to the current state:
+
+| Revision Range | Content | ODS Size | Sheets | Cols |
+|---------------|---------|----------|--------|------|
+| 1-8 | Collapsed (current) | 932K | 102 | 26 |
+| **9-47** | **Historical** | 789-792K | 93 | 22-26 |
+| 48-145 | Collapsed | 932K | 102 | 26 |
+| **146-194** | **Historical** | 807-815K | 93 | 22-26 |
+| 195-1718 | Collapsed | 932K | 102 | 26 |
+| **1719-1751** | **Historical** | 910-911K | 100 | 22-26 |
+| 1752-2161 | Collapsed | 932K | 102 | 26 |
+
+### Sheet Count Evolution
+
+| State | Sheets | Extra Sheets | Notes |
+|-------|--------|-------------|-------|
+| Current/final (collapsed) | 102 | +9 | DeliveryNote, InvoiceStatusRequest, InvoiceStatusResponse, Logs-sheet, ProcurementStatus, ProcurementStatusRequest, WasteMovement, WasteNotification, WorkReport |
+| Historical (rev 9-194) | 93 | — | 9 sheets removed during editing |
+| Historical (rev 1719-1751) | 100 | +7 | Some sheets re-added |
+
+### Alphabetical Editing Pattern (rev 9-194)
+
+**Each document type takes exactly 4 revisions:**
+
+1. **Rev N**: Column restructure (adds 4 endorsed/deprecated columns) + data edits
+2. **Rev N+1**: Same restructure repeated
+3. **Rev N+2**: Slightly smaller restructure variant
+4. **Rev N+3**: Header-only changes (cleanup)
+5. Move to next document type alphabetically
+
+**Documented sheet processing order (from diff analysis):**
+
+| Revisions | Document Type | Changes per Rev |
+|-----------|--------------|-----------------|
+| 9-43 | ApplicationResponse | 1-307 |
+| 44-47 | AttachedDocument | 299-340 |
+| ... | (gap: rev 48-145 collapsed) | ... |
+| 146-148 | ExceptionNotification | 3-280 |
+| 148-152 | ExportCustomsDeclaration | 244-276 |
+| 152-156 | ExpressionOfInterestRequest | 300-343 |
+| 156-160 | ExpressionOfInterestResponse | 289-330 |
+| 160-164 | Forecast | 323-365 |
+| 164-168 | ForecastRevision | 326-368 |
+| 168-172 | ForwardingInstructions | 398-449 |
+| 172-176 | FreightInvoice | 665-762 |
+| 176-180 | FulfilmentCancellation | 324-371 |
+| 180-184 | GoodsCertificate | 423-484 |
+| 184-188 | GoodsItemItinerary | 300-343 |
+| 188-192 | GoodsItemPassport | 404-461 |
+| 192-194 | GuaranteeCertificate | 397 |
+| ... | (gap: rev 195-1718 collapsed) | ... |
+
+### Late-Stage Fine-Tuning (rev 1719-1751)
+
+By revision ~1719, the alphabetical restructuring is complete. This cluster shows:
+
+- **34 total cell changes** across 32 transitions (vs hundreds per transition earlier)
+- **Single-cell edits** across multiple sheets in each revision
+- **Logs-sheet renamed** from "Logs" to "Logs-sheet" (rev 1720→1721)
+- Occasional row additions/removals in ApplicationResponse and WorkReport
+- Sequential single-cell edits moving through: CallForTenders, ContractAwardNotice, ContractNotice, CreditNote, DebitNote, DespatchAdvice, DocumentStatus, etc.
+
+### Column Structure (within historical revisions)
+
+During the alphabetical editing process, the editor adds 4 columns to each document type sheet:
+- From 22 columns (original) → 26 columns (with endorsed/deprecated columns)
+- The column addition is visible as a "wavefront" moving alphabetically through the sheets
+- Sheets not yet processed have 22 columns; processed sheets have 26
+
+### Change Composition per Document Type
+
+A typical 4-revision edit cycle for one document type breaks down as:
+
+| Category | Count | Notes |
+|----------|-------|-------|
+| header_change | ~20 | Column headers shifting from 22→26 |
+| added | ~100-200 | New cells in added columns |
+| removed | ~100-200 | Old cell positions (position shift artifact) |
+| user_edit | ~40-140 | Real content edits (varies by document complexity) |
+| style_only | ~5-15 | Formatting changes |
+
+---
+
+## Key Insight: ODS Export Non-Determinism
+
+The ODS export from Google Sheets is **not deterministic**:
+- Same logical sheet state → different ODS XML
+- Column insertion changes formula text (reference shifts)
+- Row insertion shifts all data positions
+- settings.xml and meta.xml change between revisions even when content is identical
+- These produce massive apparent diffs that are pure artifacts
+
+For meaningful comparison, diffs must be:
+1. **Header-aware** (match by column name, not position)
+2. **Content-hash based** (compare text, ignore formula references)
+3. **Row-identity based** (match by Component Name, not row number)
+4. **Multi-sheet aware** (documents has 93-102 sheets)
+
+---
+
 ## Scripts
 
 - `work-sheets/scripts/download-drive-revisions.py` — Download .ods.gz from public Drive folder
-- `work-sheets/scripts/diff-ods-revisions.py` — Position-based ODS diff (initial analysis)
-- Inline scripts in this session for header-aware and text-only diffs
+- `work-sheets/scripts/diff-ods-revisions.py` — ODS diff with multi-sheet and text-only modes:
+  - `--text-only` — Ignore formulas (eliminates column-shift noise)
+  - `--all-sheets` — Compare all sheets in multi-sheet ODS files
+  - `--range N-M` — Process a specific revision range
+  - `--json FILE` — Write structured results to JSON
+  - `--verbose` — Show detailed per-change output
+
+---
 
 ## Next Steps
 
-1. Build a row-identity-aware diff (match by Component Name + row context)
-2. Extend analysis to rev 100-2005 to find all real editorial milestones
-3. Cross-reference with OASIS release dates to identify which revisions
+1. ~~Build a multi-sheet diff~~ ✓ Done (`--all-sheets` flag)
+2. ~~Extend analysis to documents sheet~~ ✓ Done (3 clusters analyzed)
+3. Download the full slow-validation ODS files for documents once the Colab notebook completes
+4. Cross-reference with OASIS release dates to identify which revisions
    correspond to formal committee draft stages
-4. Analyze the Logs-sheet for Apps Script execution patterns
+5. Map the alphabetical editing wavefront to estimate total edit duration
+   (93 sheets × 4 revisions ≈ 372 revisions for complete restructuring)
+6. Analyze the Logs-sheet for Apps Script execution patterns and timing

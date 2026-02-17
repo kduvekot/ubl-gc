@@ -6,6 +6,10 @@ Reads ODS (OpenDocument Spreadsheet) files exported from Google Sheets
 revision history, extracts all cell data from the content.xml, and
 compares consecutive revisions to show exactly what changed.
 
+Supports multi-sheet ODS files (e.g. the documents sheet with 93+ worksheets).
+Can operate in text-only mode to ignore formula reference shifts caused by
+column/row insertions.
+
 For each cell change, reports:
   - Cell address (e.g. A1, B42)
   - Column header name
@@ -17,6 +21,8 @@ Usage:
     python3 diff-ods-revisions.py /tmp/ubl-revisions/library
     python3 diff-ods-revisions.py /tmp/ubl-revisions/library --range 1-10
     python3 diff-ods-revisions.py /tmp/ubl-revisions/library --verbose
+    python3 diff-ods-revisions.py /tmp/ubl-revisions/library --text-only
+    python3 diff-ods-revisions.py /tmp/ubl-revisions/documents --all-sheets
     python3 diff-ods-revisions.py /tmp/ubl-revisions/library --json /tmp/diff-results.json
 
 Expects files named rev-{N}.ods in the input directory.
@@ -67,36 +73,32 @@ def extract_cell_text(cell_elem):
     return "\n".join(texts) if texts else ""
 
 
-def parse_ods(ods_path):
-    """Parse an ODS file and extract all cell data.
+def _parse_table(table_elem, text_only=False):
+    """Parse a single ODS table element and extract all cell data.
+
+    Args:
+        table_elem: XML element for the table
+        text_only: if True, ignore formulas (only compare text content)
 
     Returns:
-        headers: list of column header strings
-        grid: dict of (row, col) -> CellInfo
-        max_row: highest row number with data
-        max_col: highest column number with data
+        dict with table_name, headers, grid, max_row, max_col, num_cells
     """
-    with zipfile.ZipFile(ods_path) as zf:
-        content = zf.read("content.xml")
-
-    root = ET.fromstring(content)
-
-    # Find the first table
-    table = root.find(f".//{NS_TABLE}table")
-    if table is None:
-        raise ValueError(f"No table found in {ods_path}")
-
-    table_name = table.get(f"{NS_TABLE}name", "unknown")
-    rows = table.findall(f"{NS_TABLE}table-row")
+    table_name = table_elem.get(f"{NS_TABLE}name", "unknown")
+    rows = table_elem.findall(f"{NS_TABLE}table-row")
 
     grid = {}  # (row_idx, col_idx) -> CellInfo dict
     headers = []
     max_row = 0
     max_col = 0
 
-    for row_idx, row_elem in enumerate(rows):
-        # Handle row repetition
+    actual_row = 0
+    for row_elem in rows:
         row_repeat = int(row_elem.get(f"{NS_TABLE}number-rows-repeated", "1"))
+
+        # Skip rows with huge repetition (empty spacer rows in Google Sheets)
+        if row_repeat > 10000:
+            actual_row += row_repeat
+            continue
 
         cells = row_elem.findall(f"{NS_TABLE}table-cell")
         col_idx = 0
@@ -104,10 +106,15 @@ def parse_ods(ods_path):
         for cell_elem in cells:
             col_repeat = int(cell_elem.get(f"{NS_TABLE}number-columns-repeated", "1"))
 
+            # Skip cells with huge repetition (empty spacer columns)
+            if col_repeat > 1000:
+                col_idx += col_repeat
+                continue
+
             # Extract cell data
             text = extract_cell_text(cell_elem)
             value_type = cell_elem.get(f"{NS_OFFICE}value-type", "")
-            formula = cell_elem.get(f"{NS_TABLE}formula", "")
+            formula = "" if text_only else cell_elem.get(f"{NS_TABLE}formula", "")
             value = cell_elem.get(f"{NS_OFFICE}value", "")
             style = cell_elem.get(f"{NS_TABLE}style-name", "")
 
@@ -124,19 +131,17 @@ def parse_ods(ods_path):
                 }
 
                 # For repeated cells with content, store each instance
-                for r in range(col_repeat):
+                for r in range(min(col_repeat, 100)):  # cap at 100 to avoid OOM
                     actual_col = col_idx + r
-                    # Store for all repeated rows too
-                    for rr in range(row_repeat):
-                        actual_row = row_idx + rr
-                        grid[(actual_row, actual_col)] = cell_info.copy()
-                        max_row = max(max_row, actual_row)
+                    for rr in range(min(row_repeat, 100)):
+                        ar = actual_row + rr
+                        grid[(ar, actual_col)] = cell_info.copy()
+                        max_row = max(max_row, ar)
                         max_col = max(max_col, actual_col)
 
             col_idx += col_repeat
 
-        # For row repeats, adjust row_idx tracking
-        # (rows are iterated as elements, not expanded by repeat)
+        actual_row += row_repeat
 
     # Extract headers from row 0
     for c in range(max_col + 1):
@@ -154,6 +159,46 @@ def parse_ods(ods_path):
         "max_col": max_col,
         "num_cells": len(grid),
     }
+
+
+def parse_ods(ods_path, text_only=False):
+    """Parse an ODS file and extract cell data from the first table.
+
+    Returns:
+        dict with table_name, headers, grid, max_row, max_col, num_cells
+    """
+    with zipfile.ZipFile(ods_path) as zf:
+        content = zf.read("content.xml")
+
+    root = ET.fromstring(content)
+    table = root.find(f".//{NS_TABLE}table")
+    if table is None:
+        raise ValueError(f"No table found in {ods_path}")
+
+    return _parse_table(table, text_only=text_only)
+
+
+def parse_ods_all_sheets(ods_path, text_only=False):
+    """Parse an ODS file and extract cell data from ALL sheets.
+
+    Returns:
+        dict of sheet_name -> parsed data (same format as parse_ods)
+    """
+    with zipfile.ZipFile(ods_path) as zf:
+        content = zf.read("content.xml")
+
+    root = ET.fromstring(content)
+    tables = root.findall(f".//{NS_TABLE}table")
+
+    if not tables:
+        raise ValueError(f"No tables found in {ods_path}")
+
+    sheets = {}
+    for table in tables:
+        data = _parse_table(table, text_only=text_only)
+        sheets[data["table_name"]] = data
+
+    return sheets
 
 
 def diff_grids(old_data, new_data):
@@ -355,76 +400,89 @@ def summarize_changes(changes):
     }
 
 
-def main():
-    parser = argparse.ArgumentParser(
-        description="Diff consecutive ODS revision files"
-    )
-    parser.add_argument(
-        "input_dir", type=str,
-        help="Directory containing rev-N.ods files"
-    )
-    parser.add_argument(
-        "--range", type=str, default=None,
-        help="Range of revisions to compare, e.g. '1-10' or '5-15'"
-    )
-    parser.add_argument(
-        "--verbose", "-v", action="store_true",
-        help="Show formula details for changes"
-    )
-    parser.add_argument(
-        "--json", type=str, default=None,
-        help="Write detailed results to JSON file"
-    )
-    parser.add_argument(
-        "--show-unchanged", action="store_true",
-        help="Also report when consecutive revisions are identical"
-    )
-    parser.add_argument(
-        "--max-changes", type=int, default=50,
-        help="Max changes to display per transition (default: 50)"
-    )
-    args = parser.parse_args()
+def diff_all_sheets(old_sheets, new_sheets):
+    """Compare all sheets between two ODS files.
 
-    indir = Path(args.input_dir)
-    if not indir.is_dir():
-        print(f"ERROR: {indir} is not a directory")
-        sys.exit(1)
+    Args:
+        old_sheets: dict of sheet_name -> parsed data
+        new_sheets: dict of sheet_name -> parsed data
 
-    # Find all rev-N.ods files
-    ods_files = {}
-    for f in indir.glob("rev-*.ods"):
-        if f.suffix == ".ods":
-            try:
-                rev_num = int(f.stem.split("-")[1])
-                ods_files[rev_num] = f
-            except (ValueError, IndexError):
-                pass
+    Returns:
+        dict with:
+            per_sheet: dict of sheet_name -> {changes, summary}
+            added_sheets: list of sheet names only in new
+            removed_sheets: list of sheet names only in old
+            unchanged_sheets: list of sheet names with zero changes
+            changed_sheets: list of sheet names with changes
+            total_changes: total across all sheets
+    """
+    old_names = set(old_sheets.keys())
+    new_names = set(new_sheets.keys())
 
-    if not ods_files:
-        print(f"ERROR: No rev-N.ods files found in {indir}")
-        sys.exit(1)
+    added_sheets = sorted(new_names - old_names)
+    removed_sheets = sorted(old_names - new_names)
+    common_sheets = sorted(old_names & new_names)
 
-    # Apply range filter
-    all_revs = sorted(ods_files.keys())
-    if args.range:
-        start, end = args.range.split("-")
-        all_revs = [r for r in all_revs if int(start) <= r <= int(end)]
+    per_sheet = {}
+    unchanged_sheets = []
+    changed_sheets = []
+    total_changes = 0
 
-    print("=" * 80)
-    print("ODS Revision Diff Analysis")
-    print("=" * 80)
-    print(f"  Directory: {indir}")
-    print(f"  Revisions: {len(all_revs)} ({all_revs[0]}-{all_revs[-1]})")
-    print()
+    for name in common_sheets:
+        changes = diff_grids(old_sheets[name], new_sheets[name])
+        summary = summarize_changes(changes)
+        per_sheet[name] = {"changes": changes, "summary": summary}
+        total_changes += len(changes)
+        if changes:
+            changed_sheets.append(name)
+        else:
+            unchanged_sheets.append(name)
 
-    # Parse all ODS files
+    # For added sheets, all cells are "added"
+    for name in added_sheets:
+        data = new_sheets[name]
+        changes = []
+        for (row, col), cell in sorted(data["grid"].items()):
+            if row == 0:
+                continue
+            header = data["headers"][col] if col < len(data["headers"]) else f"col_{col}"
+            changes.append({
+                "row": row, "col": col,
+                "address": f"{col_letter(col)}{row + 1}",
+                "header": header,
+                "change_type": "added",
+                "old_text": "", "new_text": cell["text"],
+                "old_formula": "", "new_formula": cell.get("formula", ""),
+                "old_type": "", "new_type": cell.get("type", ""),
+                "is_formula_cell": bool(cell.get("formula")),
+                "formula_changed": bool(cell.get("formula")),
+                "text_changed": bool(cell["text"]),
+            })
+        summary = summarize_changes(changes)
+        per_sheet[name] = {"changes": changes, "summary": summary}
+        total_changes += len(changes)
+
+    return {
+        "per_sheet": per_sheet,
+        "added_sheets": added_sheets,
+        "removed_sheets": removed_sheets,
+        "unchanged_sheets": unchanged_sheets,
+        "changed_sheets": changed_sheets,
+        "total_changes": total_changes,
+    }
+
+
+def _run_single_sheet_mode(args, indir, ods_files, all_revs):
+    """Original single-sheet diff mode."""
+    text_only = args.text_only
+
     print("Parsing ODS files...")
     parsed = {}
     for rev_num in all_revs:
         path = ods_files[rev_num]
         print(f"  rev-{rev_num:>5}: parsing...", end="", flush=True)
         try:
-            data = parse_ods(path)
+            data = parse_ods(path, text_only=text_only)
             parsed[rev_num] = data
             print(f" {data['num_cells']} cells, {data['max_row']+1} rows, "
                   f"{data['max_col']+1} cols ({data['table_name']})")
@@ -476,65 +534,255 @@ def main():
                 print(f"\nrev-{rev_a} -> rev-{rev_b}: IDENTICAL (no changes)")
             continue
 
-        # Count categories
-        cats = result["summary"]["by_category"]
-        user_edits = cats.get("user_edit", 0)
-        formula_results = cats.get("formula_result", 0)
-        formula_changes = cats.get("formula_change", 0)
-        style_changes = cats.get("style_only", 0)
-        added = cats.get("added", 0)
-        removed = cats.get("removed", 0)
+        _display_transition(result, args)
 
+        # Accumulate totals
+        cats = result["summary"]["by_category"]
         total_changes += len(changes)
-        total_user_edits += user_edits
-        total_formula_results += formula_results
-        total_formula_changes += formula_changes
+        total_user_edits += cats.get("user_edit", 0)
+        total_formula_results += cats.get("formula_result", 0)
+        total_formula_changes += cats.get("formula_change", 0)
+
+    _display_overall_summary(all_results, total_changes, total_user_edits,
+                             total_formula_results, total_formula_changes)
+
+    if args.json:
+        _write_json(args.json, indir, all_revs, all_results, total_changes,
+                     total_user_edits, total_formula_results, total_formula_changes)
+
+
+def _run_all_sheets_mode(args, indir, ods_files, all_revs):
+    """Multi-sheet diff mode for ODS files with multiple worksheets."""
+    text_only = args.text_only
+
+    print("Parsing ODS files (all sheets)...")
+    parsed = {}
+    for rev_num in all_revs:
+        path = ods_files[rev_num]
+        print(f"  rev-{rev_num:>5}: parsing...", end="", flush=True)
+        try:
+            sheets = parse_ods_all_sheets(path, text_only=text_only)
+            parsed[rev_num] = sheets
+            total_cells = sum(s["num_cells"] for s in sheets.values())
+            print(f" {len(sheets)} sheets, {total_cells} total cells")
+        except Exception as e:
+            print(f" ERROR: {e}")
+
+    if not parsed:
+        print("ERROR: No files parsed successfully")
+        return
+
+    # Show sheet listing from first revision
+    first_rev = min(parsed.keys())
+    first_sheets = parsed[first_rev]
+    print(f"\nSheets in rev-{first_rev} ({len(first_sheets)}):")
+    for name, data in sorted(first_sheets.items()):
+        print(f"  {name:>40}: {data['max_row']+1:5d} rows, "
+              f"{data['max_col']+1:3d} cols, {data['num_cells']:5d} cells")
+
+    # Compare consecutive pairs
+    print()
+    print("=" * 80)
+    print("Comparing consecutive revisions (all sheets)")
+    print("=" * 80)
+
+    all_results = []
+    grand_total = 0
+
+    for i in range(len(all_revs) - 1):
+        rev_a = all_revs[i]
+        rev_b = all_revs[i + 1]
+
+        if rev_a not in parsed or rev_b not in parsed:
+            continue
+
+        result = diff_all_sheets(parsed[rev_a], parsed[rev_b])
+        result["from_rev"] = rev_a
+        result["to_rev"] = rev_b
+        all_results.append(result)
+
+        if result["total_changes"] == 0 and not result["added_sheets"] and not result["removed_sheets"]:
+            if args.show_unchanged:
+                print(f"\nrev-{rev_a} -> rev-{rev_b}: ALL SHEETS IDENTICAL")
+            continue
+
+        grand_total += result["total_changes"]
 
         print(f"\n{'─'*80}")
-        print(f"rev-{rev_a} -> rev-{rev_b}: {len(changes)} changes")
-        print(f"  User edits: {user_edits}  |  Formula results: {formula_results}  |  "
-              f"Formula changes: {formula_changes}")
-        if style_changes:
-            print(f"  Style changes: {style_changes}")
-        if added or removed:
-            print(f"  Added: {added}  |  Removed: {removed}")
+        print(f"rev-{rev_a} -> rev-{rev_b}: {result['total_changes']} changes "
+              f"across {len(result['changed_sheets'])} sheets")
 
-        # Show by column
-        by_col = result["summary"]["by_column"]
-        if by_col:
-            print(f"\n  Changes by column:")
-            for col_name in sorted(by_col.keys(), key=lambda x: (x == "", x)):
-                col_cats = by_col[col_name]
-                parts = []
-                for cat, count in sorted(col_cats.items()):
-                    parts.append(f"{cat}={count}")
-                label = col_name if col_name else "(empty header)"
-                print(f"    {label:>35}: {', '.join(parts)}")
+        if result["added_sheets"]:
+            print(f"  NEW SHEETS: {', '.join(result['added_sheets'])}")
+        if result["removed_sheets"]:
+            print(f"  REMOVED SHEETS: {', '.join(result['removed_sheets'])}")
+        if result["unchanged_sheets"]:
+            print(f"  Unchanged: {len(result['unchanged_sheets'])} sheets")
 
-        # Show individual changes (up to limit)
-        print(f"\n  Changes (showing {min(len(changes), args.max_changes)}"
-              f"/{len(changes)}):")
+        # Show per-sheet change counts for changed sheets
+        for sheet_name in result["changed_sheets"]:
+            sheet_data = result["per_sheet"][sheet_name]
+            n = len(sheet_data["changes"])
+            cats = sheet_data["summary"]["by_category"]
+            parts = [f"{k}={v}" for k, v in sorted(cats.items())]
+            print(f"    {sheet_name:>40}: {n:5d} changes ({', '.join(parts)})")
 
-        # Sort: user_edits first, then formula_changes, then formula_results
-        priority = {
-            "user_edit": 0, "header_change": 1, "formula_change": 2,
-            "added": 3, "removed": 4, "formula_result": 5,
-            "style_only": 6, "type_change": 7, "other": 8,
-        }
-        sorted_changes = sorted(changes, key=lambda c: (
-            priority.get(c["change_type"], 99), c["row"], c["col"]
-        ))
+        # Show per-sheet changes for added sheets (summary only)
+        for sheet_name in result["added_sheets"]:
+            if sheet_name in result["per_sheet"]:
+                n = len(result["per_sheet"][sheet_name]["changes"])
+                print(f"    {sheet_name:>40}: {n:5d} cells (new sheet)")
 
-        shown = 0
-        for change in sorted_changes:
-            if shown >= args.max_changes:
-                remaining = len(changes) - shown
-                print(f"  ... and {remaining} more changes")
-                break
-            print(format_change(change, verbose=args.verbose))
-            shown += 1
+        # Show detailed changes if requested (up to limit across all sheets)
+        if args.verbose:
+            shown = 0
+            for sheet_name in result["changed_sheets"] + result["added_sheets"]:
+                if sheet_name not in result["per_sheet"]:
+                    continue
+                changes = result["per_sheet"][sheet_name]["changes"]
+                if not changes:
+                    continue
+
+                # Prioritize user edits
+                priority = {
+                    "user_edit": 0, "header_change": 1, "formula_change": 2,
+                    "added": 3, "removed": 4, "formula_result": 5,
+                    "style_only": 6, "type_change": 7, "other": 8,
+                }
+                sorted_changes = sorted(changes, key=lambda c: (
+                    priority.get(c["change_type"], 99), c["row"], c["col"]
+                ))
+
+                for change in sorted_changes:
+                    if shown >= args.max_changes:
+                        break
+                    print(f"    [{sheet_name}] {format_change(change, verbose=True)}")
+                    shown += 1
+
+                if shown >= args.max_changes:
+                    break
+
+            if shown >= args.max_changes and grand_total > shown:
+                print(f"    ... and more (use --max-changes to see more)")
 
     # Overall summary
+    print()
+    print("=" * 80)
+    print("MULTI-SHEET OVERALL SUMMARY")
+    print("=" * 80)
+    print(f"  Transitions analyzed: {len(all_results)}")
+    identical = sum(1 for r in all_results if r["total_changes"] == 0
+                    and not r["added_sheets"] and not r["removed_sheets"])
+    changed = len(all_results) - identical
+    print(f"  Identical transitions: {identical}")
+    print(f"  Changed transitions:   {changed}")
+    print(f"  Total cell changes:    {grand_total}")
+
+    # Aggregate per-sheet stats
+    sheet_change_counts = defaultdict(int)
+    for r in all_results:
+        for sheet_name, sheet_data in r["per_sheet"].items():
+            sheet_change_counts[sheet_name] += len(sheet_data["changes"])
+
+    if sheet_change_counts:
+        print(f"\n  Changes per sheet (top 20):")
+        for name, count in sorted(sheet_change_counts.items(), key=lambda x: -x[1])[:20]:
+            print(f"    {name:>40}: {count:5d}")
+
+    # Write JSON
+    if args.json:
+        json_output = {
+            "input_dir": str(indir),
+            "mode": "all_sheets",
+            "text_only": text_only,
+            "revisions": all_revs,
+            "transitions": [],
+        }
+        for r in all_results:
+            t = {
+                "from_rev": r["from_rev"],
+                "to_rev": r["to_rev"],
+                "total_changes": r["total_changes"],
+                "added_sheets": r["added_sheets"],
+                "removed_sheets": r["removed_sheets"],
+                "changed_sheets": r["changed_sheets"],
+                "unchanged_sheets_count": len(r["unchanged_sheets"]),
+                "per_sheet_summary": {},
+            }
+            for name, data in r["per_sheet"].items():
+                t["per_sheet_summary"][name] = {
+                    "num_changes": len(data["changes"]),
+                    "summary": data["summary"],
+                }
+            json_output["transitions"].append(t)
+
+        json_path = Path(args.json)
+        with open(json_path, "w") as f:
+            json.dump(json_output, f, indent=2)
+        print(f"\n  JSON results: {json_path}")
+
+
+def _display_transition(result, args):
+    """Display a single transition's changes."""
+    rev_a = result["from_rev"]
+    rev_b = result["to_rev"]
+    changes = result["changes"]
+    cats = result["summary"]["by_category"]
+
+    user_edits = cats.get("user_edit", 0)
+    formula_results = cats.get("formula_result", 0)
+    formula_changes = cats.get("formula_change", 0)
+    style_changes = cats.get("style_only", 0)
+    added = cats.get("added", 0)
+    removed = cats.get("removed", 0)
+
+    print(f"\n{'─'*80}")
+    print(f"rev-{rev_a} -> rev-{rev_b}: {len(changes)} changes")
+    print(f"  User edits: {user_edits}  |  Formula results: {formula_results}  |  "
+          f"Formula changes: {formula_changes}")
+    if style_changes:
+        print(f"  Style changes: {style_changes}")
+    if added or removed:
+        print(f"  Added: {added}  |  Removed: {removed}")
+
+    # Show by column
+    by_col = result["summary"]["by_column"]
+    if by_col:
+        print(f"\n  Changes by column:")
+        for col_name in sorted(by_col.keys(), key=lambda x: (x == "", x)):
+            col_cats = by_col[col_name]
+            parts = []
+            for cat, count in sorted(col_cats.items()):
+                parts.append(f"{cat}={count}")
+            label = col_name if col_name else "(empty header)"
+            print(f"    {label:>35}: {', '.join(parts)}")
+
+    # Show individual changes (up to limit)
+    print(f"\n  Changes (showing {min(len(changes), args.max_changes)}"
+          f"/{len(changes)}):")
+
+    priority = {
+        "user_edit": 0, "header_change": 1, "formula_change": 2,
+        "added": 3, "removed": 4, "formula_result": 5,
+        "style_only": 6, "type_change": 7, "other": 8,
+    }
+    sorted_changes = sorted(changes, key=lambda c: (
+        priority.get(c["change_type"], 99), c["row"], c["col"]
+    ))
+
+    shown = 0
+    for change in sorted_changes:
+        if shown >= args.max_changes:
+            remaining = len(changes) - shown
+            print(f"  ... and {remaining} more changes")
+            break
+        print(format_change(change, verbose=args.verbose))
+        shown += 1
+
+
+def _display_overall_summary(all_results, total_changes, total_user_edits,
+                              total_formula_results, total_formula_changes):
+    """Display overall summary for single-sheet mode."""
     print()
     print("=" * 80)
     print("OVERALL SUMMARY")
@@ -571,39 +819,125 @@ def main():
             user = global_col_user_edits.get(col, 0)
             print(f"    {label:>35}: {count:4d} total ({user} user edits)")
 
-    # Write JSON results
-    if args.json:
-        json_output = {
-            "input_dir": str(indir),
-            "revisions": all_revs,
-            "transitions": [
-                {
-                    "from_rev": r["from_rev"],
-                    "to_rev": r["to_rev"],
-                    "num_changes": r["num_changes"],
-                    "summary": r["summary"],
-                    "changes": [
-                        {k: v for k, v in c.items()}
-                        for c in r["changes"]
-                    ],
-                }
-                for r in all_results
-            ],
-            "overall": {
-                "total_transitions": len(all_results),
-                "identical_transitions": identical,
-                "changed_transitions": changed,
-                "total_changes": total_changes,
-                "user_edits": total_user_edits,
-                "formula_results": total_formula_results,
-                "formula_changes": total_formula_changes,
-            },
-        }
 
-        json_path = Path(args.json)
-        with open(json_path, "w") as f:
-            json.dump(json_output, f, indent=2)
-        print(f"\n  JSON results: {json_path}")
+def _write_json(json_path, indir, all_revs, all_results, total_changes,
+                total_user_edits, total_formula_results, total_formula_changes):
+    """Write JSON results for single-sheet mode."""
+    identical = sum(1 for r in all_results if r["num_changes"] == 0)
+    changed = sum(1 for r in all_results if r["num_changes"] > 0)
+
+    json_output = {
+        "input_dir": str(indir),
+        "revisions": all_revs,
+        "transitions": [
+            {
+                "from_rev": r["from_rev"],
+                "to_rev": r["to_rev"],
+                "num_changes": r["num_changes"],
+                "summary": r["summary"],
+                "changes": [
+                    {k: v for k, v in c.items()}
+                    for c in r["changes"]
+                ],
+            }
+            for r in all_results
+        ],
+        "overall": {
+            "total_transitions": len(all_results),
+            "identical_transitions": identical,
+            "changed_transitions": changed,
+            "total_changes": total_changes,
+            "user_edits": total_user_edits,
+            "formula_results": total_formula_results,
+            "formula_changes": total_formula_changes,
+        },
+    }
+
+    jp = Path(json_path)
+    with open(jp, "w") as f:
+        json.dump(json_output, f, indent=2)
+    print(f"\n  JSON results: {jp}")
+
+
+def main():
+    parser = argparse.ArgumentParser(
+        description="Diff consecutive ODS revision files"
+    )
+    parser.add_argument(
+        "input_dir", type=str,
+        help="Directory containing rev-N.ods files"
+    )
+    parser.add_argument(
+        "--range", type=str, default=None,
+        help="Range of revisions to compare, e.g. '1-10' or '5-15'"
+    )
+    parser.add_argument(
+        "--verbose", "-v", action="store_true",
+        help="Show formula details for changes"
+    )
+    parser.add_argument(
+        "--json", type=str, default=None,
+        help="Write detailed results to JSON file"
+    )
+    parser.add_argument(
+        "--show-unchanged", action="store_true",
+        help="Also report when consecutive revisions are identical"
+    )
+    parser.add_argument(
+        "--max-changes", type=int, default=50,
+        help="Max changes to display per transition (default: 50)"
+    )
+    parser.add_argument(
+        "--text-only", action="store_true",
+        help="Ignore formulas, only compare text content (eliminates column-shift noise)"
+    )
+    parser.add_argument(
+        "--all-sheets", action="store_true",
+        help="Compare all sheets in the ODS file (for multi-sheet documents)"
+    )
+    args = parser.parse_args()
+
+    indir = Path(args.input_dir)
+    if not indir.is_dir():
+        print(f"ERROR: {indir} is not a directory")
+        sys.exit(1)
+
+    # Find all rev-N.ods files
+    ods_files = {}
+    for f in indir.glob("rev-*.ods"):
+        if f.suffix == ".ods":
+            try:
+                rev_num = int(f.stem.split("-")[1])
+                ods_files[rev_num] = f
+            except (ValueError, IndexError):
+                pass
+
+    if not ods_files:
+        print(f"ERROR: No rev-N.ods files found in {indir}")
+        sys.exit(1)
+
+    # Apply range filter
+    all_revs = sorted(ods_files.keys())
+    if args.range:
+        start, end = args.range.split("-")
+        all_revs = [r for r in all_revs if int(start) <= r <= int(end)]
+
+    print("=" * 80)
+    print(f"ODS Revision Diff Analysis {'(text-only)' if args.text_only else ''}"
+          f"{'(all sheets)' if args.all_sheets else ''}")
+    print("=" * 80)
+    print(f"  Directory: {indir}")
+    print(f"  Revisions: {len(all_revs)} ({all_revs[0]}-{all_revs[-1]})")
+    if args.text_only:
+        print(f"  Mode: TEXT-ONLY (formulas ignored)")
+    if args.all_sheets:
+        print(f"  Mode: ALL SHEETS")
+    print()
+
+    if args.all_sheets:
+        _run_all_sheets_mode(args, indir, ods_files, all_revs)
+    else:
+        _run_single_sheet_mode(args, indir, ods_files, all_revs)
 
 
 if __name__ == "__main__":
