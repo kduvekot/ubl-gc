@@ -410,3 +410,111 @@ Phase 2 (API comparison notebook) should:
 3. Download revisions 1995-2010 for library to find the revision matching
    CI V6's data hash (`1ebde1fcadd0f0f9...`)
 4. Compare Method B and Method C outputs for the same revision number
+
+---
+
+## Manifest Cluster Analysis (2026-02-17)
+
+Downloaded and analyzed the Colab manifests from the public Google Drive folder
+(`/tmp/ubl-gc-investigation/manifests/`).
+
+### Method C is NOT Fully Broken — It Has Correct Clusters
+
+Analysis of all ~4200 downloaded revisions reveals that Method C (direct Sheets
+export URL) does return correct historical data, but only in **short clusters**.
+Between clusters, it returns the current/latest content.
+
+### Library Sheet (1962 revisions downloaded)
+
+| Rev Range | Count | Unique States | ODS Size | Status |
+|-----------|-------|---------------|----------|--------|
+| 1-39 | 39 | 34 unique | ~596-601KB | **Historical** |
+| 40-350 | 311 | 1 (current) | 640KB | Broken |
+| 351-368 | — | GAP (missing) | — | — |
+| 369-401 | 33 | 33 unique | ~606-607KB | **Historical** |
+| 402-1135 | 734 | 1 (current) | 640KB | Broken |
+| 1136-2004 | 845 | 1 (current) | 640KB | Broken |
+
+- **96% of revisions returned current content** (1890/1962)
+- 2 historical clusters with 72 genuinely unique revision states
+- ALL 4 Method B reference revisions (1843, 1868, 1999, 2005) are MISSING
+  from the Colab download (returned 400/404 errors)
+- GC data: 49 unique GC states in the historical clusters
+
+### Documents Sheet (2161 revisions downloaded)
+
+| Rev Range | Count | Unique States | ODS Size | Status |
+|-----------|-------|---------------|----------|--------|
+| 1-8 | — | GAP | — | — |
+| 9-47 | 39 | 32 unique | ~790-791KB | **Historical** |
+| 48-133 | 86 | 1 (current) | 931KB | Broken |
+| 134-145 | — | GAP (missing) | — | — |
+| 146-194 | 49 | 49 unique | ~807-814KB | **Historical** |
+| 195-1695 | 1501 | 1 (current) | 931KB | Broken |
+| 1696-1718 | — | GAP (missing) | — | — |
+| 1719-1751 | 33 | 32 unique | ~910KB | **Historical** |
+| 1752-2204 | 453 | 1 (current) | 931KB | Broken |
+
+- **94% of revisions returned current content** (2040/2161)
+- 3 historical clusters with 121 genuinely unique revision states
+- All 6 Method B reference revisions are present but ALL return LATEST content
+- GC data: 28 unique GC states, mostly in historical clusters
+
+### The Pattern: Session Reset Hypothesis
+
+Method C works correctly for short bursts (~30-50 revisions) after:
+1. **Start of download session** (rev 1-39 for library, rev 9-47 for docs)
+2. **After error gaps** (missing revisions = HTTP errors during the Colab run)
+
+Then it "collapses" back to returning current content for hundreds of
+subsequent revisions until the next error gap triggers a reset.
+
+Evidence supporting this:
+- Historical clusters have **progressive file sizes** appropriate for the
+  sheet's age (smaller files = earlier versions)
+- Broken runs have **uniform 640KB / 931KB** file sizes (= current state)
+- Gaps (missing revisions) immediately precede each new historical cluster
+
+### Implication: Method B and Method C Use DIFFERENT Revision Numbering
+
+The fact that Method B revision IDs (1843, 1868, etc.) either don't exist
+in Method C's namespace (library: 404 errors) or return current content
+(documents) strongly suggests the two methods use different numbering.
+
+- **Method B (v2)**: Uses Drive API revision IDs from `revisions.list`
+- **Method C**: Uses Google Sheets' internal revision counter (1-2005)
+- These may map to different revisions!
+
+### None of the Historical Clusters Match CI V1-V10
+
+The historical data in the clusters is from very early in the sheets' life:
+- Library cluster 1 (rev 1-39): ~596KB files — the sheet when first created
+- Library cluster 2 (rev 369-401): ~607KB files — still much smaller than
+  current 640KB
+- Documents late cluster (rev 1719-1751): ~910KB — closer to current 931KB
+
+The CI V1-V10 versions correspond to revisions 1843-2005 (library) and
+1793-2204 (documents) — well within the "broken" ranges.
+
+### New Notebooks Created
+
+1. **`notebooks/revision-metadata-and-export-links.ipynb`** — Gets ALL revision
+   metadata with timestamps via v3 `revisions.list` + v2 `revisions/{id}`.
+   Iterates all ~4200 revision IDs to get `modifiedDate` + `exportLinks`.
+   Matches revisions to CI workflow timestamps for correct pairings.
+
+2. **`notebooks/analyze-method-c-clusters.ipynb`** — Analyzes the actual
+   downloaded ODS files on Google Drive: file creation timestamps, cluster
+   boundaries, cell-level diffs between historical and current content.
+
+### Next Steps
+
+1. **Run notebook 1** (revision-metadata-and-export-links) to get timestamps
+   for all revisions via v2 — this gives us the correct revision numbering
+   and export links
+2. **Run notebook 2** (analyze-method-c-clusters) to understand the temporal
+   pattern of correct vs broken downloads in Method C
+3. **Use v2 export links** to download ODS for the correct revisions at each
+   CI workflow timestamp — this is the proven method
+4. **Cell-level diffs** may reveal which edits happened between revisions,
+   helping us understand the sheet's evolution
