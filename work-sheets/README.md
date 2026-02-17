@@ -138,6 +138,17 @@ token:
 Results from running these tools are documented in
 [`analysis/revision-diff-findings.md`](analysis/revision-diff-findings.md).
 
+### Colab Notebook
+
+- **[`notebooks/method-c-slow-validation.ipynb`](../notebooks/method-c-slow-validation.ipynb)**
+  — Google Colab notebook that bulk-downloads every revision of the UBL 2.5
+  Google Sheets as ODS files via the authenticated export API. Uses adaptive
+  rate limiting (backs off on 429s, probes faster after sustained success) and
+  a canary check (stops if N consecutive revisions return identical content).
+  Writes checkpoint and results JSON to a public Google Drive folder so
+  progress can be monitored externally. Covers both library (2005 revisions)
+  and documents (2204 revisions) sheets.
+
 ---
 
 ## Regenerating GenericCode Files
