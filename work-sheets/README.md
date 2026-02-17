@@ -30,6 +30,8 @@ https://drive.google.com/drive/folders/1SVXV_8CF4ib9YsVZ6G7AqIP3gNK6q3Gj
 ```
 work-sheets/
 ├── README.md                  ← this file
+├── analysis/                  ← findings from revision diff analysis
+│   └── revision-diff-findings.md
 ├── revision-ods/              ← ODS snapshots at specific revision points
 │   ├── manifest.json          ← version-to-revision mapping (V1-V10)
 │   ├── ubl25_library/         ← 4 unique library revisions
@@ -46,6 +48,8 @@ work-sheets/
 │       └── rev-2204.ods
 └── scripts/                   ← tools for discovery, download, conversion
     ├── run.py                         ← orchestrator (runs steps in order)
+    ├── download-drive-revisions.py    ← public: bulk ODS revision download
+    ├── diff-ods-revisions.py          ← public: cell-level ODS diff
     ├── discover-drive-history.py      ← map all Drive files and revisions
     ├── fetch-revision-metadata.py     ← get revision timestamps and authors
     ├── fetch-revision-content.py      ← download spreadsheet content per revision
@@ -117,6 +121,22 @@ These scripts require a Google OAuth token with `drive.readonly` scope.
   endorsed subset: removes `Endorsed*` columns, deletes rows with
   `EndorsedCardinality='0'`, and replaces `Cardinality` values with their
   endorsed equivalents.
+
+### Public Revision Analysis (no auth required)
+
+These scripts work with the public Google Drive folder and don't need an OAuth
+token:
+
+- **`download-drive-revisions.py`** — Downloads `.ods.gz` revision snapshots
+  from the public Drive folder and decompresses them. Supports both library and
+  documents sheets.
+- **`diff-ods-revisions.py`** — Cell-level diff of consecutive ODS revisions.
+  Reports exact cell addresses, column names, old/new values, and whether
+  changes are user edits vs formula shifts. Supports `--text-only` (ignore
+  formulas), `--all-sheets` (multi-sheet ODS files), and `--json` output.
+
+Results from running these tools are documented in
+[`analysis/revision-diff-findings.md`](analysis/revision-diff-findings.md).
 
 ---
 
