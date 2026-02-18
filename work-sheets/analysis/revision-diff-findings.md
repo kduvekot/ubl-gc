@@ -83,7 +83,7 @@ The **computed values are identical** — only the formula text differs.
 Occasional cell formatting changes without any text or formula change.
 Example: rev 11→12 (style change on Endorsed cardinality cell).
 
-### Quantitative Summary (rev 1-100)
+### Quantitative Summary (rev 1-100, positional diff)
 
 | Metric | Count |
 |--------|-------|
@@ -92,6 +92,77 @@ Example: rev 11→12 (style change on Endorsed cardinality cell).
 | Transitions with 1-2 cell changes | 40 (47%) |
 | Transitions with row/col insertion artifacts | 6 (7%) |
 | **Real text edits** (across all 100 revisions) | **~50 cells** |
+
+### Full Semantic Diff (rev 1-1000)
+
+A complete cell-level diff using **semantic matching** (columns matched by header
+name, rows by Dictionary Entry Name) across all 999 consecutive transitions:
+
+| Metric | Count |
+|--------|-------|
+| Total transitions analyzed | 999 |
+| Identical transitions (no changes at all) | 246 (24.6%) |
+| Style-only transitions (formatting noise) | 41 (4.1%) |
+| Changed transitions | 712 (71.3%) |
+| Total cell-level changes | 717,424 |
+| **Formula reference shifts** (row insertion artifacts) | **717,068 (99.95%)** |
+| **Real user edits** | **219 (0.03%)** |
+| Rows added (new components) | ~120 |
+| Rows removed | ~90 |
+| Column structure changes | 22 (all in rev 1-75) |
+
+**Key finding:** 99.95% of all detected cell changes are formula reference shifts —
+when a row is inserted, all ~1,700 formulas in the sheet update their row
+references (e.g., `[.H2]` → `[.H3]`), producing ~1,700 `formula_change` records
+per row insertion even though the computed values are identical. The actual editorial
+work is just **219 user edits across 1,000 revisions** — almost always exactly
+1 cell change per revision.
+
+#### Editing Pattern
+
+- **207 transitions** contain at least 1 user edit
+- **Almost always 1 cell per revision** — extremely granular editing
+- Common pattern: edit Cardinality, Endorsed Cardinality, Definition, or
+  Component Name in a single row, then move to next item
+- Multi-edit transitions (2-3 user edits) appear when related fields in the same
+  row change together (e.g., Component Name + Dictionary Entry Name rename)
+
+#### Row Growth (rev 1-1000)
+
+~120 rows added across 1,000 revisions, representing new UBL components being
+defined. The row count grows from 3,010 (rev 1) to 3,099 (rev 1000). Rows are
+occasionally removed and re-added as components are reorganized.
+
+### Full Semantic Diff (rev 1001-1500)
+
+| Metric | Count |
+|--------|-------|
+| Total transitions analyzed | 499 |
+| Identical transitions | 391 (78.4%) |
+| Style-only transitions | 0 |
+| Changed transitions | 108 (21.6%) |
+| Total cell changes | 233,254 |
+| **Formula reference shifts** | **232,750 (99.8%)** |
+| **Real user edits** | **473** |
+| Column structure changes | 0 (layout finalized) |
+| Row structure events | 75 |
+
+The editing pattern shifts significantly in rev 1001-1500:
+- **78% of transitions are identical** (vs 25% in rev 1-1000) — the sheet is stable
+- **No column structure changes** — the 26-column layout is finalized
+- **More user edits per changed transition** (~4.4 vs 0.3 in rev 1-1000)
+- The editor is doing real content work, not column setup
+
+#### Combined rev 1-1500
+
+| Metric | Rev 1-1000 | Rev 1001-1500 | Combined |
+|--------|-----------|---------------|----------|
+| Transitions | 999 | 499 | 1,498 |
+| Identical | 246 (25%) | 391 (78%) | 637 (43%) |
+| Changed | 712 (71%) | 108 (22%) | 820 (55%) |
+| User edits | 219 | 473 | **692** |
+| Col structure events | 22 | 0 | 22 |
+| Row structure events | ~200 | 75 | ~275 |
 
 ### Worksheet Evolution (full range)
 
@@ -235,7 +306,13 @@ For meaningful comparison, diffs must be:
 ## Scripts
 
 - `work-sheets/scripts/download-drive-revisions.py` — Download .ods.gz from public Drive folder
-- `work-sheets/scripts/diff-ods-revisions.py` — ODS diff with multi-sheet and text-only modes:
+- `work-sheets/scripts/diff-ods-revisions.py` — ODS diff with semantic matching:
+  - **Default: semantic mode** — matches columns by header name, rows by
+    Dictionary Entry Name, eliminating false changes from insertions
+  - `--streaming` — Pairwise mode: parse 2 files at a time, write per-pair
+    JSON to disk, free memory (essential for 100+ revisions)
+  - `--output-dir DIR` — Output directory for streaming mode JSON files
+  - `--positional` — Legacy positional comparison (generates false changes)
   - `--text-only` — Ignore formulas (eliminates column-shift noise)
   - `--all-sheets` — Compare all sheets in multi-sheet ODS files
   - `--range N-M` — Process a specific revision range
