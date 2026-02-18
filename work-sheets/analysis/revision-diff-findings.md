@@ -1,9 +1,9 @@
 # ODS Revision Diff Analysis: ubl25_library & ubl25_documents
 
-**Date:** 2026-02-17
+**Date:** 2026-02-18 (updated)
 **Source:** Google Drive public folder, slow-validation ODS exports
 **Revisions analyzed:**
-- **Library:** 92 files (rev 1-100 consecutive, samples at 150, 200, 500, 1000, 1500, 1843, 1999, 2005)
+- **Library:** ALL 2,005 files (rev 1-2005 complete, streaming semantic diff)
 - **Documents:** 132 files (rev 1-50, 146-194, 1719-1751)
 
 ---
@@ -153,16 +153,114 @@ The editing pattern shifts significantly in rev 1001-1500:
 - **More user edits per changed transition** (~4.4 vs 0.3 in rev 1-1000)
 - The editor is doing real content work, not column setup
 
-#### Combined rev 1-1500
+### Full Semantic Diff (rev 1501-2005) — NEW
 
-| Metric | Rev 1-1000 | Rev 1001-1500 | Combined |
-|--------|-----------|---------------|----------|
-| Transitions | 999 | 499 | 1,498 |
-| Identical | 246 (25%) | 391 (78%) | 637 (43%) |
-| Changed | 712 (71%) | 108 (22%) | 820 (55%) |
-| User edits | 219 | 473 | **692** |
-| Col structure events | 22 | 0 | 22 |
-| Row structure events | ~200 | 75 | ~275 |
+| Metric | Count |
+|--------|-------|
+| Total transitions analyzed | 504 |
+| Identical transitions | 107 (21%) |
+| Style-only transitions | 3 |
+| Changed transitions | 394 (78%) |
+| Total cell changes | 276 |
+| **Real user edits** | **236** |
+| Column structure changes | 0 |
+| Row structure events | 137 |
+
+**Rev 1501-2005 is the most active editing phase** — 78% of transitions show
+changes (vs 22% in 1001-1500), and the work is almost entirely real content
+edits, not formula shifts. This ran in text-only mode, so formula reference
+shifts are excluded from the counts.
+
+#### Five Thematic Editing Clusters
+
+Unlike earlier phases dominated by individual tweaks, rev 1501-2005 shows five
+recognizable domain areas being built in sequence:
+
+1. **Work Quantity / Work Report (rev 1511-1532)**
+   New aggregate class `Work Quantity Total` built incrementally. `Work Report Line`
+   references added. Cardinality corrections: `'1..n'` → `'0..n'`, definitions
+   rewritten for clarity.
+
+2. **Electronic Address / Exchange Network (rev 1554-1614)**
+   New `Electronic Address` and `Exchange Network` classes modeled, then `Party`
+   cross-referenced to them. "Network Address" was added at rev 1581, removed at
+   rev 1614, replaced by `Party. Electronic Address` — a naming redesign mid-session.
+
+3. **Payment Rail / Blockchain / Financial Account (rev 1586-1615)**
+   Payment platform and payment rail identifiers added, then iterated — each
+   revision renames or re-types the component. Blockchain identifier added with
+   wrong Data Type Qualifier (`Currency` instead of none), corrected at rev 1609.
+
+4. **Hazardous Item / Radioactive Material / Radioactive Isotope (rev 1630-1773)**
+   The largest cluster (~100 revisions). Includes Packaging substructure,
+   Radioactive Isotope identifiers (several renames), Radioactive Material
+   (Transport Index, Fissile Criticality, Order Line Reference). Several
+   "add → remove → add with corrected name" cycles visible.
+
+5. **Energy Consumption Allocation (rev 1802-1856)**
+   New class for environmental/energy tracking, built row by row, with
+   Amount/Code type evolution visible.
+
+#### Mass Definition Normalization Sweep (rev 1857-1994)
+
+A highly distinctive pattern: **138 consecutive revisions** (with ~5 idle gaps)
+each making exactly 1 change to the `Definition` column. Every "party" reference
+is updated to use the capitalized proper noun "Party" and phrasing is
+standardized:
+
+- `'The utility customer.'` → `'The Customer Party for this utility.'`
+- `'The party executing the weight measure.'` → `'The Party who executes the weight measure.'`
+
+This systematic terminology normalization sweep does not appear anywhere in
+rev 1-1500 — it represents a deliberate style-conformance pass.
+
+#### Column Edit Distribution (rev 1501-2005)
+
+| Column | User Edits | % |
+|--------|-----------|---|
+| Definition | 180 | 76% |
+| Current Version | 22 | 9% |
+| Endorsed Cardinality Rationale | 17 | 7% |
+| Cardinality | 13 | 6% |
+| Editor's Notes | 3 | 1% |
+| Data Type / Data Type Qualifier | 1 | <1% |
+
+#### Endorsed Cardinality Rationale Updates
+
+Two distinct bursts:
+- **Rev 1576-1577:** `Party. Endpoint Identifier. Identifier` gets rationale
+  (deprecation notice for Electronic Address)
+- **Rev 1778-1794 + 1841:** Systematic sweep adding "Deprecated since UBL 2.5."
+  prefixes to 12 existing rationale strings — standardizing deprecation notice format
+
+#### Final Edits (rev 1995-2005)
+
+- **Rev 1996-1997:** `External Reference. URI. Identifier` briefly becomes
+  `External Reference. 0. Identifier` (one-revision typo, immediately reverted)
+- **Rev 1999-2001:** `Buyer Reference` renamed to `Buyer Assigned Reference`
+  across 3 child rows
+- **Rev 2003-2004:** Final user edit — Cardinality of
+  `Consignment. Office Of Transit_ Location. Location` changed from `'0..1'`
+  to `'0..n'`
+- **Rev 2004-2005:** Completely idle — the final snapshot is identical to rev 2004
+
+### Combined rev 1-2005 (Complete)
+
+| Metric | Rev 1-1000 | Rev 1001-1500 | Rev 1501-2005 | **Grand Total** |
+|--------|-----------|---------------|---------------|-----------------|
+| Transitions | 1,000 | 500 | 504 | **2,004** |
+| Identical | 264 (26%) | 144 (29%) | 107 (21%) | **515 (26%)** |
+| Style-only | 42 | 2 | 3 | **47** |
+| Changed | 694 (69%) | 354 (71%) | 394 (78%) | **1,442 (72%)** |
+| User edits | 227 | 123 | 236 | **586** |
+| Col structure events | 22 | 0 | 0 | **22** |
+| Row structure events | 363 | 205 | 137 | **705** |
+
+> **Note:** The rev 1-2005 full-range analysis ran in `--text-only` mode,
+> excluding formula reference shifts from cell change counts. Previous per-range
+> analyses (rev 1-1000 and 1001-1500) were run with formulas included, where
+> 99.95% of detected changes were formula reference shifts. The user-edit counts
+> are consistent across both modes.
 
 ### Worksheet Evolution (full range)
 
@@ -177,7 +275,7 @@ The editing pattern shifts significantly in rev 1001-1500:
 | **~1200-1500** | **2** | 3,187 | 26 | **+"Logs-sheet"** (script execution logs) |
 | 1843 | 2 | 3,185 | 26 | Maps to V1/V2 workflow |
 | 1999 | 2 | 3,187 | 26 | CSD02 official state |
-| 2005 | 2 | 3,187 | 26 | Final (current) |
+| 2005 | 2 | 3,187 | 26 | Final (current, identical to rev 2004) |
 
 ### Logs-sheet Details
 
@@ -325,9 +423,10 @@ For meaningful comparison, diffs must be:
 
 1. ~~Build a multi-sheet diff~~ ✓ Done (`--all-sheets` flag)
 2. ~~Extend analysis to documents sheet~~ ✓ Done (3 clusters analyzed)
-3. Download the full slow-validation ODS files for documents once the Colab notebook completes
-4. Cross-reference with OASIS release dates to identify which revisions
+3. ~~Complete full-range library analysis (rev 1-2005)~~ ✓ Done (streaming semantic diff)
+4. Download the full slow-validation ODS files for documents once the Colab notebook completes
+5. Cross-reference with OASIS release dates to identify which revisions
    correspond to formal committee draft stages
-5. Map the alphabetical editing wavefront to estimate total edit duration
+6. Map the alphabetical editing wavefront to estimate total edit duration
    (93 sheets × 4 revisions ≈ 372 revisions for complete restructuring)
-6. Analyze the Logs-sheet for Apps Script execution patterns and timing
+7. Analyze the Logs-sheet for Apps Script execution patterns and timing
