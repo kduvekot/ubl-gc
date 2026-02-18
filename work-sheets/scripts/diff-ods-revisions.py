@@ -6,6 +6,10 @@ Reads ODS (OpenDocument Spreadsheet) files exported from Google Sheets
 revision history, extracts all cell data from the content.xml, and
 compares consecutive revisions to show exactly what changed.
 
+Default mode uses **semantic matching**: columns are matched by header name
+and rows by Dictionary Entry Name, eliminating false changes from column/row
+insertions. Use --positional to fall back to raw position-based comparison.
+
 Supports multi-sheet ODS files (e.g. the documents sheet with 93+ worksheets).
 Can operate in text-only mode to ignore formula reference shifts caused by
 column/row insertions.
@@ -22,6 +26,7 @@ Usage:
     python3 diff-ods-revisions.py /tmp/ubl-revisions/library --range 1-10
     python3 diff-ods-revisions.py /tmp/ubl-revisions/library --verbose
     python3 diff-ods-revisions.py /tmp/ubl-revisions/library --text-only
+    python3 diff-ods-revisions.py /tmp/ubl-revisions/library --positional
     python3 diff-ods-revisions.py /tmp/ubl-revisions/documents --all-sheets
     python3 diff-ods-revisions.py /tmp/ubl-revisions/library --json /tmp/diff-results.json
 
@@ -202,7 +207,7 @@ def parse_ods_all_sheets(ods_path, text_only=False):
 
 
 def diff_grids(old_data, new_data):
-    """Compare two parsed ODS grids and return all differences.
+    """Compare two parsed ODS grids and return all differences (positional).
 
     Returns a list of change dicts, each containing:
         - row, col: cell position
@@ -249,6 +254,339 @@ def diff_grids(old_data, new_data):
             changes.append(_make_change(row, col, headers, old_cell, new_cell, category))
 
     return changes
+
+
+def _build_col_map(headers):
+    """Build header_name -> col_index mapping, handling duplicates/empties.
+
+    Empty/unnamed headers are stored as "(unnamed_N)" where N is the col index.
+    """
+    col_map = {}  # header_name -> col_index (first occurrence)
+    for idx, name in enumerate(headers):
+        key = name if name else f"(unnamed_{idx})"
+        if key not in col_map:
+            col_map[key] = idx
+    return col_map
+
+
+def _match_columns(old_headers, new_headers):
+    """Match columns between two revisions using header names.
+
+    Returns:
+        matched: list of (old_col, new_col, header_name) for matched columns
+        added: list of (new_col, header_name) for columns only in new
+        removed: list of (old_col, header_name) for columns only in old
+        unnamed_added: count of unnamed columns added
+        unnamed_removed: count of unnamed columns removed
+        unnamed_positions: list of positions where unnamed columns were inserted
+    """
+    # Build name -> index maps for named columns only
+    old_named = {}
+    new_named = {}
+    old_unnamed = []
+    new_unnamed = []
+
+    for idx, name in enumerate(old_headers):
+        if name:
+            if name not in old_named:
+                old_named[name] = idx
+        else:
+            old_unnamed.append(idx)
+
+    for idx, name in enumerate(new_headers):
+        if name:
+            if name not in new_named:
+                new_named[name] = idx
+        else:
+            new_unnamed.append(idx)
+
+    old_names = set(old_named.keys())
+    new_names = set(new_named.keys())
+
+    matched = []
+    for name in sorted(old_names & new_names):
+        matched.append((old_named[name], new_named[name], name))
+
+    added = []
+    for name in sorted(new_names - old_names):
+        added.append((new_named[name], name))
+
+    removed = []
+    for name in sorted(old_names - new_names):
+        removed.append((old_named[name], name))
+
+    # Figure out where unnamed columns were inserted by looking at gaps
+    # between matched column positions
+    unnamed_positions = []
+    for idx in new_unnamed:
+        # Find neighboring named columns in new
+        before_name = None
+        after_name = None
+        for i in range(idx - 1, -1, -1):
+            if i < len(new_headers) and new_headers[i]:
+                before_name = new_headers[i]
+                break
+        for i in range(idx + 1, len(new_headers)):
+            if new_headers[i]:
+                after_name = new_headers[i]
+                break
+        unnamed_positions.append({
+            "col": idx,
+            "col_letter": col_letter(idx),
+            "after": before_name,
+            "before": after_name,
+        })
+
+    return {
+        "matched": matched,
+        "added": added,
+        "removed": removed,
+        "unnamed_added": max(0, len(new_unnamed) - len(old_unnamed)),
+        "unnamed_removed": max(0, len(old_unnamed) - len(new_unnamed)),
+        "unnamed_positions": unnamed_positions,
+        "old_count": len(old_headers),
+        "new_count": len(new_headers),
+    }
+
+
+def _build_row_key(grid, row, den_col):
+    """Build a row identity key using Dictionary Entry Name column.
+
+    Falls back to Component Name (col 0) if DEN not available.
+    Returns None for empty/spacer rows.
+    """
+    # Try Dictionary Entry Name first (unique per component)
+    if den_col is not None:
+        cell = grid.get((row, den_col))
+        if cell and cell["text"].strip():
+            return cell["text"].strip()
+
+    # Fallback: Component Name (col 0) — not unique but better than position
+    cell = grid.get((row, 0))
+    if cell and cell["text"].strip():
+        return cell["text"].strip()
+
+    return None
+
+
+def _build_row_identity_map(grid, max_row, den_col):
+    """Build row identity maps for all data rows.
+
+    Returns:
+        key_to_row: dict of identity_key -> row_index
+        key_order: list of keys in original row order
+        unmatched_rows: list of row indices with no identity key
+        row_count: total data rows (excluding header)
+    """
+    key_to_row = {}
+    key_order = []
+    unmatched_rows = []
+
+    for row in range(1, max_row + 1):
+        key = _build_row_key(grid, row, den_col)
+        if key:
+            if key not in key_to_row:
+                key_to_row[key] = row
+                key_order.append(key)
+            # Duplicate keys — keep first occurrence, note the duplicate
+        else:
+            unmatched_rows.append(row)
+
+    return {
+        "key_to_row": key_to_row,
+        "key_order": key_order,
+        "unmatched_rows": unmatched_rows,
+        "row_count": max_row,  # data rows (max_row is 0-indexed, row 0 is header)
+    }
+
+
+def diff_grids_semantic(old_data, new_data):
+    """Compare two ODS grids using semantic matching (by column name and row identity).
+
+    Instead of comparing (row, col) positions directly, this:
+    1. Matches columns by header name (handles column insertions/removals)
+    2. Matches rows by Dictionary Entry Name (handles row insertions/removals)
+    3. Reports structural changes (new/removed columns and rows) separately
+
+    Returns a dict with:
+        - changes: list of semantic change dicts
+        - column_changes: dict describing column additions/removals/renames
+        - row_changes: dict describing row additions/removals
+        - summary: aggregated statistics
+    """
+    old_grid = old_data["grid"]
+    new_grid = new_data["grid"]
+    old_headers = old_data["headers"]
+    new_headers = new_data["headers"]
+
+    # Step 1: Match columns by header name
+    col_match = _match_columns(old_headers, new_headers)
+
+    # Step 2: Find Dictionary Entry Name column in both
+    old_den_col = None
+    new_den_col = None
+    for old_col, new_col, name in col_match["matched"]:
+        if name == "Dictionary Entry Name":
+            old_den_col = old_col
+            new_den_col = new_col
+            break
+
+    # Step 3: Build row identity maps
+    old_rows = _build_row_identity_map(old_grid, old_data["max_row"], old_den_col)
+    new_rows = _build_row_identity_map(new_grid, new_data["max_row"], new_den_col)
+
+    old_keys_set = set(old_rows["key_to_row"].keys())
+    new_keys_set = set(new_rows["key_to_row"].keys())
+
+    added_row_keys = sorted(new_keys_set - old_keys_set)
+    removed_row_keys = sorted(old_keys_set - new_keys_set)
+    common_row_keys = old_keys_set & new_keys_set
+
+    # Step 4: Compare cells in matched (row, column) pairs
+    changes = []
+    style_only_count = 0
+
+    for row_key in sorted(common_row_keys):
+        old_row = old_rows["key_to_row"][row_key]
+        new_row = new_rows["key_to_row"][row_key]
+
+        for old_col, new_col, col_name in col_match["matched"]:
+            old_cell = old_grid.get((old_row, old_col))
+            new_cell = new_grid.get((new_row, new_col))
+
+            if old_cell == new_cell:
+                continue
+
+            if old_cell is None and new_cell is not None:
+                cat = "added"
+            elif old_cell is not None and new_cell is None:
+                cat = "removed"
+            else:
+                cat = _categorize_change(old_cell, new_cell)
+
+            # Style-only changes are ODS export artifacts (internal style IDs
+            # shift when columns are inserted/removed). Count them but don't
+            # include in the main change list.
+            if cat == "style_only":
+                style_only_count += 1
+                continue
+
+            header = col_name
+            address = f"{col_letter(new_col)}{new_row + 1}"
+
+            old_text = old_cell["text"] if old_cell else ""
+            new_text = new_cell["text"] if new_cell else ""
+            old_formula = old_cell.get("formula", "") if old_cell else ""
+            new_formula = new_cell.get("formula", "") if new_cell else ""
+            old_type = old_cell.get("type", "") if old_cell else ""
+            new_type = new_cell.get("type", "") if new_cell else ""
+
+            changes.append({
+                "row": new_row,
+                "col": new_col,
+                "old_row": old_row,
+                "old_col": old_col,
+                "address": address,
+                "header": header,
+                "row_key": row_key,
+                "change_type": cat,
+                "old_text": old_text,
+                "new_text": new_text,
+                "old_formula": old_formula,
+                "new_formula": new_formula,
+                "old_type": old_type,
+                "new_type": new_type,
+                "is_formula_cell": bool(old_formula or new_formula),
+                "formula_changed": old_formula != new_formula,
+                "text_changed": old_text != new_text,
+            })
+
+    # Step 5: Report cells in added named columns (for matched rows)
+    for new_col, col_name in col_match["added"]:
+        for row_key in sorted(common_row_keys):
+            new_row = new_rows["key_to_row"][row_key]
+            cell = new_grid.get((new_row, new_col))
+            if cell and cell["text"].strip():
+                changes.append({
+                    "row": new_row,
+                    "col": new_col,
+                    "old_row": None,
+                    "old_col": None,
+                    "address": f"{col_letter(new_col)}{new_row + 1}",
+                    "header": col_name,
+                    "row_key": row_key,
+                    "change_type": "column_added",
+                    "old_text": "",
+                    "new_text": cell["text"],
+                    "old_formula": "",
+                    "new_formula": cell.get("formula", ""),
+                    "old_type": "",
+                    "new_type": cell.get("type", ""),
+                    "is_formula_cell": bool(cell.get("formula")),
+                    "formula_changed": bool(cell.get("formula")),
+                    "text_changed": bool(cell["text"]),
+                })
+
+    # Step 6: Report cells in removed named columns (for matched rows)
+    for old_col, col_name in col_match["removed"]:
+        for row_key in sorted(common_row_keys):
+            old_row = old_rows["key_to_row"][row_key]
+            cell = old_grid.get((old_row, old_col))
+            if cell and cell["text"].strip():
+                changes.append({
+                    "row": old_row,
+                    "col": old_col,
+                    "old_row": old_row,
+                    "old_col": old_col,
+                    "address": f"{col_letter(old_col)}{old_row + 1}",
+                    "header": col_name,
+                    "row_key": row_key,
+                    "change_type": "column_removed",
+                    "old_text": cell["text"],
+                    "new_text": "",
+                    "old_formula": cell.get("formula", ""),
+                    "new_formula": "",
+                    "old_type": cell.get("type", ""),
+                    "new_type": "",
+                    "is_formula_cell": bool(cell.get("formula")),
+                    "formula_changed": bool(cell.get("formula")),
+                    "text_changed": bool(cell["text"]),
+                })
+
+    column_changes = {
+        "added": [(name, col_letter(idx), idx) for idx, name in col_match["added"]],
+        "removed": [(name, col_letter(idx), idx) for idx, name in col_match["removed"]],
+        "common": [name for _, _, name in col_match["matched"]],
+        "unnamed_added": col_match["unnamed_added"],
+        "unnamed_removed": col_match["unnamed_removed"],
+        "unnamed_positions": col_match["unnamed_positions"],
+        "old_count": col_match["old_count"],
+        "new_count": col_match["new_count"],
+    }
+
+    # Include row positions for added/removed rows
+    added_with_pos = [(k, new_rows["key_to_row"][k]) for k in added_row_keys]
+    removed_with_pos = [(k, old_rows["key_to_row"][k]) for k in removed_row_keys]
+
+    row_changes = {
+        "added": added_with_pos[:50],  # cap display for very large lists
+        "added_count": len(added_row_keys),
+        "removed": removed_with_pos[:50],
+        "removed_count": len(removed_row_keys),
+        "matched": len(common_row_keys),
+        "old_row_count": old_rows["row_count"],
+        "new_row_count": new_rows["row_count"],
+        "old_unmatched": len(old_rows["unmatched_rows"]),
+        "new_unmatched": len(new_rows["unmatched_rows"]),
+    }
+
+    return {
+        "changes": changes,
+        "column_changes": column_changes,
+        "row_changes": row_changes,
+        "style_only_count": style_only_count,
+        "summary": summarize_changes(changes),
+    }
 
 
 def _make_change(row, col, headers, old_cell, new_cell, category):
@@ -351,6 +689,10 @@ def format_change(change, verbose=False):
         "added": "ADDED",
         "removed": "REMOVED",
         "header_change": "HEADER CHANGE",
+        "column_added": "COL ADDED",
+        "column_removed": "COL REMOVED",
+        "row_added": "ROW ADDED",
+        "row_removed": "ROW REMOVED",
         "other": "OTHER",
     }.get(cat, cat.upper())
 
@@ -859,6 +1201,294 @@ def _write_json(json_path, indir, all_revs, all_results, total_changes,
     print(f"\n  JSON results: {jp}")
 
 
+def _run_semantic_mode(args, indir, ods_files, all_revs):
+    """Semantic diff mode: match columns by name and rows by identity."""
+    text_only = args.text_only
+
+    print("Parsing ODS files...")
+    parsed = {}
+    for rev_num in all_revs:
+        path = ods_files[rev_num]
+        print(f"  rev-{rev_num:>5}: parsing...", end="", flush=True)
+        try:
+            data = parse_ods(path, text_only=text_only)
+            parsed[rev_num] = data
+            print(f" {data['num_cells']} cells, {data['max_row']+1} rows, "
+                  f"{data['max_col']+1} cols ({data['table_name']})")
+        except Exception as e:
+            print(f" ERROR: {e}")
+
+    # Show header rows for context
+    if parsed:
+        first_rev = min(parsed.keys())
+        last_rev = max(parsed.keys())
+        for rev in [first_rev, last_rev]:
+            if rev in parsed:
+                headers = parsed[rev]["headers"]
+                print(f"\nColumn headers (rev-{rev}, {len(headers)} cols):")
+                for i, h in enumerate(headers):
+                    if h:
+                        print(f"  {col_letter(i):>3} ({i:2d}): {h}")
+
+    # Compare consecutive pairs
+    print()
+    print("=" * 80)
+    print("Comparing consecutive revisions (semantic matching)")
+    print("=" * 80)
+
+    all_results = []
+    total_cell_changes = 0
+    total_user_edits = 0
+
+    for i in range(len(all_revs) - 1):
+        rev_a = all_revs[i]
+        rev_b = all_revs[i + 1]
+
+        if rev_a not in parsed or rev_b not in parsed:
+            continue
+
+        result = diff_grids_semantic(parsed[rev_a], parsed[rev_b])
+        result["from_rev"] = rev_a
+        result["to_rev"] = rev_b
+
+        changes = result["changes"]
+        col_changes = result["column_changes"]
+        row_changes = result["row_changes"]
+        summary = result["summary"]
+
+        all_results.append(result)
+
+        style_only_count = result.get("style_only_count", 0)
+
+        # Determine if there are any structural or data changes
+        has_col_structure = (col_changes["added"] or col_changes["removed"]
+                            or col_changes["unnamed_added"] > 0
+                            or col_changes["unnamed_removed"] > 0
+                            or col_changes["old_count"] != col_changes["new_count"])
+        has_row_structure = (row_changes["added_count"] > 0
+                            or row_changes["removed_count"] > 0
+                            or row_changes["old_row_count"] != row_changes["new_row_count"])
+        has_data_changes = bool(changes)
+
+        # Skip truly identical transitions unless requested
+        if not has_col_structure and not has_row_structure and not has_data_changes:
+            if style_only_count > 0:
+                if args.show_unchanged:
+                    print(f"\nrev-{rev_a} -> rev-{rev_b}: "
+                          f"formatting only ({style_only_count} style changes, no data changes)")
+            elif args.show_unchanged:
+                print(f"\nrev-{rev_a} -> rev-{rev_b}: IDENTICAL (no changes)")
+            continue
+
+        cats = summary["by_category"]
+        user_edits = cats.get("user_edit", 0)
+        total_cell_changes += len(changes)
+        total_user_edits += user_edits
+
+        print(f"\n{'─'*80}")
+        print(f"rev-{rev_a} -> rev-{rev_b}:")
+
+        # Column structure changes
+        if has_col_structure:
+            print(f"  COLUMNS: {col_changes['old_count']} -> "
+                  f"{col_changes['new_count']} columns")
+            if col_changes["added"]:
+                for name, letter, idx in col_changes["added"]:
+                    print(f"    + col {letter} ({idx}): \"{name}\"")
+            if col_changes["removed"]:
+                for name, letter, idx in col_changes["removed"]:
+                    print(f"    - col {letter} ({idx}): \"{name}\"")
+            if col_changes["unnamed_added"] > 0:
+                for pos in col_changes.get("unnamed_positions", []):
+                    context = ""
+                    if pos["after"] and pos["before"]:
+                        context = f" (between \"{pos['after']}\" and \"{pos['before']}\")"
+                    elif pos["after"]:
+                        context = f" (after \"{pos['after']}\")"
+                    print(f"    + col {pos['col_letter']} ({pos['col']}): "
+                          f"(empty/unnamed){context}")
+            if col_changes["unnamed_removed"] > 0:
+                print(f"    - {col_changes['unnamed_removed']} "
+                      f"empty column(s) removed")
+
+        # Row structure changes
+        if has_row_structure:
+            print(f"  ROWS: {row_changes['old_row_count']} -> "
+                  f"{row_changes['new_row_count']} data rows "
+                  f"({row_changes['matched']} matched by identity)")
+            if row_changes["added_count"] > 0:
+                n = row_changes["added_count"]
+                print(f"    + {n} row(s) added")
+                if n <= 10:
+                    for k, new_row in row_changes["added"]:
+                        print(f"      + row {new_row + 1}: {k}")
+            if row_changes["removed_count"] > 0:
+                n = row_changes["removed_count"]
+                print(f"    - {n} row(s) removed")
+                if n <= 10:
+                    for k, old_row in row_changes["removed"]:
+                        print(f"      - row {old_row + 1}: {k}")
+
+        # Cell changes summary
+        if changes:
+            style_note = f"  (+ {style_only_count} style-only ignored)" if style_only_count else ""
+            print(f"  CELL CHANGES: {len(changes)}{style_note}")
+            parts = [f"{k}={v}" for k, v in sorted(cats.items())]
+            print(f"    {', '.join(parts)}")
+        elif style_only_count > 0 and (has_col_structure or has_row_structure):
+            print(f"  ({style_only_count} style-only changes ignored)")
+
+            # Changes by column
+            by_col = summary.get("by_column", {})
+            if by_col:
+                print(f"\n  Changes by column:")
+                for col_name in sorted(by_col.keys(), key=lambda x: (x == "", x)):
+                    col_cats = by_col[col_name]
+                    cparts = [f"{c}={n}" for c, n in sorted(col_cats.items())]
+                    label = col_name if col_name else "(empty header)"
+                    print(f"    {label:>35}: {', '.join(cparts)}")
+
+            # Show individual changes
+            priority = {
+                "user_edit": 0, "column_added": 1, "column_removed": 2,
+                "added": 3, "removed": 4, "formula_change": 5,
+                "formula_result": 6, "style_only": 7, "type_change": 8,
+                "other": 9,
+            }
+            sorted_changes = sorted(changes, key=lambda c: (
+                priority.get(c["change_type"], 99), c["row"], c["col"]
+            ))
+
+            show_n = min(len(sorted_changes), args.max_changes)
+            print(f"\n  Changes (showing {show_n}/{len(changes)}):")
+            for j, change in enumerate(sorted_changes):
+                if j >= args.max_changes:
+                    print(f"  ... and {len(changes) - j} more changes")
+                    break
+                # Include row key for context
+                rk = change.get("row_key", "")
+                rk_short = rk[:40] + "..." if len(rk) > 40 else rk
+                line = format_change(change, verbose=args.verbose)
+                if rk:
+                    line += f"  [{rk_short}]"
+                print(line)
+
+        else:
+            if has_col_structure or has_row_structure:
+                print(f"  No cell data changes (structure change only)")
+
+    # Overall summary
+    print()
+    print("=" * 80)
+    print("SEMANTIC DIFF SUMMARY")
+    print("=" * 80)
+    print(f"  Transitions analyzed: {len(all_results)}")
+
+    def _is_identical(r):
+        cc = r["column_changes"]
+        rc = r["row_changes"]
+        return (not r["changes"]
+                and r.get("style_only_count", 0) == 0
+                and not cc["added"] and not cc["removed"]
+                and cc["unnamed_added"] == 0 and cc["unnamed_removed"] == 0
+                and cc["old_count"] == cc["new_count"]
+                and rc["added_count"] == 0 and rc["removed_count"] == 0
+                and rc["old_row_count"] == rc["new_row_count"])
+
+    def _is_style_only(r):
+        cc = r["column_changes"]
+        rc = r["row_changes"]
+        return (not r["changes"]
+                and r.get("style_only_count", 0) > 0
+                and not cc["added"] and not cc["removed"]
+                and cc["unnamed_added"] == 0 and cc["unnamed_removed"] == 0
+                and cc["old_count"] == cc["new_count"]
+                and rc["added_count"] == 0 and rc["removed_count"] == 0
+                and rc["old_row_count"] == rc["new_row_count"])
+
+    identical = sum(1 for r in all_results if _is_identical(r))
+    style_only_transitions = sum(1 for r in all_results if _is_style_only(r))
+    total_style_only = sum(r.get("style_only_count", 0) for r in all_results)
+    print(f"  Identical transitions: {identical}")
+    if style_only_transitions:
+        print(f"  Style-only transitions: {style_only_transitions} "
+              f"(formatting noise, no data changes)")
+    print(f"  Changed transitions:   {len(all_results) - identical - style_only_transitions}")
+    print(f"  Total cell changes:    {total_cell_changes}")
+    print(f"  Total user edits:      {total_user_edits}")
+    if total_style_only:
+        print(f"  Style-only ignored:    {total_style_only} "
+              f"(ODS formatting artifacts)")
+
+    # Aggregate column structure changes
+    all_col_adds = []
+    all_col_removes = []
+    for r in all_results:
+        if r["column_changes"]["added"]:
+            all_col_adds.append((r["from_rev"], r["to_rev"], r["column_changes"]["added"]))
+        if r["column_changes"]["removed"]:
+            all_col_removes.append((r["from_rev"], r["to_rev"], r["column_changes"]["removed"]))
+
+    if all_col_adds or all_col_removes:
+        print(f"\n  Column structure changes:")
+        for fr, tr, cols in all_col_adds:
+            names = [name for name, _, _ in cols] if isinstance(cols[0], tuple) else cols
+            print(f"    rev-{fr} -> rev-{tr}: +{', '.join(names)}")
+        for fr, tr, cols in all_col_removes:
+            names = [name for name, _, _ in cols] if isinstance(cols[0], tuple) else cols
+            print(f"    rev-{fr} -> rev-{tr}: -{', '.join(names)}")
+
+    # Aggregate row changes
+    total_added_rows = sum(r["row_changes"]["added_count"] for r in all_results)
+    total_removed_rows = sum(r["row_changes"]["removed_count"] for r in all_results)
+    if total_added_rows or total_removed_rows:
+        print(f"\n  Row identity changes:")
+        print(f"    Total rows added:   {total_added_rows}")
+        print(f"    Total rows removed: {total_removed_rows}")
+
+    # Most-changed columns
+    global_col_counts = defaultdict(int)
+    global_col_user_edits = defaultdict(int)
+    for r in all_results:
+        for c in r["changes"]:
+            global_col_counts[c["header"]] += 1
+            if c["change_type"] == "user_edit":
+                global_col_user_edits[c["header"]] += 1
+
+    if global_col_counts:
+        print(f"\n  Most-changed columns:")
+        for col, count in sorted(global_col_counts.items(), key=lambda x: -x[1])[:10]:
+            label = col if col else "(empty)"
+            user = global_col_user_edits.get(col, 0)
+            print(f"    {label:>35}: {count:4d} total ({user} user edits)")
+
+    # Write JSON
+    if args.json:
+        json_output = {
+            "input_dir": str(indir),
+            "mode": "semantic",
+            "text_only": text_only,
+            "revisions": all_revs,
+            "transitions": [],
+        }
+        for r in all_results:
+            t = {
+                "from_rev": r["from_rev"],
+                "to_rev": r["to_rev"],
+                "column_changes": r["column_changes"],
+                "row_changes": r["row_changes"],
+                "num_changes": len(r["changes"]),
+                "summary": r["summary"],
+                "changes": r["changes"],
+            }
+            json_output["transitions"].append(t)
+
+        json_path = Path(args.json)
+        with open(json_path, "w") as f:
+            json.dump(json_output, f, indent=2)
+        print(f"\n  JSON results: {json_path}")
+
+
 def main():
     parser = argparse.ArgumentParser(
         description="Diff consecutive ODS revision files"
@@ -895,6 +1525,12 @@ def main():
         "--all-sheets", action="store_true",
         help="Compare all sheets in the ODS file (for multi-sheet documents)"
     )
+    parser.add_argument(
+        "--positional", action="store_true",
+        help="Use positional comparison instead of the default semantic matching. "
+             "Compares by (row, col) position, which generates false changes "
+             "when columns or rows are inserted/removed."
+    )
     args = parser.parse_args()
 
     indir = Path(args.input_dir)
@@ -922,22 +1558,36 @@ def main():
         start, end = args.range.split("-")
         all_revs = [r for r in all_revs if int(start) <= r <= int(end)]
 
+    modes = []
+    if args.text_only:
+        modes.append("text-only")
+    if args.all_sheets:
+        modes.append("all sheets")
+    if args.positional:
+        modes.append("positional")
+    else:
+        modes.append("semantic")
+    mode_str = f" ({', '.join(modes)})" if modes else ""
+
     print("=" * 80)
-    print(f"ODS Revision Diff Analysis {'(text-only)' if args.text_only else ''}"
-          f"{'(all sheets)' if args.all_sheets else ''}")
+    print(f"ODS Revision Diff Analysis{mode_str}")
     print("=" * 80)
     print(f"  Directory: {indir}")
     print(f"  Revisions: {len(all_revs)} ({all_revs[0]}-{all_revs[-1]})")
-    if args.text_only:
-        print(f"  Mode: TEXT-ONLY (formulas ignored)")
-    if args.all_sheets:
-        print(f"  Mode: ALL SHEETS")
+    for m in modes:
+        print(f"  Mode: {m.upper()}")
     print()
 
-    if args.all_sheets:
+    if args.positional:
+        # Legacy positional mode
+        if args.all_sheets:
+            _run_all_sheets_mode(args, indir, ods_files, all_revs)
+        else:
+            _run_single_sheet_mode(args, indir, ods_files, all_revs)
+    elif args.all_sheets:
         _run_all_sheets_mode(args, indir, ods_files, all_revs)
     else:
-        _run_single_sheet_mode(args, indir, ods_files, all_revs)
+        _run_semantic_mode(args, indir, ods_files, all_revs)
 
 
 if __name__ == "__main__":
