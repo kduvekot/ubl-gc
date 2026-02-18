@@ -1335,8 +1335,6 @@ def _run_semantic_mode(args, indir, ods_files, all_revs):
             print(f"  CELL CHANGES: {len(changes)}{style_note}")
             parts = [f"{k}={v}" for k, v in sorted(cats.items())]
             print(f"    {', '.join(parts)}")
-        elif style_only_count > 0 and (has_col_structure or has_row_structure):
-            print(f"  ({style_only_count} style-only changes ignored)")
 
             # Changes by column
             by_col = summary.get("by_column", {})
@@ -1373,6 +1371,8 @@ def _run_semantic_mode(args, indir, ods_files, all_revs):
                     line += f"  [{rk_short}]"
                 print(line)
 
+        elif style_only_count > 0 and (has_col_structure or has_row_structure):
+            print(f"  ({style_only_count} style-only changes ignored)")
         else:
             if has_col_structure or has_row_structure:
                 print(f"  No cell data changes (structure change only)")
@@ -1489,6 +1489,235 @@ def _run_semantic_mode(args, indir, ods_files, all_revs):
         print(f"\n  JSON results: {json_path}")
 
 
+def _run_semantic_streaming(args, indir, ods_files, all_revs):
+    """Streaming pairwise semantic diff: parse 2 files at a time, write to disk, free memory.
+
+    This avoids loading all ODS files into memory simultaneously, making it
+    feasible to diff 1000+ consecutive revisions on a machine with limited RAM.
+    Each pair's result is written as a separate JSON file to the output directory.
+    """
+    import gc as gc_mod
+
+    text_only = args.text_only
+    outdir = Path(args.output_dir)
+    outdir.mkdir(parents=True, exist_ok=True)
+
+    print(f"Streaming pairwise diff: {len(all_revs) - 1} transitions")
+    print(f"  Output: {outdir}/")
+    print()
+
+    # Track aggregates as we go
+    total_transitions = 0
+    identical_count = 0
+    style_only_count_total = 0
+    changed_count = 0
+    total_cell_changes = 0
+    total_user_edits = 0
+    col_structure_events = []
+    row_structure_events = []
+    errors = []
+
+    # Cache: keep the "new" parse from the previous pair as "old" for the next
+    prev_rev = None
+    prev_data = None
+
+    for i in range(len(all_revs) - 1):
+        rev_a = all_revs[i]
+        rev_b = all_revs[i + 1]
+
+        pair_json = outdir / f"pair-{rev_a}-{rev_b}.json"
+
+        # Skip if already computed
+        if pair_json.exists() and pair_json.stat().st_size > 10:
+            # Read the existing result to accumulate stats
+            try:
+                with open(pair_json) as f:
+                    existing = json.load(f)
+                total_transitions += 1
+                n_changes = existing.get("num_changes", 0)
+                if n_changes == 0 and existing.get("style_only_count", 0) == 0:
+                    if not existing.get("has_col_structure") and not existing.get("has_row_structure"):
+                        identical_count += 1
+                    else:
+                        changed_count += 1
+                elif n_changes == 0:
+                    style_only_count_total += 1
+                else:
+                    changed_count += 1
+                    total_cell_changes += n_changes
+                    total_user_edits += existing.get("summary", {}).get(
+                        "by_category", {}).get("user_edit", 0)
+                print(f"  rev-{rev_a:>5} -> rev-{rev_b:>5}: skip (cached, "
+                      f"{n_changes} changes)")
+                # Invalidate cache since we didn't parse rev_b
+                prev_rev = None
+                prev_data = None
+                continue
+            except (json.JSONDecodeError, KeyError):
+                pass  # Re-compute if file is corrupt
+
+        # Parse old revision (use cache if possible)
+        if prev_rev == rev_a and prev_data is not None:
+            old_data = prev_data
+        else:
+            try:
+                old_data = parse_ods(ods_files[rev_a], text_only=text_only)
+            except Exception as e:
+                print(f"  rev-{rev_a:>5} -> rev-{rev_b:>5}: ERROR parsing rev-{rev_a}: {e}")
+                errors.append({"pair": f"{rev_a}-{rev_b}", "error": str(e)})
+                prev_rev = None
+                prev_data = None
+                continue
+
+        # Parse new revision
+        try:
+            new_data = parse_ods(ods_files[rev_b], text_only=text_only)
+        except Exception as e:
+            print(f"  rev-{rev_a:>5} -> rev-{rev_b:>5}: ERROR parsing rev-{rev_b}: {e}")
+            errors.append({"pair": f"{rev_a}-{rev_b}", "error": str(e)})
+            prev_rev = None
+            prev_data = None
+            del old_data
+            gc_mod.collect()
+            continue
+
+        # Run semantic diff
+        result = diff_grids_semantic(old_data, new_data)
+
+        changes = result["changes"]
+        col_changes = result["column_changes"]
+        row_changes = result["row_changes"]
+        style_only = result.get("style_only_count", 0)
+
+        has_col_structure = (col_changes["added"] or col_changes["removed"]
+                            or col_changes["unnamed_added"] > 0
+                            or col_changes["unnamed_removed"] > 0
+                            or col_changes["old_count"] != col_changes["new_count"])
+        has_row_structure = (row_changes["added_count"] > 0
+                            or row_changes["removed_count"] > 0
+                            or row_changes["old_row_count"] != row_changes["new_row_count"])
+
+        # Write per-pair JSON
+        pair_result = {
+            "from_rev": rev_a,
+            "to_rev": rev_b,
+            "num_changes": len(changes),
+            "style_only_count": style_only,
+            "has_col_structure": has_col_structure,
+            "has_row_structure": has_row_structure,
+            "column_changes": col_changes,
+            "row_changes": row_changes,
+            "summary": result["summary"],
+            "changes": changes,
+        }
+        with open(pair_json, "w") as f:
+            json.dump(pair_result, f, indent=2)
+
+        # Accumulate stats
+        total_transitions += 1
+        cats = result["summary"]["by_category"]
+        user_edits = cats.get("user_edit", 0)
+
+        if not changes and style_only == 0 and not has_col_structure and not has_row_structure:
+            identical_count += 1
+            tag = "IDENTICAL"
+        elif not changes and style_only > 0 and not has_col_structure and not has_row_structure:
+            style_only_count_total += 1
+            tag = f"style-only ({style_only})"
+        else:
+            changed_count += 1
+            total_cell_changes += len(changes)
+            total_user_edits += user_edits
+            parts = []
+            if len(changes):
+                parts.append(f"{len(changes)} changes")
+            if user_edits:
+                parts.append(f"{user_edits} user edits")
+            if has_col_structure:
+                parts.append(f"cols {col_changes['old_count']}->{col_changes['new_count']}")
+                col_structure_events.append(
+                    (rev_a, rev_b, col_changes["added"], col_changes["removed"],
+                     col_changes["unnamed_added"], col_changes["unnamed_removed"]))
+            if has_row_structure:
+                parts.append(f"rows {row_changes['old_row_count']}->{row_changes['new_row_count']}")
+                row_structure_events.append(
+                    (rev_a, rev_b, row_changes["added_count"], row_changes["removed_count"]))
+            if style_only > 0:
+                parts.append(f"+{style_only} style")
+            tag = ", ".join(parts) if parts else "no data changes"
+
+        print(f"  rev-{rev_a:>5} -> rev-{rev_b:>5}: {tag}")
+
+        # Cache new_data for next iteration, free old_data
+        prev_rev = rev_b
+        prev_data = new_data
+        del old_data
+        del result
+        gc_mod.collect()
+
+    # Write aggregate summary
+    summary_path = outdir / "summary.json"
+    summary = {
+        "input_dir": str(indir),
+        "mode": "semantic_streaming",
+        "text_only": text_only,
+        "revision_range": [all_revs[0], all_revs[-1]],
+        "total_revisions": len(all_revs),
+        "total_transitions": total_transitions,
+        "identical_transitions": identical_count,
+        "style_only_transitions": style_only_count_total,
+        "changed_transitions": changed_count,
+        "total_cell_changes": total_cell_changes,
+        "total_user_edits": total_user_edits,
+        "col_structure_events": [
+            {"from": a, "to": b,
+             "added": list(added) if added else [],
+             "removed": list(removed) if removed else [],
+             "unnamed_added": ua, "unnamed_removed": ur}
+            for a, b, added, removed, ua, ur in col_structure_events
+        ],
+        "row_structure_events": [
+            {"from": a, "to": b, "added": ac, "removed": rc}
+            for a, b, ac, rc in row_structure_events
+        ],
+        "errors": errors,
+    }
+    with open(summary_path, "w") as f:
+        json.dump(summary, f, indent=2)
+
+    # Print summary
+    print()
+    print("=" * 80)
+    print("STREAMING SEMANTIC DIFF SUMMARY")
+    print("=" * 80)
+    print(f"  Transitions: {total_transitions}")
+    print(f"  Identical:   {identical_count}")
+    print(f"  Style-only:  {style_only_count_total}")
+    print(f"  Changed:     {changed_count}")
+    print(f"  Errors:      {len(errors)}")
+    print(f"  Total cell changes: {total_cell_changes}")
+    print(f"  Total user edits:   {total_user_edits}")
+    if col_structure_events:
+        print(f"\n  Column structure changes ({len(col_structure_events)}):")
+        for rev_a, rev_b, added, removed, ua, ur in col_structure_events:
+            parts = []
+            if added:
+                parts.append("+" + ",".join(n for n, _, _ in added))
+            if removed:
+                parts.append("-" + ",".join(n for n, _, _ in removed))
+            if ua:
+                parts.append(f"+{ua} unnamed")
+            if ur:
+                parts.append(f"-{ur} unnamed")
+            print(f"    rev-{rev_a} -> rev-{rev_b}: {', '.join(parts)}")
+    if row_structure_events:
+        print(f"\n  Row structure changes ({len(row_structure_events)}):")
+        for rev_a, rev_b, ac, rc in row_structure_events:
+            print(f"    rev-{rev_a} -> rev-{rev_b}: +{ac} -{rc} rows")
+    print(f"\n  Per-pair JSON: {outdir}/pair-*.json")
+    print(f"  Summary JSON:  {summary_path}")
+
+
 def main():
     parser = argparse.ArgumentParser(
         description="Diff consecutive ODS revision files"
@@ -1530,6 +1759,17 @@ def main():
         help="Use positional comparison instead of the default semantic matching. "
              "Compares by (row, col) position, which generates false changes "
              "when columns or rows are inserted/removed."
+    )
+    parser.add_argument(
+        "--streaming", action="store_true",
+        help="Streaming pairwise mode: parse only 2 ODS files at a time, "
+             "write per-pair JSON to output-dir, free memory between pairs. "
+             "Essential for large ranges (100+ revisions)."
+    )
+    parser.add_argument(
+        "--output-dir", type=str, default=None,
+        help="Output directory for streaming mode per-pair JSON files "
+             "(default: /tmp/semantic-diff-streaming/)"
     )
     args = parser.parse_args()
 
@@ -1578,7 +1818,11 @@ def main():
         print(f"  Mode: {m.upper()}")
     print()
 
-    if args.positional:
+    if args.streaming:
+        if not args.output_dir:
+            args.output_dir = "/tmp/semantic-diff-streaming"
+        _run_semantic_streaming(args, indir, ods_files, all_revs)
+    elif args.positional:
         # Legacy positional mode
         if args.all_sheets:
             _run_all_sheets_mode(args, indir, ods_files, all_revs)
