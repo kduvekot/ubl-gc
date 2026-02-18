@@ -133,6 +133,37 @@ work is just **219 user edits across 1,000 revisions** — almost always exactly
 defined. The row count grows from 3,010 (rev 1) to 3,099 (rev 1000). Rows are
 occasionally removed and re-added as components are reorganized.
 
+### Full Semantic Diff (rev 1001-1500)
+
+| Metric | Count |
+|--------|-------|
+| Total transitions analyzed | 499 |
+| Identical transitions | 391 (78.4%) |
+| Style-only transitions | 0 |
+| Changed transitions | 108 (21.6%) |
+| Total cell changes | 233,254 |
+| **Formula reference shifts** | **232,750 (99.8%)** |
+| **Real user edits** | **473** |
+| Column structure changes | 0 (layout finalized) |
+| Row structure events | 75 |
+
+The editing pattern shifts significantly in rev 1001-1500:
+- **78% of transitions are identical** (vs 25% in rev 1-1000) — the sheet is stable
+- **No column structure changes** — the 26-column layout is finalized
+- **More user edits per changed transition** (~4.4 vs 0.3 in rev 1-1000)
+- The editor is doing real content work, not column setup
+
+#### Combined rev 1-1500
+
+| Metric | Rev 1-1000 | Rev 1001-1500 | Combined |
+|--------|-----------|---------------|----------|
+| Transitions | 999 | 499 | 1,498 |
+| Identical | 246 (25%) | 391 (78%) | 637 (43%) |
+| Changed | 712 (71%) | 108 (22%) | 820 (55%) |
+| User edits | 219 | 473 | **692** |
+| Col structure events | 22 | 0 | 22 |
+| Row structure events | ~200 | 75 | ~275 |
+
 ### Worksheet Evolution (full range)
 
 | Revision | Sheets | CommonLibrary Rows | Cols | Notes |
