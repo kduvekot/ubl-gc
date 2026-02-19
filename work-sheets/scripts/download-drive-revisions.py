@@ -282,6 +282,10 @@ def main():
 
     downloaded += skipped  # count skipped as "downloaded" for the total
 
+    # Signal completion so pipeline consumers stop waiting for missing files
+    done_path = outdir / "download-done.txt"
+    done_path.write_text(f"downloaded={downloaded}\nerrors={errors}\n")
+
     print(f"\n{'='*70}")
     print(f"Done: {downloaded} downloaded, {errors} errors")
     print(f"Files in: {outdir}")

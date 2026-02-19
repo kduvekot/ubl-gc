@@ -1490,10 +1490,21 @@ def _run_semantic_mode(args, indir, ods_files, all_revs):
 
 
 def _wait_for_file(path, timeout=600, poll=2.0):
-    """Wait for a file to appear on disk. Used in pipeline mode."""
+    """Wait for a file to appear on disk. Used in pipeline mode.
+
+    If download-done.txt exists in the same directory, downloads are finished.
+    In that case, if the file still doesn't exist, it was never downloaded
+    (e.g. Drive error) — raise immediately instead of waiting the full timeout.
+    """
     import time as _time
+    done_marker = path.parent / "download-done.txt"
     deadline = _time.time() + timeout
     while not path.exists():
+        # If downloads finished and file still missing, don't wait
+        if done_marker.exists():
+            raise FileNotFoundError(
+                f"{path.name} not downloaded (download already finished)"
+            )
         if _time.time() > deadline:
             raise TimeoutError(f"Timed out after {timeout}s waiting for {path.name}")
         _time.sleep(poll)
@@ -1574,8 +1585,8 @@ def _run_semantic_streaming(args, indir, ods_files, all_revs):
             try:
                 _wait_for_file(ods_files[rev_a])
                 _wait_for_file(ods_files[rev_b])
-            except TimeoutError as e:
-                print(f"  rev-{rev_a:>5} -> rev-{rev_b:>5}: {e}")
+            except (TimeoutError, FileNotFoundError) as e:
+                print(f"  rev-{rev_a:>5} -> rev-{rev_b:>5}: SKIP ({e})")
                 errors.append({"pair": f"{rev_a}-{rev_b}", "error": str(e)})
                 prev_rev = None
                 prev_data = None
