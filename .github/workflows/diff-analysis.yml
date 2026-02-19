@@ -1,0 +1,215 @@
+name: ODS Revision Diff Analysis
+
+on:
+  workflow_dispatch:
+    inputs:
+      sheet:
+        description: 'Sheet to analyze (library or documents)'
+        type: choice
+        options:
+          - documents
+          - library
+        default: documents
+      range:
+        description: 'Revision range (e.g. "1-500", "50-100", or "all")'
+        type: string
+        default: 'all'
+      text_only:
+        description: 'Ignore formulas (eliminates column-shift noise)'
+        type: boolean
+        default: true
+  push:
+    branches:
+      - 'claude/analyze-sheet-diff-0EZru'
+    paths:
+      - 'work-sheets/.trigger-diff-analysis'
+      - '.github/workflows/diff-analysis.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: diff-analysis-${{ github.event.inputs.sheet || 'trigger' }}
+  cancel-in-progress: false
+
+jobs:
+  diff-analysis:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Parse configuration
+        id: config
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "sheet=${{ inputs.sheet }}" >> "$GITHUB_OUTPUT"
+            echo "range=${{ inputs.range }}" >> "$GITHUB_OUTPUT"
+            echo "text_only=${{ inputs.text_only }}" >> "$GITHUB_OUTPUT"
+          else
+            # Read from trigger file (JSON)
+            TRIGGER="work-sheets/.trigger-diff-analysis"
+            SHEET=$(python3 -c "import json; d=json.load(open('$TRIGGER')); print(d.get('sheet','documents'))")
+            RANGE=$(python3 -c "import json; d=json.load(open('$TRIGGER')); print(d.get('range','all'))")
+            TEXT_ONLY=$(python3 -c "import json; d=json.load(open('$TRIGGER')); print(str(d.get('text_only',True)).lower())")
+            echo "sheet=$SHEET" >> "$GITHUB_OUTPUT"
+            echo "range=$RANGE" >> "$GITHUB_OUTPUT"
+            echo "text_only=$TEXT_ONLY" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Show configuration
+        run: |
+          echo "Sheet:     ${{ steps.config.outputs.sheet }}"
+          echo "Range:     ${{ steps.config.outputs.range }}"
+          echo "Text-only: ${{ steps.config.outputs.text_only }}"
+          echo "Disk free: $(df -h /tmp | tail -1 | awk '{print $4}')"
+
+      - name: Download revisions from Google Drive
+        id: download
+        run: |
+          SHEET="${{ steps.config.outputs.sheet }}"
+          RANGE="${{ steps.config.outputs.range }}"
+          OUTDIR="/tmp/ubl-revisions/$SHEET"
+          mkdir -p "$OUTDIR"
+
+          # Build download arguments
+          if [ "$RANGE" = "all" ]; then
+            # Download everything available (high --first value)
+            DOWNLOAD_ARGS="--first 99999"
+          elif echo "$RANGE" | grep -qE '^[0-9]+-[0-9]+$'; then
+            # Range like "50-100" -> generate comma-separated revision list
+            START=$(echo "$RANGE" | cut -d- -f1)
+            END=$(echo "$RANGE" | cut -d- -f2)
+            REVS=$(python3 -c "print(','.join(str(i) for i in range($START, $END + 1)))")
+            DOWNLOAD_ARGS="--revisions $REVS"
+          else
+            # Assume comma-separated list of revisions
+            DOWNLOAD_ARGS="--revisions $RANGE"
+          fi
+
+          echo "Download args: --sheet $SHEET $DOWNLOAD_ARGS --output $OUTDIR"
+
+          python3 work-sheets/scripts/download-drive-revisions.py \
+            --sheet "$SHEET" \
+            $DOWNLOAD_ARGS \
+            --output "$OUTDIR"
+
+          # Count downloaded files
+          COUNT=$(ls "$OUTDIR"/rev-*.ods 2>/dev/null | wc -l)
+          echo "Downloaded $COUNT ODS files"
+          echo "file_count=$COUNT" >> "$GITHUB_OUTPUT"
+
+          if [ "$COUNT" -lt 2 ]; then
+            echo "::error::Need at least 2 ODS files for diff, got $COUNT"
+            exit 1
+          fi
+
+          # Show disk usage
+          du -sh "$OUTDIR"
+        env:
+          PYTHONUNBUFFERED: "1"
+
+      - name: Run streaming diff
+        id: diff
+        run: |
+          SHEET="${{ steps.config.outputs.sheet }}"
+          RANGE="${{ steps.config.outputs.range }}"
+          TEXT_ONLY="${{ steps.config.outputs.text_only }}"
+          INPUT_DIR="/tmp/ubl-revisions/$SHEET"
+          OUTPUT_DIR="/tmp/diff-results/$SHEET"
+          mkdir -p "$OUTPUT_DIR"
+
+          # Build diff arguments
+          DIFF_ARGS="--streaming --output-dir $OUTPUT_DIR"
+
+          # Documents sheet has 93+ worksheets
+          if [ "$SHEET" = "documents" ]; then
+            DIFF_ARGS="$DIFF_ARGS --all-sheets"
+          fi
+
+          if [ "$TEXT_ONLY" = "true" ]; then
+            DIFF_ARGS="$DIFF_ARGS --text-only"
+          fi
+
+          if [ "$RANGE" != "all" ] && echo "$RANGE" | grep -qE '^[0-9]+-[0-9]+$'; then
+            DIFF_ARGS="$DIFF_ARGS --range $RANGE"
+          fi
+
+          echo "Diff args: $INPUT_DIR $DIFF_ARGS"
+          echo "Start time: $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+
+          python3 work-sheets/scripts/diff-ods-revisions.py \
+            "$INPUT_DIR" \
+            $DIFF_ARGS
+
+          echo "End time: $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+
+          # Count output files
+          PAIR_COUNT=$(ls "$OUTPUT_DIR"/pair-*.json 2>/dev/null | wc -l)
+          SUMMARY_EXISTS=$([ -f "$OUTPUT_DIR/summary.json" ] && echo "yes" || echo "no")
+          echo "pair_count=$PAIR_COUNT" >> "$GITHUB_OUTPUT"
+          echo "summary_exists=$SUMMARY_EXISTS" >> "$GITHUB_OUTPUT"
+
+          # Show output size
+          du -sh "$OUTPUT_DIR"
+        env:
+          PYTHONUNBUFFERED: "1"
+
+      - name: Upload diff results
+        if: always() && steps.diff.outcome != 'skipped'
+        uses: actions/upload-artifact@v4
+        with:
+          name: diff-${{ steps.config.outputs.sheet }}-${{ steps.config.outputs.range }}-${{ github.run_number }}
+          path: /tmp/diff-results/${{ steps.config.outputs.sheet }}/
+          retention-days: 90
+          if-no-files-found: warn
+
+      - name: Summary
+        if: always()
+        run: |
+          SHEET="${{ steps.config.outputs.sheet }}"
+          RANGE="${{ steps.config.outputs.range }}"
+          FILE_COUNT="${{ steps.download.outputs.file_count }}"
+          PAIR_COUNT="${{ steps.diff.outputs.pair_count }}"
+
+          {
+            echo "## ODS Revision Diff Analysis"
+            echo ""
+            echo "| Property | Value |"
+            echo "|----------|-------|"
+            echo "| Sheet | \`$SHEET\` |"
+            echo "| Range | \`$RANGE\` |"
+            echo "| Text-only | \`${{ steps.config.outputs.text_only }}\` |"
+            echo "| ODS files downloaded | $FILE_COUNT |"
+            echo "| Pair diffs produced | $PAIR_COUNT |"
+            echo "| Workflow run | ${{ github.run_id }} |"
+            echo ""
+            echo "### Artifact"
+            echo ""
+            echo "Results uploaded as \`diff-${SHEET}-${RANGE}-${{ github.run_number }}\`"
+            echo "(**90-day retention** — maximum for public repos)"
+            echo ""
+
+            # Include summary.json highlights if available
+            SUMMARY="/tmp/diff-results/$SHEET/summary.json"
+            if [ -f "$SUMMARY" ]; then
+              echo "### Summary Statistics"
+              echo ""
+              echo '```json'
+              python3 -c "
+          import json
+          s = json.load(open('$SUMMARY'))
+          # Print the overall stats compactly
+          overall = s.get('overall', s)
+          print(json.dumps(overall, indent=2))
+          "
+              echo '```'
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"
