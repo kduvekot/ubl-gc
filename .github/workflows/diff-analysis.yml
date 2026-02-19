@@ -4,12 +4,13 @@ on:
   workflow_dispatch:
     inputs:
       sheet:
-        description: 'Sheet to analyze (library or documents)'
+        description: 'Sheet to analyze (library, documents, or all)'
         type: choice
         options:
+          - all
           - documents
           - library
-        default: documents
+        default: all
       range:
         description: 'Revision range (e.g. "1-500", "50-100", or "all")'
         type: string
@@ -28,14 +29,65 @@ on:
 permissions:
   contents: read
 
-concurrency:
-  group: diff-analysis-${{ github.event.inputs.sheet || 'trigger' }}
-  cancel-in-progress: false
-
+# ── Prepare: read config and expand "all" into a matrix ──────────────
 jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    outputs:
+      matrix: ${{ steps.config.outputs.matrix }}
+      range: ${{ steps.config.outputs.range }}
+      text_only: ${{ steps.config.outputs.text_only }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Parse configuration
+        id: config
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            SHEET="${{ inputs.sheet }}"
+            RANGE="${{ inputs.range }}"
+            TEXT_ONLY="${{ inputs.text_only }}"
+          else
+            # Read from trigger file — only top-level keys, ignore _docs
+            TRIGGER="work-sheets/.trigger-diff-analysis"
+            SHEET=$(python3 -c "import json; d=json.load(open('$TRIGGER')); print(d.get('sheet','documents'))")
+            RANGE=$(python3 -c "import json; d=json.load(open('$TRIGGER')); print(d.get('range','all'))")
+            TEXT_ONLY=$(python3 -c "import json; d=json.load(open('$TRIGGER')); print(str(d.get('text_only',True)).lower())")
+          fi
+
+          # Expand "all" into both sheets; otherwise wrap single sheet in a list
+          if [ "$SHEET" = "all" ]; then
+            MATRIX='{"sheet":["documents","library"]}'
+          else
+            MATRIX="{\"sheet\":[\"$SHEET\"]}"
+          fi
+
+          echo "matrix=$MATRIX" >> "$GITHUB_OUTPUT"
+          echo "range=$RANGE" >> "$GITHUB_OUTPUT"
+          echo "text_only=$TEXT_ONLY" >> "$GITHUB_OUTPUT"
+
+          echo "Resolved config:"
+          echo "  sheet input = $SHEET"
+          echo "  matrix      = $MATRIX"
+          echo "  range       = $RANGE"
+          echo "  text_only   = $TEXT_ONLY"
+
+  # ── Diff: one job per sheet (parallel when "all") ────────────────────
   diff-analysis:
+    needs: prepare
     runs-on: ubuntu-latest
     timeout-minutes: 360
+
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJson(needs.prepare.outputs.matrix) }}
+
+    concurrency:
+      group: diff-analysis-${{ matrix.sheet }}
+      cancel-in-progress: false
 
     steps:
       - name: Checkout repository
@@ -46,36 +98,18 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Parse configuration
-        id: config
-        run: |
-          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
-            echo "sheet=${{ inputs.sheet }}" >> "$GITHUB_OUTPUT"
-            echo "range=${{ inputs.range }}" >> "$GITHUB_OUTPUT"
-            echo "text_only=${{ inputs.text_only }}" >> "$GITHUB_OUTPUT"
-          else
-            # Read from trigger file (JSON)
-            TRIGGER="work-sheets/.trigger-diff-analysis"
-            SHEET=$(python3 -c "import json; d=json.load(open('$TRIGGER')); print(d.get('sheet','documents'))")
-            RANGE=$(python3 -c "import json; d=json.load(open('$TRIGGER')); print(d.get('range','all'))")
-            TEXT_ONLY=$(python3 -c "import json; d=json.load(open('$TRIGGER')); print(str(d.get('text_only',True)).lower())")
-            echo "sheet=$SHEET" >> "$GITHUB_OUTPUT"
-            echo "range=$RANGE" >> "$GITHUB_OUTPUT"
-            echo "text_only=$TEXT_ONLY" >> "$GITHUB_OUTPUT"
-          fi
-
       - name: Show configuration
         run: |
-          echo "Sheet:     ${{ steps.config.outputs.sheet }}"
-          echo "Range:     ${{ steps.config.outputs.range }}"
-          echo "Text-only: ${{ steps.config.outputs.text_only }}"
+          echo "Sheet:     ${{ matrix.sheet }}"
+          echo "Range:     ${{ needs.prepare.outputs.range }}"
+          echo "Text-only: ${{ needs.prepare.outputs.text_only }}"
           echo "Disk free: $(df -h /tmp | tail -1 | awk '{print $4}')"
 
       - name: Download revisions from Google Drive
         id: download
         run: |
-          SHEET="${{ steps.config.outputs.sheet }}"
-          RANGE="${{ steps.config.outputs.range }}"
+          SHEET="${{ matrix.sheet }}"
+          RANGE="${{ needs.prepare.outputs.range }}"
           OUTDIR="/tmp/ubl-revisions/$SHEET"
           mkdir -p "$OUTDIR"
 
@@ -119,9 +153,9 @@ jobs:
       - name: Run streaming diff
         id: diff
         run: |
-          SHEET="${{ steps.config.outputs.sheet }}"
-          RANGE="${{ steps.config.outputs.range }}"
-          TEXT_ONLY="${{ steps.config.outputs.text_only }}"
+          SHEET="${{ matrix.sheet }}"
+          RANGE="${{ needs.prepare.outputs.range }}"
+          TEXT_ONLY="${{ needs.prepare.outputs.text_only }}"
           INPUT_DIR="/tmp/ubl-revisions/$SHEET"
           OUTPUT_DIR="/tmp/diff-results/$SHEET"
           mkdir -p "$OUTPUT_DIR"
@@ -166,27 +200,27 @@ jobs:
         if: always() && steps.diff.outcome != 'skipped'
         uses: actions/upload-artifact@v4
         with:
-          name: diff-${{ steps.config.outputs.sheet }}-${{ steps.config.outputs.range }}-${{ github.run_number }}
-          path: /tmp/diff-results/${{ steps.config.outputs.sheet }}/
+          name: diff-${{ matrix.sheet }}-${{ needs.prepare.outputs.range }}-${{ github.run_number }}
+          path: /tmp/diff-results/${{ matrix.sheet }}/
           retention-days: 90
           if-no-files-found: warn
 
       - name: Summary
         if: always()
         run: |
-          SHEET="${{ steps.config.outputs.sheet }}"
-          RANGE="${{ steps.config.outputs.range }}"
+          SHEET="${{ matrix.sheet }}"
+          RANGE="${{ needs.prepare.outputs.range }}"
           FILE_COUNT="${{ steps.download.outputs.file_count }}"
           PAIR_COUNT="${{ steps.diff.outputs.pair_count }}"
 
           {
-            echo "## ODS Revision Diff Analysis"
+            echo "## ODS Revision Diff Analysis — \`$SHEET\`"
             echo ""
             echo "| Property | Value |"
             echo "|----------|-------|"
             echo "| Sheet | \`$SHEET\` |"
             echo "| Range | \`$RANGE\` |"
-            echo "| Text-only | \`${{ steps.config.outputs.text_only }}\` |"
+            echo "| Text-only | \`${{ needs.prepare.outputs.text_only }}\` |"
             echo "| ODS files downloaded | $FILE_COUNT |"
             echo "| Pair diffs produced | $PAIR_COUNT |"
             echo "| Workflow run | ${{ github.run_id }} |"
