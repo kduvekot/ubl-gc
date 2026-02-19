@@ -1021,6 +1021,11 @@ def main():
     parser.add_argument("--download-dir", type=str, default=None)
     parser.add_argument("--diff-dir", type=str, default=None)
     parser.add_argument("--text-only", action="store_true", default=True)
+    parser.add_argument(
+        "--audit-cache", type=str, default=None,
+        help="Path to audit-cache JSON with per-revision fingerprints. "
+             "Skips downloading and diffing consecutive identical revisions."
+    )
     args = parser.parse_args()
 
     script_dir = Path(__file__).resolve().parent.parent.parent / "work-sheets" / "scripts"
@@ -1045,23 +1050,94 @@ def main():
     print(f"  Diff output:   {diff_dir}")
     print(f"  Diff workers:  {args.diff_workers}")
     print(f"  Text-only:     {args.text_only}")
+    print(f"  Audit cache:   {args.audit_cache or 'none'}")
     print()
 
     t_start = time.time()
 
-    # ── Phase 1: Download all files first ────────────────────────────
-    # Download takes ~4-5s with concurrent workers — barely worth
-    # overlapping with diff work.  Waiting for completion lets us use
-    # the full multiprocessing Pool for the diff phase.
+    # ── Phase 0: Load audit cache (fingerprints) ─────────────────────
+    cache_fps = {}   # rev_num -> fingerprint string
+    identical_pairs_from_cache = []  # [(rev_a, rev_b), ...]
+
+    if args.audit_cache:
+        with open(args.audit_cache) as f:
+            cache_data = json.load(f)
+        cache_fps = {int(k): v["fp"] for k, v in cache_data["revisions"].items()}
+        all_cache_revs = sorted(cache_fps.keys())
+        print(f"[cache] Loaded {len(cache_fps)} revision fingerprints")
+
+        # Identify consecutive identical pairs
+        for i in range(len(all_cache_revs) - 1):
+            a, b = all_cache_revs[i], all_cache_revs[i + 1]
+            if cache_fps[a] == cache_fps[b]:
+                identical_pairs_from_cache.append((a, b))
+
+        # Determine which revisions actually need downloading:
+        # only those at boundaries of fingerprint changes
+        needed_revs = set()
+        for i in range(len(all_cache_revs) - 1):
+            a, b = all_cache_revs[i], all_cache_revs[i + 1]
+            if cache_fps[a] != cache_fps[b]:
+                needed_revs.add(a)
+                needed_revs.add(b)
+        needed_revs.add(all_cache_revs[0])
+        needed_revs.add(all_cache_revs[-1])
+
+        print(f"[cache] Identical pairs (skip): {len(identical_pairs_from_cache)}")
+        print(f"[cache] Revisions to download:  {len(needed_revs)} / {len(all_cache_revs)}")
+        print(f"[cache] Download savings:        {len(all_cache_revs) - len(needed_revs)} revisions skipped")
+
+        # Pre-write pair JSON for identical pairs
+        identical_result_template = {
+            "num_changes": 0,
+            "style_only_count": 0,
+            "has_col_structure": False,
+            "has_row_structure": False,
+            "column_changes": {
+                "added": [], "removed": [], "common": [],
+                "unnamed_added": 0, "unnamed_removed": 0,
+                "unnamed_positions": [],
+                "old_count": 0, "new_count": 0,
+            },
+            "row_changes": {
+                "added": [], "added_count": 0,
+                "removed": [], "removed_count": 0,
+                "matched": 0, "old_row_count": 0, "new_row_count": 0,
+                "old_unmatched": 0, "new_unmatched": 0,
+            },
+            "summary": {"by_category": {}, "by_column": {}, "by_row_range": {}},
+            "changes": [],
+            "fast_identical": True,
+        }
+        pre_written = 0
+        for a, b in identical_pairs_from_cache:
+            pair_json = diff_dir / f"pair-{a}-{b}.json"
+            if not pair_json.exists():
+                result = dict(identical_result_template)
+                result["from_rev"] = a
+                result["to_rev"] = b
+                with open(pair_json, "w") as f:
+                    json.dump(result, f, separators=(",", ":"))
+                pre_written += 1
+        print(f"[cache] Pre-written pair JSONs:  {pre_written}")
+        print()
+
+    # ── Phase 1: Download revisions ──────────────────────────────────
     download_cmd = [
         sys.executable,
         str(script_dir / "download-drive-revisions.py"),
         "--sheet",
         args.sheet,
-        "--all",
         "--output",
         str(dl_dir),
     ]
+    if cache_fps and needed_revs:
+        # Only download the revisions we actually need
+        rev_list = ",".join(str(r) for r in sorted(needed_revs))
+        download_cmd.extend(["--revisions", rev_list])
+    else:
+        download_cmd.append("--all")
+
     print(f"[pipeline] Downloading...")
     dl_result = subprocess.run(
         download_cmd, stdout=sys.stdout, stderr=sys.stderr
@@ -1074,27 +1150,29 @@ def main():
         print("ERROR: Download failed")
         sys.exit(1)
 
-    # Read manifest
-    manifest = dl_dir / "manifest.txt"
-    if not manifest.exists():
-        print("ERROR: No manifest.txt found")
-        sys.exit(1)
-
-    revs = sorted(
-        int(line.strip())
-        for line in manifest.read_text().splitlines()
-        if line.strip()
-    )
+    # Build revision list: use cache if available, else manifest
+    if cache_fps:
+        revs = sorted(needed_revs)
+    else:
+        manifest = dl_dir / "manifest.txt"
+        if not manifest.exists():
+            print("ERROR: No manifest.txt found")
+            sys.exit(1)
+        revs = sorted(
+            int(line.strip())
+            for line in manifest.read_text().splitlines()
+            if line.strip()
+        )
 
     n_pairs = len(revs) - 1
-    print(f"[pipeline] {len(revs)} revisions, {n_pairs} pairs to diff")
+    total_pairs = n_pairs + len(identical_pairs_from_cache)
+    print(f"[pipeline] {len(revs)} revisions to diff, {n_pairs} pairs")
+    if identical_pairs_from_cache:
+        print(f"[pipeline] + {len(identical_pairs_from_cache)} identical pairs (from cache)")
+        print(f"[pipeline] = {total_pairs} total pairs")
     print()
 
-    # ── Phase 2: Parallel diff via subprocess chunks ───────────────
-    # Spawn N workers each running diff-ods-revisions.py on a contiguous
-    # range.  This preserves the sequential parse cache (previous rev's
-    # parse is reused as the next pair's "old"), which is 2x faster than
-    # a Pool where each pair parses both files independently.
+    # ── Phase 2: Parallel diff via subprocess chunks ─────────────────
     diff_script = str(script_dir / "diff-ods-revisions.py")
     chunks = _split_by_size(revs, dl_dir, args.diff_workers)
 
@@ -1105,8 +1183,8 @@ def main():
     procs = []
     for ci, chunk in enumerate(chunks):
         rng = f"{chunk[0]}-{chunk[-1]}"
-        n_pairs = len(chunk) - 1
-        print(f"  Chunk {ci}: revs {chunk[0]}-{chunk[-1]} ({len(chunk)} revs, {n_pairs} pairs)")
+        n_chunk_pairs = len(chunk) - 1
+        print(f"  Chunk {ci}: revs {chunk[0]}-{chunk[-1]} ({len(chunk)} revs, {n_chunk_pairs} pairs)")
         cmd = [
             sys.executable, diff_script,
             str(dl_dir),

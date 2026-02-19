@@ -26,6 +26,7 @@ on:
       - 'work-sheets/.trigger-diff-analysis'
       - '.github/workflows/diff-analysis.yml'
       - '.github/scripts/fast-diff-pipeline.py'
+      - '.github/data/audit-cache-*.json'
 
 permissions:
   contents: read
@@ -130,6 +131,12 @@ jobs:
             PIPELINE_ARGS="$SHEET --diff-workers 4 --download-dir $OUTDIR --diff-dir $DIFFDIR"
             if [ "$TEXT_ONLY" = "true" ]; then
               PIPELINE_ARGS="$PIPELINE_ARGS --text-only"
+            fi
+            # Use audit cache for fingerprint-based skip if available
+            CACHE_FILE=".github/data/audit-cache-ubl25_${SHEET}.json"
+            if [ -f "$CACHE_FILE" ]; then
+              PIPELINE_ARGS="$PIPELINE_ARGS --audit-cache $CACHE_FILE"
+              echo "Using audit cache: $CACHE_FILE"
             fi
 
             echo "Pipeline args: $PIPELINE_ARGS"
