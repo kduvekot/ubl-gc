@@ -34,12 +34,17 @@ Expects files named rev-{N}.ods in the input directory.
 """
 
 import argparse
+import hashlib
 import json
 import sys
 import zipfile
-import xml.etree.ElementTree as ET
 from collections import defaultdict
 from pathlib import Path
+
+try:
+    from lxml import etree as ET
+except ImportError:
+    import xml.etree.ElementTree as ET
 
 # ODS XML namespaces
 NS = {
@@ -1591,6 +1596,47 @@ def _run_semantic_streaming(args, indir, ods_files, all_revs):
                 prev_rev = None
                 prev_data = None
                 continue
+
+        # Hash fast-path: skip identical content.xml without full parse
+        try:
+            with zipfile.ZipFile(ods_files[rev_a]) as za:
+                hash_a = hashlib.md5(za.read("content.xml")).digest()
+            with zipfile.ZipFile(ods_files[rev_b]) as zb:
+                hash_b = hashlib.md5(zb.read("content.xml")).digest()
+            if hash_a == hash_b:
+                total_transitions += 1
+                identical_count += 1
+                pair_result = {
+                    "from_rev": rev_a,
+                    "to_rev": rev_b,
+                    "num_changes": 0,
+                    "style_only_count": 0,
+                    "has_col_structure": False,
+                    "has_row_structure": False,
+                    "column_changes": {
+                        "added": [], "removed": [], "common": [],
+                        "unnamed_added": 0, "unnamed_removed": 0,
+                        "unnamed_positions": [],
+                        "old_count": 0, "new_count": 0,
+                    },
+                    "row_changes": {
+                        "added": [], "added_count": 0,
+                        "removed": [], "removed_count": 0,
+                        "matched": 0, "old_row_count": 0, "new_row_count": 0,
+                        "old_unmatched": 0, "new_unmatched": 0,
+                    },
+                    "summary": {"by_category": {}, "by_column": {}, "by_row_range": {}},
+                    "changes": [],
+                    "fast_identical": True,
+                }
+                with open(pair_json, "w") as f:
+                    json.dump(pair_result, f, separators=(",", ":"))
+                print(f"  rev-{rev_a:>5} -> rev-{rev_b:>5}: IDENTICAL (hash)")
+                prev_rev = None
+                prev_data = None
+                continue
+        except Exception:
+            pass  # Fall through to full parse
 
         # Parse old revision (use cache if possible)
         if prev_rev == rev_a and prev_data is not None:

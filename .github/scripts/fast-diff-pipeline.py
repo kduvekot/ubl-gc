@@ -1090,20 +1090,48 @@ def main():
     print(f"[pipeline] {len(revs)} revisions, {n_pairs} pairs to diff")
     print()
 
-    # ── Phase 2: Parallel diff with multiprocessing Pool ─────────────
+    # ── Phase 2: Parallel diff via subprocess chunks ───────────────
+    # Spawn N workers each running diff-ods-revisions.py on a contiguous
+    # range.  This preserves the sequential parse cache (previous rev's
+    # parse is reused as the next pair's "old"), which is 2x faster than
+    # a Pool where each pair parses both files independently.
+    diff_script = str(script_dir / "diff-ods-revisions.py")
+    chunks = _split_by_size(revs, dl_dir, args.diff_workers)
+
     print("=" * 70)
-    print(f"Parallel diff ({args.diff_workers} workers, hash fast-path + lxml)")
+    print(f"Subprocess diff ({len(chunks)} workers, hash fast-path + lxml)")
     print("=" * 70)
 
-    stats = _pool_diff(revs, dl_dir, diff_dir, args.text_only, args.diff_workers)
+    procs = []
+    for ci, chunk in enumerate(chunks):
+        rng = f"{chunk[0]}-{chunk[-1]}"
+        n_pairs = len(chunk) - 1
+        print(f"  Chunk {ci}: revs {chunk[0]}-{chunk[-1]} ({len(chunk)} revs, {n_pairs} pairs)")
+        cmd = [
+            sys.executable, diff_script,
+            str(dl_dir),
+            "--range", rng,
+            "--streaming",
+            "--output-dir", str(diff_dir),
+        ]
+        if args.text_only:
+            cmd.append("--text-only")
+        procs.append(subprocess.Popen(cmd, stdout=sys.stdout, stderr=sys.stderr))
+
+    # Wait for all workers
+    for ci, p in enumerate(procs):
+        rc = p.wait()
+        print(f"  Chunk {ci} finished (exit {rc})")
 
     t_diff = time.time() - t_start - t_dl
+    print(f"\n[pipeline] Diff phase: {t_diff:.1f}s")
 
-    # ── Phase 4: Build merged summary from all pair files ────────────
+    # ── Phase 3: Build merged summary from all pair files ────────────
     pair_files = sorted(diff_dir.glob("pair-*.json"))
 
     total_transitions = 0
     identical_count = 0
+    hash_identical_count = 0
     style_only_count = 0
     changed_count = 0
     total_cell_changes = 0
@@ -1124,6 +1152,8 @@ def main():
 
             if n == 0 and soc == 0 and not hcs and not hrs:
                 identical_count += 1
+                if p.get("fast_identical"):
+                    hash_identical_count += 1
             elif n == 0 and soc > 0 and not hcs and not hrs:
                 style_only_count += 1
             else:
@@ -1173,7 +1203,7 @@ def main():
         "changed_transitions": changed_count,
         "total_cell_changes": total_cell_changes,
         "total_user_edits": total_user_edits,
-        "hash_identical_count": stats.get("hash_identical", 0),
+        "hash_identical_count": hash_identical_count,
         "col_structure_events": col_events,
         "row_structure_events": row_events,
         "errors": errors,
