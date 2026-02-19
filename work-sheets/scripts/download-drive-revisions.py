@@ -139,6 +139,10 @@ def main():
         help="Which sheet's revisions to download (default: library)"
     )
     parser.add_argument(
+        "--all", action="store_true",
+        help="Download all revisions found in the folder listing"
+    )
+    parser.add_argument(
         "--first", type=int, default=10,
         help="Download the first N revisions (default: 10)"
     )
@@ -182,57 +186,42 @@ def main():
         print("  Falling back to direct API approach...")
         print()
 
-    # Find the highest revision number in the listing
-    max_listed = 0
-    for entry in entries:
-        m = re.match(r"rev-(\d+)\.ods\.gz$", entry.get("name", ""))
-        if m:
-            max_listed = max(max_listed, int(m.group(1)))
-
-    # Determine which revisions we want
-    if args.revisions:
-        wanted = set(int(r) for r in args.revisions.split(","))
-    else:
-        # Cap --first to the highest revision actually in the listing
-        effective_first = min(args.first, max_listed) if max_listed > 0 else args.first
-        if effective_first < args.first:
-            print(f"  Listing has {len(entries)} entries (max rev-{max_listed}), capping --first {args.first} to {effective_first}")
-        wanted = set(range(1, effective_first + 1))
-
-    print(f"  Wanted revisions: {len(wanted)} (1-{max(wanted)})")
-    print()
-
-    if not entries:
-        entries = list_drive_folder_api(folder_id, wanted)
-
-    # Build name->id mapping and filter to wanted revisions
+    # Parse all revision entries from the listing
     file_map = {}  # rev_num -> {id, name}
     for entry in entries:
         name = entry.get("name", "")
         match = re.match(r"rev-(\d+)\.ods\.gz$", name)
         if match:
-            rev_num = int(match.group(1))
-            if rev_num in wanted:
-                file_map[rev_num] = entry
+            file_map[int(match.group(1))] = entry
 
-    found = sorted(file_map.keys())
-    missing = sorted(wanted - set(found))
+    print(f"  Listing contains {len(file_map)} revision files")
 
-    print(f"\n  Found {len(found)}/{len(wanted)} wanted revisions in listing")
-    if missing:
-        print(f"  Missing: {missing}")
-        print(f"  Will try direct API query for missing revisions...")
+    # Filter to requested revisions
+    if args.all:
+        # Download everything in the listing — no probing needed
+        print(f"  Mode: --all (downloading all {len(file_map)} listed revisions)")
+    elif args.revisions:
+        wanted = set(int(r) for r in args.revisions.split(","))
+        file_map = {k: v for k, v in file_map.items() if k in wanted}
+        print(f"  Mode: --revisions ({len(file_map)} of {len(wanted)} requested found in listing)")
+    else:
+        wanted = set(range(1, args.first + 1))
+        file_map = {k: v for k, v in file_map.items() if k in wanted}
+        print(f"  Mode: --first {args.first} ({len(file_map)} found in listing)")
 
-    # Try to find missing revisions via direct API search
-    if missing:
-        for rev_num in missing:
-            filename = f"rev-{rev_num}.ods.gz"
-            entry = find_file_in_folder_api(folder_id, filename)
-            if entry:
-                file_map[rev_num] = entry
-                print(f"    Found {filename} via API: {entry['id']}")
-            else:
-                print(f"    Could not find {filename}")
+    if not file_map and not entries:
+        # Empty listing — try direct API as last resort
+        if args.revisions:
+            wanted = set(int(r) for r in args.revisions.split(","))
+        else:
+            wanted = set(range(1, args.first + 1))
+        entries = list_drive_folder_api(folder_id, wanted)
+        for entry in entries:
+            name = entry.get("name", "")
+            match = re.match(r"rev-(\d+)\.ods\.gz$", name)
+            if match:
+                file_map[int(match.group(1))] = entry
+        print(f"  Fallback API found {len(file_map)} revisions")
 
     # Download each revision
     print(f"\n  Downloading {len(file_map)} revisions...\n")

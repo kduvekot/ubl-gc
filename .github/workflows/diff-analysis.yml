@@ -115,8 +115,7 @@ jobs:
 
           # Build download arguments
           if [ "$RANGE" = "all" ]; then
-            # Download everything available (high --first value)
-            DOWNLOAD_ARGS="--first 99999"
+            DOWNLOAD_ARGS="--all"
           elif echo "$RANGE" | grep -qE '^[0-9]+-[0-9]+$'; then
             # Range like "50-100" -> generate comma-separated revision list
             START=$(echo "$RANGE" | cut -d- -f1)
