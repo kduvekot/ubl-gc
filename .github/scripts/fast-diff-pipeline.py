@@ -1049,7 +1049,10 @@ def main():
 
     t_start = time.time()
 
-    # ── Phase 1: Start download ──────────────────────────────────────
+    # ── Phase 1: Download all files first ────────────────────────────
+    # Download takes ~4-5s with concurrent workers — barely worth
+    # overlapping with diff work.  Waiting for completion lets us use
+    # the full multiprocessing Pool for the diff phase.
     download_cmd = [
         sys.executable,
         str(script_dir / "download-drive-revisions.py"),
@@ -1059,52 +1062,42 @@ def main():
         "--output",
         str(dl_dir),
     ]
-    print(f"[pipeline] Starting download...")
-    dl_proc = subprocess.Popen(
+    print(f"[pipeline] Downloading...")
+    dl_result = subprocess.run(
         download_cmd, stdout=sys.stdout, stderr=sys.stderr
     )
+    dl_exit = dl_result.returncode
+    t_dl = time.time() - t_start
+    print(f"[pipeline] Download finished in {t_dl:.1f}s (exit {dl_exit})")
 
-    # Wait for manifest
+    if dl_exit != 0:
+        print("ERROR: Download failed")
+        sys.exit(1)
+
+    # Read manifest
     manifest = dl_dir / "manifest.txt"
-    done_marker = dl_dir / "download-done.txt"
-    print(f"[pipeline] Waiting for manifest...", end="", flush=True)
-    t0 = time.time()
-    while not manifest.exists():
-        if time.time() - t0 > 120:
-            print(" TIMEOUT (120s)")
-            dl_proc.kill()
-            sys.exit(1)
-        time.sleep(0.5)
+    if not manifest.exists():
+        print("ERROR: No manifest.txt found")
+        sys.exit(1)
 
     revs = sorted(
         int(line.strip())
         for line in manifest.read_text().splitlines()
         if line.strip()
     )
-    print(f" {len(revs)} revisions in {time.time() - t0:.1f}s")
 
     n_pairs = len(revs) - 1
-    print(f"[pipeline] {n_pairs} pairs to diff")
+    print(f"[pipeline] {len(revs)} revisions, {n_pairs} pairs to diff")
     print()
 
-    # ── Phase 2: Streaming diff while download is in progress ────────
-    # Use sequential streaming mode (with parse cache) while downloads
-    # are still running.  The hash fast-path still gives us the speedup
-    # for identical pairs.
+    # ── Phase 2: Parallel diff with multiprocessing Pool ─────────────
     print("=" * 70)
-    print(f"Streaming diff (with hash fast-path)")
+    print(f"Parallel diff ({args.diff_workers} workers, hash fast-path + lxml)")
     print("=" * 70)
 
-    stats = _stream_diff_pairs(
-        revs, dl_dir, diff_dir, args.text_only, done_marker
-    )
+    stats = _pool_diff(revs, dl_dir, diff_dir, args.text_only, args.diff_workers)
 
-    t_diff = time.time() - t_start
-
-    # ── Phase 3: Wait for download to finish ─────────────────────────
-    dl_exit = dl_proc.wait()
-    t_dl = time.time() - t_start
-    print(f"\n[pipeline] Download finished (exit {dl_exit})")
+    t_diff = time.time() - t_start - t_dl
 
     # ── Phase 4: Build merged summary from all pair files ────────────
     pair_files = sorted(diff_dir.glob("pair-*.json"))
