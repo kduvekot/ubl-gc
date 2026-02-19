@@ -1226,7 +1226,7 @@ def main():
     print(f"  XML parser:     {'lxml' if _USING_LXML else 'ElementTree'}")
     print(f"  Revisions:      {len(revs)}")
     print(f"  Transitions:    {total_transitions}")
-    print(f"  Identical:      {identical_count} ({stats.get('hash_identical', 0)} via hash)")
+    print(f"  Identical:      {identical_count} ({hash_identical_count} via hash)")
     print(f"  Style-only:     {style_only_count}")
     print(f"  Changed:        {changed_count}")
     print(f"  Cell changes:   {total_cell_changes}")
