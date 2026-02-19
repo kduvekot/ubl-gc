@@ -168,15 +168,6 @@ def main():
     print(f"  Output:  {outdir}")
     print()
 
-    # Determine which revisions we want
-    if args.revisions:
-        wanted = set(int(r) for r in args.revisions.split(","))
-    else:
-        wanted = set(range(1, args.first + 1))
-
-    print(f"  Wanted revisions: {sorted(wanted)}")
-    print()
-
     # List folder contents
     entries = list_drive_folder(folder_id)
 
@@ -190,7 +181,28 @@ def main():
         print("  This can happen with very large folders (2000+ files).")
         print("  Falling back to direct API approach...")
         print()
-        # Try the Google Drive API v3 for public files
+
+    # Find the highest revision number in the listing
+    max_listed = 0
+    for entry in entries:
+        m = re.match(r"rev-(\d+)\.ods\.gz$", entry.get("name", ""))
+        if m:
+            max_listed = max(max_listed, int(m.group(1)))
+
+    # Determine which revisions we want
+    if args.revisions:
+        wanted = set(int(r) for r in args.revisions.split(","))
+    else:
+        # Cap --first to the highest revision actually in the listing
+        effective_first = min(args.first, max_listed) if max_listed > 0 else args.first
+        if effective_first < args.first:
+            print(f"  Listing has {len(entries)} entries (max rev-{max_listed}), capping --first {args.first} to {effective_first}")
+        wanted = set(range(1, effective_first + 1))
+
+    print(f"  Wanted revisions: {len(wanted)} (1-{max(wanted)})")
+    print()
+
+    if not entries:
         entries = list_drive_folder_api(folder_id, wanted)
 
     # Build name->id mapping and filter to wanted revisions
