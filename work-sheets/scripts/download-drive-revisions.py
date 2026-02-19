@@ -22,6 +22,7 @@ import json
 import re
 import sys
 import time
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from html.parser import HTMLParser
 from pathlib import Path
 from urllib.error import HTTPError
@@ -223,42 +224,53 @@ def main():
                 file_map[int(match.group(1))] = entry
         print(f"  Fallback API found {len(file_map)} revisions")
 
-    # Download each revision
-    print(f"\n  Downloading {len(file_map)} revisions...\n")
+    # Download revisions (concurrently for speed)
+    WORKERS = 10  # 10 parallel downloads — well within Drive's 12k req/min limit
+    print(f"\n  Downloading {len(file_map)} revisions ({WORKERS} workers)...\n")
     downloaded = 0
+    skipped = 0
     errors = 0
 
+    # Separate already-downloaded from todo
+    todo = {}
     for rev_num in sorted(file_map.keys()):
-        entry = file_map[rev_num]
+        ods_path = outdir / f"rev-{rev_num}.ods"
+        if ods_path.exists() and ods_path.stat().st_size > 1000:
+            skipped += 1
+            continue
+        todo[rev_num] = file_map[rev_num]
+
+    if skipped:
+        print(f"  Skipping {skipped} already-downloaded revisions")
+
+    def _download_one(rev_num, entry):
+        """Download and decompress a single revision. Returns (rev_num, ok, msg)."""
         gz_path = outdir / f"rev-{rev_num}.ods.gz"
         ods_path = outdir / f"rev-{rev_num}.ods"
-
-        # Skip if already downloaded and decompressed
-        if ods_path.exists() and ods_path.stat().st_size > 1000:
-            print(f"  rev-{rev_num:>5}: skip (already at {ods_path}, "
-                  f"{ods_path.stat().st_size:,} bytes)")
-            downloaded += 1
-            continue
-
-        print(f"  rev-{rev_num:>5}: downloading {entry['name']}...", end="", flush=True)
         try:
             size = download_drive_file(entry["id"], gz_path)
-            print(f" {size:,} gz bytes", end="", flush=True)
-
-            # Decompress
             gz_data = gz_path.read_bytes()
             ods_data = gzip.decompress(gz_data)
             ods_path.write_bytes(ods_data)
-            print(f" -> {len(ods_data):,} ods bytes")
-
-            # Keep the .gz too for reference, but the .ods is what we diff
-            downloaded += 1
-
+            return (rev_num, True, f"{size:,} gz -> {len(ods_data):,} ods")
         except Exception as e:
-            print(f" ERROR: {e}")
-            errors += 1
+            return (rev_num, False, str(e))
 
-        time.sleep(0.5)  # Be kind to Drive
+    with ThreadPoolExecutor(max_workers=WORKERS) as pool:
+        futures = {
+            pool.submit(_download_one, rev_num, entry): rev_num
+            for rev_num, entry in todo.items()
+        }
+        for future in as_completed(futures):
+            rev_num, ok, msg = future.result()
+            if ok:
+                downloaded += 1
+                print(f"  rev-{rev_num:>5}: {msg}")
+            else:
+                errors += 1
+                print(f"  rev-{rev_num:>5}: ERROR {msg}")
+
+    downloaded += skipped  # count skipped as "downloaded" for the total
 
     print(f"\n{'='*70}")
     print(f"Done: {downloaded} downloaded, {errors} errors")

@@ -43,9 +43,9 @@
     },
 
     "resource_estimates": {
-      "documents_all": "~2161 revisions, ~1.9 GB download, ~30 min diff, ~131 MB peak RAM",
-      "library_all":   "~2005 revisions, ~1.2 GB download, ~20 min diff, ~90 MB peak RAM",
-      "both_parallel":  "Runs on separate runners, so resources are NOT shared. Total wall time = max(documents, library) ≈ 30 min.",
+      "documents_all": "~2161 revisions, ~1.9 GB download (~10 min with 10 workers), ~30 min diff, ~131 MB peak RAM",
+      "library_all":   "~2005 revisions, ~1.2 GB download (~10 min with 10 workers), ~20 min diff, ~90 MB peak RAM",
+      "both_parallel":  "Runs on separate runners, so resources are NOT shared. Total wall time = max(documents, library) ≈ 40 min.",
       "runner_limits":  "GitHub free runner: 2 CPU, 7 GB RAM, ~14 GB disk, 6 hr timeout"
     },
 
