@@ -105,98 +105,67 @@ jobs:
           echo "Text-only: ${{ needs.prepare.outputs.text_only }}"
           echo "Disk free: $(df -h /tmp | tail -1 | awk '{print $4}')"
 
-      - name: Download revisions from Google Drive
-        id: download
-        run: |
-          SHEET="${{ matrix.sheet }}"
-          RANGE="${{ needs.prepare.outputs.range }}"
-          OUTDIR="/tmp/ubl-revisions/$SHEET"
-          mkdir -p "$OUTDIR"
-
-          # Build download arguments
-          if [ "$RANGE" = "all" ]; then
-            DOWNLOAD_ARGS="--all"
-          elif echo "$RANGE" | grep -qE '^[0-9]+-[0-9]+$'; then
-            # Range like "50-100" -> generate comma-separated revision list
-            START=$(echo "$RANGE" | cut -d- -f1)
-            END=$(echo "$RANGE" | cut -d- -f2)
-            REVS=$(python3 -c "print(','.join(str(i) for i in range($START, $END + 1)))")
-            DOWNLOAD_ARGS="--revisions $REVS"
-          else
-            # Assume comma-separated list of revisions
-            DOWNLOAD_ARGS="--revisions $RANGE"
-          fi
-
-          echo "Download args: --sheet $SHEET $DOWNLOAD_ARGS --output $OUTDIR"
-
-          python3 work-sheets/scripts/download-drive-revisions.py \
-            --sheet "$SHEET" \
-            $DOWNLOAD_ARGS \
-            --output "$OUTDIR"
-
-          # Count downloaded files
-          COUNT=$(ls "$OUTDIR"/rev-*.ods 2>/dev/null | wc -l)
-          echo "Downloaded $COUNT ODS files"
-          echo "file_count=$COUNT" >> "$GITHUB_OUTPUT"
-
-          if [ "$COUNT" -lt 2 ]; then
-            echo "::error::Need at least 2 ODS files for diff, got $COUNT"
-            exit 1
-          fi
-
-          # Show disk usage
-          du -sh "$OUTDIR"
-        env:
-          PYTHONUNBUFFERED: "1"
-
-      - name: Run streaming diff
-        id: diff
+      - name: Pipelined download + diff
+        id: pipeline
         run: |
           SHEET="${{ matrix.sheet }}"
           RANGE="${{ needs.prepare.outputs.range }}"
           TEXT_ONLY="${{ needs.prepare.outputs.text_only }}"
-          INPUT_DIR="/tmp/ubl-revisions/$SHEET"
-          OUTPUT_DIR="/tmp/diff-results/$SHEET"
-          mkdir -p "$OUTPUT_DIR"
+          OUTDIR="/tmp/ubl-revisions/$SHEET"
+          DIFFDIR="/tmp/diff-results/$SHEET"
+          mkdir -p "$OUTDIR" "$DIFFDIR"
 
-          # Build diff arguments
-          DIFF_ARGS="--streaming --output-dir $OUTPUT_DIR"
-
-          # Documents sheet has 93+ worksheets
-          if [ "$SHEET" = "documents" ]; then
-            DIFF_ARGS="$DIFF_ARGS --all-sheets"
-          fi
-
-          if [ "$TEXT_ONLY" = "true" ]; then
-            DIFF_ARGS="$DIFF_ARGS --text-only"
-          fi
-
-          if [ "$RANGE" != "all" ] && echo "$RANGE" | grep -qE '^[0-9]+-[0-9]+$'; then
-            DIFF_ARGS="$DIFF_ARGS --range $RANGE"
-          fi
-
-          echo "Diff args: $INPUT_DIR $DIFF_ARGS"
           echo "Start time: $(date -u +%Y-%m-%dT%H:%M:%SZ)"
 
-          python3 work-sheets/scripts/diff-ods-revisions.py \
-            "$INPUT_DIR" \
-            $DIFF_ARGS
+          if [ "$RANGE" = "all" ]; then
+            # ── Pipeline mode: download + diff overlap with 2 parallel chunks ──
+            PIPELINE_ARGS="$SHEET --diff-workers 2 --download-dir $OUTDIR --diff-dir $DIFFDIR"
+            if [ "$TEXT_ONLY" = "true" ]; then
+              PIPELINE_ARGS="$PIPELINE_ARGS --text-only"
+            fi
+
+            echo "Pipeline args: $PIPELINE_ARGS"
+            python3 work-sheets/scripts/pipeline-analysis.py $PIPELINE_ARGS
+          else
+            # ── Sequential mode for specific ranges ──
+            # Download
+            if echo "$RANGE" | grep -qE '^[0-9]+-[0-9]+$'; then
+              START=$(echo "$RANGE" | cut -d- -f1)
+              END=$(echo "$RANGE" | cut -d- -f2)
+              REVS=$(python3 -c "print(','.join(str(i) for i in range($START, $END + 1)))")
+              DOWNLOAD_ARGS="--revisions $REVS"
+            else
+              DOWNLOAD_ARGS="--revisions $RANGE"
+            fi
+
+            python3 work-sheets/scripts/download-drive-revisions.py \
+              --sheet "$SHEET" $DOWNLOAD_ARGS --output "$OUTDIR"
+
+            # Diff
+            DIFF_ARGS="--streaming --output-dir $DIFFDIR"
+            if [ "$TEXT_ONLY" = "true" ]; then
+              DIFF_ARGS="$DIFF_ARGS --text-only"
+            fi
+            DIFF_ARGS="$DIFF_ARGS --range $RANGE"
+
+            python3 work-sheets/scripts/diff-ods-revisions.py "$OUTDIR" $DIFF_ARGS
+          fi
 
           echo "End time: $(date -u +%Y-%m-%dT%H:%M:%SZ)"
 
-          # Count output files
-          PAIR_COUNT=$(ls "$OUTPUT_DIR"/pair-*.json 2>/dev/null | wc -l)
-          SUMMARY_EXISTS=$([ -f "$OUTPUT_DIR/summary.json" ] && echo "yes" || echo "no")
+          # Count results
+          FILE_COUNT=$(ls "$OUTDIR"/rev-*.ods 2>/dev/null | wc -l)
+          PAIR_COUNT=$(ls "$DIFFDIR"/pair-*.json 2>/dev/null | wc -l)
+          echo "file_count=$FILE_COUNT" >> "$GITHUB_OUTPUT"
           echo "pair_count=$PAIR_COUNT" >> "$GITHUB_OUTPUT"
-          echo "summary_exists=$SUMMARY_EXISTS" >> "$GITHUB_OUTPUT"
+          echo "Downloaded $FILE_COUNT ODS files, produced $PAIR_COUNT pair diffs"
 
-          # Show output size
-          du -sh "$OUTPUT_DIR"
+          du -sh "$OUTDIR" "$DIFFDIR"
         env:
           PYTHONUNBUFFERED: "1"
 
       - name: Upload diff results
-        if: always() && steps.diff.outcome != 'skipped'
+        if: always() && steps.pipeline.outcome != 'skipped'
         uses: actions/upload-artifact@v4
         with:
           name: diff-${{ matrix.sheet }}-${{ needs.prepare.outputs.range }}-${{ github.run_number }}
@@ -209,8 +178,8 @@ jobs:
         run: |
           SHEET="${{ matrix.sheet }}"
           RANGE="${{ needs.prepare.outputs.range }}"
-          FILE_COUNT="${{ steps.download.outputs.file_count }}"
-          PAIR_COUNT="${{ steps.diff.outputs.pair_count }}"
+          FILE_COUNT="${{ steps.pipeline.outputs.file_count }}"
+          PAIR_COUNT="${{ steps.pipeline.outputs.pair_count }}"
 
           {
             echo "## ODS Revision Diff Analysis — \`$SHEET\`"

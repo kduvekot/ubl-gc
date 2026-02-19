@@ -224,6 +224,13 @@ def main():
                 file_map[int(match.group(1))] = entry
         print(f"  Fallback API found {len(file_map)} revisions")
 
+    # Write manifest immediately so pipeline consumers know what to expect
+    manifest_path = outdir / "manifest.txt"
+    manifest_path.write_text(
+        "\n".join(str(r) for r in sorted(file_map.keys())) + "\n"
+    )
+    print(f"  Manifest: {manifest_path} ({len(file_map)} revisions)")
+
     # Download revisions (concurrently for speed)
     WORKERS = 10  # 10 parallel downloads — well within Drive's 12k req/min limit
     print(f"\n  Downloading {len(file_map)} revisions ({WORKERS} workers)...\n")
@@ -247,11 +254,14 @@ def main():
         """Download and decompress a single revision. Returns (rev_num, ok, msg)."""
         gz_path = outdir / f"rev-{rev_num}.ods.gz"
         ods_path = outdir / f"rev-{rev_num}.ods"
+        tmp_path = outdir / f"rev-{rev_num}.ods.tmp"
         try:
             size = download_drive_file(entry["id"], gz_path)
             gz_data = gz_path.read_bytes()
             ods_data = gzip.decompress(gz_data)
-            ods_path.write_bytes(ods_data)
+            # Atomic write: .tmp then rename, so consumers never see partial files
+            tmp_path.write_bytes(ods_data)
+            tmp_path.rename(ods_path)
             return (rev_num, True, f"{size:,} gz -> {len(ods_data):,} ods")
         except Exception as e:
             return (rev_num, False, str(e))

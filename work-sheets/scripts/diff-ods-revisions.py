@@ -1489,6 +1489,16 @@ def _run_semantic_mode(args, indir, ods_files, all_revs):
         print(f"\n  JSON results: {json_path}")
 
 
+def _wait_for_file(path, timeout=600, poll=2.0):
+    """Wait for a file to appear on disk. Used in pipeline mode."""
+    import time as _time
+    deadline = _time.time() + timeout
+    while not path.exists():
+        if _time.time() > deadline:
+            raise TimeoutError(f"Timed out after {timeout}s waiting for {path.name}")
+        _time.sleep(poll)
+
+
 def _run_semantic_streaming(args, indir, ods_files, all_revs):
     """Streaming pairwise semantic diff: parse 2 files at a time, write to disk, free memory.
 
@@ -1499,11 +1509,14 @@ def _run_semantic_streaming(args, indir, ods_files, all_revs):
     import gc as gc_mod
 
     text_only = args.text_only
+    wait_mode = getattr(args, "wait", False)
     outdir = Path(args.output_dir)
     outdir.mkdir(parents=True, exist_ok=True)
 
     print(f"Streaming pairwise diff: {len(all_revs) - 1} transitions")
     print(f"  Output: {outdir}/")
+    if wait_mode:
+        print(f"  Wait mode: ON (will poll for files)")
     print()
 
     # Track aggregates as we go
@@ -1555,6 +1568,18 @@ def _run_semantic_streaming(args, indir, ods_files, all_revs):
                 continue
             except (json.JSONDecodeError, KeyError):
                 pass  # Re-compute if file is corrupt
+
+        # Wait for files if in pipeline mode (downloads may still be in progress)
+        if wait_mode:
+            try:
+                _wait_for_file(ods_files[rev_a])
+                _wait_for_file(ods_files[rev_b])
+            except TimeoutError as e:
+                print(f"  rev-{rev_a:>5} -> rev-{rev_b:>5}: {e}")
+                errors.append({"pair": f"{rev_a}-{rev_b}", "error": str(e)})
+                prev_rev = None
+                prev_data = None
+                continue
 
         # Parse old revision (use cache if possible)
         if prev_rev == rev_a and prev_data is not None:
@@ -1771,6 +1796,16 @@ def main():
         help="Output directory for streaming mode per-pair JSON files "
              "(default: /tmp/semantic-diff-streaming/)"
     )
+    parser.add_argument(
+        "--manifest", type=str, default=None,
+        help="File listing expected revision numbers (one per line). "
+             "Use instead of directory glob — allows starting before all files exist."
+    )
+    parser.add_argument(
+        "--wait", action="store_true",
+        help="Wait for ODS files to appear on disk (poll every 2s, 10 min timeout). "
+             "Use with --manifest when downloads are still in progress."
+    )
     args = parser.parse_args()
 
     indir = Path(args.input_dir)
@@ -1778,25 +1813,34 @@ def main():
         print(f"ERROR: {indir} is not a directory")
         sys.exit(1)
 
-    # Find all rev-N.ods files
-    ods_files = {}
-    for f in indir.glob("rev-*.ods"):
-        if f.suffix == ".ods":
-            try:
-                rev_num = int(f.stem.split("-")[1])
-                ods_files[rev_num] = f
-            except (ValueError, IndexError):
-                pass
-
-    if not ods_files:
-        print(f"ERROR: No rev-N.ods files found in {indir}")
-        sys.exit(1)
+    # Build the revision list: from manifest (pipeline) or directory glob
+    if args.manifest:
+        manifest_revs = sorted(
+            int(line.strip())
+            for line in Path(args.manifest).read_text().splitlines()
+            if line.strip()
+        )
+        ods_files = {r: indir / f"rev-{r}.ods" for r in manifest_revs}
+        all_revs = manifest_revs
+    else:
+        ods_files = {}
+        for f in indir.glob("rev-*.ods"):
+            if f.suffix == ".ods":
+                try:
+                    rev_num = int(f.stem.split("-")[1])
+                    ods_files[rev_num] = f
+                except (ValueError, IndexError):
+                    pass
+        if not ods_files:
+            print(f"ERROR: No rev-N.ods files found in {indir}")
+            sys.exit(1)
+        all_revs = sorted(ods_files.keys())
 
     # Apply range filter
-    all_revs = sorted(ods_files.keys())
     if args.range:
         start, end = args.range.split("-")
         all_revs = [r for r in all_revs if int(start) <= r <= int(end)]
+        ods_files = {r: ods_files[r] for r in all_revs}
 
     modes = []
     if args.text_only:
