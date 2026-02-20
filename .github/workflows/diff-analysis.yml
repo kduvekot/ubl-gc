@@ -1,0 +1,232 @@
+name: ODS Revision Diff Analysis
+
+on:
+  workflow_dispatch:
+    inputs:
+      sheet:
+        description: 'Sheet to analyze (library, documents, or all)'
+        type: choice
+        options:
+          - all
+          - documents
+          - library
+        default: all
+      range:
+        description: 'Revision range (e.g. "1-500", "50-100", or "all")'
+        type: string
+        default: 'all'
+      text_only:
+        description: 'Ignore formulas (eliminates column-shift noise)'
+        type: boolean
+        default: true
+  push:
+    branches:
+      - 'claude/analyze-sheet-diff-0EZru'
+    paths:
+      - 'work-sheets/.trigger-diff-analysis'
+      - '.github/workflows/diff-analysis.yml'
+      - '.github/scripts/fast-diff-pipeline.py'
+      - '.github/data/audit-cache-*.json'
+
+permissions:
+  contents: read
+
+# ── Prepare: read config and expand "all" into a matrix ──────────────
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    outputs:
+      matrix: ${{ steps.config.outputs.matrix }}
+      range: ${{ steps.config.outputs.range }}
+      text_only: ${{ steps.config.outputs.text_only }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Parse configuration
+        id: config
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            SHEET="${{ inputs.sheet }}"
+            RANGE="${{ inputs.range }}"
+            TEXT_ONLY="${{ inputs.text_only }}"
+          else
+            # Read from trigger file — only top-level keys, ignore _docs
+            TRIGGER="work-sheets/.trigger-diff-analysis"
+            SHEET=$(python3 -c "import json; d=json.load(open('$TRIGGER')); print(d.get('sheet','documents'))")
+            RANGE=$(python3 -c "import json; d=json.load(open('$TRIGGER')); print(d.get('range','all'))")
+            TEXT_ONLY=$(python3 -c "import json; d=json.load(open('$TRIGGER')); print(str(d.get('text_only',True)).lower())")
+          fi
+
+          # Expand "all" into both sheets; otherwise wrap single sheet in a list
+          if [ "$SHEET" = "all" ]; then
+            MATRIX='{"sheet":["documents","library"]}'
+          else
+            MATRIX="{\"sheet\":[\"$SHEET\"]}"
+          fi
+
+          echo "matrix=$MATRIX" >> "$GITHUB_OUTPUT"
+          echo "range=$RANGE" >> "$GITHUB_OUTPUT"
+          echo "text_only=$TEXT_ONLY" >> "$GITHUB_OUTPUT"
+
+          echo "Resolved config:"
+          echo "  sheet input = $SHEET"
+          echo "  matrix      = $MATRIX"
+          echo "  range       = $RANGE"
+          echo "  text_only   = $TEXT_ONLY"
+
+  # ── Diff: one job per sheet (parallel when "all") ────────────────────
+  diff-analysis:
+    needs: prepare
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJson(needs.prepare.outputs.matrix) }}
+
+    concurrency:
+      group: diff-analysis-${{ matrix.sheet }}
+      cancel-in-progress: false
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install lxml
+        run: pip install lxml
+
+      - name: Show configuration
+        run: |
+          echo "Sheet:     ${{ matrix.sheet }}"
+          echo "Range:     ${{ needs.prepare.outputs.range }}"
+          echo "Text-only: ${{ needs.prepare.outputs.text_only }}"
+          echo "Disk free: $(df -h /tmp | tail -1 | awk '{print $4}')"
+          python3 -c "try:
+              from lxml import etree; print(f'lxml: {etree.LXML_VERSION}')
+          except ImportError:
+              print('lxml: NOT AVAILABLE')"
+
+      - name: Pipelined download + diff
+        id: pipeline
+        run: |
+          SHEET="${{ matrix.sheet }}"
+          RANGE="${{ needs.prepare.outputs.range }}"
+          TEXT_ONLY="${{ needs.prepare.outputs.text_only }}"
+          OUTDIR="/tmp/ubl-revisions/$SHEET"
+          DIFFDIR="/tmp/diff-results/$SHEET"
+          mkdir -p "$OUTDIR" "$DIFFDIR"
+
+          echo "Start time: $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+
+          if [ "$RANGE" = "all" ]; then
+            # ── Optimized pipeline: hash fast-path + lxml + streaming ──
+            PIPELINE_ARGS="$SHEET --diff-workers 8 --download-dir $OUTDIR --diff-dir $DIFFDIR"
+            if [ "$TEXT_ONLY" = "true" ]; then
+              PIPELINE_ARGS="$PIPELINE_ARGS --text-only"
+            fi
+            # Use audit cache for fingerprint-based skip if available
+            CACHE_FILE=".github/data/audit-cache-ubl25_${SHEET}.json"
+            if [ -f "$CACHE_FILE" ]; then
+              PIPELINE_ARGS="$PIPELINE_ARGS --audit-cache $CACHE_FILE"
+              echo "Using audit cache: $CACHE_FILE"
+            fi
+
+            echo "Pipeline args: $PIPELINE_ARGS"
+            python3 .github/scripts/fast-diff-pipeline.py $PIPELINE_ARGS
+          else
+            # ── Sequential mode for specific ranges (uses original scripts) ──
+            # Download
+            if echo "$RANGE" | grep -qE '^[0-9]+-[0-9]+$'; then
+              START=$(echo "$RANGE" | cut -d- -f1)
+              END=$(echo "$RANGE" | cut -d- -f2)
+              REVS=$(python3 -c "print(','.join(str(i) for i in range($START, $END + 1)))")
+              DOWNLOAD_ARGS="--revisions $REVS"
+            else
+              DOWNLOAD_ARGS="--revisions $RANGE"
+            fi
+
+            python3 work-sheets/scripts/download-drive-revisions.py \
+              --sheet "$SHEET" $DOWNLOAD_ARGS --output "$OUTDIR"
+
+            # Diff
+            DIFF_ARGS="--streaming --output-dir $DIFFDIR"
+            if [ "$TEXT_ONLY" = "true" ]; then
+              DIFF_ARGS="$DIFF_ARGS --text-only"
+            fi
+            DIFF_ARGS="$DIFF_ARGS --range $RANGE"
+
+            python3 work-sheets/scripts/diff-ods-revisions.py "$OUTDIR" $DIFF_ARGS
+          fi
+
+          echo "End time: $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+
+          # Count results
+          FILE_COUNT=$(ls "$OUTDIR"/rev-*.ods 2>/dev/null | wc -l)
+          PAIR_COUNT=$(ls "$DIFFDIR"/pair-*.json 2>/dev/null | wc -l)
+          echo "file_count=$FILE_COUNT" >> "$GITHUB_OUTPUT"
+          echo "pair_count=$PAIR_COUNT" >> "$GITHUB_OUTPUT"
+          echo "Downloaded $FILE_COUNT ODS files, produced $PAIR_COUNT pair diffs"
+
+          du -sh "$OUTDIR" "$DIFFDIR"
+        env:
+          PYTHONUNBUFFERED: "1"
+
+      - name: Upload diff results
+        if: always() && steps.pipeline.outcome != 'skipped'
+        uses: actions/upload-artifact@v4
+        with:
+          name: diff-${{ matrix.sheet }}-${{ needs.prepare.outputs.range }}-${{ github.run_number }}
+          path: /tmp/diff-results/${{ matrix.sheet }}/
+          retention-days: 90
+          if-no-files-found: warn
+
+      - name: Summary
+        if: always()
+        run: |
+          SHEET="${{ matrix.sheet }}"
+          RANGE="${{ needs.prepare.outputs.range }}"
+          FILE_COUNT="${{ steps.pipeline.outputs.file_count }}"
+          PAIR_COUNT="${{ steps.pipeline.outputs.pair_count }}"
+
+          {
+            echo "## ODS Revision Diff Analysis — \`$SHEET\`"
+            echo ""
+            echo "| Property | Value |"
+            echo "|----------|-------|"
+            echo "| Sheet | \`$SHEET\` |"
+            echo "| Range | \`$RANGE\` |"
+            echo "| Text-only | \`${{ needs.prepare.outputs.text_only }}\` |"
+            echo "| ODS files downloaded | $FILE_COUNT |"
+            echo "| Pair diffs produced | $PAIR_COUNT |"
+            echo "| Workflow run | ${{ github.run_id }} |"
+            echo ""
+            echo "### Artifact"
+            echo ""
+            echo "Results uploaded as \`diff-${SHEET}-${RANGE}-${{ github.run_number }}\`"
+            echo "(**90-day retention** — maximum for public repos)"
+            echo ""
+
+            # Include summary.json highlights if available
+            SUMMARY="/tmp/diff-results/$SHEET/summary.json"
+            if [ -f "$SUMMARY" ]; then
+              echo "### Summary Statistics"
+              echo ""
+              echo '```json'
+              python3 -c "
+          import json
+          s = json.load(open('$SUMMARY'))
+          # Print the overall stats compactly
+          overall = s.get('overall', s)
+          print(json.dumps(overall, indent=2))
+          "
+              echo '```'
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"

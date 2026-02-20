@@ -22,6 +22,7 @@ import json
 import re
 import sys
 import time
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from html.parser import HTMLParser
 from pathlib import Path
 from urllib.error import HTTPError
@@ -139,6 +140,10 @@ def main():
         help="Which sheet's revisions to download (default: library)"
     )
     parser.add_argument(
+        "--all", action="store_true",
+        help="Download all revisions found in the folder listing"
+    )
+    parser.add_argument(
         "--first", type=int, default=10,
         help="Download the first N revisions (default: 10)"
     )
@@ -168,15 +173,6 @@ def main():
     print(f"  Output:  {outdir}")
     print()
 
-    # Determine which revisions we want
-    if args.revisions:
-        wanted = set(int(r) for r in args.revisions.split(","))
-    else:
-        wanted = set(range(1, args.first + 1))
-
-    print(f"  Wanted revisions: {sorted(wanted)}")
-    print()
-
     # List folder contents
     entries = list_drive_folder(folder_id)
 
@@ -190,74 +186,105 @@ def main():
         print("  This can happen with very large folders (2000+ files).")
         print("  Falling back to direct API approach...")
         print()
-        # Try the Google Drive API v3 for public files
-        entries = list_drive_folder_api(folder_id, wanted)
 
-    # Build name->id mapping and filter to wanted revisions
+    # Parse all revision entries from the listing
     file_map = {}  # rev_num -> {id, name}
     for entry in entries:
         name = entry.get("name", "")
         match = re.match(r"rev-(\d+)\.ods\.gz$", name)
         if match:
-            rev_num = int(match.group(1))
-            if rev_num in wanted:
-                file_map[rev_num] = entry
+            file_map[int(match.group(1))] = entry
 
-    found = sorted(file_map.keys())
-    missing = sorted(wanted - set(found))
+    print(f"  Listing contains {len(file_map)} revision files")
 
-    print(f"\n  Found {len(found)}/{len(wanted)} wanted revisions in listing")
-    if missing:
-        print(f"  Missing: {missing}")
-        print(f"  Will try direct API query for missing revisions...")
+    # Filter to requested revisions
+    if args.all:
+        # Download everything in the listing — no probing needed
+        print(f"  Mode: --all (downloading all {len(file_map)} listed revisions)")
+    elif args.revisions:
+        wanted = set(int(r) for r in args.revisions.split(","))
+        file_map = {k: v for k, v in file_map.items() if k in wanted}
+        print(f"  Mode: --revisions ({len(file_map)} of {len(wanted)} requested found in listing)")
+    else:
+        wanted = set(range(1, args.first + 1))
+        file_map = {k: v for k, v in file_map.items() if k in wanted}
+        print(f"  Mode: --first {args.first} ({len(file_map)} found in listing)")
 
-    # Try to find missing revisions via direct API search
-    if missing:
-        for rev_num in missing:
-            filename = f"rev-{rev_num}.ods.gz"
-            entry = find_file_in_folder_api(folder_id, filename)
-            if entry:
-                file_map[rev_num] = entry
-                print(f"    Found {filename} via API: {entry['id']}")
-            else:
-                print(f"    Could not find {filename}")
+    if not file_map and not entries:
+        # Empty listing — try direct API as last resort
+        if args.revisions:
+            wanted = set(int(r) for r in args.revisions.split(","))
+        else:
+            wanted = set(range(1, args.first + 1))
+        entries = list_drive_folder_api(folder_id, wanted)
+        for entry in entries:
+            name = entry.get("name", "")
+            match = re.match(r"rev-(\d+)\.ods\.gz$", name)
+            if match:
+                file_map[int(match.group(1))] = entry
+        print(f"  Fallback API found {len(file_map)} revisions")
 
-    # Download each revision
-    print(f"\n  Downloading {len(file_map)} revisions...\n")
+    # Write manifest immediately so pipeline consumers know what to expect
+    manifest_path = outdir / "manifest.txt"
+    manifest_path.write_text(
+        "\n".join(str(r) for r in sorted(file_map.keys())) + "\n"
+    )
+    print(f"  Manifest: {manifest_path} ({len(file_map)} revisions)")
+
+    # Download revisions (concurrently for speed)
+    WORKERS = 10  # 10 parallel downloads — well within Drive's 12k req/min limit
+    print(f"\n  Downloading {len(file_map)} revisions ({WORKERS} workers)...\n")
     downloaded = 0
+    skipped = 0
     errors = 0
 
+    # Separate already-downloaded from todo
+    todo = {}
     for rev_num in sorted(file_map.keys()):
-        entry = file_map[rev_num]
+        ods_path = outdir / f"rev-{rev_num}.ods"
+        if ods_path.exists() and ods_path.stat().st_size > 1000:
+            skipped += 1
+            continue
+        todo[rev_num] = file_map[rev_num]
+
+    if skipped:
+        print(f"  Skipping {skipped} already-downloaded revisions")
+
+    def _download_one(rev_num, entry):
+        """Download and decompress a single revision. Returns (rev_num, ok, msg)."""
         gz_path = outdir / f"rev-{rev_num}.ods.gz"
         ods_path = outdir / f"rev-{rev_num}.ods"
-
-        # Skip if already downloaded and decompressed
-        if ods_path.exists() and ods_path.stat().st_size > 1000:
-            print(f"  rev-{rev_num:>5}: skip (already at {ods_path}, "
-                  f"{ods_path.stat().st_size:,} bytes)")
-            downloaded += 1
-            continue
-
-        print(f"  rev-{rev_num:>5}: downloading {entry['name']}...", end="", flush=True)
+        tmp_path = outdir / f"rev-{rev_num}.ods.tmp"
         try:
             size = download_drive_file(entry["id"], gz_path)
-            print(f" {size:,} gz bytes", end="", flush=True)
-
-            # Decompress
             gz_data = gz_path.read_bytes()
             ods_data = gzip.decompress(gz_data)
-            ods_path.write_bytes(ods_data)
-            print(f" -> {len(ods_data):,} ods bytes")
-
-            # Keep the .gz too for reference, but the .ods is what we diff
-            downloaded += 1
-
+            # Atomic write: .tmp then rename, so consumers never see partial files
+            tmp_path.write_bytes(ods_data)
+            tmp_path.rename(ods_path)
+            return (rev_num, True, f"{size:,} gz -> {len(ods_data):,} ods")
         except Exception as e:
-            print(f" ERROR: {e}")
-            errors += 1
+            return (rev_num, False, str(e))
 
-        time.sleep(0.5)  # Be kind to Drive
+    with ThreadPoolExecutor(max_workers=WORKERS) as pool:
+        futures = {
+            pool.submit(_download_one, rev_num, entry): rev_num
+            for rev_num, entry in todo.items()
+        }
+        for future in as_completed(futures):
+            rev_num, ok, msg = future.result()
+            if ok:
+                downloaded += 1
+                print(f"  rev-{rev_num:>5}: {msg}")
+            else:
+                errors += 1
+                print(f"  rev-{rev_num:>5}: ERROR {msg}")
+
+    downloaded += skipped  # count skipped as "downloaded" for the total
+
+    # Signal completion so pipeline consumers stop waiting for missing files
+    done_path = outdir / "download-done.txt"
+    done_path.write_text(f"downloaded={downloaded}\nerrors={errors}\n")
 
     print(f"\n{'='*70}")
     print(f"Done: {downloaded} downloaded, {errors} errors")

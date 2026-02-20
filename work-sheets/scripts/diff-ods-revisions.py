@@ -34,12 +34,17 @@ Expects files named rev-{N}.ods in the input directory.
 """
 
 import argparse
+import hashlib
 import json
 import sys
 import zipfile
-import xml.etree.ElementTree as ET
 from collections import defaultdict
 from pathlib import Path
+
+try:
+    from lxml import etree as ET
+except ImportError:
+    import xml.etree.ElementTree as ET
 
 # ODS XML namespaces
 NS = {
@@ -1489,6 +1494,27 @@ def _run_semantic_mode(args, indir, ods_files, all_revs):
         print(f"\n  JSON results: {json_path}")
 
 
+def _wait_for_file(path, timeout=600, poll=2.0):
+    """Wait for a file to appear on disk. Used in pipeline mode.
+
+    If download-done.txt exists in the same directory, downloads are finished.
+    In that case, if the file still doesn't exist, it was never downloaded
+    (e.g. Drive error) — raise immediately instead of waiting the full timeout.
+    """
+    import time as _time
+    done_marker = path.parent / "download-done.txt"
+    deadline = _time.time() + timeout
+    while not path.exists():
+        # If downloads finished and file still missing, don't wait
+        if done_marker.exists():
+            raise FileNotFoundError(
+                f"{path.name} not downloaded (download already finished)"
+            )
+        if _time.time() > deadline:
+            raise TimeoutError(f"Timed out after {timeout}s waiting for {path.name}")
+        _time.sleep(poll)
+
+
 def _run_semantic_streaming(args, indir, ods_files, all_revs):
     """Streaming pairwise semantic diff: parse 2 files at a time, write to disk, free memory.
 
@@ -1499,11 +1525,14 @@ def _run_semantic_streaming(args, indir, ods_files, all_revs):
     import gc as gc_mod
 
     text_only = args.text_only
+    wait_mode = getattr(args, "wait", False)
     outdir = Path(args.output_dir)
     outdir.mkdir(parents=True, exist_ok=True)
 
     print(f"Streaming pairwise diff: {len(all_revs) - 1} transitions")
     print(f"  Output: {outdir}/")
+    if wait_mode:
+        print(f"  Wait mode: ON (will poll for files)")
     print()
 
     # Track aggregates as we go
@@ -1555,6 +1584,59 @@ def _run_semantic_streaming(args, indir, ods_files, all_revs):
                 continue
             except (json.JSONDecodeError, KeyError):
                 pass  # Re-compute if file is corrupt
+
+        # Wait for files if in pipeline mode (downloads may still be in progress)
+        if wait_mode:
+            try:
+                _wait_for_file(ods_files[rev_a])
+                _wait_for_file(ods_files[rev_b])
+            except (TimeoutError, FileNotFoundError) as e:
+                print(f"  rev-{rev_a:>5} -> rev-{rev_b:>5}: SKIP ({e})")
+                errors.append({"pair": f"{rev_a}-{rev_b}", "error": str(e)})
+                prev_rev = None
+                prev_data = None
+                continue
+
+        # Hash fast-path: skip identical content.xml without full parse
+        try:
+            with zipfile.ZipFile(ods_files[rev_a]) as za:
+                hash_a = hashlib.md5(za.read("content.xml")).digest()
+            with zipfile.ZipFile(ods_files[rev_b]) as zb:
+                hash_b = hashlib.md5(zb.read("content.xml")).digest()
+            if hash_a == hash_b:
+                total_transitions += 1
+                identical_count += 1
+                pair_result = {
+                    "from_rev": rev_a,
+                    "to_rev": rev_b,
+                    "num_changes": 0,
+                    "style_only_count": 0,
+                    "has_col_structure": False,
+                    "has_row_structure": False,
+                    "column_changes": {
+                        "added": [], "removed": [], "common": [],
+                        "unnamed_added": 0, "unnamed_removed": 0,
+                        "unnamed_positions": [],
+                        "old_count": 0, "new_count": 0,
+                    },
+                    "row_changes": {
+                        "added": [], "added_count": 0,
+                        "removed": [], "removed_count": 0,
+                        "matched": 0, "old_row_count": 0, "new_row_count": 0,
+                        "old_unmatched": 0, "new_unmatched": 0,
+                    },
+                    "summary": {"by_category": {}, "by_column": {}, "by_row_range": {}},
+                    "changes": [],
+                    "fast_identical": True,
+                }
+                with open(pair_json, "w") as f:
+                    json.dump(pair_result, f, separators=(",", ":"))
+                print(f"  rev-{rev_a:>5} -> rev-{rev_b:>5}: IDENTICAL (hash)")
+                prev_rev = None
+                prev_data = None
+                continue
+        except Exception:
+            pass  # Fall through to full parse
 
         # Parse old revision (use cache if possible)
         if prev_rev == rev_a and prev_data is not None:
@@ -1771,6 +1853,16 @@ def main():
         help="Output directory for streaming mode per-pair JSON files "
              "(default: /tmp/semantic-diff-streaming/)"
     )
+    parser.add_argument(
+        "--manifest", type=str, default=None,
+        help="File listing expected revision numbers (one per line). "
+             "Use instead of directory glob — allows starting before all files exist."
+    )
+    parser.add_argument(
+        "--wait", action="store_true",
+        help="Wait for ODS files to appear on disk (poll every 2s, 10 min timeout). "
+             "Use with --manifest when downloads are still in progress."
+    )
     args = parser.parse_args()
 
     indir = Path(args.input_dir)
@@ -1778,25 +1870,34 @@ def main():
         print(f"ERROR: {indir} is not a directory")
         sys.exit(1)
 
-    # Find all rev-N.ods files
-    ods_files = {}
-    for f in indir.glob("rev-*.ods"):
-        if f.suffix == ".ods":
-            try:
-                rev_num = int(f.stem.split("-")[1])
-                ods_files[rev_num] = f
-            except (ValueError, IndexError):
-                pass
-
-    if not ods_files:
-        print(f"ERROR: No rev-N.ods files found in {indir}")
-        sys.exit(1)
+    # Build the revision list: from manifest (pipeline) or directory glob
+    if args.manifest:
+        manifest_revs = sorted(
+            int(line.strip())
+            for line in Path(args.manifest).read_text().splitlines()
+            if line.strip()
+        )
+        ods_files = {r: indir / f"rev-{r}.ods" for r in manifest_revs}
+        all_revs = manifest_revs
+    else:
+        ods_files = {}
+        for f in indir.glob("rev-*.ods"):
+            if f.suffix == ".ods":
+                try:
+                    rev_num = int(f.stem.split("-")[1])
+                    ods_files[rev_num] = f
+                except (ValueError, IndexError):
+                    pass
+        if not ods_files:
+            print(f"ERROR: No rev-N.ods files found in {indir}")
+            sys.exit(1)
+        all_revs = sorted(ods_files.keys())
 
     # Apply range filter
-    all_revs = sorted(ods_files.keys())
     if args.range:
         start, end = args.range.split("-")
         all_revs = [r for r in all_revs if int(start) <= r <= int(end)]
+        ods_files = {r: ods_files[r] for r in all_revs}
 
     modes = []
     if args.text_only:
