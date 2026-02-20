@@ -33,6 +33,7 @@ import hashlib
 import json
 import re
 import sys
+import threading
 import time
 import zipfile
 from collections import defaultdict
@@ -40,6 +41,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from html.parser import HTMLParser
 from multiprocessing import Pool
 from pathlib import Path
+from queue import Queue
 from urllib.error import HTTPError
 from urllib.request import Request, urlopen
 
@@ -1041,7 +1043,7 @@ def main():
     )
     parser.add_argument("sheet", choices=["library", "documents"])
     parser.add_argument("--diff-workers", type=int, default=4)
-    parser.add_argument("--download-workers", type=int, default=10)
+    parser.add_argument("--download-workers", type=int, default=20)
     parser.add_argument("--download-dir", type=str, default=None)
     parser.add_argument("--diff-dir", type=str, default=None)
     parser.add_argument("--text-only", action="store_true", default=True)
@@ -1066,7 +1068,7 @@ def main():
     diff_dir.mkdir(parents=True, exist_ok=True)
 
     print("=" * 70)
-    print(f"Integrated Diff Pipeline: {args.sheet}")
+    print(f"Pipelined Diff Pipeline: {args.sheet}")
     print("=" * 70)
     print(f"  XML parser:       {'lxml' if _USING_LXML else 'stdlib ElementTree'}")
     print(f"  Download dir:     {dl_dir}")
@@ -1075,6 +1077,7 @@ def main():
     print(f"  Diff workers:     {args.diff_workers}")
     print(f"  Text-only:        {args.text_only}")
     print(f"  Audit cache:      {args.audit_cache or 'none'}")
+    print(f"  Mode:             OVERLAPPED download+diff")
     print()
 
     t_start = time.time()
@@ -1122,7 +1125,7 @@ def main():
         print(f"[cache] Pre-written pair JSONs:  {pre_written}")
         print()
 
-    # ── Phase 1: Download revisions (in-process) ─────────────────────
+    # ── Phase 1: List Drive folder ───────────────────────────────────
     if cache_fps:
         file_map = build_file_map(args.sheet, needed_revs)
     else:
@@ -1132,51 +1135,256 @@ def main():
         print("ERROR: No revision files found in Drive folder")
         sys.exit(1)
 
-    print(f"\n[pipeline] Downloading {len(file_map)} revisions...")
-    dl_count, dl_errors = download_revisions(
-        args.sheet, dl_dir, file_map, download_workers=args.download_workers
-    )
-    t_dl = time.time() - t_start
-    print(f"[pipeline] Download finished in {t_dl:.1f}s "
-          f"({dl_count} downloaded, {dl_errors} errors)")
-
-    if dl_errors > 0 and dl_count == 0:
-        print("ERROR: All downloads failed")
-        sys.exit(1)
-
-    # Build revision list: use cache if available, else manifest
-    if cache_fps:
-        revs = sorted(needed_revs)
-    else:
-        manifest = dl_dir / "manifest.txt"
-        if not manifest.exists():
-            print("ERROR: No manifest.txt found")
-            sys.exit(1)
-        revs = sorted(
-            int(line.strip())
-            for line in manifest.read_text().splitlines()
-            if line.strip()
-        )
-
+    # Build the sorted revision list (needed for pair tracking)
+    revs = sorted(file_map.keys())
     n_pairs = len(revs) - 1
     total_pairs = n_pairs + len(identical_pairs_from_cache)
-    print(f"\n[pipeline] {len(revs)} revisions to diff, {n_pairs} pairs")
+    print(f"\n[pipeline] {len(revs)} revisions to download+diff, {n_pairs} pairs")
     if identical_pairs_from_cache:
         print(f"[pipeline] + {len(identical_pairs_from_cache)} identical pairs (from cache)")
         print(f"[pipeline] = {total_pairs} total pairs")
+
+    # Build pair list: consecutive revisions that need diffing
+    # pairs[i] = (revs[i], revs[i+1])
+    pairs = [(revs[i], revs[i + 1]) for i in range(n_pairs)]
+
+    # Track which revisions each pair needs
+    # rev_to_pairs[rev_num] = list of pair indices where this rev appears
+    rev_to_pairs = defaultdict(list)
+    for pi, (ra, rb) in enumerate(pairs):
+        rev_to_pairs[ra].append(pi)
+        rev_to_pairs[rb].append(pi)
+
+    # ── Phase 1+2: OVERLAPPED download + diff ────────────────────────
+    print()
+    print("=" * 70)
+    print(f"Pipelined download ({args.download_workers} threads) + "
+          f"diff ({args.diff_workers} workers)")
+    print("=" * 70)
+
+    # State tracking (protected by lock)
+    lock = threading.Lock()
+    downloaded_revs = set()         # revisions whose .ods file is on disk
+    pair_ready = [False] * n_pairs  # True when both files of pair are ready
+    pair_submitted = [False] * n_pairs
+    diff_queue = Queue()            # items: (rev_a, rev_b, path_a, path_b, text_only, outdir)
+
+    # Mark already-existing files as downloaded
+    skipped = 0
+    todo = {}
+    for rev_num in revs:
+        ods_path = dl_dir / f"rev-{rev_num}.ods"
+        if ods_path.exists() and ods_path.stat().st_size > 1000:
+            downloaded_revs.add(rev_num)
+            skipped += 1
+        else:
+            todo[rev_num] = file_map[rev_num]
+
+    if skipped:
+        print(f"  {skipped} revisions already on disk")
+
+    # Check if pre-existing files already complete any pairs
+    for pi, (ra, rb) in enumerate(pairs):
+        if ra in downloaded_revs and rb in downloaded_revs:
+            pair_ready[pi] = True
+            pair_submitted[pi] = True
+            diff_queue.put((
+                ra, rb,
+                str(dl_dir / f"rev-{ra}.ods"),
+                str(dl_dir / f"rev-{rb}.ods"),
+                args.text_only,
+                str(diff_dir),
+            ))
+
+    pre_queued = sum(pair_submitted)
+    if pre_queued:
+        print(f"  {pre_queued} pairs immediately ready from cached files")
+
+    dl_count = skipped
+    dl_errors = 0
+    dl_done = threading.Event()
+
+    def on_download_complete(rev_num):
+        """Called when a revision finishes downloading. Checks if any pairs
+        are now ready and submits them to the diff queue."""
+        nonlocal dl_count
+        with lock:
+            downloaded_revs.add(rev_num)
+            # Check all pairs this revision participates in
+            for pi in rev_to_pairs.get(rev_num, []):
+                if pair_submitted[pi]:
+                    continue
+                ra, rb = pairs[pi]
+                if ra in downloaded_revs and rb in downloaded_revs:
+                    pair_ready[pi] = True
+                    pair_submitted[pi] = True
+                    diff_queue.put((
+                        ra, rb,
+                        str(dl_dir / f"rev-{ra}.ods"),
+                        str(dl_dir / f"rev-{rb}.ods"),
+                        args.text_only,
+                        str(diff_dir),
+                    ))
+
+    def download_thread():
+        """Runs all downloads, signaling the coordinator as each completes."""
+        nonlocal dl_count, dl_errors
+        if not todo:
+            dl_done.set()
+            return
+
+        print(f"  Downloading {len(todo)} revisions ({args.download_workers} workers)...")
+
+        with ThreadPoolExecutor(max_workers=args.download_workers) as pool:
+            futures = {
+                pool.submit(_download_one, rev_num, entry, dl_dir): rev_num
+                for rev_num, entry in todo.items()
+            }
+            for future in as_completed(futures):
+                rev_num, ok, msg = future.result()
+                if ok:
+                    dl_count += 1
+                    on_download_complete(rev_num)
+                else:
+                    dl_errors += 1
+                    print(f"    rev-{rev_num:>5}: ERROR {msg}")
+
+        dl_done.set()
+
+    # Start download in a background thread
+    dl_thread = threading.Thread(target=download_thread, daemon=True)
+    dl_thread.start()
+
+    # ── Diff consumer: pull from queue, process via Pool ─────────────
+    t_first_diff = None
+    diff_completed = 0
+    diff_errors_count = 0
+    diff_stats = {
+        "identical": 0,
+        "hash_identical": 0,
+        "style_only": 0,
+        "changed": 0,
+        "cached": 0,
+        "errors": 0,
+        "cell_changes": 0,
+        "user_edits": 0,
+    }
+
+    def process_diff_result(result):
+        """Tally a single diff result into stats."""
+        nonlocal diff_completed, diff_errors_count
+        rev_a, rev_b, status, data = result
+        diff_completed += 1
+
+        if status == "error":
+            diff_stats["errors"] += 1
+            diff_errors_count += 1
+            print(f"  rev-{rev_a:>5} -> rev-{rev_b:>5}: ERROR {data}")
+        elif status == "hash_identical":
+            diff_stats["identical"] += 1
+            diff_stats["hash_identical"] += 1
+        elif status == "cached":
+            diff_stats["cached"] += 1
+            n = data.get("num_changes", 0)
+            if n == 0 and not data.get("has_col_structure") and not data.get("has_row_structure"):
+                diff_stats["identical"] += 1
+            else:
+                diff_stats["changed"] += 1
+                diff_stats["cell_changes"] += n
+        elif status == "diffed":
+            n = data.get("num_changes", 0)
+            soc = data.get("style_only_count", 0)
+            hcs = data.get("has_col_structure", False)
+            hrs = data.get("has_row_structure", False)
+
+            if n == 0 and soc == 0 and not hcs and not hrs:
+                diff_stats["identical"] += 1
+            elif n == 0 and soc > 0 and not hcs and not hrs:
+                diff_stats["style_only"] += 1
+            else:
+                diff_stats["changed"] += 1
+                diff_stats["cell_changes"] += n
+                diff_stats["user_edits"] += data.get("summary", {}).get(
+                    "by_category", {}
+                ).get("user_edit", 0)
+
+            # Log non-trivial diffs
+            if n > 0 or hcs or hrs:
+                parts = []
+                if n:
+                    parts.append(f"{n} changes")
+                if hcs:
+                    cc = data["column_changes"]
+                    parts.append(f"cols {cc['old_count']}->{cc['new_count']}")
+                if hrs:
+                    rc = data["row_changes"]
+                    parts.append(f"+{rc['added_count']} -{rc['removed_count']} rows")
+                print(f"  rev-{rev_a:>5} -> rev-{rev_b:>5}: {', '.join(parts)}")
+
+        if diff_completed % 200 == 0:
+            elapsed = time.time() - t_start
+            print(f"  ... {diff_completed}/{n_pairs} pairs diffed "
+                  f"({diff_completed / elapsed:.0f} pairs/s, "
+                  f"{len(downloaded_revs)}/{len(revs)} downloaded)")
+
+    # Use a Pool for diff workers, feeding it from the queue
+    print(f"\n  Diff pool: {args.diff_workers} workers (pairs submitted as downloads complete)")
     print()
 
-    # ── Phase 2: Parallel diff (in-process multiprocessing Pool) ─────
-    print("=" * 70)
-    print(f"In-process diff ({args.diff_workers} workers, hash fast-path + "
-          f"{'lxml' if _USING_LXML else 'ElementTree'})")
-    print("=" * 70)
+    n_submitted = pre_queued
 
-    t_diff_start = time.time()
-    stats = _pool_diff(revs, dl_dir, diff_dir, args.text_only, args.diff_workers)
-    t_diff = time.time() - t_diff_start
+    with Pool(processes=args.diff_workers) as pool:
+        pending_results = []  # list of AsyncResult objects
 
-    print(f"\n[pipeline] Diff phase: {t_diff:.1f}s")
+        while True:
+            # Drain the queue: submit new pairs to the pool
+            while not diff_queue.empty():
+                try:
+                    work_item = diff_queue.get_nowait()
+                except Exception:
+                    break
+                if t_first_diff is None:
+                    t_first_diff = time.time()
+                    elapsed_to_first = t_first_diff - t_start
+                    print(f"  [pipeline] First diff pair submitted at {elapsed_to_first:.1f}s")
+                ar = pool.apply_async(_diff_pair, (work_item,))
+                pending_results.append(ar)
+                n_submitted += 1
+
+            # Collect completed results
+            still_pending = []
+            for ar in pending_results:
+                if ar.ready():
+                    try:
+                        result = ar.get(timeout=0)
+                        process_diff_result(result)
+                    except Exception as e:
+                        diff_errors_count += 1
+                        diff_completed += 1
+                        print(f"  Pool error: {e}")
+                else:
+                    still_pending.append(ar)
+            pending_results = still_pending
+
+            # Check: are we done?
+            # Downloads done + all submitted pairs collected = finished
+            downloads_finished = dl_done.is_set()
+            all_collected = (len(pending_results) == 0 and diff_queue.empty()
+                             and downloads_finished)
+            if all_collected:
+                break
+
+            # Brief sleep to avoid busy-waiting, but keep it short
+            time.sleep(0.05)
+
+    # Wait for download thread to finish (should already be done)
+    dl_thread.join(timeout=5)
+
+    t_dl = time.time() - t_start  # includes overlap, but we track separately
+    t_total = time.time() - t_start
+
+    print(f"\n[pipeline] Downloads: {dl_count} ok, {dl_errors} errors")
+    print(f"[pipeline] Diffs:     {diff_completed} pairs processed")
 
     # ── Phase 3: Build merged summary from all pair files ────────────
     pair_files = sorted(diff_dir.glob("pair-*.json"))
@@ -1239,11 +1447,9 @@ def main():
         except Exception as e:
             errors.append({"file": pf.name, "error": str(e)})
 
-    t_total = time.time() - t_start
-
     summary = {
         "input_dir": str(dl_dir),
-        "mode": "integrated-pipeline",
+        "mode": "pipelined",
         "xml_parser": "lxml" if _USING_LXML else "ElementTree",
         "text_only": args.text_only,
         "download_workers": args.download_workers,
@@ -1261,9 +1467,8 @@ def main():
         "row_structure_events": row_events,
         "errors": errors,
         "timing": {
-            "download_seconds": round(t_dl, 1),
-            "diff_seconds": round(t_diff, 1),
             "total_seconds": round(t_total, 1),
+            "first_diff_at": round(t_first_diff - t_start, 1) if t_first_diff else None,
         },
     }
 
@@ -1276,7 +1481,7 @@ def main():
     print("=" * 70)
     print("PIPELINE SUMMARY")
     print("=" * 70)
-    print(f"  Mode:           integrated (single process)")
+    print(f"  Mode:           pipelined (overlapped download+diff)")
     print(f"  XML parser:     {'lxml' if _USING_LXML else 'ElementTree'}")
     print(f"  Revisions:      {len(revs)}")
     print(f"  Transitions:    {total_transitions}")
@@ -1287,8 +1492,8 @@ def main():
     print(f"  User edits:     {total_user_edits}")
     print(f"  DL errors:      {dl_errors}")
     print(f"  Diff errors:    {len(errors)}")
-    print(f"  Download time:  {t_dl:.0f}s")
-    print(f"  Diff time:      {t_diff:.0f}s")
+    first_diff_msg = f"{t_first_diff - t_start:.1f}s" if t_first_diff else "N/A"
+    print(f"  First diff at:  {first_diff_msg} (overlap starts here)")
     print(f"  Total time:     {t_total:.0f}s")
     print(f"  Pair files:     {len(pair_files)}")
     print(f"  Summary:        {summary_path}")
