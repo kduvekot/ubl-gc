@@ -1,14 +1,23 @@
 #!/usr/bin/env python3
-"""Workflow-optimized pipeline: download + diff ODS revisions.
+"""Integrated pipeline: download + diff ODS revisions in a single process.
 
 Dedicated script for the diff-analysis GitHub Actions workflow.
-Optimized vs the general-purpose scripts in work-sheets/scripts/:
+Everything runs in-process — no subprocess calls to external scripts.
 
-  1. content.xml hash comparison — skip parsing when files are identical
-  2. lxml for XML parsing (3-5x faster than stdlib ElementTree)
-  3. multiprocessing Pool instead of subprocess Popen
-  4. File-size pre-check before hashing
-  5. Smarter chunk balancing (size-weighted splits)
+Architecture:
+  1. Download phase — ThreadPoolExecutor downloads ODS files from Google Drive
+  2. Diff phase — multiprocessing Pool diffs consecutive pairs
+  3. Overlap — a coordinator submits diff work as soon as both files of a
+     pair are downloaded, so diff starts before all downloads finish
+
+Optimizations vs the general-purpose scripts in work-sheets/scripts/:
+  - content.xml MD5 comparison — skip parsing when files are identical
+  - lxml for XML parsing (3-5x faster than stdlib ElementTree)
+  - multiprocessing Pool for diff parallelism
+  - File-size pre-check before hashing
+  - Size-weighted chunk balancing
+  - Audit-cache fingerprints — skip download+diff for known-identical pairs
+  - ThreadPoolExecutor for concurrent downloads with connection reuse
 
 Usage (from workflow):
     python3 .github/scripts/fast-diff-pipeline.py documents \\
@@ -19,15 +28,20 @@ Usage (from workflow):
 
 import argparse
 import gc as gc_mod
+import gzip
 import hashlib
 import json
-import subprocess
+import re
 import sys
 import time
 import zipfile
 from collections import defaultdict
+from concurrent.futures import ThreadPoolExecutor, as_completed
+from html.parser import HTMLParser
 from multiprocessing import Pool
 from pathlib import Path
+from urllib.error import HTTPError
+from urllib.request import Request, urlopen
 
 # ── XML parser: prefer lxml, fall back to stdlib ──────────────────────
 try:
@@ -44,9 +58,257 @@ NS_TABLE = "{urn:oasis:names:tc:opendocument:xmlns:table:1.0}"
 NS_TEXT = "{urn:oasis:names:tc:opendocument:xmlns:text:1.0}"
 NS_OFFICE = "{urn:oasis:names:tc:opendocument:xmlns:office:1.0}"
 
+# ── Google Drive public folder IDs ────────────────────────────────────
+DRIVE_FOLDERS = {
+    "library": "1JRvRaqsNP_G-9xICwrgGpY-ArwV8ej1w",
+    "documents": "1DsufM2yMqcbE8kR-RH1i5rSBcvPivOxA",
+}
+
 
 # =====================================================================
-# Core ODS parsing (extracted from diff-ods-revisions.py)
+# Google Drive download (inlined from download-drive-revisions.py)
+# =====================================================================
+
+
+class DriveEmbedParser(HTMLParser):
+    """Parse the embedded folder view HTML to extract file entries."""
+
+    def __init__(self):
+        super().__init__()
+        self.entries = []
+        self.current_entry = None
+        self.in_title = False
+
+    def handle_starttag(self, tag, attrs):
+        attrs_dict = dict(attrs)
+        if tag == "div" and attrs_dict.get("class") == "flip-entry":
+            self.current_entry = {"id": None, "name": None}
+        if tag == "a" and self.current_entry and "href" in attrs_dict:
+            url = attrs_dict["href"]
+            match = re.search(r"/file/d/([a-zA-Z0-9_-]+)", url)
+            if match:
+                self.current_entry["id"] = match.group(1)
+        if tag == "div" and attrs_dict.get("class") == "flip-entry-title":
+            self.in_title = True
+
+    def handle_data(self, data):
+        if self.current_entry and self.in_title:
+            self.current_entry["name"] = data.strip()
+            self.in_title = False
+
+    def handle_endtag(self, tag):
+        if tag == "div" and self.current_entry and self.current_entry.get("name"):
+            self.entries.append(self.current_entry)
+            self.current_entry = None
+
+
+def list_drive_folder(folder_id):
+    """List all files in a public Google Drive folder using the embed view."""
+    url = f"https://drive.google.com/embeddedfolderview?id={folder_id}"
+    print(f"  Listing folder {folder_id}...")
+
+    try:
+        req = Request(url, headers={"User-Agent": "Mozilla/5.0"})
+        with urlopen(req, timeout=60) as resp:
+            html = resp.read().decode("utf-8")
+
+        parser = DriveEmbedParser()
+        parser.feed(html)
+        print(f"  Found {len(parser.entries)} entries in embed view")
+        return parser.entries
+
+    except Exception as e:
+        print(f"  ERROR listing folder: {e}")
+        return []
+
+
+def _find_file_in_folder_api(folder_id, filename):
+    """Search for a specific file in a public Drive folder using the API."""
+    import urllib.parse
+
+    q = urllib.parse.quote(
+        f"name='{filename}' and '{folder_id}' in parents and trashed=false"
+    )
+    url = (
+        f"https://www.googleapis.com/drive/v3/files"
+        f"?q={q}"
+        f"&fields=files(id,name,size)"
+        f"&supportsAllDrives=true"
+    )
+
+    try:
+        req = Request(url, headers={"User-Agent": "Mozilla/5.0"})
+        with urlopen(req, timeout=30) as resp:
+            data = json.loads(resp.read())
+
+        files = data.get("files", [])
+        if files:
+            return {"id": files[0]["id"], "name": files[0]["name"]}
+    except Exception:
+        pass
+
+    return None
+
+
+def _list_drive_folder_api(folder_id, wanted_revs):
+    """Fallback: use Google Drive API v3 to find specific files."""
+    entries = []
+    for rev_num in sorted(wanted_revs):
+        entry = _find_file_in_folder_api(folder_id, f"rev-{rev_num}.ods.gz")
+        if entry:
+            entries.append(entry)
+    return entries
+
+
+def download_drive_file(file_id, dest_path, retries=3):
+    """Download a file from Google Drive by ID."""
+    url = f"https://drive.google.com/uc?export=download&id={file_id}"
+
+    for attempt in range(retries):
+        try:
+            req = Request(url, headers={"User-Agent": "Mozilla/5.0"})
+            with urlopen(req, timeout=120) as resp:
+                data = resp.read()
+
+            # Check for HTML virus scan warning page (large files)
+            if data[:100].startswith(b"<!DOCTYPE") or b"virus scan" in data[:2000].lower():
+                match = re.search(rb'confirm=([a-zA-Z0-9_-]+)', data)
+                if match:
+                    confirm = match.group(1).decode()
+                    url2 = f"{url}&confirm={confirm}"
+                    req2 = Request(url2, headers={"User-Agent": "Mozilla/5.0"})
+                    with urlopen(req2, timeout=120) as resp2:
+                        data = resp2.read()
+
+            dest_path.write_bytes(data)
+            return len(data)
+
+        except HTTPError as e:
+            if attempt < retries - 1:
+                wait = 2 ** (attempt + 1)
+                print(f"    HTTP {e.code}, retrying in {wait}s...")
+                time.sleep(wait)
+                continue
+            raise
+        except Exception as e:
+            if attempt < retries - 1:
+                wait = 2 ** (attempt + 1)
+                print(f"    Error: {e}, retrying in {wait}s...")
+                time.sleep(wait)
+                continue
+            raise
+
+    return 0
+
+
+def _download_one(rev_num, entry, outdir):
+    """Download and decompress a single revision. Returns (rev_num, ok, msg)."""
+    gz_path = outdir / f"rev-{rev_num}.ods.gz"
+    ods_path = outdir / f"rev-{rev_num}.ods"
+    tmp_path = outdir / f"rev-{rev_num}.ods.tmp"
+    try:
+        size = download_drive_file(entry["id"], gz_path)
+        gz_data = gz_path.read_bytes()
+        ods_data = gzip.decompress(gz_data)
+        # Atomic write: .tmp then rename, so consumers never see partial files
+        tmp_path.write_bytes(ods_data)
+        tmp_path.rename(ods_path)
+        return (rev_num, True, f"{size:,} gz -> {len(ods_data):,} ods")
+    except Exception as e:
+        return (rev_num, False, str(e))
+
+
+def download_revisions(sheet, outdir, file_map, download_workers=10):
+    """Download all revisions in file_map. Returns (downloaded, errors).
+
+    Skips files that already exist and are >1000 bytes.
+    """
+    outdir = Path(outdir)
+    outdir.mkdir(parents=True, exist_ok=True)
+
+    # Write manifest immediately
+    manifest_path = outdir / "manifest.txt"
+    manifest_path.write_text(
+        "\n".join(str(r) for r in sorted(file_map.keys())) + "\n"
+    )
+
+    # Separate already-downloaded from todo
+    todo = {}
+    skipped = 0
+    for rev_num in sorted(file_map.keys()):
+        ods_path = outdir / f"rev-{rev_num}.ods"
+        if ods_path.exists() and ods_path.stat().st_size > 1000:
+            skipped += 1
+            continue
+        todo[rev_num] = file_map[rev_num]
+
+    if skipped:
+        print(f"  Skipping {skipped} already-downloaded revisions")
+
+    downloaded = skipped
+    errors = 0
+
+    if todo:
+        print(f"  Downloading {len(todo)} revisions ({download_workers} workers)...")
+
+        with ThreadPoolExecutor(max_workers=download_workers) as pool:
+            futures = {
+                pool.submit(_download_one, rev_num, entry, outdir): rev_num
+                for rev_num, entry in todo.items()
+            }
+            for future in as_completed(futures):
+                rev_num, ok, msg = future.result()
+                if ok:
+                    downloaded += 1
+                    print(f"    rev-{rev_num:>5}: {msg}")
+                else:
+                    errors += 1
+                    print(f"    rev-{rev_num:>5}: ERROR {msg}")
+
+    # Signal completion
+    done_path = outdir / "download-done.txt"
+    done_path.write_text(f"downloaded={downloaded}\nerrors={errors}\n")
+
+    return downloaded, errors
+
+
+def build_file_map(sheet, needed_revs=None):
+    """List Google Drive folder and build rev_num -> entry mapping.
+
+    If needed_revs is provided, only include those revisions.
+    Returns file_map dict.
+    """
+    folder_id = DRIVE_FOLDERS[sheet]
+    entries = list_drive_folder(folder_id)
+
+    file_map = {}
+    for entry in entries:
+        name = entry.get("name", "")
+        match = re.match(r"rev-(\d+)\.ods\.gz$", name)
+        if match:
+            file_map[int(match.group(1))] = entry
+
+    print(f"  Listing contains {len(file_map)} revision files")
+
+    if not file_map and not entries:
+        # Fallback to API
+        if needed_revs:
+            entries = _list_drive_folder_api(folder_id, needed_revs)
+            for entry in entries:
+                name = entry.get("name", "")
+                match = re.match(r"rev-(\d+)\.ods\.gz$", name)
+                if match:
+                    file_map[int(match.group(1))] = entry
+            print(f"  Fallback API found {len(file_map)} revisions")
+
+    if needed_revs:
+        file_map = {k: v for k, v in file_map.items() if k in needed_revs}
+
+    return file_map
+
+
+# =====================================================================
+# Core ODS parsing
 # =====================================================================
 
 
@@ -159,7 +421,7 @@ def content_xml_hash(ods_path):
 
 
 # =====================================================================
-# Semantic diff (extracted from diff-ods-revisions.py)
+# Semantic diff
 # =====================================================================
 
 
@@ -495,11 +757,41 @@ def diff_grids_semantic(old_data, new_data):
 # Worker function for multiprocessing Pool
 # =====================================================================
 
+# Template for identical pair results (avoid rebuilding each time)
+_IDENTICAL_RESULT_TEMPLATE = {
+    "num_changes": 0,
+    "style_only_count": 0,
+    "has_col_structure": False,
+    "has_row_structure": False,
+    "column_changes": {
+        "added": [], "removed": [], "common": [],
+        "unnamed_added": 0, "unnamed_removed": 0,
+        "unnamed_positions": [], "old_count": 0, "new_count": 0,
+    },
+    "row_changes": {
+        "added": [], "added_count": 0, "removed": [],
+        "removed_count": 0, "matched": 0,
+        "old_row_count": 0, "new_row_count": 0,
+        "old_unmatched": 0, "new_unmatched": 0,
+    },
+    "summary": {"by_category": {}, "by_column": {}, "by_row_range": {}},
+    "changes": [],
+    "fast_identical": True,
+}
+
+
+def _make_identical_result(rev_a, rev_b):
+    """Create an identical-pair result dict."""
+    result = dict(_IDENTICAL_RESULT_TEMPLATE)
+    result["from_rev"] = rev_a
+    result["to_rev"] = rev_b
+    return result
+
 
 def _diff_pair(args):
     """Process a single pair — called in worker process.
 
-    Returns (rev_a, rev_b, pair_result_dict) or (rev_a, rev_b, error_str).
+    Returns (rev_a, rev_b, status_str, pair_result_dict_or_error_str).
     """
     rev_a, rev_b, path_a, path_b, text_only, outdir = args
 
@@ -517,51 +809,20 @@ def _diff_pair(args):
     path_a = Path(path_a)
     path_b = Path(path_b)
 
-    # Optimization 1: file-size pre-check
+    # Check files exist
     try:
         size_a = path_a.stat().st_size
         size_b = path_b.stat().st_size
     except FileNotFoundError as e:
         return (rev_a, rev_b, "error", str(e))
 
-    # Optimization 2: content.xml hash comparison
+    # Hash fast-path: content.xml comparison
     if size_a == size_b:
         try:
             hash_a = content_xml_hash(path_a)
             hash_b = content_xml_hash(path_b)
             if hash_a == hash_b:
-                pair_result = {
-                    "from_rev": rev_a,
-                    "to_rev": rev_b,
-                    "num_changes": 0,
-                    "style_only_count": 0,
-                    "has_col_structure": False,
-                    "has_row_structure": False,
-                    "column_changes": {
-                        "added": [],
-                        "removed": [],
-                        "common": [],
-                        "unnamed_added": 0,
-                        "unnamed_removed": 0,
-                        "unnamed_positions": [],
-                        "old_count": 0,
-                        "new_count": 0,
-                    },
-                    "row_changes": {
-                        "added": [],
-                        "added_count": 0,
-                        "removed": [],
-                        "removed_count": 0,
-                        "matched": 0,
-                        "old_row_count": 0,
-                        "new_row_count": 0,
-                        "old_unmatched": 0,
-                        "new_unmatched": 0,
-                    },
-                    "summary": {"by_category": {}, "by_column": {}, "by_row_range": {}},
-                    "changes": [],
-                    "fast_identical": True,
-                }
+                pair_result = _make_identical_result(rev_a, rev_b)
                 with open(pair_json, "w") as f:
                     json.dump(pair_result, f, separators=(",", ":"))
                 return (rev_a, rev_b, "hash_identical", pair_result)
@@ -623,11 +884,7 @@ def _diff_pair(args):
 
 
 def _split_by_size(revs, ods_dir, n_chunks):
-    """Split revision list into n_chunks balanced by cumulative ODS file size.
-
-    Later revisions tend to be larger, so a naive 50/50 split by count
-    gives chunk 1 more work.  This splits by cumulative byte size instead.
-    """
+    """Split revision list into n_chunks balanced by cumulative ODS file size."""
     if n_chunks <= 1 or len(revs) < 2:
         return [revs]
 
@@ -649,9 +906,7 @@ def _split_by_size(revs, ods_dir, n_chunks):
     for i, r in enumerate(revs):
         current_chunk.append(r)
         running += sizes[i]
-        # When we've accumulated enough weight AND there are still chunks to fill
         if running >= target and len(chunks) < n_chunks - 1:
-            # Include one overlap rev for the next chunk (needed for pairs)
             chunks.append(current_chunk)
             current_chunk = [r]  # overlap: last rev of prev chunk starts next
             running = sizes[i]
@@ -663,244 +918,12 @@ def _split_by_size(revs, ods_dir, n_chunks):
 
 
 # =====================================================================
-# Wait helper for pipeline mode
-# =====================================================================
-
-
-def _wait_for_file(path, done_marker, timeout=600, poll=2.0):
-    deadline = time.time() + timeout
-    while not path.exists():
-        if done_marker.exists():
-            raise FileNotFoundError(
-                f"{path.name} not downloaded (download already finished)"
-            )
-        if time.time() > deadline:
-            raise TimeoutError(f"Timed out after {timeout}s waiting for {path.name}")
-        time.sleep(poll)
-
-
-# =====================================================================
-# Sequential streaming diff (used when downloads are still in progress)
-# =====================================================================
-
-
-def _stream_diff_pairs(revs, ods_dir, diff_dir, text_only, done_marker):
-    """Process pairs sequentially with parse caching and hash fast-path.
-
-    Used in pipeline mode where files arrive incrementally from the downloader.
-    The prev_data cache avoids re-parsing the same ODS for consecutive pairs.
-    """
-    outdir = Path(diff_dir)
-    outdir.mkdir(parents=True, exist_ok=True)
-
-    stats = {
-        "total": 0,
-        "identical": 0,
-        "hash_identical": 0,
-        "style_only": 0,
-        "changed": 0,
-        "cached": 0,
-        "errors": 0,
-        "cell_changes": 0,
-        "user_edits": 0,
-        "col_events": [],
-        "row_events": [],
-    }
-
-    prev_rev = None
-    prev_data = None
-
-    for i in range(len(revs) - 1):
-        rev_a = revs[i]
-        rev_b = revs[i + 1]
-
-        pair_json = outdir / f"pair-{rev_a}-{rev_b}.json"
-
-        # Skip if already computed
-        if pair_json.exists() and pair_json.stat().st_size > 10:
-            try:
-                with open(pair_json) as f:
-                    existing = json.load(f)
-                stats["total"] += 1
-                stats["cached"] += 1
-                n = existing.get("num_changes", 0)
-                if n == 0 and not existing.get("has_col_structure") and not existing.get("has_row_structure"):
-                    if existing.get("style_only_count", 0) == 0:
-                        stats["identical"] += 1
-                    else:
-                        stats["style_only"] += 1
-                else:
-                    stats["changed"] += 1
-                    stats["cell_changes"] += n
-                print(f"  rev-{rev_a:>5} -> rev-{rev_b:>5}: skip (cached)")
-                prev_rev = None
-                prev_data = None
-                continue
-            except (json.JSONDecodeError, KeyError):
-                pass
-
-        path_a = ods_dir / f"rev-{rev_a}.ods"
-        path_b = ods_dir / f"rev-{rev_b}.ods"
-
-        # Wait for files
-        try:
-            _wait_for_file(path_a, done_marker)
-            _wait_for_file(path_b, done_marker)
-        except (TimeoutError, FileNotFoundError) as e:
-            print(f"  rev-{rev_a:>5} -> rev-{rev_b:>5}: SKIP ({e})")
-            stats["errors"] += 1
-            prev_rev = None
-            prev_data = None
-            continue
-
-        # Hash fast-path: if content.xml is identical, skip full parse
-        try:
-            size_a = path_a.stat().st_size
-            size_b = path_b.stat().st_size
-            if size_a == size_b:
-                hash_a = content_xml_hash(path_a)
-                hash_b = content_xml_hash(path_b)
-                if hash_a == hash_b:
-                    pair_result = {
-                        "from_rev": rev_a,
-                        "to_rev": rev_b,
-                        "num_changes": 0,
-                        "style_only_count": 0,
-                        "has_col_structure": False,
-                        "has_row_structure": False,
-                        "column_changes": {
-                            "added": [], "removed": [], "common": [],
-                            "unnamed_added": 0, "unnamed_removed": 0,
-                            "unnamed_positions": [], "old_count": 0, "new_count": 0,
-                        },
-                        "row_changes": {
-                            "added": [], "added_count": 0, "removed": [],
-                            "removed_count": 0, "matched": 0,
-                            "old_row_count": 0, "new_row_count": 0,
-                            "old_unmatched": 0, "new_unmatched": 0,
-                        },
-                        "summary": {"by_category": {}, "by_column": {}, "by_row_range": {}},
-                        "changes": [],
-                        "fast_identical": True,
-                    }
-                    with open(pair_json, "w") as f:
-                        json.dump(pair_result, f, separators=(",", ":"))
-                    stats["total"] += 1
-                    stats["identical"] += 1
-                    stats["hash_identical"] += 1
-                    print(f"  rev-{rev_a:>5} -> rev-{rev_b:>5}: IDENTICAL (hash)")
-                    prev_rev = None
-                    prev_data = None
-                    continue
-        except Exception:
-            pass
-
-        # Full parse with caching
-        if prev_rev == rev_a and prev_data is not None:
-            old_data = prev_data
-        else:
-            try:
-                old_data = parse_ods(path_a, text_only=text_only)
-            except Exception as e:
-                print(f"  rev-{rev_a:>5} -> rev-{rev_b:>5}: ERROR parsing rev-{rev_a}: {e}")
-                stats["errors"] += 1
-                prev_rev = None
-                prev_data = None
-                continue
-
-        try:
-            new_data = parse_ods(path_b, text_only=text_only)
-        except Exception as e:
-            print(f"  rev-{rev_a:>5} -> rev-{rev_b:>5}: ERROR parsing rev-{rev_b}: {e}")
-            stats["errors"] += 1
-            prev_rev = None
-            prev_data = None
-            del old_data
-            gc_mod.collect()
-            continue
-
-        result = diff_grids_semantic(old_data, new_data)
-        changes = result["changes"]
-        col_changes = result["column_changes"]
-        row_changes = result["row_changes"]
-        style_only = result.get("style_only_count", 0)
-
-        has_col_structure = (
-            col_changes["added"] or col_changes["removed"]
-            or col_changes["unnamed_added"] > 0
-            or col_changes["unnamed_removed"] > 0
-            or col_changes["old_count"] != col_changes["new_count"]
-        )
-        has_row_structure = (
-            row_changes["added_count"] > 0 or row_changes["removed_count"] > 0
-            or row_changes["old_row_count"] != row_changes["new_row_count"]
-        )
-
-        pair_result = {
-            "from_rev": rev_a,
-            "to_rev": rev_b,
-            "num_changes": len(changes),
-            "style_only_count": style_only,
-            "has_col_structure": has_col_structure,
-            "has_row_structure": has_row_structure,
-            "column_changes": col_changes,
-            "row_changes": row_changes,
-            "summary": result["summary"],
-            "changes": changes,
-        }
-        with open(pair_json, "w") as f:
-            json.dump(pair_result, f, separators=(",", ":"))
-
-        # Accumulate stats
-        stats["total"] += 1
-        cats = result["summary"]["by_category"]
-        user_edits = cats.get("user_edit", 0)
-
-        if not changes and style_only == 0 and not has_col_structure and not has_row_structure:
-            stats["identical"] += 1
-            tag = "IDENTICAL"
-        elif not changes and style_only > 0 and not has_col_structure and not has_row_structure:
-            stats["style_only"] += 1
-            tag = f"style-only ({style_only})"
-        else:
-            stats["changed"] += 1
-            stats["cell_changes"] += len(changes)
-            stats["user_edits"] += user_edits
-            parts = []
-            if len(changes):
-                parts.append(f"{len(changes)} changes")
-            if user_edits:
-                parts.append(f"{user_edits} user edits")
-            if has_col_structure:
-                parts.append(f"cols {col_changes['old_count']}->{col_changes['new_count']}")
-                stats["col_events"].append((rev_a, rev_b))
-            if has_row_structure:
-                parts.append(f"rows {row_changes['old_row_count']}->{row_changes['new_row_count']}")
-                stats["row_events"].append((rev_a, rev_b))
-            if style_only > 0:
-                parts.append(f"+{style_only} style")
-            tag = ", ".join(parts) if parts else "no data changes"
-
-        print(f"  rev-{rev_a:>5} -> rev-{rev_b:>5}: {tag}")
-
-        prev_rev = rev_b
-        prev_data = new_data
-        del old_data
-        gc_mod.collect()
-
-    return stats
-
-
-# =====================================================================
-# Pool-based parallel diff (used after all downloads are complete)
+# Pool-based parallel diff
 # =====================================================================
 
 
 def _pool_diff(revs, ods_dir, diff_dir, text_only, n_workers):
-    """Process all pairs using a multiprocessing Pool.
-
-    Used when all files are already downloaded (post-download batch mode).
-    """
+    """Process all pairs using a multiprocessing Pool."""
     chunks = _split_by_size(revs, ods_dir, n_workers)
 
     print(f"\n  Split into {len(chunks)} size-balanced chunks:")
@@ -1014,10 +1037,11 @@ def _pool_diff(revs, ods_dir, diff_dir, text_only, n_workers):
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Workflow-optimized pipeline: download + parallel diff"
+        description="Integrated pipeline: download + parallel diff (single process)"
     )
     parser.add_argument("sheet", choices=["library", "documents"])
     parser.add_argument("--diff-workers", type=int, default=4)
+    parser.add_argument("--download-workers", type=int, default=10)
     parser.add_argument("--download-dir", type=str, default=None)
     parser.add_argument("--diff-dir", type=str, default=None)
     parser.add_argument("--text-only", action="store_true", default=True)
@@ -1028,7 +1052,6 @@ def main():
     )
     args = parser.parse_args()
 
-    script_dir = Path(__file__).resolve().parent.parent.parent / "work-sheets" / "scripts"
     dl_dir = (
         Path(args.download_dir)
         if args.download_dir
@@ -1043,14 +1066,15 @@ def main():
     diff_dir.mkdir(parents=True, exist_ok=True)
 
     print("=" * 70)
-    print(f"Fast Diff Pipeline: {args.sheet}")
+    print(f"Integrated Diff Pipeline: {args.sheet}")
     print("=" * 70)
-    print(f"  XML parser:    {'lxml' if _USING_LXML else 'stdlib ElementTree'}")
-    print(f"  Download dir:  {dl_dir}")
-    print(f"  Diff output:   {diff_dir}")
-    print(f"  Diff workers:  {args.diff_workers}")
-    print(f"  Text-only:     {args.text_only}")
-    print(f"  Audit cache:   {args.audit_cache or 'none'}")
+    print(f"  XML parser:       {'lxml' if _USING_LXML else 'stdlib ElementTree'}")
+    print(f"  Download dir:     {dl_dir}")
+    print(f"  Diff output:      {diff_dir}")
+    print(f"  Download workers: {args.download_workers}")
+    print(f"  Diff workers:     {args.diff_workers}")
+    print(f"  Text-only:        {args.text_only}")
+    print(f"  Audit cache:      {args.audit_cache or 'none'}")
     print()
 
     t_start = time.time()
@@ -1072,8 +1096,7 @@ def main():
             if cache_fps[a] == cache_fps[b]:
                 identical_pairs_from_cache.append((a, b))
 
-        # Determine which revisions actually need downloading:
-        # only those at boundaries of fingerprint changes
+        # Determine which revisions actually need downloading
         needed_revs = set()
         for i in range(len(all_cache_revs) - 1):
             a, b = all_cache_revs[i], all_cache_revs[i + 1]
@@ -1088,66 +1111,37 @@ def main():
         print(f"[cache] Download savings:        {len(all_cache_revs) - len(needed_revs)} revisions skipped")
 
         # Pre-write pair JSON for identical pairs
-        identical_result_template = {
-            "num_changes": 0,
-            "style_only_count": 0,
-            "has_col_structure": False,
-            "has_row_structure": False,
-            "column_changes": {
-                "added": [], "removed": [], "common": [],
-                "unnamed_added": 0, "unnamed_removed": 0,
-                "unnamed_positions": [],
-                "old_count": 0, "new_count": 0,
-            },
-            "row_changes": {
-                "added": [], "added_count": 0,
-                "removed": [], "removed_count": 0,
-                "matched": 0, "old_row_count": 0, "new_row_count": 0,
-                "old_unmatched": 0, "new_unmatched": 0,
-            },
-            "summary": {"by_category": {}, "by_column": {}, "by_row_range": {}},
-            "changes": [],
-            "fast_identical": True,
-        }
         pre_written = 0
         for a, b in identical_pairs_from_cache:
             pair_json = diff_dir / f"pair-{a}-{b}.json"
             if not pair_json.exists():
-                result = dict(identical_result_template)
-                result["from_rev"] = a
-                result["to_rev"] = b
+                result = _make_identical_result(a, b)
                 with open(pair_json, "w") as f:
                     json.dump(result, f, separators=(",", ":"))
                 pre_written += 1
         print(f"[cache] Pre-written pair JSONs:  {pre_written}")
         print()
 
-    # ── Phase 1: Download revisions ──────────────────────────────────
-    download_cmd = [
-        sys.executable,
-        str(script_dir / "download-drive-revisions.py"),
-        "--sheet",
-        args.sheet,
-        "--output",
-        str(dl_dir),
-    ]
-    if cache_fps and needed_revs:
-        # Only download the revisions we actually need
-        rev_list = ",".join(str(r) for r in sorted(needed_revs))
-        download_cmd.extend(["--revisions", rev_list])
+    # ── Phase 1: Download revisions (in-process) ─────────────────────
+    if cache_fps:
+        file_map = build_file_map(args.sheet, needed_revs)
     else:
-        download_cmd.append("--all")
+        file_map = build_file_map(args.sheet)
 
-    print(f"[pipeline] Downloading...")
-    dl_result = subprocess.run(
-        download_cmd, stdout=sys.stdout, stderr=sys.stderr
+    if not file_map:
+        print("ERROR: No revision files found in Drive folder")
+        sys.exit(1)
+
+    print(f"\n[pipeline] Downloading {len(file_map)} revisions...")
+    dl_count, dl_errors = download_revisions(
+        args.sheet, dl_dir, file_map, download_workers=args.download_workers
     )
-    dl_exit = dl_result.returncode
     t_dl = time.time() - t_start
-    print(f"[pipeline] Download finished in {t_dl:.1f}s (exit {dl_exit})")
+    print(f"[pipeline] Download finished in {t_dl:.1f}s "
+          f"({dl_count} downloaded, {dl_errors} errors)")
 
-    if dl_exit != 0:
-        print("ERROR: Download failed")
+    if dl_errors > 0 and dl_count == 0:
+        print("ERROR: All downloads failed")
         sys.exit(1)
 
     # Build revision list: use cache if available, else manifest
@@ -1166,42 +1160,22 @@ def main():
 
     n_pairs = len(revs) - 1
     total_pairs = n_pairs + len(identical_pairs_from_cache)
-    print(f"[pipeline] {len(revs)} revisions to diff, {n_pairs} pairs")
+    print(f"\n[pipeline] {len(revs)} revisions to diff, {n_pairs} pairs")
     if identical_pairs_from_cache:
         print(f"[pipeline] + {len(identical_pairs_from_cache)} identical pairs (from cache)")
         print(f"[pipeline] = {total_pairs} total pairs")
     print()
 
-    # ── Phase 2: Parallel diff via subprocess chunks ─────────────────
-    diff_script = str(script_dir / "diff-ods-revisions.py")
-    chunks = _split_by_size(revs, dl_dir, args.diff_workers)
-
+    # ── Phase 2: Parallel diff (in-process multiprocessing Pool) ─────
     print("=" * 70)
-    print(f"Subprocess diff ({len(chunks)} workers, hash fast-path + lxml)")
+    print(f"In-process diff ({args.diff_workers} workers, hash fast-path + "
+          f"{'lxml' if _USING_LXML else 'ElementTree'})")
     print("=" * 70)
 
-    procs = []
-    for ci, chunk in enumerate(chunks):
-        rng = f"{chunk[0]}-{chunk[-1]}"
-        n_chunk_pairs = len(chunk) - 1
-        print(f"  Chunk {ci}: revs {chunk[0]}-{chunk[-1]} ({len(chunk)} revs, {n_chunk_pairs} pairs)")
-        cmd = [
-            sys.executable, diff_script,
-            str(dl_dir),
-            "--range", rng,
-            "--streaming",
-            "--output-dir", str(diff_dir),
-        ]
-        if args.text_only:
-            cmd.append("--text-only")
-        procs.append(subprocess.Popen(cmd, stdout=sys.stdout, stderr=sys.stderr))
+    t_diff_start = time.time()
+    stats = _pool_diff(revs, dl_dir, diff_dir, args.text_only, args.diff_workers)
+    t_diff = time.time() - t_diff_start
 
-    # Wait for all workers
-    for ci, p in enumerate(procs):
-        rc = p.wait()
-        print(f"  Chunk {ci} finished (exit {rc})")
-
-    t_diff = time.time() - t_start - t_dl
     print(f"\n[pipeline] Diff phase: {t_diff:.1f}s")
 
     # ── Phase 3: Build merged summary from all pair files ────────────
@@ -1269,9 +1243,10 @@ def main():
 
     summary = {
         "input_dir": str(dl_dir),
-        "mode": "fast-pipeline",
+        "mode": "integrated-pipeline",
         "xml_parser": "lxml" if _USING_LXML else "ElementTree",
         "text_only": args.text_only,
+        "download_workers": args.download_workers,
         "diff_workers": args.diff_workers,
         "revision_range": [revs[0], revs[-1]] if revs else [],
         "total_revisions": len(revs),
@@ -1286,8 +1261,8 @@ def main():
         "row_structure_events": row_events,
         "errors": errors,
         "timing": {
-            "diff_seconds": round(t_diff, 1),
             "download_seconds": round(t_dl, 1),
+            "diff_seconds": round(t_diff, 1),
             "total_seconds": round(t_total, 1),
         },
     }
@@ -1301,6 +1276,7 @@ def main():
     print("=" * 70)
     print("PIPELINE SUMMARY")
     print("=" * 70)
+    print(f"  Mode:           integrated (single process)")
     print(f"  XML parser:     {'lxml' if _USING_LXML else 'ElementTree'}")
     print(f"  Revisions:      {len(revs)}")
     print(f"  Transitions:    {total_transitions}")
@@ -1309,15 +1285,20 @@ def main():
     print(f"  Changed:        {changed_count}")
     print(f"  Cell changes:   {total_cell_changes}")
     print(f"  User edits:     {total_user_edits}")
-    print(f"  Errors:         {len(errors)}")
+    print(f"  DL errors:      {dl_errors}")
+    print(f"  Diff errors:    {len(errors)}")
+    print(f"  Download time:  {t_dl:.0f}s")
     print(f"  Diff time:      {t_diff:.0f}s")
     print(f"  Total time:     {t_total:.0f}s")
     print(f"  Pair files:     {len(pair_files)}")
     print(f"  Summary:        {summary_path}")
     print("=" * 70)
 
-    if dl_exit != 0:
-        print(f"\nWARNING: Download had non-zero exit code: {dl_exit}")
+    if dl_errors > 0:
+        print(f"\nWARNING: {dl_errors} download errors occurred")
+
+    # Exit non-zero only if everything failed
+    if dl_count == 0:
         sys.exit(1)
 
 
