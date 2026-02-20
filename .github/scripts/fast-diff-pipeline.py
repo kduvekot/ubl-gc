@@ -790,12 +790,103 @@ def _make_identical_result(rev_a, rev_b):
     return result
 
 
+def _percentiles(values, pcts=(50, 75, 90, 95, 99)):
+    """Compute percentiles from a sorted list. Returns dict {pN: value}."""
+    if not values:
+        return {}
+    s = sorted(values)
+    n = len(s)
+    return {f"p{p}": s[min(int(n * p / 100), n - 1)] for p in pcts}
+
+
+def _summarize_timings(timings):
+    """Build a compact summary of per-step timing data for summary.json."""
+    if not timings:
+        return {}
+    by_path = defaultdict(list)
+    for t in timings:
+        by_path[t.get("path", "unknown")].append(t)
+    result = {"count": len(timings), "by_path": {}}
+    for path, items in sorted(by_path.items()):
+        totals = [t["total"] for t in items if "total" in t]
+        entry = {"count": len(items)}
+        if totals:
+            entry["total_ms"] = _percentiles([v * 1000 for v in totals])
+        # For "diffed" path, break down by step
+        if path == "diffed":
+            for step in ("parse_a", "parse_b", "diff", "json_write", "hash"):
+                vals = [t[step] * 1000 for t in items if step in t]
+                if vals:
+                    entry[f"{step}_ms"] = _percentiles(vals)
+            # cell counts and change counts
+            cells = [t.get("cells_a", 0) + t.get("cells_b", 0) for t in items]
+            if cells:
+                entry["cells_per_pair"] = _percentiles(cells)
+            nch = [t.get("num_changes", 0) for t in items]
+            if nch:
+                entry["changes_per_pair"] = _percentiles(nch)
+        result["by_path"][path] = entry
+    return result
+
+
+def _print_timing_report(timings):
+    """Print a human-readable timing breakdown to stdout."""
+    if not timings:
+        return
+    by_path = defaultdict(list)
+    for t in timings:
+        by_path[t.get("path", "unknown")].append(t)
+
+    print()
+    print("=" * 70)
+    print("DIFF TIMING BREAKDOWN")
+    print("=" * 70)
+    print(f"  Total pairs with timing: {len(timings)}")
+    for path in ("diffed", "hash_identical", "cached", "error"):
+        items = by_path.get(path, [])
+        if not items:
+            continue
+        totals = sorted([t["total"] * 1000 for t in items if "total" in t])
+        if not totals:
+            continue
+        n = len(totals)
+        print(f"\n  [{path}] {n} pairs")
+        print(f"    total    p50={totals[n//2]:.0f}ms  p90={totals[min(int(n*0.9), n-1)]:.0f}ms  "
+              f"p99={totals[min(int(n*0.99), n-1)]:.0f}ms  max={totals[-1]:.0f}ms")
+        if path == "diffed":
+            for step in ("hash", "parse_a", "parse_b", "diff", "json_write"):
+                vals = sorted([t[step] * 1000 for t in items if step in t])
+                if not vals:
+                    continue
+                m = len(vals)
+                pct_of_total = sum(vals) / sum(totals) * 100 if sum(totals) > 0 else 0
+                print(f"    {step:12s} p50={vals[m//2]:6.1f}ms  p90={vals[min(int(m*0.9), m-1)]:6.1f}ms  "
+                      f"p99={vals[min(int(m*0.99), m-1)]:6.1f}ms  max={vals[-1]:6.1f}ms  "
+                      f"({pct_of_total:4.1f}% of wall)")
+            # Top 5 slowest pairs
+            slowest = sorted(items, key=lambda t: t.get("total", 0), reverse=True)[:5]
+            print(f"    Top 5 slowest pairs:")
+            for t in slowest:
+                parts = []
+                for step in ("hash", "parse_a", "parse_b", "diff", "json_write"):
+                    if step in t:
+                        parts.append(f"{step}={t[step]*1000:.0f}")
+                print(f"      {t.get('total', 0)*1000:.0f}ms total  "
+                      f"({', '.join(parts)}ms)  "
+                      f"changes={t.get('num_changes', '?')}")
+    print("=" * 70)
+
+
 def _diff_pair(args):
     """Process a single pair — called in worker process.
 
-    Returns (rev_a, rev_b, status_str, pair_result_dict_or_error_str).
+    Returns (rev_a, rev_b, status_str, pair_result_dict_or_error_str, timing_dict).
+    The timing_dict contains monotonic durations (seconds) for each step,
+    collected with negligible overhead (no I/O, just clock reads).
     """
     rev_a, rev_b, path_a, path_b, text_only, outdir = args
+    t0 = time.monotonic()
+    timing = {}
 
     pair_json = Path(outdir) / f"pair-{rev_a}-{rev_b}.json"
 
@@ -804,7 +895,9 @@ def _diff_pair(args):
         try:
             with open(pair_json) as f:
                 existing = json.load(f)
-            return (rev_a, rev_b, "cached", existing)
+            timing["total"] = time.monotonic() - t0
+            timing["path"] = "cached"
+            return (rev_a, rev_b, "cached", existing, timing)
         except (json.JSONDecodeError, KeyError):
             pass
 
@@ -816,38 +909,62 @@ def _diff_pair(args):
         size_a = path_a.stat().st_size
         size_b = path_b.stat().st_size
     except FileNotFoundError as e:
-        return (rev_a, rev_b, "error", str(e))
+        timing["total"] = time.monotonic() - t0
+        timing["path"] = "error"
+        return (rev_a, rev_b, "error", str(e), timing)
+
+    timing["size_a"] = size_a
+    timing["size_b"] = size_b
 
     # Hash fast-path: content.xml comparison
     if size_a == size_b:
         try:
+            t_hash = time.monotonic()
             hash_a = content_xml_hash(path_a)
             hash_b = content_xml_hash(path_b)
+            timing["hash"] = time.monotonic() - t_hash
             if hash_a == hash_b:
                 pair_result = _make_identical_result(rev_a, rev_b)
+                t_json = time.monotonic()
                 with open(pair_json, "w") as f:
                     json.dump(pair_result, f, separators=(",", ":"))
-                return (rev_a, rev_b, "hash_identical", pair_result)
+                timing["json_write"] = time.monotonic() - t_json
+                timing["total"] = time.monotonic() - t0
+                timing["path"] = "hash_identical"
+                return (rev_a, rev_b, "hash_identical", pair_result, timing)
         except Exception:
             pass  # Fall through to full parse
 
     # Full parse + semantic diff
+    t_parse_a = time.monotonic()
     try:
         old_data = parse_ods(path_a, text_only=text_only)
     except Exception as e:
-        return (rev_a, rev_b, "error", f"parsing rev-{rev_a}: {e}")
+        timing["total"] = time.monotonic() - t0
+        timing["path"] = "error"
+        return (rev_a, rev_b, "error", f"parsing rev-{rev_a}: {e}", timing)
+    timing["parse_a"] = time.monotonic() - t_parse_a
+    timing["cells_a"] = old_data.get("num_cells", 0)
 
+    t_parse_b = time.monotonic()
     try:
         new_data = parse_ods(path_b, text_only=text_only)
     except Exception as e:
-        return (rev_a, rev_b, "error", f"parsing rev-{rev_b}: {e}")
+        timing["total"] = time.monotonic() - t0
+        timing["path"] = "error"
+        return (rev_a, rev_b, "error", f"parsing rev-{rev_b}: {e}", timing)
+    timing["parse_b"] = time.monotonic() - t_parse_b
+    timing["cells_b"] = new_data.get("num_cells", 0)
 
+    t_diff = time.monotonic()
     result = diff_grids_semantic(old_data, new_data)
+    timing["diff"] = time.monotonic() - t_diff
 
     changes = result["changes"]
     col_changes = result["column_changes"]
     row_changes = result["row_changes"]
     style_only = result.get("style_only_count", 0)
+    timing["num_changes"] = len(changes)
 
     has_col_structure = (
         col_changes["added"]
@@ -874,10 +991,14 @@ def _diff_pair(args):
         "summary": result["summary"],
         "changes": changes,
     }
+    t_json = time.monotonic()
     with open(pair_json, "w") as f:
         json.dump(pair_result, f, separators=(",", ":"))
+    timing["json_write"] = time.monotonic() - t_json
+    timing["total"] = time.monotonic() - t0
+    timing["path"] = "diffed"
 
-    return (rev_a, rev_b, "diffed", pair_result)
+    return (rev_a, rev_b, "diffed", pair_result, timing)
 
 
 # =====================================================================
@@ -1269,11 +1390,18 @@ def main():
         "cell_changes": 0,
         "user_edits": 0,
     }
+    # Timing accumulator — lists of per-pair timing dicts, grouped by path
+    diff_timings = []
 
     def process_diff_result(result):
         """Tally a single diff result into stats."""
         nonlocal diff_completed, diff_errors_count
-        rev_a, rev_b, status, data = result
+        if len(result) == 5:
+            rev_a, rev_b, status, data, timing = result
+            if timing:
+                diff_timings.append(timing)
+        else:
+            rev_a, rev_b, status, data = result
         diff_completed += 1
 
         if status == "error":
@@ -1469,6 +1597,7 @@ def main():
         "timing": {
             "total_seconds": round(t_total, 1),
             "first_diff_at": round(t_first_diff - t_start, 1) if t_first_diff else None,
+            "per_step": _summarize_timings(diff_timings),
         },
     }
 
@@ -1498,6 +1627,8 @@ def main():
     print(f"  Pair files:     {len(pair_files)}")
     print(f"  Summary:        {summary_path}")
     print("=" * 70)
+
+    _print_timing_report(diff_timings)
 
     if dl_errors > 0:
         print(f"\nWARNING: {dl_errors} download errors occurred")
