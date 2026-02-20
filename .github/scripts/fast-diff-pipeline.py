@@ -61,6 +61,9 @@ NS_TABLE = "{urn:oasis:names:tc:opendocument:xmlns:table:1.0}"
 NS_TEXT = "{urn:oasis:names:tc:opendocument:xmlns:text:1.0}"
 NS_OFFICE = "{urn:oasis:names:tc:opendocument:xmlns:office:1.0}"
 
+# ── Sheet filtering (skip non-data sheets like "Logs") ───────────────
+SKIP_SHEETS_RE = re.compile(r"^Logs$", re.IGNORECASE)
+
 # ── Google Drive public folder IDs ────────────────────────────────────
 DRIVE_FOLDERS = {
     "library": "1JRvRaqsNP_G-9xICwrgGpY-ArwV8ej1w",
@@ -414,6 +417,48 @@ def parse_ods(ods_path, text_only=False):
     return _parse_table(table, text_only=text_only)
 
 
+def per_sheet_hashes(ods_path, skip_re=SKIP_SHEETS_RE):
+    """Single XML parse → {sheet_name: md5_bytes}.
+
+    Much faster than full _parse_table() for all sheets — just serialises
+    each <table:table> subtree and hashes the bytes.  Typical cost: ~200ms
+    for a 101-sheet documents ODS (vs ~5s for full parse of all sheets).
+    """
+    with zipfile.ZipFile(ods_path) as zf:
+        content = zf.read("content.xml")
+    root = ET.fromstring(content)
+    hashes = {}
+    for table in root.findall(f".//{NS_TABLE}table"):
+        name = table.get(f"{NS_TABLE}name", "")
+        if skip_re and skip_re.match(name):
+            continue
+        blob = ET.tostring(table)
+        hashes[name] = hashlib.md5(blob).digest()
+    return hashes
+
+
+def parse_ods_sheets(ods_path, sheet_names=None, text_only=False,
+                     skip_re=SKIP_SHEETS_RE):
+    """Parse specific sheets (or all non-skipped) from an ODS file.
+
+    Returns {sheet_name: parsed_data_dict}.
+    When *sheet_names* is given, only those sheets are parsed
+    (skip_re still applies).
+    """
+    with zipfile.ZipFile(ods_path) as zf:
+        content = zf.read("content.xml")
+    root = ET.fromstring(content)
+    results = {}
+    for table in root.findall(f".//{NS_TABLE}table"):
+        name = table.get(f"{NS_TABLE}name", "")
+        if skip_re and skip_re.match(name):
+            continue
+        if sheet_names is not None and name not in sheet_names:
+            continue
+        results[name] = _parse_table(table, text_only=text_only)
+    return results
+
+
 # ── Fast identical detection ──────────────────────────────────────────
 
 
@@ -435,13 +480,22 @@ def _parse_cache_path(ods_path):
 
 
 def _load_parse_cache(ods_path):
-    """Load cached parsed data if available. Returns (data, True) on hit,
-    (None, False) on miss."""
+    """Load cached data if available. Returns (data, True) on hit,
+    (None, False) on miss.
+
+    v2 format: {"_fmt": "v2", "hashes": {...}, "sheets": {...}}
+    Legacy format (single sheet dict without _fmt) is treated as a miss.
+    """
     cp = _parse_cache_path(ods_path)
     try:
         if cp.exists():
             with open(cp, "rb") as f:
-                return pickle.load(f), True
+                data = pickle.load(f)
+            if isinstance(data, dict) and data.get("_fmt") == "v2":
+                return data, True
+            # Legacy single-sheet format — treat as cache miss so
+            # _parse_one() regenerates with v2 format.
+            return None, False
     except Exception:
         pass
     return None, False
@@ -823,11 +877,17 @@ _IDENTICAL_RESULT_TEMPLATE = {
 }
 
 
-def _make_identical_result(rev_a, rev_b):
+def _make_identical_result(rev_a, rev_b, sheets_total=0):
     """Create an identical-pair result dict."""
     result = dict(_IDENTICAL_RESULT_TEMPLATE)
     result["from_rev"] = rev_a
     result["to_rev"] = rev_b
+    if sheets_total > 0:
+        result["sheets_summary"] = {
+            "total": sheets_total, "identical": sheets_total,
+            "changed": 0, "added": 0, "removed": 0,
+            "changed_names": [], "added_names": [], "removed_names": [],
+        }
     return result
 
 
@@ -855,13 +915,30 @@ def _summarize_timings(timings):
             entry["total_ms"] = _percentiles([v * 1000 for v in totals])
         # For "diffed" path, break down by step
         if path == "diffed":
-            for step in ("parse_a", "parse_b", "diff", "json_write", "hash"):
+            for step in ("parse_a", "parse_b", "diff", "json_write",
+                         "hash", "sheet_hash"):
                 vals = [t[step] * 1000 for t in items if step in t]
                 if vals:
                     entry[f"{step}_ms"] = _percentiles(vals)
-            # Parse cache hit rates
-            cache_a_hits = sum(1 for t in items if t.get("parse_a_cached"))
-            cache_b_hits = sum(1 for t in items if t.get("parse_b_cached"))
+            # Sheet-level stats
+            sh_changed = [t.get("sheets_changed", 0) for t in items]
+            sh_total = [t.get("sheets_total", 0) for t in items]
+            if any(sh_total):
+                entry["sheets"] = {
+                    "total": _percentiles(sh_total),
+                    "changed": _percentiles(sh_changed),
+                }
+            # Parse cache hit rates (now counted as sheet-level)
+            cache_a_hits = sum(
+                t.get("parse_a_cached", 0) if isinstance(t.get("parse_a_cached"), int)
+                else (1 if t.get("parse_a_cached") else 0)
+                for t in items
+            )
+            cache_b_hits = sum(
+                t.get("parse_b_cached", 0) if isinstance(t.get("parse_b_cached"), int)
+                else (1 if t.get("parse_b_cached") else 0)
+                for t in items
+            )
             entry["parse_cache"] = {
                 "hits_a": cache_a_hits,
                 "hits_b": cache_b_hits,
@@ -893,7 +970,8 @@ def _print_timing_report(timings):
     print("DIFF TIMING BREAKDOWN")
     print("=" * 70)
     print(f"  Total pairs with timing: {len(timings)}")
-    for path in ("diffed", "hash_identical", "cached", "error"):
+    for path in ("diffed", "hash_identical", "sheet_hash_identical",
+                  "cached", "error"):
         items = by_path.get(path, [])
         if not items:
             continue
@@ -905,7 +983,8 @@ def _print_timing_report(timings):
         print(f"    total    p50={totals[n//2]:.0f}ms  p90={totals[min(int(n*0.9), n-1)]:.0f}ms  "
               f"p99={totals[min(int(n*0.99), n-1)]:.0f}ms  max={totals[-1]:.0f}ms")
         if path == "diffed":
-            for step in ("hash", "parse_a", "parse_b", "diff", "json_write"):
+            for step in ("hash", "sheet_hash", "parse_a", "parse_b",
+                         "diff", "json_write"):
                 vals = sorted([t[step] * 1000 for t in items if step in t])
                 if not vals:
                     continue
@@ -914,14 +993,34 @@ def _print_timing_report(timings):
                 print(f"    {step:12s} p50={vals[m//2]:6.1f}ms  p90={vals[min(int(m*0.9), m-1)]:6.1f}ms  "
                       f"p99={vals[min(int(m*0.99), m-1)]:6.1f}ms  max={vals[-1]:6.1f}ms  "
                       f"({pct_of_total:4.1f}% of wall)")
-            # Parse cache hit rates
-            cache_a = sum(1 for t in items if t.get("parse_a_cached"))
-            cache_b = sum(1 for t in items if t.get("parse_b_cached"))
-            total_parses = n * 2
-            total_hits = cache_a + cache_b
-            print(f"    parse cache: {total_hits}/{total_parses} hits "
-                  f"({total_hits/total_parses*100:.0f}%) — "
-                  f"A={cache_a}/{n}, B={cache_b}/{n}")
+            # Parse cache / sheet-level stats
+            cache_a_sheets = sum(
+                t.get("parse_a_cached", 0) if isinstance(t.get("parse_a_cached"), int)
+                else (1 if t.get("parse_a_cached") else 0)
+                for t in items
+            )
+            cache_b_sheets = sum(
+                t.get("parse_b_cached", 0) if isinstance(t.get("parse_b_cached"), int)
+                else (1 if t.get("parse_b_cached") else 0)
+                for t in items
+            )
+            parse_a_sheets = sum(t.get("parse_a_sheets", 0) for t in items)
+            parse_b_sheets = sum(t.get("parse_b_sheets", 0) for t in items)
+            total_sheets = cache_a_sheets + cache_b_sheets + parse_a_sheets + parse_b_sheets
+            total_cached = cache_a_sheets + cache_b_sheets
+            pct = total_cached / total_sheets * 100 if total_sheets > 0 else 0
+            print(f"    sheet parse cache: {total_cached}/{total_sheets} "
+                  f"({pct:.0f}%) — "
+                  f"parsed A={parse_a_sheets} B={parse_b_sheets}")
+            # Sheet change counts
+            sh_changed = [t.get("sheets_changed", 0) for t in items]
+            sh_total = [t.get("sheets_total", 0) for t in items]
+            if any(sh_total):
+                sc = sorted(sh_changed)
+                st = sorted(sh_total)
+                print(f"    sheets: total p50={st[len(st)//2]}  "
+                      f"changed p50={sc[len(sc)//2]} "
+                      f"max={sc[-1]}")
             # Top 5 slowest pairs
             slowest = sorted(items, key=lambda t: t.get("total", 0), reverse=True)[:5]
             print(f"    Top 5 slowest pairs:")
@@ -943,16 +1042,21 @@ def _print_timing_report(timings):
 
 
 def _parse_one(args):
-    """Parse a single ODS file and save pickle cache. Called in worker process.
+    """Compute per-sheet hashes for a single ODS and write v2 cache.
+
+    Phase 1+2 worker: runs as downloads complete, producing per-sheet
+    hashes that Phase 3 (_diff_pair) uses for fast comparison.  Full
+    sheet parsing is deferred to _diff_pair — only changed sheets get
+    parsed there.
 
     Returns (rev_num, status_str, duration_seconds).
     """
     rev_num, ods_path, text_only = args
     ods_path = Path(ods_path)
-    cache = _parse_cache_path(ods_path)
 
-    # Skip if already cached (e.g. from a previous run)
-    if cache.exists():
+    # Skip if v2 cache already exists
+    cached, hit = _load_parse_cache(ods_path)
+    if hit:
         return (rev_num, "cached", 0.0)
 
     if not ods_path.exists():
@@ -960,19 +1064,139 @@ def _parse_one(args):
 
     t0 = time.monotonic()
     try:
-        data = parse_ods(ods_path, text_only=text_only)
-        _save_parse_cache(ods_path, data)
-        return (rev_num, "parsed", time.monotonic() - t0)
+        hashes = per_sheet_hashes(ods_path)
+        cache_data = {"_fmt": "v2", "hashes": hashes, "sheets": {}}
+        _save_parse_cache(ods_path, cache_data)
+        return (rev_num, "hashed", time.monotonic() - t0)
     except Exception as e:
         return (rev_num, "error", time.monotonic() - t0)
+
+
+def _aggregate_sheet_diffs(sheet_results, sheets_summary):
+    """Aggregate per-sheet diff results into a single pair-level result.
+
+    *sheet_results*: {sheet_name: diff_grids_semantic() output}
+    *sheets_summary*: {total, identical, changed, added, removed, ...}
+
+    Returns a dict compatible with the existing pair result format,
+    plus per_sheet and sheets_summary fields.
+    """
+    all_changes = []
+    total_style_only = 0
+    has_col_structure = False
+    has_row_structure = False
+
+    # Aggregate column_changes: use first sheet with changes as representative
+    # (in UBL documents all sheets share the same column structure)
+    agg_col_changes = None
+    agg_row_added_count = 0
+    agg_row_removed_count = 0
+    agg_row_matched = 0
+    agg_row_old_total = 0
+    agg_row_new_total = 0
+    agg_row_old_unmatched = 0
+    agg_row_new_unmatched = 0
+    agg_row_added_samples = []
+    agg_row_removed_samples = []
+
+    per_sheet_out = {}
+
+    for sheet_name, result in sheet_results.items():
+        changes = result["changes"]
+        # Tag each change with its source sheet
+        for c in changes:
+            c["sheet"] = sheet_name
+        all_changes.extend(changes)
+        total_style_only += result.get("style_only_count", 0)
+
+        cc = result["column_changes"]
+        rc = result["row_changes"]
+
+        sheet_has_col = bool(
+            cc["added"] or cc["removed"]
+            or cc["unnamed_added"] > 0 or cc["unnamed_removed"] > 0
+            or cc["old_count"] != cc["new_count"]
+        )
+        sheet_has_row = bool(
+            rc["added_count"] > 0 or rc["removed_count"] > 0
+            or rc["old_row_count"] != rc["new_row_count"]
+        )
+
+        if sheet_has_col:
+            has_col_structure = True
+        if sheet_has_row:
+            has_row_structure = True
+
+        if agg_col_changes is None:
+            agg_col_changes = cc
+
+        # Sum row change counts across sheets
+        agg_row_added_count += rc["added_count"]
+        agg_row_removed_count += rc["removed_count"]
+        agg_row_matched += rc["matched"]
+        agg_row_old_total += rc["old_row_count"]
+        agg_row_new_total += rc["new_row_count"]
+        agg_row_old_unmatched += rc.get("old_unmatched", 0)
+        agg_row_new_unmatched += rc.get("new_unmatched", 0)
+
+        # Collect sample added/removed rows (prefixed with sheet name)
+        for key, row_num in rc.get("added", [])[:5]:
+            agg_row_added_samples.append((f"{sheet_name}:{key}", row_num))
+        for key, row_num in rc.get("removed", [])[:5]:
+            agg_row_removed_samples.append((f"{sheet_name}:{key}", row_num))
+
+        # Per-sheet detail
+        per_sheet_out[sheet_name] = {
+            "num_changes": len(changes),
+            "style_only_count": result.get("style_only_count", 0),
+            "has_col_structure": sheet_has_col,
+            "has_row_structure": sheet_has_row,
+            "column_changes": cc,
+            "row_changes": rc,
+            "summary": result.get("summary", {}),
+        }
+
+    if agg_col_changes is None:
+        agg_col_changes = {
+            "added": [], "removed": [], "common": [],
+            "unnamed_added": 0, "unnamed_removed": 0,
+            "unnamed_positions": [], "old_count": 0, "new_count": 0,
+        }
+
+    agg_row_changes = {
+        "added": agg_row_added_samples[:50],
+        "added_count": agg_row_added_count,
+        "removed": agg_row_removed_samples[:50],
+        "removed_count": agg_row_removed_count,
+        "matched": agg_row_matched,
+        "old_row_count": agg_row_old_total,
+        "new_row_count": agg_row_new_total,
+        "old_unmatched": agg_row_old_unmatched,
+        "new_unmatched": agg_row_new_unmatched,
+    }
+
+    return {
+        "changes": all_changes,
+        "column_changes": agg_col_changes,
+        "row_changes": agg_row_changes,
+        "style_only_count": total_style_only,
+        "has_col_structure": has_col_structure,
+        "has_row_structure": has_row_structure,
+        "summary": summarize_changes(all_changes),
+        "per_sheet": per_sheet_out,
+        "sheets_summary": sheets_summary,
+    }
 
 
 def _diff_pair(args):
     """Process a single pair — called in worker process.
 
+    Supports multi-sheet ODS files.  Three-tier fast-path:
+      1. Whole-file content.xml MD5 — catches identical files (~0ms diff)
+      2. Per-sheet hash comparison — finds which sheets changed (~200ms)
+      3. Parse + diff only changed sheets (~150ms per changed sheet)
+
     Returns (rev_a, rev_b, status_str, pair_result_dict_or_error_str, timing_dict).
-    The timing_dict contains monotonic durations (seconds) for each step,
-    collected with negligible overhead (no I/O, just clock reads).
     """
     rev_a, rev_b, path_a, path_b, text_only, outdir = args
     t0 = time.monotonic()
@@ -1006,7 +1230,7 @@ def _diff_pair(args):
     timing["size_a"] = size_a
     timing["size_b"] = size_b
 
-    # Hash fast-path: content.xml comparison
+    # ── Tier 1: Whole-file content.xml hash ──────────────────────────
     if size_a == size_b:
         try:
             t_hash = time.monotonic()
@@ -1023,72 +1247,155 @@ def _diff_pair(args):
                 timing["path"] = "hash_identical"
                 return (rev_a, rev_b, "hash_identical", pair_result, timing)
         except Exception:
-            pass  # Fall through to full parse
+            pass  # Fall through to per-sheet hash
 
-    # Full parse + semantic diff (with parse cache)
+    # ── Tier 2: Per-sheet hash comparison ────────────────────────────
+    t_sheet_hash = time.monotonic()
+    try:
+        # Load cached hashes or compute fresh
+        cache_a, hit_a = _load_parse_cache(path_a)
+        cache_b, hit_b = _load_parse_cache(path_b)
+
+        if hit_a and cache_a.get("hashes"):
+            hashes_a = cache_a["hashes"]
+        else:
+            hashes_a = per_sheet_hashes(path_a)
+            if cache_a is None:
+                cache_a = {"_fmt": "v2", "hashes": hashes_a, "sheets": {}}
+            else:
+                cache_a["hashes"] = hashes_a
+
+        if hit_b and cache_b.get("hashes"):
+            hashes_b = cache_b["hashes"]
+        else:
+            hashes_b = per_sheet_hashes(path_b)
+            if cache_b is None:
+                cache_b = {"_fmt": "v2", "hashes": hashes_b, "sheets": {}}
+            else:
+                cache_b["hashes"] = hashes_b
+
+    except Exception as e:
+        timing["total"] = time.monotonic() - t0
+        timing["path"] = "error"
+        return (rev_a, rev_b, "error", f"hashing sheets: {e}", timing)
+
+    timing["sheet_hash"] = time.monotonic() - t_sheet_hash
+
+    all_sheet_names = set(hashes_a) | set(hashes_b)
+    changed_sheets = {
+        s for s in all_sheet_names
+        if s in hashes_a and s in hashes_b and hashes_a[s] != hashes_b[s]
+    }
+    added_sheets = set(hashes_b) - set(hashes_a)
+    removed_sheets = set(hashes_a) - set(hashes_b)
+    identical_sheets = all_sheet_names - changed_sheets - added_sheets - removed_sheets
+
+    timing["sheets_total"] = len(all_sheet_names)
+    timing["sheets_changed"] = len(changed_sheets)
+    timing["sheets_added"] = len(added_sheets)
+    timing["sheets_removed"] = len(removed_sheets)
+    timing["sheets_identical"] = len(identical_sheets)
+
+    # All sheets identical → fast path
+    if not changed_sheets and not added_sheets and not removed_sheets:
+        pair_result = _make_identical_result(
+            rev_a, rev_b, sheets_total=len(all_sheet_names))
+        t_json = time.monotonic()
+        with open(pair_json, "w") as f:
+            json.dump(pair_result, f, separators=(",", ":"))
+        timing["json_write"] = time.monotonic() - t_json
+        timing["total"] = time.monotonic() - t0
+        timing["path"] = "sheet_hash_identical"
+        return (rev_a, rev_b, "sheet_hash_identical", pair_result, timing)
+
+    # ── Tier 3: Parse only changed sheets + diff ─────────────────────
+    need_from_a = changed_sheets | removed_sheets
+    need_from_b = changed_sheets | added_sheets
+
+    # Check grid cache for already-parsed sheets
+    grids_a = cache_a.get("sheets", {}) if cache_a else {}
+    grids_b = cache_b.get("sheets", {}) if cache_b else {}
+
+    parse_from_a = need_from_a - set(grids_a)
+    parse_from_b = need_from_b - set(grids_b)
+
+    # Parse missing sheets from A
     t_parse_a = time.monotonic()
     try:
-        old_data, cache_hit_a = _load_parse_cache(path_a)
-        if old_data is None:
-            old_data = parse_ods(path_a, text_only=text_only)
-            _save_parse_cache(path_a, old_data)
+        if parse_from_a:
+            new_grids_a = parse_ods_sheets(
+                path_a, parse_from_a, text_only=text_only)
+            grids_a.update(new_grids_a)
+            # Update cache for cross-pair reuse
+            cache_a.setdefault("sheets", {}).update(new_grids_a)
+            _save_parse_cache(path_a, cache_a)
     except Exception as e:
         timing["total"] = time.monotonic() - t0
         timing["path"] = "error"
-        return (rev_a, rev_b, "error", f"parsing rev-{rev_a}: {e}", timing)
+        return (rev_a, rev_b, "error", f"parsing rev-{rev_a} sheets: {e}", timing)
     timing["parse_a"] = time.monotonic() - t_parse_a
-    timing["parse_a_cached"] = cache_hit_a
-    timing["cells_a"] = old_data.get("num_cells", 0)
+    timing["parse_a_sheets"] = len(parse_from_a)
+    timing["parse_a_cached"] = len(need_from_a) - len(parse_from_a)
 
+    # Parse missing sheets from B
     t_parse_b = time.monotonic()
     try:
-        new_data, cache_hit_b = _load_parse_cache(path_b)
-        if new_data is None:
-            new_data = parse_ods(path_b, text_only=text_only)
-            _save_parse_cache(path_b, new_data)
+        if parse_from_b:
+            new_grids_b = parse_ods_sheets(
+                path_b, parse_from_b, text_only=text_only)
+            grids_b.update(new_grids_b)
+            cache_b.setdefault("sheets", {}).update(new_grids_b)
+            _save_parse_cache(path_b, cache_b)
     except Exception as e:
         timing["total"] = time.monotonic() - t0
         timing["path"] = "error"
-        return (rev_a, rev_b, "error", f"parsing rev-{rev_b}: {e}", timing)
+        return (rev_a, rev_b, "error", f"parsing rev-{rev_b} sheets: {e}", timing)
     timing["parse_b"] = time.monotonic() - t_parse_b
-    timing["parse_b_cached"] = cache_hit_b
-    timing["cells_b"] = new_data.get("num_cells", 0)
+    timing["parse_b_sheets"] = len(parse_from_b)
+    timing["parse_b_cached"] = len(need_from_b) - len(parse_from_b)
 
+    # Diff changed sheets
     t_diff = time.monotonic()
-    result = diff_grids_semantic(old_data, new_data)
+    sheet_diff_results = {}
+    for sheet_name in sorted(changed_sheets):
+        old_data = grids_a.get(sheet_name)
+        new_data = grids_b.get(sheet_name)
+        if old_data and new_data:
+            sheet_diff_results[sheet_name] = diff_grids_semantic(
+                old_data, new_data)
     timing["diff"] = time.monotonic() - t_diff
 
-    changes = result["changes"]
-    col_changes = result["column_changes"]
-    row_changes = result["row_changes"]
-    style_only = result.get("style_only_count", 0)
-    timing["num_changes"] = len(changes)
+    # Build sheets_summary
+    sheets_summary = {
+        "total": len(all_sheet_names),
+        "identical": len(identical_sheets),
+        "changed": len(changed_sheets),
+        "added": len(added_sheets),
+        "removed": len(removed_sheets),
+        "changed_names": sorted(changed_sheets),
+        "added_names": sorted(added_sheets),
+        "removed_names": sorted(removed_sheets),
+    }
 
-    has_col_structure = (
-        col_changes["added"]
-        or col_changes["removed"]
-        or col_changes["unnamed_added"] > 0
-        or col_changes["unnamed_removed"] > 0
-        or col_changes["old_count"] != col_changes["new_count"]
-    )
-    has_row_structure = (
-        row_changes["added_count"] > 0
-        or row_changes["removed_count"] > 0
-        or row_changes["old_row_count"] != row_changes["new_row_count"]
-    )
+    # Aggregate results across sheets
+    agg = _aggregate_sheet_diffs(sheet_diff_results, sheets_summary)
 
     pair_result = {
         "from_rev": rev_a,
         "to_rev": rev_b,
-        "num_changes": len(changes),
-        "style_only_count": style_only,
-        "has_col_structure": has_col_structure,
-        "has_row_structure": has_row_structure,
-        "column_changes": col_changes,
-        "row_changes": row_changes,
-        "summary": result["summary"],
-        "changes": changes,
+        "num_changes": len(agg["changes"]),
+        "style_only_count": agg["style_only_count"],
+        "has_col_structure": agg["has_col_structure"],
+        "has_row_structure": agg["has_row_structure"],
+        "column_changes": agg["column_changes"],
+        "row_changes": agg["row_changes"],
+        "summary": agg["summary"],
+        "changes": agg["changes"],
+        "sheets_summary": sheets_summary,
+        "per_sheet": agg.get("per_sheet", {}),
     }
+    timing["num_changes"] = len(agg["changes"])
+
     t_json = time.monotonic()
     with open(pair_json, "w") as f:
         json.dump(pair_result, f, separators=(",", ":"))
@@ -1476,7 +1783,7 @@ def main():
                     try:
                         rev_num, status, duration = ar.get(timeout=0)
                         parse_completed += 1
-                        if status == "parsed":
+                        if status in ("parsed", "hashed"):
                             parse_fresh += 1
                             parse_timings.append(duration)
                         elif status == "cached":
@@ -1539,6 +1846,7 @@ def main():
     diff_stats = {
         "identical": 0,
         "hash_identical": 0,
+        "sheet_hash_identical": 0,
         "style_only": 0,
         "changed": 0,
         "cached": 0,
@@ -1566,6 +1874,9 @@ def main():
         elif status == "hash_identical":
             diff_stats["identical"] += 1
             diff_stats["hash_identical"] += 1
+        elif status == "sheet_hash_identical":
+            diff_stats["identical"] += 1
+            diff_stats["sheet_hash_identical"] += 1
         elif status == "cached":
             diff_stats["cached"] += 1
             n = data.get("num_changes", 0)
@@ -1602,6 +1913,9 @@ def main():
                 if hrs:
                     rc = data["row_changes"]
                     parts.append(f"+{rc['added_count']} -{rc['removed_count']} rows")
+                ss = data.get("sheets_summary")
+                if ss and ss.get("total", 0) > 1:
+                    parts.append(f"{ss['changed']}/{ss['total']} sheets")
                 print(f"  rev-{rev_a:>5} -> rev-{rev_b:>5}: {', '.join(parts)}")
 
         if diff_completed % 200 == 0:
@@ -1741,7 +2055,9 @@ def main():
     print(f"  Parse:          {parse_fresh} fresh, {parse_cached} cached, "
           f"{parse_errors} errors")
     print(f"  Transitions:    {total_transitions}")
-    print(f"  Identical:      {identical_count} ({hash_identical_count} via hash)")
+    print(f"  Identical:      {identical_count} "
+          f"({hash_identical_count} file-hash, "
+          f"{diff_stats.get('sheet_hash_identical', 0)} sheet-hash)")
     print(f"  Style-only:     {style_only_count}")
     print(f"  Changed:        {changed_count}")
     print(f"  Cell changes:   {total_cell_changes}")

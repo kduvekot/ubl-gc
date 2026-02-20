@@ -21,7 +21,7 @@ on:
         default: true
   push:
     branches:
-      - 'claude/analyze-sheet-diff-0EZru'
+      - 'claude/*'
     paths:
       - 'work-sheets/.trigger-diff-analysis'
       - '.github/workflows/diff-analysis.yml'
