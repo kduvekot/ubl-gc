@@ -128,7 +128,7 @@ jobs:
 
           if [ "$RANGE" = "all" ]; then
             # ── Optimized pipeline: hash fast-path + lxml + streaming ──
-            PIPELINE_ARGS="$SHEET --diff-workers 4 --download-dir $OUTDIR --diff-dir $DIFFDIR"
+            PIPELINE_ARGS="$SHEET --diff-workers 8 --download-dir $OUTDIR --diff-dir $DIFFDIR"
             if [ "$TEXT_ONLY" = "true" ]; then
               PIPELINE_ARGS="$PIPELINE_ARGS --text-only"
             fi
