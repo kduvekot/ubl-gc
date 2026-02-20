@@ -31,6 +31,7 @@ import gc as gc_mod
 import gzip
 import hashlib
 import json
+import pickle
 import re
 import sys
 import threading
@@ -420,6 +421,46 @@ def content_xml_hash(ods_path):
     """MD5 hash of content.xml inside the ODS zip — fast identity check."""
     with zipfile.ZipFile(ods_path) as zf:
         return hashlib.md5(zf.read("content.xml")).digest()
+
+
+# ── Parse cache: avoid re-parsing the same ODS across pairs ──────────
+# In a chain (99→100, 100→101), rev-100 is parsed twice — once as "B"
+# in pair 99→100 and again as "A" in pair 100→101.  Caching the parsed
+# result as a pickle file lets the second worker skip the expensive
+# lxml parse (~1.8s for library) and just unpickle (~50ms).
+
+def _parse_cache_path(ods_path):
+    """Return the pickle cache path for a parsed ODS file."""
+    return Path(str(ods_path) + ".parsed")
+
+
+def _load_parse_cache(ods_path):
+    """Load cached parsed data if available. Returns (data, True) on hit,
+    (None, False) on miss."""
+    cp = _parse_cache_path(ods_path)
+    try:
+        if cp.exists():
+            with open(cp, "rb") as f:
+                return pickle.load(f), True
+    except Exception:
+        pass
+    return None, False
+
+
+def _save_parse_cache(ods_path, data):
+    """Save parsed data to pickle cache (atomic via tmp+rename)."""
+    cp = _parse_cache_path(ods_path)
+    tmp = cp.with_suffix(".parsed.tmp")
+    try:
+        with open(tmp, "wb") as f:
+            pickle.dump(data, f, protocol=pickle.HIGHEST_PROTOCOL)
+        tmp.rename(cp)
+    except Exception:
+        # Don't fail the pipeline if caching fails
+        try:
+            tmp.unlink(missing_ok=True)
+        except Exception:
+            pass
 
 
 # =====================================================================
@@ -818,6 +859,16 @@ def _summarize_timings(timings):
                 vals = [t[step] * 1000 for t in items if step in t]
                 if vals:
                     entry[f"{step}_ms"] = _percentiles(vals)
+            # Parse cache hit rates
+            cache_a_hits = sum(1 for t in items if t.get("parse_a_cached"))
+            cache_b_hits = sum(1 for t in items if t.get("parse_b_cached"))
+            entry["parse_cache"] = {
+                "hits_a": cache_a_hits,
+                "hits_b": cache_b_hits,
+                "total_hits": cache_a_hits + cache_b_hits,
+                "total_parses": len(items) * 2,
+                "hit_rate": round((cache_a_hits + cache_b_hits) / (len(items) * 2), 3) if items else 0,
+            }
             # cell counts and change counts
             cells = [t.get("cells_a", 0) + t.get("cells_b", 0) for t in items]
             if cells:
@@ -863,6 +914,14 @@ def _print_timing_report(timings):
                 print(f"    {step:12s} p50={vals[m//2]:6.1f}ms  p90={vals[min(int(m*0.9), m-1)]:6.1f}ms  "
                       f"p99={vals[min(int(m*0.99), m-1)]:6.1f}ms  max={vals[-1]:6.1f}ms  "
                       f"({pct_of_total:4.1f}% of wall)")
+            # Parse cache hit rates
+            cache_a = sum(1 for t in items if t.get("parse_a_cached"))
+            cache_b = sum(1 for t in items if t.get("parse_b_cached"))
+            total_parses = n * 2
+            total_hits = cache_a + cache_b
+            print(f"    parse cache: {total_hits}/{total_parses} hits "
+                  f"({total_hits/total_parses*100:.0f}%) — "
+                  f"A={cache_a}/{n}, B={cache_b}/{n}")
             # Top 5 slowest pairs
             slowest = sorted(items, key=lambda t: t.get("total", 0), reverse=True)[:5]
             print(f"    Top 5 slowest pairs:")
@@ -871,9 +930,15 @@ def _print_timing_report(timings):
                 for step in ("hash", "parse_a", "parse_b", "diff", "json_write"):
                     if step in t:
                         parts.append(f"{step}={t[step]*1000:.0f}")
+                cached_parts = []
+                if t.get("parse_a_cached"):
+                    cached_parts.append("A")
+                if t.get("parse_b_cached"):
+                    cached_parts.append("B")
+                cache_str = f" cached={'+'.join(cached_parts)}" if cached_parts else ""
                 print(f"      {t.get('total', 0)*1000:.0f}ms total  "
                       f"({', '.join(parts)}ms)  "
-                      f"changes={t.get('num_changes', '?')}")
+                      f"changes={t.get('num_changes', '?')}{cache_str}")
     print("=" * 70)
 
 
@@ -935,25 +1000,33 @@ def _diff_pair(args):
         except Exception:
             pass  # Fall through to full parse
 
-    # Full parse + semantic diff
+    # Full parse + semantic diff (with parse cache)
     t_parse_a = time.monotonic()
     try:
-        old_data = parse_ods(path_a, text_only=text_only)
+        old_data, cache_hit_a = _load_parse_cache(path_a)
+        if old_data is None:
+            old_data = parse_ods(path_a, text_only=text_only)
+            _save_parse_cache(path_a, old_data)
     except Exception as e:
         timing["total"] = time.monotonic() - t0
         timing["path"] = "error"
         return (rev_a, rev_b, "error", f"parsing rev-{rev_a}: {e}", timing)
     timing["parse_a"] = time.monotonic() - t_parse_a
+    timing["parse_a_cached"] = cache_hit_a
     timing["cells_a"] = old_data.get("num_cells", 0)
 
     t_parse_b = time.monotonic()
     try:
-        new_data = parse_ods(path_b, text_only=text_only)
+        new_data, cache_hit_b = _load_parse_cache(path_b)
+        if new_data is None:
+            new_data = parse_ods(path_b, text_only=text_only)
+            _save_parse_cache(path_b, new_data)
     except Exception as e:
         timing["total"] = time.monotonic() - t0
         timing["path"] = "error"
         return (rev_a, rev_b, "error", f"parsing rev-{rev_b}: {e}", timing)
     timing["parse_b"] = time.monotonic() - t_parse_b
+    timing["parse_b_cached"] = cache_hit_b
     timing["cells_b"] = new_data.get("num_cells", 0)
 
     t_diff = time.monotonic()
