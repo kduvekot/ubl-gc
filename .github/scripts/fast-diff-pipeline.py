@@ -942,6 +942,31 @@ def _print_timing_report(timings):
     print("=" * 70)
 
 
+def _parse_one(args):
+    """Parse a single ODS file and save pickle cache. Called in worker process.
+
+    Returns (rev_num, status_str, duration_seconds).
+    """
+    rev_num, ods_path, text_only = args
+    ods_path = Path(ods_path)
+    cache = _parse_cache_path(ods_path)
+
+    # Skip if already cached (e.g. from a previous run)
+    if cache.exists():
+        return (rev_num, "cached", 0.0)
+
+    if not ods_path.exists():
+        return (rev_num, "missing", 0.0)
+
+    t0 = time.monotonic()
+    try:
+        data = parse_ods(ods_path, text_only=text_only)
+        _save_parse_cache(ods_path, data)
+        return (rev_num, "parsed", time.monotonic() - t0)
+    except Exception as e:
+        return (rev_num, "error", time.monotonic() - t0)
+
+
 def _diff_pair(args):
     """Process a single pair — called in worker process.
 
@@ -1271,7 +1296,7 @@ def main():
     print(f"  Diff workers:     {args.diff_workers}")
     print(f"  Text-only:        {args.text_only}")
     print(f"  Audit cache:      {args.audit_cache or 'none'}")
-    print(f"  Mode:             OVERLAPPED download+diff")
+    print(f"  Mode:             parse-then-diff (download+parse overlapped)")
     print()
 
     t_start = time.time()
@@ -1339,31 +1364,24 @@ def main():
         print(f"[pipeline] = {total_pairs} total pairs")
 
     # Build pair list: consecutive revisions that need diffing
-    # pairs[i] = (revs[i], revs[i+1])
     pairs = [(revs[i], revs[i + 1]) for i in range(n_pairs)]
 
-    # Track which revisions each pair needs
-    # rev_to_pairs[rev_num] = list of pair indices where this rev appears
-    rev_to_pairs = defaultdict(list)
-    for pi, (ra, rb) in enumerate(pairs):
-        rev_to_pairs[ra].append(pi)
-        rev_to_pairs[rb].append(pi)
-
-    # ── Phase 1+2: OVERLAPPED download + diff ────────────────────────
+    # ── Phase 1+2: OVERLAPPED download + parse ──────────────────────
+    # Each file is parsed exactly once.  Download completes → submit to
+    # parse Pool → pickle cache written.  Then Phase 3 diffs all pairs
+    # using cached parses (100% hit rate, no redundant work).
     print()
     print("=" * 70)
-    print(f"Pipelined download ({args.download_workers} threads) + "
-          f"diff ({args.diff_workers} workers)")
+    print(f"Download ({args.download_workers} threads) + "
+          f"Parse ({args.diff_workers} workers)  [each file parsed once]")
     print("=" * 70)
 
     # State tracking (protected by lock)
     lock = threading.Lock()
-    downloaded_revs = set()         # revisions whose .ods file is on disk
-    pair_ready = [False] * n_pairs  # True when both files of pair are ready
-    pair_submitted = [False] * n_pairs
-    diff_queue = Queue()            # items: (rev_a, rev_b, path_a, path_b, text_only, outdir)
+    downloaded_revs = set()
+    parse_queue = Queue()   # items: (rev_num, ods_path_str, text_only)
 
-    # Mark already-existing files as downloaded
+    # Mark already-existing files as downloaded and queue for parsing
     skipped = 0
     todo = {}
     for rev_num in revs:
@@ -1371,54 +1389,26 @@ def main():
         if ods_path.exists() and ods_path.stat().st_size > 1000:
             downloaded_revs.add(rev_num)
             skipped += 1
+            parse_queue.put((rev_num, str(ods_path), args.text_only))
         else:
             todo[rev_num] = file_map[rev_num]
 
     if skipped:
-        print(f"  {skipped} revisions already on disk")
-
-    # Check if pre-existing files already complete any pairs
-    for pi, (ra, rb) in enumerate(pairs):
-        if ra in downloaded_revs and rb in downloaded_revs:
-            pair_ready[pi] = True
-            pair_submitted[pi] = True
-            diff_queue.put((
-                ra, rb,
-                str(dl_dir / f"rev-{ra}.ods"),
-                str(dl_dir / f"rev-{rb}.ods"),
-                args.text_only,
-                str(diff_dir),
-            ))
-
-    pre_queued = sum(pair_submitted)
-    if pre_queued:
-        print(f"  {pre_queued} pairs immediately ready from cached files")
+        print(f"  {skipped} revisions already on disk (queued for parsing)")
 
     dl_count = skipped
     dl_errors = 0
     dl_done = threading.Event()
 
     def on_download_complete(rev_num):
-        """Called when a revision finishes downloading. Checks if any pairs
-        are now ready and submits them to the diff queue."""
-        nonlocal dl_count
+        """Queue a freshly downloaded file for parsing."""
         with lock:
             downloaded_revs.add(rev_num)
-            # Check all pairs this revision participates in
-            for pi in rev_to_pairs.get(rev_num, []):
-                if pair_submitted[pi]:
-                    continue
-                ra, rb = pairs[pi]
-                if ra in downloaded_revs and rb in downloaded_revs:
-                    pair_ready[pi] = True
-                    pair_submitted[pi] = True
-                    diff_queue.put((
-                        ra, rb,
-                        str(dl_dir / f"rev-{ra}.ods"),
-                        str(dl_dir / f"rev-{rb}.ods"),
-                        args.text_only,
-                        str(diff_dir),
-                    ))
+        parse_queue.put((
+            rev_num,
+            str(dl_dir / f"rev-{rev_num}.ods"),
+            args.text_only,
+        ))
 
     def download_thread():
         """Runs all downloads, signaling the coordinator as each completes."""
@@ -1445,12 +1435,105 @@ def main():
 
         dl_done.set()
 
-    # Start download in a background thread
+    # Start download in background
     dl_thread = threading.Thread(target=download_thread, daemon=True)
     dl_thread.start()
 
-    # ── Diff consumer: pull from queue, process via Pool ─────────────
-    t_first_diff = None
+    # ── Parse consumer: pull from queue, parse via Pool ───────────────
+    parse_completed = 0
+    parse_fresh = 0
+    parse_cached = 0
+    parse_errors = 0
+    parse_timings = []  # list of (rev_num, duration_s)
+    expected_parses = len(revs)
+    t_first_parse = None
+
+    print(f"\n  Parse pool: {args.diff_workers} workers "
+          f"(files submitted as downloads complete)")
+    print()
+
+    with Pool(processes=args.diff_workers) as parse_pool:
+        pending_parses = []
+
+        while True:
+            # Drain queue: submit new parse jobs
+            while not parse_queue.empty():
+                try:
+                    item = parse_queue.get_nowait()
+                except Exception:
+                    break
+                if t_first_parse is None:
+                    t_first_parse = time.time()
+                    print(f"  [pipeline] First parse submitted at "
+                          f"{t_first_parse - t_start:.1f}s")
+                ar = parse_pool.apply_async(_parse_one, (item,))
+                pending_parses.append(ar)
+
+            # Collect completed parses
+            still_pending = []
+            for ar in pending_parses:
+                if ar.ready():
+                    try:
+                        rev_num, status, duration = ar.get(timeout=0)
+                        parse_completed += 1
+                        if status == "parsed":
+                            parse_fresh += 1
+                            parse_timings.append(duration)
+                        elif status == "cached":
+                            parse_cached += 1
+                        elif status in ("error", "missing"):
+                            parse_errors += 1
+                            print(f"    rev-{rev_num:>5}: PARSE {status}")
+                    except Exception as e:
+                        parse_completed += 1
+                        parse_errors += 1
+                        print(f"    Parse pool error: {e}")
+                else:
+                    still_pending.append(ar)
+            pending_parses = still_pending
+
+            # Progress
+            if parse_completed > 0 and parse_completed % 200 == 0:
+                elapsed = time.time() - t_start
+                print(f"  ... {parse_completed}/{expected_parses} files parsed "
+                      f"({parse_completed / elapsed:.0f} files/s)")
+
+            # Done when: downloads finished + queue drained + all parses collected
+            if (dl_done.is_set() and parse_queue.empty()
+                    and len(pending_parses) == 0):
+                break
+
+            time.sleep(0.05)
+
+    dl_thread.join(timeout=5)
+
+    t_parse_end = time.time()
+    t_parse_wall = t_parse_end - t_start
+
+    if parse_timings:
+        parse_timings.sort()
+        pt_n = len(parse_timings)
+        print(f"\n[parse] {parse_completed} files: {parse_fresh} parsed, "
+              f"{parse_cached} from cache, {parse_errors} errors "
+              f"({t_parse_wall:.1f}s wall)")
+        print(f"[parse] parse time: "
+              f"p50={parse_timings[pt_n//2]*1000:.0f}ms  "
+              f"p90={parse_timings[min(int(pt_n*0.9), pt_n-1)]*1000:.0f}ms  "
+              f"max={parse_timings[-1]*1000:.0f}ms")
+    else:
+        print(f"\n[parse] {parse_completed} files: "
+              f"{parse_cached} from cache, {parse_errors} errors "
+              f"({t_parse_wall:.1f}s wall)")
+
+    print(f"[pipeline] Downloads: {dl_count} ok, {dl_errors} errors")
+
+    # ── Phase 3: Diff (all pickle caches ready → 100% hit rate) ───────
+    print()
+    print("=" * 70)
+    print(f"Phase 3: Diff ({args.diff_workers} workers, {n_pairs} pairs)"
+          f"  [loading from pickle cache]")
+    print("=" * 70)
+
     diff_completed = 0
     diff_errors_count = 0
     diff_stats = {
@@ -1463,7 +1546,6 @@ def main():
         "cell_changes": 0,
         "user_edits": 0,
     }
-    # Timing accumulator — lists of per-pair timing dicts, grouped by path
     diff_timings = []
 
     def process_diff_result(result):
@@ -1523,68 +1605,32 @@ def main():
                 print(f"  rev-{rev_a:>5} -> rev-{rev_b:>5}: {', '.join(parts)}")
 
         if diff_completed % 200 == 0:
-            elapsed = time.time() - t_start
+            elapsed = time.time() - t_parse_end
             print(f"  ... {diff_completed}/{n_pairs} pairs diffed "
-                  f"({diff_completed / elapsed:.0f} pairs/s, "
-                  f"{len(downloaded_revs)}/{len(revs)} downloaded)")
+                  f"({diff_completed / elapsed:.0f} pairs/s)")
 
-    # Use a Pool for diff workers, feeding it from the queue
-    print(f"\n  Diff pool: {args.diff_workers} workers (pairs submitted as downloads complete)")
-    print()
+    # Build work items — pairs to diff
+    work_items = []
+    for ra, rb in pairs:
+        work_items.append((
+            ra, rb,
+            str(dl_dir / f"rev-{ra}.ods"),
+            str(dl_dir / f"rev-{rb}.ods"),
+            args.text_only,
+            str(diff_dir),
+        ))
 
-    n_submitted = pre_queued
+    t_diff_start = time.time()
 
-    with Pool(processes=args.diff_workers) as pool:
-        pending_results = []  # list of AsyncResult objects
+    with Pool(processes=args.diff_workers) as diff_pool:
+        for result in diff_pool.imap_unordered(_diff_pair, work_items, chunksize=8):
+            process_diff_result(result)
 
-        while True:
-            # Drain the queue: submit new pairs to the pool
-            while not diff_queue.empty():
-                try:
-                    work_item = diff_queue.get_nowait()
-                except Exception:
-                    break
-                if t_first_diff is None:
-                    t_first_diff = time.time()
-                    elapsed_to_first = t_first_diff - t_start
-                    print(f"  [pipeline] First diff pair submitted at {elapsed_to_first:.1f}s")
-                ar = pool.apply_async(_diff_pair, (work_item,))
-                pending_results.append(ar)
-                n_submitted += 1
-
-            # Collect completed results
-            still_pending = []
-            for ar in pending_results:
-                if ar.ready():
-                    try:
-                        result = ar.get(timeout=0)
-                        process_diff_result(result)
-                    except Exception as e:
-                        diff_errors_count += 1
-                        diff_completed += 1
-                        print(f"  Pool error: {e}")
-                else:
-                    still_pending.append(ar)
-            pending_results = still_pending
-
-            # Check: are we done?
-            # Downloads done + all submitted pairs collected = finished
-            downloads_finished = dl_done.is_set()
-            all_collected = (len(pending_results) == 0 and diff_queue.empty()
-                             and downloads_finished)
-            if all_collected:
-                break
-
-            # Brief sleep to avoid busy-waiting, but keep it short
-            time.sleep(0.05)
-
-    # Wait for download thread to finish (should already be done)
-    dl_thread.join(timeout=5)
-
-    t_dl = time.time() - t_start  # includes overlap, but we track separately
     t_total = time.time() - t_start
+    t_diff_wall = time.time() - t_diff_start
 
-    print(f"\n[pipeline] Downloads: {dl_count} ok, {dl_errors} errors")
+    print(f"\n[diff]     {diff_completed} pairs in {t_diff_wall:.1f}s wall")
+    print(f"[pipeline] Downloads: {dl_count} ok, {dl_errors} errors")
     print(f"[pipeline] Diffs:     {diff_completed} pairs processed")
 
     # ── Phase 3: Build merged summary from all pair files ────────────
@@ -1650,7 +1696,7 @@ def main():
 
     summary = {
         "input_dir": str(dl_dir),
-        "mode": "pipelined",
+        "mode": "parse-then-diff",
         "xml_parser": "lxml" if _USING_LXML else "ElementTree",
         "text_only": args.text_only,
         "download_workers": args.download_workers,
@@ -1669,7 +1715,13 @@ def main():
         "errors": errors,
         "timing": {
             "total_seconds": round(t_total, 1),
-            "first_diff_at": round(t_first_diff - t_start, 1) if t_first_diff else None,
+            "download_parse_seconds": round(t_parse_wall, 1),
+            "diff_seconds": round(t_diff_wall, 1),
+            "parse_stats": {
+                "fresh": parse_fresh,
+                "cached": parse_cached,
+                "errors": parse_errors,
+            },
             "per_step": _summarize_timings(diff_timings),
         },
     }
@@ -1683,9 +1735,11 @@ def main():
     print("=" * 70)
     print("PIPELINE SUMMARY")
     print("=" * 70)
-    print(f"  Mode:           pipelined (overlapped download+diff)")
+    print(f"  Mode:           parse-then-diff (download+parse overlapped)")
     print(f"  XML parser:     {'lxml' if _USING_LXML else 'ElementTree'}")
     print(f"  Revisions:      {len(revs)}")
+    print(f"  Parse:          {parse_fresh} fresh, {parse_cached} cached, "
+          f"{parse_errors} errors")
     print(f"  Transitions:    {total_transitions}")
     print(f"  Identical:      {identical_count} ({hash_identical_count} via hash)")
     print(f"  Style-only:     {style_only_count}")
@@ -1694,8 +1748,8 @@ def main():
     print(f"  User edits:     {total_user_edits}")
     print(f"  DL errors:      {dl_errors}")
     print(f"  Diff errors:    {len(errors)}")
-    first_diff_msg = f"{t_first_diff - t_start:.1f}s" if t_first_diff else "N/A"
-    print(f"  First diff at:  {first_diff_msg} (overlap starts here)")
+    print(f"  DL+Parse time:  {t_parse_wall:.0f}s")
+    print(f"  Diff time:      {t_diff_wall:.0f}s")
     print(f"  Total time:     {t_total:.0f}s")
     print(f"  Pair files:     {len(pair_files)}")
     print(f"  Summary:        {summary_path}")
