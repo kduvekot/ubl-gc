@@ -1,0 +1,56 @@
+{
+  "lib_revision": 1999,
+  "doc_revision": 2190,
+  "version": "2.5",
+  "stage": "csd02",
+  "endorsed": true,
+
+  "_docs": {
+    "_purpose": "Edit the fields above, commit & push to trigger the GC pipeline. The workflow ignores everything under '_docs'.",
+
+    "lib_revision": {
+      "description": "Google Drive revision number for the UBL Library ODS spreadsheet",
+      "examples": { "csd01": 1533, "csd02": 1999 }
+    },
+
+    "doc_revision": {
+      "description": "Google Drive revision number for the UBL Documents ODS spreadsheet",
+      "examples": { "csd01": 1294, "csd02": 2190 }
+    },
+
+    "version": {
+      "description": "UBL version string used in filenames (e.g. UBL-Entities-{version}.gc)",
+      "default": "2.5"
+    },
+
+    "stage": {
+      "description": "Stage label used in filenames and identification XML (e.g. csd01, csd02, cs01, os)",
+      "default": "csd02"
+    },
+
+    "endorsed": {
+      "description": "Whether to also generate UBL-Endorsed-Entities-{version}.gc (UBL 2.5+ only)",
+      "default": true
+    },
+
+    "reference_gc": {
+      "description": "Optional. Path to an official .gc file to diff against. Leave absent or empty to skip comparison.",
+      "example": "history/csd02-UBL-2.5/mod/UBL-Entities-2.5.gc"
+    },
+
+    "how_to_use": {
+      "step_1": "Edit lib_revision and doc_revision above to the revision pair you want to test",
+      "step_2": "Optionally set version/stage/endorsed",
+      "step_3": "Commit and push to any claude/* branch",
+      "step_4": "The workflow downloads the ODS revisions, generates .gc, runs XSD + NDR validation",
+      "step_5": "Download the generated .gc from the workflow artifact"
+    },
+
+    "alternatives": {
+      "github_ui": "Actions → Validate GC Pipeline → Run workflow (same inputs as dropdown/text fields)",
+      "regression": "Pushing changes to pipeline scripts or tools triggers the hardcoded csd01+csd02 regression suite instead"
+    },
+
+    "last_updated": "2026-02-21"
+  }
+}

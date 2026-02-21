@@ -27,6 +27,7 @@ on:
   push:
     branches: ['claude/**']
     paths:
+      - '.github/data/.trigger-gc-pipeline'
       - '.github/scripts/validate-gc-pipeline.sh'
       - '.github/scripts/download-ods-revision.py'
       - '.github/workflows/validate-gc-pipeline.yml'
@@ -41,12 +42,44 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       matrix: ${{ steps.cfg.outputs.matrix }}
+      source: ${{ steps.cfg.outputs.source }}
     steps:
+      - name: Checkout (for trigger file)
+        if: github.event_name == 'push'
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
       - id: cfg
         run: |
+          TRIGGER=".github/data/.trigger-gc-pipeline"
+
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            # ── Mode 1: Manual dispatch — use UI inputs, no reference comparison
+            echo "source=dispatch" >> "$GITHUB_OUTPUT"
             echo 'matrix={"include":[{"stage":"${{ inputs.stage }}","version":"${{ inputs.version }}","lib_revision":${{ inputs.lib_revision }},"doc_revision":${{ inputs.doc_revision }},"endorsed":${{ inputs.endorsed }},"reference_gc":""}]}' >> "$GITHUB_OUTPUT"
+
+          elif git diff --name-only HEAD~1 HEAD 2>/dev/null | grep -q "$TRIGGER"; then
+            # ── Mode 2: Trigger file changed — read revisions from JSON
+            echo "source=trigger-file" >> "$GITHUB_OUTPUT"
+            python3 -c "
+          import json, sys
+          with open('$TRIGGER') as f:
+              cfg = json.load(f)
+          entry = {
+              'stage':        cfg.get('stage', 'test'),
+              'version':      cfg.get('version', '2.5'),
+              'lib_revision': int(cfg['lib_revision']),
+              'doc_revision': int(cfg['doc_revision']),
+              'endorsed':     cfg.get('endorsed', True),
+              'reference_gc': cfg.get('reference_gc', ''),
+          }
+          print('matrix=' + json.dumps({'include': [entry]}))
+          " >> "$GITHUB_OUTPUT"
+
           else
+            # ── Mode 3: Pipeline scripts/tools changed — regression suite
+            echo "source=regression" >> "$GITHUB_OUTPUT"
             echo 'matrix={"include":[{"stage":"csd02","version":"2.5","lib_revision":1999,"doc_revision":2190,"reference_gc":"history/csd02-UBL-2.5/mod/UBL-Entities-2.5.gc","endorsed":true},{"stage":"csd01","version":"2.5","lib_revision":1533,"doc_revision":1294,"reference_gc":"history/csd01-UBL-2.5/mod/UBL-Entities-2.5.gc","endorsed":true}]}' >> "$GITHUB_OUTPUT"
           fi
 
@@ -130,6 +163,7 @@ jobs:
             echo "| Stage | \`${{ matrix.stage }}\` |"
             echo "| Endorsed | \`${{ matrix.endorsed }}\` |"
             echo "| Reference GC | \`${{ matrix.reference_gc || 'none (generate-only)' }}\` |"
+            echo "| Trigger | \`${{ needs.prepare.outputs.source }}\` |"
             echo ""
             echo "### Generated files"
             echo ""
