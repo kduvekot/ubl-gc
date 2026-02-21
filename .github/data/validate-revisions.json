@@ -1,0 +1,23 @@
+[
+  {
+    "label": "docs-csd01-rev1295-SHOULD-FAIL",
+    "sheet": "documents",
+    "rev": 1295,
+    "gc": "history/csd01-UBL-2.5/mod/UBL-Entities-2.5.gc",
+    "reason": "Rev 1295 adds 'Copy of TenderStatus' sheet (becomes ProcedureStatus), which is NOT in csd01"
+  },
+  {
+    "label": "docs-csd01-rev1293-SHOULD-FAIL",
+    "sheet": "documents",
+    "rev": 1293,
+    "gc": "history/csd01-UBL-2.5/mod/UBL-Entities-2.5.gc",
+    "reason": "Rev 1293 lacks the '(Deprecated)' prefix on AttachedDocument Definition, added at 1293→1294"
+  },
+  {
+    "label": "docs-csd02-rev2191-SHOULD-FAIL",
+    "sheet": "documents",
+    "rev": 2191,
+    "gc": "history/csd02-UBL-2.5/mod/UBL-Entities-2.5.gc",
+    "reason": "Rev 2191 is one past the confirmed csd02 documents revision (2190)"
+  }
+]
