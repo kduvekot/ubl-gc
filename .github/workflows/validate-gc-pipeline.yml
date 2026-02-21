@@ -1,33 +1,77 @@
 name: Validate GC Pipeline
 
 on:
+  workflow_dispatch:
+    inputs:
+      lib_revision:
+        description: 'Library ODS revision number'
+        required: true
+        type: string
+      doc_revision:
+        description: 'Documents ODS revision number'
+        required: true
+        type: string
+      version:
+        description: 'UBL version'
+        type: string
+        default: '2.5'
+      stage:
+        description: 'Stage label (e.g. csd01, csd02)'
+        type: string
+        default: 'csd02'
+      endorsed:
+        description: 'Generate endorsed gc (UBL 2.5+)'
+        type: boolean
+        default: true
+
   push:
-    branches: ['claude/**']
     paths:
-      - '.github/scripts/validate-gc-pipeline.sh'
-      - '.github/scripts/download-ods-revision.py'
-      - '.github/workflows/validate-gc-pipeline.yml'
-      - 'history/tools/**'
+      - '.github/data/.trigger-gc-pipeline'
+
+permissions:
+  contents: read
 
 jobs:
-  validate:
+  prepare:
     runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.cfg.outputs.matrix }}
+      source: ${{ steps.cfg.outputs.source }}
+    steps:
+      - name: Checkout (for trigger file)
+        if: github.event_name == 'push'
+        uses: actions/checkout@v4
+
+      - id: cfg
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "source=dispatch" >> "$GITHUB_OUTPUT"
+            echo 'matrix={"include":[{"stage":"${{ inputs.stage }}","version":"${{ inputs.version }}","lib_revision":${{ inputs.lib_revision }},"doc_revision":${{ inputs.doc_revision }},"endorsed":${{ inputs.endorsed }},"reference_gc":""}]}' >> "$GITHUB_OUTPUT"
+          else
+            echo "source=trigger-file" >> "$GITHUB_OUTPUT"
+            python3 -c "
+          import json
+          with open('.github/data/.trigger-gc-pipeline') as f:
+              cfg = json.load(f)
+          entry = {
+              'stage':        cfg.get('stage', 'test'),
+              'version':      cfg.get('version', '2.5'),
+              'lib_revision': int(cfg['lib_revision']),
+              'doc_revision': int(cfg['doc_revision']),
+              'endorsed':     cfg.get('endorsed', True),
+              'reference_gc': cfg.get('reference_gc', ''),
+          }
+          print('matrix=' + json.dumps({'include': [entry]}))
+          " >> "$GITHUB_OUTPUT"
+          fi
+
+  validate:
+    needs: prepare
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
     strategy:
       fail-fast: false
-      matrix:
-        include:
-          - stage: csd02
-            version: "2.5"
-            lib_revision: 1999
-            doc_revision: 2190
-            reference_gc: "history/csd02-UBL-2.5/mod/UBL-Entities-2.5.gc"
-            endorsed: true
-          - stage: csd01
-            version: "2.5"
-            lib_revision: 1533
-            doc_revision: 1294
-            reference_gc: "history/csd01-UBL-2.5/mod/UBL-Entities-2.5.gc"
-            endorsed: true
+      matrix: ${{ fromJson(needs.prepare.outputs.matrix) }}
 
     steps:
       - name: Checkout
@@ -59,24 +103,69 @@ jobs:
             /tmp/UBL-Documents-Google.ods
 
       - name: Run GC Pipeline (${{ matrix.stage }})
+        id: pipeline
         run: |
-          ENDORSED_FLAG=""
+          ARGS=(
+            --library-ods /tmp/UBL-Library-Google.ods
+            --documents-ods /tmp/UBL-Documents-Google.ods
+            --output-dir "/tmp/gc-output-${{ matrix.stage }}"
+            --stage "${{ matrix.stage }}"
+            --version "${{ matrix.version }}"
+          )
+
           if [[ "${{ matrix.endorsed }}" == "true" ]]; then
-            ENDORSED_FLAG="--endorsed"
+            ARGS+=(--endorsed)
           fi
 
-          bash .github/scripts/validate-gc-pipeline.sh \
-            --library-ods /tmp/UBL-Library-Google.ods \
-            --documents-ods /tmp/UBL-Documents-Google.ods \
-            --output-dir /tmp/gc-output-${{ matrix.stage }} \
-            --stage ${{ matrix.stage }} \
-            --version ${{ matrix.version }} \
-            --reference-gc "${{ matrix.reference_gc }}" \
-            $ENDORSED_FLAG
+          if [[ -n "${{ matrix.reference_gc }}" ]]; then
+            ARGS+=(--reference-gc "${{ matrix.reference_gc }}")
+          fi
+
+          bash .github/scripts/validate-gc-pipeline.sh "${ARGS[@]}"
 
       - name: Upload artifacts
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: gc-pipeline-${{ matrix.stage }}
+          name: gc-pipeline-${{ matrix.stage }}-lib${{ matrix.lib_revision }}-doc${{ matrix.doc_revision }}
           path: /tmp/gc-output-${{ matrix.stage }}/
+
+      - name: Summary
+        if: always()
+        run: |
+          OUTDIR="/tmp/gc-output-${{ matrix.stage }}"
+          {
+            echo "## GC Pipeline — \`${{ matrix.stage }}\` (UBL ${{ matrix.version }})"
+            echo ""
+            echo "| Input | Value |"
+            echo "|-------|-------|"
+            echo "| Library ODS revision | \`${{ matrix.lib_revision }}\` |"
+            echo "| Documents ODS revision | \`${{ matrix.doc_revision }}\` |"
+            echo "| Version | \`${{ matrix.version }}\` |"
+            echo "| Stage | \`${{ matrix.stage }}\` |"
+            echo "| Endorsed | \`${{ matrix.endorsed }}\` |"
+            echo "| Reference GC | \`${{ matrix.reference_gc || 'none (generate-only)' }}\` |"
+            echo "| Trigger | \`${{ needs.prepare.outputs.source }}\` |"
+            echo ""
+            echo "### Generated files"
+            echo ""
+            echo '```'
+            ls -lh "$OUTDIR"/*.gc 2>/dev/null || echo "(no .gc files)"
+            echo '```'
+            echo ""
+            echo "### Pipeline steps"
+            echo ""
+            for log in "$OUTDIR"/step*.log; do
+              [ -f "$log" ] || continue
+              STEP=$(basename "$log" .log)
+              if grep -q "^SUCCESS\|SUCCESS:" "$log" 2>/dev/null; then
+                echo "- :white_check_mark: \`$STEP\`"
+              elif grep -q "^FAIL\|FAIL:" "$log" 2>/dev/null; then
+                echo "- :x: \`$STEP\`"
+              else
+                echo "- :large_blue_circle: \`$STEP\`"
+              fi
+            done
+            echo ""
+            echo "Artifact: \`gc-pipeline-${{ matrix.stage }}-lib${{ matrix.lib_revision }}-doc${{ matrix.doc_revision }}\`"
+          } >> "$GITHUB_STEP_SUMMARY"
