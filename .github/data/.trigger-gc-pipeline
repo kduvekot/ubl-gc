@@ -46,9 +46,10 @@
       "step_5": "Download the generated .gc from the workflow artifact"
     },
 
+    "expected_runtime": "~90 seconds (download ODS, generate .gc, validate)",
+
     "alternatives": {
-      "github_ui": "Actions → Validate GC Pipeline → Run workflow (same inputs as dropdown/text fields)",
-      "regression": "Pushing changes to pipeline scripts or tools triggers the hardcoded csd01+csd02 regression suite instead"
+      "github_ui": "Actions → Validate GC Pipeline → Run workflow (same inputs as dropdown/text fields)"
     },
 
     "last_updated": "2026-02-21"
