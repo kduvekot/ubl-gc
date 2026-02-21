@@ -1,0 +1,82 @@
+name: Validate GC Pipeline
+
+on:
+  push:
+    branches: ['claude/**']
+    paths:
+      - '.github/scripts/validate-gc-pipeline.sh'
+      - '.github/scripts/download-ods-revision.py'
+      - '.github/workflows/validate-gc-pipeline.yml'
+      - 'history/tools/**'
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - stage: csd02
+            version: "2.5"
+            lib_revision: 1999
+            doc_revision: 2190
+            reference_gc: "history/csd02-UBL-2.5/mod/UBL-Entities-2.5.gc"
+            endorsed: true
+          - stage: csd01
+            version: "2.5"
+            lib_revision: 1533
+            doc_revision: 1294
+            reference_gc: "history/csd01-UBL-2.5/mod/UBL-Entities-2.5.gc"
+            endorsed: true
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '11'
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Download Library ODS (rev ${{ matrix.lib_revision }})
+        run: |
+          python3 .github/scripts/download-ods-revision.py \
+            library \
+            ${{ matrix.lib_revision }} \
+            /tmp/UBL-Library-Google.ods
+
+      - name: Download Documents ODS (rev ${{ matrix.doc_revision }})
+        run: |
+          python3 .github/scripts/download-ods-revision.py \
+            documents \
+            ${{ matrix.doc_revision }} \
+            /tmp/UBL-Documents-Google.ods
+
+      - name: Run GC Pipeline (${{ matrix.stage }})
+        run: |
+          ENDORSED_FLAG=""
+          if [[ "${{ matrix.endorsed }}" == "true" ]]; then
+            ENDORSED_FLAG="--endorsed"
+          fi
+
+          bash .github/scripts/validate-gc-pipeline.sh \
+            --library-ods /tmp/UBL-Library-Google.ods \
+            --documents-ods /tmp/UBL-Documents-Google.ods \
+            --output-dir /tmp/gc-output-${{ matrix.stage }} \
+            --stage ${{ matrix.stage }} \
+            --version ${{ matrix.version }} \
+            --reference-gc "${{ matrix.reference_gc }}" \
+            $ENDORSED_FLAG
+
+      - name: Upload artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: gc-pipeline-${{ matrix.stage }}
+          path: /tmp/gc-output-${{ matrix.stage }}/
