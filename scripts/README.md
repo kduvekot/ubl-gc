@@ -61,13 +61,7 @@ Computes structured diffs between two GenericCode files. Produces an ordered lis
 7. Footer updates
 
 ### `gc_analyzer.py`
-Parses GenericCode XML to extract ABIE structure, builds dependency graphs between ABIEs, and computes topological sort order for correct insertion sequencing.
-
-### `gc_builder.py`
-Constructs GenericCode XML files incrementally — used for building the initial UBL 2.0 file ABIE-by-ABIE.
-
-### `gc_commit_builder.py`
-Generates the sequence of git commits for the first release (UBL 2.0 PRD), adding ABIEs one at a time in dependency order.
+Parses GenericCode XML to extract ABIE structure, builds dependency graphs between ABIEs, and computes topological sort order for correct insertion sequencing. Used by `gc_diff.py` for dependency-ordered ABIE additions.
 
 ### `release_manifest.py`
 Complete manifest of all 35 UBL releases with metadata: version, stage, date, label, and source file paths for each file type (entities, signature, endorsed).
