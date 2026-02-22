@@ -1,63 +1,25 @@
-# UBL Spreadsheet — Key Revision Milestones
+# Documents — Key Revision Milestones
 
-Filtered view showing only significant structural events:
-sheet renames/additions/removals, column changes, and large edit batches.
+Filtered view: sheet renames/additions/removals, column changes, large edit batches (>20), large row changes (>5).
 
 **Rev 3 → 4**
-  *Documents:*
   📊 Column added: `Endorsed Cardinality` (col D)
-  *Library:*
-  📊 Column added: `Deprecated cardinality` (col D)
-
-**Rev 8 → 9**
-  📊 Column added: `Future cardinality` (col D)
-  📊 Column removed: `Deprecated cardinality` (col D)
 
 **Rev 9 → 10**
-  *Documents:*
   📊 Column added: `Endorsed Cardinality Rationale` (col E)
-  *Library:*
-  📊 Column added: `Endorsed cardinality` (col D)
-  📊 Column removed: `Future cardinality` (col D)
 
 **Rev 12 → 13**
   📊 Column removed: `Endorsed Cardinality` (col D)
   📊 Column removed: `Endorsed Cardinality Rationale` (col E)
 
-**Rev 13 → 14**
-  📊 Column added: `Deprecated definition` (col F)
-
-**Rev 16 → 17**
-  📊 Column added: `Deprecated` (col A)
-
-**Rev 17 → 18**
-  📊 Column removed: `Deprecated` (col A)
-
 **Rev 19 → 20**
   📊 Column added: `Endorsed Cardinality` (col D)
-
-**Rev 20 → 21**
-  📊 Column added: `Deprecated` (col B)
-
-**Rev 21 → 22**
-  📊 Column added: `Depracion rational` (col C)
-
-**Rev 22 → 23**
-  📊 Column added: `Depracion rationale` (col C)
-  📊 Column removed: `Depracion rational` (col C)
 
 **Rev 24 → 25**
   📊 Column added: `Endorsed Cardinality Rationale` (col E)
 
 **Rev 29 → 30**
-  *Documents:*
   📊 Column added: `Deprecated Definition` (col G)
-  *Library:*
-  📊 Column removed: `Deprecated` (col B)
-
-**Rev 30 → 31**
-  📊 Column added: `Deprecation rationale` (col B)
-  📊 Column removed: `Depracion rationale` (col B)
 
 **Rev 34 → 35**
   📊 Column added: `Last Changed` (col Y)
@@ -75,11 +37,7 @@ sheet renames/additions/removals, column changes, and large edit batches.
   📊 Column removed: `Last Changed` (col V)
 
 **Rev 41 → 42**
-  *Documents:*
   📊 Column added: `Endorsed Cardinality` (col D)
-  *Library:*
-  📊 Column added: `Endorsed cardinality rationale` (col E)
-  📊 Column removed: `Deprecation rationale` (col E)
 
 **Rev 42 → 43**
   📊 Column added: `Endorsed Cardinality Rationale` (col E)
@@ -88,9 +46,6 @@ sheet renames/additions/removals, column changes, and large edit batches.
   📊 Column added: `Deprecated Definition` (col G)
 
 **Rev 44 → 45**
-  *Documents:*
-  📊 Column added: `Last Changed` (col Y)
-  *Library:*
   📊 Column added: `Last Changed` (col Y)
 
 **Rev 45 → 46**
@@ -169,28 +124,16 @@ sheet renames/additions/removals, column changes, and large edit batches.
   📊 Column added: `Endorsed Cardinality Rationale` (col E)
 
 **Rev 71 → 72**
-  *Documents:*
   📊 Column added: `Deprecated Definition` (col G)
-  *Library:*
-  📊 Column added: `Deprecated Definition` (col G)
-  📊 Column removed: `Deprecated definition` (col G)
 
 **Rev 72 → 73**
   📊 Column added: `Last Changed` (col Y)
 
 **Rev 73 → 74**
-  *Documents:*
   📊 Column added: `Endorsed Cardinality` (col D)
-  *Library:*
-  📊 Column added: `Endorsed Cardinality Rationale` (col E)
-  📊 Column removed: `Endorsed cardinality rationale` (col E)
 
 **Rev 74 → 75**
-  *Documents:*
   📊 Column added: `Endorsed Cardinality Rationale` (col E)
-  *Library:*
-  📊 Column added: `Endorsed Cardinality` (col D)
-  📊 Column removed: `Endorsed cardinality` (col D)
 
 **Rev 75 → 76**
   📊 Column added: `Deprecated Definition` (col G)
@@ -1272,12 +1215,6 @@ sheet renames/additions/removals, column changes, and large edit batches.
 **Rev 1611 → 1612**
   ➖ Removed worksheet `Sheet2`
 
-**Rev 1615 → 1616**
-  ➕ Added worksheet `Sheet1`
-
-**Rev 1616 → 1617**
-  📝 `Sheet1` → `Logs-sheet`
-
 **Rev 1715 → 1716**
   ➕ Added worksheet `Sheet3`
 
@@ -1318,9 +1255,7 @@ sheet renames/additions/removals, column changes, and large edit batches.
 
 ---
 
-## Document Type Evolution
-
-This shows how new UBL 2.5 document types were created in the spreadsheet:
+## Worksheet Evolution
 
 | Rev | Action | From | To |
 |-----|--------|------|----|
@@ -1340,8 +1275,6 @@ This shows how new UBL 2.5 document types were created in the spreadsheet:
 | 1397 | Renamed | `ProcedureStatus` | `ProcurementStatus` |
 | 1540 | Added | | `Sheet2` |
 | 1612 | Removed | `Sheet2` | |
-| 1616 | Added | | `Sheet1` |
-| 1617 | Renamed | `Sheet1` | `Logs-sheet` |
 | 1716 | Added | | `Sheet3` |
 | 1717 | Removed | `Sheet3` | |
 | 1721 | Added | | `Logs-sheet` |
@@ -1350,7 +1283,7 @@ This shows how new UBL 2.5 document types were created in the spreadsheet:
 | 1947 | Added | | `Copy of WasteMovement` |
 | 1948 | Renamed | `Copy of WasteMovement` | `WasteNotification` |
 
-### New Document Types in UBL 2.5
+### New Worksheets (copy → rename chains)
 
 - **InvoiceStatusResponse** — copied from `DocumentStatus` (rev 1011), renamed (rev 1012)
 - **InvoiceStatusRequest** — copied from `DocumentStatusRequest` (rev 1014), renamed (rev 1015)
@@ -1360,6 +1293,5 @@ This shows how new UBL 2.5 document types were created in the spreadsheet:
 - **ProcedureStatusRequest** — copied from `TenderStatusRequest` (rev 1297), renamed (rev 1298)
 - **ProcurementStatusRequest** — copied from `ProcedureStatusRequest` (rev 1391), renamed (rev 1391)
 - **ProcurementStatus** — copied from `ProcedureStatus` (rev 1397), renamed (rev 1397)
-- **Logs-sheet** — copied from `Sheet1` (rev 1617), renamed (rev 1617)
 - **WasteMovement** — copied from `ApplicationResponse` (rev 1804), renamed (rev 1806)
 - **WasteNotification** — copied from `WasteMovement` (rev 1947), renamed (rev 1948)
