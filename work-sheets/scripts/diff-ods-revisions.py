@@ -747,6 +747,90 @@ def summarize_changes(changes):
     }
 
 
+def _grid_fingerprint(parsed_data):
+    """Compute a content fingerprint for a parsed sheet grid.
+
+    Uses sorted cell text content so that identical grids produce
+    identical hashes regardless of iteration order.
+    """
+    parts = []
+    for (row, col), cell in sorted(parsed_data["grid"].items()):
+        parts.append(f"{row},{col}:{cell['text']}")
+    return hashlib.md5("\n".join(parts).encode()).hexdigest()
+
+
+def _detect_sheet_renames_copies_from_grids(old_sheets, new_sheets,
+                                            added_names, removed_names):
+    """Detect sheet renames and copies by comparing grid content fingerprints.
+
+    Same algorithm as the hash-based version in fast-diff-pipeline, but
+    works on already-parsed grid data.
+
+    Returns dict:
+        renamed:       [(old_name, new_name), ...]
+        copied:        [(source_name, new_name), ...]
+        truly_added:   list of names — genuinely new sheets
+        truly_removed: list of names — genuinely deleted sheets
+    """
+    renamed = []
+    copied = []
+
+    if not added_names and not removed_names:
+        return {
+            "renamed": renamed,
+            "copied": copied,
+            "truly_added": list(added_names),
+            "truly_removed": list(removed_names),
+        }
+
+    # Compute fingerprints for added and removed sheets
+    fp_removed = {}
+    for name in sorted(removed_names):
+        fp_removed[name] = _grid_fingerprint(old_sheets[name])
+
+    fp_added = {}
+    for name in sorted(added_names):
+        fp_added[name] = _grid_fingerprint(new_sheets[name])
+
+    # Build reverse map: fingerprint → removed names
+    hash_to_removed = defaultdict(list)
+    for name in sorted(removed_names):
+        hash_to_removed[fp_removed[name]].append(name)
+
+    # Build fingerprint map for common sheets (present in both)
+    common_names = set(old_sheets) & set(new_sheets)
+    hash_to_common = defaultdict(list)
+    for name in sorted(common_names):
+        hash_to_common[_grid_fingerprint(old_sheets[name])].append(name)
+
+    truly_added = []
+    for name in sorted(added_names):
+        fp = fp_added[name]
+        if fp in hash_to_removed and hash_to_removed[fp]:
+            # Same content as a removed sheet → rename
+            old_name = hash_to_removed[fp].pop(0)
+            renamed.append((old_name, name))
+        elif fp in hash_to_common and hash_to_common[fp]:
+            # Same content as an existing sheet that's still present → copy
+            source_name = hash_to_common[fp][0]
+            copied.append((source_name, name))
+        else:
+            truly_added.append(name)
+
+    # Remaining unmatched removed sheets are truly deleted
+    truly_removed = []
+    for names in hash_to_removed.values():
+        truly_removed.extend(names)
+    truly_removed.sort()
+
+    return {
+        "renamed": renamed,
+        "copied": copied,
+        "truly_added": truly_added,
+        "truly_removed": truly_removed,
+    }
+
+
 def diff_all_sheets(old_sheets, new_sheets):
     """Compare all sheets between two ODS files.
 
@@ -757,8 +841,10 @@ def diff_all_sheets(old_sheets, new_sheets):
     Returns:
         dict with:
             per_sheet: dict of sheet_name -> {changes, summary}
-            added_sheets: list of sheet names only in new
-            removed_sheets: list of sheet names only in old
+            added_sheets: list of genuinely new sheet names
+            removed_sheets: list of genuinely deleted sheet names
+            renamed_sheets: list of [old_name, new_name] pairs
+            copied_sheets: list of [source_name, new_name] pairs
             unchanged_sheets: list of sheet names with zero changes
             changed_sheets: list of sheet names with changes
             total_changes: total across all sheets
@@ -766,9 +852,17 @@ def diff_all_sheets(old_sheets, new_sheets):
     old_names = set(old_sheets.keys())
     new_names = set(new_sheets.keys())
 
-    added_sheets = sorted(new_names - old_names)
-    removed_sheets = sorted(old_names - new_names)
+    raw_added = sorted(new_names - old_names)
+    raw_removed = sorted(old_names - new_names)
     common_sheets = sorted(old_names & new_names)
+
+    # Detect renames and copies among added/removed sheets
+    rc = _detect_sheet_renames_copies_from_grids(
+        old_sheets, new_sheets, raw_added, raw_removed)
+    renamed_sheets = rc["renamed"]      # [(old, new), ...]
+    copied_sheets = rc["copied"]        # [(source, new), ...]
+    added_sheets = rc["truly_added"]    # genuinely new
+    removed_sheets = rc["truly_removed"]  # genuinely deleted
 
     per_sheet = {}
     unchanged_sheets = []
@@ -785,7 +879,7 @@ def diff_all_sheets(old_sheets, new_sheets):
         else:
             unchanged_sheets.append(name)
 
-    # For added sheets, all cells are "added"
+    # For genuinely new sheets, all cells are "added"
     for name in added_sheets:
         data = new_sheets[name]
         changes = []
@@ -813,6 +907,8 @@ def diff_all_sheets(old_sheets, new_sheets):
         "per_sheet": per_sheet,
         "added_sheets": added_sheets,
         "removed_sheets": removed_sheets,
+        "renamed_sheets": [[old, new] for old, new in renamed_sheets],
+        "copied_sheets": [[src, new] for src, new in copied_sheets],
         "unchanged_sheets": unchanged_sheets,
         "changed_sheets": changed_sheets,
         "total_changes": total_changes,
@@ -948,7 +1044,11 @@ def _run_all_sheets_mode(args, indir, ods_files, all_revs):
         result["to_rev"] = rev_b
         all_results.append(result)
 
-        if result["total_changes"] == 0 and not result["added_sheets"] and not result["removed_sheets"]:
+        has_sheet_events = bool(
+            result["added_sheets"] or result["removed_sheets"]
+            or result["renamed_sheets"] or result["copied_sheets"])
+
+        if result["total_changes"] == 0 and not has_sheet_events:
             if args.show_unchanged:
                 print(f"\nrev-{rev_a} -> rev-{rev_b}: ALL SHEETS IDENTICAL")
             continue
@@ -959,10 +1059,16 @@ def _run_all_sheets_mode(args, indir, ods_files, all_revs):
         print(f"rev-{rev_a} -> rev-{rev_b}: {result['total_changes']} changes "
               f"across {len(result['changed_sheets'])} sheets")
 
+        if result["renamed_sheets"]:
+            pairs = [f"{old}\u2192{new}" for old, new in result["renamed_sheets"]]
+            print(f"  RENAMED SHEETS: {', '.join(pairs)}")
+        if result["copied_sheets"]:
+            pairs = [f"{src}\u2192{new}" for src, new in result["copied_sheets"]]
+            print(f"  COPIED SHEETS: {', '.join(pairs)}")
         if result["added_sheets"]:
             print(f"  NEW SHEETS: {', '.join(result['added_sheets'])}")
         if result["removed_sheets"]:
-            print(f"  REMOVED SHEETS: {', '.join(result['removed_sheets'])}")
+            print(f"  DELETED SHEETS: {', '.join(result['removed_sheets'])}")
         if result["unchanged_sheets"]:
             print(f"  Unchanged: {len(result['unchanged_sheets'])} sheets")
 
@@ -1019,7 +1125,8 @@ def _run_all_sheets_mode(args, indir, ods_files, all_revs):
     print("=" * 80)
     print(f"  Transitions analyzed: {len(all_results)}")
     identical = sum(1 for r in all_results if r["total_changes"] == 0
-                    and not r["added_sheets"] and not r["removed_sheets"])
+                    and not r["added_sheets"] and not r["removed_sheets"]
+                    and not r["renamed_sheets"] and not r["copied_sheets"])
     changed = len(all_results) - identical
     print(f"  Identical transitions: {identical}")
     print(f"  Changed transitions:   {changed}")
@@ -1052,6 +1159,8 @@ def _run_all_sheets_mode(args, indir, ods_files, all_revs):
                 "total_changes": r["total_changes"],
                 "added_sheets": r["added_sheets"],
                 "removed_sheets": r["removed_sheets"],
+                "renamed_sheets": r["renamed_sheets"],
+                "copied_sheets": r["copied_sheets"],
                 "changed_sheets": r["changed_sheets"],
                 "unchanged_sheets_count": len(r["unchanged_sheets"]),
                 "per_sheet_summary": {},

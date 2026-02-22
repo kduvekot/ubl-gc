@@ -877,6 +877,102 @@ _IDENTICAL_RESULT_TEMPLATE = {
 }
 
 
+def _detect_sheet_renames_copies(hashes_a, hashes_b, added_names, removed_names):
+    """Detect sheet renames and copies by comparing per-sheet content hashes.
+
+    A **rename** is a sheet whose name changed but whose content hash is
+    identical (removed name in A matches an added name in B).
+
+    A **copy** is a newly-added sheet whose content hash matches a sheet
+    that still exists in both A and B (the source sheet is retained).
+
+    Returns dict:
+        renamed:       [(old_name, new_name), ...]
+        copied:        [(source_name, new_name), ...]
+        truly_added:   set of names — genuinely new sheets (no content match)
+        truly_removed: set of names — genuinely deleted sheets (no match in B)
+    """
+    renamed = []
+    copied = []
+
+    if not added_names and not removed_names:
+        return {
+            "renamed": renamed,
+            "copied": copied,
+            "truly_added": set(),
+            "truly_removed": set(),
+        }
+
+    # Build hash → removed-names map (sorted for determinism)
+    hash_to_removed = defaultdict(list)
+    for name in sorted(removed_names):
+        hash_to_removed[hashes_a[name]].append(name)
+
+    # Build hash → common-names map (sheets present in both A and B)
+    common_names = set(hashes_a) & set(hashes_b)
+    hash_to_common = defaultdict(list)
+    for name in sorted(common_names):
+        hash_to_common[hashes_a[name]].append(name)
+
+    truly_added = set()
+    for name in sorted(added_names):
+        h = hashes_b[name]
+        if h in hash_to_removed and hash_to_removed[h]:
+            # Same content as a removed sheet → rename
+            old_name = hash_to_removed[h].pop(0)
+            renamed.append((old_name, name))
+        elif h in hash_to_common and hash_to_common[h]:
+            # Same content as an existing sheet that's still present → copy
+            source_name = hash_to_common[h][0]  # don't pop; source still exists
+            copied.append((source_name, name))
+        else:
+            truly_added.add(name)
+
+    # Remaining unmatched removed sheets are truly deleted
+    truly_removed = set()
+    for names in hash_to_removed.values():
+        truly_removed.update(names)
+
+    return {
+        "renamed": renamed,
+        "copied": copied,
+        "truly_added": truly_added,
+        "truly_removed": truly_removed,
+    }
+
+
+def _format_sheet_event_parts(sheets_summary):
+    """Return human-readable log fragments for sheet structural events."""
+    if not sheets_summary:
+        return []
+    parts = []
+    n_added = sheets_summary.get("added", 0)
+    n_removed = sheets_summary.get("removed", 0)
+    n_renamed = sheets_summary.get("renamed", 0)
+    n_copied = sheets_summary.get("copied", 0)
+    if n_renamed:
+        pairs = sheets_summary.get("renamed_names", [])
+        labels = [f"{old}\u2192{new}" for old, new in pairs[:3]]
+        suffix = f" +{n_renamed - 3} more" if n_renamed > 3 else ""
+        parts.append(f"renamed {n_renamed} sheet(s): {', '.join(labels)}{suffix}")
+    if n_copied:
+        pairs = sheets_summary.get("copied_names", [])
+        labels = [f"{src}\u2192{new}" for src, new in pairs[:3]]
+        suffix = f" +{n_copied - 3} more" if n_copied > 3 else ""
+        parts.append(f"copied {n_copied} sheet(s): {', '.join(labels)}{suffix}")
+    if n_added:
+        names = sheets_summary.get("added_names", [])
+        labels = names[:3]
+        suffix = f" +{n_added - 3} more" if n_added > 3 else ""
+        parts.append(f"+{n_added} new sheet(s): {', '.join(labels)}{suffix}")
+    if n_removed:
+        names = sheets_summary.get("removed_names", [])
+        labels = names[:3]
+        suffix = f" +{n_removed - 3} more" if n_removed > 3 else ""
+        parts.append(f"-{n_removed} deleted sheet(s): {', '.join(labels)}{suffix}")
+    return parts
+
+
 def _make_identical_result(rev_a, rev_b, sheets_total=0):
     """Create an identical-pair result dict."""
     result = dict(_IDENTICAL_RESULT_TEMPLATE)
@@ -884,9 +980,12 @@ def _make_identical_result(rev_a, rev_b, sheets_total=0):
     result["to_rev"] = rev_b
     if sheets_total > 0:
         result["sheets_summary"] = {
+            "old_count": sheets_total, "new_count": sheets_total,
             "total": sheets_total, "identical": sheets_total,
             "changed": 0, "added": 0, "removed": 0,
+            "renamed": 0, "copied": 0,
             "changed_names": [], "added_names": [], "removed_names": [],
+            "renamed_names": [], "copied_names": [],
         }
     return result
 
@@ -1286,18 +1385,29 @@ def _diff_pair(args):
         s for s in all_sheet_names
         if s in hashes_a and s in hashes_b and hashes_a[s] != hashes_b[s]
     }
-    added_sheets = set(hashes_b) - set(hashes_a)
-    removed_sheets = set(hashes_a) - set(hashes_b)
-    identical_sheets = all_sheet_names - changed_sheets - added_sheets - removed_sheets
+    raw_added = set(hashes_b) - set(hashes_a)
+    raw_removed = set(hashes_a) - set(hashes_b)
+    identical_sheets = all_sheet_names - changed_sheets - raw_added - raw_removed
+
+    # ── Detect renames & copies among added/removed sheets ───────────
+    rc = _detect_sheet_renames_copies(
+        hashes_a, hashes_b, raw_added, raw_removed)
+    renamed_sheets = rc["renamed"]      # [(old, new), ...]
+    copied_sheets = rc["copied"]        # [(source, new), ...]
+    added_sheets = rc["truly_added"]    # set — genuinely new
+    removed_sheets = rc["truly_removed"]  # set — genuinely deleted
 
     timing["sheets_total"] = len(all_sheet_names)
     timing["sheets_changed"] = len(changed_sheets)
     timing["sheets_added"] = len(added_sheets)
     timing["sheets_removed"] = len(removed_sheets)
+    timing["sheets_renamed"] = len(renamed_sheets)
+    timing["sheets_copied"] = len(copied_sheets)
     timing["sheets_identical"] = len(identical_sheets)
 
-    # All sheets identical → fast path
-    if not changed_sheets and not added_sheets and not removed_sheets:
+    # All sheets identical (including no renames/copies) → fast path
+    if (not changed_sheets and not added_sheets and not removed_sheets
+            and not renamed_sheets and not copied_sheets):
         pair_result = _make_identical_result(
             rev_a, rev_b, sheets_total=len(all_sheet_names))
         t_json = time.monotonic()
@@ -1308,7 +1418,8 @@ def _diff_pair(args):
         timing["path"] = "sheet_hash_identical"
         return (rev_a, rev_b, "sheet_hash_identical", pair_result, timing)
 
-    # ── Tier 3: Parse only changed sheets + diff ─────────────────────
+    # ── Tier 3: Parse only changed/truly-new/truly-removed sheets ────
+    # Renamed & copied sheets have identical content → no parse/diff needed.
     need_from_a = changed_sheets | removed_sheets
     need_from_b = changed_sheets | added_sheets
 
@@ -1367,14 +1478,20 @@ def _diff_pair(args):
 
     # Build sheets_summary
     sheets_summary = {
+        "old_count": len(hashes_a),
+        "new_count": len(hashes_b),
         "total": len(all_sheet_names),
         "identical": len(identical_sheets),
         "changed": len(changed_sheets),
         "added": len(added_sheets),
         "removed": len(removed_sheets),
+        "renamed": len(renamed_sheets),
+        "copied": len(copied_sheets),
         "changed_names": sorted(changed_sheets),
         "added_names": sorted(added_sheets),
         "removed_names": sorted(removed_sheets),
+        "renamed_names": [[old, new] for old, new in renamed_sheets],
+        "copied_names": [[src, new] for src, new in copied_sheets],
     }
 
     # Aggregate results across sheets
@@ -1522,9 +1639,15 @@ def _pool_diff(revs, ods_dir, diff_dir, text_only, n_workers):
                 hcs = data.get("has_col_structure", False)
                 hrs = data.get("has_row_structure", False)
 
-                if n == 0 and soc == 0 and not hcs and not hrs:
+                # Check for sheet structural events
+                ss = data.get("sheets_summary")
+                has_sheet_structure = ss and (
+                    ss.get("added", 0) or ss.get("removed", 0)
+                    or ss.get("renamed", 0) or ss.get("copied", 0))
+
+                if n == 0 and soc == 0 and not hcs and not hrs and not has_sheet_structure:
                     stats["identical"] += 1
-                elif n == 0 and soc > 0 and not hcs and not hrs:
+                elif n == 0 and soc > 0 and not hcs and not hrs and not has_sheet_structure:
                     stats["style_only"] += 1
                 else:
                     stats["changed"] += 1
@@ -1536,9 +1659,12 @@ def _pool_diff(revs, ods_dir, diff_dir, text_only, n_workers):
                         stats["col_events"].append((rev_a, rev_b))
                     if hrs:
                         stats["row_events"].append((rev_a, rev_b))
+                    if has_sheet_structure:
+                        stats.setdefault("sheet_events", []).append(
+                            (rev_a, rev_b))
 
                 # Log non-trivial diffs
-                if n > 0 or hcs or hrs:
+                if n > 0 or hcs or hrs or has_sheet_structure:
                     parts = []
                     if n:
                         parts.append(f"{n} changes")
@@ -1548,6 +1674,8 @@ def _pool_diff(revs, ods_dir, diff_dir, text_only, n_workers):
                     if hrs:
                         rc = data["row_changes"]
                         parts.append(f"+{rc['added_count']} -{rc['removed_count']} rows")
+                    parts.extend(
+                        _format_sheet_event_parts(ss))
                     print(f"  rev-{rev_a:>5} -> rev-{rev_b:>5}: {', '.join(parts)}")
 
             if completed % 200 == 0:
@@ -1891,9 +2019,15 @@ def main():
             hcs = data.get("has_col_structure", False)
             hrs = data.get("has_row_structure", False)
 
-            if n == 0 and soc == 0 and not hcs and not hrs:
+            # Check for sheet structural events
+            ss = data.get("sheets_summary")
+            has_sheet_structure = ss and (
+                ss.get("added", 0) or ss.get("removed", 0)
+                or ss.get("renamed", 0) or ss.get("copied", 0))
+
+            if n == 0 and soc == 0 and not hcs and not hrs and not has_sheet_structure:
                 diff_stats["identical"] += 1
-            elif n == 0 and soc > 0 and not hcs and not hrs:
+            elif n == 0 and soc > 0 and not hcs and not hrs and not has_sheet_structure:
                 diff_stats["style_only"] += 1
             else:
                 diff_stats["changed"] += 1
@@ -1903,7 +2037,7 @@ def main():
                 ).get("user_edit", 0)
 
             # Log non-trivial diffs
-            if n > 0 or hcs or hrs:
+            if n > 0 or hcs or hrs or has_sheet_structure:
                 parts = []
                 if n:
                     parts.append(f"{n} changes")
@@ -1913,9 +2047,10 @@ def main():
                 if hrs:
                     rc = data["row_changes"]
                     parts.append(f"+{rc['added_count']} -{rc['removed_count']} rows")
-                ss = data.get("sheets_summary")
                 if ss and ss.get("total", 0) > 1:
                     parts.append(f"{ss['changed']}/{ss['total']} sheets")
+                parts.extend(
+                    _format_sheet_event_parts(ss))
                 print(f"  rev-{rev_a:>5} -> rev-{rev_b:>5}: {', '.join(parts)}")
 
         if diff_completed % 200 == 0:
@@ -1959,6 +2094,7 @@ def main():
     total_user_edits = 0
     col_events = []
     row_events = []
+    sheet_events = []
     errors = []
 
     for pf in pair_files:
@@ -1971,11 +2107,17 @@ def main():
             hcs = p.get("has_col_structure", False)
             hrs = p.get("has_row_structure", False)
 
-            if n == 0 and soc == 0 and not hcs and not hrs:
+            # Check for sheet-level structural events
+            ss = p.get("sheets_summary", {})
+            hss = bool(
+                ss.get("added", 0) or ss.get("removed", 0)
+                or ss.get("renamed", 0) or ss.get("copied", 0))
+
+            if n == 0 and soc == 0 and not hcs and not hrs and not hss:
                 identical_count += 1
                 if p.get("fast_identical"):
                     hash_identical_count += 1
-            elif n == 0 and soc > 0 and not hcs and not hrs:
+            elif n == 0 and soc > 0 and not hcs and not hrs and not hss:
                 style_only_count += 1
             else:
                 changed_count += 1
@@ -2005,6 +2147,19 @@ def main():
                             "removed": rc.get("removed_count", 0),
                         }
                     )
+                if hss:
+                    sheet_events.append({
+                        "from": p["from_rev"],
+                        "to": p["to_rev"],
+                        "added": ss.get("added", 0),
+                        "removed": ss.get("removed", 0),
+                        "renamed": ss.get("renamed", 0),
+                        "copied": ss.get("copied", 0),
+                        "added_names": ss.get("added_names", []),
+                        "removed_names": ss.get("removed_names", []),
+                        "renamed_names": ss.get("renamed_names", []),
+                        "copied_names": ss.get("copied_names", []),
+                    })
         except Exception as e:
             errors.append({"file": pf.name, "error": str(e)})
 
@@ -2026,6 +2181,7 @@ def main():
         "hash_identical_count": hash_identical_count,
         "col_structure_events": col_events,
         "row_structure_events": row_events,
+        "sheet_structure_events": sheet_events,
         "errors": errors,
         "timing": {
             "total_seconds": round(t_total, 1),
@@ -2062,6 +2218,22 @@ def main():
     print(f"  Changed:        {changed_count}")
     print(f"  Cell changes:   {total_cell_changes}")
     print(f"  User edits:     {total_user_edits}")
+    if sheet_events:
+        total_renamed = sum(e["renamed"] for e in sheet_events)
+        total_copied = sum(e["copied"] for e in sheet_events)
+        total_added = sum(e["added"] for e in sheet_events)
+        total_removed = sum(e["removed"] for e in sheet_events)
+        parts = []
+        if total_renamed:
+            parts.append(f"{total_renamed} renamed")
+        if total_copied:
+            parts.append(f"{total_copied} copied")
+        if total_added:
+            parts.append(f"{total_added} new")
+        if total_removed:
+            parts.append(f"{total_removed} deleted")
+        print(f"  Sheet events:   {len(sheet_events)} transitions "
+              f"({', '.join(parts)})")
     print(f"  DL errors:      {dl_errors}")
     print(f"  Diff errors:    {len(errors)}")
     print(f"  DL+Parse time:  {t_parse_wall:.0f}s")
