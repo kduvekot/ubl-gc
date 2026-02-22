@@ -132,12 +132,11 @@ jobs:
             if [ "$TEXT_ONLY" = "true" ]; then
               PIPELINE_ARGS="$PIPELINE_ARGS --text-only"
             fi
-            # Use audit cache for fingerprint-based skip if available
-            CACHE_FILE=".github/data/audit-cache-ubl25_${SHEET}.json"
-            if [ -f "$CACHE_FILE" ]; then
-              PIPELINE_ARGS="$PIPELINE_ARGS --audit-cache $CACHE_FILE"
-              echo "Using audit cache: $CACHE_FILE"
-            fi
+            # Audit cache disabled: its content-only fingerprint misses
+            # worksheet renames (same cell data, different sheet names).
+            # Without it, all pairs go through Tier 1-2-3 in the pipeline,
+            # which correctly detects renames via per-sheet content hashing.
+            # Cost: ~10 min extra download time per sheet.
 
             echo "Pipeline args: $PIPELINE_ARGS"
             python3 .github/scripts/fast-diff-pipeline.py $PIPELINE_ARGS
