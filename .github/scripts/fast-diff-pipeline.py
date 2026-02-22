@@ -423,16 +423,25 @@ def per_sheet_hashes(ods_path, skip_re=SKIP_SHEETS_RE):
     Much faster than full _parse_table() for all sheets — just serialises
     each <table:table> subtree and hashes the bytes.  Typical cost: ~200ms
     for a 101-sheet documents ODS (vs ~5s for full parse of all sheets).
+
+    The ``table:name`` attribute is stripped before hashing so that renamed
+    sheets with identical content produce the same hash — this is required
+    for rename/copy detection in :func:`_detect_sheet_renames_copies`.
     """
+    NAME_ATTR = f"{NS_TABLE}name"
     with zipfile.ZipFile(ods_path) as zf:
         content = zf.read("content.xml")
     root = ET.fromstring(content)
     hashes = {}
     for table in root.findall(f".//{NS_TABLE}table"):
-        name = table.get(f"{NS_TABLE}name", "")
+        name = table.get(NAME_ATTR, "")
         if skip_re and skip_re.match(name):
             continue
+        # Temporarily strip table:name so the hash is name-independent
+        saved = table.attrib.pop(NAME_ATTR, None)
         blob = ET.tostring(table)
+        if saved is not None:
+            table.set(NAME_ATTR, saved)
         hashes[name] = hashlib.md5(blob).digest()
     return hashes
 
@@ -479,22 +488,25 @@ def _parse_cache_path(ods_path):
     return Path(str(ods_path) + ".parsed")
 
 
+_CACHE_FMT = "v3"  # v3: per_sheet_hashes strips table:name before hashing
+
+
 def _load_parse_cache(ods_path):
     """Load cached data if available. Returns (data, True) on hit,
     (None, False) on miss.
 
-    v2 format: {"_fmt": "v2", "hashes": {...}, "sheets": {...}}
-    Legacy format (single sheet dict without _fmt) is treated as a miss.
+    v3 format: {"_fmt": "v3", "hashes": {...}, "sheets": {...}}
+    Older formats (v2, legacy) are treated as a miss so hashes are
+    recomputed with the name-independent algorithm.
     """
     cp = _parse_cache_path(ods_path)
     try:
         if cp.exists():
             with open(cp, "rb") as f:
                 data = pickle.load(f)
-            if isinstance(data, dict) and data.get("_fmt") == "v2":
+            if isinstance(data, dict) and data.get("_fmt") == _CACHE_FMT:
                 return data, True
-            # Legacy single-sheet format — treat as cache miss so
-            # _parse_one() regenerates with v2 format.
+            # Older format — treat as cache miss so hashes are regenerated.
             return None, False
     except Exception:
         pass
@@ -1164,7 +1176,7 @@ def _parse_one(args):
     t0 = time.monotonic()
     try:
         hashes = per_sheet_hashes(ods_path)
-        cache_data = {"_fmt": "v2", "hashes": hashes, "sheets": {}}
+        cache_data = {"_fmt": _CACHE_FMT, "hashes": hashes, "sheets": {}}
         _save_parse_cache(ods_path, cache_data)
         return (rev_num, "hashed", time.monotonic() - t0)
     except Exception as e:
@@ -1360,7 +1372,7 @@ def _diff_pair(args):
         else:
             hashes_a = per_sheet_hashes(path_a)
             if cache_a is None:
-                cache_a = {"_fmt": "v2", "hashes": hashes_a, "sheets": {}}
+                cache_a = {"_fmt": _CACHE_FMT, "hashes": hashes_a, "sheets": {}}
             else:
                 cache_a["hashes"] = hashes_a
 
@@ -1369,7 +1381,7 @@ def _diff_pair(args):
         else:
             hashes_b = per_sheet_hashes(path_b)
             if cache_b is None:
-                cache_b = {"_fmt": "v2", "hashes": hashes_b, "sheets": {}}
+                cache_b = {"_fmt": _CACHE_FMT, "hashes": hashes_b, "sheets": {}}
             else:
                 cache_b["hashes"] = hashes_b
 
