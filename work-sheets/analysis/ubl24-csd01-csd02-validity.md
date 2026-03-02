@@ -117,23 +117,133 @@ suggests experimental changes being added and reverted.
 The library side shows a smooth, monotonic increase — no oscillation, consistent
 with systematic addition of new common library ABIEs.
 
-## Visual Timeline
+## Content Analysis: What Actually Changed
+
+The document-side and library-side changes are **completely independent** —
+the row count is exactly `base(5429) + lib_delta + doc_delta`, with no
+cross-dependencies.
+
+### Document-side content changes (lib-673 fixed)
+
+| Doc rev | Model changed | Delta | Notes |
+|---------|--------------|-------|-------|
+| 158→159 | UBL-DespatchAdvice-2.4 | +1 BIE | |
+| 159→160 | UBL-DespatchAdvice-2.4 | +1 BIE | Stable through doc-187 |
+| 160→188 | UBL-DespatchAdvice-2.4 | +1 BIE | |
+| 188→203 | UBL-BusinessInformation-2.4 | +1 BIE | Reverted at doc-204 |
+| 203↔207 | UBL-BusinessInformation-2.4 | ±1 | Oscillates (experimental) |
+| 207→209 | UBL-PurchaseReceipt-2.4 | +1 BIE | Reverted at doc-212 |
+| 212→216 | UBL-ReceiptAdvice-2.4 | **+4 BIEs** | Stable through CSD02 |
+
+### Library-side content changes (doc-251 fixed)
+
+All changes are to `UBL-CommonLibrary-2.4`, adding new common BIEs:
+
+| Lib rev range | CommonLibrary rows | Delta |
+|--------------|-------------------|-------|
+| 605 | 2,999 | — (CSD01 baseline) |
+| 610 | 3,001 | +2 |
+| 625 | 3,002 | +1 |
+| 635 | 3,003 | +1 |
+| 645 | 3,004 | +1 |
+| 655 | 3,005 | +1 |
+| 670–673 | 3,006 | +1 (CSD02) |
+
+Smooth monotonic growth — no oscillation, no experiments.
+
+## Temporal Alignment Model
+
+### Data source: Drive API v2 revision history
+
+The `drive-discovery.json` (from the Colab discovery notebook) contains Drive
+API v2 revision lists with **timestamps mapped to internal revision numbers**
+for both UBL 2.4 sheets.
+
+**UBL 2.4 uses SEPARATE Google Sheets** from UBL 2.5:
+
+| Sheet | Google Sheet ID | Drive API revisions | Internal max rev |
+|-------|----------------|--------------------:|----------------:|
+| Library | `1kxlFLz2...OBUs` | 12 | 673 |
+| Documents | `1GNpHCS7...sA0Y` | 16 | 251 |
+
+### Timestamped revision anchors
+
+**Library** (12 Drive API snapshots → internal revision numbers):
+
+| Date | Internal rev | Notes |
+|------|-------------|-------|
+| 2023-01-13 | 210 | Sheet created |
+| 2023-01-23 | 234, 370, 417 | Heavy editing |
+| 2023-01-27 | 420 | |
+| 2023-01-29 | 563 | |
+| **2023-01-30** | **605** | **CSD01 finalized** |
+| **2023-06-19** | **606** | **First post-CSD01 edit (140 day gap!)** |
+| **2023-06-20** | **653, 665** | **Massive burst (59+ revisions in one day)** |
+| **2023-06-28** | **671** | |
+| **2023-07-25** | **673** | **CSD02 finalized** |
+
+**Documents** (16 Drive API snapshots):
+
+| Date | Internal rev | Notes |
+|------|-------------|-------|
+| 2021-05-27 | 1 | Sheet created (by G. Ken Holman) |
+| 2022-06-08 | 4 | (by yves.jordan) |
+| 2022-12-01 – 12-21 | 11→84 | Early development |
+| 2023-01-23 – 01-30 | 94→156 | CSD01 preparation |
+| **2023-01-30** | **155, 156** | **CSD01 finalized** |
+| **2023-06-20** | **250** | **Massive burst (~93 revisions in one day!)** |
+| **2023-06-21** | **251** | **CSD02 finalized** |
+
+### The real editing timeline
 
 ```
-Library revisions (605–673, 69 unique states):
-  |=========================== ALL VALID ===========================|
-  605                                                              673
-  ^CSD01                                                           ^CSD02
+Jan 30   CSD01 finalized  ─── lib-605, doc-157
+Feb 08   CSD01 PUBLISHED  ─── (no edits, sheets frozen)
+         |
+         |   ~~~ 140 DAYS OF ZERO ACTIVITY ~~~
+         |
+Jun 19   Library resumes  ─── lib-606 (one edit)
+Jun 20   BIG EDITING DAY  ─── lib 607→665 (~59 revisions)
+                               doc 158→250 (~93 revisions)
+Jun 21   Docs finalized   ─── doc-251
+Jun 28   Library cleanup  ─── lib 666→671
+Jul 25   Library final    ─── lib 672→673
+Jul 26   CSD02 PUBLISHED  ─── lib-673, doc-251
+```
 
-Document revisions (158–251, 88 unique states):
-  |=========================== ALL VALID ===========================|
-  158                                                              251
-   ^first post-CSD01 edit                                          ^CSD02
+**The "88 unique document states" were NOT spread over 5 months — ~93 of
+them were created on June 20, 2023 in a single day of editing.**
 
-Row count gradient:
-  5429 ─────────────── 5436 ─────── 5439 ──── 5443
-  (lib-605,doc-158)   (lib-605,doc-251)       (lib-673,doc-251)
-                      (lib-673,doc-158)       = CSD02 official
+The oscillation pattern we saw (BusinessInformation ±1, PurchaseReceipt ±1)
+makes perfect sense now — these are rapid experimental edits within a single
+editing session, not multi-month deliberation.
+
+### Contemporaneous pairs (corrected)
+
+Given that both sheets were edited simultaneously on June 20, the natural
+pairs are:
+
+| Date | Library | Documents | Notes |
+|------|---------|-----------|-------|
+| 2023-01-30 | 605 | 157 | CSD01 |
+| 2023-06-19 | 606 | ~157 | First lib edit (docs unchanged) |
+| 2023-06-20 early | ~620 | ~180 | Both sheets active |
+| 2023-06-20 mid | ~645 | ~215 | Mid-session |
+| 2023-06-20 late | ~665 | ~250 | Near-end of session |
+| 2023-06-21 | 665 | 251 | Docs finalized |
+| 2023-06-28 | 671 | 251 | Lib cleanup |
+| 2023-07-25 | 673 | 251 | CSD02 final |
+
+### Implications for git history
+
+For the git history branch, the CSD01→CSD02 transition needs at most
+**3–4 intermediate commits**, not the 7+ suggested by linear interpolation:
+
+```
+Commit 1:  CSD01 official  (lib-605, doc-157) = 5,429 rows
+Commit 2:  Jun 20 mid-edit (lib-640, doc-210) ≈ 5,437 rows
+Commit 3:  Jun 20 late     (lib-665, doc-250) ≈ 5,442 rows
+Commit 4:  CSD02 official  (lib-673, doc-251) = 5,443 rows
 ```
 
 ## Unique Content States
