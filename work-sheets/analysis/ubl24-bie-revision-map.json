@@ -1,0 +1,312 @@
+{
+  "_description": "Mapping of UBL 2.4 CSD01→CSD02 BIE changes to ODS revision pairs",
+  "_note": "19 BIE changes mapped to 13 natural ODS steps. Steps with count>1 need programmatic .gc editing for true 1-BIE-at-a-time.",
+  "baseline": {
+    "label": "CSD01",
+    "lib_rev": 605,
+    "doc_rev": 157,
+    "gc_rows": 5429
+  },
+  "steps": [
+    {
+      "step": 1,
+      "lib_rev": 606,
+      "doc_rev": 157,
+      "gc_rows": 5429,
+      "bie_count": 1,
+      "changes": [
+        {
+          "bie_num": 1,
+          "model": "UBL-CommonLibrary-2.5",
+          "den": "Tax Category. Tax Scheme",
+          "component_type": "ASBIE",
+          "change": "modify",
+          "detail": "Cardinality: 1 → 0..1"
+        }
+      ]
+    },
+    {
+      "step": 2,
+      "lib_rev": 623,
+      "doc_rev": 157,
+      "gc_rows": 5431,
+      "bie_count": 2,
+      "separable": false,
+      "separation_note": "Both BIEs evolve together through many intermediate renames in lib ODS",
+      "changes": [
+        {
+          "bie_num": 2,
+          "model": "UBL-CommonLibrary-2.5",
+          "den": "Despatch Line. Accounting Cost Code. Code",
+          "component_type": "BBIE",
+          "change": "add",
+          "current_version": "2.4"
+        },
+        {
+          "bie_num": 3,
+          "model": "UBL-CommonLibrary-2.5",
+          "den": "Despatch Line. Accounting Cost. Text",
+          "component_type": "BBIE",
+          "change": "add",
+          "current_version": "2.4"
+        }
+      ]
+    },
+    {
+      "step": 3,
+      "lib_rev": 631,
+      "doc_rev": 157,
+      "gc_rows": 5432,
+      "bie_count": 1,
+      "changes": [
+        {
+          "bie_num": 4,
+          "model": "UBL-CommonLibrary-2.5",
+          "den": "Package. Status",
+          "component_type": "ASBIE",
+          "change": "add",
+          "current_version": "2.4"
+        }
+      ]
+    },
+    {
+      "step": 4,
+      "lib_rev": 642,
+      "doc_rev": 157,
+      "gc_rows": 5433,
+      "bie_count": 1,
+      "changes": [
+        {
+          "bie_num": 5,
+          "model": "UBL-CommonLibrary-2.5",
+          "den": "Receipt Line. Received_ Time. Time",
+          "component_type": "BBIE",
+          "change": "add",
+          "current_version": "2.4"
+        }
+      ]
+    },
+    {
+      "step": 5,
+      "lib_rev": 653,
+      "doc_rev": 157,
+      "gc_rows": 5434,
+      "bie_count": 1,
+      "changes": [
+        {
+          "bie_num": 6,
+          "model": "UBL-CommonLibrary-2.5",
+          "den": "Customs Declaration. Function Code. Code",
+          "component_type": "BBIE",
+          "change": "add",
+          "current_version": "2.4"
+        }
+      ]
+    },
+    {
+      "step": 6,
+      "lib_rev": 665,
+      "doc_rev": 157,
+      "gc_rows": 5435,
+      "bie_count": 1,
+      "changes": [
+        {
+          "bie_num": 7,
+          "model": "UBL-CommonLibrary-2.5",
+          "den": "Transport Handling Unit. Damage Documentation_ Attachment. Attachment",
+          "component_type": "ASBIE",
+          "change": "add",
+          "current_version": "2.4"
+        }
+      ]
+    },
+    {
+      "step": 7,
+      "lib_rev": 671,
+      "doc_rev": 157,
+      "gc_rows": 5436,
+      "bie_count": 1,
+      "changes": [
+        {
+          "bie_num": 8,
+          "model": "UBL-CommonLibrary-2.5",
+          "den": "Fuel Consumption. Fuel Provider_ Party. Party",
+          "component_type": "ASBIE",
+          "change": "add",
+          "current_version": "2.4"
+        }
+      ]
+    },
+    {
+      "step": 8,
+      "lib_rev": 673,
+      "doc_rev": 157,
+      "gc_rows": 5436,
+      "bie_count": 2,
+      "separable": false,
+      "separation_note": "Semantically a rename: Environmental Emission → Fuel Consumption. Add and remove are coupled.",
+      "changes": [
+        {
+          "bie_num": 9,
+          "model": "UBL-CommonLibrary-2.5",
+          "den": "Shipment Stage. Fuel Consumption",
+          "component_type": "ASBIE",
+          "change": "add",
+          "current_version": "2.4"
+        },
+        {
+          "bie_num": 10,
+          "model": "UBL-CommonLibrary-2.5",
+          "den": "Shipment Stage. Environmental Emission",
+          "component_type": "ASBIE",
+          "change": "remove"
+        }
+      ]
+    },
+    {
+      "step": 9,
+      "lib_rev": 673,
+      "doc_rev": 185,
+      "gc_rows": 5438,
+      "bie_count": 2,
+      "separable": false,
+      "separation_note": "Both DespatchAdvice rows are refined together through every doc revision.",
+      "changes": [
+        {
+          "bie_num": 11,
+          "model": "UBL-DespatchAdvice-2.5",
+          "den": "Despatch Advice. Accounting Cost Code. Code",
+          "component_type": "BBIE",
+          "change": "add",
+          "current_version": "2.4"
+        },
+        {
+          "bie_num": 12,
+          "model": "UBL-DespatchAdvice-2.5",
+          "den": "Despatch Advice. Accounting Cost. Text",
+          "component_type": "BBIE",
+          "change": "add",
+          "current_version": "2.4"
+        }
+      ]
+    },
+    {
+      "step": 10,
+      "lib_rev": 673,
+      "doc_rev": 195,
+      "gc_rows": 5439,
+      "bie_count": 1,
+      "changes": [
+        {
+          "bie_num": 13,
+          "model": "UBL-DespatchAdvice-2.5",
+          "den": "Despatch Advice. Project Reference",
+          "component_type": "ASBIE",
+          "change": "add",
+          "current_version": "2.4"
+        }
+      ]
+    },
+    {
+      "step": 11,
+      "lib_rev": 673,
+      "doc_rev": 245,
+      "gc_rows": 5443,
+      "bie_count": 4,
+      "separable": false,
+      "separation_note": "All 4 rows added simultaneously at doc-216. They evolve together through doc-245.",
+      "changes": [
+        {
+          "bie_num": 14,
+          "model": "UBL-ReceiptAdvice-2.5",
+          "den": "Receipt Advice. Delivery_ Acceptance Code. Code",
+          "component_type": "BBIE",
+          "change": "add",
+          "current_version": "2.4"
+        },
+        {
+          "bie_num": 15,
+          "model": "UBL-ReceiptAdvice-2.5",
+          "den": "Receipt Advice. Reject Reason. Text",
+          "component_type": "BBIE",
+          "change": "add",
+          "current_version": "2.4"
+        },
+        {
+          "bie_num": 16,
+          "model": "UBL-ReceiptAdvice-2.5",
+          "den": "Receipt Advice. Reject_ Action Code. Code",
+          "component_type": "BBIE",
+          "change": "add",
+          "current_version": "2.4"
+        },
+        {
+          "bie_num": 17,
+          "model": "UBL-ReceiptAdvice-2.5",
+          "den": "Receipt Advice. Reject_ Reason Code. Code",
+          "component_type": "BBIE",
+          "change": "add",
+          "current_version": "2.4"
+        }
+      ]
+    },
+    {
+      "step": 12,
+      "lib_rev": 673,
+      "doc_rev": 250,
+      "gc_rows": 5443,
+      "bie_count": 1,
+      "changes": [
+        {
+          "bie_num": 18,
+          "model": "UBL-ReceiptAdvice-2.5",
+          "den": "Receipt Advice. Details",
+          "component_type": "ABIE",
+          "change": "modify",
+          "detail": "Definition text changed"
+        }
+      ]
+    },
+    {
+      "step": 13,
+      "lib_rev": 673,
+      "doc_rev": 251,
+      "gc_rows": 5443,
+      "bie_count": 1,
+      "changes": [
+        {
+          "bie_num": 19,
+          "model": "UBL-ReceiptAdvice-2.5",
+          "den": "Receipt Advice. Receipt Line",
+          "component_type": "ASBIE",
+          "change": "modify",
+          "detail": "Cardinality: 1..n → 0..n"
+        }
+      ]
+    }
+  ],
+  "library_ods_editing_timeline": {
+    "606": "TaxScheme cardinality edit (single cell)",
+    "611-612": "First placeholder row added for DespatchLine BIEs",
+    "612-618": "Both DespatchLine BIEs renamed through many intermediate DENs",
+    "618-620": "CurrentVersion set to 2.4 for both",
+    "621-623": "EditorNotes finalized for both",
+    "627-631": "Package.Status added and finalized",
+    "635-642": "ReceiptLine.ReceivedTime added and finalized",
+    "647-653": "CustomsDeclaration.FunctionCode added and finalized",
+    "660-665": "THU.DamageDocumentation added and finalized",
+    "669-671": "FuelConsumption.FuelProviderParty added and finalized",
+    "672-673": "ShipmentStage: EnvironmentalEmission → FuelConsumption rename"
+  },
+  "documents_ods_editing_timeline": {
+    "158-160": "DespatchAdvice: 2 placeholder rows added (Note.Text)",
+    "160-185": "DespatchAdvice: both rows refined to final state",
+    "187-188": "DespatchAdvice: 3rd row added (placeholder Additional_DocumentReference)",
+    "188-195": "DespatchAdvice: 3rd row renamed to ProjectReference and finalized",
+    "211-215": "ReceiptAdvice: restructuring (row shuffling)",
+    "215-216": "ReceiptAdvice: 4 placeholder rows added simultaneously",
+    "216-245": "ReceiptAdvice: all 4 rows refined to final state",
+    "249-250": "ReceiptAdvice: Details definition changed",
+    "250-251": "ReceiptAdvice: ReceiptLine cardinality changed"
+  }
+}
