@@ -195,6 +195,8 @@ jobs:
               page = j.get("nextPageToken")
               if not page:
                   break
+          if s == 200 and not revs:
+              out("- revisions.list answered HTTP 200 but returned **0 revisions**")
           if revs:
               with_author = sum(1 for r in revs if "lastModifyingUser" in r)
               out(f"- {len(revs)} revisions listed; {with_author} carry author information")
