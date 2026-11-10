@@ -164,12 +164,16 @@ jobs:
           # ---- T2: what may the service account do on this file? ----
           out("### T2 · Rights of the service account on the sheet")
           s, ct, d = http("GET", f"https://www.googleapis.com/drive/v3/files/{SHEET}?supportsAllDrives=true"
-                          "&fields=name,modifiedTime,version,capabilities(canEdit,canComment,canReadRevisions,canDownload)", AUTH)
+                          "&fields=name,modifiedTime,version,capabilities(canEdit,canComment,canShare,canReadRevisions,canDownload)", AUTH)
           if s == 200:
               f = json.loads(d)
+              cap = f.get("capabilities", {})
+              role = "editor" if cap.get("canEdit") else ("commenter" if cap.get("canComment") else "viewer")
               out(f"- Name: {f.get('name')}")
               out(f"- Last modified: {f.get('modifiedTime')} · version {f.get('version')}")
-              out(f"- Capabilities: `{json.dumps(f.get('capabilities'))}`")
+              out(f"- **Effective role of the service account: {role}** "
+                  f"(can edit: {cap.get('canEdit')}, can comment: {cap.get('canComment')}, can share: {cap.get('canShare')})")
+              out(f"- **Can read revisions: {cap.get('canReadRevisions')}** · can download: {cap.get('canDownload')}")
           else:
               out(f"- files.get: {brief(s, ct, d)}")
           out()
