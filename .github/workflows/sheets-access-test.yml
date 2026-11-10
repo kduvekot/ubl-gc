@@ -1,0 +1,243 @@
+# Sheets access test
+#
+# One-off test: can a GitHub Actions runner read the revision history of a
+# UBL Google Sheet, using a Google Cloud service account through Workload
+# Identity Federation (no secrets stored in GitHub)?
+#
+# It answers four questions:
+#   T1  Can the runner reach googleapis.com at all? (In February 2026 the
+#       Claude cloud container got HTML 403 pages from a Google Cloud IP.)
+#   T2  What does Drive report the service account may do on the sheet
+#       (capabilities.canReadRevisions)?
+#   T3  Does revisions.list work, and how many revisions does it return?
+#   T4  Does the direct export link honour revision=N for this account,
+#       or does it silently return the current content (as it does without
+#       a login)?
+#
+# Required repository variables (Settings > Secrets and variables > Actions >
+# Variables; these are not secret):
+#   GCP_WIF_PROVIDER     projects/<number>/locations/global/workloadIdentityPools/<pool>/providers/<provider>
+#   GCP_SERVICE_ACCOUNT  <name>@<project>.iam.gserviceaccount.com
+#
+# The repository is public, so this workflow logs only counts, revision IDs,
+# timestamps and checksums: never names or e-mail addresses of editors.
+#
+# Run it: push a change to this file, use "Run workflow" (once this file is on
+# the default branch), or press "Re-run all jobs" on an earlier run.
+
+name: Sheets access test
+
+on:
+  push:
+    branches: [claude/loving-ptolemy-pz4u4o]
+    paths: [.github/workflows/sheets-access-test.yml]
+  workflow_dispatch:
+    inputs:
+      sheet_id:
+        description: Google Sheet ID to test (default UBL 2.6 Library)
+        default: 1kTDHeGm73EyAAa5b1WoZ-9J44qNwD_8JuCZpSzzkUrw
+
+permissions:
+  contents: read
+  id-token: write   # lets the job request a GitHub OIDC token for Google
+
+concurrency:
+  group: sheets-access-test
+  cancel-in-progress: false
+
+jobs:
+  test:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      SHEET_ID: ${{ inputs.sheet_id || '1kTDHeGm73EyAAa5b1WoZ-9J44qNwD_8JuCZpSzzkUrw' }}
+      WIF_PROVIDER: ${{ vars.GCP_WIF_PROVIDER }}
+      SERVICE_ACCOUNT: ${{ vars.GCP_SERVICE_ACCOUNT }}
+    steps:
+      - name: Check configuration
+        run: |
+          if [ -z "$WIF_PROVIDER" ] || [ -z "$SERVICE_ACCOUNT" ]; then
+            echo "::error::Repository variables GCP_WIF_PROVIDER and GCP_SERVICE_ACCOUNT are not set yet. Do the Google Cloud setup, set both variables, then press 'Re-run all jobs'."
+            exit 1
+          fi
+          echo "Sheet:           $SHEET_ID"
+          echo "Service account: $SERVICE_ACCOUNT"
+          echo "Provider:        $WIF_PROVIDER"
+
+      - name: Run access tests
+        run: |
+          python3 - <<'PY'
+          import hashlib, io, json, os, re, sys, time, urllib.error, urllib.parse, urllib.request, zipfile
+
+          SHEET = os.environ["SHEET_ID"]
+          PROVIDER = os.environ["WIF_PROVIDER"]
+          SA = os.environ["SERVICE_ACCOUNT"]
+          EXPORT_DELAY = 10   # seconds between exports; below 10 s Google answered 429 (Feb 2026)
+          summary = []
+
+          def out(line=""):
+              print(line)
+              summary.append(line)
+
+          def http(method, url, headers=None, body=None, timeout=120):
+              """Return (status, content_type, bytes). Never raises on HTTP errors."""
+              data = None
+              headers = dict(headers or {})
+              if body is not None:
+                  data = json.dumps(body).encode()
+                  headers["Content-Type"] = "application/json"
+              req = urllib.request.Request(url, data=data, headers=headers, method=method)
+              try:
+                  with urllib.request.urlopen(req, timeout=timeout) as r:
+                      return r.status, r.headers.get("Content-Type", ""), r.read()
+              except urllib.error.HTTPError as e:
+                  return e.code, e.headers.get("Content-Type", ""), e.read()
+              except Exception as e:  # network-level failure
+                  return 0, "", str(e).encode()
+
+          def brief(status, ctype, data):
+              kind = "HTML page" if "html" in ctype else ("JSON" if "json" in ctype else ctype or "-")
+              msg = ""
+              if "json" in ctype:
+                  try:
+                      j = json.loads(data)
+                      err = j.get("error")
+                      if isinstance(err, dict):
+                          msg = err.get("message", "")
+                      elif err:
+                          msg = f"{err} {j.get('error_description', '')}"
+                  except Exception:
+                      pass
+              return f"HTTP {status} ({kind}){' – ' + msg[:200] if msg else ''}"
+
+          def ods_fingerprint(data):
+              """Hash of the cell text in content.xml, ignoring ODS export noise."""
+              try:
+                  z = zipfile.ZipFile(io.BytesIO(data))
+                  c = z.read("content.xml").decode("utf-8", "replace")
+              except Exception:
+                  return None, None
+              text = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", c))
+              return hashlib.md5(text.encode()).hexdigest()[:12], c.count("<table:table-row")
+
+          out("## Sheets access test")
+          out()
+          out(f"Sheet `{SHEET}` · service account `{SA}`")
+          out()
+
+          # ---- T1: GitHub OIDC token -> Google STS -> service account token ----
+          out("### T1 · Login and reachability of googleapis.com")
+          aud = "https://iam.googleapis.com/" + PROVIDER
+          s, ct, d = http("GET", os.environ["ACTIONS_ID_TOKEN_REQUEST_URL"] + "&audience=" + urllib.parse.quote(aud, safe=""),
+                          {"Authorization": "bearer " + os.environ["ACTIONS_ID_TOKEN_REQUEST_TOKEN"]})
+          if s != 200:
+              out(f"- GitHub OIDC token: FAILED, {brief(s, ct, d)}"); open(os.environ["GITHUB_STEP_SUMMARY"], "a").write("\n".join(summary)); sys.exit(1)
+          oidc = json.loads(d)["value"]
+          print(f"::add-mask::{oidc}")
+          claims = json.loads(__import__("base64").urlsafe_b64decode(oidc.split(".")[1] + "=="))
+          out(f"- GitHub OIDC token: OK (workflow_ref `{claims.get('workflow_ref')}`)")
+
+          s, ct, d = http("POST", "https://sts.googleapis.com/v1/token", body={
+              "grant_type": "urn:ietf:params:oauth:grant-type:token-exchange",
+              "audience": "//iam.googleapis.com/" + PROVIDER,
+              "scope": "https://www.googleapis.com/auth/cloud-platform",
+              "requested_token_type": "urn:ietf:params:oauth:token-type:access_token",
+              "subject_token": oidc,
+              "subject_token_type": "urn:ietf:params:oauth:token-type:jwt"})
+          if s != 200:
+              out(f"- sts.googleapis.com token exchange: FAILED, {brief(s, ct, d)}"); open(os.environ["GITHUB_STEP_SUMMARY"], "a").write("\n".join(summary)); sys.exit(1)
+          fed = json.loads(d)["access_token"]
+          print(f"::add-mask::{fed}")
+          out("- sts.googleapis.com token exchange: OK")
+
+          s, ct, d = http("POST", f"https://iamcredentials.googleapis.com/v1/projects/-/serviceAccounts/{SA}:generateAccessToken",
+                          {"Authorization": "Bearer " + fed},
+                          {"scope": ["https://www.googleapis.com/auth/drive.readonly"], "lifetime": "900s"})
+          if s != 200:
+              out(f"- iamcredentials.googleapis.com service account token: FAILED, {brief(s, ct, d)}"); open(os.environ["GITHUB_STEP_SUMMARY"], "a").write("\n".join(summary)); sys.exit(1)
+          tok = json.loads(d)["accessToken"]
+          print(f"::add-mask::{tok}")
+          out("- iamcredentials.googleapis.com service account token (drive.readonly, 15 min): OK")
+          AUTH = {"Authorization": "Bearer " + tok}
+          out()
+
+          # ---- T2: what may the service account do on this file? ----
+          out("### T2 · Rights of the service account on the sheet")
+          s, ct, d = http("GET", f"https://www.googleapis.com/drive/v3/files/{SHEET}?supportsAllDrives=true"
+                          "&fields=name,modifiedTime,version,capabilities(canEdit,canComment,canReadRevisions,canDownload)", AUTH)
+          if s == 200:
+              f = json.loads(d)
+              out(f"- Name: {f.get('name')}")
+              out(f"- Last modified: {f.get('modifiedTime')} · version {f.get('version')}")
+              out(f"- Capabilities: `{json.dumps(f.get('capabilities'))}`")
+          else:
+              out(f"- files.get: {brief(s, ct, d)}")
+          out()
+
+          # ---- T3: revisions.list ----
+          out("### T3 · Drive revisions.list")
+          revs, page = [], None
+          while True:
+              u = (f"https://www.googleapis.com/drive/v3/files/{SHEET}/revisions?pageSize=1000"
+                   "&fields=nextPageToken,revisions(id,modifiedTime,lastModifyingUser(me))")
+              if page:
+                  u += "&pageToken=" + urllib.parse.quote(page)
+              s, ct, d = http("GET", u, AUTH)
+              if s != 200:
+                  out(f"- revisions.list: {brief(s, ct, d)}")
+                  break
+              j = json.loads(d)
+              revs += j.get("revisions", [])
+              page = j.get("nextPageToken")
+              if not page:
+                  break
+          if revs:
+              with_author = sum(1 for r in revs if "lastModifyingUser" in r)
+              out(f"- {len(revs)} revisions listed; {with_author} carry author information")
+              out(f"- First: id {revs[0]['id']} at {revs[0]['modifiedTime']}")
+              out(f"- Last:  id {revs[-1]['id']} at {revs[-1]['modifiedTime']}")
+          out()
+
+          # ---- T4: direct export link, with and without login ----
+          out("### T4 · Direct export link `/spreadsheets/export?…&revision=N`")
+          out()
+          out("| Request | Login | Result | Size | Cell-text hash | Rows |")
+          out("|---|---|---|---:|---|---:|")
+          base = f"https://docs.google.com/spreadsheets/export?id={SHEET}&exportFormat=ods"
+          tests = [("current", None, False), ("current", None, True)]
+          if revs:
+              tests.append((f"revision={revs[0]['id']} (first listed)", revs[0]["id"], True))
+              if len(revs) > 1:
+                  tests.append((f"revision={revs[-2]['id']} (second-last listed)", revs[-2]["id"], True))
+          tests += [("revision=1", "1", True), ("revision=2", "2", True), ("revision=999999999 (cannot exist)", "999999999", True)]
+          results = {}
+          for i, (label, rev, login) in enumerate(tests):
+              if i:
+                  time.sleep(EXPORT_DELAY)
+              u = base + (f"&revision={rev}" if rev else "")
+              s, ct, d = http("GET", u, AUTH if login else {}, timeout=180)
+              fp, rows = ods_fingerprint(d) if s == 200 else (None, None)
+              results[label, login] = fp
+              res = "HTTP 200 ODS" if fp else brief(s, ct, d)
+              out(f"| {label} | {'service account' if login else 'none'} | {res} | {len(d):,} | {fp or '-'} | {rows or '-'} |")
+          out()
+
+          cur = results.get(("current", True))
+          hist = [fp for (label, login), fp in results.items() if label.startswith("revision=") and "999999999" not in label and fp]
+          bogus = results.get(("revision=999999999 (cannot exist)", True))
+          out("### Conclusion")
+          if not cur:
+              out("- The export link did not work with the service account (see T4).")
+          elif any(fp != cur for fp in hist):
+              out("- **History is accessible**: at least one revision export differs from the current content.")
+              if bogus is None:
+                  out("- A revision that cannot exist is rejected rather than replaced by the current content.")
+          elif bogus == cur:
+              out("- **No history access**: every revision, even one that cannot exist, returns the current content. "
+                  "This is the same silent fallback as without a login (and as the February 'collapse').")
+          else:
+              out("- Inconclusive: revisions match the current content, but a non-existent revision is rejected. "
+                  "The sheet may simply not have changed in the revisions tested.")
+
+          open(os.environ["GITHUB_STEP_SUMMARY"], "a").write("\n".join(summary) + "\n")
+          PY
