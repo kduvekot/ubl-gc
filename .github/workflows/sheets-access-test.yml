@@ -160,7 +160,8 @@ jobs:
 
           s, ct, d = http("POST", f"https://iamcredentials.googleapis.com/v1/projects/-/serviceAccounts/{SA}:generateAccessToken",
                           {"Authorization": "Bearer " + fed},
-                          {"scope": ["https://www.googleapis.com/auth/drive.readonly"], "lifetime": "900s"})
+                          {"scope": ["https://www.googleapis.com/auth/drive.readonly",
+                                     "https://www.googleapis.com/auth/drive.activity.readonly"], "lifetime": "900s"})
           if s != 200:
               out(f"- iamcredentials.googleapis.com service account token: FAILED, {brief(s, ct, d)}"); open(os.environ["GITHUB_STEP_SUMMARY"], "a").write("\n".join(summary)); sys.exit(1)
           tok = json.loads(d)["accessToken"]
@@ -330,6 +331,52 @@ jobs:
                       if len(ch) > 20:
                           out(f"  - … and {len(ch) - 20} more")
                   prev, prev_rev = cur_cells, n
+
+          # ---- T6: Drive Activity API, every single action on the sheet ----
+          out()
+          out("### T6 · Drive Activity API (every action, not consolidated)")
+          acts, page = [], None
+          while True:
+              body = {"itemName": f"items/{SHEET}", "pageSize": 100, "consolidationStrategy": {"none": {}}}
+              if page:
+                  body["pageToken"] = page
+              s, ct, d = http("POST", "https://driveactivity.googleapis.com/v2/activity:query", AUTH, body)
+              if s != 200:
+                  out(f"- activity:query: {brief(s, ct, d)}")
+                  break
+              j = json.loads(d)
+              acts += j.get("activities", [])
+              page = j.get("nextPageToken")
+              if not page or len(acts) >= 500:
+                  break
+
+          def actor_code(a):
+              """Kind of actor plus a short code; never the person's ID itself (public log)."""
+              u = a.get("user")
+              if u:
+                  if "knownUser" in u:
+                      pn = u["knownUser"].get("personName")
+                      tag = hashlib.sha256(pn.encode()).hexdigest()[:6] if pn else "no-id"
+                      return f"known user {tag}" + (" (the service account)" if u["knownUser"].get("isCurrentUser") else "")
+                  return "deleted user" if "deletedUser" in u else "unknown user"
+              for k in ("anonymous", "impersonation", "system", "administrator"):
+                  if k in a:
+                      return k
+              return "?"
+
+          if s == 200:
+              out(f"- {len(acts)} actions returned (newest first)")
+              out()
+              out("| Time (UTC) | Action | Actor(s) |")
+              out("|---|---|---|")
+              for a in acts[:60]:
+                  when = a.get("timestamp") or "{} – {}".format(a.get("timeRange", {}).get("startTime", "?"),
+                                                                 a.get("timeRange", {}).get("endTime", "?"))
+                  action = ", ".join(a.get("primaryActionDetail", {}).keys()) or "?"
+                  actors = "; ".join(sorted({actor_code(x) for x in a.get("actors", [])}))
+                  out(f"| {when} | {action} | {actors} |")
+              if len(acts) > 60:
+                  out(f"| … | {len(acts) - 60} more | |")
 
           open(os.environ["GITHUB_STEP_SUMMARY"], "a").write("\n".join(summary) + "\n")
           PY
