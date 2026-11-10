@@ -250,5 +250,80 @@ jobs:
               out("- Inconclusive: revisions match the current content, but a non-existent revision is rejected. "
                   "The sheet may simply not have changed in the revisions tested.")
 
+          # ---- T5: export every revision number up to the newest listed one and show the cell changes ----
+          import xml.etree.ElementTree as ET
+          NS = {"table": "urn:oasis:names:tc:opendocument:xmlns:table:1.0",
+                "text": "urn:oasis:names:tc:opendocument:xmlns:text:1.0"}
+          T = "{%s}" % NS["table"]
+          MAX_PROBE = 30
+
+          def cells(data):
+              """{(sheet, row, col): text} for every non-empty cell in an ODS file."""
+              root = ET.fromstring(zipfile.ZipFile(io.BytesIO(data)).read("content.xml"))
+              res = {}
+              for tbl in root.iter(T + "table"):
+                  name, r = tbl.get(T + "name"), 0
+                  for row in tbl.iter(T + "table-row"):
+                      rrep = int(row.get(T + "number-rows-repeated", "1"))
+                      c = 0
+                      for cell in row:
+                          if cell.tag not in (T + "table-cell", T + "covered-table-cell"):
+                              continue
+                          crep = int(cell.get(T + "number-columns-repeated", "1"))
+                          txt = "\n".join("".join(p.itertext()) for p in cell.findall("text:p", NS))
+                          if txt:
+                              for k in range(min(crep, 50)):
+                                  res[name, r, c + k] = txt
+                          c += crep
+                      r += min(rrep, 1) if rrep > 1000 else rrep
+              return res
+
+          def col_name(c):
+              s = ""
+              c += 1
+              while c:
+                  c, m = divmod(c - 1, 26)
+                  s = chr(65 + m) + s
+              return s
+
+          def show(v):
+              v = v.replace("\n", " ⏎ ")
+              return (v[:80] + "…") if len(v) > 80 else v
+
+          out()
+          out("### T5 · Cell changes between consecutive revisions")
+          if not revs:
+              out("- Skipped: no revisions listed.")
+          else:
+              top = max(int(r["id"]) for r in revs if r["id"].isdigit())
+              probe = list(range(1, min(top, MAX_PROBE) + 1))
+              listed = {r["id"]: r["modifiedTime"] for r in revs}
+              out(f"- Newest listed revision: {top}. Exporting revision 1 to {probe[-1]} "
+                  f"({EXPORT_DELAY} s apart) and comparing each with the previous one.")
+              out()
+              prev, prev_rev = None, None
+              for n in probe:
+                  time.sleep(EXPORT_DELAY)
+                  s, ct, d = http("GET", base + f"&revision={n}", AUTH, timeout=180)
+                  when = listed.get(str(n), "not in revisions.list")
+                  if s != 200:
+                      out(f"- revision {n}: {brief(s, ct, d)} ({when})")
+                      continue
+                  cur_cells = cells(d)
+                  if prev is None:
+                      out(f"- revision {n}: {len(cur_cells):,} non-empty cells ({when})")
+                  else:
+                      keys = sorted(set(prev) | set(cur_cells))
+                      ch = [k for k in keys if prev.get(k) != cur_cells.get(k)]
+                      out(f"- revision {n} vs {prev_rev}: **{len(ch)} cell(s) changed** ({when})")
+                      for k in ch[:20]:
+                          sheet, r, c = k
+                          header = cur_cells.get((sheet, 0, c)) or prev.get((sheet, 0, c)) or "?"
+                          out(f"  - `{sheet}!{col_name(c)}{r + 1}` ({show(header)}): "
+                              f"“{show(prev.get(k, ''))}” → “{show(cur_cells.get(k, ''))}”")
+                      if len(ch) > 20:
+                          out(f"  - … and {len(ch) - 20} more")
+                  prev, prev_rev = cur_cells, n
+
           open(os.environ["GITHUB_STEP_SUMMARY"], "a").write("\n".join(summary) + "\n")
           PY
