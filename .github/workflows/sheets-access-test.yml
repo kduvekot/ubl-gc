@@ -44,6 +44,11 @@ on:
       sheet_id:
         description: Google Sheet ID to test (default UBL 2.5 Library)
         default: 18o1YqjHWUw0-s8mb3ja4i99obOUhs-4zpgso6RZrGaY
+      mode:
+        description: "single = full test of one sheet; survey = metadata of every sheet in the public UBL TC folder"
+        type: choice
+        options: [single, survey]
+        default: single
 
 permissions:
   contents: read
@@ -73,6 +78,7 @@ jobs:
           echo "Provider:        $WIF_PROVIDER"
 
       - name: Run access tests
+        if: inputs.mode != 'survey'
         run: |
           python3 - <<'PY'
           import hashlib, io, json, os, re, sys, time, urllib.error, urllib.parse, urllib.request, zipfile
@@ -396,4 +402,155 @@ jobs:
                   out(f"| {when} | {action} | {actors} |")
 
           open(os.environ["GITHUB_STEP_SUMMARY"], "a").write("\n".join(summary) + "\n")
+          PY
+
+      # Survey: metadata only (no exports), for every spreadsheet that the public,
+      # anonymous view of the UBL TC folder shows (listed 10 Nov 2026). Names come
+      # from Drive; the public folder view shows them anyway.
+      - name: Survey all sheets
+        if: inputs.mode == 'survey'
+        env:
+          SHEETS: |
+            16zkK2Rtu8TKc4G5i-PY89paRyNys4wXdVIL1Ax_PERU
+            1GpAMQDtoxSAiRPwX4uhi5huxpCVutbTKpb9zYO3p-QM
+            1yNx2UrmZK2EBF2UQRPVykZ-WpKEiwRz321QOsue0pkA
+            1dx9CpfQalTOB0gzi2WtxwFpP9K2oXwpAluR103cIu14
+            1CZPahIhuGrJrVT_kwDKxgTrQySSS-VZkfVPa_zbi814
+            1OSDv409iCpR-mYnZxJfxMxwlQbsl_Y80Z3EaXJKTMgg
+            1p_LEqXdyMgQTq6DqbPAbNHPnwx6w9PQsAntNpxsNIHQ
+            1XFvvVrgoU0xh_gnLD_XVWVNfFQDUlCA7sKAuC0ziaFs
+            1XgrwT1t9O2suE4TR3OyfaZUtnvc1YmrRWTE96ahwf5k
+            1h-wi3tjY2Rk6d9B0bKHAPlxAAruwoiqDDF9I5vxUKiU
+            1q-0Emvc10yPBbCAj6QoW3YdHzo7ar5hde1LU9gBTWqc
+            1VeHhy9XN0Zr5LpvMfHhUpw8OhJo8hA45n6ztySlNs8s
+            10pJVBV7Nvlgg2gPhQa90WOU4744Hvvyni-E-EOfuyFI
+            133z1J2hkrKaQOqJuAa0HkBMrIow68ILMikBY54_2WYA
+            1CKXT-AvHF24faccvDxCtDsY7VYU4ih5-1HtmGNRqnFo
+            1LdfrIkRuU_2KkqU0BasaEvyosT2tVmi5V50TmNWE9uQ
+            1PdHQJBDqN3CMKa-H-6aGDwGd_-3zYGQ9jvLww8a1IjY
+            13Y9GwQDTB9V3uvNgP6FTLOeUjq4seGx19jTIIMpiPvI
+            1xZJBLAjdPhNLjWzQ5T3SO8zYO_ewkawsGdBIHW_4MWQ
+            1JZDb4Zq9tLRVcBvqBF8IlNp0303E8YigfyIBX8ENdFo
+            1zFZz-4y0xD9h2YBPVf650RlNJ6iJXNo3KxIr5IdbXLo
+            1pGXK6Tl_VfIBk5cf11I--GHsalqbTezo980s6z4V86M
+            1frknssywLfhPeiEx-THAXPAl_qPARUEwePCmGaqBbD8
+            1todBSmwTmppRnpxTDLikXCn_9FmL5NqVqx_JSY4qmrA
+            1er5wmm0a21nHTjnNI0uVP8pFDu2-QoqoNqk8FO0wCFE
+            1JLrOPXhJ9ZFbeBOHedogxNEYFeSmN5s0Pd4pUI9MvY0
+            1cRmtbem2OARa3UKxt_550dMDvva_XdXFhW6UUUZA5vw
+            1TeTBDJdFtDFju-cBU97YIaGv7yli1V0MYIXn9L4QITM
+            1DarzfniJlcP2GcisF3qStO-1GDr92YGHzY4BxOw583Y
+            1eFmsHR4aVabHpnm6wsVh-IUbz9YZZXtOX868sPU3b5k
+            1PnKU0-segZ9FmfcNdoavN1OKM80sijbJU90y__g0Ba4
+            1N7e0s2RF4MP_eGCdkK4n6525mX5bSQj-fIVHWpl5K50
+            1IkeZRZXfdUxiM6-G-xyQFsefLdOJ7a2u31WeDNHkpw0
+            1RhBM1w_JtP4lCEJs4uihJiWXzbWMLMVY_FqROkhsNYs
+            1ZTQ9UsiXji7rU7rVU05ygO177JsDlBw-4Wi_rIm2HQI
+            1Nbed9CPh-I0PP4Om-d_D0CE8WK1bHH2u86Fn0jiMlvg
+            1WBi25tYyXcdQkMNrqVYtQnXuBRIJ9xeHGUrgJQwF6tg
+            1o_EXYaPU_QX-7Apf-PPZhfjCapRn2b0Bx6KvrQkNQk8
+            1QA6PUp135cmacYpYFdlH1VYyzoOGITmNAe2NbVj0gd0
+            1Kg1hE8gl520Dqd1LuHg0CnC-CuNTR-d2yHCqnHj9V1Y
+            1GyGk0Czu8Emnd268GpNH3Fn-8xkah9zaXW4bm7wyWCc
+            1GNpHCS7_QkJtP3QIOdPJWL5N3kQ1EzPznT6M8sPsA0Y
+            1kxlFLz2thJOlvpq2ChRAcv76SiKgEIRtoVRqsZ7OBUs
+            1024Th-Uj8cqliNEJc-3pDOR7DxAAW7gCG4e-pbtarsg
+            1rlKMh-WatADJjf-ZY1-ytSq284thzpvXriWIbfDUJEI
+            18o1YqjHWUw0-s8mb3ja4i99obOUhs-4zpgso6RZrGaY
+            1UoLO8ZQ4rxnp5Pjd9iwaqCNBkvrJA5VaixtlTMNvWsk
+            1K2Q81OPM_-kBlPYvDmC6S1Bec4y0Mr_rxIn74nLyx74
+            1PwuGWPfOpxW9VrMOTDONKj9WRUTfOoqg3O3CwN0MHgE
+            11a1qV-tZhX71xY5wMj7uH65emGdj7n-GcpKKr8MKK1c
+            10XxOKUltY8fpoqjlA7CUU1PMk7efl9MY1IT2TiQBWp4
+            1T6z2NZ4mc69YllZOXE5TnT5Ey-FlVtaXN1oQ4AIMp7g
+            17q-BbLJ_5O10fUTpBaavCt_hoLaSSUc7hI_3O49qOfY
+            15KY7YsYY8pNCC64r3nt4AW433hC7s6hCCynpVmCnQO0
+            1u4LTxyFvJoc2YxNfNCGXBTlH7yndc0TP4fD2XpFMjM8
+            1P8ETzVPfY1QU_T5iYpTqGComJFR6bVmsFxIr0KILDas
+            1amzk8jn1boD2q3ze9rR14PVB6OGDyHTc2pQl92JutvE
+            1zMZNuEhGhH0Tdgs80AANnlS2tvC0abruB4htWP0Y_3c
+            1Bisru_h_RAZJMJG8mN5_1067sfQvQNDPnkRNjl4vbGw
+            1_YamjYiJ5DFnWiA5h1tASDCOBTBSOgMYcS5ffHPFa3g
+            1eilb2NOKIuiy5kzCpp5O8vbZZk-oU9Ao7TiswJmVsvs
+            1x0es3Xsr6Y7DoPNM2yl7fG-mvIlYZ0XtumAj_ZMloJQ
+            1wmnXJKiQ52ov1uMVjcjoT5zOOhRVkYSAzaCMDrSq6GM
+            1Z3zXR7TtcnlgEXtx4Sr4CwnvAhwg3ebX_cyyqjN124k
+            1kTDHeGm73EyAAa5b1WoZ-9J44qNwD_8JuCZpSzzkUrw
+        run: |
+          python3 - <<'PY'
+          import json, os, sys, time, urllib.error, urllib.parse, urllib.request
+          PROVIDER, SA = os.environ["WIF_PROVIDER"], os.environ["SERVICE_ACCOUNT"]
+          ids = [l.strip() for l in os.environ["SHEETS"].splitlines() if l.strip()]
+
+          def http(method, url, headers=None, body=None):
+              data, headers = None, dict(headers or {})
+              if body is not None:
+                  data = json.dumps(body).encode(); headers["Content-Type"] = "application/json"
+              try:
+                  with urllib.request.urlopen(urllib.request.Request(url, data, headers, method=method), timeout=120) as r:
+                      return r.status, json.loads(r.read() or b"{}")
+              except urllib.error.HTTPError as e:
+                  try:
+                      return e.code, json.loads(e.read())
+                  except Exception:
+                      return e.code, {}
+
+          # Login: GitHub OIDC -> STS -> service account token (read-only scopes)
+          aud = "https://iam.googleapis.com/" + PROVIDER
+          r = urllib.request.urlopen(urllib.request.Request(
+              os.environ["ACTIONS_ID_TOKEN_REQUEST_URL"] + "&audience=" + urllib.parse.quote(aud, safe=""),
+              headers={"Authorization": "bearer " + os.environ["ACTIONS_ID_TOKEN_REQUEST_TOKEN"]}))
+          oidc = json.loads(r.read())["value"]; print(f"::add-mask::{oidc}")
+          s, j = http("POST", "https://sts.googleapis.com/v1/token", body={
+              "grant_type": "urn:ietf:params:oauth:grant-type:token-exchange", "audience": "//iam.googleapis.com/" + PROVIDER,
+              "scope": "https://www.googleapis.com/auth/cloud-platform",
+              "requested_token_type": "urn:ietf:params:oauth:token-type:access_token",
+              "subject_token": oidc, "subject_token_type": "urn:ietf:params:oauth:token-type:jwt"})
+          fed = j["access_token"]; print(f"::add-mask::{fed}")
+          s, j = http("POST", f"https://iamcredentials.googleapis.com/v1/projects/-/serviceAccounts/{SA}:generateAccessToken",
+                      {"Authorization": "Bearer " + fed},
+                      {"scope": ["https://www.googleapis.com/auth/drive.readonly",
+                                 "https://www.googleapis.com/auth/drive.activity.readonly"], "lifetime": "3600s"})
+          tok = j["accessToken"]; print(f"::add-mask::{tok}")
+          A = {"Authorization": "Bearer " + tok}
+
+          rows = []
+          for i, sid in enumerate(ids, 1):
+              s, f = http("GET", f"https://www.googleapis.com/drive/v3/files/{sid}?supportsAllDrives=true"
+                          "&fields=name,createdTime,modifiedTime,capabilities(canEdit,canComment,canReadRevisions)", A)
+              if s != 200:
+                  rows.append((sid, f"HTTP {s}", "", "", "", "", "")); continue
+              cap = f.get("capabilities", {})
+              role = "editor" if cap.get("canEdit") else ("commenter" if cap.get("canComment") else "viewer")
+              revs, page = [], None
+              while cap.get("canReadRevisions"):
+                  u = f"https://www.googleapis.com/drive/v3/files/{sid}/revisions?pageSize=1000&fields=nextPageToken,revisions(id,modifiedTime)"
+                  s, j = http("GET", u + (f"&pageToken={urllib.parse.quote(page)}" if page else ""), A)
+                  if s != 200: break
+                  revs += j.get("revisions", []); page = j.get("nextPageToken")
+                  if not page: break
+              acts, page = [], None
+              while True:
+                  body = {"itemName": f"items/{sid}", "pageSize": 100, "consolidationStrategy": {"none": {}},
+                          "filter": "detail.action_detail_case:EDIT"}
+                  if page: body["pageToken"] = page
+                  s, j = http("POST", "https://driveactivity.googleapis.com/v2/activity:query", A, body)
+                  if s != 200: break
+                  acts += j.get("activities", []); page = j.get("nextPageToken")
+                  if not page or len(acts) >= 20000: break
+              t = sorted((a.get("timestamp") or a.get("timeRange", {}).get("endTime", ""))[:10] for a in acts)
+              top = max((int(r["id"]) for r in revs if r["id"].isdigit()), default=None)
+              rows.append((f["name"][:90], role, "yes" if cap.get("canReadRevisions") else "no",
+                           f"{len(revs)}" + (f" (newest {top})" if top else ""),
+                           f"{revs[0]['modifiedTime'][:10]} → {revs[-1]['modifiedTime'][:10]}" if revs else "",
+                           f"{len(acts)}", f"{t[0]} → {t[-1]}" if t else ""))
+              print(f"{i}/{len(ids)} {rows[-1]}")
+              time.sleep(0.5)
+
+          out = ["## Survey of the UBL TC sheets", "",
+                 f"{len(ids)} sheets (from the public folder view). Edits = Drive Activity edit actions.", "",
+                 "| Sheet | Role | Revisions readable | revisions.list | Listed range | Edit actions | Activity range |",
+                 "|---|---|---|---:|---|---:|---|"]
+          out += ["| " + " | ".join(r) + " |" for r in rows]
+          open(os.environ["GITHUB_STEP_SUMMARY"], "a").write("\n".join(out) + "\n")
           PY
