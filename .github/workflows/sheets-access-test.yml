@@ -17,6 +17,9 @@
 # Results on the UBL 2.6 Library sheet (10 Nov 2026):
 #   viewer     T1 OK; canReadRevisions false; 0 revisions; revision=N ignored
 #   commenter  T1 OK; canReadRevisions false; 0 revisions; revision=N ignored
+#   editor     T1 OK; canReadRevisions true; revision=N honoured (a missing
+#              revision gives HTTP 500); export finds revisions that
+#              revisions.list leaves out
 #   Sharing changes count as file changes (modifiedTime and version move).
 #
 # Required repository variables (Settings > Secrets and variables > Actions >
@@ -319,7 +322,10 @@ jobs:
                       for k in ch[:20]:
                           sheet, r, c = k
                           header = cur_cells.get((sheet, 0, c)) or prev.get((sheet, 0, c)) or "?"
-                          out(f"  - `{sheet}!{col_name(c)}{r + 1}` ({show(header)}): "
+                          den_col = next((cc for (sh, rr, cc), v in cur_cells.items()
+                                          if sh == sheet and rr == 0 and v == "Dictionary Entry Name"), None)
+                          den = (cur_cells.get((sheet, r, den_col)) or prev.get((sheet, r, den_col))) if den_col is not None else None
+                          out(f"  - `{sheet}!{col_name(c)}{r + 1}` {('**' + show(den) + '** · ') if den else ''}({show(header)}): "
                               f"“{show(prev.get(k, ''))}” → “{show(cur_cells.get(k, ''))}”")
                       if len(ch) > 20:
                           out(f"  - … and {len(ch) - 20} more")
