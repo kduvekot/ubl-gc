@@ -42,8 +42,8 @@ on:
   workflow_dispatch:
     inputs:
       sheet_id:
-        description: Google Sheet ID to test (default UBL 2.6 Library)
-        default: 1kTDHeGm73EyAAa5b1WoZ-9J44qNwD_8JuCZpSzzkUrw
+        description: Google Sheet ID to test (default UBL 2.5 Library)
+        default: 18o1YqjHWUw0-s8mb3ja4i99obOUhs-4zpgso6RZrGaY
 
 permissions:
   contents: read
@@ -58,7 +58,7 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 15
     env:
-      SHEET_ID: ${{ inputs.sheet_id || '1kTDHeGm73EyAAa5b1WoZ-9J44qNwD_8JuCZpSzzkUrw' }}
+      SHEET_ID: ${{ inputs.sheet_id || '18o1YqjHWUw0-s8mb3ja4i99obOUhs-4zpgso6RZrGaY' }}   # UBL 2.5 Library (2.6 Library: 1kTDHeGm73EyAAa5b1WoZ-9J44qNwD_8JuCZpSzzkUrw)
       WIF_PROVIDER: ${{ vars.GCP_WIF_PROVIDER }}
       SERVICE_ACCOUNT: ${{ vars.GCP_SERVICE_ACCOUNT }}
     steps:
@@ -259,7 +259,7 @@ jobs:
           NS = {"table": "urn:oasis:names:tc:opendocument:xmlns:table:1.0",
                 "text": "urn:oasis:names:tc:opendocument:xmlns:text:1.0"}
           T = "{%s}" % NS["table"]
-          MAX_PROBE = 30
+          MAX_PROBE = 5    # keep the test short on sheets with thousands of revisions
 
           def cells(data):
               """{(sheet, row, col): text} for every non-empty cell in an ODS file."""
@@ -347,7 +347,7 @@ jobs:
               j = json.loads(d)
               acts += j.get("activities", [])
               page = j.get("nextPageToken")
-              if not page or len(acts) >= 500:
+              if not page or len(acts) >= 50000:
                   break
 
           def actor_code(a):
@@ -365,18 +365,35 @@ jobs:
               return "?"
 
           if s == 200:
-              out(f"- {len(acts)} actions returned (newest first)")
+              def when_of(a):
+                  return a.get("timestamp") or a.get("timeRange", {}).get("endTime", "")
+              kinds = {}
+              for a in acts:
+                  for k in a.get("primaryActionDetail", {}):
+                      kinds[k] = kinds.get(k, 0) + 1
+              codes = {actor_code(x) for a in acts for x in a.get("actors", [])}
+              no_actor = sum(1 for a in acts if not a.get("actors"))
+              times = sorted(when_of(a) for a in acts if when_of(a))
+              out(f"- **{len(acts):,} actions** returned" + (" (stopped at 50,000)" if len(acts) >= 50000 else ""))
+              if times:
+                  out(f"- Oldest: {times[0]} · newest: {times[-1]}")
+              out(f"- By type: `{json.dumps(dict(sorted(kinds.items(), key=lambda kv: -kv[1])))}`")
+              out(f"- Distinct actor codes: {len(codes)} · actions without an actor: {no_actor}")
+              per_month = {}
+              for t in times:
+                  per_month[t[:7]] = per_month.get(t[:7], 0) + 1
+              out(f"- Actions per month: `{json.dumps(per_month)}`")
+              out()
+              out("Newest 15 and oldest 15 actions:")
               out()
               out("| Time (UTC) | Action | Actor(s) |")
               out("|---|---|---|")
-              for a in acts[:60]:
+              for a in (acts[:15] + acts[-15:] if len(acts) > 30 else acts):
                   when = a.get("timestamp") or "{} – {}".format(a.get("timeRange", {}).get("startTime", "?"),
                                                                  a.get("timeRange", {}).get("endTime", "?"))
                   action = ", ".join(a.get("primaryActionDetail", {}).keys()) or "?"
                   actors = "; ".join(sorted({actor_code(x) for x in a.get("actors", [])}))
                   out(f"| {when} | {action} | {actors} |")
-              if len(acts) > 60:
-                  out(f"| … | {len(acts) - 60} more | |")
 
           open(os.environ["GITHUB_STEP_SUMMARY"], "a").write("\n".join(summary) + "\n")
           PY
